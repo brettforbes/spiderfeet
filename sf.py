@@ -275,10 +275,12 @@ def start_scan(sfConfig: dict, sfModules: dict, args, loggingQueue) -> None:
 
     target = args.s
     # Usernames and names - quoted on the commandline - won't have quotes,
-    # so add them.
+    # so add them. Skip auto-quoting when the target is already recognised
+    # (e.g. IPv6 addresses contain ':' but no '.', and would otherwise match USERNAME).
+    pre_type = SpiderFootHelpers.targetTypeFromString(target)
     if " " in target:
         target = f"\"{target}\""
-    if "." not in target and not target.startswith("+") and '"' not in target:
+    elif pre_type is None and "." not in target and not target.startswith("+") and '"' not in target:
         target = f"\"{target}\""
     targetType = SpiderFootHelpers.targetTypeFromString(target)
 

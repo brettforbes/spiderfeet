@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Viz — force graph variants</title>
+  <link rel="stylesheet" href="css/viz.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="js/viz.core.js"></script>
+  <script src="js/viz.force.js"></script>
+</head>
+<body>
+  <main class="viz-shell">
+    <h1>Force graph variants</h1>
+    <div id="controls" class="viz-controls" role="toolbar" aria-label="Layout variant"></div>
+    <svg id="graph" width="900" height="560" role="img" aria-label="Force-directed network"></svg>
+    <div id="tooltip" class="viz-tooltip" hidden></div>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const payload = await fetch('sample-data.json').then(r => r.json());
+      const { nodes, links } = payload.network;
+      const controls = document.getElementById('controls');
+      let active = null;
+      let currentVariant = 'default';
+
+      Viz.ForceGraph.variants.forEach(name => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = name;
+        btn.setAttribute('aria-pressed', name === currentVariant ? 'true' : 'false');
+        btn.addEventListener('click', () => {
+          currentVariant = name;
+          controls.querySelectorAll('button').forEach(b => {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+          mount();
+        });
+        controls.appendChild(btn);
+      });
+
+      function mount() {
+        active?.destroy();
+        active = Viz.ForceGraph.create({
+          svg: '#graph',
+          tooltip: '#tooltip',
+          variant: currentVariant,
+          nodes,
+          links,
+          rootId: nodes[0]?.id,
+          onNodeClick: (_e, n) => console.log('node', n.id),
+        });
+      }
+
+      mount();
+      window.addEventListener('beforeunload', () => active?.destroy());
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Viz — bar chart demo</title>
+  <link rel="stylesheet" href="css/viz.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="js/viz.core.js"></script>
+  <script src="js/viz.charts.js"></script>
+</head>
+<body>
+  <main class="viz-shell">
+    <h1>Bar chart (Viz.Charts)</h1>
+    <svg id="chart" width="800" height="400" role="img" aria-label="Sample bar chart"></svg>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const data = await fetch('sample-data.json').then(r => r.json());
+      Viz.Charts.bar('#chart', data.categorical.map(d => ({
+        label: d.label,
+        value: d.value,
+      })));
+    });
+  </script>
+</body>
+</html>

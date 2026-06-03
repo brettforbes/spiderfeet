@@ -1,0 +1,63 @@
+.viz-shell {
+  font-family: system-ui, sans-serif;
+  margin: 1rem;
+}
+
+.viz-shell svg {
+  border: 1px solid #e0e0e0;
+  background: #fafafa;
+  max-width: 100%;
+}
+
+.viz-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.viz-controls {
+  margin-bottom: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.viz-controls button {
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+}
+
+.viz-controls button[aria-pressed="true"] {
+  background: #4a90e2;
+  color: #fff;
+  border-color: #4a90e2;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: 0.7;
+}
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+  cursor: grab;
+}
+
+.node:active {
+  cursor: grabbing;
+}
+
+.node.dimmed {
+  opacity: 0.2;
+}
+
+.link.dimmed {
+  stroke-opacity: 0.1;
+}

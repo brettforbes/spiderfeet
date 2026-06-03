@@ -1,0 +1,526 @@
+define
+
+	# Naming convention (Option B):
+	#   Entity and relation type labels: kebab-case (e.g. osint-service, domain-name)
+	#   Attribute type labels: snake_case (e.g. access_tier, module_id)
+	#   @values string literals: snake_case data values (e.g. free_no_auth, ip_netblock)
+
+	####################################
+	# Spiderfeet Nugget Definitions
+	####################################
+
+	entity nugget @abstract,
+		owns nugget_id,
+		owns nugget_instance_id @key,
+		owns nugget_description,
+		owns nugget_type,
+		owns nugget_icon,
+		owns nugget_colour,
+		owns nugget_data,
+		plays osint-service:consumed,
+		plays osint-service:produced,
+		plays route:consumed,
+		plays route:produced,
+		plays scan-record:consumed,
+		plays scan-record:produced;
+
+	entity root, sub nugget;
+	entity account-external-owned, sub nugget;
+	entity account-external-owned-compromised, sub nugget;
+	entity account-external-user-shared-compromised, sub nugget;
+	entity affiliate-emailaddr, sub nugget;
+	entity affiliate-internet-name, sub nugget;
+	entity affiliate-internet-name-hijackable, sub nugget;
+	entity affiliate-internet-name-unresolved, sub nugget;
+	entity affiliate-ipaddr, sub nugget;
+	entity affiliate-ipv6-address, sub nugget;
+	entity affiliate-web-content, sub nugget;
+	entity affiliate-domain-name, sub nugget;
+	entity affiliate-domain-unregistered, sub nugget;
+	entity affiliate-company-name, sub nugget;
+	entity affiliate-domain-whois, sub nugget;
+	entity affiliate-description-category, sub nugget;
+	entity affiliate-description-abstract, sub nugget;
+	entity appstore-entry, sub nugget;
+	entity cloud-storage-bucket, sub nugget;
+	entity cloud-storage-bucket-open, sub nugget;
+	entity company-name, sub nugget;
+	entity credit-card-number, sub nugget;
+	entity base64-data, sub nugget;
+	entity bitcoin-address, sub nugget;
+	entity bitcoin-balance, sub nugget;
+	entity bgp-as-owner, sub nugget;
+	entity bgp-as-member, sub nugget;
+	entity blacklisted-cohost, sub nugget;
+	entity blacklisted-internet-name, sub nugget;
+	entity blacklisted-affiliate-internet-name, sub nugget;
+	entity blacklisted-ipaddr, sub nugget;
+	entity blacklisted-affiliate-ipaddr, sub nugget;
+	entity blacklisted-subnet, sub nugget;
+	entity blacklisted-netblock, sub nugget;
+	entity country-name, sub nugget;
+	entity co-hosted-site, sub nugget;
+	entity co-hosted-site-domain, sub nugget;
+	entity co-hosted-site-domain-whois, sub nugget;
+	entity darknet-mention-url, sub nugget;
+	entity darknet-mention-content, sub nugget;
+	entity date-human-dob, sub nugget;
+	entity defaced-internet-name, sub nugget;
+	entity defaced-ipaddr, sub nugget;
+	entity defaced-affiliate-internet-name, sub nugget;
+	entity defaced-cohost, sub nugget;
+	entity defaced-affiliate-ipaddr, sub nugget;
+	entity description-category, sub nugget;
+	entity description-abstract, sub nugget;
+	entity device-type, sub nugget;
+	entity dns-text, sub nugget;
+	entity dns-srv, sub nugget;
+	entity dns-spf, sub nugget;
+	entity domain-name, sub nugget;
+	entity domain-name-parent, sub nugget;
+	entity domain-registrar, sub nugget;
+	entity domain-whois, sub nugget;
+	entity emailaddr, sub nugget;
+	entity emailaddr-compromised, sub nugget;
+	entity emailaddr-deliverable, sub nugget;
+	entity emailaddr-disposable, sub nugget;
+	entity emailaddr-generic, sub nugget;
+	entity emailaddr-undeliverable, sub nugget;
+	entity error-message, sub nugget;
+	entity ethereum-address, sub nugget;
+	entity ethereum-balance, sub nugget;
+	entity geoinfo, sub nugget;
+	entity hash, sub nugget;
+	entity hash-compromised, sub nugget;
+	entity http-code, sub nugget;
+	entity human-name, sub nugget;
+	entity iban-number, sub nugget;
+	entity interesting-file, sub nugget;
+	entity interesting-file-historic, sub nugget;
+	entity junk-file, sub nugget;
+	entity internal-ip-address, sub nugget;
+	entity internet-name, sub nugget;
+	entity internet-name-unresolved, sub nugget;
+	entity ip-address, sub nugget;
+	entity ipv6-address, sub nugget;
+	entity lei, sub nugget;
+	entity job-title, sub nugget;
+	entity linked-url-internal, sub nugget;
+	entity linked-url-external, sub nugget;
+	entity malicious-asn, sub nugget;
+	entity malicious-bitcoin-address, sub nugget;
+	entity malicious-ipaddr, sub nugget;
+	entity malicious-cohost, sub nugget;
+	entity malicious-emailaddr, sub nugget;
+	entity malicious-internet-name, sub nugget;
+	entity malicious-affiliate-internet-name, sub nugget;
+	entity malicious-affiliate-ipaddr, sub nugget;
+	entity malicious-netblock, sub nugget;
+	entity malicious-phone-number, sub nugget;
+	entity malicious-subnet, sub nugget;
+	entity netblock-owner, sub nugget;
+	entity netblockv6-owner, sub nugget;
+	entity netblock-member, sub nugget;
+	entity netblockv6-member, sub nugget;
+	entity netblock-whois, sub nugget;
+	entity operating-system, sub nugget;
+	entity leaksite-url, sub nugget;
+	entity leaksite-content, sub nugget;
+	entity password-compromised, sub nugget;
+	entity phone-number, sub nugget;
+	entity phone-number-compromised, sub nugget;
+	entity phone-number-type, sub nugget;
+	entity physical-address, sub nugget;
+	entity physical-coordinates, sub nugget;
+	entity pgp-key, sub nugget;
+	entity proxy-host, sub nugget;
+	entity provider-dns, sub nugget;
+	entity provider-javascript, sub nugget;
+	entity provider-mail, sub nugget;
+	entity provider-hosting, sub nugget;
+	entity provider-telco, sub nugget;
+	entity public-code-repo, sub nugget;
+	entity raw-rir-data, sub nugget;
+	entity raw-dns-records, sub nugget;
+	entity raw-file-meta-data, sub nugget;
+	entity search-engine-web-content, sub nugget;
+	entity social-media, sub nugget;
+	entity similar-account-external, sub nugget;
+	entity similardomain, sub nugget;
+	entity similardomain-whois, sub nugget;
+	entity software-used, sub nugget;
+	entity ssl-certificate-raw, sub nugget;
+	entity ssl-certificate-issued, sub nugget;
+	entity ssl-certificate-issuer, sub nugget;
+	entity ssl-certificate-mismatch, sub nugget;
+	entity ssl-certificate-expired, sub nugget;
+	entity ssl-certificate-expiring, sub nugget;
+	entity target-web-content, sub nugget;
+	entity target-web-content-type, sub nugget;
+	entity target-web-cookie, sub nugget;
+	entity tcp-port-open, sub nugget;
+	entity tcp-port-open-banner, sub nugget;
+	entity tor-exit-node, sub nugget;
+	entity udp-port-open, sub nugget;
+	entity udp-port-open-info, sub nugget;
+	entity url-adblocked-external, sub nugget;
+	entity url-adblocked-internal, sub nugget;
+	entity url-form, sub nugget;
+	entity url-flash, sub nugget;
+	entity url-javascript, sub nugget;
+	entity url-web-framework, sub nugget;
+	entity url-java-applet, sub nugget;
+	entity url-static, sub nugget;
+	entity url-password, sub nugget;
+	entity url-upload, sub nugget;
+	entity url-form-historic, sub nugget;
+	entity url-flash-historic, sub nugget;
+	entity url-javascript-historic, sub nugget;
+	entity url-web-framework-historic, sub nugget;
+	entity url-java-applet-historic, sub nugget;
+	entity url-static-historic, sub nugget;
+	entity url-password-historic, sub nugget;
+	entity url-upload-historic, sub nugget;
+	entity username, sub nugget;
+	entity vpn-host, sub nugget;
+	entity vulnerability-disclosure, sub nugget;
+	entity vulnerability-cve-critical, sub nugget;
+	entity vulnerability-cve-high, sub nugget;
+	entity vulnerability-cve-medium, sub nugget;
+	entity vulnerability-cve-low, sub nugget;
+	entity vulnerability-general, sub nugget;
+	entity web-analytics-id, sub nugget;
+	entity webserver-banner, sub nugget;
+	entity webserver-httpheaders, sub nugget;
+	entity webserver-strangeheader, sub nugget;
+	entity webserver-technology, sub nugget;
+	entity wifi-access-point, sub nugget;
+	entity wikipedia-page-edit, sub nugget;
+
+	#####################################
+	# Spiderfeet OSINT Service Definitions
+	####################################
+
+	relation osint-service,
+		owns module_id,
+		owns name,
+		owns summary,
+		owns flags,
+		owns use_cases,
+		owns categories,
+		owns access_tier,
+		owns consumption_group,
+		owns route_seed_nugget,
+		owns consumed_nuggets,
+		owns produced_nuggets,
+		owns service_state,
+		plays scan-record:service,
+		plays data-source:service,
+		plays route:service,
+		plays opts:service,
+		relates consumed,
+		relates produced;
+
+	entity osint-source,
+		owns website,
+		owns model,
+		owns references,
+		owns api_key_instructions,
+		owns fav_icon,
+		owns logo,
+		owns description,
+		plays data-source:source;
+
+	entity module-opt,
+		owns opt_name,
+		owns in_value @card(0..1),
+		owns db_value @card(0..1),
+		owns bo_value @card(0..1),
+		owns st_value @card(0..1),
+		owns description @card(0..1),
+		plays opts:opt;
+
+	relation opts,
+		relates service,
+		relates opt;
+
+	relation data-source,
+		relates service,
+		relates source;
+
+	relation sfp-abstractapi, sub osint-service;
+	relation sfp-abusech, sub osint-service;
+	relation sfp-abuseipdb, sub osint-service;
+	relation sfp-abusix, sub osint-service;
+	relation sfp-adblock, sub osint-service;
+	relation sfp-adguard-dns, sub osint-service;
+	relation sfp-ahmia, sub osint-service;
+	relation sfp-alienvault, sub osint-service;
+	relation sfp-alienvaultiprep, sub osint-service;
+	relation sfp-apple-itunes, sub osint-service;
+	relation sfp-archiveorg, sub osint-service;
+	relation sfp-arin, sub osint-service;
+	relation sfp-azureblobstorage, sub osint-service;
+	relation sfp-bgpview, sub osint-service;
+	relation sfp-binaryedge, sub osint-service;
+	relation sfp-bingsearch, sub osint-service;
+	relation sfp-bingsharedip, sub osint-service;
+	relation sfp-bitcoinabuse, sub osint-service;
+	relation sfp-bitcoinwhoswho, sub osint-service;
+	relation sfp-blockchain, sub osint-service;
+	relation sfp-blocklistde, sub osint-service;
+	relation sfp-botscout, sub osint-service;
+	relation sfp-botvrij, sub osint-service;
+	relation sfp-builtwith, sub osint-service;
+	relation sfp-c99, sub osint-service;
+	relation sfp-callername, sub osint-service;
+	relation sfp-censys, sub osint-service;
+	relation sfp-certspotter, sub osint-service;
+	relation sfp-cinsscore, sub osint-service;
+	relation sfp-circllu, sub osint-service;
+	relation sfp-citadel, sub osint-service;
+	relation sfp-cleanbrowsing, sub osint-service;
+	relation sfp-cleantalk, sub osint-service;
+	relation sfp-clearbit, sub osint-service;
+	relation sfp-cloudflaredns, sub osint-service;
+	relation sfp-coinblocker, sub osint-service;
+	relation sfp-commoncrawl, sub osint-service;
+	relation sfp-comodo, sub osint-service;
+	relation sfp-crobat-api, sub osint-service;
+	relation sfp-crt, sub osint-service;
+	relation sfp-crxcavator, sub osint-service;
+	relation sfp-cybercrimetracker, sub osint-service;
+	relation sfp-debounce, sub osint-service;
+	relation sfp-dehashed, sub osint-service;
+	relation sfp-digitaloceanspace, sub osint-service;
+	relation sfp-dns-for-family, sub osint-service;
+	relation sfp-dnsdb, sub osint-service;
+	relation sfp-dnsdumpster, sub osint-service;
+	relation sfp-dnsgrep, sub osint-service;
+	relation sfp-dronebl, sub osint-service;
+	relation sfp-duckduckgo, sub osint-service;
+	relation sfp-emailcrawlr, sub osint-service;
+	relation sfp-emailformat, sub osint-service;
+	relation sfp-emailrep, sub osint-service;
+	relation sfp-emergingthreats, sub osint-service;
+	relation sfp-etherscan, sub osint-service;
+	relation sfp-flickr, sub osint-service;
+	relation sfp-focsec, sub osint-service;
+	relation sfp-fortinet, sub osint-service;
+	relation sfp-fraudguard, sub osint-service;
+	relation sfp-fsecure-riddler, sub osint-service;
+	relation sfp-fullcontact, sub osint-service;
+	relation sfp-fullhunt, sub osint-service;
+	relation sfp-github, sub osint-service;
+	relation sfp-gleif, sub osint-service;
+	relation sfp-google-tag-manager, sub osint-service;
+	relation sfp-googlemaps, sub osint-service;
+	relation sfp-googleobjectstorage, sub osint-service;
+	relation sfp-googlesafebrowsing, sub osint-service;
+	relation sfp-googlesearch, sub osint-service;
+	relation sfp-gravatar, sub osint-service;
+	relation sfp-grayhatwarfare, sub osint-service;
+	relation sfp-greensnow, sub osint-service;
+	relation sfp-grep-app, sub osint-service;
+	relation sfp-greynoise, sub osint-service;
+	relation sfp-greynoise-community, sub osint-service;
+	relation sfp-h1nobbdde, sub osint-service;
+	relation sfp-hackertarget, sub osint-service;
+	relation sfp-haveibeenpwned, sub osint-service;
+	relation sfp-honeypot, sub osint-service;
+	relation sfp-hostio, sub osint-service;
+	relation sfp-hunter, sub osint-service;
+	relation sfp-hybrid-analysis, sub osint-service;
+	relation sfp-iknowwhatyoudownload, sub osint-service;
+	relation sfp-intelx, sub osint-service;
+	relation sfp-ipapico, sub osint-service;
+	relation sfp-ipapicom, sub osint-service;
+	relation sfp-ipinfo, sub osint-service;
+	relation sfp-ipqualityscore, sub osint-service;
+	relation sfp-ipregistry, sub osint-service;
+	relation sfp-ipstack, sub osint-service;
+	relation sfp-isc, sub osint-service;
+	relation sfp-jsonwhoiscom, sub osint-service;
+	relation sfp-keybase, sub osint-service;
+	relation sfp-koodous, sub osint-service;
+	relation sfp-leakix, sub osint-service;
+	relation sfp-maltiverse, sub osint-service;
+	relation sfp-malwarepatrol, sub osint-service;
+	relation sfp-metadefender, sub osint-service;
+	relation sfp-mnemonic, sub osint-service;
+	relation sfp-multiproxy, sub osint-service;
+	relation sfp-myspace, sub osint-service;
+	relation sfp-nameapi, sub osint-service;
+	relation sfp-networksdb, sub osint-service;
+	relation sfp-neutrinoapi, sub osint-service;
+	relation sfp-numverify, sub osint-service;
+	relation sfp-onioncity, sub osint-service;
+	relation sfp-onionsearchengine, sub osint-service;
+	relation sfp-onyphe, sub osint-service;
+	relation sfp-openbugbounty, sub osint-service;
+	relation sfp-opencorporates, sub osint-service;
+	relation sfp-opendns, sub osint-service;
+	relation sfp-opennic, sub osint-service;
+	relation sfp-openphish, sub osint-service;
+	relation sfp-openstreetmap, sub osint-service;
+	relation sfp-pastebin, sub osint-service;
+	relation sfp-phishstats, sub osint-service;
+	relation sfp-phishtank, sub osint-service;
+	relation sfp-projectdiscovery, sub osint-service;
+	relation sfp-psbdmp, sub osint-service;
+	relation sfp-pulsedive, sub osint-service;
+	relation sfp-punkspider, sub osint-service;
+	relation sfp-quad9, sub osint-service;
+	relation sfp-reversewhois, sub osint-service;
+	relation sfp-ripe, sub osint-service;
+	relation sfp-riskiq, sub osint-service;
+	relation sfp-robtex, sub osint-service;
+	relation sfp-s3bucket, sub osint-service;
+	relation sfp-searchcode, sub osint-service;
+	relation sfp-securitytrails, sub osint-service;
+	relation sfp-seon, sub osint-service;
+	relation sfp-shodan, sub osint-service;
+	relation sfp-skymem, sub osint-service;
+	relation sfp-slideshare, sub osint-service;
+	relation sfp-snov, sub osint-service;
+	relation sfp-sociallinks, sub osint-service;
+	relation sfp-socialprofiles, sub osint-service;
+	relation sfp-sorbs, sub osint-service;
+	relation sfp-spamcop, sub osint-service;
+	relation sfp-spamhaus, sub osint-service;
+	relation sfp-spur, sub osint-service;
+	relation sfp-spyonweb, sub osint-service;
+	relation sfp-stackoverflow, sub osint-service;
+	relation sfp-stevenblack-hosts, sub osint-service;
+	relation sfp-sublist3r, sub osint-service;
+	relation sfp-surbl, sub osint-service;
+	relation sfp-talosintel, sub osint-service;
+	relation sfp-template, sub osint-service;
+	relation sfp-textmagic, sub osint-service;
+	relation sfp-threatcrowd, sub osint-service;
+	relation sfp-threatfox, sub osint-service;
+	relation sfp-threatjammer, sub osint-service;
+	relation sfp-threatminer, sub osint-service;
+	relation sfp-torch, sub osint-service;
+	relation sfp-torexits, sub osint-service;
+	relation sfp-trashpanda, sub osint-service;
+	relation sfp-trumail, sub osint-service;
+	relation sfp-twilio, sub osint-service;
+	relation sfp-twitter, sub osint-service;
+	relation sfp-uceprotect, sub osint-service;
+	relation sfp-urlscan, sub osint-service;
+	relation sfp-venmo, sub osint-service;
+	relation sfp-viewdns, sub osint-service;
+	relation sfp-virustotal, sub osint-service;
+	relation sfp-voipbl, sub osint-service;
+	relation sfp-vxvault, sub osint-service;
+	relation sfp-whatcms, sub osint-service;
+	relation sfp-whoisology, sub osint-service;
+	relation sfp-whoxy, sub osint-service;
+	relation sfp-wigle, sub osint-service;
+	relation sfp-wikileaks, sub osint-service;
+	relation sfp-wikipediaedits, sub osint-service;
+	relation sfp-xforce, sub osint-service;
+	relation sfp-yandexdns, sub osint-service;
+	relation sfp-zetalytics, sub osint-service;
+	relation sfp-zonefiles, sub osint-service;
+	relation sfp-zoneh, sub osint-service;
+
+
+	#####################################
+	# Spiderfeet Route Relation Definitions
+	####################################
+
+	# Route state is in-test, until proven by tests to be either "favourite", 
+	#       "unique", "error", or "dominated" by another route.
+	relation route,
+		owns route_name,
+		owns route_state,
+		relates osint-service,
+		relates consumed,
+		relates produced,
+		plays sequence:prior,
+		plays sequence:next,
+		plays scan-record:route,
+		plays opts:opt;
+
+	relation sequence,
+		owns sequence_name,
+		relates prior,
+		relates next;
+
+	#####################################
+	# Spiderfeet Scan Record Relation Definitions
+	####################################
+
+	relation scan-record,
+		owns scan_instance_id,
+		owns scan_results,
+		owns scan_duration,
+		owns scan_timestamp,
+		owns scan_notes,
+		relates consumed,
+		relates produced,
+		relates service,
+		relates route,
+		plays enrichment:prior,
+		plays enrichment:next;
+
+	#####################################
+	# Spiderfeet Enrichment Definitions -
+	####################################
+
+	relation enrichment,
+		owns enrichment_id,
+		owns stix_id,
+		owns created,
+		relates prior,
+		relates next;
+
+
+	#####################################
+	# Spiderfeet Attribute Definitions
+	# (only attributes referenced by owns on entity/relation types)
+	####################################
+
+	attribute route_state, value string @values{ "in-test", "favourite", "unique", "error", "dominated" };
+	attribute service_state, value string @values{ "in-test", "favourite", "unique", "error", "dominated" };
+	attribute route_name, value string;
+	attribute sequence_name, value string;
+	attribute access_tier, value string @values{ "free_no_auth", "free_auth", "paid" };
+	attribute consumption_group, value string @values{ "domain", "hostname", "domain_and_hostname", "ip_netblock", "ip_only", "email", "email_identity_bundle", "phone", "crypto", "web_url_content", "org_entity", "other" };
+	attribute route_seed_nugget, value string;
+	attribute module_id,  value string;
+	attribute name,  value string;
+	attribute summary, value string;
+	attribute flags,  value string;
+	attribute use_cases,  value string;
+	attribute categories,  value string;
+	attribute consumed_nuggets,  value string;
+	attribute produced_nuggets,  value string;
+	attribute website,  value string;
+	attribute model,  value string;
+	attribute references,  value string;
+	attribute api_key_instructions,  value string;
+	attribute fav_icon,  value string;
+	attribute logo,  value string;
+	attribute description,  value string;
+	attribute nugget_id,  value string;
+	attribute nugget_description,  value string;
+	attribute nugget_type,  value string;
+	attribute nugget_icon,  value string;
+	attribute nugget_colour,  value string;
+	attribute nugget_data,  value object;
+	attribute opt_name, value string;
+	attribute in_value, value integer;
+	attribute db_value, value double;
+	attribute bo_value, value boolean;
+	attribute st_value, value string;
+	attribute scan_instance_id, value string;
+	attribute scan_results, value object;
+	attribute scan_duration, value double;
+	attribute scan_timestamp, value datetime;
+	attribute scan_notes, value string;
+	attribute created, value datetime;
+	attribute enrichment_id, value string;
+	attribute stix_id, value string;
