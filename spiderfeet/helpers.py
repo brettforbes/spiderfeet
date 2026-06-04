@@ -65,8 +65,8 @@ else:
 EmptyTree = typing.Dict[None, object]
 
 
-class SpiderFootHelpers():
-    """Spiderfeet helper functions.
+class SpiderFeetHelpers():
+    """SpiderFeet helper functions.
 
     This class is used to store static helper functions which are
     designed to function independent of scan config or global config.
@@ -77,14 +77,14 @@ class SpiderFootHelpers():
 
     @staticmethod
     def dataPath() -> str:
-        """Returns the file system location of Spiderfeet data and configuration files.
+        """Returns the file system location of SpiderFeet data and configuration files.
 
         Returns:
-            str: Spiderfeet data file system path
+            str: SpiderFeet data file system path
         """
         path = os.environ.get('SPIDERFEET_DATA')
         if not path:
-            path = f"{Path.home()}/.spiderfeet/"
+            path = f"{Path.home()}/.spiderFeet/"
         if not os.path.isdir(path):
             os.makedirs(path, exist_ok=True)
         return path
@@ -94,25 +94,25 @@ class SpiderFootHelpers():
         """Returns the file system location of the cacha data files.
 
         Returns:
-            str: Spiderfeet cache file system path
+            str: SpiderFeet cache file system path
         """
         path = os.environ.get('SPIDERFEET_CACHE')
         if not path:
-            path = f"{Path.home()}/.spiderfeet/cache"
+            path = f"{Path.home()}/.spiderFeet/cache"
         if not os.path.isdir(path):
             os.makedirs(path, exist_ok=True)
         return path
 
     @staticmethod
     def logPath() -> str:
-        """Returns the file system location of Spiderfeet log files.
+        """Returns the file system location of SpiderFeet log files.
 
         Returns:
-            str: Spiderfeet data file system path
+            str: SpiderFeet data file system path
         """
         path = os.environ.get('SPIDERFEET_LOGS')
         if not path:
-            path = f"{Path.home()}/.spiderfeet/logs"
+            path = f"{Path.home()}/.spiderFeet/logs"
         if not os.path.isdir(path):
             os.makedirs(path, exist_ok=True)
         return path
@@ -126,7 +126,7 @@ class SpiderFootHelpers():
             ignore_files (list): List of module file names to ignore
 
         Returns:
-            dict: Spiderfeet modules
+            dict: SpiderFeet modules
 
         Raises:
             TypeError: ignore file list was invalid
@@ -440,7 +440,7 @@ class SpiderFootHelpers():
         if not flt:
             flt = []
 
-        mapping = SpiderFootHelpers.buildGraphData(data, flt)
+        mapping = SpiderFeetHelpers.buildGraphData(data, flt)
         graph = nx.Graph()
 
         nodelist: typing.Dict[str, int] = dict()
@@ -495,7 +495,7 @@ class SpiderFootHelpers():
         if not flt:
             flt = []
 
-        mapping = SpiderFootHelpers.buildGraphData(data, flt)
+        mapping = SpiderFeetHelpers.buildGraphData(data, flt)
         ret: _Graph = {}
         ret['nodes'] = list()
         ret['edges'] = list()
@@ -873,7 +873,7 @@ class SpiderFootHelpers():
 
             # If the link starts with a /, the absolute link is off the base URL
             elif link.startswith('/'):
-                absLink = SpiderFootHelpers.urlBaseUrl(url) + link
+                absLink = SpiderFeetHelpers.urlBaseUrl(url) + link
 
             # Maybe the domain was just mentioned and not a link, so we make it one
             for domain in domains:
@@ -882,10 +882,10 @@ class SpiderFootHelpers():
 
             # Otherwise, it's a flat link within the current directory
             if absLink is None:
-                absLink = SpiderFootHelpers.urlBaseDir(url) + link
+                absLink = SpiderFeetHelpers.urlBaseDir(url) + link
 
             # Translate any relative pathing (../)
-            absLink = SpiderFootHelpers.urlRelativeToAbsolute(absLink)
+            absLink = SpiderFeetHelpers.urlRelativeToAbsolute(absLink)
             returnLinks[absLink] = {'source': url, 'original': link}
 
         return returnLinks
@@ -986,7 +986,7 @@ class SpiderFootHelpers():
         matches = re.findall(r'([\%a-zA-Z\.0-9_\-\+]+@[a-zA-Z\.0-9\-]+\.[a-zA-Z\.0-9\-]+)', data)
 
         for match in matches:
-            if SpiderFootHelpers.validEmail(match):
+            if SpiderFeetHelpers.validEmail(match):
                 emails.add(match)
 
         return list(emails)
@@ -1170,7 +1170,7 @@ class SpiderFootHelpers():
         if not isinstance(countryCode, str):
             return None
 
-        return SpiderFootHelpers.countryCodes().get(countryCode.upper())
+        return SpiderFeetHelpers.countryCodes().get(countryCode.upper())
 
     @staticmethod
     def countryNameFromTld(tld: str) -> typing.Optional[str]:
@@ -1185,7 +1185,7 @@ class SpiderFootHelpers():
         if not isinstance(tld, str):
             return None
 
-        country_name = SpiderFootHelpers.countryCodes().get(tld.upper())
+        country_name = SpiderFeetHelpers.countryCodes().get(tld.upper())
 
         if country_name:
             return country_name

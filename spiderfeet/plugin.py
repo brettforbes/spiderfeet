@@ -8,7 +8,7 @@ import threading
 from time import sleep
 import traceback
 
-from .threadpool import SpiderFootThreadPool
+from .threadpool import SpiderFeetThreadPool
 
 # begin logging overrides
 # these are copied from the python logging module
@@ -23,8 +23,8 @@ else:
 _srcfile = os.path.normcase(_srcfile)
 
 
-class SpiderfeetPluginLogger(logging.Logger):
-    """Used only in SpiderFootPlugin to prevent modules
+class SpiderFeetPluginLogger(logging.Logger):
+    """Used only in SpiderFeetPlugin to prevent modules
     from having to initialize their own loggers.
 
     Preserves filename, module, line numbers, etc. from the caller.
@@ -75,13 +75,13 @@ class SpiderfeetPluginLogger(logging.Logger):
 # end of logging overrides
 
 
-class SpiderFootPlugin():
-    """SpiderFootPlugin module object
+class SpiderFeetPlugin():
+    """SpiderFeetPlugin module object
 
     Attributes:
         _stopScanning (bool): Will be set to True by the controller if the user aborts scanning
         listenerModules (list): Modules that will be notified when this module produces events
-        _currentEvent (SpiderFootEvent): Current event being processed
+        _currentEvent (SpiderFeetEvent): Current event being processed
         _currentTarget (str): Target currently being acted against
         _name_: Name of this module, set at startup time
         __sfdb__: Direct handle to the database - not to be directly used
@@ -109,7 +109,7 @@ class SpiderFootPlugin():
     __sfdb__ = None
     # ID of the scan the module is running against
     __scanId__ = None
-    # (only used in Spiderfeet HX) tracking of data sources
+    # (only used in SpiderFeet HX) tracking of data sources
     __dataSource__ = None
     # If set, events not matching this list are dropped
     __outputFilter__ = None
@@ -125,7 +125,7 @@ class SpiderFootPlugin():
     incomingEventQueue = None
     # Queue for produced events
     outgoingEventQueue = None
-    # Spiderfeet object, set in each module's setup() function
+    # SpiderFeet object, set in each module's setup() function
     sf = None
     # Configuration, set in each module's setup() function
     opts = dict()
@@ -143,8 +143,8 @@ class SpiderFootPlugin():
     @property
     def log(self):
         if self._log is None:
-            logging.setLoggerClass(SpiderfeetPluginLogger)  # temporarily set logger class
-            self._log = logging.getLogger(f"spiderfeet.{self.__name__}")  # init SpiderfeetPluginLogger
+            logging.setLoggerClass(SpiderFeetPluginLogger)  # temporarily set logger class
+            self._log = logging.getLogger(f"spiderFeet.{self.__name__}")  # init SpiderFeetPluginLogger
             logging.setLoggerClass(logging.Logger)  # reset logger class to default
         return self._log
 
@@ -168,7 +168,7 @@ class SpiderFootPlugin():
         """Will always be overriden by the implementer.
 
         Args:
-            sf (Spiderfeet): Spiderfeet object
+            sf (SpiderFeet): SpiderFeet object
             userOpts (dict): TBD
         """
         pass
@@ -217,15 +217,15 @@ class SpiderFootPlugin():
         """Assigns the current target this module is acting against.
 
         Args:
-            target (SpiderFootTarget): target
+            target (SpiderFeetTarget): target
 
         Raises:
             TypeError: target argument was invalid type
         """
-        from spiderfeet import SpiderFootTarget
+        from spiderfeet import SpiderFeetTarget
 
-        if not isinstance(target, SpiderFootTarget):
-            raise TypeError(f"target is {type(target)}; expected SpiderFootTarget")
+        if not isinstance(target, SpiderFeetTarget):
+            raise TypeError(f"target is {type(target)}; expected SpiderFeetTarget")
 
         self._currentTarget = target
 
@@ -234,7 +234,7 @@ class SpiderFootPlugin():
         by modules in very rare/exceptional cases (e.g. sfp__stor_db)
 
         Args:
-            dbh (SpiderFootDb): database handle
+            dbh (SpiderFeetDb): database handle
         """
         self.__sfdb__ = dbh
 
@@ -302,7 +302,7 @@ class SpiderFootPlugin():
             Move all module state to use this, which then would enable a scan to be paused/resumed.
 
         Note:
-            Required for Spiderfeet HX compatibility of modules.
+            Required for SpiderFeet HX compatibility of modules.
 
         Returns:
             dict: module temporary state data
@@ -315,16 +315,16 @@ class SpiderFootPlugin():
         within the same execution context of this thread, not on their own.
 
         Args:
-            sfEvent (SpiderFootEvent): event
+            sfEvent (SpiderFeetEvent): event
 
         Raises:
             TypeError: sfEvent argument was invalid type
         """
 
-        from spiderfeet import SpiderFootEvent
+        from spiderfeet import SpiderFeetEvent
 
-        if not isinstance(sfEvent, SpiderFootEvent):
-            raise TypeError(f"sfEvent is {type(sfEvent)}; expected SpiderFootEvent")
+        if not isinstance(sfEvent, SpiderFeetEvent):
+            raise TypeError(f"sfEvent is {type(sfEvent)}; expected SpiderFeetEvent")
 
         eventName = sfEvent.eventType
         eventData = sfEvent.data
@@ -464,7 +464,7 @@ class SpiderFootPlugin():
         Will usually be overriden by the implementer, unless it doesn't handle any events.
 
         Args:
-            sfEvent (SpiderFootEvent): event
+            sfEvent (SpiderFeetEvent): event
         """
 
         return
@@ -498,8 +498,8 @@ class SpiderFootPlugin():
     def threadWorker(self) -> None:
         try:
             # create new database handle since we're in our own thread
-            from spiderfeet import SpiderFootDb
-            self.setDbh(SpiderFootDb(self.opts))
+            from spiderfeet import SpiderFeetDb
+            self.setDbh(SpiderFeetDb(self.opts))
             self.sf._dbh = self.__sfdb__
 
             if not (self.incomingEventQueue and self.outgoingEventQueue):
@@ -554,9 +554,9 @@ class SpiderFootPlugin():
             self.sharedThreadPool.submit(callback, *args, taskName=f"{self.__name__}_threadWorker", maxThreads=self.maxThreads, **kwargs)
 
     def threadPool(self, *args, **kwargs):
-        return SpiderFootThreadPool(*args, **kwargs)
+        return SpiderFeetThreadPool(*args, **kwargs)
 
     def setSharedThreadPool(self, sharedThreadPool) -> None:
         self.sharedThreadPool = sharedThreadPool
 
-# end of SpiderFootPlugin class
+# end of SpiderFeetPlugin class

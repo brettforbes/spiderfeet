@@ -18,10 +18,10 @@ import time
 from queue import Empty as QueueEmpty
 from queue import Queue
 
-from spiderfeet import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_accounts(SpiderFootPlugin):
+class sfp_accounts(SpiderFeetPlugin):
 
     meta = {
         'name': "Account Finder",
@@ -73,13 +73,13 @@ class sfp_accounts(SpiderFootPlugin):
         for opt in list(userOpts.keys()):
             self.opts[opt] = userOpts[opt]
 
-        self.commonNames = SpiderFootHelpers.humanNamesFromWordlists()
-        self.words = SpiderFootHelpers.dictionaryWordsFromWordlists()
+        self.commonNames = SpiderFeetHelpers.humanNamesFromWordlists()
+        self.words = SpiderFeetHelpers.dictionaryWordsFromWordlists()
 
         content = self.sf.cacheGet("sfaccountsv2", 48)
         if content is None:
             url = "https://raw.githubusercontent.com/WebBreacher/WhatsMyName/main/wmn-data.json"
-            data = self.sf.fetchUrl(url, useragent="Spiderfeet")
+            data = self.sf.fetchUrl(url, useragent="SpiderFeet")
 
             if data['content'] is None:
                 self.error(f"Unable to fetch {url}")
@@ -375,7 +375,7 @@ class sfp_accounts(SpiderFootPlugin):
                     self.debug(f"{user} is too short, skipping.")
                     continue
 
-                evt = SpiderFootEvent("USERNAME", user, self.__name__, event)
+                evt = SpiderFeetEvent("USERNAME", user, self.__name__, event)
                 self.notifyListeners(evt)
                 self.reportedUsers.append(user)
 
@@ -386,7 +386,7 @@ class sfp_accounts(SpiderFootPlugin):
         if eventName == "USERNAME":
             res = self.checkSites(user)
             for site in res:
-                evt = SpiderFootEvent(
+                evt = SpiderFeetEvent(
                     "ACCOUNT_EXTERNAL_OWNED",
                     site,
                     self.__name__,
@@ -399,7 +399,7 @@ class sfp_accounts(SpiderFootPlugin):
                 for puser in permutations:
                     res = self.checkSites(puser)
                     for site in res:
-                        evt = SpiderFootEvent(
+                        evt = SpiderFeetEvent(
                             "SIMILAR_ACCOUNT_EXTERNAL",
                             site,
                             self.__name__,

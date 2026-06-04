@@ -10,10 +10,10 @@
 # Licence:     MIT
 # -------------------------------------------------------------------------------
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_fortinet(SpiderFootPlugin):
+class sfp_fortinet(SpiderFeetPlugin):
 
     meta = {
         'name': "FortiGuard Antispam",
@@ -128,10 +128,10 @@ class sfp_fortinet(SpiderFootPlugin):
         url = f"https://www.fortiguard.com/search?q={eventData}&engine=8"
         text = f"FortiGuard Antispam [{eventData}]\n<SFURL>{url}</SFURL>"
 
-        evt = SpiderFootEvent(malicious_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(malicious_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(blacklist_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(blacklist_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_fortinet class

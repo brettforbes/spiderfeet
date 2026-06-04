@@ -1,6 +1,6 @@
 # Grouping of OSINT Services
 
-This document describes how Spiderfeet classifies **OSINT service modules** for map navigation, route planning, favourites, and force-graph filtering. It is the canonical reference for the grouping dimensions stored on each record in `.docs/analysis/osint_services.json` and mirrored on the `osint-service` relation in `.seed/spiderfeet_map.tql`.
+This document describes how SpiderFeet classifies **OSINT service modules** for map navigation, route planning, favourites, and force-graph filtering. It is the canonical reference for the grouping dimensions stored on each record in `.docs/analysis/osint_services.json` and mirrored on the `osint-service` relation in `.seed/spiderFeet_map.tql`.
 
 ---
 
@@ -8,7 +8,7 @@ This document describes how Spiderfeet classifies **OSINT service modules** for 
 
 ### What is an OSINT service?
 
-An **OSINT service** is a Spiderfeet module whose metadata includes a `dataSource` block — i.e. it calls an external data provider rather than performing purely internal analysis. These modules are extracted from `modules/sfp_*.py` by `.docs/analysis/analyse_modules.py` and catalogued in `osint_services.json`.
+An **OSINT service** is a SpiderFeet module whose metadata includes a `dataSource` block — i.e. it calls an external data provider rather than performing purely internal analysis. These modules are extracted from `modules/sfp_*.py` by `.docs/analysis/analyse_modules.py` and catalogued in `osint_services.json`.
 
 | Metric | Count |
 |--------|------:|
@@ -25,7 +25,7 @@ Each OSINT service record describes:
 
 ### Why group services?
 
-The Spiderfeet **map model** connects nuggets through OSINT services via **routes**. Operators need to:
+The SpiderFeet **map model** connects nuggets through OSINT services via **routes**. Operators need to:
 
 1. **Filter** the elemental map by cost/access and by what kind of seed data a service accepts
 2. **Plan sequences** — chains of produced → consumed nuggets across services
@@ -42,7 +42,7 @@ Grouping dimensions are **orthogonal**: a service has one access tier, one consu
 |----------|------|
 | `.docs/analysis/analyse_modules.py` | Parses modules; computes grouping fields |
 | `.docs/analysis/osint_services.json` | Generated catalogue (177 records) |
-| `.seed/spiderfeet_map.tql` | TypeDB schema: `osint-service` owns grouping attributes |
+| `.seed/spiderFeet_map.tql` | TypeDB schema: `osint-service` owns grouping attributes |
 | `modules/sfp_*.py` | Authoritative module metadata (`meta.dataSource.model`, event lists) |
 
 Regenerate the JSON after module changes:
@@ -66,7 +66,7 @@ Three computed fields sit on every OSINT service record and on the TypeDB `osint
 Additionally, each service retains:
 
 - **`consumed_nuggets`** — full list of nugget types the module listens for (may be multiple)
-- **`data_source.model`** — Spiderfeet’s fine-grained access enum (6 values); mapped into `access_tier`
+- **`data_source.model`** — SpiderFeet’s fine-grained access enum (6 values); mapped into `access_tier`
 
 ```mermaid
 flowchart LR
@@ -103,9 +103,9 @@ Used for UI filters (e.g. “show only free, no signup”), legend badges, and p
 
 ### Mapping from `data_source.model`
 
-Spiderfeet modules declare one of six `data_source.model` values (validated in `test/unit/test_modules.py`). These map to three tiers:
+SpiderFeet modules declare one of six `data_source.model` values (validated in `test/unit/test_modules.py`). These map to three tiers:
 
-| Spiderfeet `data_source.model` | `access_tier` | Count | Notes |
+| SpiderFeet `data_source.model` | `access_tier` | Count | Notes |
 |--------------------------------|---------------|------:|-------|
 | `FREE_NOAUTH_UNLIMITED` | `free_no_auth` | 88 | Open feeds, public APIs |
 | `FREE_NOAUTH_LIMITED` | `free_no_auth` | 7 | No auth, but rate-limited |
@@ -323,7 +323,7 @@ PHYSICAL_ADDRESS → PHYSICAL_COORDINATES → (else first alphabetically)
 | `BITCOIN_ADDRESS` | 3 | Crypto chains |
 | Other singletons | 12 | Specialty seeds |
 
-The three dominant seeds (`INTERNET_NAME`, `IP_ADDRESS`, `DOMAIN_NAME`) account for **146 of 177** modules (82.5%) — matching how Spiderfeet scans are usually seeded.
+The three dominant seeds (`INTERNET_NAME`, `IP_ADDRESS`, `DOMAIN_NAME`) account for **146 of 177** modules (82.5%) — matching how SpiderFeet scans are usually seeded.
 
 ### Relationship to `consumption_group`
 
@@ -339,7 +339,7 @@ Example: `sfp_haveibeenpwned` consumes `EMAILADDR` + `PHONE_NUMBER` → group `e
 
 ## 7. TypeDB schema binding
 
-Grouping fields are first-class attributes on the abstract `osint-service` relation in `.seed/spiderfeet_map.tql`:
+Grouping fields are first-class attributes on the abstract `osint-service` relation in `.seed/spiderFeet_map.tql`:
 
 ```typeql
 relation osint-service,
@@ -405,7 +405,7 @@ For map UX, **`other` should remain filterable** but may use a distinct visual t
 
 ## 9. Using groups in the map model
 
-The Spiderfeet map has three layered views (see `.seed/02_stsage_by_stage_reengineer.md`):
+The SpiderFeet map has three layered views (see `.seed/02_stsage_by_stage_reengineer.md`):
 
 | Map layer | Grouping use |
 |-----------|--------------|
@@ -471,7 +471,7 @@ The Spiderfeet map has three layered views (see `.seed/02_stsage_by_stage_reengi
 
 ### Regenerating classifications
 
-1. Edit Spiderfeet modules or classification rules in `analyse_modules.py`
+1. Edit SpiderFeet modules or classification rules in `analyse_modules.py`
 2. Run `python .docs/analysis/analyse_modules.py`
 3. Verify counts and spot-check `other` / `paid` lists
 4. Load updated attributes into TypeDB when seeding map data
@@ -480,7 +480,7 @@ The Spiderfeet map has three layered views (see `.seed/02_stsage_by_stage_reengi
 
 | Trigger | Action |
 |---------|--------|
-| New `data_source.model` enum in Spiderfeet | Add to `ACCESS_TIER_BY_MODEL` and tests |
+| New `data_source.model` enum in SpiderFeet | Add to `ACCESS_TIER_BY_MODEL` and tests |
 | New nugget types consumed by many modules | Extend family frozensets in `consumption_group()` |
 | `other` group grows beyond ~15% | Split new group (e.g. `social`, `geo`) with new `@values` entry |
 | UI needs quota detail | Filter on `osint-source.model` (`LIMITED` vs `UNLIMITED`) alongside `access_tier` |
@@ -512,7 +512,7 @@ The Spiderfeet map has three layered views (see `.seed/02_stsage_by_stage_reengi
 
 - **Catalogue:** `.docs/analysis/osint_services.json`
 - **Classifier:** `.docs/analysis/analyse_modules.py`
-- **Schema:** `.seed/spiderfeet_map.tql`
+- **Schema:** `.seed/spiderFeet_map.tql`
 - **Colour hints:** `.docs/analysis/force_graph_colour_scheme.md`
 
 ---

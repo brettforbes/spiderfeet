@@ -17,10 +17,10 @@
 
 | Root | GitHub | Role |
 |------|--------|------|
-| `spiderfeet` | `brettforbes/spiderfeet` | Python backend, CLI, FastAPI, TypeDB, module execution |
-| `spiderfeet-widget` | `brettforbes/spiderfeet-widget` | iFrame UI (Bootstrap 5, D3, webpack) |
+| `spiderFeet` | `brettforbes/spiderFeet` | Python backend, CLI, FastAPI, TypeDB, module execution |
+| `spiderFeet-widget` | `brettforbes/spiderFeet-widget` | iFrame UI (Bootstrap 5, D3, webpack) |
 
-**Cross-repo workflow:** [cursor-multi-repo skill](https://github.com/brettforbes/spiderfeet/blob/16c1027fb03a301aad338892e0d97acf3b0ac3a3/.cursor/skills/cursor-multi-repo/SKILL.md) — multi-root workspace, independent rules per root, `@spiderfeet/...` and `@spiderfeet-widget/...` references.
+**Cross-repo workflow:** [cursor-multi-repo skill](https://github.com/brettforbes/spiderfeet/blob/16c1027fb03a301aad338892e0d97acf3b0ac3a3/.cursor/skills/cursor-multi-repo/SKILL.md) — multi-root workspace, independent rules per root, `@spiderFeet/...` and `@spiderFeet-widget/...` references.
 
 ---
 
@@ -74,29 +74,29 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 
 | Stage | Epic ID | Repo | Epic title | Widget / backend pair |
 |-------|---------|------|------------|------------------------|
-| 0 | `EPIC-SF-00` | spiderfeet | Stage 0 — Project governance (Python root) | — |
-| 0 | `EPIC-SFW-00` | spiderfeet-widget | Stage 0 — Project governance (JS root) | Linked to `EPIC-SF-00` |
+| 0 | `EPIC-SF-00` | spiderFeet | Stage 0 — Project governance (Python root) | — |
+| 0 | `EPIC-SFW-00` | spiderFeet-widget | Stage 0 — Project governance (JS root) | Linked to `EPIC-SF-00` |
 | 0 | `EPIC-X-00` | both | Stage 0 — Unified program board & SPEC-002 | Parent program epic (either repo or org project) |
-| 1 | `EPIC-SF-01` | spiderfeet | Stage 1 — Spiderfeet rebrand (backend) | — |
-| 1 | `EPIC-SFW-01` | spiderfeet-widget | Stage 1 — Spiderfeet rebrand (widget) | Linked to `EPIC-SF-01` |
+| 1 | `EPIC-SF-01` | spiderFeet | Stage 1 — SpiderFeet rebrand (backend) | — |
+| 1 | `EPIC-SFW-01` | spiderFeet-widget | Stage 1 — SpiderFeet rebrand (widget) | Linked to `EPIC-SF-01` |
 | 1 | `EPIC-X-01` | both | Stage 1 — Logo selection & rebrand sign-off | Closes both stage-1 epics |
-| 2 | `EPIC-SF-02` | spiderfeet | Stage 2 — FastAPI over CLI | **No widget epic** (per plan §2.2) |
-| 3 | `EPIC-SF-03A` | spiderfeet | Stage 3a — TypeDB map ORM & database seed | ↔ `EPIC-SFW-03` (blocked until 3b API exists) |
-| 3 | `EPIC-SF-03B` | spiderfeet | Stage 3b — FastAPI for map CRUD & graph export | ↔ `EPIC-SFW-03` |
-| 3 | `EPIC-SFW-03` | spiderfeet-widget | Stage 3c — Maps page & force graph UI | ↔ `EPIC-SF-03A`, `EPIC-SF-03B` |
-| 4 | `EPIC-SF-04A` | spiderfeet | Stage 4a — `scan-record` schema & type-bridge | ↔ `EPIC-SFW-04` |
-| 4 | `EPIC-SF-04B` | spiderfeet | Stage 4b — Realistic test nugget corpus | ↔ `EPIC-SF-04C` |
-| 4 | `EPIC-SF-04C` | spiderfeet | Stage 4c — Route/module test execution API | ↔ `EPIC-SFW-04` |
-| 4 | `EPIC-SFW-04` | spiderfeet-widget | Stage 4d — Tests tab & module test UX | ↔ `EPIC-SF-04C` |
+| 2 | `EPIC-SF-02` | spiderFeet | Stage 2 — FastAPI over CLI | **No widget epic** (per plan §2.2) |
+| 3 | `EPIC-SF-03A` | spiderFeet | Stage 3a — TypeDB map ORM & database seed | ↔ `EPIC-SFW-03` (blocked until 3b API exists) |
+| 3 | `EPIC-SF-03B` | spiderFeet | Stage 3b — FastAPI for map CRUD & graph export | ↔ `EPIC-SFW-03` |
+| 3 | `EPIC-SFW-03` | spiderFeet-widget | Stage 3c — Maps page & force graph UI | ↔ `EPIC-SF-03A`, `EPIC-SF-03B` |
+| 4 | `EPIC-SF-04A` | spiderFeet | Stage 4a — `scan-record` schema & type-bridge | ↔ `EPIC-SFW-04` |
+| 4 | `EPIC-SF-04B` | spiderFeet | Stage 4b — Realistic test nugget corpus | ↔ `EPIC-SF-04C` |
+| 4 | `EPIC-SF-04C` | spiderFeet | Stage 4c — Route/module test execution API | ↔ `EPIC-SFW-04` |
+| 4 | `EPIC-SFW-04` | spiderFeet-widget | Stage 4d — Tests tab & module test UX | ↔ `EPIC-SF-04C` |
 | 4 | `EPIC-X-04` | both | Stage 4 — Route coverage sign-off | Exit criterion for stage 4 |
 
-**Issue labels (suggested):** `epic`, `stage-0` … `stage-4`, `spiderfeet`, `spiderfeet-widget`, `cross-repo`, `blocked-external`, `operator-review`.
+**Issue labels (suggested):** `epic`, `stage-0` … `stage-4`, `spiderFeet`, `spiderFeet-widget`, `cross-repo`, `blocked-external`, `operator-review`.
 
 ---
 
 ## 4. Stage 0 — Governance setup
 
-### Epic `EPIC-SF-00` — spiderfeet
+### Epic `EPIC-SF-00` — spiderFeet
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
@@ -106,14 +106,14 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 | SF-00-04 | Story | Update `PROJECT_INTENT.md` for first-four program | Replace provisional intent with staged reengineering goals; link SPEC-002 |
 | SF-00-05 | Story | Extend `BACKLOG.md` with stage 0–4 traceability | BL rows reference epic IDs in this plan |
 
-### Epic `EPIC-SFW-00` — spiderfeet-widget
+### Epic `EPIC-SFW-00` — spiderFeet-widget
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
 | SFW-00-01 | Story | Audit generic vs project governance gap | Same matrix pattern as SF-00-01 for JS/webpack/widget |
 | SFW-00-02 | Story | Author JS/iFrame-specific project rules | Bootstrap grid, `window.Widgets`, D3, API base URL conventions |
-| SFW-00-03 | Story | Mirror project rules to `.cursor/rules/` | Parity with spiderfeet mirroring approach |
-| SFW-00-04 | Story | Update widget `PROJECT_INTENT.md` | Align with Spiderfeet map UI program (not template-only wording) |
+| SFW-00-03 | Story | Mirror project rules to `.cursor/rules/` | Parity with spiderFeet mirroring approach |
+| SFW-00-04 | Story | Update widget `PROJECT_INTENT.md` | Align with SpiderFeet map UI program (not template-only wording) |
 | SFW-00-05 | Story | Install/sync `cursor-multi-repo` skill in widget root | Skill present at `.cursor/skills/cursor-multi-repo/` per multi-repo skill |
 
 ### Epic `EPIC-X-00` — program (cross-repo)
@@ -121,7 +121,7 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
 | X-00-01 | Story | Create SPEC-002-first-four-stages | Requirements IDs for stages 0–4; traceability table |
-| X-00-02 | Story | Save/update multi-root workspace | `.seed/spiderfeet_complete.code-workspace` lists both roots with sane excludes |
+| X-00-02 | Story | Save/update multi-root workspace | `.seed/spiderFeet_complete.code-workspace` lists both roots with sane excludes |
 | X-00-03 | Story | Canonical GitHub Project + board columns | VibeGov columns: Backlog, Ready, In progress, In review, Done, Blocked; both repos linked |
 | X-00-04 | Story | Import open backlog into board | BL-006+ and all epics/stories from this plan attached |
 | X-00-05 | Story | **Operator review:** approve governance + SPEC-002 | Explicit sign-off comment; unblocks stage 1 |
@@ -132,23 +132,23 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 
 ## 5. Stage 1 — Name change & rebrand
 
-### Epic `EPIC-SF-01` — spiderfeet
+### Epic `EPIC-SF-01` — spiderFeet
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
-| SF-01-01 | Story | Spiderfeet reference inventory | Machine-readable report: paths + counts for `spiderfeet` / `Spiderfeet` / filenames |
-| SF-01-02 | Story | Rename files and directories | No path segment `spiderfeet` / `Spiderfeet` remains (exclude `.git`, vendor if documented) |
+| SF-01-01 | Story | SpiderFeet reference inventory | Machine-readable report: paths + counts for `spiderFeet` / `SpiderFeet` / filenames |
+| SF-01-02 | Story | Rename files and directories | No path segment `spiderFeet` / `SpiderFeet` remains (exclude `.git`, vendor if documented) |
 | SF-01-03 | Story | Update Python package/module imports | `poetry run python sf.py -V` (or successor entry) works after renames |
-| SF-01-04 | Story | Replace in-repo strings and docs | README, comments, CLI strings say Spiderfeet |
+| SF-01-04 | Story | Replace in-repo strings and docs | README, comments, CLI strings say SpiderFeet |
 | SF-01-05 | Story | Apache 2.0 license (Brett Forbes) | `LICENSE` + headers where applicable; MIT removed |
 | SF-01-06 | Story | Three logo concepts in README | Three distinct assets linked/embed in `README.md` for operator choice |
 | SF-01-07 | Story | Verify `start.ps1` / dev entry still runs | Document any renamed commands in README |
 
-### Epic `EPIC-SFW-01` — spiderfeet-widget
+### Epic `EPIC-SFW-01` — spiderFeet-widget
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
-| SFW-01-01 | Story | Template → Spiderfeet naming pass | README, package.json name, titles, visible UI strings |
+| SFW-01-01 | Story | Template → SpiderFeet naming pass | README, package.json name, titles, visible UI strings |
 | SFW-01-02 | Story | Apache 2.0 license (Brett Forbes) | `LICENSE` present |
 | SFW-01-03 | Story | Three logo concepts in README | Same three concepts as backend (shared asset paths or copies) |
 | SFW-01-04 | Story | Confirm `npm start` / `start.ps1` | Widget serves on documented port; build succeeds |
@@ -160,16 +160,16 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 |----|------|-------|-------------------------------|
 | X-01-01 | Story | **Operator review:** select final logo | One logo chosen; documented in both READMEs |
 | X-01-02 | Story | Apply chosen logo to widget chrome | Navbar/logo in built `dist/` |
-| X-01-03 | Story | Repo-wide `spiderfeet` grep sign-off | CI or script proves zero unintended matches (allowlisted exceptions file) |
+| X-01-03 | Story | Repo-wide `spiderFeet` grep sign-off | CI or script proves zero unintended matches (allowlisted exceptions file) |
 | X-01-04 | Story | **Close stage 1 epics** | Operator approval; `.tasks/issue-*.json` after GitHub numbers assigned |
 
-**Stage 1 exit:** No Spiderfeet branding; Apache 2.0; logo selected and visible in widget.
+**Stage 1 exit:** No SpiderFeet branding; Apache 2.0; logo selected and visible in widget.
 
 ---
 
-## 6. Stage 2 — FastAPI over CLI (spiderfeet only)
+## 6. Stage 2 — FastAPI over CLI (spiderFeet only)
 
-### Epic `EPIC-SF-02` — spiderfeet
+### Epic `EPIC-SF-02` — spiderFeet
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
@@ -193,21 +193,21 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 
 ## 7. Stage 3 — TypeDB map model & Maps UI
 
-### Epic `EPIC-SF-03A` — TypeDB ORM & seed (`spiderfeet`)
+### Epic `EPIC-SF-03A` — TypeDB ORM & seed (`spiderFeet`)
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
 | SF-03A-01 | Story | Externalise TypeDB connection config | JSON file injectable; documented; no secrets committed |
-| SF-03A-02 | Story | Type-bridge classes for `spiderfeet_map.tql` | Classes for nugget, osint-service, osint-source, route (skeleton), attributes |
+| SF-03A-02 | Story | Type-bridge classes for `spiderFeet_map.tql` | Classes for nugget, osint-service, osint-source, route (skeleton), attributes |
 | SF-03A-03 | Story | Type-bridge unit tests | pytest proves insert/read for representative types |
-| SF-03A-04 | Story | Idempotent DB bootstrap for `spiderfeet-map` | Create DB; apply `.seed/spiderfeet_map.tql`; safe re-run |
+| SF-03A-04 | Story | Idempotent DB bootstrap for `spiderFeet-map` | Create DB; apply `.seed/spiderFeet_map.tql`; safe re-run |
 | SF-03A-05 | Story | Load archetype nuggets from `nuggets.json` | Kebab-case entity types; empty `nugget_data` / `nugget_instance_id` |
 | SF-03A-06 | Story | Load OSINT services from `osint_services.json` | Relations + `osint-source`; `service-state=in-test`; consumed/produced roles |
 | SF-03A-07 | Story | CLI/script entry for bootstrap | Runnable without UI; logs success/failure |
 
 **Cross-ref:** SF-03A-04–07 unblock SF-03B-05 and SFW-03-02.
 
-### Epic `EPIC-SF-03B` — Map FastAPI (`spiderfeet`)
+### Epic `EPIC-SF-03B` — Map FastAPI (`spiderFeet`)
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
@@ -221,11 +221,11 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 
 **Cross-ref:** SFW-03-* depends on SF-03B-01, 02, 05.
 
-### Epic `EPIC-SFW-03` — Widget Maps UI (`spiderfeet-widget`)
+### Epic `EPIC-SFW-03` — Widget Maps UI (`spiderFeet-widget`)
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
-| SFW-03-01 | Story | Copy nugget icons to `src/assets/icons/` | From `@spiderfeet/.docs/analysis/nugget_icons/` |
+| SFW-03-01 | Story | Copy nugget icons to `src/assets/icons/` | From `@spiderFeet/.docs/analysis/nugget_icons/` |
 | SFW-03-02 | Story | App shell: navbar, theme toggle, five tabs | Enrichments (default), Composer, Maps, Logs, Tests — Maps implemented; others stubbed/disabled per scope |
 | SFW-03-03 | Story | Connection setup widget + global gating | Dropdown of instances; grey-out app until valid; calls init API |
 | SFW-03-04 | Story | Maps page layout (Bootstrap 5) | Full-viewport graph panel; desktop-only responsive |
@@ -244,7 +244,7 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 | SFW-03-17 | Story | Light/dark mode | CSS variables aligned with `force_graph_colour_scheme.md` |
 | SFW-03-18 | Story | **Exploratory review:** Maps page scenario matrix | GOV-08 classifications; gaps → backlog |
 
-**Stage 3 exit:** Operator can connect TypeDB, init `spiderfeet-map`, view and filter full OSINT/nugget graph.
+**Stage 3 exit:** Operator can connect TypeDB, init `spiderFeet-map`, view and filter full OSINT/nugget graph.
 
 **Out of scope for stage 3 (later stages):** route nodes in graph, Favourites/Sequences tabs, Enrichments/Composer/Logs full implementation.
 
@@ -252,16 +252,16 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 
 ## 8. Stage 4 — Module testing framework
 
-### Epic `EPIC-SF-04A` — Schema extension (`spiderfeet`)
+### Epic `EPIC-SF-04A` — Schema extension (`spiderFeet`)
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
-| SF-04A-01 | Story | Extend `spiderfeet_map.tql` with `scan-record` | Fields per §2.4.1; relations to consumed/produced/service/route |
+| SF-04A-01 | Story | Extend `spiderFeet_map.tql` with `scan-record` | Fields per §2.4.1; relations to consumed/produced/service/route |
 | SF-04A-02 | Story | Type-bridge for `scan-record` + route | CRUD + insert helpers |
 | SF-04A-03 | Story | Migrate bootstrap pipeline | Re-init safe; documents upgrade path |
 | SF-04A-04 | Story | Pytest for scan-record persistence | Direct proof of insert/query |
 
-### Epic `EPIC-SF-04B` — Test nugget corpus (`spiderfeet`)
+### Epic `EPIC-SF-04B` — Test nugget corpus (`spiderFeet`)
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
@@ -270,7 +270,7 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 | SF-04B-03 | Story | Load test nuggets into TypeDB | `nugget_instance_id`, `nugget_data` populated |
 | SF-04B-04 | Story | Document paid/API-key-only modules | Mark `untested` / blocked in map metadata |
 
-### Epic `EPIC-SF-04C` — Route test execution (`spiderfeet`)
+### Epic `EPIC-SF-04C` — Route test execution (`spiderFeet`)
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
@@ -286,7 +286,7 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 
 **Note on SF-04C-08:** At approval time, choose **12 issues (one per consumption group)** vs **1 rolling epic** to avoid 177× separate issues. Default recommendation: **12 group batch stories** + exploratory sub-issues for failures.
 
-### Epic `EPIC-SFW-04` — Tests tab (`spiderfeet-widget`)
+### Epic `EPIC-SFW-04` — Tests tab (`spiderFeet-widget`)
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
@@ -315,8 +315,8 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 
 | Repo | Epics | Stories (approx.) |
 |------|------:|------------------:|
-| spiderfeet | 10 | 58 |
-| spiderfeet-widget | 5 | 28 |
+| spiderFeet | 10 | 58 |
+| spiderFeet-widget | 5 | 28 |
 | cross-repo (`EPIC-X-*`) | 4 | 12 |
 | **Total GitHub issues** | **19 epics** | **~98 stories** |
 
@@ -337,7 +337,7 @@ If stage 4 uses **12 consumption-group batches** instead of one combined SF-04C-
 - SPEC-002: `<requirement-id>` or `SPEC_GAP` with follow-up
 
 ## Repo / cross-repo
-- Primary repo: spiderfeet | spiderfeet-widget
+- Primary repo: spiderFeet | spiderFeet-widget
 - Linked issues: #<n> (other repo) | none
 
 ## Acceptance criteria
@@ -376,7 +376,7 @@ If stage 4 uses **12 consumption-group batches** instead of one combined SF-04C-
 | D1 | Canonical seed doc filename | Keep `02_stsage_by_stage_reengineer.md`, rename to `02_stage_by_stage_reengineer.md`, or merge duplicates |
 | D2 | Stage 4 module testing granularity | 12 consumption-group batch issues (recommended) vs per-module issues (~177) |
 | D3 | Stub tabs in stage 3 | Composer / Enrichments / Logs disabled vs minimal placeholder pages |
-| D4 | GitHub board host repo | spiderfeet org project vs single repo project |
+| D4 | GitHub board host repo | spiderFeet org project vs single repo project |
 | D5 | Start work branch name | e.g. `feature/first-four-planning` from `develop` after approval |
 
 ---

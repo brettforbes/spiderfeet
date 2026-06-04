@@ -19,8 +19,8 @@ import threading
 import time
 
 
-class SpiderFootDb:
-    """Spiderfeet database
+class SpiderFeetDb:
+    """SpiderFeet database
 
     Attributes:
         conn: SQLite connect() connection
@@ -34,7 +34,7 @@ class SpiderFootDb:
     # Prevent multithread access to sqlite database
     dbhLock = threading.RLock()
 
-    # Queries for creating the Spiderfeet database
+    # Queries for creating the SpiderFeet database
     createSchemaQueries = [
         "PRAGMA journal_mode=WAL",
         "CREATE TABLE tbl_event_types ( \
@@ -109,7 +109,7 @@ class SpiderFootDb:
     ]
 
     eventDetails = [
-        ['ROOT', 'Internal Spiderfeet Root event', 1, 'INTERNAL'],
+        ['ROOT', 'Internal SpiderFeet Root event', 1, 'INTERNAL'],
         ['ACCOUNT_EXTERNAL_OWNED', 'Account on External Site', 0, 'ENTITY'],
         ['ACCOUNT_EXTERNAL_OWNED_COMPROMISED', 'Hacked Account on External Site', 0, 'DESCRIPTOR'],
         ['ACCOUNT_EXTERNAL_USER_SHARED_COMPROMISED', 'Hacked User Account on External Site', 0, 'DESCRIPTOR'],
@@ -357,7 +357,7 @@ class SpiderFootDb:
                 try:
                     self.create()
                 except Exception as e:
-                    raise IOError("Tried to set up the Spiderfeet database schema, but failed") from e
+                    raise IOError("Tried to set up the SpiderFeet database schema, but failed") from e
 
             # For users with pre 4.0 databases, add the correlation
             # tables + indexes if they don't exist.
@@ -371,8 +371,8 @@ class SpiderFootDb:
                         self.conn.commit()
                 except sqlite3.Error:
                     raise IOError("Looks like you are running a pre-4.0 database. Unfortunately "
-                                  "Spiderfeet wasn't able to migrate you, so you'll need to delete "
-                                  "your Spiderfeet database in order to proceed.") from None
+                                  "SpiderFeet wasn't able to migrate you, so you'll need to delete "
+                                  "your SpiderFeet database in order to proceed.") from None
 
             if init:
                 for row in self.eventDetails:
@@ -573,7 +573,7 @@ class SpiderFootDb:
                 raise TypeError(f"message is {type(message)}; expected str()") from None
 
             if not component:
-                component = "Spiderfeet"
+                component = "SpiderFeet"
 
             inserts.append((instanceId, logTime * 1000, component, classification, message))
 
@@ -619,7 +619,7 @@ class SpiderFootDb:
             raise TypeError(f"message is {type(message)}; expected str()") from None
 
         if not component:
-            component = "Spiderfeet"
+            component = "SpiderFeet"
 
         qry = "INSERT INTO tbl_scan_log \
             (scan_instance_id, generated, component, type, message) \
@@ -1342,7 +1342,7 @@ class SpiderFootDb:
 
         Args:
             instanceId (str): scan instance ID
-            sfEvent (SpiderFootEvent): event to be stored in the database
+            sfEvent (SpiderFeetEvent): event to be stored in the database
             truncateSize (int): truncate size for event data
 
         Raises:
@@ -1350,7 +1350,7 @@ class SpiderFootDb:
             ValueError: arg value was invalid
             IOError: database I/O failed
         """
-        from spiderfeet import SpiderFootEvent
+        from spiderfeet import SpiderFeetEvent
 
         if not isinstance(instanceId, str):
             raise TypeError(f"instanceId is {type(instanceId)}; expected str()") from None
@@ -1358,8 +1358,8 @@ class SpiderFootDb:
         if not instanceId:
             raise ValueError("instanceId is empty") from None
 
-        if not isinstance(sfEvent, SpiderFootEvent):
-            raise TypeError(f"sfEvent is {type(sfEvent)}; expected SpiderFootEvent()") from None
+        if not isinstance(sfEvent, SpiderFeetEvent):
+            raise TypeError(f"sfEvent is {type(sfEvent)}; expected SpiderFeetEvent()") from None
 
         if not isinstance(sfEvent.generated, float):
             raise TypeError(f"sfEvent.generated is {type(sfEvent.generated)}; expected float()") from None
@@ -1403,7 +1403,7 @@ class SpiderFootDb:
         if not 0 <= sfEvent.risk <= 100:
             raise ValueError(f"sfEvent.risk value is {type(sfEvent.risk)}; expected 0 - 100") from None
 
-        if not isinstance(sfEvent.sourceEvent, SpiderFootEvent) and sfEvent.eventType != "ROOT":
+        if not isinstance(sfEvent.sourceEvent, SpiderFeetEvent) and sfEvent.eventType != "ROOT":
             raise TypeError(f"sfEvent.sourceEvent is {type(sfEvent.sourceEvent)}; expected str()") from None
 
         if not isinstance(sfEvent.sourceEventHash, str):

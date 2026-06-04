@@ -13,10 +13,10 @@
 import json
 import time
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_threatfox(SpiderFootPlugin):
+class sfp_threatfox(SpiderFeetPlugin):
 
     meta = {
         'name': "ThreatFox",
@@ -173,10 +173,10 @@ class sfp_threatfox(SpiderFootPlugin):
         url = f"https://threatfox.abuse.ch/browse.php?search=ioc:{eventData}"
         text = f"ThreatFox [{eventData}]\n<SFURL>{url}</SFURL>"
 
-        evt = SpiderFootEvent(malicious_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(malicious_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(blacklist_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(blacklist_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_threatfox class

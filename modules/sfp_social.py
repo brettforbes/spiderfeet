@@ -12,7 +12,7 @@
 
 import re
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 regexps = dict({
     "LinkedIn (Individual)": list(['.*linkedin.com/in/([a-zA-Z0-9_]+$)']),
@@ -33,7 +33,7 @@ regexps = dict({
 })
 
 
-class sfp_social(SpiderFootPlugin):
+class sfp_social(SpiderFeetPlugin):
 
     meta = {
         'name': "Social Network Identifier",
@@ -84,7 +84,7 @@ class sfp_social(SpiderFootPlugin):
                     continue
 
                 self.info(f"Matched {regexpGrp} in {eventData}")
-                evt = SpiderFootEvent(
+                evt = SpiderFeetEvent(
                     "SOCIAL_MEDIA", f"{regexpGrp}: <SFURL>{eventData}</SFURL>",
                     self.__name__,
                     event
@@ -94,7 +94,7 @@ class sfp_social(SpiderFootPlugin):
                 # Except for Google+, the link includes potential usernames
                 if regexpGrp != "Google+":
                     un = bits.group(1)
-                    evt = SpiderFootEvent("USERNAME", str(un), self.__name__, event)
+                    evt = SpiderFeetEvent("USERNAME", str(un), self.__name__, event)
                     self.notifyListeners(evt)
 
 # End of sfp_social class

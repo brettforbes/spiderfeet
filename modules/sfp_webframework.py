@@ -12,7 +12,7 @@
 
 import re
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 regexps = dict({
     "jQuery": list(['jquery']),  # unlikely false positive
@@ -27,7 +27,7 @@ regexps = dict({
 })
 
 
-class sfp_webframework(SpiderFootPlugin):
+class sfp_webframework(SpiderFeetPlugin):
 
     meta = {
         'name': "Web Framework Identifier",
@@ -100,7 +100,7 @@ class sfp_webframework(SpiderFootPlugin):
                 if len(matches) > 0 and regexpGrp not in self.results[eventSource]:
                     self.info("Matched " + regexpGrp + " in content from " + eventSource)
                     self.results[eventSource] = self.results[eventSource] + [regexpGrp]
-                    evt = SpiderFootEvent("URL_WEB_FRAMEWORK", regexpGrp,
+                    evt = SpiderFeetEvent("URL_WEB_FRAMEWORK", regexpGrp,
                                           self.__name__, event)
                     self.notifyListeners(evt)
 

@@ -13,10 +13,10 @@
 
 from netaddr import IPAddress, IPNetwork
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_voipbl(SpiderFootPlugin):
+class sfp_voipbl(SpiderFeetPlugin):
 
     meta = {
         'name': "VoIP Blacklist (VoIPBL)",
@@ -206,10 +206,10 @@ class sfp_voipbl(SpiderFootPlugin):
         url = f"https://voipbl.org/check/?ip={eventData}"
         text = f"VoIP Blacklist (VoIPBL) [{eventData}]\n<SFURL>{url}</SFURL>"
 
-        evt = SpiderFootEvent(malicious_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(malicious_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(blacklist_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(blacklist_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_voipbl class

@@ -2,8 +2,8 @@ import pytest
 import unittest
 
 from modules.sfp_webframework import sfp_webframework
-from sflib import SpiderFoot
-from spiderfeet import SpiderFootEvent, SpiderFootTarget
+from sflib import SpiderFeet
+from spiderfeet import SpiderFeetEvent, SpiderFeetTarget
 
 
 @pytest.mark.usefixtures
@@ -14,7 +14,7 @@ class TestModuleWebFramework(unittest.TestCase):
         self.assertEqual(len(module.opts), len(module.optdescs))
 
     def test_setup(self):
-        sf = SpiderFoot(self.default_options)
+        sf = SpiderFeet(self.default_options)
         module = sfp_webframework()
         module.setup(sf, dict())
 
@@ -27,14 +27,14 @@ class TestModuleWebFramework(unittest.TestCase):
         self.assertIsInstance(module.producedEvents(), list)
 
     def test_handleEvent_event_data_web_content_containing_webframework_string_should_create_url_web_framework_event(self):
-        sf = SpiderFoot(self.default_options)
+        sf = SpiderFeet(self.default_options)
 
         module = sfp_webframework()
         module.setup(sf, dict())
 
         target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
-        target = SpiderFootTarget(target_value, target_type)
+        target = SpiderFeetTarget(target_value, target_type)
         module.setTarget(target)
 
         def new_notifyListeners(self, event):
@@ -54,13 +54,13 @@ class TestModuleWebFramework(unittest.TestCase):
         event_data = 'example data'
         event_module = ''
         source_event = ''
-        evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
+        evt = SpiderFeetEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'TARGET_WEB_CONTENT'
         event_data = 'example data /wp-includes/ example data'
         event_module = 'sfp_spider'
         source_event = evt
-        evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
+        evt = SpiderFeetEvent(event_type, event_data, event_module, source_event)
         evt.actualSource = "https://spiderfeet.net/"
 
         with self.assertRaises(Exception) as cm:
@@ -69,14 +69,14 @@ class TestModuleWebFramework(unittest.TestCase):
         self.assertEqual("OK", str(cm.exception))
 
     def test_handleEvent_event_data_web_content_not_containing_webframework_string_should_not_create_event(self):
-        sf = SpiderFoot(self.default_options)
+        sf = SpiderFeet(self.default_options)
 
         module = sfp_webframework()
         module.setup(sf, dict())
 
         target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
-        target = SpiderFootTarget(target_value, target_type)
+        target = SpiderFeetTarget(target_value, target_type)
         module.setTarget(target)
 
         def new_notifyListeners(self, event):
@@ -88,13 +88,13 @@ class TestModuleWebFramework(unittest.TestCase):
         event_data = 'example data'
         event_module = ''
         source_event = ''
-        evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
+        evt = SpiderFeetEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'TARGET_WEB_CONTENT'
         event_data = 'example data'
         event_module = 'example module'
         source_event = evt
-        evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
+        evt = SpiderFeetEvent(event_type, event_data, event_module, source_event)
         evt.actualSource = "https://spiderfeet.net/"
 
         result = module.handleEvent(evt)
@@ -102,14 +102,14 @@ class TestModuleWebFramework(unittest.TestCase):
         self.assertIsNone(result)
 
     def test_handleEvent_event_data_web_content_from_external_url_containing_webframework_string_should_not_create_event(self):
-        sf = SpiderFoot(self.default_options)
+        sf = SpiderFeet(self.default_options)
 
         module = sfp_webframework()
         module.setup(sf, dict())
 
         target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
-        target = SpiderFootTarget(target_value, target_type)
+        target = SpiderFeetTarget(target_value, target_type)
         module.setTarget(target)
 
         def new_notifyListeners(self, event):
@@ -121,13 +121,13 @@ class TestModuleWebFramework(unittest.TestCase):
         event_data = 'example data'
         event_module = ''
         source_event = ''
-        evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
+        evt = SpiderFeetEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'TARGET_WEB_CONTENT'
         event_data = 'example data /wp-includes/ example data'
         event_module = 'sfp_spider'
         source_event = evt
-        evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
+        evt = SpiderFeetEvent(event_type, event_data, event_module, source_event)
         evt.actualSource = "https://externalhost.local/"
 
         result = module.handleEvent(evt)

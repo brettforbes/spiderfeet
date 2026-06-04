@@ -1,6 +1,6 @@
 version: "3"
 
 services:
-  spiderfeet:
+  spiderFeet:
     volumes:
-      - .:/home/spiderfeet
+      - .:/home/spiderFeet

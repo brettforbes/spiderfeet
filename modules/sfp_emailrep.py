@@ -13,10 +13,10 @@
 import json
 import time
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_emailrep(SpiderFootPlugin):
+class sfp_emailrep(SpiderFeetPlugin):
 
     meta = {
         'name': "EmailRep",
@@ -83,7 +83,7 @@ class sfp_emailrep(SpiderFootPlugin):
         res = self.sf.fetchUrl(
             'https://emailrep.io/' + qry,
             headers=headers,
-            useragent='Spiderfeet',
+            useragent='SpiderFeet',
             timeout=self.opts['_fetchtimeout']
         )
 
@@ -151,16 +151,16 @@ class sfp_emailrep(SpiderFootPlugin):
 
         credentials_leaked = details.get('credentials_leaked')
         if credentials_leaked:
-            evt = SpiderFootEvent('EMAILADDR_COMPROMISED', eventData + " [Unknown]", self.__name__, event)
+            evt = SpiderFeetEvent('EMAILADDR_COMPROMISED', eventData + " [Unknown]", self.__name__, event)
             self.notifyListeners(evt)
 
         malicious_activity = details.get('malicious_activity')
         if malicious_activity:
-            evt = SpiderFootEvent('MALICIOUS_EMAILADDR', 'EmailRep [' + eventData + ']', self.__name__, event)
+            evt = SpiderFeetEvent('MALICIOUS_EMAILADDR', 'EmailRep [' + eventData + ']', self.__name__, event)
             self.notifyListeners(evt)
 
         if malicious_activity or credentials_leaked:
-            evt = SpiderFootEvent('RAW_RIR_DATA', str(res), self.__name__, event)
+            evt = SpiderFeetEvent('RAW_RIR_DATA', str(res), self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_emailrep class

@@ -5,10 +5,10 @@ import time
 from contextlib import suppress
 from logging.handlers import QueueHandler, QueueListener
 
-from spiderfeet import SpiderFootDb, SpiderFootHelpers
+from spiderfeet import SpiderFeetDb, SpiderFeetHelpers
 
 
-class SpiderfeetSqliteLogHandler(logging.Handler):
+class SpiderFeetSqliteLogHandler(logging.Handler):
     """Handler for logging to SQLite database.
 
     This ensure all sqlite logging is done from a single
@@ -62,11 +62,11 @@ class SpiderfeetSqliteLogHandler(logging.Handler):
 
     def makeDbh(self) -> None:
         """TBD."""
-        self.dbh = SpiderFootDb(self.opts)
+        self.dbh = SpiderFeetDb(self.opts)
 
 
 def logListenerSetup(loggingQueue, opts: dict = None) -> 'logging.handlers.QueueListener':
-    """Create and start a Spiderfeet log listener in its own thread.
+    """Create and start a SpiderFeet log listener in its own thread.
 
     This function should be called as soon as possible in the main
     process, or whichever process is attached to stdin/stdout.
@@ -74,7 +74,7 @@ def logListenerSetup(loggingQueue, opts: dict = None) -> 'logging.handlers.Queue
     Args:
         loggingQueue (Queue): Queue (accepts both normal and multiprocessing queue types)
                               Must be instantiated in the main process.
-        opts (dict): Spiderfeet config
+        opts (dict): SpiderFeet config
 
     Returns:
         spiderFootLogListener (logging.handlers.QueueListener): Log listener
@@ -89,9 +89,9 @@ def logListenerSetup(loggingQueue, opts: dict = None) -> 'logging.handlers.Queue
     console_handler = logging.StreamHandler(sys.stderr)
 
     # Log debug messages to file
-    log_dir = SpiderFootHelpers.logPath()
+    log_dir = SpiderFeetHelpers.logPath()
     debug_handler = logging.handlers.TimedRotatingFileHandler(
-        f"{log_dir}/spiderfeet.debug.log",
+        f"{log_dir}/spiderFeet.debug.log",
         when="d",
         interval=1,
         backupCount=30
@@ -99,7 +99,7 @@ def logListenerSetup(loggingQueue, opts: dict = None) -> 'logging.handlers.Queue
 
     # Log error messages to file
     error_handler = logging.handlers.TimedRotatingFileHandler(
-        f"{log_dir}/spiderfeet.error.log",
+        f"{log_dir}/spiderFeet.error.log",
         when="d",
         interval=1,
         backupCount=30
@@ -123,7 +123,7 @@ def logListenerSetup(loggingQueue, opts: dict = None) -> 'logging.handlers.Queue
         handlers = []
 
     if doLogging and opts is not None:
-        sqlite_handler = SpiderfeetSqliteLogHandler(opts)
+        sqlite_handler = SpiderFeetSqliteLogHandler(opts)
         sqlite_handler.setLevel(logLevel)
         sqlite_handler.setFormatter(log_format)
         handlers.append(sqlite_handler)
@@ -134,7 +134,7 @@ def logListenerSetup(loggingQueue, opts: dict = None) -> 'logging.handlers.Queue
 
 
 def logWorkerSetup(loggingQueue) -> 'logging.Logger':
-    """Root Spiderfeet logger.
+    """Root SpiderFeet logger.
 
     Args:
         loggingQueue (Queue): TBD
@@ -142,7 +142,7 @@ def logWorkerSetup(loggingQueue) -> 'logging.Logger':
     Returns:
         logging.Logger: Logger
     """
-    log = logging.getLogger("spiderfeet")
+    log = logging.getLogger("spiderFeet")
     # Don't do this more than once
     if len(log.handlers) == 0:
         log.setLevel(logging.DEBUG)

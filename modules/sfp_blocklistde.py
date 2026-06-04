@@ -12,10 +12,10 @@
 
 from netaddr import IPAddress, IPNetwork
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_blocklistde(SpiderFootPlugin):
+class sfp_blocklistde(SpiderFeetPlugin):
 
     meta = {
         'name': "blocklist.de",
@@ -208,10 +208,10 @@ class sfp_blocklistde(SpiderFootPlugin):
             url = "https://lists.blocklist.de/lists/all.txt"
             text = f"blocklist.de [{eventData}]\n<SFURL>{url}</SFURL>"
 
-            evt = SpiderFootEvent(malicious_type, text, self.__name__, event)
+            evt = SpiderFeetEvent(malicious_type, text, self.__name__, event)
             self.notifyListeners(evt)
 
-            evt = SpiderFootEvent(blacklist_type, text, self.__name__, event)
+            evt = SpiderFeetEvent(blacklist_type, text, self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_blocklistde class

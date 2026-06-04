@@ -5,12 +5,12 @@ from time import sleep
 from contextlib import suppress
 
 
-class SpiderFootThreadPool:
+class SpiderFeetThreadPool:
     """
     Each thread in the pool is spawned only once, and reused for best performance.
 
     Example 1: using map()
-        with SpiderFootThreadPool(self.opts["_maxthreads"]) as pool:
+        with SpiderFeetThreadPool(self.opts["_maxthreads"]) as pool:
             # callback("a", "arg1"), callback("b", "arg1"), ...
             for result in pool.map(
                     callback,
@@ -22,7 +22,7 @@ class SpiderFootThreadPool:
                 yield result
 
     Example 2: using submit()
-        with SpiderFootThreadPool(self.opts["_maxthreads"]) as pool:
+        with SpiderFeetThreadPool(self.opts["_maxthreads"]) as pool:
             pool.start()
             # callback("arg1"), callback("arg2")
             pool.submit(callback, "arg1", taskName="sfp_testmodule", saveResult=True)
@@ -32,14 +32,14 @@ class SpiderFootThreadPool:
     """
 
     def __init__(self, threads: int = 100, qsize: int = 10, name: str = '') -> None:
-        """Initialize the SpiderFootThreadPool class.
+        """Initialize the SpiderFeetThreadPool class.
 
         Args:
             threads (int): Max number of threads
             qsize (int): Queue size
             name (str): Name
         """
-        self.log = logging.getLogger(f"spiderfeet.{__name__}")
+        self.log = logging.getLogger(f"spiderFeet.{__name__}")
         self.threads = int(threads)
         self.qsize = int(qsize)
         self.pool = [None] * self.threads
@@ -229,7 +229,7 @@ class ThreadPoolWorker(threading.Thread):
 
     def __init__(self, pool, name: str = None) -> None:
 
-        self.log = logging.getLogger(f"spiderfeet.{__name__}")
+        self.log = logging.getLogger(f"spiderFeet.{__name__}")
         self.pool = pool
         self.taskName = ""  # which module submitted the callback
         self.busy = False

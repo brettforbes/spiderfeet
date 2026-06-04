@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_spamhaus
-# Purpose:      Spiderfeet plug-in for looking up whether IPs/Netblocks/Domains
+# Purpose:      SpiderFeet plug-in for looking up whether IPs/Netblocks/Domains
 #               appear in the Spamhaus block lists, indicating potential open-relays,
 #               open proxies, malicious servers, vulnerable servers, etc.
 #
@@ -14,10 +14,10 @@
 
 from netaddr import IPNetwork
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_spamhaus(SpiderFootPlugin):
+class sfp_spamhaus(SpiderFeetPlugin):
 
     meta = {
         'name': "Spamhaus Zen",
@@ -218,10 +218,10 @@ class sfp_spamhaus(SpiderFootPlugin):
                         self.error(f"Spamhaus Zen resolved address {addr} to unknown IP address {result} not found in Spamhaus Zen list.")
                     continue
 
-                evt = SpiderFootEvent(blacklist_type, f"{self.checks[k]} [{addr}]", self.__name__, event)
+                evt = SpiderFeetEvent(blacklist_type, f"{self.checks[k]} [{addr}]", self.__name__, event)
                 self.notifyListeners(evt)
 
-                evt = SpiderFootEvent(malicious_type, f"{self.checks[k]} [{addr}]", self.__name__, event)
+                evt = SpiderFeetEvent(malicious_type, f"{self.checks[k]} [{addr}]", self.__name__, event)
                 self.notifyListeners(evt)
 
 # End of sfp_spamhaus class

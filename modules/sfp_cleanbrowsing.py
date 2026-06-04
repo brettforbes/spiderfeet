@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_cleanbrowsing
-# Purpose:     Spiderfeet plug-in for looking up whether hosts are blocked by
+# Purpose:     SpiderFeet plug-in for looking up whether hosts are blocked by
 #              CleanBrowsing.org DNS content family filters
 #              (185.228.168.168 and 185.228.168.169).
 #
@@ -14,10 +14,10 @@
 
 import dns.resolver
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_cleanbrowsing(SpiderFootPlugin):
+class sfp_cleanbrowsing(SpiderFeetPlugin):
 
     meta = {
         'name': "CleanBrowsing.org",
@@ -165,7 +165,7 @@ class sfp_cleanbrowsing(SpiderFootPlugin):
         self.debug(f"{eventData} was blocked by CleanBrowsing DNS")
 
         if not security:
-            evt = SpiderFootEvent(
+            evt = SpiderFeetEvent(
                 blacklist_type,
                 f"CleanBrowsing DNS - Security [{eventData}]",
                 self.__name__,
@@ -173,7 +173,7 @@ class sfp_cleanbrowsing(SpiderFootPlugin):
             )
             self.notifyListeners(evt)
 
-            evt = SpiderFootEvent(
+            evt = SpiderFeetEvent(
                 malicious_type,
                 f"CleanBrowsing DNS - Security [{eventData}]",
                 self.__name__,
@@ -181,7 +181,7 @@ class sfp_cleanbrowsing(SpiderFootPlugin):
             )
             self.notifyListeners(evt)
         elif not adult:
-            evt = SpiderFootEvent(
+            evt = SpiderFeetEvent(
                 blacklist_type,
                 f"CleanBrowsing DNS - Adult [{eventData}]",
                 self.__name__,
@@ -189,7 +189,7 @@ class sfp_cleanbrowsing(SpiderFootPlugin):
             )
             self.notifyListeners(evt)
         elif not family:
-            evt = SpiderFootEvent(
+            evt = SpiderFeetEvent(
                 blacklist_type,
                 f"CleanBrowsing DNS - Family [{eventData}]",
                 self.__name__,

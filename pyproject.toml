@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "spiderfeet"
+name = "spiderFeet"
 version = "0.1.0"
 description = "Open source intelligence (OSINT) automation tool"
 authors = ["BrettForbes <brett@cloudaccelerator.co>"]

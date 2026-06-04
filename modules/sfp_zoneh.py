@@ -13,10 +13,10 @@
 
 import re
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_zoneh(SpiderFootPlugin):
+class sfp_zoneh(SpiderFeetPlugin):
 
     meta = {
         'name': "Zone-H Defacement Check",
@@ -149,7 +149,7 @@ class sfp_zoneh(SpiderFootPlugin):
 
         ret = self.lookupItem(eventData, content)
         if ret:
-            evt = SpiderFootEvent(evtType, ret, self.__name__, event)
+            evt = SpiderFeetEvent(evtType, ret, self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_zoneh class

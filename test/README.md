@@ -1,6 +1,6 @@
 # Tests
 
-Spiderfeet includes various test suites.
+SpiderFeet includes various test suites.
 
 
 ## Unit and Integration Tests
@@ -11,7 +11,7 @@ Unit and integration tests require test dependencies to be installed:
 pip3 install -r test/requirements.txt
 ```
 
-To run the tests locally, run `./test/run` from the Spiderfeet root directory.
+To run the tests locally, run `./test/run` from the SpiderFeet root directory.
 
 These tests are run on all pull requests automatically.
 
@@ -43,7 +43,7 @@ intended and that SpiderFooot is operating correctly as a whole.
 These tests use a headless browser (Firefox by default), and
 must be run with `./test/acceptance` as current working directory.
 
-Requires Spiderfeet web server to be running on default port (`5001`).
+Requires SpiderFeet web server to be running on default port (`5001`).
 
 Requires test dependencies to be installed:
 
@@ -51,7 +51,7 @@ Requires test dependencies to be installed:
 pip3 install -r test/acceptance/requirements.txt
 ```
 
-To run the tests, start the Spiderfeet web interface on the default port:
+To run the tests, start the SpiderFeet web interface on the default port:
 
 ```
 python3 ./sf.py -l 127.0.0.1:5001

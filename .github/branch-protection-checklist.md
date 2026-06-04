@@ -1,6 +1,6 @@
 # Branch Protection Checklist
 
-Use when configuring `brettforbes/spiderfeet` on GitHub.
+Use when configuring `brettforbes/spiderFeet` on GitHub.
 
 ## `master` (release / stable)
 

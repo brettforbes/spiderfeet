@@ -1,6 +1,6 @@
-# Agent Entrypoint — spiderfeet
+# Agent Entrypoint — spiderFeet
 
-Governed Spiderfeet fork. Read this before doing substantive work.
+Governed SpiderFeet fork. Read this before doing substantive work.
 
 ## Canonical sources
 

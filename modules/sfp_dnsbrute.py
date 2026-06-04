@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_dnsbrute
-# Purpose:      Spiderfeet plug-in for attempting to resolve through brute-forcing
+# Purpose:      SpiderFeet plug-in for attempting to resolve through brute-forcing
 #               common hostnames.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
@@ -16,10 +16,10 @@ import random
 import threading
 import time
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_dnsbrute(SpiderFootPlugin):
+class sfp_dnsbrute(SpiderFeetPlugin):
 
     meta = {
         'name': "DNS Brute-forcer",
@@ -133,7 +133,7 @@ class sfp_dnsbrute(SpiderFootPlugin):
     def sendEvent(self, source, result):
         self.info("Found a brute-forced host: " + result)
         # Report the host
-        evt = SpiderFootEvent("INTERNET_NAME", result, self.__name__, source)
+        evt = SpiderFeetEvent("INTERNET_NAME", result, self.__name__, source)
         self.notifyListeners(evt)
 
     # Handle events sent to this module

@@ -16,10 +16,10 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_ahmia(SpiderFootPlugin):
+class sfp_ahmia(SpiderFeetPlugin):
 
     meta = {
         'name': "Ahmia",
@@ -138,7 +138,7 @@ class sfp_ahmia(SpiderFootPlugin):
                 continue
 
             if not self.opts['fetchlinks']:
-                evt = SpiderFootEvent("DARKNET_MENTION_URL", link, self.__name__, event)
+                evt = SpiderFeetEvent("DARKNET_MENTION_URL", link, self.__name__, event)
                 self.notifyListeners(evt)
                 continue
 
@@ -157,7 +157,7 @@ class sfp_ahmia(SpiderFootPlugin):
                 self.debug(f"Ignoring {link} as no mention of {eventData}")
                 continue
 
-            evt = SpiderFootEvent("DARKNET_MENTION_URL", link, self.__name__, event)
+            evt = SpiderFeetEvent("DARKNET_MENTION_URL", link, self.__name__, event)
             self.notifyListeners(evt)
 
             try:
@@ -168,7 +168,7 @@ class sfp_ahmia(SpiderFootPlugin):
                 continue
 
             wdata = res['content'][startIndex:endIndex]
-            evt = SpiderFootEvent("DARKNET_MENTION_CONTENT", f"...{wdata}...", self.__name__, evt)
+            evt = SpiderFeetEvent("DARKNET_MENTION_CONTENT", f"...{wdata}...", self.__name__, evt)
             self.notifyListeners(evt)
 
 # End of sfp_ahmia class

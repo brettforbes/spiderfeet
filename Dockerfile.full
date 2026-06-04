@@ -1,5 +1,5 @@
 #
-# Spiderfeet Dockerfile (Full - includes all CLI tools, etc.)
+# SpiderFeet Dockerfile (Full - includes all CLI tools, etc.)
 #
 # http://www.spiderfeet.net
 #
@@ -28,9 +28,9 @@ RUN git clone https://github.com/urbanadventurer/WhatWeb \
     && gem install rchardet mongo json && cd /tools/WhatWeb \
     && bundle install && cd /tools
 
-RUN groupadd spiderfeet \
-    && useradd -m -g spiderfeet -d /home/spiderfeet -s /sbin/nologin \
-    -c "Spiderfeet User" spiderfeet
+RUN groupadd spiderFeet \
+    && useradd -m -g spiderFeet -d /home/spiderFeet -s /sbin/nologin \
+    -c "SpiderFeet User" spiderFeet
 
 # Install RetireJS
 RUN apt remove -y cmdtest \
@@ -67,18 +67,18 @@ RUN git clone https://github.com/drwetter/testssl.sh.git
 RUN pip3 install snallygaster trufflehog
 
 # Place database and logs outside installation directory
-ENV SPIDERFEET_DATA /var/lib/spiderfeet
+ENV SPIDERFEET_DATA /var/lib/spiderFeet
 ENV SPIDERFEET_LOGS /var/lib/spiderfeet/log
 ENV SPIDERFEET_CACHE /var/lib/spiderfeet/cache
 
 RUN mkdir -p $SPIDERFEET_DATA || true \
     && mkdir -p $SPIDERFEET_LOGS || true \
     && mkdir -p $SPIDERFEET_CACHE || true \
-    && chown spiderfeet:spiderfeet $SPIDERFEET_DATA \
-    && chown spiderfeet:spiderfeet $SPIDERFEET_LOGS \
-    && chown spiderfeet:spiderfeet $SPIDERFEET_CACHE
+    && chown spiderFeet:spiderFeet $SPIDERFEET_DATA \
+    && chown spiderFeet:spiderFeet $SPIDERFEET_LOGS \
+    && chown spiderFeet:spiderFeet $SPIDERFEET_CACHE
 
-WORKDIR /home/spiderfeet
+WORKDIR /home/spiderFeet
 COPY . .
 
 ENV VIRTUAL_ENV=/opt/venv
@@ -89,11 +89,11 @@ RUN python -m venv "$VIRTUAL_ENV"
 ARG REQUIREMENTS=requirements.txt
 COPY "$REQUIREMENTS" requirements.txt
 
-RUN chown -R spiderfeet:spiderfeet /tools
-RUN chown -R spiderfeet:spiderfeet "$VIRTUAL_ENV"
-RUN chown -R spiderfeet:spiderfeet "/home/spiderfeet"
+RUN chown -R spiderFeet:spiderFeet /tools
+RUN chown -R spiderFeet:spiderFeet "$VIRTUAL_ENV"
+RUN chown -R spiderFeet:spiderFeet "/home/spiderFeet"
 
-USER spiderfeet
+USER spiderFeet
 
 RUN pip install -U pip
 RUN pip install -r "$REQUIREMENTS"
@@ -109,13 +109,13 @@ RUN git clone https://github.com/Tuhinshubhra/CMSeeK && cd CMSeeK \
 RUN git clone https://github.com/EnableSecurity/wafw00f \
     && cd wafw00f \
     && python3 setup.py install
-WORKDIR /home/spiderfeet
+WORKDIR /home/spiderFeet
 
 EXPOSE 5001
 
 # Run the application
-CMD python -c 'from spiderfeet import SpiderFootDb; \
-db = SpiderFootDb({"__database": "/var/lib/spiderfeet/spiderfeet.db"}); \
+CMD python -c 'from spiderfeet import SpiderFeetDb; \
+db = SpiderFeetDb({"__database": "/var/lib/spiderfeet/spiderFeet.db"}); \
 db.configSet({ \
     "sfp_tool_dnstwist:dnstwistpath": "/opt/venv/bin/dnstwist", \
     "sfp_tool_cmseek:cmseekpath": "/tools/CMSeeK/cmseek.py", \

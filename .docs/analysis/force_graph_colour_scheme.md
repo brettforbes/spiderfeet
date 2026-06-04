@@ -1,6 +1,6 @@
 # Force Graph Colour Scheme
 
-A reference guide for node types, colours, and icon conventions used in the Spiderfeet nugget force graph.
+A reference guide for node types, colours, and icon conventions used in the SpiderFeet nugget force graph.
 
 ---
 
@@ -72,7 +72,7 @@ Icons use a consistent visual language across families:
 
 | Icon | nugget_id | Description | Type | Colour | Icon file |
 |------|-----------|-------------|------|--------|-----------|
-| <img src="nugget_icons/icon_root.svg" width="40" height="40" alt="" /> | `ROOT` | Internal Spiderfeet Root event | INTERNAL | `#8B5CF6` | `icon_root.svg` |
+| <img src="nugget_icons/icon_root.svg" width="40" height="40" alt="" /> | `ROOT` | Internal SpiderFeet Root event | INTERNAL | `#8B5CF6` | `icon_root.svg` |
 | <img src="nugget_icons/icon_account_external_owned.svg" width="40" height="40" alt="" /> | `ACCOUNT_EXTERNAL_OWNED` | Account on External Site | ENTITY | `#3B82F6` | `icon_account_external_owned.svg` |
 | <img src="nugget_icons/icon_account_external_owned_compromised.svg" width="40" height="40" alt="" /> | `ACCOUNT_EXTERNAL_OWNED_COMPROMISED` | Hacked Account on External Site | DESCRIPTOR | `#F59E0B` | `icon_account_external_owned_compromised.svg` |
 | <img src="nugget_icons/icon_account_external_user_shared_compromised.svg" width="40" height="40" alt="" /> | `ACCOUNT_EXTERNAL_USER_SHARED_COMPROMISED` | Hacked User Account on External Site | DESCRIPTOR | `#F59E0B` | `icon_account_external_user_shared_compromised.svg` |
@@ -248,4 +248,4 @@ Icons use a consistent visual language across families:
 
 ---
 
-*Generated from Spiderfeet core_nugget_list. Total: 167 nuggets across 5 types.*
+*Generated from SpiderFeet core_nugget_list. Total: 167 nuggets across 5 types.*

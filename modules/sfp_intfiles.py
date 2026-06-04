@@ -10,10 +10,10 @@
 # Licence:     MIT
 # -------------------------------------------------------------------------------
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_intfiles(SpiderFootPlugin):
+class sfp_intfiles(SpiderFeetPlugin):
 
     meta = {
         'name': "Interesting File Finder",
@@ -68,7 +68,7 @@ class sfp_intfiles(SpiderFootPlugin):
 
         for fileExt in self.opts['fileexts']:
             if "." + fileExt.lower() in eventData.lower():
-                evt = SpiderFootEvent("INTERESTING_FILE", eventData,
+                evt = SpiderFeetEvent("INTERESTING_FILE", eventData,
                                       self.__name__, event)
                 self.notifyListeners(evt)
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_surbl
-# Purpose:     Spiderfeet plug-in to check whether IP addresses, netblocks, and
+# Purpose:     SpiderFeet plug-in to check whether IP addresses, netblocks, and
 #              domains appear in the SURBL blacklist.
 #
 # Author:      <bcoles@gmail.com>
@@ -13,10 +13,10 @@
 
 from netaddr import IPNetwork
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_surbl(SpiderFootPlugin):
+class sfp_surbl(SpiderFeetPlugin):
 
     meta = {
         'name': "SURBL",
@@ -217,10 +217,10 @@ class sfp_surbl(SpiderFootPlugin):
                     self.errorState = True
                     continue
 
-                evt = SpiderFootEvent(blacklist_type, f"SURBL [{addr}]", self.__name__, event)
+                evt = SpiderFeetEvent(blacklist_type, f"SURBL [{addr}]", self.__name__, event)
                 self.notifyListeners(evt)
 
-                evt = SpiderFootEvent(malicious_type, f"SURBL [{addr}]", self.__name__, event)
+                evt = SpiderFeetEvent(malicious_type, f"SURBL [{addr}]", self.__name__, event)
                 self.notifyListeners(evt)
 
 # End of sfp_surbl class

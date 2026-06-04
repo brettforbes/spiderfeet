@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_honeypot
-# Purpose:     Spiderfeet plug-in for looking up whether IPs appear in the
+# Purpose:     SpiderFeet plug-in for looking up whether IPs appear in the
 #              ProjectHoneyPot.org database.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
@@ -13,10 +13,10 @@
 
 from netaddr import IPNetwork
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_honeypot(SpiderFootPlugin):
+class sfp_honeypot(SpiderFeetPlugin):
 
     meta = {
         'name': "Project Honey Pot",
@@ -178,10 +178,10 @@ class sfp_honeypot(SpiderFootPlugin):
 
         url = f"https://www.projecthoneypot.org/ip_{qaddr}"
 
-        evt = SpiderFootEvent(malicious_type, f"ProjectHoneyPot ({qaddr}): {text}\n<SFURL>{url}</SFURL>", self.__name__, parentEvent)
+        evt = SpiderFeetEvent(malicious_type, f"ProjectHoneyPot ({qaddr}): {text}\n<SFURL>{url}</SFURL>", self.__name__, parentEvent)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(blacklist_type, f"ProjectHoneyPot ({qaddr}): {text}\n<SFURL>{url}</SFURL>", self.__name__, parentEvent)
+        evt = SpiderFeetEvent(blacklist_type, f"ProjectHoneyPot ({qaddr}): {text}\n<SFURL>{url}</SFURL>", self.__name__, parentEvent)
         self.notifyListeners(evt)
 
     def handleEvent(self, event):

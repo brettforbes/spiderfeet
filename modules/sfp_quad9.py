@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_quad9
-# Purpose:      Spiderfeet plug-in for looking up whether hosts are blocked by
+# Purpose:      SpiderFeet plug-in for looking up whether hosts are blocked by
 #               Quad 9 (9.9.9.9)
 #
 # Author:      Steve Micallef <steve@binarypool.com>
@@ -13,10 +13,10 @@
 
 import dns.resolver
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_quad9(SpiderFootPlugin):
+class sfp_quad9(SpiderFeetPlugin):
 
     meta = {
         'name': "Quad9",
@@ -125,7 +125,7 @@ class sfp_quad9(SpiderFootPlugin):
         if found:
             return
 
-        evt = SpiderFootEvent(
+        evt = SpiderFeetEvent(
             blacklist_type,
             f"Quad9 [{eventData}]\n<SFURL>https://quad9.net/result/?url={eventData}</SFURL>",
             self.__name__,
@@ -133,7 +133,7 @@ class sfp_quad9(SpiderFootPlugin):
         )
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(
+        evt = SpiderFeetEvent(
             malicious_type,
             f"Quad9 [{eventData}]\n<SFURL>https://quad9.net/result/?url={eventData}</SFURL>",
             self.__name__,

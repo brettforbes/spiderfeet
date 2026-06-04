@@ -45,7 +45,7 @@ Bootstrap 5.3 and D3 7 are already in **vendor** bundles. Do not add a second Bo
 <div class="container-fluid vh-100 d-flex flex-column p-0" data-bs-theme="light">
   <header class="border-bottom bg-body-tertiary px-3 py-2">
     <div class="d-flex align-items-center justify-content-between">
-      <h1 class="h5 mb-0">Spiderfeet map</h1>
+      <h1 class="h5 mb-0">SpiderFeet map</h1>
       <div id="map-toolbar" class="btn-toolbar gap-2" role="toolbar" aria-label="Map controls"></div>
     </div>
   </header>

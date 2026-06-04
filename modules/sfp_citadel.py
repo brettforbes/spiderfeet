@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_citadel
-# Purpose:     Spiderfeet plug-in to search Leak-Lookup using their API,
+# Purpose:     SpiderFeet plug-in to search Leak-Lookup using their API,
 #              for potential data breaches.
 #
 # Author:      sn <citadel.pw@protonmail.com>
@@ -16,10 +16,10 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_citadel(SpiderFootPlugin):
+class sfp_citadel(SpiderFeetPlugin):
 
     meta = {
         'name': "Leak-Lookup",
@@ -160,7 +160,7 @@ class sfp_citadel(SpiderFootPlugin):
 
         for site in message:
             self.info(f"Found Leak-Lookup entry for {eventData}: {site}")
-            evt = SpiderFootEvent("EMAILADDR_COMPROMISED", f"{eventData} [{site}]", self.__name__, event)
+            evt = SpiderFeetEvent("EMAILADDR_COMPROMISED", f"{eventData} [{site}]", self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_citadel class

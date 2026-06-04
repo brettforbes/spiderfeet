@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_tool_retirejs
-# Purpose:      Spiderfeet plug-in for using the 'Retire.js' tool.
+# Purpose:      SpiderFeet plug-in for using the 'Retire.js' tool.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
@@ -17,10 +17,10 @@ import shutil
 import tempfile
 from subprocess import Popen, PIPE, TimeoutExpired
 
-from spiderfeet import SpiderFootPlugin, SpiderFootEvent
+from spiderfeet import SpiderFeetPlugin, SpiderFeetEvent
 
 
-class sfp_tool_retirejs(SpiderFootPlugin):
+class sfp_tool_retirejs(SpiderFeetPlugin):
 
     meta = {
         "name": "Tool - Retire.js",
@@ -153,14 +153,14 @@ class sfp_tool_retirejs(SpiderFootPlugin):
                             text = f"{vuln['identifiers']['summary']}\n"
                             text += f"Severity: {vuln['severity']}\n"
                             text += f"Info: <SFURL>{vuln['info'][0]}</SFURL>"
-                            evt = SpiderFootEvent(
+                            evt = SpiderFeetEvent(
                                 "VULNERABILITY_GENERAL", text, self.__name__, event
                             )
                             self.notifyListeners(evt)
                         else:
                             for cve in vuln["identifiers"]["CVE"]:
                                 etype, cvetext = self.sf.cveInfo(cve)
-                                evt = SpiderFootEvent(
+                                evt = SpiderFeetEvent(
                                     etype, cvetext, self.__name__, event
                                 )
                                 self.notifyListeners(evt)

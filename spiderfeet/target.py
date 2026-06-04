@@ -10,8 +10,8 @@ else:
     TargetAlias = typing.Dict[str, str]
 
 
-class SpiderFootTarget():
-    """Spiderfeet target.
+class SpiderFeetTarget():
+    """SpiderFeet target.
 
     Attributes:
         validTypes (typing.List[str]): valid event types accepted as a target
@@ -28,7 +28,7 @@ class SpiderFootTarget():
     _targetAliases: typing.List[TargetAlias]
 
     def __init__(self, targetValue: str, typeName: str) -> None:
-        """Initialize Spiderfeet target.
+        """Initialize SpiderFeet target.
 
         Args:
             targetValue (str): target value
@@ -220,4 +220,4 @@ class SpiderFootTarget():
 
         return False
 
-# end of SpiderFootTarget class
+# end of SpiderFeetTarget class

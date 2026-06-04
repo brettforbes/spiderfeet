@@ -1,4 +1,4 @@
-# Quarantined Spiderfeet Modules
+# Quarantined SpiderFeet Modules
 
 Modules listed here **do not** declare an external `dataSource` in their metadata, but they are **not** generic non-OSINT infrastructure. Each implements specialised scan behaviour (DNS, crawling, content extraction, local tools, etc.) that still needs to be checked: whether it works, and exactly how it works in this codebase.
 
@@ -92,7 +92,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_dnsbrute` — DNS Brute-forcer
 
 **Category:** DNS & Domain Intelligence  
-**Spiderfeet categories:** DNS  
+**SpiderFeet categories:** DNS  
 **Use cases:** Footprint, Investigate  
 **Flags:** —
 
@@ -111,7 +111,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_dnscommonsrv` — DNS Common SRV
 
 **Category:** DNS & Domain Intelligence  
-**Spiderfeet categories:** DNS  
+**SpiderFeet categories:** DNS  
 **Use cases:** Footprint, Investigate  
 **Flags:** `slow`
 
@@ -130,7 +130,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_dnsneighbor` — DNS Look-aside
 
 **Category:** DNS & Domain Intelligence  
-**Spiderfeet categories:** DNS  
+**SpiderFeet categories:** DNS  
 **Use cases:** Footprint, Investigate  
 **Flags:** —
 
@@ -149,7 +149,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_dnsraw` — DNS Raw Records
 
 **Category:** DNS & Domain Intelligence  
-**Spiderfeet categories:** DNS  
+**SpiderFeet categories:** DNS  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -168,7 +168,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_dnsresolve` — DNS Resolver
 
 **Category:** DNS & Domain Intelligence  
-**Spiderfeet categories:** DNS  
+**SpiderFeet categories:** DNS  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -187,7 +187,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_dnszonexfer` — DNS Zone Transfer
 
 **Category:** DNS & Domain Intelligence  
-**Spiderfeet categories:** DNS  
+**SpiderFeet categories:** DNS  
 **Use cases:** Footprint, Investigate  
 **Flags:** —
 
@@ -206,7 +206,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_similar` — Similar Domain Finder
 
 **Category:** DNS & Domain Intelligence  
-**Spiderfeet categories:** DNS  
+**SpiderFeet categories:** DNS  
 **Use cases:** Footprint, Investigate  
 **Flags:** —
 
@@ -225,7 +225,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_subdomain_takeover` — Subdomain Takeover Checker
 
 **Category:** DNS & Domain Intelligence  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Investigate  
 **Flags:** —
 
@@ -244,7 +244,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tldsearch` — TLD Searcher
 
 **Category:** DNS & Domain Intelligence  
-**Spiderfeet categories:** DNS  
+**SpiderFeet categories:** DNS  
 **Use cases:** Footprint  
 **Flags:** `slow`
 
@@ -263,7 +263,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_whois` — Whois
 
 **Category:** DNS & Domain Intelligence  
-**Spiderfeet categories:** Public Registries  
+**SpiderFeet categories:** Public Registries  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -284,7 +284,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_crossref` — Cross-Referencer
 
 **Category:** Web Crawling & Scanning  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint  
 **Flags:** —
 
@@ -303,7 +303,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_intfiles` — Interesting File Finder
 
 **Category:** Web Crawling & Scanning  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Passive  
 **Flags:** —
 
@@ -322,7 +322,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_junkfiles` — Junk File Finder
 
 **Category:** Web Crawling & Scanning  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint  
 **Flags:** `slow`, `errorprone`, `invasive`
 
@@ -341,7 +341,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_portscan_tcp` — Port Scanner - TCP
 
 **Category:** Web Crawling & Scanning  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Investigate  
 **Flags:** `slow`, `invasive`
 
@@ -360,7 +360,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_spider` — Web Spider
 
 **Category:** Web Crawling & Scanning  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Investigate  
 **Flags:** `slow`
 
@@ -379,7 +379,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_sslcert` — SSL Certificate Analyzer
 
 **Category:** Web Crawling & Scanning  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Investigate  
 **Flags:** —
 
@@ -400,7 +400,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_base64` — Base64 Decoder
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Investigate, Passive  
 **Flags:** —
 
@@ -419,7 +419,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_binstring` — Binary String Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint  
 **Flags:** `errorprone`
 
@@ -438,7 +438,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_bitcoin` — Bitcoin Finder
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -457,7 +457,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_company` — Company Name Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -476,7 +476,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_cookie` — Cookie Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -495,7 +495,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_countryname` — Country Name Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -514,7 +514,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_creditcard` — Credit Card Number Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** `errorprone`
 
@@ -533,7 +533,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_email` — E-Mail Address Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Passive, Investigate, Footprint  
 **Flags:** —
 
@@ -552,7 +552,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_errors` — Error String Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Passive  
 **Flags:** —
 
@@ -571,7 +571,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_ethereum` — Ethereum Address Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -590,7 +590,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_filemeta` — File Metadata Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint  
 **Flags:** —
 
@@ -609,7 +609,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_hashes` — Hash Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -628,7 +628,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_hosting` — Hosting Provider Identifier
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -647,7 +647,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_iban` — IBAN Number Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** `errorprone`
 
@@ -666,7 +666,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_names` — Human Name Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Passive  
 **Flags:** `errorprone`
 
@@ -685,7 +685,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_pageinfo` — Page Information
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -704,7 +704,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_phone` — Phone Number Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Passive, Footprint, Investigate  
 **Flags:** —
 
@@ -723,7 +723,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_strangeheaders` — Strange Header Identifier
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Passive  
 **Flags:** —
 
@@ -742,7 +742,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_webanalytics` — Web Analytics Extractor
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -761,7 +761,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_webframework` — Web Framework Identifier
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Passive  
 **Flags:** —
 
@@ -780,7 +780,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_webserver` — Web Server Identifier
 
 **Category:** Content Analysis & Extraction  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -801,7 +801,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_accounts` — Account Finder
 
 **Category:** Social & Identity  
-**Spiderfeet categories:** Social Media  
+**SpiderFeet categories:** Social Media  
 **Use cases:** Footprint, Passive  
 **Flags:** —
 
@@ -820,7 +820,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_social` — Social Network Identifier
 
 **Category:** Social & Identity  
-**Spiderfeet categories:** Social Media  
+**SpiderFeet categories:** Social Media  
 **Use cases:** Footprint, Passive  
 **Flags:** —
 
@@ -841,7 +841,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_customfeed` — Custom Threat Feed
 
 **Category:** Reputation  
-**Spiderfeet categories:** Reputation Systems  
+**SpiderFeet categories:** Reputation Systems  
 **Use cases:** Investigate, Passive  
 **Flags:** —
 
@@ -862,7 +862,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_pgp` — PGP Key Servers
 
 **Category:** Public Registries  
-**Spiderfeet categories:** Public Registries  
+**SpiderFeet categories:** Public Registries  
 **Use cases:** Footprint, Investigate, Passive  
 **Flags:** —
 
@@ -883,7 +883,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_cmseek` — Tool - CMSeeK
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`
 
@@ -895,7 +895,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK)
 
-**How it works:** Wraps the external **CMSeeK** CLI tool. When triggered by `INTERNET_NAME` events, executes the tool against the target, parses stdout/stderr, and maps findings to `WEBSERVER_TECHNOLOGY` events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **CMSeeK** CLI tool. When triggered by `INTERNET_NAME` events, executes the tool against the target, parses stdout/stderr, and maps findings to `WEBSERVER_TECHNOLOGY` events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -904,7 +904,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_dnstwist` — Tool - DNSTwist
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** DNS  
+**SpiderFeet categories:** DNS  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`
 
@@ -916,7 +916,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [DNSTwist](https://github.com/elceef/dnstwist)
 
-**How it works:** Wraps the external **DNSTwist** CLI tool. When triggered by `DOMAIN_NAME` events, executes the tool against the target, parses stdout/stderr, and maps findings to `SIMILARDOMAIN` events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **DNSTwist** CLI tool. When triggered by `DOMAIN_NAME` events, executes the tool against the target, parses stdout/stderr, and maps findings to `SIMILARDOMAIN` events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -925,7 +925,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_nbtscan` — Tool - nbtscan
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`, `slow`
 
@@ -937,7 +937,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [nbtscan](http://www.unixwiz.net/tools/nbtscan.html)
 
-**How it works:** Wraps the external **nbtscan** CLI tool. When triggered by `IP_ADDRESS`, `NETBLOCK_OWNER` events, executes the tool against the target, parses stdout/stderr, and maps findings to `UDP_PORT_OPEN`, `UDP_PORT_OPEN_INFO`, `IP_ADDRESS` events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **nbtscan** CLI tool. When triggered by `IP_ADDRESS`, `NETBLOCK_OWNER` events, executes the tool against the target, parses stdout/stderr, and maps findings to `UDP_PORT_OPEN`, `UDP_PORT_OPEN_INFO`, `IP_ADDRESS` events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -946,7 +946,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_nmap` — Tool - Nmap
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`, `slow`, `invasive`
 
@@ -958,7 +958,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [Nmap](https://nmap.org/)
 
-**How it works:** Wraps the external **Nmap** CLI tool. When triggered by `IP_ADDRESS`, `NETBLOCK_OWNER` events, executes the tool against the target, parses stdout/stderr, and maps findings to `OPERATING_SYSTEM`, `IP_ADDRESS` events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **Nmap** CLI tool. When triggered by `IP_ADDRESS`, `NETBLOCK_OWNER` events, executes the tool against the target, parses stdout/stderr, and maps findings to `OPERATING_SYSTEM`, `IP_ADDRESS` events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -967,7 +967,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_nuclei` — Tool - Nuclei
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`, `slow`, `invasive`
 
@@ -979,7 +979,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [Nuclei](https://nuclei.projectdiscovery.io/)
 
-**How it works:** Wraps the external **Nuclei** CLI tool. When triggered by `INTERNET_NAME`, `IP_ADDRESS`, `NETBLOCK_OWNER` events, executes the tool against the target, parses stdout/stderr, and maps findings to `VULNERABILITY_CVE_CRITICAL`, `VULNERABILITY_CVE_HIGH`, `VULNERABILITY_CVE_MEDIUM`, `VULNERABILITY_CVE_LOW`, … (+3 more) events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **Nuclei** CLI tool. When triggered by `INTERNET_NAME`, `IP_ADDRESS`, `NETBLOCK_OWNER` events, executes the tool against the target, parses stdout/stderr, and maps findings to `VULNERABILITY_CVE_CRITICAL`, `VULNERABILITY_CVE_HIGH`, `VULNERABILITY_CVE_MEDIUM`, `VULNERABILITY_CVE_LOW`, … (+3 more) events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -988,7 +988,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_onesixtyone` — Tool - onesixtyone
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`
 
@@ -1000,7 +1000,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [onesixtyone](https://github.com/trailofbits/onesixtyone)
 
-**How it works:** Wraps the external **onesixtyone** CLI tool. When triggered by `IP_ADDRESS`, `NETBLOCK_OWNER` events, executes the tool against the target, parses stdout/stderr, and maps findings to `UDP_PORT_OPEN_INFO`, `UDP_PORT_OPEN`, `IP_ADDRESS` events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **onesixtyone** CLI tool. When triggered by `IP_ADDRESS`, `NETBLOCK_OWNER` events, executes the tool against the target, parses stdout/stderr, and maps findings to `UDP_PORT_OPEN_INFO`, `UDP_PORT_OPEN`, `IP_ADDRESS` events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -1009,7 +1009,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_retirejs` — Tool - Retire.js
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`
 
@@ -1021,7 +1021,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [Retire.js](http://retirejs.github.io/retire.js/)
 
-**How it works:** Wraps the external **Retire.js** CLI tool. When triggered by `LINKED_URL_INTERNAL`, `LINKED_URL_EXTERNAL` events, executes the tool against the target, parses stdout/stderr, and maps findings to `VULNERABILITY_CVE_CRITICAL`, `VULNERABILITY_CVE_HIGH`, `VULNERABILITY_CVE_MEDIUM`, `VULNERABILITY_CVE_LOW`, … (+1 more) events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **Retire.js** CLI tool. When triggered by `LINKED_URL_INTERNAL`, `LINKED_URL_EXTERNAL` events, executes the tool against the target, parses stdout/stderr, and maps findings to `VULNERABILITY_CVE_CRITICAL`, `VULNERABILITY_CVE_HIGH`, `VULNERABILITY_CVE_MEDIUM`, `VULNERABILITY_CVE_LOW`, … (+1 more) events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -1030,7 +1030,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_snallygaster` — Tool - snallygaster
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`
 
@@ -1042,7 +1042,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [snallygaster](https://github.com/hannob/snallygaster)
 
-**How it works:** Wraps the external **snallygaster** CLI tool. When triggered by `INTERNET_NAME` events, executes the tool against the target, parses stdout/stderr, and maps findings to `VULNERABILITY_GENERAL`, `VULNERABILITY_CVE_CRITICAL`, `VULNERABILITY_CVE_HIGH`, `VULNERABILITY_CVE_MEDIUM`, … (+1 more) events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **snallygaster** CLI tool. When triggered by `INTERNET_NAME` events, executes the tool against the target, parses stdout/stderr, and maps findings to `VULNERABILITY_GENERAL`, `VULNERABILITY_CVE_CRITICAL`, `VULNERABILITY_CVE_HIGH`, `VULNERABILITY_CVE_MEDIUM`, … (+1 more) events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -1051,7 +1051,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_testsslsh` — Tool - testssl.sh
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`
 
@@ -1063,7 +1063,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [testssl.sh](https://testssl.sh)
 
-**How it works:** Wraps the external **testssl.sh** CLI tool. When triggered by `INTERNET_NAME`, `IP_ADDRESS`, `NETBLOCK_OWNER` events, executes the tool against the target, parses stdout/stderr, and maps findings to `VULNERABILITY_CVE_CRITICAL`, `VULNERABILITY_CVE_HIGH`, `VULNERABILITY_CVE_MEDIUM`, `VULNERABILITY_CVE_LOW`, … (+2 more) events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **testssl.sh** CLI tool. When triggered by `INTERNET_NAME`, `IP_ADDRESS`, `NETBLOCK_OWNER` events, executes the tool against the target, parses stdout/stderr, and maps findings to `VULNERABILITY_CVE_CRITICAL`, `VULNERABILITY_CVE_HIGH`, `VULNERABILITY_CVE_MEDIUM`, `VULNERABILITY_CVE_LOW`, … (+2 more) events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -1072,7 +1072,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_trufflehog` — Tool - TruffleHog
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`, `slow`
 
@@ -1084,7 +1084,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [TruffleHog](https://github.com/trufflesecurity/truffleHog)
 
-**How it works:** Wraps the external **TruffleHog** CLI tool. When triggered by `SOCIAL_MEDIA`, `PUBLIC_CODE_REPO` events, executes the tool against the target, parses stdout/stderr, and maps findings to `PASSWORD_COMPROMISED` events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **TruffleHog** CLI tool. When triggered by `SOCIAL_MEDIA`, `PUBLIC_CODE_REPO` events, executes the tool against the target, parses stdout/stderr, and maps findings to `PASSWORD_COMPROMISED` events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -1093,7 +1093,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_wafw00f` — Tool - WAFW00F
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** Crawling and Scanning  
+**SpiderFeet categories:** Crawling and Scanning  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`
 
@@ -1105,7 +1105,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [WAFW00F](https://github.com/EnableSecurity/wafw00f)
 
-**How it works:** Wraps the external **WAFW00F** CLI tool. When triggered by `INTERNET_NAME` events, executes the tool against the target, parses stdout/stderr, and maps findings to `RAW_RIR_DATA`, `WEBSERVER_TECHNOLOGY` events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **WAFW00F** CLI tool. When triggered by `INTERNET_NAME` events, executes the tool against the target, parses stdout/stderr, and maps findings to `RAW_RIR_DATA`, `WEBSERVER_TECHNOLOGY` events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -1114,7 +1114,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_wappalyzer` — Tool - Wappalyzer
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`
 
@@ -1126,7 +1126,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [Wappalyzer](https://www.wappalyzer.com/)
 
-**How it works:** Wraps the external **Wappalyzer** CLI tool. When triggered by `INTERNET_NAME` events, executes the tool against the target, parses stdout/stderr, and maps findings to `OPERATING_SYSTEM`, `SOFTWARE_USED`, `WEBSERVER_TECHNOLOGY` events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **Wappalyzer** CLI tool. When triggered by `INTERNET_NAME` events, executes the tool against the target, parses stdout/stderr, and maps findings to `OPERATING_SYSTEM`, `SOFTWARE_USED`, `WEBSERVER_TECHNOLOGY` events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -1135,7 +1135,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 #### `sfp_tool_whatweb` — Tool - WhatWeb
 
 **Category:** External Tool Wrappers  
-**Spiderfeet categories:** Content Analysis  
+**SpiderFeet categories:** Content Analysis  
 **Use cases:** Footprint, Investigate  
 **Flags:** `tool`
 
@@ -1147,7 +1147,7 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 **Tool:** [WhatWeb](https://github.com/urbanadventurer/whatweb)
 
-**How it works:** Wraps the external **WhatWeb** CLI tool. When triggered by `INTERNET_NAME` events, executes the tool against the target, parses stdout/stderr, and maps findings to `RAW_RIR_DATA`, `WEBSERVER_BANNER`, `WEBSERVER_TECHNOLOGY` events. Requires the tool binary to be installed and available on the host running Spiderfeet.
+**How it works:** Wraps the external **WhatWeb** CLI tool. When triggered by `INTERNET_NAME` events, executes the tool against the target, parses stdout/stderr, and maps findings to `RAW_RIR_DATA`, `WEBSERVER_BANNER`, `WEBSERVER_TECHNOLOGY` events. Requires the tool binary to be installed and available on the host running SpiderFeet.
 
 **Status:** Quarantined — module behaviour and reliability still to be verified.
 
@@ -1155,4 +1155,4 @@ Detailed notes for each quarantined module, grouped by provisional role. Functio
 
 ---
 
-*Generated from Spiderfeet module metadata. Quarantined = no `dataSource` in module `meta`, specialised behaviour pending verification. Total: 54 modules.*
+*Generated from SpiderFeet module metadata. Quarantined = no `dataSource` in module `meta`, specialised behaviour pending verification. Total: 54 modules.*

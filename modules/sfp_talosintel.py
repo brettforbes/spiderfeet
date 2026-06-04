@@ -13,10 +13,10 @@
 
 from netaddr import IPAddress, IPNetwork
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_talosintel(SpiderFootPlugin):
+class sfp_talosintel(SpiderFeetPlugin):
 
     meta = {
         'name': "Talos Intelligence",
@@ -212,10 +212,10 @@ class sfp_talosintel(SpiderFootPlugin):
         url = "https://snort.org/downloads/ip-block-list"
         text = f"Talos Intelligence [{eventData}]\n<SFURL>{url}</SFURL>"
 
-        evt = SpiderFootEvent(malicious_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(malicious_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(blacklist_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(blacklist_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_talosintel class

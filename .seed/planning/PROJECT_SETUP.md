@@ -15,21 +15,21 @@ Complete the browser/device login when prompted.
 ## 2. Create project and add all issues
 
 ```powershell
-cd C:\projects\spiderfeet
+cd C:\projects\spiderFeet
 python .seed/planning/add_issues_to_github_project.py
 ```
 
-This creates (if missing) a user project titled **Spiderfeet — First Four Stages** under `@brettforbes` and adds every open issue from:
+This creates (if missing) a user project titled **SpiderFeet — First Four Stages** under `@brettforbes` and adds every open issue from:
 
-- `brettforbes/spiderfeet`
-- `brettforbes/spiderfeet-widget`
+- `brettforbes/spiderFeet`
+- `brettforbes/spiderFeet-widget`
 
 Output: `.seed/planning/github_project.json` with the project URL.
 
 ## 3. Manual alternative (simplest UI)
 
 1. Open https://github.com/users/brettforbes/projects/new
-2. Name: **Spiderfeet — First Four Stages**
+2. Name: **SpiderFeet — First Four Stages**
 3. Add issues from both repos via **Add item** (or wait for script after step 1–2)
 
 ## 4. Board columns (VibeGov)
