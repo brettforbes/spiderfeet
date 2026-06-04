@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -128,3 +128,138 @@ class ScanResultItem(BaseModel):
     risk: int
     event_description: Optional[str] = None
     false_positive: bool = False
+
+
+# --- scan_ui (widget / TypeDB map model) ---
+
+SCAN_UI_SWAGGER_EXAMPLE = {
+    "module_id": "sfp_dnsresolve",
+    "consumed": {
+        "nugget_id": "INTERNET_NAME",
+        "nugget_data": "sbs.com.au",
+    },
+    "wait": True,
+    "timeout_seconds": 120,
+}
+
+
+class ConsumedNuggetInput(BaseModel):
+    """Seed nugget the UI sends into a module."""
+
+    nugget_id: str = Field(
+        ...,
+        description="Catalogue nugget_id / event type, e.g. INTERNET_NAME",
+    )
+    nugget_data: str = Field(
+        ...,
+        min_length=1,
+        description="Target value (domain, IP, etc.)",
+    )
+
+
+class ScanUiRequest(BaseModel):
+    """Run one module against a consumed nugget; return map-shaped scan record."""
+
+    module_id: str = Field(..., description="OSINT module name, e.g. sfp_dnsresolve")
+    consumed: ConsumedNuggetInput
+    scan_name: Optional[str] = Field(
+        None, description="Optional scan display name; defaults to nugget_data"
+    )
+    scan_notes: Optional[str] = Field("", description="Free-text notes for scan-record")
+    wait: bool = Field(
+        True,
+        description="If true, block until scan finishes or timeout (default for UI)",
+    )
+    timeout_seconds: int = Field(120, ge=5, le=600)
+    debug: bool = False
+
+    model_config = ConfigDict(json_schema_extra={"example": SCAN_UI_SWAGGER_EXAMPLE})
+
+
+SCAN_UI_OPENAPI_EXAMPLES = {
+    "dns_from_domain": {
+        "summary": "DNS Resolver on sbs.com.au",
+        "description": (
+            "Consumes an INTERNET_NAME nugget and runs sfp_dnsresolve. "
+            "Returns scan-record fields plus produced nuggets (IP_ADDRESS, etc.)."
+        ),
+        "value": SCAN_UI_SWAGGER_EXAMPLE,
+    },
+}
+
+
+class OsintServiceRef(BaseModel):
+    module_id: str
+    name: str
+
+
+class RouteRef(BaseModel):
+    route_name: Optional[str] = None
+    route_state: Optional[str] = None
+
+
+class ScanRecordUi(BaseModel):
+    """Mirrors TypeDB scan-record relation (`.seed/spiderfeet_map.tql`)."""
+
+    scan_instance_id: str
+    scan_status: str = Field(
+        ...,
+        description="Scan lifecycle status (also duplicated in scan_results.status)",
+        alias="status",
+    )
+    scan_event_count: int = Field(
+        0,
+        description="Total events in this scan instance",
+    )
+    scan_results_by_type: Dict[str, int] = Field(
+        default_factory=dict,
+        description="Event type → count (e.g. IP_ADDRESS: 2)",
+    )
+    scan_results: Dict[str, Any] = Field(
+        ...,
+        description="Bundled summary: status, event_count, by_type",
+    )
+    scan_duration: Optional[float] = Field(
+        None, description="Seconds between started and ended"
+    )
+    scan_timestamp: Optional[str] = Field(
+        None, description="ISO-8601 UTC from scan start"
+    )
+    scan_notes: str = ""
+    service: OsintServiceRef = Field(
+        ...,
+        description="Linked osint-service (scan-record:service role)",
+    )
+    route: Optional[RouteRef] = Field(
+        None,
+        description="Linked route under test (scan-record:route role)",
+    )
+
+    model_config = ConfigDict(populate_by_name=True)
+
+
+class NuggetInstance(BaseModel):
+    """Nugget entity instance aligned with TypeDB map attributes."""
+
+    nugget_id: str
+    nugget_instance_id: str
+    entity_type: str
+    nugget_description: Optional[str] = None
+    nugget_type: Optional[str] = None
+    nugget_event_type: str
+    nugget_icon: Optional[str] = None
+    nugget_colour: Optional[str] = None
+    nugget_data: str
+    nugget_source_data: Optional[str] = None
+    nugget_module: str
+    nugget_generated: int
+    nugget_confidence: int
+    nugget_visibility: int
+    nugget_risk: int
+    nugget_false_positive: bool = False
+
+
+class ScanUiResponse(BaseModel):
+    scan_record: ScanRecordUi
+    consumed: List[NuggetInstance]
+    produced: List[NuggetInstance]

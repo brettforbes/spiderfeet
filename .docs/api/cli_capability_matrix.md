@@ -66,6 +66,7 @@ Base URL: `http://127.0.0.1:8000` (default; override via `start.ps1 -Mode api`).
 | `GET` | `/api/v1/scans` | SF-02-07 | `/scanlist` | **Implemented** |
 | `GET` | `/api/v1/scans/{scan_id}` | SF-02-07 | `/scanstatus` | **Implemented** |
 | `GET` | `/api/v1/scans/{scan_id}/results` | SF-02-07 | `/scaneventresults` | **Implemented** |
+| `POST` | `/api/v1/scan_ui` | SF-02-07+ | Widget: consumed nugget + module → scan-record + nuggets | **Implemented** |
 | `GET` | `/docs`, `/openapi.json` | SF-02-08 | New | **Implemented** (schemas evolve with endpoints) |
 
 ## Explicitly out of Stage 2 REST v1

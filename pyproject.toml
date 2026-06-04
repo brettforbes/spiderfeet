@@ -44,6 +44,14 @@ pytest = ">=8.0.0,<9"
 httpx = ">=0.27.0,<1"
 
 
+[tool.pytest.ini_options]
+markers = [
+    "slow: integration tests that run a real OSINT scan (seconds)",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning:spiderfeet.api.app",
+]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
