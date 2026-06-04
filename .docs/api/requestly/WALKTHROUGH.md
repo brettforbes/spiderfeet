@@ -21,34 +21,18 @@
 
 ---
 
-## Step 1 — Import environment
+## Step 2 — Open local workspace
 
-1. Click **Import** (top-left).
-2. Choose **Requestly’s Collection & Environment** *or* import the environment file if your build supports single-file env import.
-3. If no env import: create environment **SpiderFeet Local** manually:
-   - `base_url` = `http://127.0.0.1:8000`
-   - `scan_id` = *(leave empty)*
-4. Alternatively import `.docs/api/requestly/spiderfeet-local.environment.json` via the environment import flow.
+Folder (must contain `requestly.json` and `environments/`):
 
-5. **Select** environment **SpiderFeet Local** in the environment dropdown before running requests.
+```
+C:\projects\spiderfeet\.docs\api\requestly
+```
 
----
-
-## Step 2 — Import collection
-
-**Option A (recommended): Postman import**
-
-1. **Import** → **Postman**.
-2. Choose file:  
-   `C:\projects\spiderfeet\.docs\api\requestly\spiderfeet-api.postman_collection.json`
-3. Collection **SpiderFeet API v1 (Stage 2)** appears in the sidebar.
-
-**Option B: OpenAPI import** (API must be running)
-
-1. **Import** → **OpenAPI**.
-2. URL: `http://127.0.0.1:8000/openapi.json`
-3. Review preview → confirm.  
-   You may need to add test scripts manually; Option A includes assertions.
+1. Requestly → **Join or Create Project** → **Local project**.
+2. Select the folder above → project name e.g. `spiderfeet` → **Create**.
+3. Environment: **SpiderFeet Local** (`base_url`, `scan_id`).
+4. Collection: **SpiderFeet API v1** under `apis/` (requests **01**–**11**).
 
 ---
 
