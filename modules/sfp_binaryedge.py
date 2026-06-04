@@ -151,7 +151,7 @@ class sfp_binaryedge(SpiderFootPlugin):
         res = self.sf.fetchUrl(
             f"https://api.binaryedge.io/v2/query/{queryurl}/{qry}?page={page}",
             timeout=self.opts['_fetchtimeout'],
-            useragent="SpiderFoot",
+            useragent="Spiderfeet",
             headers=headers
         )
 

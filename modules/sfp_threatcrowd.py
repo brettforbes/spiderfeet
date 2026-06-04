@@ -101,7 +101,7 @@ class sfp_threatcrowd(SpiderFootPlugin):
         if not url:
             url = "https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=" + qry
 
-        res = self.sf.fetchUrl(url, timeout=self.opts['_fetchtimeout'], useragent="SpiderFoot")
+        res = self.sf.fetchUrl(url, timeout=self.opts['_fetchtimeout'], useragent="Spiderfeet")
 
         if res['content'] is None:
             self.info(f"No ThreatCrowd info found for {qry}")

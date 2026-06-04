@@ -1,5 +1,5 @@
 """
-Parse SpiderFoot modules and extract OSINT Service metadata.
+Parse Spiderfeet modules and extract OSINT Service metadata.
 
 Modules whose meta dict includes a dataSource field are external OSINT services.
 Results are written to osint_services.json.
@@ -18,7 +18,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 MODULES_DIR = REPO_ROOT / "modules"
 OUTPUT_FILE = Path(__file__).resolve().parent / "osint_services.json"
 
-# SpiderFoot dataSource.model → canonical access tier (see test_modules.py valid_models)
+# Spiderfeet dataSource.model → canonical access tier (see test_modules.py valid_models)
 ACCESS_TIER_BY_MODEL: dict[str, str] = {
     "FREE_NOAUTH_UNLIMITED": "free_no_auth",
     "FREE_NOAUTH_LIMITED": "free_no_auth",

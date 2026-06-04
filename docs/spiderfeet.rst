@@ -1,4 +1,4 @@
-spiderfoot package
+spiderfeet package
 ==================
 
 Submodules
@@ -47,7 +47,7 @@ spiderfeet.target module
 Module contents
 ---------------
 
-.. automodule:: spiderfoot
+.. automodule:: spiderfeet
    :members:
    :undoc-members:
    :show-inheritance:

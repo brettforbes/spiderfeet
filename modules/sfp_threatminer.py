@@ -108,7 +108,7 @@ class sfp_threatminer(SpiderFootPlugin):
 
         threatminerurl = "https://api.threatminer.org"
         url = threatminerurl + queryurl.format(qry)
-        res = self.sf.fetchUrl(url, timeout=10, useragent="SpiderFoot")
+        res = self.sf.fetchUrl(url, timeout=10, useragent="Spiderfeet")
 
         if res['content'] is None:
             self.info("No ThreatMiner info found for " + qry)

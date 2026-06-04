@@ -110,7 +110,7 @@ class sfp_intelx(SpiderFootPlugin):
         retdata = list()
 
         headers = {
-            "User-Agent": "SpiderFoot",
+            "User-Agent": "Spiderfeet",
             "x-key": self.opts['api_key'],
         }
 

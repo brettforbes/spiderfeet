@@ -8,7 +8,7 @@ This document describes how Spiderfeet classifies **OSINT service modules** for 
 
 ### What is an OSINT service?
 
-An **OSINT service** is a SpiderFoot module whose metadata includes a `dataSource` block — i.e. it calls an external data provider rather than performing purely internal analysis. These modules are extracted from `modules/sfp_*.py` by `.docs/analysis/analyse_modules.py` and catalogued in `osint_services.json`.
+An **OSINT service** is a Spiderfeet module whose metadata includes a `dataSource` block — i.e. it calls an external data provider rather than performing purely internal analysis. These modules are extracted from `modules/sfp_*.py` by `.docs/analysis/analyse_modules.py` and catalogued in `osint_services.json`.
 
 | Metric | Count |
 |--------|------:|
@@ -66,7 +66,7 @@ Three computed fields sit on every OSINT service record and on the TypeDB `osint
 Additionally, each service retains:
 
 - **`consumed_nuggets`** — full list of nugget types the module listens for (may be multiple)
-- **`data_source.model`** — SpiderFoot’s fine-grained access enum (6 values); mapped into `access_tier`
+- **`data_source.model`** — Spiderfeet’s fine-grained access enum (6 values); mapped into `access_tier`
 
 ```mermaid
 flowchart LR
@@ -103,9 +103,9 @@ Used for UI filters (e.g. “show only free, no signup”), legend badges, and p
 
 ### Mapping from `data_source.model`
 
-SpiderFoot modules declare one of six `data_source.model` values (validated in `test/unit/test_modules.py`). These map to three tiers:
+Spiderfeet modules declare one of six `data_source.model` values (validated in `test/unit/test_modules.py`). These map to three tiers:
 
-| SpiderFoot `data_source.model` | `access_tier` | Count | Notes |
+| Spiderfeet `data_source.model` | `access_tier` | Count | Notes |
 |--------------------------------|---------------|------:|-------|
 | `FREE_NOAUTH_UNLIMITED` | `free_no_auth` | 88 | Open feeds, public APIs |
 | `FREE_NOAUTH_LIMITED` | `free_no_auth` | 7 | No auth, but rate-limited |
@@ -323,7 +323,7 @@ PHYSICAL_ADDRESS → PHYSICAL_COORDINATES → (else first alphabetically)
 | `BITCOIN_ADDRESS` | 3 | Crypto chains |
 | Other singletons | 12 | Specialty seeds |
 
-The three dominant seeds (`INTERNET_NAME`, `IP_ADDRESS`, `DOMAIN_NAME`) account for **146 of 177** modules (82.5%) — matching how SpiderFoot scans are usually seeded.
+The three dominant seeds (`INTERNET_NAME`, `IP_ADDRESS`, `DOMAIN_NAME`) account for **146 of 177** modules (82.5%) — matching how Spiderfeet scans are usually seeded.
 
 ### Relationship to `consumption_group`
 
@@ -471,7 +471,7 @@ The Spiderfeet map has three layered views (see `.seed/02_stsage_by_stage_reengi
 
 ### Regenerating classifications
 
-1. Edit SpiderFoot modules or classification rules in `analyse_modules.py`
+1. Edit Spiderfeet modules or classification rules in `analyse_modules.py`
 2. Run `python .docs/analysis/analyse_modules.py`
 3. Verify counts and spot-check `other` / `paid` lists
 4. Load updated attributes into TypeDB when seeding map data
@@ -480,7 +480,7 @@ The Spiderfeet map has three layered views (see `.seed/02_stsage_by_stage_reengi
 
 | Trigger | Action |
 |---------|--------|
-| New `data_source.model` enum in SpiderFoot | Add to `ACCESS_TIER_BY_MODEL` and tests |
+| New `data_source.model` enum in Spiderfeet | Add to `ACCESS_TIER_BY_MODEL` and tests |
 | New nugget types consumed by many modules | Extend family frozensets in `consumption_group()` |
 | `other` group grows beyond ~15% | Split new group (e.g. `social`, `geo`) with new `@values` entry |
 | UI needs quota detail | Filter on `osint-source.model` (`LIMITED` vs `UNLIMITED`) alongside `access_tier` |

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_citadel
-# Purpose:     SpiderFoot plug-in to search Leak-Lookup using their API,
+# Purpose:     Spiderfeet plug-in to search Leak-Lookup using their API,
 #              for potential data breaches.
 #
 # Author:      sn <citadel.pw@protonmail.com>

@@ -1,8 +1,8 @@
 # Documenting and Classifying OSINT Services Modules
 
-Spiderfoot is a module-based system that allows you to collect data from various OSINT servicwes. Each module is responsible for collecting data from a specific source. The data is then stored in the database and can be used for further analysis.
+Spiderfeet is a module-based system that allows you to collect data from various OSINT servicwes. Each module is responsible for collecting data from a specific source. The data is then stored in the database and can be used for further analysis.
 
-There are 233 modules in the `modules` directory. Each module is a Python file that contains a class that inherits from `SpiderFootPlugin`. Each class has a `meta` dictionary that contains the metadata for the module. Not all modules are external data sources. Some modules are internal to Spiderfoot and are used to perform analysis on the data.
+There are 233 modules in the `modules` directory. Each module is a Python file that contains a class that inherits from `SpiderFootPlugin`. Each class has a `meta` dictionary that contains the metadata for the module. Not all modules are external data sources. Some modules are internal to Spiderfeet and are used to perform analysis on the data.
 
 ## Summarising the OSINT Service Modules
 

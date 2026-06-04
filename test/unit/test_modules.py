@@ -9,9 +9,9 @@ from spiderfeet import SpiderFootHelpers
 
 
 @pytest.mark.usefixtures
-class TestSpiderFootModuleLoading(unittest.TestCase):
+class TestSpiderfeetModuleLoading(unittest.TestCase):
     """
-    Test SpiderFoot module loading
+    Test Spiderfeet module loading
     """
 
     @staticmethod

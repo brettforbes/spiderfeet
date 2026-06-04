@@ -9125,7 +9125,7 @@
   {
     "module_id": "sfp_template",
     "name": "Template Module",
-    "summary": "This is an example module to help developers create their own SpiderFoot modules.",
+    "summary": "This is an example module to help developers create their own Spiderfeet modules.",
     "flags": [
       "slow",
       "apikey"
@@ -10190,7 +10190,7 @@
         "name": "publicapi",
         "value_type": "boolean",
         "value": true,
-        "description": "Are you using a public key? If so SpiderFoot will pause for 15 seconds after each query to avoid VirusTotal dropping requests."
+        "description": "Are you using a public key? If so Spiderfeet will pause for 15 seconds after each query to avoid VirusTotal dropping requests."
       },
       {
         "name": "subnetlookup",

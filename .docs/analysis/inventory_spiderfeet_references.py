@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Inventory SpiderFoot/spiderfoot references for Stage 1 rebrand (issue #14)."""
+"""Inventory Spiderfeet/spiderfeet references for Stage 1 rebrand (issue #14)."""
 from __future__ import annotations
 
 import json
@@ -18,14 +18,14 @@ SKIP_DIRS = {
 SKIP_FILES_SUFFIX = {".pyc", ".png", ".jpg", ".gif", ".ico", ".woff", ".woff2", ".ttf", ".eot"}
 
 PATTERNS = [
-    ("spiderfoot", re.compile(r"spiderfoot", re.I)),
-    ("SpiderFoot", re.compile(r"SpiderFoot")),
-    ("Spiderfoot", re.compile(r"Spiderfoot")),
-    ("SPIDERFOOT", re.compile(r"SPIDERFOOT")),
+    ("spiderfeet", re.compile(r"spiderfeet", re.I)),
+    ("Spiderfeet", re.compile(r"Spiderfeet")),
+    ("Spiderfeet", re.compile(r"Spiderfeet")),
+    ("SPIDERFEET", re.compile(r"SPIDERFEET")),
 ]
 
 PATH_PATTERNS = [
-    re.compile(r"spiderfoot", re.I),
+    re.compile(r"spiderfeet", re.I),
 ]
 
 
@@ -73,7 +73,7 @@ def main() -> None:
     )
 
     lines = [
-        "# SpiderFoot Reference Inventory",
+        "# Spiderfeet Reference Inventory",
         "",
         "**Issue:** #14 (SF-01-01) | **Spec:** SPEC-002 R2-01-01",
         f"**Generated:** from `{ROOT.name}` repo root",
@@ -83,13 +83,13 @@ def main() -> None:
         "| Pattern | Files | Occurrences |",
         "|---------|------:|------------:|",
     ]
-    for label in ["SpiderFoot", "spiderfoot", "Spiderfoot", "SPIDERFOOT"]:
+    for label in ["Spiderfeet", "spiderfeet", "Spiderfeet", "SPIDERFEET"]:
         s = summary.get(label, {"files": 0, "occurrences": 0})
         lines.append(f"| `{label}` | {s['files']} | {s['occurrences']} |")
 
     lines += [
         "",
-        f"**Paths containing `spiderfoot` in filename/directory:** {len(path_hits)}",
+        f"**Paths containing `spiderfeet` in filename/directory:** {len(path_hits)}",
         "",
         "## Path renames required",
         "",
@@ -121,7 +121,7 @@ def main() -> None:
         "",
         "## Next issue",
         "",
-        "#15 — Rename files and directories (SF-01-02)",
+        "#17 — Replace strings and docs (SF-01-04)",
         "",
     ]
     OUT_MD.write_text("\n".join(lines), encoding="utf-8")

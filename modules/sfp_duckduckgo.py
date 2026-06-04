@@ -87,7 +87,7 @@ class sfp_duckduckgo(SpiderFootPlugin):
 
         url = "https://api.duckduckgo.com/?q=" + eventData + "&format=json&pretty=1"
         res = self.sf.fetchUrl(url, timeout=self.opts['_fetchtimeout'],
-                               useragent="SpiderFoot")
+                               useragent="Spiderfeet")
 
         if res['content'] is None:
             self.error(f"Unable to fetch {url}")

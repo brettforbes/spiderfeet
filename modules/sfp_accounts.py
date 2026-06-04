@@ -79,7 +79,7 @@ class sfp_accounts(SpiderFootPlugin):
         content = self.sf.cacheGet("sfaccountsv2", 48)
         if content is None:
             url = "https://raw.githubusercontent.com/WebBreacher/WhatsMyName/main/wmn-data.json"
-            data = self.sf.fetchUrl(url, useragent="SpiderFoot")
+            data = self.sf.fetchUrl(url, useragent="Spiderfeet")
 
             if data['content'] is None:
                 self.error(f"Unable to fetch {url}")

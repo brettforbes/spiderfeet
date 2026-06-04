@@ -14,7 +14,7 @@ alwaysApply: true
 | Stage | Focus | Primary repo |
 |-------|--------|--------------|
 | 0 | Governance, SPEC-002, project rules | both |
-| 1 | SpiderFoot → Spiderfeet rebrand, Apache 2.0, logo | both |
+| 1 | Spiderfeet → Spiderfeet rebrand, Apache 2.0, logo | both |
 | 2 | FastAPI over CLI | spiderfeet only |
 | 3 | TypeDB map + Maps force graph UI | both |
 | 4 | Module testing (177 issues, one per OSINT module) | both |

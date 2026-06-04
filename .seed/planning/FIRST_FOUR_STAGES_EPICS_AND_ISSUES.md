@@ -136,8 +136,8 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
-| SF-01-01 | Story | SpiderFoot reference inventory | Machine-readable report: paths + counts for `spiderfoot` / `SpiderFoot` / filenames |
-| SF-01-02 | Story | Rename files and directories | No path segment `spiderfoot` / `SpiderFoot` remains (exclude `.git`, vendor if documented) |
+| SF-01-01 | Story | Spiderfeet reference inventory | Machine-readable report: paths + counts for `spiderfeet` / `Spiderfeet` / filenames |
+| SF-01-02 | Story | Rename files and directories | No path segment `spiderfeet` / `Spiderfeet` remains (exclude `.git`, vendor if documented) |
 | SF-01-03 | Story | Update Python package/module imports | `poetry run python sf.py -V` (or successor entry) works after renames |
 | SF-01-04 | Story | Replace in-repo strings and docs | README, comments, CLI strings say Spiderfeet |
 | SF-01-05 | Story | Apache 2.0 license (Brett Forbes) | `LICENSE` + headers where applicable; MIT removed |
@@ -160,10 +160,10 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 |----|------|-------|-------------------------------|
 | X-01-01 | Story | **Operator review:** select final logo | One logo chosen; documented in both READMEs |
 | X-01-02 | Story | Apply chosen logo to widget chrome | Navbar/logo in built `dist/` |
-| X-01-03 | Story | Repo-wide `spiderfoot` grep sign-off | CI or script proves zero unintended matches (allowlisted exceptions file) |
+| X-01-03 | Story | Repo-wide `spiderfeet` grep sign-off | CI or script proves zero unintended matches (allowlisted exceptions file) |
 | X-01-04 | Story | **Close stage 1 epics** | Operator approval; `.tasks/issue-*.json` after GitHub numbers assigned |
 
-**Stage 1 exit:** No SpiderFoot branding; Apache 2.0; logo selected and visible in widget.
+**Stage 1 exit:** No Spiderfeet branding; Apache 2.0; logo selected and visible in widget.
 
 ---
 

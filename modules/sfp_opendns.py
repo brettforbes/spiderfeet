@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_opendns
-# Purpose:      SpiderFoot plug-in for looking up whether hosts are blocked by
+# Purpose:      Spiderfeet plug-in for looking up whether hosts are blocked by
 #               OpenDNS.
 #
 # Author:      Steve Micallef <steve@binarypool.com>

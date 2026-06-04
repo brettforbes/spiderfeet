@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_adguard_dns
-# Purpose:     SpiderFoot plug-in for looking up whether hosts are blocked by
+# Purpose:     Spiderfeet plug-in for looking up whether hosts are blocked by
 #              AdGuard DNS servers.
 #
 # Author:      <bcoles@gmail.com>

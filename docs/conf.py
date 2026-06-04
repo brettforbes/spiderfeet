@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'SpiderFoot'
+project = 'Spiderfeet'
 copyright = '2012, Steve Micallef'
 author = 'Steve Micallef'
 

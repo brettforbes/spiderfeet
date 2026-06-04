@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_tool_retirejs
-# Purpose:      SpiderFoot plug-in for using the 'Retire.js' tool.
+# Purpose:      Spiderfeet plug-in for using the 'Retire.js' tool.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #

@@ -20,7 +20,7 @@ import time
 
 
 class SpiderFootDb:
-    """SpiderFoot database
+    """Spiderfeet database
 
     Attributes:
         conn: SQLite connect() connection
@@ -34,7 +34,7 @@ class SpiderFootDb:
     # Prevent multithread access to sqlite database
     dbhLock = threading.RLock()
 
-    # Queries for creating the SpiderFoot database
+    # Queries for creating the Spiderfeet database
     createSchemaQueries = [
         "PRAGMA journal_mode=WAL",
         "CREATE TABLE tbl_event_types ( \
@@ -109,7 +109,7 @@ class SpiderFootDb:
     ]
 
     eventDetails = [
-        ['ROOT', 'Internal SpiderFoot Root event', 1, 'INTERNAL'],
+        ['ROOT', 'Internal Spiderfeet Root event', 1, 'INTERNAL'],
         ['ACCOUNT_EXTERNAL_OWNED', 'Account on External Site', 0, 'ENTITY'],
         ['ACCOUNT_EXTERNAL_OWNED_COMPROMISED', 'Hacked Account on External Site', 0, 'DESCRIPTOR'],
         ['ACCOUNT_EXTERNAL_USER_SHARED_COMPROMISED', 'Hacked User Account on External Site', 0, 'DESCRIPTOR'],
@@ -357,7 +357,7 @@ class SpiderFootDb:
                 try:
                     self.create()
                 except Exception as e:
-                    raise IOError("Tried to set up the SpiderFoot database schema, but failed") from e
+                    raise IOError("Tried to set up the Spiderfeet database schema, but failed") from e
 
             # For users with pre 4.0 databases, add the correlation
             # tables + indexes if they don't exist.
@@ -371,8 +371,8 @@ class SpiderFootDb:
                         self.conn.commit()
                 except sqlite3.Error:
                     raise IOError("Looks like you are running a pre-4.0 database. Unfortunately "
-                                  "SpiderFoot wasn't able to migrate you, so you'll need to delete "
-                                  "your SpiderFoot database in order to proceed.") from None
+                                  "Spiderfeet wasn't able to migrate you, so you'll need to delete "
+                                  "your Spiderfeet database in order to proceed.") from None
 
             if init:
                 for row in self.eventDetails:
@@ -573,7 +573,7 @@ class SpiderFootDb:
                 raise TypeError(f"message is {type(message)}; expected str()") from None
 
             if not component:
-                component = "SpiderFoot"
+                component = "Spiderfeet"
 
             inserts.append((instanceId, logTime * 1000, component, classification, message))
 
@@ -619,7 +619,7 @@ class SpiderFootDb:
             raise TypeError(f"message is {type(message)}; expected str()") from None
 
         if not component:
-            component = "SpiderFoot"
+            component = "Spiderfeet"
 
         qry = "INSERT INTO tbl_scan_log \
             (scan_instance_id, generated, component, type, message) \

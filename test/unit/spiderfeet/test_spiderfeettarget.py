@@ -4,7 +4,7 @@ import unittest
 from spiderfeet import SpiderFootTarget
 
 
-class TestSpiderFootTarget(unittest.TestCase):
+class TestSpiderfeetTarget(unittest.TestCase):
 
     valid_target_types = [
         'IP_ADDRESS', 'IPV6_ADDRESS', 'NETBLOCK_OWNER', 'INTERNET_NAME',
@@ -273,7 +273,7 @@ class TestSpiderFootTarget(unittest.TestCase):
         self.assertTrue(matches)
 
     def test_matches_argument_value_any_human_name_should_return_True(self):
-        target_value = 'SpiderFoot'
+        target_value = 'Spiderfeet'
         target_type = 'HUMAN_NAME'
         target = SpiderFootTarget(target_value, target_type)
 
@@ -281,7 +281,7 @@ class TestSpiderFootTarget(unittest.TestCase):
         self.assertTrue(matches)
 
     def test_matches_argument_value_any_phone_number_should_return_True(self):
-        target_value = 'SpiderFoot'
+        target_value = 'Spiderfeet'
         target_type = 'PHONE_NUMBER'
         target = SpiderFootTarget(target_value, target_type)
 
@@ -289,7 +289,7 @@ class TestSpiderFootTarget(unittest.TestCase):
         self.assertTrue(matches)
 
     def test_matches_argument_value_any_bitcoin_address_should_return_True(self):
-        target_value = 'SpiderFoot'
+        target_value = 'Spiderfeet'
         target_type = 'BITCOIN_ADDRESS'
         target = SpiderFootTarget(target_value, target_type)
 
@@ -297,7 +297,7 @@ class TestSpiderFootTarget(unittest.TestCase):
         self.assertTrue(matches)
 
     def test_matches_argument_value_any_username_should_return_True(self):
-        target_value = 'SpiderFoot'
+        target_value = 'Spiderfeet'
         target_type = 'USERNAME'
         target = SpiderFootTarget(target_value, target_type)
 

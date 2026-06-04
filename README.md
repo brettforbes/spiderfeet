@@ -10,9 +10,9 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/spiderfoot?label=follow&style=social)](https://twitter.com/spiderfoot)
 [![Discord](https://img.shields.io/discord/770524432464216074)](https://discord.gg/vyvztrG)
 
-**SpiderFoot** is an open source intelligence (OSINT) automation tool. It integrates with just about every data source available and utilises a range of methods for data analysis, making that data easy to navigate. 
+**Spiderfeet** is an open source intelligence (OSINT) automation tool. It integrates with just about every data source available and utilises a range of methods for data analysis, making that data easy to navigate. 
 
-SpiderFoot has an embedded web-server for providing a clean and intuitive web-based interface but can also be used completely via the command-line.  It's written in **Python 3** and **MIT-licensed**.
+Spiderfeet has an embedded web-server for providing a clean and intuitive web-based interface but can also be used completely via the command-line.  It's written in **Python 3** and **MIT-licensed**.
 
 <img src="https://www.spiderfeet.net/wp-content/uploads/2022/04/opensource-screenshot-v4.png" />
 
@@ -35,7 +35,7 @@ SpiderFoot has an embedded web-server for providing a clean and intuitive web-ba
 
 ### WANT MORE?
 
-Need more from SpiderFoot? Check out [SpiderFoot HX](https://www.spiderfeet.net/hx) for:
+Need more from Spiderfeet? Check out [Spiderfeet HX](https://www.spiderfeet.net/hx) for:
 - 100% Cloud-based and managed for you
 - Attack Surface Monitoring with change notifications by email, REST and Slack
 - Multiple targets per scan
@@ -47,16 +47,16 @@ Need more from SpiderFoot? Check out [SpiderFoot HX](https://www.spiderfeet.net/
 - Drive it with a fully RESTful API
 - TOR integration built-in
 - Screenshotting
-- Bring your own Python SpiderFoot modules
+- Bring your own Python Spiderfeet modules
 - Feed scan data to Splunk, ElasticSearch and REST endpoints
 
-See the full set of differences between SpiderFoot HX and the open source version [here](https://www.spiderfeet.net/open-source-vs-hx/).
+See the full set of differences between Spiderfeet HX and the open source version [here](https://www.spiderfeet.net/open-source-vs-hx/).
 
 ### USES
 
-SpiderFoot can be used offensively (e.g. in a red team exercise or penetration test) for reconnaissance of your target or defensively to gather information about what you or your organisation might have exposed over the Internet.
+Spiderfeet can be used offensively (e.g. in a red team exercise or penetration test) for reconnaissance of your target or defensively to gather information about what you or your organisation might have exposed over the Internet.
 
-You can target the following entities in a SpiderFoot scan:
+You can target the following entities in a Spiderfeet scan:
 
  - IP address
  - Domain/sub-domain name
@@ -69,7 +69,7 @@ You can target the following entities in a SpiderFoot scan:
  - Person's name
  - Bitcoin address
  
-SpiderFoot's 200+ modules feed each other in a publisher/subscriber model to ensure maximum data extraction to do things like:
+Spiderfeet's 200+ modules feed each other in a publisher/subscriber model to ensure maximum data extraction to do things like:
 
 - [Host/sub-domain/TLD enumeration/extraction](https://asciinema.org/a/295912)
 - [Email address, phone number and human name extraction](https://asciinema.org/a/295947)
@@ -90,14 +90,14 @@ SpiderFoot's 200+ modules feed each other in a publisher/subscriber model to ens
 
 ### INSTALLING & RUNNING
 
-To install and run SpiderFoot, you need at least Python 3.7 and a number of Python libraries which you can install with `pip`. We recommend you install a packaged release since master will often have bleeding edge features and modules that aren't fully tested.
+To install and run Spiderfeet, you need at least Python 3.7 and a number of Python libraries which you can install with `pip`. We recommend you install a packaged release since master will often have bleeding edge features and modules that aren't fully tested.
 
 #### Stable build (packaged release):
 
 ```
  wget https://github.com/smicallef/spiderfeet/archive/v4.0.tar.gz
  tar zxvf v4.0.tar.gz
- cd spiderfoot-4.0
+ cd spiderfeet-4.0
  pip3 install -r requirements.txt
  python3 ./sf.py -l 127.0.0.1:5001
 ```
@@ -106,7 +106,7 @@ To install and run SpiderFoot, you need at least Python 3.7 and a number of Pyth
 
 ```
  git clone https://github.com/smicallef/spiderfeet.git
- cd spiderfoot
+ cd spiderfeet
  pip3 install -r requirements.txt
  python3 ./sf.py -l 127.0.0.1:5001
 ```
@@ -115,17 +115,17 @@ Check out the [documentation](https://www.spiderfeet.net/documentation) and our 
 
 ### COMMUNITY
 
-Whether you're a contributor, user or just curious about SpiderFoot and OSINT in general, we'd love to have you join our community! SpiderFoot now has a [Discord server](https://discord.gg/vyvztrG) for seeking help from the community, requesting features or just general OSINT chit-chat.
+Whether you're a contributor, user or just curious about Spiderfeet and OSINT in general, we'd love to have you join our community! Spiderfeet now has a [Discord server](https://discord.gg/vyvztrG) for seeking help from the community, requesting features or just general OSINT chit-chat.
 
 ### WRITING CORRELATION RULES
 
-We have a comprehensive write-up and reference of the correlation rule-set introduced in SpiderFoot 4.0 [here](/correlations/README.md).
+We have a comprehensive write-up and reference of the correlation rule-set introduced in Spiderfeet 4.0 [here](/correlations/README.md).
 
 Also take a look at the [template.yaml](/correlations/template.yaml) file for a walk through. The existing [37 rules](/correlations) are also quite readable and good as starting points for additional rules.
 
 ### MODULES / INTEGRATIONS
 
-SpiderFoot has over 200 modules, most of which *don't require API keys*, and many of those that do require API keys *have a free tier*.
+Spiderfeet has over 200 modules, most of which *don't require API keys*, and many of those that do require API keys *have a free tier*.
 
 | Name     | Description | Type   |
 |:---------| :-----------|:-------|
@@ -361,6 +361,6 @@ Whois|Perform a WHOIS look-up on domain names and owned netblocks.|Internal
 
 ### DOCUMENTATION
 
-Read more at the [project website](https://www.spiderfeet.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQv&s=os_gh), including more complete documentation, blog posts with tutorials/guides, plus information about [SpiderFoot HX](https://www.spiderfeet.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQvaHgvCg==&s=os_gh).
+Read more at the [project website](https://www.spiderfeet.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQv&s=os_gh), including more complete documentation, blog posts with tutorials/guides, plus information about [Spiderfeet HX](https://www.spiderfeet.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQvaHgvCg==&s=os_gh).
 
 Latest updates announced on [Twitter](https://twitter.com/spiderfoot).

@@ -42,7 +42,7 @@ class TestModuleBase64(unittest.TestCase):
             if str(event.eventType) != expected:
                 raise Exception(f"{event.eventType} != {expected}")
 
-            expected = "U3BpZGVyRm9vdA== (SpiderFoot)"
+            expected = "U3BpZGVyRm9vdA== (Spiderfeet)"
             if str(event.data) != expected:
                 raise Exception(f"{event.data} != {expected}")
 

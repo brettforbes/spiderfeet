@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_neutrinoapi
-# Purpose:     SpiderFoot plug-in to search NeutrinoAPI for IP address info,
+# Purpose:     Spiderfeet plug-in to search NeutrinoAPI for IP address info,
 #              check IP address reputation, and search for phone location.
 #
 # Author:      <bcoles@gmail.com>

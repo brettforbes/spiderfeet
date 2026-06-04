@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_trashpanda
-# Purpose:      Spiderfoot plugin to query Trashpanda - got-hacked.wtf API to gather intelligence about
+# Purpose:      Spiderfeet plugin to query Trashpanda - got-hacked.wtf API to gather intelligence about
 #               mentions of your target in paste sites like Pastebin, Ghostbin and Zeropaste
 #
 # Author:      Krishnasis Mandal <krishnasis@hotmail.com>

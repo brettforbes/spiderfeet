@@ -1,7 +1,7 @@
 [
   {
     "nugget_id": "ROOT",
-    "nugget_description": "Internal SpiderFoot Root event",
+    "nugget_description": "Internal Spiderfeet Root event",
     "nugget_type": "INTERNAL",
     "nugget_icon": "icon_root.svg",
     "nugget_colour": "#8B5CF6"

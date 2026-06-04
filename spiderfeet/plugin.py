@@ -23,7 +23,7 @@ else:
 _srcfile = os.path.normcase(_srcfile)
 
 
-class SpiderFootPluginLogger(logging.Logger):
+class SpiderfeetPluginLogger(logging.Logger):
     """Used only in SpiderFootPlugin to prevent modules
     from having to initialize their own loggers.
 
@@ -109,7 +109,7 @@ class SpiderFootPlugin():
     __sfdb__ = None
     # ID of the scan the module is running against
     __scanId__ = None
-    # (only used in SpiderFoot HX) tracking of data sources
+    # (only used in Spiderfeet HX) tracking of data sources
     __dataSource__ = None
     # If set, events not matching this list are dropped
     __outputFilter__ = None
@@ -125,7 +125,7 @@ class SpiderFootPlugin():
     incomingEventQueue = None
     # Queue for produced events
     outgoingEventQueue = None
-    # SpiderFoot object, set in each module's setup() function
+    # Spiderfeet object, set in each module's setup() function
     sf = None
     # Configuration, set in each module's setup() function
     opts = dict()
@@ -143,8 +143,8 @@ class SpiderFootPlugin():
     @property
     def log(self):
         if self._log is None:
-            logging.setLoggerClass(SpiderFootPluginLogger)  # temporarily set logger class
-            self._log = logging.getLogger(f"spiderfeet.{self.__name__}")  # init SpiderFootPluginLogger
+            logging.setLoggerClass(SpiderfeetPluginLogger)  # temporarily set logger class
+            self._log = logging.getLogger(f"spiderfeet.{self.__name__}")  # init SpiderfeetPluginLogger
             logging.setLoggerClass(logging.Logger)  # reset logger class to default
         return self._log
 
@@ -168,7 +168,7 @@ class SpiderFootPlugin():
         """Will always be overriden by the implementer.
 
         Args:
-            sf (SpiderFoot): SpiderFoot object
+            sf (Spiderfeet): Spiderfeet object
             userOpts (dict): TBD
         """
         pass
@@ -302,7 +302,7 @@ class SpiderFootPlugin():
             Move all module state to use this, which then would enable a scan to be paused/resumed.
 
         Note:
-            Required for SpiderFoot HX compatibility of modules.
+            Required for Spiderfeet HX compatibility of modules.
 
         Returns:
             dict: module temporary state data

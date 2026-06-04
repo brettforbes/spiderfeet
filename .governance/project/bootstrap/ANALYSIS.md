@@ -6,7 +6,7 @@
 ## Repository profile
 
 - **Remote:** https://github.com/brettforbes/spiderfeet
-- **Base:** SpiderFoot OSINT platform fork (233 modules)
+- **Base:** Spiderfeet OSINT platform fork (233 modules)
 - **Prior work:** Module analysis artifacts in `.docs/analysis/` (OSINT services, nuggets, quarantine docs) from pre-bootstrap sessions
 
 ## Classification
@@ -30,7 +30,7 @@ Initial heuristic ("no `dataSource` = non-OSINT") was wrong. Corrected split:
 ## Risk notes
 
 - Dirty working tree at bootstrap start — bootstrap continued in init mode without resolving pre-existing edits (commit policy forbidden)
-- Upstream SpiderFoot codebase is large; quarantined module verification is non-trivial (BL-009+)
+- Upstream Spiderfeet codebase is large; quarantined module verification is non-trivial (BL-009+)
 - GOV-01 from upstream VibeGov references GOV-10–13 in loading order; only GOV-01–09 installed per bootstrap.json `active_rules`
 
 ## Historical vs current
