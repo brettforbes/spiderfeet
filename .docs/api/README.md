@@ -26,7 +26,19 @@ Example scan start (Swagger **POST /api/v1/scans**):
 }
 ```
 
-`sfp_dnsresolve` is the **DNS Resolver** service — it resolves the domain to IPs quickly. Avoid `use_case: passive` in Try it out; that enables hundreds of modules and looks idle for a long time.
+The response returns immediately with `scan_id`, `poll`, and `results` paths. Poll status until `FINISHED`, then fetch results.
+
+**PowerShell** (Swagger *curl* often fails — `curl` is an alias for `Invoke-WebRequest`):
+
+```powershell
+$body = '{"target":"sbs.com.au","modules":["sfp_dnsresolve"]}'
+$r = Invoke-RestMethod -Uri http://127.0.0.1:8000/api/v1/scans -Method POST -ContentType application/json -Body $body
+$r
+Invoke-RestMethod "http://127.0.0.1:8000$($r.poll)"
+Invoke-RestMethod "http://127.0.0.1:8000$($r.results)"
+```
+
+Or use **`curl.exe`** (real curl), not `curl`.
 
 Legacy web UI (CherryPy) remains `.\start.ps1` or `.\start.ps1 -Mode web`.
 

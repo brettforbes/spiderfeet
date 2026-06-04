@@ -86,6 +86,14 @@ SCAN_CREATE_OPENAPI_EXAMPLES = {
 class ScanCreateResponse(BaseModel):
     scan_id: str
     status: str = "STARTING"
+    poll: str = Field(
+        ...,
+        description="Poll this URL until status is FINISHED",
+    )
+    results: str = Field(
+        ...,
+        description="Fetch scan events here after FINISHED",
+    )
 
 
 class ScanSummary(BaseModel):
