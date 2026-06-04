@@ -6,7 +6,7 @@
 
 ## Purpose
 
-Establish VibeGov governance, Git workflow scaffolding, and a durable module taxonomy before any product-code implementation in this SpiderFoot fork.
+Establish VibeGov governance, Git workflow scaffolding, and a durable module taxonomy before any product-code implementation in this Spiderfeet fork.
 
 ## Scope
 
@@ -21,7 +21,7 @@ Establish VibeGov governance, Git workflow scaffolding, and a durable module tax
 
 ### Out of scope
 
-- SpiderFoot runtime feature changes
+- Spiderfeet runtime feature changes
 - New scan modules or module rewrites
 - UI / force-graph product implementation
 - CI pipeline changes unless required for governance verification

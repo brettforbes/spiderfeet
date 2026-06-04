@@ -1,38 +1,38 @@
 #
-# Spiderfoot Dockerfile
+# Spiderfeet Dockerfile
 #
 # http://www.spiderfeet.net
 #
 # Written by: Michael Pellon <m@pellon.io>
 # Updated by: Chandrapal <bnchandrapal@protonmail.com>
 # Updated by: Steve Micallef <steve@binarypool.com>
-# Updated by: Steve Bate <svc-spiderfoot@stevebate.net>
+# Updated by: Steve Bate <svc-spiderfeet@stevebate.net>
 #    -> Inspired by https://github.com/combro2k/dockerfiles/tree/master/alpine-spiderfoot
 #
 # Usage:
 #
-#   sudo docker build -t spiderfoot .
-#   sudo docker run -p 5001:5001 --security-opt no-new-privileges spiderfoot
+#   sudo docker build -t spiderfeet .
+#   sudo docker run -p 5001:5001 --security-opt no-new-privileges spiderfeet
 #
-# Using Docker volume for spiderfoot data
+# Using Docker volume for spiderfeet data
 #
-#   sudo docker run -p 5001:5001 -v /mydir/spiderfoot:/var/lib/spiderfoot spiderfoot
+#   sudo docker run -p 5001:5001 -v /mydir/spiderfeet:/var/lib/spiderfeet spiderfeet
 #
-# Using SpiderFoot remote command line with web server
+# Using Spiderfeet remote command line with web server
 #
-#   docker run --rm -it spiderfoot sfcli.py -s http://my.spiderfeet.host:5001/
+#   docker run --rm -it spiderfeet sfcli.py -s http://my.spiderfeet.host:5001/
 #
-# Running spiderfoot commands without web server (can optionally specify volume)
+# Running spiderfeet commands without web server (can optionally specify volume)
 #
-#   sudo docker run --rm spiderfoot sf.py -h
+#   sudo docker run --rm spiderfeet sf.py -h
 #
 # Running a shell in the container for maintenance
-#   sudo docker run -it --entrypoint /bin/sh spiderfoot
+#   sudo docker run -it --entrypoint /bin/sh spiderfeet
 #
-# Running spiderfoot unit tests in container
+# Running spiderfeet unit tests in container
 #
-#   sudo docker build -t spiderfoot-test --build-arg REQUIREMENTS=test/requirements.txt .
-#   sudo docker run --rm spiderfoot-test -m pytest --flake8 .
+#   sudo docker build -t spiderfeet-test --build-arg REQUIREMENTS=test/requirements.txt .
+#   sudo docker run --rm spiderfeet-test -m pytest --flake8 .
 
 FROM alpine:3.12.4 AS build
 ARG REQUIREMENTS=requirements.txt
@@ -50,33 +50,33 @@ RUN pip3 install -r "$REQUIREMENTS"
 
 
 FROM alpine:3.13.0
-WORKDIR /home/spiderfoot
+WORKDIR /home/spiderfeet
 
 # Place database and logs outside installation directory
-ENV SPIDERFOOT_DATA /var/lib/spiderfoot
-ENV SPIDERFOOT_LOGS /var/lib/spiderfeet/log
-ENV SPIDERFOOT_CACHE /var/lib/spiderfeet/cache
+ENV SPIDERFEET_DATA /var/lib/spiderfeet
+ENV SPIDERFEET_LOGS /var/lib/spiderfeet/log
+ENV SPIDERFEET_CACHE /var/lib/spiderfeet/cache
 
 # Run everything as one command so that only one layer is created
 RUN apk --update --no-cache add python3 musl openssl libxslt tinyxml libxml2 jpeg zlib openjpeg \
-    && addgroup spiderfoot \
-    && adduser -G spiderfoot -h /home/spiderfoot -s /sbin/nologin \
-               -g "SpiderFoot User" -D spiderfoot \
+    && addgroup spiderfeet \
+    && adduser -G spiderfeet -h /home/spiderfeet -s /sbin/nologin \
+               -g "Spiderfeet User" -D spiderfeet \
     && rm -rf /var/cache/apk/* \
     && rm -rf /lib/apk/db \
     && rm -rf /root/.cache \
-    && mkdir -p $SPIDERFOOT_DATA || true \
-    && mkdir -p $SPIDERFOOT_LOGS || true \
-    && mkdir -p $SPIDERFOOT_CACHE || true \
-    && chown spiderfoot:spiderfoot $SPIDERFOOT_DATA \
-    && chown spiderfoot:spiderfoot $SPIDERFOOT_LOGS \
-    && chown spiderfoot:spiderfoot $SPIDERFOOT_CACHE
+    && mkdir -p $SPIDERFEET_DATA || true \
+    && mkdir -p $SPIDERFEET_LOGS || true \
+    && mkdir -p $SPIDERFEET_CACHE || true \
+    && chown spiderfeet:spiderfeet $SPIDERFEET_DATA \
+    && chown spiderfeet:spiderfeet $SPIDERFEET_LOGS \
+    && chown spiderfeet:spiderfeet $SPIDERFEET_CACHE
 
 COPY . .
 COPY --from=build /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-USER spiderfoot
+USER spiderfeet
 
 EXPOSE 5001
 

@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------
 // Name:         spiderfeet.js
-// Purpose:      All the javascript code for the spiderfoot aspects of the UI.
+// Purpose:      All the javascript code for the spiderfeet aspects of the UI.
 //
 // Author:      Steve Micallef <steve@binarypool.com>
 //

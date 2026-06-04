@@ -4,7 +4,7 @@ import unittest
 from spiderfeet import SpiderFootEvent
 
 
-class TestSpiderFootEvent(unittest.TestCase):
+class TestSpiderfeetEvent(unittest.TestCase):
 
     def test_init_root_event_should_create_event(self):
         event_data = 'example event data'

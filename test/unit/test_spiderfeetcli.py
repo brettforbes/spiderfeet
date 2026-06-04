@@ -8,9 +8,9 @@ from sfcli import SpiderFootCli
 
 
 @pytest.mark.usefixtures
-class TestSpiderFootCli(unittest.TestCase):
+class TestSpiderfeetCli(unittest.TestCase):
     """
-    Test TestSpiderFootCli
+    Test TestSpiderfeetCli
     """
 
     def test_default(self):

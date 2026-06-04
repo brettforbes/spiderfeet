@@ -125,7 +125,7 @@ class sfp_riskiq(SpiderFootPlugin):
 
         # Be more forgiving with the timeout as some queries for subnets can be slow
         res = self.sf.fetchUrl(url, timeout=30,
-                               useragent="SpiderFoot", headers=headers,
+                               useragent="Spiderfeet", headers=headers,
                                postData=post)
 
         if res['code'] in ["400", "429", "500", "403"]:

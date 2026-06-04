@@ -84,7 +84,7 @@ class sfp_twitter(SpiderFootPlugin):
             return
 
         res = self.sf.fetchUrl(url, timeout=self.opts['_fetchtimeout'],
-                               useragent="SpiderFoot")
+                               useragent="Spiderfeet")
 
         if res['content'] is None:
             return

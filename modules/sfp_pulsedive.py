@@ -117,7 +117,7 @@ class sfp_pulsedive(SpiderFootPlugin):
         }
 
         url = 'https://pulsedive.com/api/info.php?' + urllib.parse.urlencode(params)
-        res = self.sf.fetchUrl(url, timeout=30, useragent="SpiderFoot")
+        res = self.sf.fetchUrl(url, timeout=30, useragent="Spiderfeet")
 
         time.sleep(self.opts['delay'])
 

@@ -66,7 +66,7 @@ EmptyTree = typing.Dict[None, object]
 
 
 class SpiderFootHelpers():
-    """SpiderFoot helper functions.
+    """Spiderfeet helper functions.
 
     This class is used to store static helper functions which are
     designed to function independent of scan config or global config.
@@ -77,12 +77,12 @@ class SpiderFootHelpers():
 
     @staticmethod
     def dataPath() -> str:
-        """Returns the file system location of SpiderFoot data and configuration files.
+        """Returns the file system location of Spiderfeet data and configuration files.
 
         Returns:
-            str: SpiderFoot data file system path
+            str: Spiderfeet data file system path
         """
-        path = os.environ.get('SPIDERFOOT_DATA')
+        path = os.environ.get('SPIDERFEET_DATA')
         if not path:
             path = f"{Path.home()}/.spiderfeet/"
         if not os.path.isdir(path):
@@ -94,9 +94,9 @@ class SpiderFootHelpers():
         """Returns the file system location of the cacha data files.
 
         Returns:
-            str: SpiderFoot cache file system path
+            str: Spiderfeet cache file system path
         """
-        path = os.environ.get('SPIDERFOOT_CACHE')
+        path = os.environ.get('SPIDERFEET_CACHE')
         if not path:
             path = f"{Path.home()}/.spiderfeet/cache"
         if not os.path.isdir(path):
@@ -105,12 +105,12 @@ class SpiderFootHelpers():
 
     @staticmethod
     def logPath() -> str:
-        """Returns the file system location of SpiderFoot log files.
+        """Returns the file system location of Spiderfeet log files.
 
         Returns:
-            str: SpiderFoot data file system path
+            str: Spiderfeet data file system path
         """
-        path = os.environ.get('SPIDERFOOT_LOGS')
+        path = os.environ.get('SPIDERFEET_LOGS')
         if not path:
             path = f"{Path.home()}/.spiderfeet/logs"
         if not os.path.isdir(path):
@@ -126,7 +126,7 @@ class SpiderFootHelpers():
             ignore_files (list): List of module file names to ignore
 
         Returns:
-            dict: SpiderFoot modules
+            dict: Spiderfeet modules
 
         Raises:
             TypeError: ignore file list was invalid

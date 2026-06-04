@@ -1,11 +1,11 @@
-# SpiderFoot / Spiderfeet CLI Reference
+# Spiderfeet / Spiderfeet CLI Reference
 
-This document describes the command-line interfaces in this repository (**Spiderfeet**, based on **SpiderFoot 4.0.0**). SpiderFoot is an OSINT automation platform with two primary CLI entry points:
+This document describes the command-line interfaces in this repository (**Spiderfeet**, based on **Spiderfeet 4.0.0**). Spiderfeet is an OSINT automation platform with two primary CLI entry points:
 
 | Program | Role |
 |---------|------|
 | [`sf.py`](../sf.py) | Main application: run scans from the terminal, start the web UI, list modules/types, run correlations |
-| [`sfcli.py`](../sfcli.py) | Interactive client that talks to a **running** SpiderFoot web server over HTTP |
+| [`sfcli.py`](../sfcli.py) | Interactive client that talks to a **running** Spiderfeet web server over HTTP |
 
 Most day-to-day scanning can be done entirely with `sf.py`. Use `sfcli.py` when a server is already running and you want a REPL-style workflow (manage scans, query results, export data) without opening the browser.
 
@@ -61,7 +61,7 @@ usage: sf.py [-h] [-d] [-l IP:port] [-m mod1,mod2,...] [-M] [-C scanID]
 | `-h`, `--help` | Show help and exit |
 | `-d`, `--debug` | Enable debug logging (also persisted to DB config for scans) |
 | `-q` | Disable logging entirely (**errors are hidden too**) |
-| `-V`, `--version` | Print `SpiderFoot 4.0.0` (from [`VERSION`](../VERSION)) and exit |
+| `-V`, `--version` | Print `Spiderfeet 4.0.0` (from [`VERSION`](../VERSION)) and exit |
 | `-max-threads N` | Override default concurrent module limit (default: **3**, key `_maxthreads`) |
 
 ### Web server
@@ -78,7 +78,7 @@ On start, the process prints the URL to open in a browser. If TLS certificate fi
 |------|-------------|
 | `-s TARGET` | **Required** for CLI scans. Seed target (see [Scan targets](#scan-targets)) |
 | `-m mod1,mod2,...` | Comma-separated module names (e.g. `sfp_dnsresolve,sfp_whois`) |
-| `-t type1,type2,...` | Comma-separated **event types** to collect; SpiderFoot auto-enables modules that produce those types and their dependency chain |
+| `-t type1,type2,...` | Comma-separated **event types** to collect; Spiderfeet auto-enables modules that produce those types and their dependency chain |
 | `-u {all,footprint,investigate,passive}` | Enable modules by **use case** (see [Use cases](#use-cases-u)) |
 | `-x` | **Strict mode** — see [Strict mode](#strict-mode-x) |
 
@@ -118,7 +118,7 @@ These flags configure the internal `sfp__stor_stdout` module, which prints event
 
 ## Scan targets
 
-SpiderFoot infers the target **type** from the `-s` string using regex rules in [`spiderfeet/helpers.py`](../spiderfeet/helpers.py) (`targetTypeFromString`). Supported types:
+Spiderfeet infers the target **type** from the `-s` string using regex rules in [`spiderfeet/helpers.py`](../spiderfeet/helpers.py) (`targetTypeFromString`). Supported types:
 
 | Type | Example input | Notes |
 |------|---------------|-------|
@@ -180,7 +180,7 @@ poetry run python sf.py -s example.com -t INTERNET_NAME -x
 
 ## Module selection by event type (`-t`)
 
-When `-t` is specified, SpiderFoot:
+When `-t` is specified, Spiderfeet:
 
 1. Finds all modules that **produce** any listed type.
 2. Walks the module dependency graph (types consumed → modules producing them) until the set stabilizes.
@@ -276,20 +276,20 @@ poetry run python sf.py -d -max-threads 10 -s example.com -u footprint
 
 ## Data, configuration, and security files
 
-SpiderFoot stores runtime data under a configurable directory (default: `~/.spiderfeet/`):
+Spiderfeet stores runtime data under a configurable directory (default: `~/.spiderfeet/`):
 
 | Item | Location | Purpose |
 |------|----------|---------|
-| Database | `$SPIDERFOOT_DATA/spiderfeet.db` or `~/.spiderfeet/spiderfeet.db` | Scan results, config |
+| Database | `$SPIDERFEET_DATA/spiderfeet.db` or `~/.spiderfeet/spiderfeet.db` | Scan results, config |
 | Passwords | `~/.spiderfeet/passwd` | HTTP digest auth for web UI (`username:password` per line) |
 | TLS | `~/.spiderfeet/spiderfeet.crt`, `spiderfeet.key` | Optional HTTPS for web UI |
-| Cache | `$SPIDERFOOT_CACHE` or `~/.spiderfeet/cache` | Cached downloads |
+| Cache | `$SPIDERFEET_CACHE` or `~/.spiderfeet/cache` | Cached downloads |
 
 Override with environment variable:
 
 ```bash
-export SPIDERFOOT_DATA=/path/to/spiderfoot-data
-export SPIDERFOOT_CACHE=/path/to/cache
+export SPIDERFEET_DATA=/path/to/spiderfeet-data
+export SPIDERFEET_CACHE=/path/to/cache
 ```
 
 **Legacy paths:** `sf.py` refuses to start if `spiderfeet.db` or `passwd` exist in the **application directory** (project root); move them to `~/.spiderfeet/`.
@@ -309,7 +309,7 @@ export SPIDERFOOT_CACHE=/path/to/cache
 
 ## Correlation engine (CLI)
 
-SpiderFoot 4.0 ships with **37** YAML correlation rules under [`correlations/`](../correlations/) (plus `template.yaml`). Rules run automatically after scans complete (with a short grace period). To **manually** re-run all rules against a scan:
+Spiderfeet 4.0 ships with **37** YAML correlation rules under [`correlations/`](../correlations/) (plus `template.yaml`). Rules run automatically after scans complete (with a short grace period). To **manually** re-run all rules against a scan:
 
 ```bash
 poetry run python sf.py -C <scan_id>
@@ -321,7 +321,7 @@ Rule authoring is documented in [`correlations/README.md`](../correlations/READM
 
 ## `sfcli.py` — overview
 
-`sfcli.py` is an **interactive command shell** that uses the SpiderFoot **REST-style HTTP API** exposed by the web server. It does not run scans locally; it sends requests to `cli.server_baseurl` (default `http://127.0.0.1:5001`).
+`sfcli.py` is an **interactive command shell** that uses the Spiderfeet **REST-style HTTP API** exposed by the web server. It does not run scans locally; it sends requests to `cli.server_baseurl` (default `http://127.0.0.1:5001`).
 
 **Typical workflow:**
 
@@ -333,7 +333,7 @@ poetry run python sf.py -l 127.0.0.1:5001
 poetry run python sfcli.py -s http://127.0.0.1:5001
 ```
 
-At startup, `sfcli` runs `ping`, loads module/type lists for tab completion, and optionally restores command history from `~/.spiderfoot_history`.
+At startup, `sfcli` runs `ping`, loads module/type lists for tab completion, and optionally restores command history from `~/.spiderfeet_history`.
 
 ### Platform note (Windows)
 
@@ -363,7 +363,7 @@ usage: sfcli.py [-h] [-d] [-s URL] [-u USER] [-p PASS] [-P PASSFILE]
 | `-p PASS` | HTTP digest password (visible in process list; prefer `-P`) |
 | `-P PASSFILE` | File with password on first line |
 | `-e FILE` | Execute commands from file then exit (non-interactive) |
-| `-l FILE` | History log file (default `~/.spiderfoot_history`) |
+| `-l FILE` | History log file (default `~/.spiderfeet_history`) |
 | `-n` | Disable history logging |
 | `-o FILE` | Spool all commands and output to `FILE` |
 | `-i` | Allow insecure HTTPS (disable TLS verify) |
@@ -473,7 +473,7 @@ sf> data <sid> -t EMAILADDR | top 20 | file emails.txt
 | `cli.color` | `true` | ANSI colors |
 | `cli.output` | `pretty` | `pretty` or `json` for command results |
 | `cli.history` | `true` | Readline history |
-| `cli.history_file` | `~/.spiderfoot_history` | History path |
+| `cli.history_file` | `~/.spiderfeet_history` | History path |
 | `cli.spool` | `false` | Log all output to spool file |
 | `cli.spool_file` | `""` | Spool path |
 | `cli.ssl_verify` | `true` | TLS certificate verification |
@@ -536,4 +536,4 @@ Module metadata (`flags`, `useCases`, `categories`, API requirements) is defined
 
 ---
 
-*Generated for the Spiderfeet repository (SpiderFoot 4.0.0). Flags and behavior reflect the current `sf.py` and `sfcli.py` sources; if upstream changes, compare against `python sf.py --help`.*
+*Generated for the Spiderfeet repository (Spiderfeet 4.0.0). Flags and behavior reflect the current `sf.py` and `sfcli.py` sources; if upstream changes, compare against `python sf.py --help`.*

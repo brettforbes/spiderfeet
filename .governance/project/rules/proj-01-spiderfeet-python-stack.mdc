@@ -33,7 +33,7 @@ Use `.cursor/skills/typedb/` and `.cursor/skills/typedb-bridge/` for schema and 
 
 ## Conventions
 
-- Prefer extending existing SpiderFoot module patterns until rebrand (stage 1) lands
+- Prefer extending existing Spiderfeet module patterns until rebrand (stage 1) lands
 - Regenerate analysis JSON after module metadata changes: `python .docs/analysis/analyse_modules.py`
 - API changes require OpenAPI accuracy and pytest coverage per GOV-05
 - Do not add new OSINT modules without SPEC-002 traceability and operator approval

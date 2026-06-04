@@ -7,9 +7,9 @@ from spiderfeet import SpiderFootDb, SpiderFootEvent, SpiderFootPlugin, SpiderFo
 
 
 @pytest.mark.usefixtures
-class TestSpiderFootPlugin(unittest.TestCase):
+class TestSpiderfeetPlugin(unittest.TestCase):
     """
-    Test SpiderFoot
+    Test Spiderfeet
     """
 
     def test_init(self):

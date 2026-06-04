@@ -9,7 +9,7 @@ from spiderfeet import SpiderFootHelpers
 from sfwebui import SpiderFootWebUi
 
 
-class TestSpiderFootWebUiRoutes(helper.CPWebCase):
+class TestSpiderfeetWebUiRoutes(helper.CPWebCase):
     @staticmethod
     def setup_server():
         default_config = {
@@ -130,7 +130,7 @@ class TestSpiderFootWebUiRoutes(helper.CPWebCase):
         self.assertStatus('200 OK')
         self.getPage("/optsexport?pattern=api_key")
         self.assertStatus('200 OK')
-        self.assertHeader("Content-Disposition", "attachment; filename=\"SpiderFoot.cfg\"")
+        self.assertHeader("Content-Disposition", "attachment; filename=\"Spiderfeet.cfg\"")
         self.assertInBody(":api_key=")
 
     def test_optsraw(self):
@@ -190,7 +190,7 @@ class TestSpiderFootWebUiRoutes(helper.CPWebCase):
     def test_startscan_unrecognized_scan_target_returns_error(self):
         self.getPage("/startscan?scanname=example-scan&scantarget=invalid-target&modulelist=doesnotexist&typelist=doesnotexist&usecase=doesnotexist")
         self.assertStatus('200 OK')
-        self.assertInBody('Invalid target type. Could not recognize it as a target SpiderFoot supports.')
+        self.assertInBody('Invalid target type. Could not recognize it as a target Spiderfeet supports.')
 
     def test_startscan_invalid_modules_returns_error(self):
         self.getPage("/startscan?scanname=example-scan&scantarget=spiderfeet.net&modulelist=&typelist=&usecase=")

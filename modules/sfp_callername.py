@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------------------
 # Name:        sfp_callername
-# Purpose:     SpiderFoot plug-in to search CallerName.com for a phone number
+# Purpose:     Spiderfeet plug-in to search CallerName.com for a phone number
 #              (US only) and retrieve location and reputation information.
 #
 # Author:      <bcoles@gmail.com>

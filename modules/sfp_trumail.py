@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_trumail
-# Purpose:      Spiderfoot plugin to check if an email is
+# Purpose:      Spiderfeet plugin to check if an email is
 #               disposable using trumail.io API.
 #
 # Author:      Krishnasis Mandal <krishnasis@hotmail.com>
@@ -72,7 +72,7 @@ class sfp_trumail(SpiderFootPlugin):
         res = self.sf.fetchUrl(
             f"https://api.trumail.io/v2/lookups/json?email={qry}",
             timeout=self.opts['_fetchtimeout'],
-            useragent="SpiderFoot"
+            useragent="Spiderfeet"
         )
 
         if res['content'] is None:

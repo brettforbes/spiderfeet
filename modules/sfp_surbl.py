@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_surbl
-# Purpose:     SpiderFoot plug-in to check whether IP addresses, netblocks, and
+# Purpose:     Spiderfeet plug-in to check whether IP addresses, netblocks, and
 #              domains appear in the SURBL blacklist.
 #
 # Author:      <bcoles@gmail.com>

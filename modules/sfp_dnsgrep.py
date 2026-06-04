@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_dnsgrep
-# Purpose:     SpiderFoot plug-in for retrieving domain names
+# Purpose:     Spiderfeet plug-in for retrieving domain names
 #              from Rapid7 Sonar Project data sets using DNSGrep API.
 #              - https://opendata.rapid7.com/about/
 #              - https://blog.erbbysam.com/index.php/2019/02/09/dnsgrep/

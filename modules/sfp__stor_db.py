@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_stor_db
-# Purpose:      SpiderFoot plug-in for storing events to the local SpiderFoot
+# Purpose:      Spiderfeet plug-in for storing events to the local Spiderfeet
 #               SQLite database.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
@@ -18,7 +18,7 @@ class sfp__stor_db(SpiderFootPlugin):
 
     meta = {
         'name': "Storage",
-        'summary': "Stores scan results into the back-end SpiderFoot database. You will need this."
+        'summary': "Stores scan results into the back-end Spiderfeet database. You will need this."
     }
 
     _priority = 0

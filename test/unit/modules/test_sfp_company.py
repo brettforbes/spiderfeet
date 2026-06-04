@@ -43,7 +43,7 @@ class TestModuleCompany(unittest.TestCase):
             if str(event.eventType) != expected:
                 raise Exception(f"{event.eventType} != {expected}")
 
-            expected = "SpiderFoot Corporation"
+            expected = "Spiderfeet Corporation"
             if str(event.data) != expected:
                 raise Exception(f"{event.data} != {expected}")
 
@@ -58,7 +58,7 @@ class TestModuleCompany(unittest.TestCase):
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'SSL_CERTIFICATE_ISSUED'
-        event_data = 'O=SpiderFoot Corporation'
+        event_data = 'O=Spiderfeet Corporation'
         event_module = 'example module'
         source_event = evt
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
@@ -85,7 +85,7 @@ class TestModuleCompany(unittest.TestCase):
             if str(event.eventType) != expected:
                 raise Exception(f"{event.eventType} != {expected}")
 
-            expected = "SpiderFoot Corporation"
+            expected = "Spiderfeet Corporation"
             if str(event.data) != expected:
                 raise Exception(f"{event.data} != {expected}")
 
@@ -100,7 +100,7 @@ class TestModuleCompany(unittest.TestCase):
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'DOMAIN_WHOIS'
-        event_data = 'Registrant Organization: SpiderFoot Corporation'
+        event_data = 'Registrant Organization: Spiderfeet Corporation'
         event_module = 'example module'
         source_event = evt
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
@@ -127,7 +127,7 @@ class TestModuleCompany(unittest.TestCase):
             if str(event.eventType) != expected:
                 raise Exception(f"{event.eventType} != {expected}")
 
-            expected = "SpiderFoot Corporation"
+            expected = "Spiderfeet Corporation"
             if str(event.data) != expected:
                 raise Exception(f"{event.data} != {expected}")
 
@@ -142,7 +142,7 @@ class TestModuleCompany(unittest.TestCase):
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'TARGET_WEB_CONTENT'
-        event_data = '<p>Copyright SpiderFoot Corporation 2022.</p>'
+        event_data = '<p>Copyright Spiderfeet Corporation 2022.</p>'
         event_module = 'example module'
         source_event = evt
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)

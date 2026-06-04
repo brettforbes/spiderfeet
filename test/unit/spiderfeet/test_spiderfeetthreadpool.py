@@ -6,9 +6,9 @@ from spiderfeet import SpiderFootThreadPool
 
 
 @pytest.mark.usefixtures
-class TestSpiderFootThreadPool(unittest.TestCase):
+class TestSpiderfeetThreadPool(unittest.TestCase):
     """
-    Test SpiderFoot
+    Test Spiderfeet
     """
 
     def test_threadPool(self):

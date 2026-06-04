@@ -91,7 +91,7 @@ class sfp_zetalytics(SpiderFootPlugin):
         res = self.sf.fetchUrl(
             f"{self.BASE_URL}{path}/?{qs}",
             timeout=self.opts["_fetchtimeout"],
-            useragent="SpiderFoot",
+            useragent="Spiderfeet",
         )
 
         if res["content"] is None:

@@ -6,7 +6,7 @@ from spiderfeet import SpiderFootDb, SpiderFootEvent
 
 
 @pytest.mark.usefixtures
-class TestSpiderFootDb(unittest.TestCase):
+class TestSpiderfeetDb(unittest.TestCase):
     """
     Test SpiderFootDb
     """
@@ -37,7 +37,7 @@ class TestSpiderFootDb(unittest.TestCase):
             opts['__database'] = None
             SpiderFootDb(opts)
 
-    def test_init_should_create_SpiderFootDb_object(self):
+    def test_init_should_create_SpiderfeetDb_object(self):
         """
         Test __init__(self, opts, init=False)
         """

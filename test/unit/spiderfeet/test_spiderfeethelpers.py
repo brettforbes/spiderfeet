@@ -6,7 +6,7 @@ from spiderfeet import SpiderFootHelpers
 
 
 @pytest.mark.usefixtures
-class TestSpiderFootHelpers(unittest.TestCase):
+class TestSpiderfeetHelpers(unittest.TestCase):
 
     def test_data_path_should_return_a_string(self):
         data_path = SpiderFootHelpers.dataPath()
@@ -211,7 +211,7 @@ class TestSpiderFootHelpers(unittest.TestCase):
         sha256_hash = "7cd444af3d8de9e195b1f1cb55e7b7d9409dcd4648247c853a2f64b7578dc9b7"
         sha512_hash = "a55a2fe120d7d7d6e2ba930e6c56faa30b9d24a3178a0aff1d89312a89d61d8a9d5b7743e3af6b1a318d99974a1145ed76f85aa8c6574074dfb347613ccd3249"
 
-        hashes = SpiderFootHelpers.extractHashesFromText(f"spiderfoot{md5_hash}spiderfoot{sha1_hash}spiderfoot{sha256_hash}spiderfoot{sha512_hash}spiderfoot")
+        hashes = SpiderFootHelpers.extractHashesFromText(f"spiderfeet{md5_hash}spiderfeet{sha1_hash}spiderfeet{sha256_hash}spiderfeet{sha512_hash}spiderfeet")
 
         self.assertIsInstance(hashes, list)
         self.assertIn(("MD5", md5_hash), hashes)
@@ -437,7 +437,7 @@ class TestSpiderFootHelpers(unittest.TestCase):
                 cards = SpiderFootHelpers.extractCreditCardsFromText(invalid_type)
                 self.assertIsInstance(cards, list)
 
-        cards = SpiderFootHelpers.extractCreditCardsFromText("spiderfoot4111 1111 1111 1111spiderfoot")
+        cards = SpiderFootHelpers.extractCreditCardsFromText("spiderfeet4111 1111 1111 1111spiderfeet")
         self.assertIsInstance(cards, list)
         self.assertEqual(["4111111111111111"], cards)
 

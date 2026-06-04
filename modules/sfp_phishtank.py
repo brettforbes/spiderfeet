@@ -97,7 +97,7 @@ class sfp_phishtank(SpiderFootPlugin):
         res = self.sf.fetchUrl(
             "https://data.phishtank.com/data/online-valid.csv",
             timeout=self.opts['_fetchtimeout'],
-            useragent="SpiderFoot",
+            useragent="Spiderfeet",
         )
 
         if res['code'] != "200":

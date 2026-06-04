@@ -167,7 +167,7 @@ class sfp_hybrid_analysis(SpiderFootPlugin):
         """Parse HTTP response from API
 
         Args:
-            res (dict): HTTP response from SpiderFoot.fetchUrl()
+            res (dict): HTTP response from Spiderfeet.fetchUrl()
 
         Returns:
             str: API response as JSON

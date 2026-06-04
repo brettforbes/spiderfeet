@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_sorbs
-# Purpose:      SpiderFoot plug-in for looking up whether IPs/Netblocks/Domains
+# Purpose:      Spiderfeet plug-in for looking up whether IPs/Netblocks/Domains
 #               appear in the SORBS blocklist, indicating potential open-relays,
 #               open proxies, malicious servers, vulnerable servers, etc.
 #

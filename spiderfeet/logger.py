@@ -8,7 +8,7 @@ from logging.handlers import QueueHandler, QueueListener
 from spiderfeet import SpiderFootDb, SpiderFootHelpers
 
 
-class SpiderFootSqliteLogHandler(logging.Handler):
+class SpiderfeetSqliteLogHandler(logging.Handler):
     """Handler for logging to SQLite database.
 
     This ensure all sqlite logging is done from a single
@@ -66,7 +66,7 @@ class SpiderFootSqliteLogHandler(logging.Handler):
 
 
 def logListenerSetup(loggingQueue, opts: dict = None) -> 'logging.handlers.QueueListener':
-    """Create and start a SpiderFoot log listener in its own thread.
+    """Create and start a Spiderfeet log listener in its own thread.
 
     This function should be called as soon as possible in the main
     process, or whichever process is attached to stdin/stdout.
@@ -74,7 +74,7 @@ def logListenerSetup(loggingQueue, opts: dict = None) -> 'logging.handlers.Queue
     Args:
         loggingQueue (Queue): Queue (accepts both normal and multiprocessing queue types)
                               Must be instantiated in the main process.
-        opts (dict): SpiderFoot config
+        opts (dict): Spiderfeet config
 
     Returns:
         spiderFootLogListener (logging.handlers.QueueListener): Log listener
@@ -123,7 +123,7 @@ def logListenerSetup(loggingQueue, opts: dict = None) -> 'logging.handlers.Queue
         handlers = []
 
     if doLogging and opts is not None:
-        sqlite_handler = SpiderFootSqliteLogHandler(opts)
+        sqlite_handler = SpiderfeetSqliteLogHandler(opts)
         sqlite_handler.setLevel(logLevel)
         sqlite_handler.setFormatter(log_format)
         handlers.append(sqlite_handler)
@@ -134,7 +134,7 @@ def logListenerSetup(loggingQueue, opts: dict = None) -> 'logging.handlers.Queue
 
 
 def logWorkerSetup(loggingQueue) -> 'logging.Logger':
-    """Root SpiderFoot logger.
+    """Root Spiderfeet logger.
 
     Args:
         loggingQueue (Queue): TBD
@@ -142,7 +142,7 @@ def logWorkerSetup(loggingQueue) -> 'logging.Logger':
     Returns:
         logging.Logger: Logger
     """
-    log = logging.getLogger("spiderfoot")
+    log = logging.getLogger("spiderfeet")
     # Don't do this more than once
     if len(log.handlers) == 0:
         log.setLevel(logging.DEBUG)

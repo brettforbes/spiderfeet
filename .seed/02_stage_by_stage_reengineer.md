@@ -1,11 +1,11 @@
-# Stage by Stage Reengineering of SpiderFoot to Spiderfeet v2
+# Stage by Stage Reengineering of Spiderfeet to Spiderfeet v2
 
 ## 1. Overall Objective
 
-The overall objective is to reengineer SpiderFoot to Spiderfeet v2 over a few stages:
+The overall objective is to reengineer Spiderfeet to Spiderfeet v2 over a few stages:
 
 0. **Setup Project Guidance for the Governance rules in each Project Root Directory** (in the .governance directory) This project has two separate codebases, the spiderfeet codebase and the spiderfeet-widget codebase. The Generic Governance rules are setup in the .governance directory, and the project specific Governance rules are to be setup in the .governance/project directory, once you have read this entire document and completed your planning. The project specific Governance rules are used to guide the project's development, and are used to ensure that the project is developed in a consistent and predictable way. Make sure these rules are then copied into the .cursor/rules directory, so that they are used by the Cursor AI agent.
-1. **Name Change:** Convert all versions of the term SpiderFoot to Spiderfeet, including the terms spiderfoot, SpiderFoot, Spiderfoot, etc.. Make sure any directory and file names are changed as well, until the term Spiderfoot can no longer be found in the codebase. Also, ensure that all references to the SpiderFoot project are updated to Spiderfeet, including the README.md file. Change MIT License to Apache 2.0 License, owned by Brett Forbes. Develop a Logo for Spiderfeet, and add it to the README.md file.
+1. **Name Change:** Convert all versions of the term Spiderfeet to Spiderfeet, including the terms spiderfeet, Spiderfeet, Spiderfeet, etc.. Make sure any directory and file names are changed as well, until the term Spiderfeet can no longer be found in the codebase. Also, ensure that all references to the Spiderfeet project are updated to Spiderfeet, including the README.md file. Change MIT License to Apache 2.0 License, owned by Brett Forbes. Develop a Logo for Spiderfeet, and add it to the README.md file.
 2. **FastAPI over CLI:** Establish a FastAPI backend over the CLI commands, so that the CLI commands can be called from the JS iFrame (spiderfeet_widget) user interface. Include a full Swagger UI for the API, and a full API documentation.
 3. **TypeDB OSINT Consumption and Production Model:** Establish a new, consistent, logical map as a data model for enriching data with OSINT services, where nuggets with known values are consumed by OSINT services and new nuggets are produced by OSINT service modules. Implement this map of all of the nugget consumption and production routes in TypeDB, where the OSINT service is a relation and the nuggets are entities, and display it as a force graph in a JS iFrame (spiderfeet_widget) UI using a Fast API backend. Use the FastAPI backend to provide full CRUD functionality for the TypeDB map model, with Type-Bridge classes, so that the map model can be edited and updated from the JS iFrame (spiderfeet_widget) user interface. Provide a connection setup widget for the JS iFrame (spiderfeet_widget) user interface so that a running TypeDB instance can be selected, and the loading of schema and data occur. Use the database name `spiderfeet-map`
 4. **Module by Module Interactive Testing Framework:** Use this map of nugget consumption and production routes through modules to establish a new, module by module interactive testing framework , in a new tab on the JS iFrame (spiderfeet_widget) user interface. We need to first generate reealistic testing data for every nugget consumed in the map. Then in the user interface, each combination of consumption and production of nuggets can be tested for each module, displaying the value of the consumed nugget, the CLI call, the resulting nuggets, and the raw return data from the module. A deep investigation must be performed on the web for each module to ensure, the data in the module is update and complete. Modules that produce errors can be identified and fixed during this process, and modules where the output is not as expected can also be identified and fixed during this process. The results, performance (consumption to production time), and any errors must be annotated against the TypeDB map model, so it serves as a record, and history of every time any module was exercised. A table (paged to 10 rows only) should be provided for every module, listing the TypeDB report of performance on the JS iFrame (spiderfeet_widget). To exit this stage, the JS iFrame (spiderfeet_widget) user interface should have a test of every consumption/production route in the map.
@@ -83,15 +83,15 @@ Remove E2E test files that only test project rules documentation, as they are no
 ```
 
 
-### 2.1 Name Change: Convert all versions of the term SpiderFoot to Spiderfeet, including the terms spiderfoot, SpiderFoot, Spiderfoot, etc.. 
+### 2.1 Name Change: Convert all versions of the term Spiderfeet to Spiderfeet, including the terms spiderfeet, Spiderfeet, Spiderfeet, etc.. 
 
 The aim is to reengineer and rebrand an existing project, so that it is a new and improved project, with a new name, a new logo, and as separate code bases for the reengineered Python backend `spiderfeet` and the new user interface iFrame widget `spiderfeet-widget`, based on a template project. The `spiderfeet-widget` codebase should be able to run, using `start.ps1`, and all that is needed is to change the user interface to suit the requirements of the project.
 
-With regard to the `spiderfeet` root directory, make sure any directory and file names are changed as well, until the term Spiderfoot can no longer be found in the codebase. Also, ensure that all references to the SpiderFoot project are updated to Spiderfeet, including the README.md file. Change MIT License to Apache 2.0 License, owned by Brett Forbes. Develop 3 examples of a Logo for Spiderfeet, and add them to the README.md file so that I can choose between them.
+With regard to the `spiderfeet` root directory, make sure any directory and file names are changed as well, until the term Spiderfeet can no longer be found in the codebase. Also, ensure that all references to the Spiderfeet project are updated to Spiderfeet, including the README.md file. Change MIT License to Apache 2.0 License, owned by Brett Forbes. Develop 3 examples of a Logo for Spiderfeet, and add them to the README.md file so that I can choose between them.
 
 With regard to the `spiderfeet-widget` root directory, add an Apache 2.0 License, owned by Brett Forbes. Use the same 3 examples of a Logo for Spiderfeet, and add them to the README.md file as you modify it so that I can choose between them.
 
-Create another issue for you and i to review the logo choices, and select the one we want. Further we can also search for the term `spiderfoot` to confirm whether every instance has been replaced. Set it as the last task in the epic, and once you have completed it, ask for approval to close the epic. Once this final logo is selected, it should also be used in the iFrame widget user interface, as you modify them below
+Create another issue for you and i to review the logo choices, and select the one we want. Further we can also search for the term `spiderfeet` to confirm whether every instance has been replaced. Set it as the last task in the epic, and once you have completed it, ask for approval to close the epic. Once this final logo is selected, it should also be used in the iFrame widget user interface, as you modify them below
 
 ### 2.2 FastAPI over CLI: Establish a FastAPI backend over the CLI commands, so that the CLI commands can be called from API's by the JS iFrame (spiderfeet_widget) user interface. 
 
@@ -109,7 +109,7 @@ This stage has epics/tasks in each codebase, `spiderfeet` and `spiderfeet-widget
 
 Ensure you are familiar with the TypeDB skill in the .cursor/skills directory (`.cursor\skills\typedb\SKILL.md`), and the type-bridge skill in the .cursor/skills directory (`.cursor\skills\type-bridge\SKILL.md`), and use them to help you create the TypeDB map model.
 
-### 2.3.0 The Current SpiderFoot Codebase Construction
+### 2.3.0 The Current Spiderfeet Codebase Construction
 
 The `spiderfeet` codebase has a simple construction where a scanning framework is used to call one or more modules, from a directory of more than 200 modules (`modules`). The scan fires off an event, based on the envent types found in the `eventDetails` list in the `spiderfeet/db.py` file.
 

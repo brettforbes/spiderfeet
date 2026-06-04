@@ -4,7 +4,7 @@ import unittest
 from spiderfeet import SpiderFootCorrelator, SpiderFootDb
 
 
-class TestSpiderFootCorrelator(unittest.TestCase):
+class TestSpiderfeetCorrelator(unittest.TestCase):
     """
     Test SpiderFootCorrelator
     """

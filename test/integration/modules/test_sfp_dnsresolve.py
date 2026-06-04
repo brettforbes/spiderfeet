@@ -9,7 +9,7 @@ from spiderfeet import SpiderFootEvent, SpiderFootTarget
 @pytest.mark.usefixtures
 class TestModuleIntegrationDnsResolve(unittest.TestCase):
 
-    def test_enrichTarget_should_return_SpiderFootTarget(self):
+    def test_enrichTarget_should_return_SpiderfeetTarget(self):
         sf = SpiderFoot(self.default_options)
 
         module = sfp_dnsresolve()

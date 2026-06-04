@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_sublist3r
-# Purpose:      SpiderFoot plug-in for subdomain enumeration using
+# Purpose:      Spiderfeet plug-in for subdomain enumeration using
 #               api.sublist3r.com
 #
 # Author:      TheTechromancer
@@ -55,7 +55,7 @@ class sfp_sublist3r(SpiderFootPlugin):
         ret = []
         res = self.sf.fetchUrl(
             url,
-            useragent=self.opts.get("_useragent", "Spiderfoot"),
+            useragent=self.opts.get("_useragent", "Spiderfeet"),
             # mirror sublist3r's headers
             headers={
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",

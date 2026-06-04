@@ -136,7 +136,7 @@ class sfp_fraudguard(SpiderFootPlugin):
         res = self.sf.fetchUrl(
             fraudguard_url,
             timeout=self.opts['_fetchtimeout'],
-            useragent="SpiderFoot",
+            useragent="Spiderfeet",
             headers=headers
         )
 

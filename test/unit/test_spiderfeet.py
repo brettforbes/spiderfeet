@@ -36,11 +36,11 @@ class TestSpiderFoot(unittest.TestCase):
 
     def test_init_argument_options_with_empty_dict(self):
         sf = SpiderFoot(dict())
-        self.assertIsInstance(sf, SpiderFoot)
+        self.assertIsInstance(sf, Spiderfeet)
 
     def test_init_argument_options_with_default_options(self):
         sf = SpiderFoot(self.default_options)
-        self.assertIsInstance(sf, SpiderFoot)
+        self.assertIsInstance(sf, Spiderfeet)
 
     def test_attribute_dbh(self):
         sf = SpiderFoot(dict())
@@ -74,7 +74,7 @@ class TestSpiderFoot(unittest.TestCase):
         test_string = "@VERSION"
         opt_data = sf.optValueToData(test_string)
         self.assertIsInstance(opt_data, str)
-        self.assertTrue(opt_data.startswith("SpiderFoot"))
+        self.assertTrue(opt_data.startswith("Spiderfeet"))
 
     def test_optValueToData_argument_val_invalid_type_should_return_None(self):
         sf = SpiderFoot(self.default_options)
@@ -243,7 +243,7 @@ class TestSpiderFoot(unittest.TestCase):
 
         keyword = sf.domainKeyword('www.spiderfeet.net', sf.opts.get('_internettlds'))
         self.assertIsInstance(keyword, str)
-        self.assertEqual('spiderfoot', keyword)
+        self.assertEqual('spiderfeet', keyword)
 
         keyword = sf.domainKeyword('spiderfööt.example', sf.opts.get('_internettlds'))
         self.assertIsInstance(keyword, str)
