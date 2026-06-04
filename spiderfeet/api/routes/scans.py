@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Body, Depends, HTTPException, Query
 
 from spiderfeet import SpiderFeetDb
 from spiderfeet.api.bootstrap import Runtime, get_runtime
 from spiderfeet.api.schemas import (
+    SCAN_CREATE_OPENAPI_EXAMPLES,
     ScanCreateRequest,
     ScanCreateResponse,
     ScanDetail,
@@ -26,7 +27,14 @@ def runtime_dep() -> Runtime:
 
 @router.post("/scans", response_model=ScanCreateResponse, status_code=201)
 def create_scan(
-    body: ScanCreateRequest,
+    body: ScanCreateRequest = Body(
+        ...,
+        example={
+            "target": "sbs.com.au",
+            "use_case": "passive",
+        },
+        openapi_examples=SCAN_CREATE_OPENAPI_EXAMPLES,
+    ),
     runtime: Runtime = Depends(runtime_dep),
 ) -> ScanCreateResponse:
     """Start a scan (CLI ``-s`` / CherryPy ``/startscan`` parity)."""

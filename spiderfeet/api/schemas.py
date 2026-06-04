@@ -5,7 +5,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class UseCase(str, Enum):
@@ -26,11 +26,12 @@ class EventTypeInfo(BaseModel):
 
 
 class ScanCreateRequest(BaseModel):
+    """Start a new OSINT scan."""
+
     target: str = Field(
         ...,
         min_length=1,
-        description="Scan target (domain, IP, etc.)",
-        examples=["sbs.com.au"],
+        description="Scan target (domain, IP, email, etc.)",
     )
     scan_name: Optional[str] = Field(
         None, description="Display name; defaults to target"
@@ -44,20 +45,17 @@ class ScanCreateRequest(BaseModel):
     use_case: Optional[UseCase] = Field(
         None,
         description="Module group: all, footprint, investigate, passive",
-        examples=["passive"],
     )
     debug: bool = False
 
-    model_config = {
-        "json_schema_extra": {
-            "examples": [
-                {
-                    "target": "sbs.com.au",
-                    "use_case": "passive",
-                }
-            ]
+    model_config = ConfigDict(
+        json_schema_extra={
+            "example": {
+                "target": "sbs.com.au",
+                "use_case": "passive",
+            }
         }
-    }
+    )
 
     @model_validator(mode="after")
     def require_module_selection(self) -> "ScanCreateRequest":
@@ -66,6 +64,18 @@ class ScanCreateRequest(BaseModel):
                 "At least one of modules, event_types, or use_case is required"
             )
         return self
+
+
+SCAN_CREATE_OPENAPI_EXAMPLES = {
+    "passive_domain": {
+        "summary": "Passive scan — sbs.com.au",
+        "description": "Start a passive OSINT scan against an Australian domain.",
+        "value": {
+            "target": "sbs.com.au",
+            "use_case": "passive",
+        },
+    },
+}
 
 
 class ScanCreateResponse(BaseModel):
