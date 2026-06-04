@@ -1,0 +1,27 @@
+---
+description: Spiderfeet multi-repo coordination with spiderfeet-widget
+globs:
+alwaysApply: true
+---
+# Project: Multi-repo (spiderfeet + spiderfeet-widget)
+
+## Roots
+
+| Root | Repo | Role |
+|------|------|------|
+| `spiderfeet` | `brettforbes/spiderfeet` | Python backend, FastAPI, TypeDB, modules |
+| `spiderfeet-widget` | `brettforbes/spiderfeet-widget` | iFrame UI (Bootstrap 5, D3, webpack) |
+
+Open both via `.seed/spiderfeet_complete.code-workspace`.
+
+## Rules
+
+- Each root has **independent** `.cursor/rules/`; project rules are root-specific
+- Cross-reference files with root prefix: `@spiderfeet/.docs/...`, `@spiderfeet-widget/src/...`
+- FastAPI must expose CORS and stable base URL for widget consumption (stage 2+)
+- Widget never embeds TypeDB credentials; connection flows through backend APIs (stage 3+)
+- GitHub epics/issues may span repos; link related issues in issue bodies
+
+## Skill
+
+Read `.cursor/skills/cursor-multi-repo/SKILL.md` before cross-root tasks.

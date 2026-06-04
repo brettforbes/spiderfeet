@@ -16,7 +16,7 @@ The overall objective is to reengineer SpiderFoot to Spiderfeet v2 over a few st
 
 ## 2. Stage by Stage Guidance
 
-Each stage is a separate epic, with multiple user stories. Not everything is known at this stage and hence once the development of any individual stage is complete an exploratory process will be undertaken to check whether the feature set is complete for that stage. This project contains two separate codebases, the `spiderfeet` codebase and the `spiderfeet-widget` codebase, and you should read the [multi root directory skill](.cursor\skills\cursor-multi-repo\SKILL.md) so taht you know how to work with both code bases at the same time.
+Each stage is a separate epic, with multiple user stories. Not everything is known at this stage and hence once the development of any individual stage is complete an exploratory process will be undertaken to check whether the feature set is complete for that stage. This project contains two separate codebases, the `spiderfeet` codebase and the `spiderfeet-widget` codebase, and you should read the [multi root directory skill](.cursor\skills\cursor-multi-repo\SKILL.md) so that you know how to work with both code bases at the same time. Note the documentation b elow only includees the first 4 stages listed above, so at present only do plans for the first 4 stages.
 
 ### 2.0 Setup Project Guidance for the Governance rules in each Project Root Directory
 

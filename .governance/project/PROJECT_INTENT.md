@@ -1,40 +1,49 @@
 # Project Intent
 
-**Status:** Provisional (bootstrap init — 2026-05-23)
+**Status:** Active — first-four-stages program (2026-06-03)  
+**Spec:** SPEC-002  
+**Plan:** `.seed/02_stage_by_stage_reengineer.md`
 
 ## Summary
 
-This repository is a **SpiderFoot fork** (`brettforbes/spiderfeet`) used to analyse, document, and eventually visualise SpiderFoot's module and data-model surface—not to ship a unrelated greenfield product.
+**Spiderfeet** is a governed reengineering of SpiderFoot into a two-repo platform:
 
-SpiderFoot itself is an OSINT automation platform (233 modules, SQLite backend, web UI and CLI). This fork's near-term intent is **understanding and cataloguing** that surface before deeper product changes.
+- **`spiderfeet`** — Python backend (modules, FastAPI, TypeDB map model)
+- **`spiderfeet-widget`** — iFrame UI (Bootstrap 5, D3 force graphs)
+
+Near-term delivery covers **stages 0–4**: governance, rebrand, API layer, TypeDB OSINT map with visualisation, and systematic module/route testing (177 OSINT modules).
 
 ## Goals
 
-1. **Classify modules** into OSINT services, quarantined specialised modules, and core non-OSINT infrastructure.
-2. **Document data sources and event types** (nuggets, OSINT service metadata, force-graph colour scheme).
-3. **Establish governed delivery** via VibeGov so future implementation work is spec-driven and traceable.
-4. **Defer product implementation** until module behaviour is verified and intent is confirmed.
+1. **Governed delivery** — VibeGov rules + project-specific rules; GitHub issues per epic/story
+2. **Rebrand** — SpiderFoot → Spiderfeet, Apache 2.0, operator-selected logo (stage 1)
+3. **API-first** — FastAPI over CLI for widget integration (stage 2)
+4. **Map model** — TypeDB `spiderfeet-map` from analysis artefacts + force graph UI (stage 3)
+5. **Module verification** — one issue per OSINT module; all routes tested and recorded (stage 4)
+6. **Maintain analysis artefacts** — `osint_services.json`, nuggets, grouping docs
 
-## Non-goals (for now)
+## Non-goals (stages 0–4)
 
-- Rewriting SpiderFoot core scanning engine
-- Adding new OSINT modules without spec and verification
-- Treating every `dataSource`-less module as generic infrastructure
+- Quarantine module promotion (stage 5)
+- Favourites, sequences, Maltego-style investigation UI (stages 6–8)
+- TypeDB replacement for scan storage (`spiderfeet-actual`, stage 7)
 
 ## Stakeholders
 
-- **Operator:** Repository owner (`brettforbes`)
-- **Agents:** Cursor / VibeGov-governed automation assisting analysis and documentation
+- **Operator:** Brett Forbes (`brettforbes`)
+- **Agents:** Cursor / VibeGov-governed automation
 
 ## Success signals
 
-- Canonical module taxonomy documented (OSINT / quarantine / non-OSINT)
-- `osint_services.json` and related analysis artifacts maintained
-- Quarantined modules verified or retired with evidence
-- Governed backlog drives the next implementation tranche
+- SPEC-002 requirements met with verification evidence per stage
+- 177 module-test issues closed or documented exception (paid/untested)
+- Widget Maps and Tests tabs pass exploratory review (GOV-08)
+- `develop` aligned with integration workflow after reengineering baseline merge
 
-## Open questions
+## References
 
-- Final product direction beyond analysis (visualisation widget, API, export tooling) — **not yet decided**
-- Which quarantined modules remain viable in this fork
-- GitHub Issues vs alternative backlog tracking (Issues currently disabled on the repo)
+| Resource | Path |
+|----------|------|
+| Bootstrap spec | `.governance/specs/SPEC-001-governance-bootstrap.md` |
+| Product spec (stages 0–4) | `.governance/specs/SPEC-002-first-four-stages.md` |
+| GitHub epics | `.seed/planning/github_issues_manifest.json` |

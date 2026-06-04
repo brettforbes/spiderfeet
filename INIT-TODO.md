@@ -23,9 +23,10 @@ Durable bootstrap / adoption remediation tracker.
 - [ ] Canonical VibeGov project board
   - Blocker: project API access not available with current token scopes
   - Next action: refresh auth (above), then run bootstrap **update** mode to adopt/create/normalize board per [GitHub Project Bootstrap](https://vibegov.io/docs/github-project-bootstrap)
-- [ ] GitHub Issues as backlog sink
-  - Blocker: **Issues are disabled** on `brettforbes/spiderfeet`
-  - Next action: enable Issues in repo Settings **or** keep backlog in `.governance/project/BACKLOG.md` until alternative is chosen
+- [x] GitHub Issues enabled on `brettforbes/spiderfeet` and `brettforbes/spiderfeet-widget` (2026-06-03)
+- [ ] First-four issues linked to GitHub Project
+  - Blocker: `gh` token missing `project` / `read:project` scopes
+  - Next action: `gh auth refresh -h github.com -s project,read:project` then `python .seed/planning/add_issues_to_github_project.py` (see `.seed/planning/PROJECT_SETUP.md`)
 
 ## Git workflow follow-up
 
