@@ -59,14 +59,14 @@ Base URL: `http://127.0.0.1:8000` (default; override via `start.ps1 -Mode api`).
 
 | Method | Path | SF-02 story | CLI / legacy parity |
 |--------|------|-------------|---------------------|
-| `GET` | `/api/v1/health` | SF-02-02 | `ping`, `-V` |
-| `GET` | `/api/v1/modules` | SF-02-05 | `-M`, `/modules` |
-| `GET` | `/api/v1/event-types` | SF-02-06 | `-T`, `/eventtypes` |
-| `POST` | `/api/v1/scans` | SF-02-04 | `-s` + `-m`/`-t`/`-u`, `/startscan` |
-| `GET` | `/api/v1/scans` | SF-02-07 | `/scanlist` |
-| `GET` | `/api/v1/scans/{scan_id}` | SF-02-07 | `/scanstatus` |
-| `GET` | `/api/v1/scans/{scan_id}/results` | SF-02-07 | `/scaneventresults` |
-| `GET` | `/docs`, `/openapi.json` | SF-02-08 | New |
+| `GET` | `/api/v1/health` | SF-02-02 | `ping`, `-V` | **Implemented** |
+| `GET` | `/api/v1/modules` | SF-02-05 | `-M`, `/modules` | **Implemented** |
+| `GET` | `/api/v1/event-types` | SF-02-06 | `-T`, `/eventtypes` | **Implemented** |
+| `POST` | `/api/v1/scans` | SF-02-04 | `-s` + `-m`/`-t`/`-u`, `/startscan` | **Implemented** |
+| `GET` | `/api/v1/scans` | SF-02-07 | `/scanlist` | **Implemented** |
+| `GET` | `/api/v1/scans/{scan_id}` | SF-02-07 | `/scanstatus` | **Implemented** |
+| `GET` | `/api/v1/scans/{scan_id}/results` | SF-02-07 | `/scaneventresults` | **Implemented** |
+| `GET` | `/docs`, `/openapi.json` | SF-02-08 | New | **Implemented** (schemas evolve with endpoints) |
 
 ## Explicitly out of Stage 2 REST v1
 
