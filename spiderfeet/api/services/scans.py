@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import multiprocessing as mp
-import time
 from copy import deepcopy
 from typing import List
 
@@ -70,6 +69,7 @@ def normalize_target(target: str, target_type: str) -> str:
 
 
 def start_scan(runtime: Runtime, request: ScanCreateRequest) -> str:
+    """Launch scan worker process and return scan_id immediately (non-blocking)."""
     target = request.target.strip()
     scan_name = (request.scan_name or target).strip()
     if not scan_name:
@@ -87,7 +87,6 @@ def start_scan(runtime: Runtime, request: ScanCreateRequest) -> str:
         cfg["_debug"] = True
 
     scan_id = SpiderFeetHelpers.genScanInstanceId()
-    dbh = SpiderFeetDb(runtime.config)
 
     try:
         proc = mp.Process(
@@ -106,11 +105,5 @@ def start_scan(runtime: Runtime, request: ScanCreateRequest) -> str:
         proc.start()
     except Exception as exc:
         raise ScanStartError(f"Failed to start scan: {exc}", status_code=500) from exc
-
-    deadline = time.time() + 120
-    while dbh.scanInstanceGet(scan_id) is None:
-        if time.time() > deadline:
-            raise ScanStartError("Scan failed to initialize in time", status_code=504)
-        time.sleep(1)
 
     return scan_id

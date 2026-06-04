@@ -35,14 +35,26 @@ def create_scan(
     ),
     runtime: Runtime = Depends(runtime_dep),
 ) -> ScanCreateResponse:
-    """Start a scan (CLI ``-s`` / CherryPy ``/startscan`` parity)."""
+    """Start a scan (CLI ``-s`` / CherryPy ``/startscan`` parity).
+
+    Returns immediately with ``scan_id`` while the scan runs in a background process.
+    Poll ``GET /api/v1/scans/{scan_id}`` until ``status`` is ``FINISHED``, then
+    ``GET /api/v1/scans/{scan_id}/results``.
+
+    **Windows:** Swagger's *curl* snippet is for bash. In PowerShell use
+    ``curl.exe`` (not the ``curl`` alias) or ``Invoke-RestMethod``.
+    """
     try:
         scan_id = start_scan(runtime, body)
     except ScanStartError as exc:
         raise HTTPException(status_code=exc.status_code, detail=exc.message) from exc
-    row = SpiderFeetDb(runtime.config).scanInstanceGet(scan_id)
-    status = row[5] if row else "STARTING"
-    return ScanCreateResponse(scan_id=scan_id, status=status)
+    base = f"/api/v1/scans/{scan_id}"
+    return ScanCreateResponse(
+        scan_id=scan_id,
+        status="STARTING",
+        poll=base,
+        results=f"{base}/results",
+    )
 
 
 @router.get("/scans", response_model=List[ScanSummary])
