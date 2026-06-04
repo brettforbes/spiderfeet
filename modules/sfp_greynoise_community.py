@@ -16,7 +16,7 @@ import json
 import time
 from datetime import datetime
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFootEvent, SpiderFootPlugin
 
 
 class sfp_greynoise_community(SpiderFootPlugin):

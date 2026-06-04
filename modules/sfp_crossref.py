@@ -15,7 +15,7 @@
 
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
 
 
 class sfp_crossref(SpiderFootPlugin):

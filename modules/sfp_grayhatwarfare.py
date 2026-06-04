@@ -13,7 +13,7 @@ import json
 import time
 import urllib
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFootEvent, SpiderFootPlugin
 
 
 class sfp_grayhatwarfare(SpiderFootPlugin):

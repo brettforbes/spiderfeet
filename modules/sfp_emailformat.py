@@ -15,7 +15,7 @@ import re
 
 from bs4 import BeautifulSoup
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
 
 
 class sfp_emailformat(SpiderFootPlugin):

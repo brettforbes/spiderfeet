@@ -12,7 +12,7 @@
 
 import datetime
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
 
 
 class sfp_wikileaks(SpiderFootPlugin):

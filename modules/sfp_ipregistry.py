@@ -13,7 +13,7 @@
 import json
 import urllib.parse
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFootEvent, SpiderFootPlugin
 
 
 class sfp_ipregistry(SpiderFootPlugin):

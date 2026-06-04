@@ -111,9 +111,9 @@ Ensure you are familiar with the TypeDB skill in the .cursor/skills directory (`
 
 ### 2.3.0 The Current SpiderFoot Codebase Construction
 
-The `spiderfeet` codebase has a simple construction where a scanning framework is used to call one or more modules, from a directory of more than 200 modules (`modules`). The scan fires off an event, based on the envent types found in the `eventDetails` list in the `spiderfoot/db.py` file.
+The `spiderfeet` codebase has a simple construction where a scanning framework is used to call one or more modules, from a directory of more than 200 modules (`modules`). The scan fires off an event, based on the envent types found in the `eventDetails` list in the `spiderfeet/db.py` file.
 
-A root data value is passed to the scanning framework, as part of the root event, and the framework returns one or more data values, and stores them in the tables in the above db file (`spiderfoot/db.py`). There is some rudimentary logging of the events and results, but it is not very comprehensive.
+A root data value is passed to the scanning framework, as part of the root event, and the framework returns one or more data values, and stores them in the tables in the above db file (`spiderfeet/db.py`). There is some rudimentary logging of the events and results, but it is not very comprehensive.
 
 ### 2.3.1 The New Spiderfeet Map Model
 

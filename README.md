@@ -1,12 +1,12 @@
-<a href="https://www.spiderfoot.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQv&s=os_gh"><img src="https://www.spiderfoot.net/wp-content/themes/spiderfoot/img/spiderfoot-wide.png"></a>
+<a href="https://www.spiderfeet.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQv&s=os_gh"><img src="https://www.spiderfeet.net/wp-content/themes/spiderfeet/img/spiderfoot-wide.png"></a>
 
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/smicallef/spiderfoot/master/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/smicallef/spiderfeet/master/LICENSE)
 [![Python Version](https://img.shields.io/badge/python-3.7+-green)](https://www.python.org)
-[![Stable Release](https://img.shields.io/badge/version-4.0-blue.svg)](https://github.com/smicallef/spiderfoot/releases/tag/v4.0)
-[![CI status](https://github.com/smicallef/spiderfoot/workflows/Tests/badge.svg)](https://github.com/smicallef/spiderfoot/actions?query=workflow%3A"Tests")
-[![Last Commit](https://img.shields.io/github/last-commit/smicallef/spiderfoot)](https://github.com/smicallef/spiderfoot/commits/master)
-[![Codecov](https://codecov.io/github/smicallef/spiderfoot/coverage.svg)](https://codecov.io/github/smicallef/spiderfoot)
+[![Stable Release](https://img.shields.io/badge/version-4.0-blue.svg)](https://github.com/smicallef/spiderfeet/releases/tag/v4.0)
+[![CI status](https://github.com/smicallef/spiderfeet/workflows/Tests/badge.svg)](https://github.com/smicallef/spiderfeet/actions?query=workflow%3A"Tests")
+[![Last Commit](https://img.shields.io/github/last-commit/smicallef/spiderfoot)](https://github.com/smicallef/spiderfeet/commits/master)
+[![Codecov](https://codecov.io/github/smicallef/spiderfeet/coverage.svg)](https://codecov.io/github/smicallef/spiderfoot)
 [![Twitter Follow](https://img.shields.io/twitter/follow/spiderfoot?label=follow&style=social)](https://twitter.com/spiderfoot)
 [![Discord](https://img.shields.io/discord/770524432464216074)](https://discord.gg/vyvztrG)
 
@@ -14,7 +14,7 @@
 
 SpiderFoot has an embedded web-server for providing a clean and intuitive web-based interface but can also be used completely via the command-line.  It's written in **Python 3** and **MIT-licensed**.
 
-<img src="https://www.spiderfoot.net/wp-content/uploads/2022/04/opensource-screenshot-v4.png" />
+<img src="https://www.spiderfeet.net/wp-content/uploads/2022/04/opensource-screenshot-v4.png" />
 
 ### FEATURES
 
@@ -35,7 +35,7 @@ SpiderFoot has an embedded web-server for providing a clean and intuitive web-ba
 
 ### WANT MORE?
 
-Need more from SpiderFoot? Check out [SpiderFoot HX](https://www.spiderfoot.net/hx) for:
+Need more from SpiderFoot? Check out [SpiderFoot HX](https://www.spiderfeet.net/hx) for:
 - 100% Cloud-based and managed for you
 - Attack Surface Monitoring with change notifications by email, REST and Slack
 - Multiple targets per scan
@@ -50,7 +50,7 @@ Need more from SpiderFoot? Check out [SpiderFoot HX](https://www.spiderfoot.net/
 - Bring your own Python SpiderFoot modules
 - Feed scan data to Splunk, ElasticSearch and REST endpoints
 
-See the full set of differences between SpiderFoot HX and the open source version [here](https://www.spiderfoot.net/open-source-vs-hx/).
+See the full set of differences between SpiderFoot HX and the open source version [here](https://www.spiderfeet.net/open-source-vs-hx/).
 
 ### USES
 
@@ -95,7 +95,7 @@ To install and run SpiderFoot, you need at least Python 3.7 and a number of Pyth
 #### Stable build (packaged release):
 
 ```
- wget https://github.com/smicallef/spiderfoot/archive/v4.0.tar.gz
+ wget https://github.com/smicallef/spiderfeet/archive/v4.0.tar.gz
  tar zxvf v4.0.tar.gz
  cd spiderfoot-4.0
  pip3 install -r requirements.txt
@@ -105,13 +105,13 @@ To install and run SpiderFoot, you need at least Python 3.7 and a number of Pyth
 #### Development build (cloning git master branch):
 
 ```
- git clone https://github.com/smicallef/spiderfoot.git
+ git clone https://github.com/smicallef/spiderfeet.git
  cd spiderfoot
  pip3 install -r requirements.txt
  python3 ./sf.py -l 127.0.0.1:5001
 ```
 
-Check out the [documentation](https://www.spiderfoot.net/documentation) and our [asciinema videos](https://asciinema.org/~spiderfoot) for more tutorials.
+Check out the [documentation](https://www.spiderfeet.net/documentation) and our [asciinema videos](https://asciinema.org/~spiderfoot) for more tutorials.
 
 ### COMMUNITY
 
@@ -361,6 +361,6 @@ Whois|Perform a WHOIS look-up on domain names and owned netblocks.|Internal
 
 ### DOCUMENTATION
 
-Read more at the [project website](https://www.spiderfoot.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQv&s=os_gh), including more complete documentation, blog posts with tutorials/guides, plus information about [SpiderFoot HX](https://www.spiderfoot.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQvaHgvCg==&s=os_gh).
+Read more at the [project website](https://www.spiderfeet.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQv&s=os_gh), including more complete documentation, blog posts with tutorials/guides, plus information about [SpiderFoot HX](https://www.spiderfeet.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQvaHgvCg==&s=os_gh).
 
 Latest updates announced on [Twitter](https://twitter.com/spiderfoot).

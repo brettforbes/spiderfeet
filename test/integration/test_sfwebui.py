@@ -5,7 +5,7 @@ import unittest
 import cherrypy
 from cherrypy.test import helper
 
-from spiderfoot import SpiderFootHelpers
+from spiderfeet import SpiderFootHelpers
 from sfwebui import SpiderFootWebUi
 
 
@@ -22,7 +22,7 @@ class TestSpiderFootWebUiRoutes(helper.CPWebCase):
             '_internettlds': 'https://publicsuffix.org/list/effective_tld_names.dat',
             '_internettlds_cache': 72,
             '_genericusers': ",".join(SpiderFootHelpers.usernamesFromWordlists(['generic-usernames'])),
-            '__database': f"{SpiderFootHelpers.dataPath()}/spiderfoot.test.db",  # note: test database file
+            '__database': f"{SpiderFootHelpers.dataPath()}/spiderfeet.test.db",  # note: test database file
             '__modules__': None,  # List of modules. Will be set after start-up.
             '__correlationrules__': None,  # List of correlation rules. Will be set after start-up.
             '_socks1type': '',
@@ -193,17 +193,17 @@ class TestSpiderFootWebUiRoutes(helper.CPWebCase):
         self.assertInBody('Invalid target type. Could not recognize it as a target SpiderFoot supports.')
 
     def test_startscan_invalid_modules_returns_error(self):
-        self.getPage("/startscan?scanname=example-scan&scantarget=spiderfoot.net&modulelist=&typelist=&usecase=")
+        self.getPage("/startscan?scanname=example-scan&scantarget=spiderfeet.net&modulelist=&typelist=&usecase=")
         self.assertStatus('200 OK')
         self.assertInBody('Invalid request: no modules specified for scan.')
 
     def test_startscan_invalid_typelist_returns_error(self):
-        self.getPage("/startscan?scanname=example-scan&scantarget=spiderfoot.net&modulelist=&typelist=doesnotexist&usecase=")
+        self.getPage("/startscan?scanname=example-scan&scantarget=spiderfeet.net&modulelist=&typelist=doesnotexist&usecase=")
         self.assertStatus('200 OK')
         self.assertInBody('Invalid request: no modules specified for scan.')
 
     def test_startscan_should_start_a_scan(self):
-        self.getPage("/startscan?scanname=spiderfoot.net&scantarget=spiderfoot.net&modulelist=doesnotexist&typelist=doesnotexist&usecase=doesnotexist")
+        self.getPage("/startscan?scanname=spiderfeet.net&scantarget=spiderfeet.net&modulelist=doesnotexist&typelist=doesnotexist&usecase=doesnotexist")
         self.assertStatus('303 See Other')
 
     def test_stopscan_invalid_scan_id_returns_404(self):

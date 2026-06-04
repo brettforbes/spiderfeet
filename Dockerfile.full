@@ -1,7 +1,7 @@
 #
 # Spiderfoot Dockerfile (Full - includes all CLI tools, etc.)
 #
-# http://www.spiderfoot.net
+# http://www.spiderfeet.net
 #
 # Written by: TheTechromancer
 #
@@ -68,8 +68,8 @@ RUN pip3 install snallygaster trufflehog
 
 # Place database and logs outside installation directory
 ENV SPIDERFOOT_DATA /var/lib/spiderfoot
-ENV SPIDERFOOT_LOGS /var/lib/spiderfoot/log
-ENV SPIDERFOOT_CACHE /var/lib/spiderfoot/cache
+ENV SPIDERFOOT_LOGS /var/lib/spiderfeet/log
+ENV SPIDERFOOT_CACHE /var/lib/spiderfeet/cache
 
 RUN mkdir -p $SPIDERFOOT_DATA || true \
     && mkdir -p $SPIDERFOOT_LOGS || true \
@@ -114,8 +114,8 @@ WORKDIR /home/spiderfoot
 EXPOSE 5001
 
 # Run the application
-CMD python -c 'from spiderfoot import SpiderFootDb; \
-db = SpiderFootDb({"__database": "/var/lib/spiderfoot/spiderfoot.db"}); \
+CMD python -c 'from spiderfeet import SpiderFootDb; \
+db = SpiderFootDb({"__database": "/var/lib/spiderfeet/spiderfeet.db"}); \
 db.configSet({ \
     "sfp_tool_dnstwist:dnstwistpath": "/opt/venv/bin/dnstwist", \
     "sfp_tool_cmseek:cmseekpath": "/tools/CMSeeK/cmseek.py", \

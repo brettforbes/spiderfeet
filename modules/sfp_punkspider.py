@@ -12,7 +12,7 @@
 import hashlib
 import json
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFootEvent, SpiderFootPlugin
 
 
 class sfp_punkspider(SpiderFootPlugin):

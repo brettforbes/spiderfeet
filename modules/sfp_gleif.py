@@ -14,7 +14,7 @@
 import json
 import urllib
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
 
 
 class sfp_gleif(SpiderFootPlugin):

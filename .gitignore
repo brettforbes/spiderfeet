@@ -2,80 +2,80 @@
 #######################
 /cache/
 /log/
-/spiderfoot.db*
+/spiderfeet.db*
 passwd
-spiderfoot.crt
-spiderfoot.key
+spiderfeet.crt
+spiderfeet.key
 
-spiderfoot/static/node_modules/*
+spiderfeet/static/node_modules/*
 
-spiderfoot/static/node_modules/alertifyjs/*
-spiderfoot/static/node_modules/alertifyjs/build/*
-spiderfoot/static/node_modules/alertifyjs/build/css/*
+spiderfeet/static/node_modules/alertifyjs/*
+spiderfeet/static/node_modules/alertifyjs/build/*
+spiderfeet/static/node_modules/alertifyjs/build/css/*
 
-!spiderfoot/static/node_modules/alertifyjs/
-!spiderfoot/static/node_modules/alertifyjs/build/
-!spiderfoot/static/node_modules/alertifyjs/build/alertify.min.js
-!spiderfoot/static/node_modules/alertifyjs/build/css/
-!spiderfoot/static/node_modules/alertifyjs/build/css/alertify.min.css
+!spiderfeet/static/node_modules/alertifyjs/
+!spiderfeet/static/node_modules/alertifyjs/build/
+!spiderfeet/static/node_modules/alertifyjs/build/alertify.min.js
+!spiderfeet/static/node_modules/alertifyjs/build/css/
+!spiderfeet/static/node_modules/alertifyjs/build/css/alertify.min.css
 
-spiderfoot/static/node_modules/bootstrap/*
-spiderfoot/static/node_modules/bootstrap/dist/*
-spiderfoot/static/node_modules/bootstrap/dist/js/*
-spiderfoot/static/node_modules/bootstrap/dist/css/*
-spiderfoot/static/node_modules/bootstrap/dist/fonts/*
+spiderfeet/static/node_modules/bootstrap/*
+spiderfeet/static/node_modules/bootstrap/dist/*
+spiderfeet/static/node_modules/bootstrap/dist/js/*
+spiderfeet/static/node_modules/bootstrap/dist/css/*
+spiderfeet/static/node_modules/bootstrap/dist/fonts/*
 
-!spiderfoot/static/node_modules/bootstrap/
-!spiderfoot/static/node_modules/bootstrap/dist/
-!spiderfoot/static/node_modules/bootstrap/dist/js/
-!spiderfoot/static/node_modules/bootstrap/dist/js/bootstrap.min.js
-!spiderfoot/static/node_modules/bootstrap/dist/css/
-!spiderfoot/static/node_modules/bootstrap/dist/css/bootstrap.min.css
-!spiderfoot/static/node_modules/bootstrap/dist/fonts/
-!spiderfoot/static/node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.woff
-!spiderfoot/static/node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2
+!spiderfeet/static/node_modules/bootstrap/
+!spiderfeet/static/node_modules/bootstrap/dist/
+!spiderfeet/static/node_modules/bootstrap/dist/js/
+!spiderfeet/static/node_modules/bootstrap/dist/js/bootstrap.min.js
+!spiderfeet/static/node_modules/bootstrap/dist/css/
+!spiderfeet/static/node_modules/bootstrap/dist/css/bootstrap.min.css
+!spiderfeet/static/node_modules/bootstrap/dist/fonts/
+!spiderfeet/static/node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.woff
+!spiderfeet/static/node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2
 
-spiderfoot/static/node_modules/jquery/*
-spiderfoot/static/node_modules/jquery/dist/*
+spiderfeet/static/node_modules/jquery/*
+spiderfeet/static/node_modules/jquery/dist/*
 
-!spiderfoot/static/node_modules/jquery/
-!spiderfoot/static/node_modules/jquery/dist/
-!spiderfoot/static/node_modules/jquery/dist/jquery.min.js
+!spiderfeet/static/node_modules/jquery/
+!spiderfeet/static/node_modules/jquery/dist/
+!spiderfeet/static/node_modules/jquery/dist/jquery.min.js
 
-spiderfoot/static/node_modules/sigma/*
-spiderfoot/static/node_modules/sigma/build/*
-spiderfoot/static/node_modules/sigma/build/plugins/*
+spiderfeet/static/node_modules/sigma/*
+spiderfeet/static/node_modules/sigma/build/*
+spiderfeet/static/node_modules/sigma/build/plugins/*
 
-!spiderfoot/static/node_modules/sigma/
-!spiderfoot/static/node_modules/sigma/build/
-!spiderfoot/static/node_modules/sigma/build/sigma.min.js
-!spiderfoot/static/node_modules/sigma/build/plugins/
-!spiderfoot/static/node_modules/sigma/build/plugins/sigma.parsers.json.min.js
-!spiderfoot/static/node_modules/sigma/build/plugins/sigma.plugins.dragNodes.min.js
-!spiderfoot/static/node_modules/sigma/build/plugins/sigma.layout.forceAtlas2.min.js
-!spiderfoot/static/node_modules/sigma/build/plugins/sigma.renderers.snapshot.min.js
+!spiderfeet/static/node_modules/sigma/
+!spiderfeet/static/node_modules/sigma/build/
+!spiderfeet/static/node_modules/sigma/build/sigma.min.js
+!spiderfeet/static/node_modules/sigma/build/plugins/
+!spiderfeet/static/node_modules/sigma/build/plugins/sigma.parsers.json.min.js
+!spiderfeet/static/node_modules/sigma/build/plugins/sigma.plugins.dragNodes.min.js
+!spiderfeet/static/node_modules/sigma/build/plugins/sigma.layout.forceAtlas2.min.js
+!spiderfeet/static/node_modules/sigma/build/plugins/sigma.renderers.snapshot.min.js
 
-spiderfoot/static/node_modules/tablesorter/*
-spiderfoot/static/node_modules/tablesorter/dist/*
-spiderfoot/static/node_modules/tablesorter/dist/js/*
-spiderfoot/static/node_modules/tablesorter/dist/css/*
-spiderfoot/static/node_modules/tablesorter/dist/js/extras/*
+spiderfeet/static/node_modules/tablesorter/*
+spiderfeet/static/node_modules/tablesorter/dist/*
+spiderfeet/static/node_modules/tablesorter/dist/js/*
+spiderfeet/static/node_modules/tablesorter/dist/css/*
+spiderfeet/static/node_modules/tablesorter/dist/js/extras/*
 
-!spiderfoot/static/node_modules/tablesorter/
-!spiderfoot/static/node_modules/tablesorter/dist/
-!spiderfoot/static/node_modules/tablesorter/dist/css/
-!spiderfoot/static/node_modules/tablesorter/dist/css/jquery.tablesorter.pager.min.css
-!spiderfoot/static/node_modules/tablesorter/dist/css/theme.default.min.css
-!spiderfoot/static/node_modules/tablesorter/dist/js/
-!spiderfoot/static/node_modules/tablesorter/dist/js/jquery.tablesorter.min.js
-!spiderfoot/static/node_modules/tablesorter/dist/js/jquery.tablesorter.widgets.min.js
-!spiderfoot/static/node_modules/tablesorter/dist/js/extras/
-!spiderfoot/static/node_modules/tablesorter/dist/js/extras/jquery.tablesorter.pager.min.js
+!spiderfeet/static/node_modules/tablesorter/
+!spiderfeet/static/node_modules/tablesorter/dist/
+!spiderfeet/static/node_modules/tablesorter/dist/css/
+!spiderfeet/static/node_modules/tablesorter/dist/css/jquery.tablesorter.pager.min.css
+!spiderfeet/static/node_modules/tablesorter/dist/css/theme.default.min.css
+!spiderfeet/static/node_modules/tablesorter/dist/js/
+!spiderfeet/static/node_modules/tablesorter/dist/js/jquery.tablesorter.min.js
+!spiderfeet/static/node_modules/tablesorter/dist/js/jquery.tablesorter.widgets.min.js
+!spiderfeet/static/node_modules/tablesorter/dist/js/extras/
+!spiderfeet/static/node_modules/tablesorter/dist/js/extras/jquery.tablesorter.pager.min.js
 
-spiderfoot/static/node_modules/d3/*
+spiderfeet/static/node_modules/d3/*
 
-!spiderfoot/static/node_modules/d3/
-!spiderfoot/static/node_modules/d3/d3.min.js
+!spiderfeet/static/node_modules/d3/
+!spiderfeet/static/node_modules/d3/d3.min.js
 
 # Compiled source #
 ###################

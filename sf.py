@@ -29,11 +29,11 @@ from cherrypy.lib import auth_digest
 from sflib import SpiderFoot
 from sfscan import startSpiderFootScanner
 from sfwebui import SpiderFootWebUi
-from spiderfoot import SpiderFootHelpers
-from spiderfoot import SpiderFootDb
-from spiderfoot import SpiderFootCorrelator
-from spiderfoot.logger import logListenerSetup, logWorkerSetup
-from spiderfoot import __version__
+from spiderfeet import SpiderFootHelpers
+from spiderfeet import SpiderFootDb
+from spiderfeet import SpiderFootCorrelator
+from spiderfeet.logger import logListenerSetup, logWorkerSetup
+from spiderfeet import __version__
 
 scanId = None
 dbh = None
@@ -62,7 +62,7 @@ def main() -> None:
         '_internettlds': 'https://publicsuffix.org/list/effective_tld_names.dat',
         '_internettlds_cache': 72,
         '_genericusers': ",".join(SpiderFootHelpers.usernamesFromWordlists(['generic-usernames'])),
-        '__database': f"{SpiderFootHelpers.dataPath()}/spiderfoot.db",
+        '__database': f"{SpiderFootHelpers.dataPath()}/spiderfeet.db",
         '__modules__': None,  # List of modules. Will be set after start-up.
         '__correlationrules__': None,  # List of correlation rules. Will be set after start-up.
         '_socks1type': '',
@@ -133,7 +133,7 @@ def main() -> None:
     loggingQueue = mp.Queue()
     logListenerSetup(loggingQueue, sfConfig)
     logWorkerSetup(loggingQueue)
-    log = logging.getLogger(f"spiderfoot.{__name__}")
+    log = logging.getLogger(f"spiderfeet.{__name__}")
 
     # Add descriptions of the global config options
     sfConfig['__globaloptdescs__'] = sfOptdescs
@@ -241,7 +241,7 @@ def start_scan(sfConfig: dict, sfModules: dict, args, loggingQueue) -> None:
         args (argparse.Namespace): command line args
         loggingQueue (Queue): main SpiderFoot logging queue
     """
-    log = logging.getLogger(f"spiderfoot.{__name__}")
+    log = logging.getLogger(f"spiderfeet.{__name__}")
 
     global dbh
     global scanId
@@ -468,7 +468,7 @@ def start_web_server(sfWebUiConfig: dict, sfConfig: dict, loggingQueue=None) -> 
         sfConfig (dict): SpiderFoot config options
         loggingQueue (Queue): main SpiderFoot logging queue
     """
-    log = logging.getLogger(f"spiderfoot.{__name__}")
+    log = logging.getLogger(f"spiderfeet.{__name__}")
 
     web_host = sfWebUiConfig.get('host', '127.0.0.1')
     web_port = sfWebUiConfig.get('port', 5001)
@@ -535,13 +535,13 @@ def start_web_server(sfWebUiConfig: dict, sfConfig: dict, loggingQueue=None) -> 
         warn_msg = "\n********************************************************************\n"
         warn_msg += "Warning: passwd file contains no passwords. Authentication disabled.\n"
         warn_msg += "Please consider adding authentication to protect this instance!\n"
-        warn_msg += "Refer to https://www.spiderfoot.net/documentation/#security.\n"
+        warn_msg += "Refer to https://www.spiderfeet.net/documentation/#security.\n"
         warn_msg += "********************************************************************\n"
         log.warning(warn_msg)
 
     using_ssl = False
-    key_path = SpiderFootHelpers.dataPath() + '/spiderfoot.key'
-    crt_path = SpiderFootHelpers.dataPath() + '/spiderfoot.crt'
+    key_path = SpiderFootHelpers.dataPath() + '/spiderfeet.key'
+    crt_path = SpiderFootHelpers.dataPath() + '/spiderfeet.crt'
     if os.path.isfile(key_path) and os.path.isfile(crt_path):
         if not os.access(crt_path, os.R_OK):
             log.critical(f"Could not read {crt_path} file. Permission denied.")
@@ -595,7 +595,7 @@ def handle_abort(signal, frame) -> None:
         signal: TBD
         frame: TBD
     """
-    log = logging.getLogger(f"spiderfoot.{__name__}")
+    log = logging.getLogger(f"spiderfeet.{__name__}")
 
     global dbh
     global scanId
@@ -617,11 +617,11 @@ if __name__ == '__main__':
 
     # TODO: remove this after a few releases (added in 3.5 pre-release 2021-09-05)
     from pathlib import Path
-    if os.path.exists('spiderfoot.db'):
-        print(f"ERROR: spiderfoot.db file exists in {os.path.dirname(__file__)}")
-        print("SpiderFoot no longer supports loading the spiderfoot.db database from the application directory.")
-        print(f"The database is now loaded from your home directory: {Path.home()}/.spiderfoot/spiderfoot.db")
-        print(f"This message will go away once you move or remove spiderfoot.db from {os.path.dirname(__file__)}")
+    if os.path.exists('spiderfeet.db'):
+        print(f"ERROR: spiderfeet.db file exists in {os.path.dirname(__file__)}")
+        print("SpiderFoot no longer supports loading the spiderfeet.db database from the application directory.")
+        print(f"The database is now loaded from your home directory: {Path.home()}/.spiderfeet/spiderfeet.db")
+        print(f"This message will go away once you move or remove spiderfeet.db from {os.path.dirname(__file__)}")
         sys.exit(-1)
 
     # TODO: remove this after a few releases (added in 3.5 pre-release 2021-09-05)
@@ -629,7 +629,7 @@ if __name__ == '__main__':
     if os.path.exists('passwd'):
         print(f"ERROR: passwd file exists in {os.path.dirname(__file__)}")
         print("SpiderFoot no longer supports loading credentials from the application directory.")
-        print(f"The passwd file is now loaded from your home directory: {Path.home()}/.spiderfoot/passwd")
+        print(f"The passwd file is now loaded from your home directory: {Path.home()}/.spiderfeet/passwd")
         print(f"This message will go away once you move or remove passwd from {os.path.dirname(__file__)}")
         sys.exit(-1)
 

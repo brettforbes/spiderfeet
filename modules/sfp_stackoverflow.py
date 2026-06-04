@@ -14,7 +14,7 @@ import json
 import re
 import time
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
 
 
 class sfp_stackoverflow(SpiderFootPlugin):

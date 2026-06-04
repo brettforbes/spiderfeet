@@ -16,7 +16,7 @@ import json
 import os
 from subprocess import PIPE, Popen, TimeoutExpired
 
-from spiderfoot import SpiderFootPlugin, SpiderFootEvent
+from spiderfeet import SpiderFootPlugin, SpiderFootEvent
 
 
 class sfp_tool_trufflehog(SpiderFootPlugin):

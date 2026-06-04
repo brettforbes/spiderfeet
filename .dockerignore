@@ -10,8 +10,8 @@ dist
 venv/
 cache/
 log/
-spiderfoot.db*
-spiderfoot.test.db
+spiderfeet.db*
+spiderfeet.test.db
 
 __pycache__
 htmlcov/

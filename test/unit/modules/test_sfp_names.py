@@ -3,7 +3,7 @@ import unittest
 
 from modules.sfp_names import sfp_names
 from sflib import SpiderFoot
-from spiderfoot import SpiderFootEvent, SpiderFootTarget
+from spiderfeet import SpiderFootEvent, SpiderFootTarget
 
 
 @pytest.mark.usefixtures
@@ -32,7 +32,7 @@ class TestModuleNames(unittest.TestCase):
         module = sfp_names()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)
@@ -57,7 +57,7 @@ class TestModuleNames(unittest.TestCase):
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'EMAILADDR'
-        event_data = 'firstname.lastname@spiderfoot.net'
+        event_data = 'firstname.lastname@spiderfeet.net'
         event_module = 'example module'
         source_event = evt
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
@@ -73,7 +73,7 @@ class TestModuleNames(unittest.TestCase):
         module = sfp_names()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)
@@ -90,7 +90,7 @@ class TestModuleNames(unittest.TestCase):
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'EMAILADDR'
-        event_data = 'firstname.lastname1@spiderfoot.net'
+        event_data = 'firstname.lastname1@spiderfeet.net'
         event_module = 'example module'
         source_event = evt
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
@@ -105,7 +105,7 @@ class TestModuleNames(unittest.TestCase):
         module = sfp_names()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)
@@ -122,7 +122,7 @@ class TestModuleNames(unittest.TestCase):
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'EMAILADDR'
-        event_data = 'lastname@spiderfoot.net'
+        event_data = 'lastname@spiderfeet.net'
         event_module = 'example module'
         source_event = evt
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
