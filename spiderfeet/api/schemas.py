@@ -26,7 +26,12 @@ class EventTypeInfo(BaseModel):
 
 
 class ScanCreateRequest(BaseModel):
-    target: str = Field(..., min_length=1, description="Scan target (domain, IP, etc.)")
+    target: str = Field(
+        ...,
+        min_length=1,
+        description="Scan target (domain, IP, etc.)",
+        examples=["sbs.com.au"],
+    )
     scan_name: Optional[str] = Field(
         None, description="Display name; defaults to target"
     )
@@ -37,9 +42,22 @@ class ScanCreateRequest(BaseModel):
         None, description="Event types; expands module list like sf.py -t"
     )
     use_case: Optional[UseCase] = Field(
-        None, description="Module group: all, footprint, investigate, passive"
+        None,
+        description="Module group: all, footprint, investigate, passive",
+        examples=["passive"],
     )
     debug: bool = False
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "target": "sbs.com.au",
+                    "use_case": "passive",
+                }
+            ]
+        }
+    }
 
     @model_validator(mode="after")
     def require_module_selection(self) -> "ScanCreateRequest":

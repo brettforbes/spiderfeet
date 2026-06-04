@@ -21,7 +21,7 @@ Example scan start (Swagger **POST /api/v1/scans**):
 
 ```json
 {
-  "target": "example.com",
+  "target": "sbs.com.au",
   "use_case": "passive"
 }
 ```
