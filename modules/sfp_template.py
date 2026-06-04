@@ -7,7 +7,7 @@
 #
 # Created:     2020-04-21
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json

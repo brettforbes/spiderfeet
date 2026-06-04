@@ -7,7 +7,7 @@
 #
 # Created:     05/08/2018
 # Copyright:   (c) Steve Micallef, 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 from netaddr import IPAddress, IPNetwork

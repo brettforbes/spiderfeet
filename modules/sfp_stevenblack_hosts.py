@@ -8,7 +8,7 @@
 #
 # Created:     2021-08-30
 # Copyright:   (c) bcoles 2021
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

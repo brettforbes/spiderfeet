@@ -7,7 +7,7 @@
 #
 # Created:     26/03/2012
 # Copyright:   (c) Steve Micallef 2012
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import hashlib

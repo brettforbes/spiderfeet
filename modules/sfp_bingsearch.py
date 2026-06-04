@@ -7,7 +7,7 @@
 #
 # Created:     06/10/2013
 # Copyright:   (c) Steve Micallef 2013
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 

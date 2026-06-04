@@ -8,7 +8,7 @@
 #
 # Created:     2021-10-16
 # Copyright:   (c) bcoles 2021
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import dns.resolver

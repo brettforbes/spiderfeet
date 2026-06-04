@@ -9,7 +9,7 @@
 # Created:      20/11/2018
 # Updated:      31-Aug-2022
 # Copyright:    (c) Steve Micallef
-# Licence:      MIT
+# Licence:      Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json

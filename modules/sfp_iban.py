@@ -8,7 +8,7 @@
 #
 # Created:     26/04/2020
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin

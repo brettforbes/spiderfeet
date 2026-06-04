@@ -1,7 +1,7 @@
 <a href="https://www.spiderfeet.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQv&s=os_gh"><img src="https://www.spiderfeet.net/wp-content/themes/spiderfeet/img/spiderFeet-wide.png"></a>
 
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/smicallef/spiderfeet/master/LICENSE)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/python-3.7+-green)](https://www.python.org)
 [![Stable Release](https://img.shields.io/badge/version-4.0-blue.svg)](https://github.com/smicallef/spiderfeet/releases/tag/v4.0)
 [![CI status](https://github.com/smicallef/spiderfeet/workflows/Tests/badge.svg)](https://github.com/smicallef/spiderfeet/actions?query=workflow%3A"Tests")
@@ -12,7 +12,7 @@
 
 **SpiderFeet** is an open source intelligence (OSINT) automation tool. It integrates with just about every data source available and utilises a range of methods for data analysis, making that data easy to navigate. 
 
-SpiderFeet has an embedded web-server for providing a clean and intuitive web-based interface but can also be used completely via the command-line.  It's written in **Python 3** and **MIT-licensed**.
+SpiderFeet has an embedded web-server for providing a clean and intuitive web-based interface but can also be used completely via the command-line.  It's written in **Python 3** and licensed under **Apache-2.0** (Copyright Brett Forbes, 2026).
 
 <img src="https://www.spiderfeet.net/wp-content/uploads/2022/04/opensource-screenshot-v4.png" />
 
@@ -90,9 +90,19 @@ SpiderFeet's 200+ modules feed each other in a publisher/subscriber model to ens
 
 ### INSTALLING & RUNNING
 
-To install and run SpiderFeet, you need at least Python 3.7 and a number of Python libraries which you can install with `pip`. We recommend you install a packaged release since master will often have bleeding edge features and modules that aren't fully tested.
+To install and run SpiderFeet, you need at least **Python 3.7+** and dependencies (Poetry recommended).
 
-#### Stable build (packaged release):
+#### Development (this repository)
+
+```powershell
+poetry install
+.\start.ps1
+# or: poetry run python sf.py -l 127.0.0.1:5001
+```
+
+Open `http://127.0.0.1:5001` in your browser. CLI usage: `poetry run python sf.py -h`.
+
+#### Packaged release (legacy upstream layout):
 
 ```
  wget https://github.com/smicallef/spiderfeet/archive/v4.0.tar.gz
@@ -112,6 +122,18 @@ To install and run SpiderFeet, you need at least Python 3.7 and a number of Pyth
 ```
 
 Check out the [documentation](https://www.spiderfeet.net/documentation) and our [asciinema videos](https://asciinema.org/~spiderFeet) for more tutorials.
+
+### LOGO CONCEPTS (operator choice)
+
+Three provisional marks for Stage 1 — pick one in issue **X-01-01** (final logo selection):
+
+| Concept | Description | Preview |
+|---------|-------------|---------|
+| **A** | Minimal icon (body + legs) | ![Concept A](.docs/branding/logos/concept-a-minimal.svg) |
+| **B** | Badge + wordmark | ![Concept B](.docs/branding/logos/concept-b-badge.svg) |
+| **C** | Wordmark underline | ![Concept C](.docs/branding/logos/concept-c-wordmark.svg) |
+
+Files: [.docs/branding/logos/](.docs/branding/logos/)
 
 ### COMMUNITY
 

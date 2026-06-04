@@ -7,7 +7,7 @@
 #
 # Created:     24/03/2014
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
