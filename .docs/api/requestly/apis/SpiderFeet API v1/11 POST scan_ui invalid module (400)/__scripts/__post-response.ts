@@ -1,0 +1,1 @@
+pm.test('status 400', function () { pm.response.to.have.status(400); });

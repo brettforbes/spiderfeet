@@ -1,0 +1,13 @@
+{
+  "version": "1.2.0",
+  "include": [
+    "**"
+  ],
+  "exclude": [
+    "__rq_backup/**",
+    "__rq_migration_staging/**",
+    "import/**",
+    "*.postman_collection.json",
+    "spiderfeet-local.environment.json"
+  ]
+}

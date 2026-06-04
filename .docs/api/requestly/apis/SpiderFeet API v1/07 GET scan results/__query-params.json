@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "key": "event_type",
+    "value": "ALL",
+    "isEnabled": true
+  },
+  {
+    "id": 2,
+    "key": "filter_fp",
+    "value": "false",
+    "isEnabled": true
+  }
+]
