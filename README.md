@@ -123,17 +123,13 @@ Open `http://127.0.0.1:5001` in your browser. CLI usage: `poetry run python sf.p
 
 Check out the [documentation](https://www.spiderfeet.net/documentation) and our [asciinema videos](https://asciinema.org/~spiderFeet) for more tutorials.
 
-### LOGO CONCEPTS (operator choice)
+### Branding (provisional)
 
-Three provisional marks for Stage 1 — pick one in issue **X-01-01** (final logo selection):
+Stage 1 uses the operator-supplied stacked mark until firm/final artwork is delivered:
 
-| Concept | Description | Preview |
-|---------|-------------|---------|
-| **A** | Minimal icon (body + legs) | ![Concept A](.docs/branding/logos/concept-a-minimal.svg) |
-| **B** | Badge + wordmark | ![Concept B](.docs/branding/logos/concept-b-badge.svg) |
-| **C** | Wordmark underline | ![Concept C](.docs/branding/logos/concept-c-wordmark.svg) |
+![SpiderFeet provisional logo](.docs/branding/spiderfeet-light-stacked.png)
 
-Files: [.docs/branding/logos/](.docs/branding/logos/)
+Source: [.docs/branding/spiderfeet-light-stacked.png](.docs/branding/spiderfeet-light-stacked.png) — see [.docs/branding/README.md](.docs/branding/README.md).
 
 ### COMMUNITY
 
