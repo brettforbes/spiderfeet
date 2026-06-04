@@ -5,11 +5,16 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.utils import get_openapi
 
 from spiderfeet import __version__
 from spiderfeet.api import settings
 from spiderfeet.api.bootstrap import init_runtime
 from spiderfeet.api.routes import catalogue, health, scans
+from spiderfeet.api.schemas import (
+    SCAN_CREATE_OPENAPI_EXAMPLES,
+    SCAN_CREATE_SWAGGER_EXAMPLE,
+)
 
 
 @asynccontextmanager
@@ -27,6 +32,7 @@ def create_app() -> FastAPI:
         redoc_url="/redoc",
         openapi_url="/openapi.json",
         lifespan=lifespan,
+        swagger_ui_parameters={"tryItOutEnabled": True},
     )
 
     origins = list(settings.DEFAULT_CORS_ORIGINS)
@@ -46,4 +52,31 @@ def create_app() -> FastAPI:
     app.include_router(health.router, prefix=prefix)
     app.include_router(catalogue.router, prefix=prefix)
     app.include_router(scans.router, prefix=prefix)
+
+    def custom_openapi():
+        if app.openapi_schema:
+            return app.openapi_schema
+        schema = get_openapi(
+            title=app.title,
+            version=app.version,
+            description=app.description,
+            routes=app.routes,
+        )
+        scan_post = (
+            schema.get("paths", {})
+            .get(f"{prefix}/scans", {})
+            .get("post", {})
+        )
+        content = (
+            scan_post.get("requestBody", {})
+            .get("content", {})
+            .get("application/json", {})
+        )
+        if content is not None:
+            content["example"] = SCAN_CREATE_SWAGGER_EXAMPLE
+            content.setdefault("examples", SCAN_CREATE_OPENAPI_EXAMPLES)
+        app.openapi_schema = schema
+        return app.openapi_schema
+
+    app.openapi = custom_openapi
     return app

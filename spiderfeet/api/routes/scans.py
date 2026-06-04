@@ -10,6 +10,7 @@ from spiderfeet import SpiderFeetDb
 from spiderfeet.api.bootstrap import Runtime, get_runtime
 from spiderfeet.api.schemas import (
     SCAN_CREATE_OPENAPI_EXAMPLES,
+    SCAN_CREATE_SWAGGER_EXAMPLE,
     ScanCreateRequest,
     ScanCreateResponse,
     ScanDetail,
@@ -29,10 +30,7 @@ def runtime_dep() -> Runtime:
 def create_scan(
     body: ScanCreateRequest = Body(
         ...,
-        example={
-            "target": "sbs.com.au",
-            "use_case": "passive",
-        },
+        example=SCAN_CREATE_SWAGGER_EXAMPLE,
         openapi_examples=SCAN_CREATE_OPENAPI_EXAMPLES,
     ),
     runtime: Runtime = Depends(runtime_dep),
