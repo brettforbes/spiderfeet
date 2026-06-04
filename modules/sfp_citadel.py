@@ -7,7 +7,7 @@
 # Author:      sn <citadel.pw@protonmail.com>
 #
 # Created:     15/08/2017
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json

@@ -7,7 +7,7 @@
 #
 # Created:     2022-05-03
 # Copyright:   (c) Diego Parrilla 2022
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json

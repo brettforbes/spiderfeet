@@ -8,7 +8,7 @@
 # Created:     23/12/2015
 # Updated:     26/07/2016, Steve Micallef - re-focused to be reputation-centric
 # Copyright:   (c) Koen Van Impe
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import base64

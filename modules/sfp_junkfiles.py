@@ -7,7 +7,7 @@
 #
 # Created:     23/08/2014
 # Copyright:   (c) Steve Micallef 2014
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import random

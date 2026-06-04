@@ -7,7 +7,7 @@
 #
 # Created:     01/02/2017
 # Copyright:   (c) Steve Micallef 2017
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import base64

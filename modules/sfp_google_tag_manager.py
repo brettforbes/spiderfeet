@@ -7,7 +7,7 @@
 #
 # Created:     2023-10-29
 # Copyright:   (c) bcoles 2023
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re

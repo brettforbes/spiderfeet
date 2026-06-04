@@ -8,7 +8,7 @@
 #
 # Created:     22/08/2017
 # Copyright:   (c) Michael Scherer 2017
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -----------------------------------------------------------------------------
 
 import dns.resolver
