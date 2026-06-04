@@ -22,9 +22,11 @@ Example scan start (Swagger **POST /api/v1/scans**):
 ```json
 {
   "target": "sbs.com.au",
-  "use_case": "passive"
+  "modules": ["sfp_dnsresolve"]
 }
 ```
+
+`sfp_dnsresolve` is the **DNS Resolver** service — it resolves the domain to IPs quickly. Avoid `use_case: passive` in Try it out; that enables hundreds of modules and looks idle for a long time.
 
 Legacy web UI (CherryPy) remains `.\start.ps1` or `.\start.ps1 -Mode web`.
 

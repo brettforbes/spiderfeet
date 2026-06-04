@@ -7,6 +7,12 @@ from typing import List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+# Default Swagger / Try-it-out payload: one concrete OSINT module, not use_case.
+SCAN_CREATE_SWAGGER_EXAMPLE = {
+    "target": "sbs.com.au",
+    "modules": ["sfp_dnsresolve"],
+}
+
 
 class UseCase(str, Enum):
     all = "all"
@@ -37,25 +43,24 @@ class ScanCreateRequest(BaseModel):
         None, description="Display name; defaults to target"
     )
     modules: Optional[List[str]] = Field(
-        None, description="Module names (sfp_*), same as sf.py -m"
+        None,
+        description=(
+            "OSINT module names (sfp_*). Prefer this over use_case for a focused scan. "
+            "Example: sfp_dnsresolve (DNS Resolver) for a domain."
+        ),
     )
     event_types: Optional[List[str]] = Field(
         None, description="Event types; expands module list like sf.py -t"
     )
     use_case: Optional[UseCase] = Field(
         None,
-        description="Module group: all, footprint, investigate, passive",
+        description=(
+            "Run all modules in a group (slow). Prefer modules for a single service."
+        ),
     )
     debug: bool = False
 
-    model_config = ConfigDict(
-        json_schema_extra={
-            "example": {
-                "target": "sbs.com.au",
-                "use_case": "passive",
-            }
-        }
-    )
+    model_config = ConfigDict(json_schema_extra={"example": SCAN_CREATE_SWAGGER_EXAMPLE})
 
     @model_validator(mode="after")
     def require_module_selection(self) -> "ScanCreateRequest":
@@ -67,13 +72,13 @@ class ScanCreateRequest(BaseModel):
 
 
 SCAN_CREATE_OPENAPI_EXAMPLES = {
-    "passive_domain": {
-        "summary": "Passive scan — sbs.com.au",
-        "description": "Start a passive OSINT scan against an Australian domain.",
-        "value": {
-            "target": "sbs.com.au",
-            "use_case": "passive",
-        },
+    "dns_resolver": {
+        "summary": "DNS Resolver on sbs.com.au",
+        "description": (
+            "Runs the sfp_dnsresolve module (DNS Resolver) against the domain. "
+            "Produces IP_ADDRESS and related DNS events within seconds."
+        ),
+        "value": SCAN_CREATE_SWAGGER_EXAMPLE,
     },
 }
 
