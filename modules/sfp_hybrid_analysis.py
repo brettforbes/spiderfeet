@@ -13,10 +13,10 @@
 import json
 import time
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_hybrid_analysis(SpiderFootPlugin):
+class sfp_hybrid_analysis(SpiderFeetPlugin):
 
     meta = {
         'name': "Hybrid Analysis",
@@ -167,7 +167,7 @@ class sfp_hybrid_analysis(SpiderFootPlugin):
         """Parse HTTP response from API
 
         Args:
-            res (dict): HTTP response from Spiderfeet.fetchUrl()
+            res (dict): HTTP response from SpiderFeet.fetchUrl()
 
         Returns:
             str: API response as JSON
@@ -249,7 +249,7 @@ class sfp_hybrid_analysis(SpiderFootPlugin):
 
         self.info(f"Found {len(hashes)} results for {eventData}")
 
-        evt = SpiderFootEvent('RAW_RIR_DATA', str(data), self.__name__, event)
+        evt = SpiderFeetEvent('RAW_RIR_DATA', str(data), self.__name__, event)
         self.notifyListeners(evt)
 
         urls = []
@@ -262,7 +262,7 @@ class sfp_hybrid_analysis(SpiderFootPlugin):
                 self.debug(f"No information found for hash {file_hash}")
                 continue
 
-            evt = SpiderFootEvent('RAW_RIR_DATA', str(results), self.__name__, event)
+            evt = SpiderFeetEvent('RAW_RIR_DATA', str(results), self.__name__, event)
             self.notifyListeners(evt)
 
             for result in results:
@@ -289,7 +289,7 @@ class sfp_hybrid_analysis(SpiderFootPlugin):
 
             domains.append(host)
 
-            evt = SpiderFootEvent('LINKED_URL_INTERNAL', url, self.__name__, event)
+            evt = SpiderFeetEvent('LINKED_URL_INTERNAL', url, self.__name__, event)
             self.notifyListeners(evt)
 
         for domain in set(domains):
@@ -304,10 +304,10 @@ class sfp_hybrid_analysis(SpiderFootPlugin):
 
             if self.opts['verify'] and not self.sf.resolveHost(domain) and not self.sf.resolveHost6(domain):
                 self.debug(f"Host {domain} could not be resolved")
-                evt = SpiderFootEvent("INTERNET_NAME_UNRESOLVED", domain, self.__name__, event)
+                evt = SpiderFeetEvent("INTERNET_NAME_UNRESOLVED", domain, self.__name__, event)
                 self.notifyListeners(evt)
             else:
-                evt = SpiderFootEvent("INTERNET_NAME", domain, self.__name__, event)
+                evt = SpiderFeetEvent("INTERNET_NAME", domain, self.__name__, event)
                 self.notifyListeners(evt)
 
 # End of sfp_hybrid_analysis class

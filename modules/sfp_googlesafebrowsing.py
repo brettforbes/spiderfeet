@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_googlesafebrowsing
-# Purpose:      Spiderfeet plug-in to check if the URL is included on any of the
+# Purpose:      SpiderFeet plug-in to check if the URL is included on any of the
 #               Google Safe Browsing lists
 #
 # Author:      Filip Aleksić <faleksicdev@gmail.com>
@@ -13,10 +13,10 @@
 
 import json
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_googlesafebrowsing(SpiderFootPlugin):
+class sfp_googlesafebrowsing(SpiderFeetPlugin):
 
     meta = {
         "name": "Google SafeBrowsing",
@@ -97,7 +97,7 @@ class sfp_googlesafebrowsing(SpiderFootPlugin):
             f":find?key={self.opts['api_key']}"
         )
         payload = {
-            "client": {"clientId": "Spiderfeet", "clientVersion": "3.2"},
+            "client": {"clientId": "SpiderFeet", "clientVersion": "3.2"},
             "threatInfo": {
                 "threatTypes": [
                     "THREAT_TYPE_UNSPECIFIED",
@@ -208,10 +208,10 @@ class sfp_googlesafebrowsing(SpiderFootPlugin):
         if rec is None:
             return
 
-        evt = SpiderFootEvent("RAW_RIR_DATA", str(rec), self.__name__, event)
+        evt = SpiderFeetEvent("RAW_RIR_DATA", str(rec), self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(
+        evt = SpiderFeetEvent(
             evtType, "Google SafeBrowsing [" + eventData + "]", self.__name__, event
         )
         self.notifyListeners(evt)

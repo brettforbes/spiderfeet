@@ -5,11 +5,11 @@ import unittest
 import cherrypy
 from cherrypy.test import helper
 
-from spiderfeet import SpiderFootHelpers
-from sfwebui import SpiderFootWebUi
+from spiderfeet import SpiderFeetHelpers
+from sfwebui import SpiderFeetWebUi
 
 
-class TestSpiderfeetWebUiRoutes(helper.CPWebCase):
+class TestSpiderFeetWebUiRoutes(helper.CPWebCase):
     @staticmethod
     def setup_server():
         default_config = {
@@ -21,8 +21,8 @@ class TestSpiderfeetWebUiRoutes(helper.CPWebCase):
             '_fetchtimeout': 5,  # number of seconds before giving up on a fetch
             '_internettlds': 'https://publicsuffix.org/list/effective_tld_names.dat',
             '_internettlds_cache': 72,
-            '_genericusers': ",".join(SpiderFootHelpers.usernamesFromWordlists(['generic-usernames'])),
-            '__database': f"{SpiderFootHelpers.dataPath()}/spiderfeet.test.db",  # note: test database file
+            '_genericusers': ",".join(SpiderFeetHelpers.usernamesFromWordlists(['generic-usernames'])),
+            '__database': f"{SpiderFeetHelpers.dataPath()}/spiderFeet.test.db",  # note: test database file
             '__modules__': None,  # List of modules. Will be set after start-up.
             '__correlationrules__': None,  # List of correlation rules. Will be set after start-up.
             '_socks1type': '',
@@ -38,7 +38,7 @@ class TestSpiderfeetWebUiRoutes(helper.CPWebCase):
         }
 
         mod_dir = os.path.dirname(os.path.abspath(__file__)) + '/../../modules/'
-        default_config['__modules__'] = SpiderFootHelpers.loadModulesAsDict(mod_dir, ['sfp_template.py'])
+        default_config['__modules__'] = SpiderFeetHelpers.loadModulesAsDict(mod_dir, ['sfp_template.py'])
 
         conf = {
             '/query': {
@@ -48,18 +48,18 @@ class TestSpiderfeetWebUiRoutes(helper.CPWebCase):
             '/static': {
                 'tools.staticdir.on': True,
                 'tools.staticdir.dir': 'static',
-                'tools.staticdir.root': f"{os.path.dirname(os.path.abspath(__file__))}/../../spiderfeet",
+                'tools.staticdir.root': f"{os.path.dirname(os.path.abspath(__file__))}/../../spiderFeet",
             }
         }
 
-        cherrypy.tree.mount(SpiderFootWebUi(default_web_config, default_config), script_name=default_web_config.get('root'), config=conf)
+        cherrypy.tree.mount(SpiderFeetWebUi(default_web_config, default_config), script_name=default_web_config.get('root'), config=conf)
 
     def test_invalid_page_returns_404(self):
         self.getPage("/doesnotexist")
         self.assertStatus('404 Not Found')
 
     def test_static_returns_200(self):
-        self.getPage("/static/img/spiderfeet-header.png")
+        self.getPage("/static/img/spiderFeet-header.png")
         self.assertStatus('200 OK')
 
     def test_scaneventresultexport_invalid_scan_id_returns_200(self):
@@ -130,7 +130,7 @@ class TestSpiderfeetWebUiRoutes(helper.CPWebCase):
         self.assertStatus('200 OK')
         self.getPage("/optsexport?pattern=api_key")
         self.assertStatus('200 OK')
-        self.assertHeader("Content-Disposition", "attachment; filename=\"Spiderfeet.cfg\"")
+        self.assertHeader("Content-Disposition", "attachment; filename=\"SpiderFeet.cfg\"")
         self.assertInBody(":api_key=")
 
     def test_optsraw(self):
@@ -190,7 +190,7 @@ class TestSpiderfeetWebUiRoutes(helper.CPWebCase):
     def test_startscan_unrecognized_scan_target_returns_error(self):
         self.getPage("/startscan?scanname=example-scan&scantarget=invalid-target&modulelist=doesnotexist&typelist=doesnotexist&usecase=doesnotexist")
         self.assertStatus('200 OK')
-        self.assertInBody('Invalid target type. Could not recognize it as a target Spiderfeet supports.')
+        self.assertInBody('Invalid target type. Could not recognize it as a target SpiderFeet supports.')
 
     def test_startscan_invalid_modules_returns_error(self):
         self.getPage("/startscan?scanname=example-scan&scantarget=spiderfeet.net&modulelist=&typelist=&usecase=")

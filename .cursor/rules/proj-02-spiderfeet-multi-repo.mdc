@@ -1,5 +1,5 @@
 ---
-description: Spiderfeet multi-repo coordination with spiderfeet-widget
+description: SpiderFeet multi-repo coordination with spiderfeet-widget
 globs:
 alwaysApply: true
 ---

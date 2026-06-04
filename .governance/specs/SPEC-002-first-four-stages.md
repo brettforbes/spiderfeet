@@ -1,4 +1,4 @@
-# SPEC-002 — First Four Stages (Spiderfeet v2)
+# SPEC-002 — First Four Stages (SpiderFeet v2)
 
 **Status:** Approved 2026-06-03  
 **Source:** `.seed/02_stage_by_stage_reengineer.md`  
@@ -15,9 +15,9 @@ Stages 0–4 only (governance → rebrand → FastAPI → TypeDB map UI → per-
 |----|-------|-------------|
 | R2-00-01 | 0 | Project-specific governance rules in both roots, mirrored to `.cursor/rules/` |
 | R2-00-02 | 0 | SPEC-002 traceability; unified GitHub Project for both repos |
-| R2-01-01 | 1 | Complete Spiderfeet → Spiderfeet rebrand; Apache 2.0; operator selects logo |
+| R2-01-01 | 1 | Complete SpiderFeet → SpiderFeet rebrand; Apache 2.0; operator selects logo |
 | R2-02-01 | 2 | FastAPI exposes CLI-equivalent operations; Swagger + Requestly verification |
-| R2-03-01 | 3 | TypeDB `spiderfeet-map` schema seed from `.seed/spiderfeet_map.tql` + analysis JSON |
+| R2-03-01 | 3 | TypeDB `spiderFeet-map` schema seed from `.seed/spiderFeet_map.tql` + analysis JSON |
 | R2-03-02 | 3 | Map CRUD and force-graph export APIs |
 | R2-03-03 | 3 | Widget Maps tab with D3 force graph; non-Maps tabs are empty placeholders |
 | R2-04-01 | 4 | `scan-record` and `route` relations in map DB |

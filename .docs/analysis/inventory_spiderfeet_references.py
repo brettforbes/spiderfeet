@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Inventory Spiderfeet/spiderfeet references for Stage 1 rebrand (issue #14)."""
+"""Inventory SpiderFeet/spiderFeet references for Stage 1 rebrand (issue #14)."""
 from __future__ import annotations
 
 import json
@@ -8,8 +8,8 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT_MD = ROOT / ".docs/analysis/spiderfeet_reference_inventory.md"
-OUT_JSON = ROOT / ".docs/analysis/spiderfeet_reference_inventory.json"
+OUT_MD = ROOT / ".docs/analysis/spiderFeet_reference_inventory.md"
+OUT_JSON = ROOT / ".docs/analysis/spiderFeet_reference_inventory.json"
 
 SKIP_DIRS = {
     ".git", ".venv", "__pycache__", "node_modules", ".cursor", "dist",
@@ -18,14 +18,17 @@ SKIP_DIRS = {
 SKIP_FILES_SUFFIX = {".pyc", ".png", ".jpg", ".gif", ".ico", ".woff", ".woff2", ".ttf", ".eot"}
 
 PATTERNS = [
-    ("spiderfeet", re.compile(r"spiderfeet", re.I)),
+    ("SpiderFoot", re.compile(r"SpiderFoot")),
     ("Spiderfeet", re.compile(r"Spiderfeet")),
-    ("Spiderfeet", re.compile(r"Spiderfeet")),
+    ("spiderfoot", re.compile(r"spiderfoot", re.I)),
+    ("spiderfeet", re.compile(r"spiderfeet")),
+    ("SpiderFeet", re.compile(r"SpiderFeet")),
+    ("spiderFeet", re.compile(r"spiderFeet")),
     ("SPIDERFEET", re.compile(r"SPIDERFEET")),
 ]
 
 PATH_PATTERNS = [
-    re.compile(r"spiderfeet", re.I),
+    re.compile(r"spiderfoot", re.I),
 ]
 
 
@@ -35,7 +38,7 @@ def should_skip(path: Path) -> bool:
         return True
     if path.suffix.lower() in SKIP_FILES_SUFFIX:
         return True
-    if path.name == "spiderfeet_reference_inventory.json":
+    if path.name == "spiderFeet_reference_inventory.json":
         return True
     return False
 
@@ -73,7 +76,7 @@ def main() -> None:
     )
 
     lines = [
-        "# Spiderfeet Reference Inventory",
+        "# SpiderFeet Reference Inventory",
         "",
         "**Issue:** #14 (SF-01-01) | **Spec:** SPEC-002 R2-01-01",
         f"**Generated:** from `{ROOT.name}` repo root",
@@ -83,13 +86,16 @@ def main() -> None:
         "| Pattern | Files | Occurrences |",
         "|---------|------:|------------:|",
     ]
-    for label in ["Spiderfeet", "spiderfeet", "Spiderfeet", "SPIDERFEET"]:
+    for label in [
+        "SpiderFoot", "Spiderfeet", "spiderfoot", "spiderfeet",
+        "SpiderFeet", "spiderFeet", "SPIDERFEET",
+    ]:
         s = summary.get(label, {"files": 0, "occurrences": 0})
         lines.append(f"| `{label}` | {s['files']} | {s['occurrences']} |")
 
     lines += [
         "",
-        f"**Paths containing `spiderfeet` in filename/directory:** {len(path_hits)}",
+        f"**Paths containing legacy `spiderfoot` in filename/directory:** {len(path_hits)}",
         "",
         "## Path renames required",
         "",

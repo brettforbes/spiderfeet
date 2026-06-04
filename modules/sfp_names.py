@@ -12,10 +12,10 @@
 
 import re
 
-from spiderfeet import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_names(SpiderFootPlugin):
+class sfp_names(SpiderFeetPlugin):
 
     meta = {
         'name': "Human Name Extractor",
@@ -46,8 +46,8 @@ class sfp_names(SpiderFootPlugin):
     def setup(self, sfc, userOpts=dict()):
         self.sf = sfc
         self.results = self.tempStorage()
-        self.d = SpiderFootHelpers.dictionaryWordsFromWordlists()
-        self.n = SpiderFootHelpers.humanNamesFromWordlists()
+        self.d = SpiderFeetHelpers.dictionaryWordsFromWordlists()
+        self.n = SpiderFeetHelpers.humanNamesFromWordlists()
 
         for opt in list(userOpts.keys()):
             self.opts[opt] = userOpts[opt]
@@ -92,7 +92,7 @@ class sfp_names(SpiderFootPlugin):
             if re.search("[0-9]", name):
                 return
 
-            evt = SpiderFootEvent("HUMAN_NAME", name, self.__name__, event)
+            evt = SpiderFeetEvent("HUMAN_NAME", name, self.__name__, event)
             if event.moduleDataSource:
                 evt.moduleDataSource = event.moduleDataSource
             else:
@@ -161,7 +161,7 @@ class sfp_names(SpiderFootPlugin):
             self.debug("Name of " + name + " has score: " + str(p))
             if p >= self.opts['algolimit']:
                 # Notify other modules of what you've found
-                evt = SpiderFootEvent("HUMAN_NAME", name, self.__name__, event)
+                evt = SpiderFeetEvent("HUMAN_NAME", name, self.__name__, event)
                 if event.moduleDataSource:
                     evt.moduleDataSource = event.moduleDataSource
                 else:

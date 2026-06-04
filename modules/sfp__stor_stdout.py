@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_stor_stdout
-# Purpose:      Spiderfeet plug-in for dumping events to standard output.
+# Purpose:      SpiderFeet plug-in for dumping events to standard output.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
@@ -12,14 +12,14 @@
 
 import json
 
-from spiderfeet import SpiderFootPlugin
+from spiderfeet import SpiderFeetPlugin
 
 
-class sfp__stor_stdout(SpiderFootPlugin):
+class sfp__stor_stdout(SpiderFeetPlugin):
 
     meta = {
         'name': "Command-line output",
-        'summary': "Dumps output to standard out. Used for when a Spiderfeet scan is run via the command-line."
+        'summary': "Dumps output to standard out. Used for when a SpiderFeet scan is run via the command-line."
     }
 
     _priority = 0

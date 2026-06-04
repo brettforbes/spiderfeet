@@ -1,6 +1,6 @@
 # Project Continuity
 
-Durable context for the spiderfeet fork.
+Durable context for the spiderFeet fork.
 
 ## Module taxonomy (2026-05-23)
 

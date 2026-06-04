@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_abusix
-# Purpose:     Spiderfeet plug-in for looking up whether IPs/Netblocks/Domains
+# Purpose:     SpiderFeet plug-in for looking up whether IPs/Netblocks/Domains
 #              appear in the Abusix Mail Intelligence blacklist.
 #
 # Author:      <bcoles@gmail.com>
@@ -15,10 +15,10 @@ import ipaddress
 
 from netaddr import IPNetwork
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_abusix(SpiderFootPlugin):
+class sfp_abusix(SpiderFeetPlugin):
 
     meta = {
         'name': "Abusix Mail Intelligence",
@@ -280,10 +280,10 @@ class sfp_abusix(SpiderFootPlugin):
 
                 text = f"Abusix Mail Intelligence - {self.checks[k]} [{addr}]\n<SFURL>https://lookup.abusix.com/search?q={addr}</SFURL>"
 
-                evt = SpiderFootEvent(blacklist_type, text, self.__name__, event)
+                evt = SpiderFeetEvent(blacklist_type, text, self.__name__, event)
                 self.notifyListeners(evt)
 
-                evt = SpiderFootEvent(malicious_type, text, self.__name__, event)
+                evt = SpiderFeetEvent(malicious_type, text, self.__name__, event)
                 self.notifyListeners(evt)
 
 # End of sfp_abusix class

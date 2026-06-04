@@ -1,45 +1,45 @@
-spiderfeet package
+spiderFeet package
 ==================
 
 Submodules
 ----------
 
-spiderfeet.db module
+spiderFeet.db module
 --------------------
 
-.. automodule:: spiderfeet.db
+.. automodule:: spiderFeet.db
    :members:
    :undoc-members:
    :show-inheritance:
 
-spiderfeet.event module
+spiderFeet.event module
 -----------------------
 
-.. automodule:: spiderfeet.event
+.. automodule:: spiderFeet.event
    :members:
    :undoc-members:
    :show-inheritance:
 
-spiderfeet.helpers module
+spiderFeet.helpers module
 -------------------------
 
-.. automodule:: spiderfeet.helpers
+.. automodule:: spiderFeet.helpers
    :members:
    :undoc-members:
    :show-inheritance:
 
-spiderfeet.plugin module
+spiderFeet.plugin module
 ------------------------
 
-.. automodule:: spiderfeet.plugin
+.. automodule:: spiderFeet.plugin
    :members:
    :undoc-members:
    :show-inheritance:
 
-spiderfeet.target module
+spiderFeet.target module
 ------------------------
 
-.. automodule:: spiderfeet.target
+.. automodule:: spiderFeet.target
    :members:
    :undoc-members:
    :show-inheritance:
@@ -47,7 +47,7 @@ spiderfeet.target module
 Module contents
 ---------------
 
-.. automodule:: spiderfeet
+.. automodule:: spiderFeet
    :members:
    :undoc-members:
    :show-inheritance:

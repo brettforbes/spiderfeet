@@ -12,10 +12,10 @@
 
 import random
 
-from spiderfeet import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_junkfiles(SpiderFootPlugin):
+class sfp_junkfiles(SpiderFeetPlugin):
 
     meta = {
         'name': "Junk File Finder",
@@ -77,7 +77,7 @@ class sfp_junkfiles(SpiderFootPlugin):
                                useragent=self.opts['_useragent'],
                                verify=False)
         if res['code'] != "404":
-            host = SpiderFootHelpers.urlBaseUrl(junkUrl)
+            host = SpiderFeetHelpers.urlBaseUrl(junkUrl)
             self.skiphosts[host] = True
             return False
         return True
@@ -95,7 +95,7 @@ class sfp_junkfiles(SpiderFootPlugin):
 
         self.results[eventData] = True
 
-        host = SpiderFootHelpers.urlBaseUrl(eventData)
+        host = SpiderFeetHelpers.urlBaseUrl(eventData)
 
         if host in self.skiphosts:
             self.debug("Skipping " + host + " because it doesn't return 404s.")
@@ -134,10 +134,10 @@ class sfp_junkfiles(SpiderFootPlugin):
                         if not self.checkValidity(fetch):
                             continue
 
-                        evt = SpiderFootEvent("JUNK_FILE", fetch, self.__name__, event)
+                        evt = SpiderFeetEvent("JUNK_FILE", fetch, self.__name__, event)
                         self.notifyListeners(evt)
 
-        base = SpiderFootHelpers.urlBaseDir(eventData)
+        base = SpiderFeetHelpers.urlBaseDir(eventData)
         if not base or base in self.bases:
             return
 
@@ -171,7 +171,7 @@ class sfp_junkfiles(SpiderFootPlugin):
                 if not self.checkValidity(fetch):
                     continue
 
-                evt = SpiderFootEvent("JUNK_FILE", fetch, self.__name__, event)
+                evt = SpiderFeetEvent("JUNK_FILE", fetch, self.__name__, event)
                 self.notifyListeners(evt)
 
         # don't do anything with the root directory of a site
@@ -211,7 +211,7 @@ class sfp_junkfiles(SpiderFootPlugin):
                 if not self.checkValidity(fetch):
                     continue
 
-                evt = SpiderFootEvent("JUNK_FILE", fetch, self.__name__, event)
+                evt = SpiderFeetEvent("JUNK_FILE", fetch, self.__name__, event)
                 self.notifyListeners(evt)
 
 # End of sfp_junkfiles class

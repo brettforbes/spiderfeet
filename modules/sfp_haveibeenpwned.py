@@ -13,10 +13,10 @@ import json
 import re
 import time
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_haveibeenpwned(SpiderFootPlugin):
+class sfp_haveibeenpwned(SpiderFeetPlugin):
 
     meta = {
         'name': "HaveIBeenPwned",
@@ -94,7 +94,7 @@ class sfp_haveibeenpwned(SpiderFootPlugin):
             # https://haveibeenpwned.com/API/v2#RateLimiting
             time.sleep(1.5)
             res = self.sf.fetchUrl(url, timeout=self.opts['_fetchtimeout'],
-                                   useragent="Spiderfeet", headers=hdrs)
+                                   useragent="SpiderFeet", headers=hdrs)
 
             if res['code'] == "200":
                 break
@@ -132,7 +132,7 @@ class sfp_haveibeenpwned(SpiderFootPlugin):
             # https://haveibeenpwned.com/API/v2#RateLimiting
             time.sleep(1.5)
             res = self.sf.fetchUrl(url, timeout=self.opts['_fetchtimeout'],
-                                   useragent="Spiderfeet", headers=headers)
+                                   useragent="SpiderFeet", headers=headers)
 
             if res['code'] == "200":
                 break
@@ -190,10 +190,10 @@ class sfp_haveibeenpwned(SpiderFootPlugin):
 
                 # Notify other modules of what you've found
                 if eventName == 'EMAILADDR':
-                    e = SpiderFootEvent("EMAILADDR_COMPROMISED", eventData + " [" + site + "]",
+                    e = SpiderFeetEvent("EMAILADDR_COMPROMISED", eventData + " [" + site + "]",
                                         self.__name__, event)
                 else:
-                    e = SpiderFootEvent("PHONE_NUMBER_COMPROMISED", eventData + " [" + site + "]",
+                    e = SpiderFeetEvent("PHONE_NUMBER_COMPROMISED", eventData + " [" + site + "]",
                                         self.__name__, event)
                 self.notifyListeners(e)
 
@@ -240,10 +240,10 @@ class sfp_haveibeenpwned(SpiderFootPlugin):
                 if re.search(r"[^a-zA-Z\-\_0-9]" + re.escape(eventData) + r"[^a-zA-Z\-\_0-9]", res['content'], re.IGNORECASE) is None:
                     continue
 
-                evt1 = SpiderFootEvent("LEAKSITE_URL", link, self.__name__, event)
+                evt1 = SpiderFeetEvent("LEAKSITE_URL", link, self.__name__, event)
                 self.notifyListeners(evt1)
 
-                evt2 = SpiderFootEvent("LEAKSITE_CONTENT", res['content'], self.__name__, evt1)
+                evt2 = SpiderFeetEvent("LEAKSITE_CONTENT", res['content'], self.__name__, evt1)
                 self.notifyListeners(evt2)
 
             except Exception as e:

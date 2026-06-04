@@ -12,10 +12,10 @@
 import hashlib
 import json
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_punkspider(SpiderFootPlugin):
+class sfp_punkspider(SpiderFeetPlugin):
 
     meta = {
         'name': "PunkSpider",
@@ -124,7 +124,7 @@ class sfp_punkspider(SpiderFootPlugin):
             for vuln in res[rec]['vulns']:
                 if res[rec]['vulns'][vuln] == 0:
                     continue
-                e = SpiderFootEvent("VULNERABILITY_GENERAL", f"{vuln}: {res[rec]['vulns'][vuln]}", self.__name__, event)
+                e = SpiderFeetEvent("VULNERABILITY_GENERAL", f"{vuln}: {res[rec]['vulns'][vuln]}", self.__name__, event)
                 self.notifyListeners(e)
 
 # End of sfp_punkspider class

@@ -3,17 +3,17 @@ from copy import deepcopy
 import re
 import netaddr
 import yaml
-from spiderfeet import SpiderFootDb
+from spiderfeet import SpiderFeetDb
 
 
-class SpiderFootCorrelator:
-    """Spiderfeet correlation capabilities.
+class SpiderFeetCorrelator:
+    """SpiderFeet correlation capabilities.
 
     Todo:
         Make the rule checking per analysis method
     """
 
-    log = logging.getLogger("spiderfeet.correlator")
+    log = logging.getLogger("spiderFeet.correlator")
     dbh = None
     scanId = None
     types = None
@@ -46,11 +46,11 @@ class SpiderFootCorrelator:
         "rawYaml": {}
     }
 
-    def __init__(self, dbh: SpiderFootDb, ruleset: dict, scanId: str = None) -> None:
-        """Initialize Spiderfeet correlator engine with scan ID and ruleset.
+    def __init__(self, dbh: SpiderFeetDb, ruleset: dict, scanId: str = None) -> None:
+        """Initialize SpiderFeet correlator engine with scan ID and ruleset.
 
         Args:
-            dbh (SpiderFootDb): database handle
+            dbh (SpiderFeetDb): database handle
             ruleset (dict): correlation rule set
             scanId (str): scan instance ID
 
@@ -61,8 +61,8 @@ class SpiderFootCorrelator:
         if not isinstance(ruleset, dict):
             raise TypeError(f"ruleset is {type(ruleset)}; expected dict()")
 
-        if not isinstance(dbh, SpiderFootDb):
-            raise TypeError(f"dbh is {type(dbh)}; expected SpiderFootDb()")
+        if not isinstance(dbh, SpiderFeetDb):
+            raise TypeError(f"dbh is {type(dbh)}; expected SpiderFeetDb()")
 
         self.dbh = dbh
 
@@ -137,7 +137,7 @@ class SpiderFootCorrelator:
             matchrule (dict): dict representing a match rule
 
         Returns:
-            dict: criteria to be used with SpiderFootDb.scanResultEvent()
+            dict: criteria to be used with SpiderFeetDb.scanResultEvent()
 
         Raises:
             TypeError: argument type was invalid

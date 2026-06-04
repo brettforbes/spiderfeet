@@ -3,8 +3,8 @@ import random
 import time
 
 
-class SpiderFootEvent():
-    """SpiderFootEvent object representing identified data and associated meta data.
+class SpiderFeetEvent():
+    """SpiderFeetEvent object representing identified data and associated meta data.
 
     Attributes:
         generated (float): Timestamp of event creation time
@@ -14,8 +14,8 @@ class SpiderFootEvent():
         risk (int): How much risk does this data represent, 0-100
         module (str): Module from which the event originated
         data (str): Event data, e.g. a URL, port number, webpage content, etc.
-        sourceEvent (SpiderFootEvent): SpiderFootEvent that triggered this event
-        sourceEventHash (str): Hash of the SpiderFootEvent event that triggered this event
+        sourceEvent (SpiderFeetEvent): SpiderFeetEvent that triggered this event
+        sourceEventHash (str): Hash of the SpiderFeetEvent event that triggered this event
         hash (str): Unique SHA256 hash of the event, or "ROOT"
         moduleDataSource (str): Module data source
         actualSource (str): Source data of parent event
@@ -35,14 +35,14 @@ class SpiderFootEvent():
     _actualSource = None
     __id = None
 
-    def __init__(self, eventType: str, data: str, module: str, sourceEvent: 'SpiderFootEvent') -> None:
-        """Initialize Spiderfeet event object.
+    def __init__(self, eventType: str, data: str, module: str, sourceEvent: 'SpiderFeetEvent') -> None:
+        """Initialize SpiderFeet event object.
 
         Args:
             eventType (str): Event type, e.g. URL_FORM, RAW_DATA, etc.
             data (str): Event data, e.g. a URL, port number, webpage content, etc.
             module (str): Module from which the event originated
-            sourceEvent (SpiderFootEvent): SpiderFootEvent event that triggered this event
+            sourceEvent (SpiderFeetEvent): SpiderFeetEvent event that triggered this event
         """
         self._generated = time.time()
         self.data = data
@@ -108,7 +108,7 @@ class SpiderFootEvent():
         return self._data
 
     @property
-    def sourceEvent(self) -> 'SpiderFootEvent':
+    def sourceEvent(self) -> 'SpiderFeetEvent':
         return self._sourceEvent
 
     @property
@@ -251,11 +251,11 @@ class SpiderFootEvent():
         self._data = data
 
     @sourceEvent.setter
-    def sourceEvent(self, sourceEvent: 'SpiderFootEvent') -> None:
+    def sourceEvent(self, sourceEvent: 'SpiderFeetEvent') -> None:
         """Source event which lead to this event.
 
         Args:
-            sourceEvent (SpiderFootEvent): source event
+            sourceEvent (SpiderFeetEvent): source event
 
         Raises:
             TypeError: sourceEvent type was invalid
@@ -267,8 +267,8 @@ class SpiderFootEvent():
             self._sourceEventHash = "ROOT"
             return
 
-        if not isinstance(sourceEvent, SpiderFootEvent):
-            raise TypeError(f"sourceEvent is {type(sourceEvent)}; expected SpiderFootEvent()")
+        if not isinstance(sourceEvent, SpiderFeetEvent):
+            raise TypeError(f"sourceEvent is {type(sourceEvent)}; expected SpiderFeetEvent()")
 
         self._sourceEvent = sourceEvent
         self._sourceEventHash = self.sourceEvent.hash
@@ -300,4 +300,4 @@ class SpiderFootEvent():
 
         return evtDict
 
-# end of SpiderFootEvent class
+# end of SpiderFeetEvent class

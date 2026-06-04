@@ -2,8 +2,8 @@ import pytest
 import unittest
 
 from modules.sfp_email import sfp_email
-from sflib import SpiderFoot
-from spiderfeet import SpiderFootEvent, SpiderFootTarget
+from sflib import SpiderFeet
+from spiderfeet import SpiderFeetEvent, SpiderFeetTarget
 
 
 @pytest.mark.usefixtures
@@ -14,7 +14,7 @@ class TestModuleEmail(unittest.TestCase):
         self.assertEqual(len(module.opts), len(module.optdescs))
 
     def test_setup(self):
-        sf = SpiderFoot(self.default_options)
+        sf = SpiderFeet(self.default_options)
         module = sfp_email()
         module.setup(sf, dict())
 
@@ -28,14 +28,14 @@ class TestModuleEmail(unittest.TestCase):
 
     @unittest.skip("todo")
     def test_handleEvent_event_data_target_web_content_containing_email_address_should_return_event(self):
-        sf = SpiderFoot(self.default_options)
+        sf = SpiderFeet(self.default_options)
 
         module = sfp_email()
         module.setup(sf, dict())
 
         target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
-        target = SpiderFootTarget(target_value, target_type)
+        target = SpiderFeetTarget(target_value, target_type)
         module.setTarget(target)
 
         def new_notifyListeners(self, event):
@@ -55,13 +55,13 @@ class TestModuleEmail(unittest.TestCase):
         event_data = 'example data'
         event_module = ''
         source_event = ''
-        evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
+        evt = SpiderFeetEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'TARGET_WEB_CONTENT'
         event_data = '<p>sample data firstname.lastname@spiderfeet.net sample data.</p>'
         event_module = 'example module'
         source_event = evt
-        evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
+        evt = SpiderFeetEvent(event_type, event_data, event_module, source_event)
 
         with self.assertRaises(Exception) as cm:
             module.handleEvent(evt)

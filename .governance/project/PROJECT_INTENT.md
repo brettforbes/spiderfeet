@@ -6,19 +6,19 @@
 
 ## Summary
 
-**Spiderfeet** is a governed reengineering of Spiderfeet into a two-repo platform:
+**SpiderFeet** is a governed reengineering of SpiderFeet into a two-repo platform:
 
-- **`spiderfeet`** — Python backend (modules, FastAPI, TypeDB map model)
-- **`spiderfeet-widget`** — iFrame UI (Bootstrap 5, D3 force graphs)
+- **`spiderFeet`** — Python backend (modules, FastAPI, TypeDB map model)
+- **`spiderFeet-widget`** — iFrame UI (Bootstrap 5, D3 force graphs)
 
 Near-term delivery covers **stages 0–4**: governance, rebrand, API layer, TypeDB OSINT map with visualisation, and systematic module/route testing (177 OSINT modules).
 
 ## Goals
 
 1. **Governed delivery** — VibeGov rules + project-specific rules; GitHub issues per epic/story
-2. **Rebrand** — Spiderfeet → Spiderfeet, Apache 2.0, operator-selected logo (stage 1)
+2. **Rebrand** — SpiderFeet → SpiderFeet, Apache 2.0, operator-selected logo (stage 1)
 3. **API-first** — FastAPI over CLI for widget integration (stage 2)
-4. **Map model** — TypeDB `spiderfeet-map` from analysis artefacts + force graph UI (stage 3)
+4. **Map model** — TypeDB `spiderFeet-map` from analysis artefacts + force graph UI (stage 3)
 5. **Module verification** — one issue per OSINT module; all routes tested and recorded (stage 4)
 6. **Maintain analysis artefacts** — `osint_services.json`, nuggets, grouping docs
 
@@ -26,7 +26,7 @@ Near-term delivery covers **stages 0–4**: governance, rebrand, API layer, Type
 
 - Quarantine module promotion (stage 5)
 - Favourites, sequences, Maltego-style investigation UI (stages 6–8)
-- TypeDB replacement for scan storage (`spiderfeet-actual`, stage 7)
+- TypeDB replacement for scan storage (`spiderFeet-actual`, stage 7)
 
 ## Stakeholders
 

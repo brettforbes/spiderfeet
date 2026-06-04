@@ -7,7 +7,7 @@ Durable bootstrap / adoption remediation tracker.
 - [x] `git` available (`git version 2.40.1.windows.1`)
 - [x] `gh` available (`gh version 2.89.0`)
 - [x] GitHub auth — logged in as `brettforbes` (`repo`, `workflow`, `read:org`, `gist`)
-- [x] Repo access — `brettforbes/spiderfeet`
+- [x] Repo access — `brettforbes/spiderFeet`
 - [ ] GitHub **project read** access
   - Blocker: token missing `read:project` scope
   - Next action: `gh auth refresh -s read:project`
@@ -23,7 +23,7 @@ Durable bootstrap / adoption remediation tracker.
 - [ ] Canonical VibeGov project board
   - Blocker: project API access not available with current token scopes
   - Next action: refresh auth (above), then run bootstrap **update** mode to adopt/create/normalize board per [GitHub Project Bootstrap](https://vibegov.io/docs/github-project-bootstrap)
-- [x] GitHub Issues enabled on `brettforbes/spiderfeet` and `brettforbes/spiderfeet-widget` (2026-06-03)
+- [x] GitHub Issues enabled on `brettforbes/spiderFeet` and `brettforbes/spiderFeet-widget` (2026-06-03)
 - [ ] First-four issues linked to GitHub Project
   - Blocker: `gh` token missing `project` / `read:project` scopes
   - Next action: `gh auth refresh -h github.com -s project,read:project` then `python .seed/planning/add_issues_to_github_project.py` (see `.seed/planning/PROJECT_SETUP.md`)

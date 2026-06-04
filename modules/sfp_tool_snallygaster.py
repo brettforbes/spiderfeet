@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_tool_snallygaster
-# Purpose:     Spiderfeet plug-in for using the snallygaster tool.
+# Purpose:     SpiderFeet plug-in for using the snallygaster tool.
 #              Tool: https://github.com/hannob/snallygaster
 #
 # Author:      <steve@binarypool.com>
@@ -16,10 +16,10 @@ import json
 import os.path
 from subprocess import PIPE, Popen, TimeoutExpired
 
-from spiderfeet import SpiderFootPlugin, SpiderFootEvent, SpiderFootHelpers
+from spiderfeet import SpiderFeetPlugin, SpiderFeetEvent, SpiderFeetHelpers
 
 
-class sfp_tool_snallygaster(SpiderFootPlugin):
+class sfp_tool_snallygaster(SpiderFeetPlugin):
 
     meta = {
         "name": "Tool - snallygaster",
@@ -102,7 +102,7 @@ class sfp_tool_snallygaster(SpiderFootPlugin):
             self.errorState = True
             return
 
-        if not SpiderFootHelpers.sanitiseInput(eventData):
+        if not SpiderFeetHelpers.sanitiseInput(eventData):
             self.error("Invalid input, refusing to run.")
             return
 
@@ -150,7 +150,7 @@ class sfp_tool_snallygaster(SpiderFootPlugin):
             text = f"Cause: {res['cause']}\nURL: {res['url']}"
             if res["misc"]:
                 text += f"\nAdditional Info: {res['misc']}"
-            evt = SpiderFootEvent(
+            evt = SpiderFeetEvent(
                 "VULNERABILITY_GENERAL",
                 text,
                 self.__name__,

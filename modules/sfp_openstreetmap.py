@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_openstreetmap
-# Purpose:      Spiderfeet plug-in to retrieve latitude/longitude coordinates
+# Purpose:      SpiderFeet plug-in to retrieve latitude/longitude coordinates
 #               for physical addresses from OpenStreetMap API.
 #
 # Author:      <bcoles@gmail.com>
@@ -18,10 +18,10 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_openstreetmap(SpiderFootPlugin):
+class sfp_openstreetmap(SpiderFeetPlugin):
 
     meta = {
         'name': "OpenStreetMap",
@@ -76,7 +76,7 @@ class sfp_openstreetmap(SpiderFootPlugin):
         }
 
         res = self.sf.fetchUrl("https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode(params),
-                               timeout=self.opts['_fetchtimeout'], useragent='Spiderfeet')
+                               timeout=self.opts['_fetchtimeout'], useragent='SpiderFeet')
 
         if res['content'] is None:
             self.info("No location info found for " + qry)
@@ -144,7 +144,7 @@ class sfp_openstreetmap(SpiderFootPlugin):
             coords = str(lat) + "," + str(lon)
             self.debug("Found coordinates: " + coords)
 
-            evt = SpiderFootEvent("PHYSICAL_COORDINATES", coords, self.__name__, event)
+            evt = SpiderFeetEvent("PHYSICAL_COORDINATES", coords, self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_openstreetmap class

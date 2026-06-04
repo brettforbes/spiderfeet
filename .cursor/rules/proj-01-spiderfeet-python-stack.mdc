@@ -1,5 +1,5 @@
 ---
-description: Spiderfeet Python backend — stack, layout, and verification
+description: SpiderFeet Python backend — stack, layout, and verification
 globs:
   - "**/*.py"
   - "pyproject.toml"
@@ -7,7 +7,7 @@ globs:
   - ".tests/**"
 alwaysApply: false
 ---
-# Project: Spiderfeet Python stack
+# Project: SpiderFeet Python stack
 
 ## Stack
 

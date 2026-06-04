@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------
-// Name:         spiderfeet.js
-// Purpose:      All the javascript code for the spiderfeet aspects of the UI.
+// Name:         spiderFeet.js
+// Purpose:      All the javascript code for the spiderFeet aspects of the UI.
 //
 // Author:      Steve Micallef <steve@binarypool.com>
 //
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("mode", "Dark Mode");
       link.rel = "stylesheet";
       link.type = "text/css";
-      link.href = "${docroot}/static/css/spiderfeet.css";
+      link.href = "${docroot}/static/css/spiderFeet.css";
 
       head.appendChild(link);
       location.reload();

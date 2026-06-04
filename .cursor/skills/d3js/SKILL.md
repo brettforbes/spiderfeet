@@ -9,7 +9,7 @@ description: Build interactive D3 visualisations with HTML5 and vanilla JavaScri
 
 - **HTML5** shell (`<svg>`, optional `<canvas>`, tooltip `<div>`)
 - **Vanilla ES modules** or script tags; **no React/Vue/Svelte** in templates
-- **Namespaced code** under `window.Viz` (or project-specific root, e.g. `window.SpiderfeetViz`)
+- **Namespaced code** under `window.Viz` (or project-specific root, e.g. `window.SpiderFeetViz`)
 - **D3 v7** via CDN or npm `import * as d3 from 'd3'`
 
 ## Namespace layout

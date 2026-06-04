@@ -6,7 +6,7 @@ define
 	#   @values string literals: snake_case data values (e.g. free_no_auth, ip_netblock)
 
 	####################################
-	# Spiderfeet Nugget Definitions
+	# SpiderFeet Nugget Definitions
 	####################################
 
 	entity nugget @abstract,
@@ -198,7 +198,7 @@ define
 	entity wikipedia-page-edit, sub nugget;
 
 	#####################################
-	# Spiderfeet OSINT Service Definitions
+	# SpiderFeet OSINT Service Definitions
 	####################################
 
 	relation osint-service,
@@ -428,7 +428,7 @@ define
 
 
 	#####################################
-	# Spiderfeet Route Relation Definitions
+	# SpiderFeet Route Relation Definitions
 	####################################
 
 	# Route state is in-test, until proven by tests to be either "favourite", 
@@ -450,7 +450,7 @@ define
 		relates next;
 
 	#####################################
-	# Spiderfeet Scan Record Relation Definitions
+	# SpiderFeet Scan Record Relation Definitions
 	####################################
 
 	relation scan-record,
@@ -467,7 +467,7 @@ define
 		plays enrichment:next;
 
 	#####################################
-	# Spiderfeet Enrichment Definitions -
+	# SpiderFeet Enrichment Definitions -
 	####################################
 
 	relation enrichment,
@@ -479,7 +479,7 @@ define
 
 
 	#####################################
-	# Spiderfeet Attribute Definitions
+	# SpiderFeet Attribute Definitions
 	# (only attributes referenced by owns on entity/relation types)
 	####################################
 

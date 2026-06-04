@@ -12,10 +12,10 @@
 
 import json
 
-from spiderfeet import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_projectdiscovery(SpiderFootPlugin):
+class sfp_projectdiscovery(SpiderFeetPlugin):
     meta = {
         "name": "ProjectDiscovery Chaos",
         "summary": "Search for hosts/subdomains using chaos.projectdiscovery.io",
@@ -75,7 +75,7 @@ class sfp_projectdiscovery(SpiderFootPlugin):
         res = self.sf.fetchUrl(
             f"https://dns.projectdiscovery.io/dns/{qry}/subdomains",
             timeout=self.opts["_fetchtimeout"],
-            useragent="Spiderfeet",
+            useragent="SpiderFeet",
             headers=headers,
         )
 
@@ -127,7 +127,7 @@ class sfp_projectdiscovery(SpiderFootPlugin):
         if not isinstance(subdomains, list):
             return
 
-        evt = SpiderFootEvent("RAW_RIR_DATA", str(result), self.__name__, event)
+        evt = SpiderFeetEvent("RAW_RIR_DATA", str(result), self.__name__, event)
         self.notifyListeners(evt)
 
         resultsSet = set()
@@ -140,12 +140,12 @@ class sfp_projectdiscovery(SpiderFootPlugin):
             completeSubdomain = f"{subdomain}.{eventData}"
             if self.opts["verify"] and not self.sf.resolveHost(completeSubdomain) and not self.sf.resolveHost6(completeSubdomain):
                 self.debug(f"Host {completeSubdomain} could not be resolved")
-                evt = SpiderFootEvent(
+                evt = SpiderFeetEvent(
                     "INTERNET_NAME_UNRESOLVED", completeSubdomain, self.__name__, event
                 )
                 self.notifyListeners(evt)
             else:
-                evt = SpiderFootEvent(
+                evt = SpiderFeetEvent(
                     "INTERNET_NAME", completeSubdomain, self.__name__, event
                 )
                 self.notifyListeners(evt)
