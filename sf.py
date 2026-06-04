@@ -492,7 +492,7 @@ def start_web_server(sfWebUiConfig: dict, sfConfig: dict, loggingQueue=None) -> 
         '/static': {
             'tools.staticdir.on': True,
             'tools.staticdir.dir': 'static',
-            'tools.staticdir.root': f"{os.path.dirname(os.path.abspath(__file__))}/spiderfoot"
+            'tools.staticdir.root': f"{os.path.dirname(os.path.abspath(__file__))}/spiderfeet"
         }
     }
 
