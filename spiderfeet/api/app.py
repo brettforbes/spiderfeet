@@ -10,10 +10,12 @@ from fastapi.openapi.utils import get_openapi
 from spiderfeet import __version__
 from spiderfeet.api import settings
 from spiderfeet.api.bootstrap import init_runtime
-from spiderfeet.api.routes import catalogue, health, scans
+from spiderfeet.api.routes import catalogue, health, scan_ui, scans
 from spiderfeet.api.schemas import (
     SCAN_CREATE_OPENAPI_EXAMPLES,
     SCAN_CREATE_SWAGGER_EXAMPLE,
+    SCAN_UI_OPENAPI_EXAMPLES,
+    SCAN_UI_SWAGGER_EXAMPLE,
 )
 
 
@@ -52,6 +54,7 @@ def create_app() -> FastAPI:
     app.include_router(health.router, prefix=prefix)
     app.include_router(catalogue.router, prefix=prefix)
     app.include_router(scans.router, prefix=prefix)
+    app.include_router(scan_ui.router, prefix=prefix)
 
     def custom_openapi():
         if app.openapi_schema:
@@ -75,6 +78,19 @@ def create_app() -> FastAPI:
         if content is not None:
             content["example"] = SCAN_CREATE_SWAGGER_EXAMPLE
             content.setdefault("examples", SCAN_CREATE_OPENAPI_EXAMPLES)
+        scan_ui_post = (
+            schema.get("paths", {})
+            .get(f"{prefix}/scan_ui", {})
+            .get("post", {})
+        )
+        scan_ui_content = (
+            scan_ui_post.get("requestBody", {})
+            .get("content", {})
+            .get("application/json", {})
+        )
+        if scan_ui_content is not None:
+            scan_ui_content["example"] = SCAN_UI_SWAGGER_EXAMPLE
+            scan_ui_content.setdefault("examples", SCAN_UI_OPENAPI_EXAMPLES)
         app.openapi_schema = schema
         return app.openapi_schema
 

@@ -1,0 +1,312 @@
+{
+  "info": {
+    "name": "SpiderFeet API v1 (Stage 2)",
+    "description": "R2-02-01 / Epic #26. Import into Requestly: Import → Postman. Use environment spiderfeet-local.environment.json with base_url=http://127.0.0.1:8000. Start API: .\\start.ps1 -Mode api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "scan_id",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "01 Health",
+      "item": [
+        {
+          "name": "GET health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/v1/health"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('ok', () => {",
+                  "  const j = pm.response.json();",
+                  "  pm.expect(j.status).to.eql('ok');",
+                  "  pm.expect(j.service).to.eql('spiderfeet-api');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 Catalogue",
+      "item": [
+        {
+          "name": "GET modules",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/v1/modules"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('has sfp_dnsresolve', () => {",
+                  "  const list = pm.response.json();",
+                  "  pm.expect(list.some(m => m.name === 'sfp_dnsresolve')).to.be.true;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET event-types",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/v1/event-types"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('has INTERNET_NAME', () => {",
+                  "  const list = pm.response.json();",
+                  "  pm.expect(list.some(t => t.name === 'INTERNET_NAME')).to.be.true;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 Scans async",
+      "item": [
+        {
+          "name": "POST scans (start)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target\": \"sbs.com.au\",\n  \"modules\": [\"sfp_dnsresolve\"]\n}"
+            },
+            "url": "{{base_url}}/api/v1/scans"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('status 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.collectionVariables.set('scan_id', j.scan_id);",
+                  "pm.environment.set('scan_id', j.scan_id);",
+                  "pm.test('has poll url', () => pm.expect(j.poll).to.include(j.scan_id));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET scans (list)",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/v1/scans"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('status 200', () => pm.response.to.have.status(200));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET scan status",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/v1/scans/{{scan_id}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('status 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('scan_id matches', () => pm.expect(j.scan_id).to.eql(pm.collectionVariables.get('scan_id')));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET scan results",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/scans/{{scan_id}}/results?event_type=ALL&filter_fp=false",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "scans", "{{scan_id}}", "results"],
+              "query": [
+                { "key": "event_type", "value": "ALL" },
+                { "key": "filter_fp", "value": "false" }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('results array', () => pm.expect(pm.response.json()).to.be.an('array'));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET scan not found (expect 404)",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/v1/scans/nonexistent-scan-id"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('status 404', () => pm.response.to.have.status(404));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04 Scan UI (widget)",
+      "item": [
+        {
+          "name": "POST scan_ui (wait FINISHED)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"module_id\": \"sfp_dnsresolve\",\n  \"consumed\": {\n    \"nugget_id\": \"INTERNET_NAME\",\n    \"nugget_data\": \"sbs.com.au\"\n  },\n  \"wait\": true,\n  \"timeout_seconds\": 120\n}"
+            },
+            "url": "{{base_url}}/api/v1/scan_ui"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('status 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('FINISHED', () => pm.expect(j.scan_record.status).to.eql('FINISHED'));",
+                  "pm.test('produced nuggets', () => pm.expect(j.produced.length).to.be.above(0));",
+                  "pm.test('service', () => pm.expect(j.scan_record.service.module_id).to.eql('sfp_dnsresolve'));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST scan_ui (no wait)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"module_id\": \"sfp_dnsresolve\",\n  \"consumed\": {\n    \"nugget_id\": \"INTERNET_NAME\",\n    \"nugget_data\": \"sbs.com.au\"\n  },\n  \"wait\": false\n}"
+            },
+            "url": "{{base_url}}/api/v1/scan_ui"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('status 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('STARTING', () => pm.expect(j.scan_record.status).to.eql('STARTING'));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST scan_ui invalid module (expect 400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"module_id\": \"sfp_not_a_real_module\",\n  \"consumed\": {\n    \"nugget_id\": \"INTERNET_NAME\",\n    \"nugget_data\": \"sbs.com.au\"\n  },\n  \"wait\": false\n}"
+            },
+            "url": "{{base_url}}/api/v1/scan_ui"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('status 400', () => pm.response.to.have.status(400));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
