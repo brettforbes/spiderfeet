@@ -90,17 +90,17 @@ SpiderFeet's 200+ modules feed each other in a publisher/subscriber model to ens
 
 ### INSTALLING & RUNNING
 
-To install and run SpiderFeet, you need at least **Python 3.7+** and dependencies (Poetry recommended).
+To install and run SpiderFeet, you need at least **Python 3.8+** and dependencies (Poetry recommended).
 
 #### Development (this repository)
 
 ```powershell
 poetry install
-.\start.ps1
-# or: poetry run python sf.py -l 127.0.0.1:5001
+.\start.ps1                    # legacy web UI (CherryPy) — http://127.0.0.1:5001
+.\start.ps1 -Mode api          # FastAPI for widget / Requestly — http://127.0.0.1:8000/docs
 ```
 
-Open `http://127.0.0.1:5001` in your browser. CLI usage: `poetry run python sf.py -h`.
+Open `http://127.0.0.1:5001` for the web UI, or `http://127.0.0.1:8000/docs` for the Stage 2 API. CLI usage: `poetry run python sf.py -h`. API mapping: [.docs/api/cli_capability_matrix.md](.docs/api/cli_capability_matrix.md).
 
 #### Packaged release (legacy upstream layout):
 

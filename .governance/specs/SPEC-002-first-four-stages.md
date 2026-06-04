@@ -17,6 +17,8 @@ Stages 0–4 only (governance → rebrand → FastAPI → TypeDB map UI → per-
 | R2-00-02 | 0 | SPEC-002 traceability; unified GitHub Project for both repos |
 | R2-01-01 | 1 | Complete SpiderFeet → SpiderFeet rebrand; Apache 2.0; operator selects logo |
 | R2-02-01 | 2 | FastAPI exposes CLI-equivalent operations; Swagger + Requestly verification |
+| R2-02-01a | 2 | CLI capability matrix documented in `.docs/api/cli_capability_matrix.md` |
+| R2-02-01b | 2 | FastAPI skeleton: `/api/v1/health`, CORS, `start.ps1 -Mode api` |
 | R2-03-01 | 3 | TypeDB `spiderFeet-map` schema seed from `.seed/spiderFeet_map.tql` + analysis JSON |
 | R2-03-02 | 3 | Map CRUD and force-graph export APIs |
 | R2-03-03 | 3 | Widget Maps tab with D3 force graph; non-Maps tabs are empty placeholders |
