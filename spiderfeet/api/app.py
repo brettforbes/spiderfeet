@@ -1,13 +1,21 @@
 """FastAPI application factory."""
 
 import os
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from spiderfeet import __version__
 from spiderfeet.api import settings
-from spiderfeet.api.routes import health
+from spiderfeet.api.bootstrap import init_runtime
+from spiderfeet.api.routes import catalogue, health, scans
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    app.state.runtime = init_runtime()
+    yield
 
 
 def create_app() -> FastAPI:
@@ -18,6 +26,7 @@ def create_app() -> FastAPI:
         docs_url="/docs",
         redoc_url="/redoc",
         openapi_url="/openapi.json",
+        lifespan=lifespan,
     )
 
     origins = list(settings.DEFAULT_CORS_ORIGINS)
@@ -33,5 +42,8 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
-    app.include_router(health.router, prefix=settings.API_PREFIX)
+    prefix = settings.API_PREFIX
+    app.include_router(health.router, prefix=prefix)
+    app.include_router(catalogue.router, prefix=prefix)
+    app.include_router(scans.router, prefix=prefix)
     return app

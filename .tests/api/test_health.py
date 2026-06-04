@@ -2,13 +2,11 @@
 
 from fastapi.testclient import TestClient
 
-from spiderfeet.api.app import create_app
 from spiderfeet import __version__
 
 
-def test_health_returns_version():
-    client = TestClient(create_app())
-    response = client.get("/api/v1/health")
+def test_health_returns_version(api_client: TestClient):
+    response = api_client.get("/api/v1/health")
     assert response.status_code == 200
     body = response.json()
     assert body["status"] == "ok"

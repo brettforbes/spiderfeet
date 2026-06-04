@@ -13,6 +13,18 @@
 - API base: http://127.0.0.1:8000/api/v1/
 - Swagger UI: http://127.0.0.1:8000/docs
 - Health: http://127.0.0.1:8000/api/v1/health
+- Modules: `GET /api/v1/modules`
+- Event types: `GET /api/v1/event-types`
+- Scans: `POST /api/v1/scans`, `GET /api/v1/scans`, `GET /api/v1/scans/{id}`, `GET /api/v1/scans/{id}/results`
+
+Example scan start (Swagger **POST /api/v1/scans**):
+
+```json
+{
+  "target": "example.com",
+  "use_case": "passive"
+}
+```
 
 Legacy web UI (CherryPy) remains `.\start.ps1` or `.\start.ps1 -Mode web`.
 
