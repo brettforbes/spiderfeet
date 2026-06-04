@@ -3,7 +3,7 @@ import unittest
 
 from modules.sfp_base64 import sfp_base64
 from sflib import SpiderFoot
-from spiderfoot import SpiderFootEvent, SpiderFootTarget
+from spiderfeet import SpiderFootEvent, SpiderFootTarget
 
 
 @pytest.mark.usefixtures
@@ -32,7 +32,7 @@ class TestModuleBase64(unittest.TestCase):
         module = sfp_base64()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)
@@ -51,7 +51,7 @@ class TestModuleBase64(unittest.TestCase):
         module.notifyListeners = new_notifyListeners.__get__(module, sfp_base64)
 
         event_type = 'ROOT'
-        event_data = 'https://spiderfoot.net/path?param=example%20data%20U3BpZGVyRm9vdA%3d%3d%20example%20data'
+        event_data = 'https://spiderfeet.net/path?param=example%20data%20U3BpZGVyRm9vdA%3d%3d%20example%20data'
         event_module = ''
         source_event = ''
 
@@ -68,7 +68,7 @@ class TestModuleBase64(unittest.TestCase):
         module = sfp_base64()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)

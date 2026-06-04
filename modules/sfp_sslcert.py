@@ -12,7 +12,7 @@
 
 from urllib.parse import urlparse
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin, SpiderFootHelpers
+from spiderfeet import SpiderFootEvent, SpiderFootPlugin, SpiderFootHelpers
 
 
 class sfp_sslcert(SpiderFootPlugin):

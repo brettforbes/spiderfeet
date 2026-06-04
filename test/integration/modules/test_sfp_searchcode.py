@@ -3,7 +3,7 @@ import unittest
 
 from modules.sfp_searchcode import sfp_searchcode
 from sflib import SpiderFoot
-from spiderfoot import SpiderFootEvent, SpiderFootTarget
+from spiderfeet import SpiderFootEvent, SpiderFootTarget
 
 
 @pytest.mark.usefixtures
@@ -16,7 +16,7 @@ class TestModuleIntegrationCodesearch(unittest.TestCase):
         module = sfp_searchcode()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'DOMAIN_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)

@@ -3,7 +3,7 @@ import unittest
 
 from modules.sfp_sslcert import sfp_sslcert
 from sflib import SpiderFoot
-from spiderfoot import SpiderFootEvent, SpiderFootTarget
+from spiderfeet import SpiderFootEvent, SpiderFootTarget
 
 
 @pytest.mark.usefixtures

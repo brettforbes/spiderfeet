@@ -1,0 +1,6055 @@
+{
+  "summary": {
+    "spiderfoot": {
+      "files": 744,
+      "occurrences": 5746
+    },
+    "SpiderFoot": {
+      "files": 734,
+      "occurrences": 5535
+    },
+    "Spiderfoot": {
+      "files": 22,
+      "occurrences": 29
+    },
+    "SPIDERFOOT": {
+      "files": 6,
+      "occurrences": 29
+    }
+  },
+  "path_hits": [],
+  "text_hits": {
+    "spiderfoot": [
+      {
+        "path": ".gitignore",
+        "count": 1
+      },
+      {
+        "path": "AGENTS.md",
+        "count": 1
+      },
+      {
+        "path": "docker-compose-dev.yml",
+        "count": 2
+      },
+      {
+        "path": "docker-compose-full.yml",
+        "count": 1
+      },
+      {
+        "path": "docker-compose.yml",
+        "count": 9
+      },
+      {
+        "path": "Dockerfile",
+        "count": 40
+      },
+      {
+        "path": "Dockerfile.full",
+        "count": 34
+      },
+      {
+        "path": "generate-certificate",
+        "count": 8
+      },
+      {
+        "path": "pyproject.toml",
+        "count": 1
+      },
+      {
+        "path": "README.md",
+        "count": 24
+      },
+      {
+        "path": "sf.py",
+        "count": 38
+      },
+      {
+        "path": "sfcli.py",
+        "count": 31
+      },
+      {
+        "path": "sflib.py",
+        "count": 18
+      },
+      {
+        "path": "sfscan.py",
+        "count": 28
+      },
+      {
+        "path": "sfwebui.py",
+        "count": 139
+      },
+      {
+        "path": "THANKYOU",
+        "count": 3
+      },
+      {
+        "path": "VERSION",
+        "count": 1
+      },
+      {
+        "path": ".docs/cli_reference.md",
+        "count": 22
+      },
+      {
+        "path": ".docs/grouping_of_osint_services.md",
+        "count": 7
+      },
+      {
+        "path": ".docs/non_osint_modules.md",
+        "count": 8
+      },
+      {
+        "path": ".docs/quarantine_modules.md",
+        "count": 69
+      },
+      {
+        "path": ".docs/analysis/analyse_modules.py",
+        "count": 3
+      },
+      {
+        "path": ".docs/analysis/apply_path_renames.py",
+        "count": 6
+      },
+      {
+        "path": ".docs/analysis/force_graph_colour_scheme.md",
+        "count": 3
+      },
+      {
+        "path": ".docs/analysis/generate_non_osint_doc.py",
+        "count": 9
+      },
+      {
+        "path": ".docs/analysis/inventory_spiderfeet_references.py",
+        "count": 17
+      },
+      {
+        "path": ".docs/analysis/nuggets.json",
+        "count": 1
+      },
+      {
+        "path": ".docs/analysis/osint_services.json",
+        "count": 2
+      },
+      {
+        "path": ".docs/analysis/spiderfeet_reference_inventory.md",
+        "count": 6
+      },
+      {
+        "path": ".github/ISSUE_TEMPLATE.md",
+        "count": 1
+      },
+      {
+        "path": ".governance/project/GIT_WORKFLOW.md",
+        "count": 1
+      },
+      {
+        "path": ".governance/project/PROJECT_INTENT.md",
+        "count": 2
+      },
+      {
+        "path": ".governance/project/bootstrap/ANALYSIS.md",
+        "count": 2
+      },
+      {
+        "path": ".governance/project/bootstrap/history/2026-05-23-init/analysis.md",
+        "count": 2
+      },
+      {
+        "path": ".governance/project/rules/proj-01-spiderfeet-python-stack.mdc",
+        "count": 1
+      },
+      {
+        "path": ".governance/project/rules/proj-03-spiderfeet-stages.mdc",
+        "count": 1
+      },
+      {
+        "path": ".governance/specs/SPEC-001-governance-bootstrap.md",
+        "count": 2
+      },
+      {
+        "path": ".governance/specs/SPEC-002-first-four-stages.md",
+        "count": 1
+      },
+      {
+        "path": ".seed/01_documenting_data_sources.md",
+        "count": 3
+      },
+      {
+        "path": ".seed/02_stage_by_stage_reengineer.md",
+        "count": 16
+      },
+      {
+        "path": ".seed/planning/create_first_four_github_issues.py",
+        "count": 4
+      },
+      {
+        "path": ".seed/planning/FIRST_FOUR_STAGES_EPICS_AND_ISSUES.md",
+        "count": 7
+      },
+      {
+        "path": "correlations/README.md",
+        "count": 17
+      },
+      {
+        "path": "correlations/template.yaml",
+        "count": 2
+      },
+      {
+        "path": "docs/conf.py",
+        "count": 2
+      },
+      {
+        "path": "docs/index.rst",
+        "count": 3
+      },
+      {
+        "path": "docs/spiderfeet.rst",
+        "count": 2
+      },
+      {
+        "path": "modules/sfp_abstractapi.py",
+        "count": 13
+      },
+      {
+        "path": "modules/sfp_abusech.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_abuseipdb.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_abusix.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_accounts.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_adblock.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_adguard_dns.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_ahmia.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_alienvault.py",
+        "count": 15
+      },
+      {
+        "path": "modules/sfp_alienvaultiprep.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_apple_itunes.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_archiveorg.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_arin.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_azureblobstorage.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_base64.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_bgpview.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_binaryedge.py",
+        "count": 13
+      },
+      {
+        "path": "modules/sfp_bingsearch.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_bingsharedip.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_binstring.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_bitcoin.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_bitcoinabuse.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_bitcoinwhoswho.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_blockchain.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_blocklistde.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_botscout.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_botvrij.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_builtwith.py",
+        "count": 19
+      },
+      {
+        "path": "modules/sfp_c99.py",
+        "count": 22
+      },
+      {
+        "path": "modules/sfp_callername.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_censys.py",
+        "count": 18
+      },
+      {
+        "path": "modules/sfp_certspotter.py",
+        "count": 12
+      },
+      {
+        "path": "modules/sfp_cinsscore.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_circllu.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_citadel.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_cleanbrowsing.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_cleantalk.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_clearbit.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_cloudflaredns.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_coinblocker.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_commoncrawl.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_comodo.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_company.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_cookie.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_countryname.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_creditcard.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_crobat_api.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_crossref.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_crt.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_crxcavator.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_customfeed.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_cybercrimetracker.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_debounce.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_dehashed.py",
+        "count": 12
+      },
+      {
+        "path": "modules/sfp_digitaloceanspace.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_dnsbrute.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_dnscommonsrv.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_dnsdb.py",
+        "count": 17
+      },
+      {
+        "path": "modules/sfp_dnsdumpster.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_dnsgrep.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_dnsneighbor.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_dnsraw.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_dnsresolve.py",
+        "count": 17
+      },
+      {
+        "path": "modules/sfp_dnszonexfer.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_dns_for_family.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_dronebl.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_duckduckgo.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_email.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_emailcrawlr.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_emailformat.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_emailrep.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_emergingthreats.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_errors.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_ethereum.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_etherscan.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_filemeta.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_flickr.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_focsec.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_fortinet.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_fraudguard.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_fsecure_riddler.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_fullcontact.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_fullhunt.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_github.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_gleif.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_googlemaps.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_googleobjectstorage.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_googlesafebrowsing.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_googlesearch.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_google_tag_manager.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_gravatar.py",
+        "count": 15
+      },
+      {
+        "path": "modules/sfp_grayhatwarfare.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_greensnow.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_grep_app.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_greynoise.py",
+        "count": 17
+      },
+      {
+        "path": "modules/sfp_greynoise_community.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_h1nobbdde.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_hackertarget.py",
+        "count": 13
+      },
+      {
+        "path": "modules/sfp_hashes.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_haveibeenpwned.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_honeypot.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_hosting.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_hostio.py",
+        "count": 12
+      },
+      {
+        "path": "modules/sfp_hunter.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_hybrid_analysis.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_iban.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_iknowwhatyoudownload.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_intelx.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_intfiles.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_ipapico.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_ipapicom.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_ipinfo.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_ipqualityscore.py",
+        "count": 15
+      },
+      {
+        "path": "modules/sfp_ipregistry.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_ipstack.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_isc.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_jsonwhoiscom.py",
+        "count": 17
+      },
+      {
+        "path": "modules/sfp_junkfiles.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_keybase.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_koodous.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_leakix.py",
+        "count": 13
+      },
+      {
+        "path": "modules/sfp_maltiverse.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_malwarepatrol.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_metadefender.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_mnemonic.py",
+        "count": 12
+      },
+      {
+        "path": "modules/sfp_multiproxy.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_myspace.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_nameapi.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_names.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_networksdb.py",
+        "count": 16
+      },
+      {
+        "path": "modules/sfp_neutrinoapi.py",
+        "count": 16
+      },
+      {
+        "path": "modules/sfp_numverify.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_onioncity.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_onionsearchengine.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_onyphe.py",
+        "count": 17
+      },
+      {
+        "path": "modules/sfp_openbugbounty.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_opencorporates.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_opendns.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_opennic.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_openphish.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_openstreetmap.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_pageinfo.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_pastebin.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_pgp.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_phishstats.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_phishtank.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_phone.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_portscan_tcp.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_projectdiscovery.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_psbdmp.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_pulsedive.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_punkspider.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_quad9.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_reversewhois.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_ripe.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_riskiq.py",
+        "count": 13
+      },
+      {
+        "path": "modules/sfp_robtex.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_s3bucket.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_searchcode.py",
+        "count": 12
+      },
+      {
+        "path": "modules/sfp_securitytrails.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_seon.py",
+        "count": 32
+      },
+      {
+        "path": "modules/sfp_shodan.py",
+        "count": 18
+      },
+      {
+        "path": "modules/sfp_similar.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_skymem.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_slideshare.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_snov.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_social.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_sociallinks.py",
+        "count": 21
+      },
+      {
+        "path": "modules/sfp_socialprofiles.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_sorbs.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_spamcop.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_spamhaus.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_spider.py",
+        "count": 16
+      },
+      {
+        "path": "modules/sfp_spur.py",
+        "count": 14
+      },
+      {
+        "path": "modules/sfp_spyonweb.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_sslcert.py",
+        "count": 15
+      },
+      {
+        "path": "modules/sfp_stackoverflow.py",
+        "count": 14
+      },
+      {
+        "path": "modules/sfp_stevenblack_hosts.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_strangeheaders.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_subdomain_takeover.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_sublist3r.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_surbl.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_talosintel.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_template.py",
+        "count": 16
+      },
+      {
+        "path": "modules/sfp_textmagic.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_threatcrowd.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_threatfox.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_threatjammer.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_threatminer.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_tldsearch.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_tool_cmseek.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_tool_dnstwist.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_tool_nbtscan.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_tool_nmap.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_tool_nuclei.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_tool_onesixtyone.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_tool_retirejs.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_tool_snallygaster.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_tool_testsslsh.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_tool_trufflehog.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_tool_wafw00f.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_tool_wappalyzer.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_tool_whatweb.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_torch.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_torexits.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_trashpanda.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_trumail.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_twilio.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_twitter.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_uceprotect.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_urlscan.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_venmo.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_viewdns.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_virustotal.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_voipbl.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_vxvault.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_webanalytics.py",
+        "count": 35
+      },
+      {
+        "path": "modules/sfp_webframework.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_webserver.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_whatcms.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_whois.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_whoisology.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_whoxy.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_wigle.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_wikileaks.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_wikipediaedits.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_xforce.py",
+        "count": 15
+      },
+      {
+        "path": "modules/sfp_yandexdns.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_zetalytics.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_zonefiles.py",
+        "count": 12
+      },
+      {
+        "path": "modules/sfp_zoneh.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp__stor_db.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp__stor_stdout.py",
+        "count": 4
+      },
+      {
+        "path": "spiderfeet/correlation.py",
+        "count": 9
+      },
+      {
+        "path": "spiderfeet/db.py",
+        "count": 14
+      },
+      {
+        "path": "spiderfeet/event.py",
+        "count": 15
+      },
+      {
+        "path": "spiderfeet/helpers.py",
+        "count": 19
+      },
+      {
+        "path": "spiderfeet/logger.py",
+        "count": 15
+      },
+      {
+        "path": "spiderfeet/plugin.py",
+        "count": 27
+      },
+      {
+        "path": "spiderfeet/target.py",
+        "count": 4
+      },
+      {
+        "path": "spiderfeet/threadpool.py",
+        "count": 4
+      },
+      {
+        "path": "spiderfeet/__init__.py",
+        "count": 7
+      },
+      {
+        "path": "spiderfeet/static/css/spiderfeet.css",
+        "count": 1
+      },
+      {
+        "path": "spiderfeet/static/js/spiderfeet.js",
+        "count": 1
+      },
+      {
+        "path": "spiderfeet/templates/FOOTER.tmpl",
+        "count": 15
+      },
+      {
+        "path": "spiderfeet/templates/HEADER.tmpl",
+        "count": 10
+      },
+      {
+        "path": "spiderfeet/templates/newscan.tmpl",
+        "count": 2
+      },
+      {
+        "path": "test/bandit",
+        "count": 2
+      },
+      {
+        "path": "test/conftest.py",
+        "count": 3
+      },
+      {
+        "path": "test/README.md",
+        "count": 4
+      },
+      {
+        "path": "test/run",
+        "count": 1
+      },
+      {
+        "path": "test/update-requirements",
+        "count": 1
+      },
+      {
+        "path": "test/acceptance/run",
+        "count": 1
+      },
+      {
+        "path": "test/acceptance/scan.robot",
+        "count": 3
+      },
+      {
+        "path": "test/integration/test_sf.py",
+        "count": 3
+      },
+      {
+        "path": "test/integration/test_sfwebui.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_abstractapi.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_abusech.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_abuseipdb.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_abusix.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_accounts.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_adblock.py",
+        "count": 15
+      },
+      {
+        "path": "test/integration/modules/test_sfp_adguard_dns.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ahmia.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_alienvault.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_alienvaultiprep.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_apple_itunes.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_archiveorg.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_arin.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_azureblobstorage.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_bgpview.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_binaryedge.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_bingsearch.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_bingsharedip.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_bitcoinabuse.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_bitcoinwhoswho.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_blockchain.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_blocklistde.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_botscout.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_botvrij.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_builtwith.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_c99.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_callername.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_censys.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_certspotter.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_cinsscore.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_circllu.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_citadel.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_cleanbrowsing.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_cleantalk.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_clearbit.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_cloudflaredns.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_coinblocker.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_commoncrawl.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_comodo.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_crobat_api.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_crossref.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_crt.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_crxcavator.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_customfeed.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_cybercrimetracker.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_debounce.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dehashed.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_digitaloceanspace.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsbrute.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnscommonsrv.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsdb.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsdumpster.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsgrep.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsneighbor.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsraw.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsresolve.py",
+        "count": 29
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnszonexfer.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dns_for_family.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dronebl.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_duckduckgo.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_email.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_emailcrawlr.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_emailformat.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_emailrep.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_emergingthreats.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_etherscan.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_filemeta.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_flickr.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_focsec.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_fortinet.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_fraudguard.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_fsecure_riddler.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_fullcontact.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_fullhunt.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_github.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_gleif.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_googlemaps.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_googleobjectstorage.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_googlesafebrowsing.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_googlesearch.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_google_tag_manager.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_gravatar.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_grayhatwarfare.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_greensnow.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_grep_app.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_greynoise.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_h1nobbdde.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_hackertarget.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_haveibeenpwned.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_honeypot.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_hosting.py",
+        "count": 9
+      },
+      {
+        "path": "test/integration/modules/test_sfp_hostio.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_hunter.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_hybrid_analysis.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_iknowwhatyoudownload.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_intelx.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ipapico.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ipapicom.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ipinfo.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ipqualityscore.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ipregistry.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ipstack.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_isc.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_jsonwhoiscom.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_junkfiles.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_keybase.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_koodous.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_leakix.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_maltiverse.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_malwarepatrol.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_metadefender.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_mnemonic.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_multiproxy.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_myspace.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_nameapi.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_networksdb.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_neutrinoapi.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_numverify.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_onioncity.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_onionsearchengine.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_onyphe.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_openbugbounty.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_opencorporates.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_opendns.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_opennic.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_openphish.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_openstreetmap.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_pageinfo.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_pastebin.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_pgp.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_phishstats.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_phishtank.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_portscan_tcp.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_projectdiscovery.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_psbdmp.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_pulsedive.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_punkspider.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_quad9.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_reversewhois.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ripe.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_riskiq.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_robtex.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_s3bucket.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_searchcode.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_securitytrails.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_seon.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_shodan.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_similar.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_skymem.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_slideshare.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_snov.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_sociallinks.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_socialprofiles.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_sorbs.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_spamcop.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_spamhaus.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_spider.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_spur.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_spyonweb.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_sslcert.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_stackoverflow.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_stevenblack_hosts.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_subdomain_takeover.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_sublist3r.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_surbl.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_talosintel.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_textmagic.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_threatcrowd.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_threatfox.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_threatminer.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_tldsearch.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_torch.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_torexits.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_trashpanda.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_trumail.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_twilio.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_twitter.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_uceprotect.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_urlscan.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_venmo.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_viewdns.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_virustotal.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_voipbl.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_vxvault.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_webserver.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_whatcms.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_whois.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_whoisology.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_whoxy.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_wigle.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_wikileaks.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_wikipediaedits.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_xforce.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_yandexdns.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_zetalytics.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_zoneh.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp__stor_db.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp__stor_stdout.py",
+        "count": 6
+      },
+      {
+        "path": "test/unit/test_modules.py",
+        "count": 19
+      },
+      {
+        "path": "test/unit/test_spiderfeet.py",
+        "count": 86
+      },
+      {
+        "path": "test/unit/test_spiderfeetcli.py",
+        "count": 50
+      },
+      {
+        "path": "test/unit/test_spiderfeetscanner.py",
+        "count": 32
+      },
+      {
+        "path": "test/unit/test_spiderfeetwebui.py",
+        "count": 65
+      },
+      {
+        "path": "test/unit/modules/test_sfp_abstractapi.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_abusech.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_abuseipdb.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_abusix.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_accounts.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_adblock.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_adguard_dns.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ahmia.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_alienvault.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_alienvaultiprep.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_apple_itunes.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_archiveorg.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_arin.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_azureblobstorage.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_base64.py",
+        "count": 11
+      },
+      {
+        "path": "test/unit/modules/test_sfp_bgpview.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_binaryedge.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_bingsearch.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_bingsharedip.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_binstring.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_bitcoin.py",
+        "count": 13
+      },
+      {
+        "path": "test/unit/modules/test_sfp_bitcoinabuse.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_bitcoinwhoswho.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_blockchain.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_blocklistde.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_botscout.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_botvrij.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_builtwith.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_c99.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_callername.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_censys.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_certspotter.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_cinsscore.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_circllu.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_citadel.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_cleanbrowsing.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_cleantalk.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_clearbit.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_cloudflaredns.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_coinblocker.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_commoncrawl.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_comodo.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_company.py",
+        "count": 22
+      },
+      {
+        "path": "test/unit/modules/test_sfp_cookie.py",
+        "count": 12
+      },
+      {
+        "path": "test/unit/modules/test_sfp_countryname.py",
+        "count": 16
+      },
+      {
+        "path": "test/unit/modules/test_sfp_creditcard.py",
+        "count": 10
+      },
+      {
+        "path": "test/unit/modules/test_sfp_crobat_api.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_crossref.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_crt.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_crxcavator.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_customfeed.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_cybercrimetracker.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_debounce.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dehashed.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_digitaloceanspace.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsbrute.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnscommonsrv.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsdb.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsdumpster.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsgrep.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsneighbor.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsraw.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsresolve.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnszonexfer.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dns_for_family.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dronebl.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_duckduckgo.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_email.py",
+        "count": 8
+      },
+      {
+        "path": "test/unit/modules/test_sfp_emailcrawlr.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_emailformat.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_emailrep.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_emergingthreats.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_errors.py",
+        "count": 20
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ethereum.py",
+        "count": 10
+      },
+      {
+        "path": "test/unit/modules/test_sfp_etherscan.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_filemeta.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_flickr.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_focsec.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_fortinet.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_fraudguard.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_fsecure_riddler.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_fullcontact.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_fullhunt.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_github.py",
+        "count": 8
+      },
+      {
+        "path": "test/unit/modules/test_sfp_gleif.py",
+        "count": 8
+      },
+      {
+        "path": "test/unit/modules/test_sfp_googlemaps.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_googleobjectstorage.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_googlesafebrowsing.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_googlesearch.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_google_tag_manager.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_gravatar.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_grayhatwarfare.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_greensnow.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_grep_app.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_greynoise.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_h1nobbdde.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_hackertarget.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_hashes.py",
+        "count": 10
+      },
+      {
+        "path": "test/unit/modules/test_sfp_haveibeenpwned.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_honeypot.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_hosting.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_hostio.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_hunter.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_hybrid_analysis.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_iban.py",
+        "count": 10
+      },
+      {
+        "path": "test/unit/modules/test_sfp_iknowwhatyoudownload.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_intelx.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_intfiles.py",
+        "count": 12
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ipapico.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ipapicom.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ipinfo.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ipqualityscore.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ipregistry.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ipstack.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_isc.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_jsonwhoiscom.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_junkfiles.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_keybase.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_koodous.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_leakix.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_maltiverse.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_malwarepatrol.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_metadefender.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_mnemonic.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_multiproxy.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_myspace.py",
+        "count": 8
+      },
+      {
+        "path": "test/unit/modules/test_sfp_nameapi.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_names.py",
+        "count": 16
+      },
+      {
+        "path": "test/unit/modules/test_sfp_networksdb.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_neutrinoapi.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_numverify.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_onioncity.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_onionsearchengine.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_onyphe.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_openbugbounty.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_opencorporates.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_opendns.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_opennic.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_openphish.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_openstreetmap.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_pageinfo.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_pastebin.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_pgp.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_phishstats.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_phishtank.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_phone.py",
+        "count": 16
+      },
+      {
+        "path": "test/unit/modules/test_sfp_portscan_tcp.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_projectdiscovery.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_psbdmp.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_pulsedive.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_punkspider.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_quad9.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_reversewhois.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ripe.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_riskiq.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_robtex.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_s3bucket.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_searchcode.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_securitytrails.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_seon.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_shodan.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_similar.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_skymem.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_slideshare.py",
+        "count": 8
+      },
+      {
+        "path": "test/unit/modules/test_sfp_snov.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_social.py",
+        "count": 12
+      },
+      {
+        "path": "test/unit/modules/test_sfp_sociallinks.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_socialprofiles.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_sorbs.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_spamcop.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_spamhaus.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_spider.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_spur.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_spyonweb.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_sslcert.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_stackoverflow.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_stevenblack_hosts.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_strangeheaders.py",
+        "count": 12
+      },
+      {
+        "path": "test/unit/modules/test_sfp_subdomain_takeover.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_sublist3r.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_surbl.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_talosintel.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_template.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_textmagic.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_threatcrowd.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_threatfox.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_threatminer.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tldsearch.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_cmseek.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_dnstwist.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_nbtscan.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_nmap.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_nuclei.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_onesixtyone.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_retirejs.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_snallygaster.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_testsslsh.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_trufflehog.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_wafw00f.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_wappalyzer.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_whatweb.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_torch.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_torexits.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_trashpanda.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_trumail.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_twilio.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_twitter.py",
+        "count": 8
+      },
+      {
+        "path": "test/unit/modules/test_sfp_uceprotect.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_urlscan.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_venmo.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_viewdns.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_virustotal.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_voipbl.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_vxvault.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_webanalytics.py",
+        "count": 20
+      },
+      {
+        "path": "test/unit/modules/test_sfp_webframework.py",
+        "count": 16
+      },
+      {
+        "path": "test/unit/modules/test_sfp_webserver.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_whatcms.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_whois.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_whoisology.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_whoxy.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_wigle.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_wikileaks.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_wikipediaedits.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_xforce.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_yandexdns.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_zetalytics.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_zonefiles.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_zoneh.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp__stor_db.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp__stor_stdout.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeetcorrelator.py",
+        "count": 34
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeetdb.py",
+        "count": 129
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeetevent.py",
+        "count": 40
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeethelpers.py",
+        "count": 88
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeetplugin.py",
+        "count": 56
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeettarget.py",
+        "count": 39
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeetthreadpool.py",
+        "count": 6
+      }
+    ],
+    "SpiderFoot": [
+      {
+        "path": ".gitignore",
+        "count": 1
+      },
+      {
+        "path": "AGENTS.md",
+        "count": 1
+      },
+      {
+        "path": "Dockerfile",
+        "count": 2
+      },
+      {
+        "path": "Dockerfile.full",
+        "count": 3
+      },
+      {
+        "path": "README.md",
+        "count": 15
+      },
+      {
+        "path": "sf.py",
+        "count": 37
+      },
+      {
+        "path": "sfcli.py",
+        "count": 26
+      },
+      {
+        "path": "sflib.py",
+        "count": 18
+      },
+      {
+        "path": "sfscan.py",
+        "count": 28
+      },
+      {
+        "path": "sfwebui.py",
+        "count": 139
+      },
+      {
+        "path": "THANKYOU",
+        "count": 1
+      },
+      {
+        "path": "VERSION",
+        "count": 1
+      },
+      {
+        "path": ".docs/cli_reference.md",
+        "count": 14
+      },
+      {
+        "path": ".docs/grouping_of_osint_services.md",
+        "count": 7
+      },
+      {
+        "path": ".docs/non_osint_modules.md",
+        "count": 8
+      },
+      {
+        "path": ".docs/quarantine_modules.md",
+        "count": 69
+      },
+      {
+        "path": ".docs/analysis/analyse_modules.py",
+        "count": 3
+      },
+      {
+        "path": ".docs/analysis/apply_path_renames.py",
+        "count": 1
+      },
+      {
+        "path": ".docs/analysis/force_graph_colour_scheme.md",
+        "count": 3
+      },
+      {
+        "path": ".docs/analysis/generate_non_osint_doc.py",
+        "count": 9
+      },
+      {
+        "path": ".docs/analysis/inventory_spiderfeet_references.py",
+        "count": 5
+      },
+      {
+        "path": ".docs/analysis/nuggets.json",
+        "count": 1
+      },
+      {
+        "path": ".docs/analysis/osint_services.json",
+        "count": 2
+      },
+      {
+        "path": ".docs/analysis/spiderfeet_reference_inventory.md",
+        "count": 2
+      },
+      {
+        "path": ".github/ISSUE_TEMPLATE.md",
+        "count": 1
+      },
+      {
+        "path": ".governance/project/GIT_WORKFLOW.md",
+        "count": 1
+      },
+      {
+        "path": ".governance/project/PROJECT_INTENT.md",
+        "count": 2
+      },
+      {
+        "path": ".governance/project/bootstrap/ANALYSIS.md",
+        "count": 2
+      },
+      {
+        "path": ".governance/project/bootstrap/history/2026-05-23-init/analysis.md",
+        "count": 2
+      },
+      {
+        "path": ".governance/project/rules/proj-01-spiderfeet-python-stack.mdc",
+        "count": 1
+      },
+      {
+        "path": ".governance/project/rules/proj-03-spiderfeet-stages.mdc",
+        "count": 1
+      },
+      {
+        "path": ".governance/specs/SPEC-001-governance-bootstrap.md",
+        "count": 2
+      },
+      {
+        "path": ".governance/specs/SPEC-002-first-four-stages.md",
+        "count": 1
+      },
+      {
+        "path": ".seed/01_documenting_data_sources.md",
+        "count": 1
+      },
+      {
+        "path": ".seed/02_stage_by_stage_reengineer.md",
+        "count": 9
+      },
+      {
+        "path": ".seed/planning/create_first_four_github_issues.py",
+        "count": 2
+      },
+      {
+        "path": ".seed/planning/FIRST_FOUR_STAGES_EPICS_AND_ISSUES.md",
+        "count": 4
+      },
+      {
+        "path": "correlations/README.md",
+        "count": 17
+      },
+      {
+        "path": "correlations/template.yaml",
+        "count": 2
+      },
+      {
+        "path": "docs/conf.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_abstractapi.py",
+        "count": 13
+      },
+      {
+        "path": "modules/sfp_abusech.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_abuseipdb.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_abusix.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_accounts.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_adblock.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_adguard_dns.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_ahmia.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_alienvault.py",
+        "count": 15
+      },
+      {
+        "path": "modules/sfp_alienvaultiprep.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_apple_itunes.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_archiveorg.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_arin.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_azureblobstorage.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_base64.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_bgpview.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_binaryedge.py",
+        "count": 13
+      },
+      {
+        "path": "modules/sfp_bingsearch.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_bingsharedip.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_binstring.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_bitcoin.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_bitcoinabuse.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_bitcoinwhoswho.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_blockchain.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_blocklistde.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_botscout.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_botvrij.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_builtwith.py",
+        "count": 19
+      },
+      {
+        "path": "modules/sfp_c99.py",
+        "count": 22
+      },
+      {
+        "path": "modules/sfp_callername.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_censys.py",
+        "count": 18
+      },
+      {
+        "path": "modules/sfp_certspotter.py",
+        "count": 12
+      },
+      {
+        "path": "modules/sfp_cinsscore.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_circllu.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_citadel.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_cleanbrowsing.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_cleantalk.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_clearbit.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_cloudflaredns.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_coinblocker.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_commoncrawl.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_comodo.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_company.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_cookie.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_countryname.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_creditcard.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_crobat_api.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_crossref.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_crt.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_crxcavator.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_customfeed.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_cybercrimetracker.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_debounce.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_dehashed.py",
+        "count": 12
+      },
+      {
+        "path": "modules/sfp_digitaloceanspace.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_dnsbrute.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_dnscommonsrv.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_dnsdb.py",
+        "count": 17
+      },
+      {
+        "path": "modules/sfp_dnsdumpster.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_dnsgrep.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_dnsneighbor.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_dnsraw.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_dnsresolve.py",
+        "count": 17
+      },
+      {
+        "path": "modules/sfp_dnszonexfer.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_dns_for_family.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_dronebl.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_duckduckgo.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_email.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_emailcrawlr.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_emailformat.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_emailrep.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_emergingthreats.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_errors.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_ethereum.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_etherscan.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_filemeta.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_flickr.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_focsec.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_fortinet.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_fraudguard.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_fsecure_riddler.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_fullcontact.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_fullhunt.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_github.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_gleif.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_googlemaps.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_googleobjectstorage.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_googlesafebrowsing.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_googlesearch.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_google_tag_manager.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_gravatar.py",
+        "count": 15
+      },
+      {
+        "path": "modules/sfp_grayhatwarfare.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_greensnow.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_grep_app.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_greynoise.py",
+        "count": 15
+      },
+      {
+        "path": "modules/sfp_greynoise_community.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_h1nobbdde.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_hackertarget.py",
+        "count": 13
+      },
+      {
+        "path": "modules/sfp_hashes.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_haveibeenpwned.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_honeypot.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_hosting.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_hostio.py",
+        "count": 12
+      },
+      {
+        "path": "modules/sfp_hunter.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_hybrid_analysis.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_iban.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_iknowwhatyoudownload.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_intelx.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_intfiles.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_ipapico.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_ipapicom.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_ipinfo.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_ipqualityscore.py",
+        "count": 14
+      },
+      {
+        "path": "modules/sfp_ipregistry.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_ipstack.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_isc.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_jsonwhoiscom.py",
+        "count": 17
+      },
+      {
+        "path": "modules/sfp_junkfiles.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_keybase.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_koodous.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_leakix.py",
+        "count": 13
+      },
+      {
+        "path": "modules/sfp_maltiverse.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_malwarepatrol.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_metadefender.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_mnemonic.py",
+        "count": 12
+      },
+      {
+        "path": "modules/sfp_multiproxy.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_myspace.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_nameapi.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_names.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_networksdb.py",
+        "count": 16
+      },
+      {
+        "path": "modules/sfp_neutrinoapi.py",
+        "count": 16
+      },
+      {
+        "path": "modules/sfp_numverify.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_onioncity.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_onionsearchengine.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_onyphe.py",
+        "count": 17
+      },
+      {
+        "path": "modules/sfp_openbugbounty.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_opencorporates.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_opendns.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_opennic.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_openphish.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_openstreetmap.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_pageinfo.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_pastebin.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_pgp.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_phishstats.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_phishtank.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_phone.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_portscan_tcp.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_projectdiscovery.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_psbdmp.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_pulsedive.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_punkspider.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_quad9.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_reversewhois.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_ripe.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_riskiq.py",
+        "count": 13
+      },
+      {
+        "path": "modules/sfp_robtex.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_s3bucket.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_searchcode.py",
+        "count": 12
+      },
+      {
+        "path": "modules/sfp_securitytrails.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_seon.py",
+        "count": 31
+      },
+      {
+        "path": "modules/sfp_shodan.py",
+        "count": 18
+      },
+      {
+        "path": "modules/sfp_similar.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_skymem.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_slideshare.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_snov.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_social.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_sociallinks.py",
+        "count": 20
+      },
+      {
+        "path": "modules/sfp_socialprofiles.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_sorbs.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_spamcop.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_spamhaus.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_spider.py",
+        "count": 16
+      },
+      {
+        "path": "modules/sfp_spur.py",
+        "count": 13
+      },
+      {
+        "path": "modules/sfp_spyonweb.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_sslcert.py",
+        "count": 15
+      },
+      {
+        "path": "modules/sfp_stackoverflow.py",
+        "count": 14
+      },
+      {
+        "path": "modules/sfp_stevenblack_hosts.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_strangeheaders.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_subdomain_takeover.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_sublist3r.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_surbl.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_talosintel.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_template.py",
+        "count": 16
+      },
+      {
+        "path": "modules/sfp_textmagic.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_threatcrowd.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_threatfox.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_threatjammer.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_threatminer.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_tldsearch.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_tool_cmseek.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_tool_dnstwist.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_tool_nbtscan.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_tool_nmap.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_tool_nuclei.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_tool_onesixtyone.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_tool_retirejs.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_tool_snallygaster.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_tool_testsslsh.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_tool_trufflehog.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_tool_wafw00f.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_tool_wappalyzer.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_tool_whatweb.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_torch.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_torexits.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_trashpanda.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_trumail.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_twilio.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_twitter.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_uceprotect.py",
+        "count": 8
+      },
+      {
+        "path": "modules/sfp_urlscan.py",
+        "count": 11
+      },
+      {
+        "path": "modules/sfp_venmo.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_viewdns.py",
+        "count": 7
+      },
+      {
+        "path": "modules/sfp_virustotal.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_voipbl.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_vxvault.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_webanalytics.py",
+        "count": 35
+      },
+      {
+        "path": "modules/sfp_webframework.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_webserver.py",
+        "count": 10
+      },
+      {
+        "path": "modules/sfp_whatcms.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_whois.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_whoisology.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_whoxy.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_wigle.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_wikileaks.py",
+        "count": 9
+      },
+      {
+        "path": "modules/sfp_wikipediaedits.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_xforce.py",
+        "count": 15
+      },
+      {
+        "path": "modules/sfp_yandexdns.py",
+        "count": 6
+      },
+      {
+        "path": "modules/sfp_zetalytics.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp_zonefiles.py",
+        "count": 12
+      },
+      {
+        "path": "modules/sfp_zoneh.py",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp__stor_db.py",
+        "count": 5
+      },
+      {
+        "path": "modules/sfp__stor_stdout.py",
+        "count": 4
+      },
+      {
+        "path": "spiderfeet/correlation.py",
+        "count": 9
+      },
+      {
+        "path": "spiderfeet/db.py",
+        "count": 14
+      },
+      {
+        "path": "spiderfeet/event.py",
+        "count": 15
+      },
+      {
+        "path": "spiderfeet/helpers.py",
+        "count": 16
+      },
+      {
+        "path": "spiderfeet/logger.py",
+        "count": 9
+      },
+      {
+        "path": "spiderfeet/plugin.py",
+        "count": 27
+      },
+      {
+        "path": "spiderfeet/target.py",
+        "count": 4
+      },
+      {
+        "path": "spiderfeet/threadpool.py",
+        "count": 4
+      },
+      {
+        "path": "spiderfeet/__init__.py",
+        "count": 7
+      },
+      {
+        "path": "spiderfeet/templates/FOOTER.tmpl",
+        "count": 12
+      },
+      {
+        "path": "spiderfeet/templates/HEADER.tmpl",
+        "count": 4
+      },
+      {
+        "path": "spiderfeet/templates/newscan.tmpl",
+        "count": 2
+      },
+      {
+        "path": "test/bandit",
+        "count": 1
+      },
+      {
+        "path": "test/conftest.py",
+        "count": 3
+      },
+      {
+        "path": "test/README.md",
+        "count": 4
+      },
+      {
+        "path": "test/run",
+        "count": 1
+      },
+      {
+        "path": "test/update-requirements",
+        "count": 1
+      },
+      {
+        "path": "test/acceptance/run",
+        "count": 1
+      },
+      {
+        "path": "test/integration/test_sf.py",
+        "count": 3
+      },
+      {
+        "path": "test/integration/test_sfwebui.py",
+        "count": 9
+      },
+      {
+        "path": "test/integration/modules/test_sfp_abstractapi.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_abusech.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_abuseipdb.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_abusix.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_accounts.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_adblock.py",
+        "count": 15
+      },
+      {
+        "path": "test/integration/modules/test_sfp_adguard_dns.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ahmia.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_alienvault.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_alienvaultiprep.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_apple_itunes.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_archiveorg.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_arin.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_azureblobstorage.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_bgpview.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_binaryedge.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_bingsearch.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_bingsharedip.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_bitcoinabuse.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_bitcoinwhoswho.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_blockchain.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_blocklistde.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_botscout.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_botvrij.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_builtwith.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_c99.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_callername.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_censys.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_certspotter.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_cinsscore.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_circllu.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_citadel.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_cleanbrowsing.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_cleantalk.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_clearbit.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_cloudflaredns.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_coinblocker.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_commoncrawl.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_comodo.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_crobat_api.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_crossref.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_crt.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_crxcavator.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_customfeed.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_cybercrimetracker.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_debounce.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dehashed.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_digitaloceanspace.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsbrute.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnscommonsrv.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsdb.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsdumpster.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsgrep.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsneighbor.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsraw.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnsresolve.py",
+        "count": 29
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dnszonexfer.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dns_for_family.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_dronebl.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_duckduckgo.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_email.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_emailcrawlr.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_emailformat.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_emailrep.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_emergingthreats.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_etherscan.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_filemeta.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_flickr.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_focsec.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_fortinet.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_fraudguard.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_fsecure_riddler.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_fullcontact.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_fullhunt.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_github.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_gleif.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_googlemaps.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_googleobjectstorage.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_googlesafebrowsing.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_googlesearch.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_google_tag_manager.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_gravatar.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_grayhatwarfare.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_greensnow.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_grep_app.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_greynoise.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_h1nobbdde.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_hackertarget.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_haveibeenpwned.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_honeypot.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_hosting.py",
+        "count": 9
+      },
+      {
+        "path": "test/integration/modules/test_sfp_hostio.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_hunter.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_hybrid_analysis.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_iknowwhatyoudownload.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_intelx.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ipapico.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ipapicom.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ipinfo.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ipqualityscore.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ipregistry.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ipstack.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_isc.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_jsonwhoiscom.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_junkfiles.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_keybase.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_koodous.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_leakix.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_maltiverse.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_malwarepatrol.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_metadefender.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_mnemonic.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_multiproxy.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_myspace.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_nameapi.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_networksdb.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_neutrinoapi.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_numverify.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_onioncity.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_onionsearchengine.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_onyphe.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_openbugbounty.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_opencorporates.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_opendns.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_opennic.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_openphish.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_openstreetmap.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_pageinfo.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_pastebin.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_pgp.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_phishstats.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_phishtank.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_portscan_tcp.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_projectdiscovery.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_psbdmp.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_pulsedive.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_punkspider.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_quad9.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_reversewhois.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_ripe.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_riskiq.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_robtex.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_s3bucket.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_searchcode.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_securitytrails.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_seon.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_shodan.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_similar.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_skymem.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_slideshare.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_snov.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_sociallinks.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_socialprofiles.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_sorbs.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_spamcop.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_spamhaus.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_spider.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_spur.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_spyonweb.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_sslcert.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_stackoverflow.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_stevenblack_hosts.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_subdomain_takeover.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_sublist3r.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_surbl.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_talosintel.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_textmagic.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_threatcrowd.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_threatfox.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_threatminer.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_tldsearch.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_torch.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_torexits.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_trashpanda.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_trumail.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_twilio.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_twitter.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_uceprotect.py",
+        "count": 7
+      },
+      {
+        "path": "test/integration/modules/test_sfp_urlscan.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_venmo.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_viewdns.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_virustotal.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_voipbl.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_vxvault.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_webserver.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_whatcms.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_whois.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_whoisology.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_whoxy.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_wigle.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_wikileaks.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_wikipediaedits.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_xforce.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_yandexdns.py",
+        "count": 11
+      },
+      {
+        "path": "test/integration/modules/test_sfp_zetalytics.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp_zoneh.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp__stor_db.py",
+        "count": 6
+      },
+      {
+        "path": "test/integration/modules/test_sfp__stor_stdout.py",
+        "count": 6
+      },
+      {
+        "path": "test/unit/test_modules.py",
+        "count": 19
+      },
+      {
+        "path": "test/unit/test_spiderfeet.py",
+        "count": 85
+      },
+      {
+        "path": "test/unit/test_spiderfeetcli.py",
+        "count": 50
+      },
+      {
+        "path": "test/unit/test_spiderfeetscanner.py",
+        "count": 32
+      },
+      {
+        "path": "test/unit/test_spiderfeetwebui.py",
+        "count": 65
+      },
+      {
+        "path": "test/unit/modules/test_sfp_abstractapi.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_abusech.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_abuseipdb.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_abusix.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_accounts.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_adblock.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_adguard_dns.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ahmia.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_alienvault.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_alienvaultiprep.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_apple_itunes.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_archiveorg.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_arin.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_azureblobstorage.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_base64.py",
+        "count": 11
+      },
+      {
+        "path": "test/unit/modules/test_sfp_bgpview.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_binaryedge.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_bingsearch.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_bingsharedip.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_binstring.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_bitcoin.py",
+        "count": 13
+      },
+      {
+        "path": "test/unit/modules/test_sfp_bitcoinabuse.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_bitcoinwhoswho.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_blockchain.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_blocklistde.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_botscout.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_botvrij.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_builtwith.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_c99.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_callername.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_censys.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_certspotter.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_cinsscore.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_circllu.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_citadel.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_cleanbrowsing.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_cleantalk.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_clearbit.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_cloudflaredns.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_coinblocker.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_commoncrawl.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_comodo.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_company.py",
+        "count": 22
+      },
+      {
+        "path": "test/unit/modules/test_sfp_cookie.py",
+        "count": 12
+      },
+      {
+        "path": "test/unit/modules/test_sfp_countryname.py",
+        "count": 16
+      },
+      {
+        "path": "test/unit/modules/test_sfp_creditcard.py",
+        "count": 10
+      },
+      {
+        "path": "test/unit/modules/test_sfp_crobat_api.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_crossref.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_crt.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_crxcavator.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_customfeed.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_cybercrimetracker.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_debounce.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dehashed.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_digitaloceanspace.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsbrute.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnscommonsrv.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsdb.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsdumpster.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsgrep.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsneighbor.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsraw.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnsresolve.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dnszonexfer.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dns_for_family.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_dronebl.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_duckduckgo.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_email.py",
+        "count": 8
+      },
+      {
+        "path": "test/unit/modules/test_sfp_emailcrawlr.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_emailformat.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_emailrep.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_emergingthreats.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_errors.py",
+        "count": 20
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ethereum.py",
+        "count": 10
+      },
+      {
+        "path": "test/unit/modules/test_sfp_etherscan.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_filemeta.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_flickr.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_focsec.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_fortinet.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_fraudguard.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_fsecure_riddler.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_fullcontact.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_fullhunt.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_github.py",
+        "count": 8
+      },
+      {
+        "path": "test/unit/modules/test_sfp_gleif.py",
+        "count": 8
+      },
+      {
+        "path": "test/unit/modules/test_sfp_googlemaps.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_googleobjectstorage.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_googlesafebrowsing.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_googlesearch.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_google_tag_manager.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_gravatar.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_grayhatwarfare.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_greensnow.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_grep_app.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_greynoise.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_h1nobbdde.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_hackertarget.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_hashes.py",
+        "count": 10
+      },
+      {
+        "path": "test/unit/modules/test_sfp_haveibeenpwned.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_honeypot.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_hosting.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_hostio.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_hunter.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_hybrid_analysis.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_iban.py",
+        "count": 10
+      },
+      {
+        "path": "test/unit/modules/test_sfp_iknowwhatyoudownload.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_intelx.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_intfiles.py",
+        "count": 12
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ipapico.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ipapicom.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ipinfo.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ipqualityscore.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ipregistry.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ipstack.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_isc.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_jsonwhoiscom.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_junkfiles.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_keybase.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_koodous.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_leakix.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_maltiverse.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_malwarepatrol.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_metadefender.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_mnemonic.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_multiproxy.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_myspace.py",
+        "count": 8
+      },
+      {
+        "path": "test/unit/modules/test_sfp_nameapi.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_names.py",
+        "count": 16
+      },
+      {
+        "path": "test/unit/modules/test_sfp_networksdb.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_neutrinoapi.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_numverify.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_onioncity.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_onionsearchengine.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_onyphe.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_openbugbounty.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_opencorporates.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_opendns.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_opennic.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_openphish.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_openstreetmap.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_pageinfo.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_pastebin.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_pgp.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_phishstats.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_phishtank.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_phone.py",
+        "count": 16
+      },
+      {
+        "path": "test/unit/modules/test_sfp_portscan_tcp.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_projectdiscovery.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_psbdmp.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_pulsedive.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_punkspider.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_quad9.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_reversewhois.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_ripe.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_riskiq.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_robtex.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_s3bucket.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_searchcode.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_securitytrails.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_seon.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_shodan.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_similar.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_skymem.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_slideshare.py",
+        "count": 8
+      },
+      {
+        "path": "test/unit/modules/test_sfp_snov.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_social.py",
+        "count": 10
+      },
+      {
+        "path": "test/unit/modules/test_sfp_sociallinks.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_socialprofiles.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_sorbs.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_spamcop.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_spamhaus.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_spider.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_spur.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_spyonweb.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_sslcert.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_stackoverflow.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_stevenblack_hosts.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_strangeheaders.py",
+        "count": 12
+      },
+      {
+        "path": "test/unit/modules/test_sfp_subdomain_takeover.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_sublist3r.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_surbl.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_talosintel.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_template.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_textmagic.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_threatcrowd.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_threatfox.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_threatminer.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tldsearch.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_cmseek.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_dnstwist.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_nbtscan.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_nmap.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_nuclei.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_onesixtyone.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_retirejs.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_snallygaster.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_testsslsh.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_trufflehog.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_wafw00f.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_wappalyzer.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_tool_whatweb.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_torch.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_torexits.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_trashpanda.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_trumail.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_twilio.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_twitter.py",
+        "count": 8
+      },
+      {
+        "path": "test/unit/modules/test_sfp_uceprotect.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_urlscan.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_venmo.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_viewdns.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_virustotal.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_voipbl.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_vxvault.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_webanalytics.py",
+        "count": 20
+      },
+      {
+        "path": "test/unit/modules/test_sfp_webframework.py",
+        "count": 16
+      },
+      {
+        "path": "test/unit/modules/test_sfp_webserver.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_whatcms.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_whois.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_whoisology.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_whoxy.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_wigle.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_wikileaks.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_wikipediaedits.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_xforce.py",
+        "count": 9
+      },
+      {
+        "path": "test/unit/modules/test_sfp_yandexdns.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp_zetalytics.py",
+        "count": 7
+      },
+      {
+        "path": "test/unit/modules/test_sfp_zonefiles.py",
+        "count": 4
+      },
+      {
+        "path": "test/unit/modules/test_sfp_zoneh.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp__stor_db.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/modules/test_sfp__stor_stdout.py",
+        "count": 2
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeetcorrelator.py",
+        "count": 34
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeetdb.py",
+        "count": 129
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeetevent.py",
+        "count": 40
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeethelpers.py",
+        "count": 81
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeetplugin.py",
+        "count": 56
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeettarget.py",
+        "count": 39
+      },
+      {
+        "path": "test/unit/spiderfeet/test_spiderfeetthreadpool.py",
+        "count": 6
+      }
+    ],
+    "Spiderfoot": [
+      {
+        "path": "docker-compose.yml",
+        "count": 1
+      },
+      {
+        "path": "Dockerfile",
+        "count": 1
+      },
+      {
+        "path": "Dockerfile.full",
+        "count": 1
+      },
+      {
+        "path": ".docs/analysis/inventory_spiderfeet_references.py",
+        "count": 3
+      },
+      {
+        "path": ".docs/analysis/spiderfeet_reference_inventory.md",
+        "count": 1
+      },
+      {
+        "path": ".seed/01_documenting_data_sources.md",
+        "count": 2
+      },
+      {
+        "path": ".seed/02_stage_by_stage_reengineer.md",
+        "count": 4
+      },
+      {
+        "path": "modules/sfp_debounce.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_dnsdumpster.py",
+        "count": 2
+      },
+      {
+        "path": "modules/sfp_ipqualityscore.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_keybase.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_maltiverse.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_nameapi.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_phishstats.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_seon.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_snov.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_sociallinks.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_spur.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_sublist3r.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_textmagic.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_trashpanda.py",
+        "count": 1
+      },
+      {
+        "path": "modules/sfp_trumail.py",
+        "count": 1
+      }
+    ],
+    "SPIDERFOOT": [
+      {
+        "path": "Dockerfile",
+        "count": 9
+      },
+      {
+        "path": "Dockerfile.full",
+        "count": 9
+      },
+      {
+        "path": ".docs/cli_reference.md",
+        "count": 4
+      },
+      {
+        "path": ".docs/analysis/inventory_spiderfeet_references.py",
+        "count": 3
+      },
+      {
+        "path": ".docs/analysis/spiderfeet_reference_inventory.md",
+        "count": 1
+      },
+      {
+        "path": "spiderfeet/helpers.py",
+        "count": 3
+      }
+    ]
+  }
+}

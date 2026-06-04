@@ -70,7 +70,7 @@ usage: sf.py [-h] [-d] [-l IP:port] [-m mod1,mod2,...] [-M] [-C scanID]
 |------|-------------|
 | `-l IP:port` | Bind address for the web UI (e.g. `127.0.0.1:5001`, `0.0.0.0:5001`) |
 
-On start, the process prints the URL to open in a browser. If TLS certificate files exist under the data directory (`spiderfoot.crt`, `spiderfoot.key`), HTTPS is enabled automatically.
+On start, the process prints the URL to open in a browser. If TLS certificate files exist under the data directory (`spiderfeet.crt`, `spiderfeet.key`), HTTPS is enabled automatically.
 
 ### Scan target and module selection
 
@@ -118,7 +118,7 @@ These flags configure the internal `sfp__stor_stdout` module, which prints event
 
 ## Scan targets
 
-SpiderFoot infers the target **type** from the `-s` string using regex rules in [`spiderfoot/helpers.py`](../spiderfoot/helpers.py) (`targetTypeFromString`). Supported types:
+SpiderFoot infers the target **type** from the `-s` string using regex rules in [`spiderfeet/helpers.py`](../spiderfeet/helpers.py) (`targetTypeFromString`). Supported types:
 
 | Type | Example input | Notes |
 |------|---------------|-------|
@@ -276,14 +276,14 @@ poetry run python sf.py -d -max-threads 10 -s example.com -u footprint
 
 ## Data, configuration, and security files
 
-SpiderFoot stores runtime data under a configurable directory (default: `~/.spiderfoot/`):
+SpiderFoot stores runtime data under a configurable directory (default: `~/.spiderfeet/`):
 
 | Item | Location | Purpose |
 |------|----------|---------|
-| Database | `$SPIDERFOOT_DATA/spiderfoot.db` or `~/.spiderfoot/spiderfoot.db` | Scan results, config |
-| Passwords | `~/.spiderfoot/passwd` | HTTP digest auth for web UI (`username:password` per line) |
-| TLS | `~/.spiderfoot/spiderfoot.crt`, `spiderfoot.key` | Optional HTTPS for web UI |
-| Cache | `$SPIDERFOOT_CACHE` or `~/.spiderfoot/cache` | Cached downloads |
+| Database | `$SPIDERFOOT_DATA/spiderfeet.db` or `~/.spiderfeet/spiderfeet.db` | Scan results, config |
+| Passwords | `~/.spiderfeet/passwd` | HTTP digest auth for web UI (`username:password` per line) |
+| TLS | `~/.spiderfeet/spiderfeet.crt`, `spiderfeet.key` | Optional HTTPS for web UI |
+| Cache | `$SPIDERFOOT_CACHE` or `~/.spiderfeet/cache` | Cached downloads |
 
 Override with environment variable:
 
@@ -292,7 +292,7 @@ export SPIDERFOOT_DATA=/path/to/spiderfoot-data
 export SPIDERFOOT_CACHE=/path/to/cache
 ```
 
-**Legacy paths:** `sf.py` refuses to start if `spiderfoot.db` or `passwd` exist in the **application directory** (project root); move them to `~/.spiderfoot/`.
+**Legacy paths:** `sf.py` refuses to start if `spiderfeet.db` or `passwd` exist in the **application directory** (project root); move them to `~/.spiderfeet/`.
 
 **Global scan options** (defaults in `sf.py`, overridable per module / via UI) include:
 
@@ -531,7 +531,7 @@ Module metadata (`flags`, `useCases`, `categories`, API requirements) is defined
 
 - Project README: [`README.md`](../README.md)
 - Correlation rules: [`correlations/README.md`](../correlations/README.md)
-- Upstream documentation: https://www.spiderfoot.net/documentation
+- Upstream documentation: https://www.spiderfeet.net/documentation
 - Tests: [`test/README.md`](../test/README.md)
 
 ---

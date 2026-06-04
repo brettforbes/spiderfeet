@@ -3,7 +3,7 @@ import unittest
 
 from modules.sfp_intfiles import sfp_intfiles
 from sflib import SpiderFoot
-from spiderfoot import SpiderFootEvent, SpiderFootTarget
+from spiderfeet import SpiderFootEvent, SpiderFootTarget
 
 
 @pytest.mark.usefixtures
@@ -32,7 +32,7 @@ class TestModuleIntfiles(unittest.TestCase):
         module = sfp_intfiles()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)
@@ -42,7 +42,7 @@ class TestModuleIntfiles(unittest.TestCase):
             if str(event.eventType) != expected:
                 raise Exception(f"{event.eventType} != {expected}")
 
-            expected = 'https://spiderfoot.net/example.zip'
+            expected = 'https://spiderfeet.net/example.zip'
             if str(event.data) != expected:
                 raise Exception(f"{event.data} != {expected}")
 
@@ -57,7 +57,7 @@ class TestModuleIntfiles(unittest.TestCase):
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'LINKED_URL_INTERNAL'
-        event_data = 'https://spiderfoot.net/example.zip'
+        event_data = 'https://spiderfeet.net/example.zip'
         event_module = 'example module'
         source_event = evt
 
@@ -74,7 +74,7 @@ class TestModuleIntfiles(unittest.TestCase):
         module = sfp_intfiles()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)
@@ -91,7 +91,7 @@ class TestModuleIntfiles(unittest.TestCase):
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'LINKED_URL_INTERNAL'
-        event_data = 'https://spiderfoot.net/example'
+        event_data = 'https://spiderfeet.net/example'
         event_module = 'example module'
         source_event = evt
 

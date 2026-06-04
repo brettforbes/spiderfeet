@@ -3,7 +3,7 @@ import unittest
 
 from modules.sfp_email import sfp_email
 from sflib import SpiderFoot
-from spiderfoot import SpiderFootEvent, SpiderFootTarget
+from spiderfeet import SpiderFootEvent, SpiderFootTarget
 
 
 @pytest.mark.usefixtures
@@ -33,7 +33,7 @@ class TestModuleEmail(unittest.TestCase):
         module = sfp_email()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)
@@ -43,7 +43,7 @@ class TestModuleEmail(unittest.TestCase):
             if str(event.eventType) != expected:
                 raise Exception(f"{event.eventType} != {expected}")
 
-            expected = 'firstname.lastname@spiderfoot.net'
+            expected = 'firstname.lastname@spiderfeet.net'
             if str(event.data) != expected:
                 raise Exception(f"{event.data} != {expected}")
 
@@ -58,7 +58,7 @@ class TestModuleEmail(unittest.TestCase):
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
 
         event_type = 'TARGET_WEB_CONTENT'
-        event_data = '<p>sample data firstname.lastname@spiderfoot.net sample data.</p>'
+        event_data = '<p>sample data firstname.lastname@spiderfeet.net sample data.</p>'
         event_module = 'example module'
         source_event = evt
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)

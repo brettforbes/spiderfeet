@@ -12,7 +12,7 @@
 #
 # import os
 # import sys
-# sys.path.insert(0, '/root/Desktop/spiderfoot/spiderfoot')
+# sys.path.insert(0, '/root/Desktop/spiderfeet/spiderfoot')
 
 
 # -- Project information -----------------------------------------------------

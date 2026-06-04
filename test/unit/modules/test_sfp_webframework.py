@@ -3,7 +3,7 @@ import unittest
 
 from modules.sfp_webframework import sfp_webframework
 from sflib import SpiderFoot
-from spiderfoot import SpiderFootEvent, SpiderFootTarget
+from spiderfeet import SpiderFootEvent, SpiderFootTarget
 
 
 @pytest.mark.usefixtures
@@ -32,7 +32,7 @@ class TestModuleWebFramework(unittest.TestCase):
         module = sfp_webframework()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)
@@ -61,7 +61,7 @@ class TestModuleWebFramework(unittest.TestCase):
         event_module = 'sfp_spider'
         source_event = evt
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
-        evt.actualSource = "https://spiderfoot.net/"
+        evt.actualSource = "https://spiderfeet.net/"
 
         with self.assertRaises(Exception) as cm:
             module.handleEvent(evt)
@@ -74,7 +74,7 @@ class TestModuleWebFramework(unittest.TestCase):
         module = sfp_webframework()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)
@@ -95,7 +95,7 @@ class TestModuleWebFramework(unittest.TestCase):
         event_module = 'example module'
         source_event = evt
         evt = SpiderFootEvent(event_type, event_data, event_module, source_event)
-        evt.actualSource = "https://spiderfoot.net/"
+        evt.actualSource = "https://spiderfeet.net/"
 
         result = module.handleEvent(evt)
 
@@ -107,7 +107,7 @@ class TestModuleWebFramework(unittest.TestCase):
         module = sfp_webframework()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)

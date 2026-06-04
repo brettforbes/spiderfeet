@@ -9,7 +9,7 @@
 # Copyright:   (c) Steve Micallef 2013
 # Licence:     MIT
 # -------------------------------------------------------------------------------
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFootEvent, SpiderFootPlugin
 
 
 class sfp_bingsearch(SpiderFootPlugin):

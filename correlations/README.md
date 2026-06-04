@@ -74,7 +74,7 @@ sfp_portscan_tcp    Open TCP Port Banner    SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu
 ```
 We can see above that a port was found to be open by the `sfp_portscan_tcp` module, and it happens to include a version. The correlation rule `open_port_version` picked this up and reported it. This is also visible in the web interface:
 
-<img src="https://www.spiderfoot.net/wp-content/uploads/2022/04/sf4correlations.png" />
+<img src="https://www.spiderfeet.net/wp-content/uploads/2022/04/sf4correlations.png" />
 
 **NOTE:** Rules will only succeed if relevant data exists in your scan results in the first place. In other words, correlation rules analyze scan data, they don't collect data from targets.
 
@@ -191,4 +191,4 @@ If we were to look at `This is some web content: foo` in our rule, here are the 
 
 Notice how the `entity.type` and `entity.data` fields for "This is some web content: foo" is **not** the `LINKED_URL_INTERNAL` data element, but actually the `bar` `INTERNET_NAME` data element. This is because an `INTERNET_NAME` is an entity, but a `LINKED_URL_INTERNAL` is not.
 
-You can look in `spiderfoot/db.py` to see which data types are entities and which are not.
+You can look in `spiderfeet/db.py` to see which data types are entities and which are not.

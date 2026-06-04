@@ -3,7 +3,7 @@ import unittest
 
 from modules.sfp_opendns import sfp_opendns
 from sflib import SpiderFoot
-from spiderfoot import SpiderFootEvent, SpiderFootTarget
+from spiderfeet import SpiderFootEvent, SpiderFootTarget
 
 
 @pytest.mark.usefixtures
@@ -15,7 +15,7 @@ class TestModuleIntegrationOpendns(unittest.TestCase):
         module = sfp_opendns()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)
@@ -47,7 +47,7 @@ class TestModuleIntegrationOpendns(unittest.TestCase):
         module = sfp_opendns()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)

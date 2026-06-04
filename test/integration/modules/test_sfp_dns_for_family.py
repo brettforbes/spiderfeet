@@ -3,7 +3,7 @@ import unittest
 
 from modules.sfp_dns_for_family import sfp_dns_for_family
 from sflib import SpiderFoot
-from spiderfoot import SpiderFootEvent, SpiderFootTarget
+from spiderfeet import SpiderFootEvent, SpiderFootTarget
 
 
 @pytest.mark.usefixtures
@@ -15,7 +15,7 @@ class TestModuleIntegrationDnsForFamily(unittest.TestCase):
         module = sfp_dns_for_family()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)
@@ -47,7 +47,7 @@ class TestModuleIntegrationDnsForFamily(unittest.TestCase):
         module = sfp_dns_for_family()
         module.setup(sf, dict())
 
-        target_value = 'spiderfoot.net'
+        target_value = 'spiderfeet.net'
         target_type = 'INTERNET_NAME'
         target = SpiderFootTarget(target_value, target_type)
         module.setTarget(target)

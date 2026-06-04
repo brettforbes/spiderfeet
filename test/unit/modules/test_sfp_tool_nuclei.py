@@ -3,7 +3,7 @@ import unittest
 
 from modules.sfp_tool_nuclei import sfp_tool_nuclei
 from sflib import SpiderFoot
-from spiderfoot import SpiderFootEvent, SpiderFootTarget
+from spiderfeet import SpiderFootEvent, SpiderFootTarget
 
 
 @pytest.mark.usefixtures

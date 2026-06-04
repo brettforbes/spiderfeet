@@ -15,7 +15,7 @@ import datetime
 import json
 import time
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFootEvent, SpiderFootPlugin
 
 
 class sfp_spyonweb(SpiderFootPlugin):

@@ -4,8 +4,8 @@ import pytest
 import unittest
 
 from sflib import SpiderFoot
-from spiderfoot import SpiderFootDb
-from spiderfoot import SpiderFootHelpers
+from spiderfeet import SpiderFootDb
+from spiderfeet import SpiderFootHelpers
 
 
 @pytest.mark.usefixtures

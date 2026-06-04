@@ -1,7 +1,7 @@
 #
 # Spiderfoot Dockerfile
 #
-# http://www.spiderfoot.net
+# http://www.spiderfeet.net
 #
 # Written by: Michael Pellon <m@pellon.io>
 # Updated by: Chandrapal <bnchandrapal@protonmail.com>
@@ -20,7 +20,7 @@
 #
 # Using SpiderFoot remote command line with web server
 #
-#   docker run --rm -it spiderfoot sfcli.py -s http://my.spiderfoot.host:5001/
+#   docker run --rm -it spiderfoot sfcli.py -s http://my.spiderfeet.host:5001/
 #
 # Running spiderfoot commands without web server (can optionally specify volume)
 #
@@ -54,8 +54,8 @@ WORKDIR /home/spiderfoot
 
 # Place database and logs outside installation directory
 ENV SPIDERFOOT_DATA /var/lib/spiderfoot
-ENV SPIDERFOOT_LOGS /var/lib/spiderfoot/log
-ENV SPIDERFOOT_CACHE /var/lib/spiderfoot/cache
+ENV SPIDERFOOT_LOGS /var/lib/spiderfeet/log
+ENV SPIDERFOOT_CACHE /var/lib/spiderfeet/cache
 
 # Run everything as one command so that only one layer is created
 RUN apk --update --no-cache add python3 musl openssl libxslt tinyxml libxml2 jpeg zlib openjpeg \
