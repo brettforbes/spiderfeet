@@ -1,0 +1,17 @@
+{
+  "name": "SpiderFeet Local",
+  "variables": {
+    "base_url": {
+      "value": "http://127.0.0.1:8000",
+      "type": "string",
+      "id": 0,
+      "isSecret": false
+    },
+    "scan_id": {
+      "value": "",
+      "type": "string",
+      "id": 1,
+      "isSecret": false
+    }
+  }
+}

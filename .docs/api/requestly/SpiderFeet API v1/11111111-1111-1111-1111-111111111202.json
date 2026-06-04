@@ -1,0 +1,20 @@
+{
+  "name": "05 GET scans (list)",
+  "request": {
+    "type": "http",
+    "url": "{{base_url}}/api/v1/scans",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": "pm.test('status 200', function () { pm.response.to.have.status(200); });"
+    },
+    "method": "GET",
+    "queryParams": [],
+    "headers": [],
+    "body": null,
+    "contentType": "text/plain",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "07 GET scan results",
+  "request": {
+    "type": "http",
+    "url": "{{base_url}}/api/v1/scans/{{scan_id}}/results",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": "pm.test('status 200', function () { pm.response.to.have.status(200); });\npm.test('results array', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+    },
+    "method": "GET",
+    "queryParams": [
+      {
+        "id": 1,
+        "key": "event_type",
+        "value": "ALL",
+        "isEnabled": true
+      },
+      {
+        "id": 2,
+        "key": "filter_fp",
+        "value": "false",
+        "isEnabled": true
+      }
+    ],
+    "headers": [],
+    "body": null,
+    "contentType": "text/plain",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  }
+}

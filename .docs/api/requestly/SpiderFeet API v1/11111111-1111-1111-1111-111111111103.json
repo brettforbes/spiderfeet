@@ -1,0 +1,20 @@
+{
+  "name": "03 GET event-types",
+  "request": {
+    "type": "http",
+    "url": "{{base_url}}/api/v1/event-types",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": "pm.test('status 200', function () { pm.response.to.have.status(200); });\npm.test('has INTERNET_NAME', function () {\n  var list = pm.response.json();\n  pm.expect(list.some(function (t) { return t.name === 'INTERNET_NAME'; })).to.be.true;\n});"
+    },
+    "method": "GET",
+    "queryParams": [],
+    "headers": [],
+    "body": null,
+    "contentType": "text/plain",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  }
+}

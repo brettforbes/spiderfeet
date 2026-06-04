@@ -1,0 +1,32 @@
+{
+  "name": "11 POST scan_ui invalid module (400)",
+  "request": {
+    "type": "http",
+    "url": "{{base_url}}/api/v1/scan_ui",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": "pm.test('status 400', function () { pm.response.to.have.status(400); });"
+    },
+    "method": "POST",
+    "queryParams": [],
+    "headers": [
+      {
+        "id": 1,
+        "key": "Content-Type",
+        "value": "application/json",
+        "isEnabled": true
+      }
+    ],
+    "body": "{\n  \"module_id\": \"sfp_not_a_real_module\",\n  \"consumed\": {\n    \"nugget_id\": \"INTERNET_NAME\",\n    \"nugget_data\": \"sbs.com.au\"\n  },\n  \"wait\": false\n}",
+    "bodyContainer": {
+      "text": "{\n  \"module_id\": \"sfp_not_a_real_module\",\n  \"consumed\": {\n    \"nugget_id\": \"INTERNET_NAME\",\n    \"nugget_data\": \"sbs.com.au\"\n  },\n  \"wait\": false\n}",
+      "form": [],
+      "multipartForm": []
+    },
+    "contentType": "application/json",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  }
+}

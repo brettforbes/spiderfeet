@@ -1,0 +1,32 @@
+{
+  "name": "09 POST scan_ui (wait FINISHED)",
+  "request": {
+    "type": "http",
+    "url": "{{base_url}}/api/v1/scan_ui",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": "pm.test('status 200', function () { pm.response.to.have.status(200); });\nvar j = pm.response.json();\npm.test('FINISHED', function () { pm.expect(j.scan_record.status).to.eql('FINISHED'); });\npm.test('produced nuggets', function () { pm.expect(j.produced.length).to.be.above(0); });\npm.test('service', function () { pm.expect(j.scan_record.service.module_id).to.eql('sfp_dnsresolve'); });"
+    },
+    "method": "POST",
+    "queryParams": [],
+    "headers": [
+      {
+        "id": 1,
+        "key": "Content-Type",
+        "value": "application/json",
+        "isEnabled": true
+      }
+    ],
+    "body": "{\n  \"module_id\": \"sfp_dnsresolve\",\n  \"consumed\": {\n    \"nugget_id\": \"INTERNET_NAME\",\n    \"nugget_data\": \"sbs.com.au\"\n  },\n  \"wait\": true,\n  \"timeout_seconds\": 120\n}",
+    "bodyContainer": {
+      "text": "{\n  \"module_id\": \"sfp_dnsresolve\",\n  \"consumed\": {\n    \"nugget_id\": \"INTERNET_NAME\",\n    \"nugget_data\": \"sbs.com.au\"\n  },\n  \"wait\": true,\n  \"timeout_seconds\": 120\n}",
+      "form": [],
+      "multipartForm": []
+    },
+    "contentType": "application/json",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  }
+}

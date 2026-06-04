@@ -1,0 +1,32 @@
+{
+  "name": "10 POST scan_ui (no wait)",
+  "request": {
+    "type": "http",
+    "url": "{{base_url}}/api/v1/scan_ui",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": "pm.test('status 200', function () { pm.response.to.have.status(200); });\npm.test('STARTING', function () { pm.expect(pm.response.json().scan_record.status).to.eql('STARTING'); });"
+    },
+    "method": "POST",
+    "queryParams": [],
+    "headers": [
+      {
+        "id": 1,
+        "key": "Content-Type",
+        "value": "application/json",
+        "isEnabled": true
+      }
+    ],
+    "body": "{\n  \"module_id\": \"sfp_dnsresolve\",\n  \"consumed\": {\n    \"nugget_id\": \"INTERNET_NAME\",\n    \"nugget_data\": \"sbs.com.au\"\n  },\n  \"wait\": false\n}",
+    "bodyContainer": {
+      "text": "{\n  \"module_id\": \"sfp_dnsresolve\",\n  \"consumed\": {\n    \"nugget_id\": \"INTERNET_NAME\",\n    \"nugget_data\": \"sbs.com.au\"\n  },\n  \"wait\": false\n}",
+      "form": [],
+      "multipartForm": []
+    },
+    "contentType": "application/json",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  }
+}

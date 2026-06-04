@@ -1,0 +1,32 @@
+{
+  "name": "04 POST scans (start)",
+  "request": {
+    "type": "http",
+    "url": "{{base_url}}/api/v1/scans",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": "pm.test('status 201', function () { pm.response.to.have.status(201); });\nvar j = pm.response.json();\npm.environment.set('scan_id', j.scan_id);\npm.test('has poll url', function () { pm.expect(j.poll).to.include(j.scan_id); });"
+    },
+    "method": "POST",
+    "queryParams": [],
+    "headers": [
+      {
+        "id": 1,
+        "key": "Content-Type",
+        "value": "application/json",
+        "isEnabled": true
+      }
+    ],
+    "body": "{\n  \"target\": \"sbs.com.au\",\n  \"modules\": [\"sfp_dnsresolve\"]\n}",
+    "bodyContainer": {
+      "text": "{\n  \"target\": \"sbs.com.au\",\n  \"modules\": [\"sfp_dnsresolve\"]\n}",
+      "form": [],
+      "multipartForm": []
+    },
+    "contentType": "application/json",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  }
+}

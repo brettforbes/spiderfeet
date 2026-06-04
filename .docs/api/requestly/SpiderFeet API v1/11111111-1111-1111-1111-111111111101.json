@@ -1,0 +1,20 @@
+{
+  "name": "01 GET health",
+  "request": {
+    "type": "http",
+    "url": "{{base_url}}/api/v1/health",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": "pm.test('status 200', function () { pm.response.to.have.status(200); });\npm.test('ok', function () {\n  var j = pm.response.json();\n  pm.expect(j.status).to.eql('ok');\n  pm.expect(j.service).to.eql('spiderfeet-api');\n});"
+    },
+    "method": "GET",
+    "queryParams": [],
+    "headers": [],
+    "body": null,
+    "contentType": "text/plain",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  }
+}

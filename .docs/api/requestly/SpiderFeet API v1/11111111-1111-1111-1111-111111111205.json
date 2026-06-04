@@ -1,0 +1,20 @@
+{
+  "name": "08 GET scan not found (404)",
+  "request": {
+    "type": "http",
+    "url": "{{base_url}}/api/v1/scans/nonexistent-scan-id",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": "pm.test('status 404', function () { pm.response.to.have.status(404); });"
+    },
+    "method": "GET",
+    "queryParams": [],
+    "headers": [],
+    "body": null,
+    "contentType": "text/plain",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  }
+}

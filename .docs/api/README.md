@@ -4,7 +4,8 @@
 |----------|---------|
 | [api_reference.md](api_reference.md) | Full v1 endpoint reference (SF-02-09) |
 | [cli_capability_matrix.md](cli_capability_matrix.md) | `sf.py` / `sfcli` / CherryPy → FastAPI mapping (SF-02-01) |
-| [requestly/WALKTHROUGH.md](requestly/WALKTHROUGH.md) | Requestly import + operator sign-off (SF-02-11–13) |
+| [requestly/README.md](requestly/README.md) | **Requestly local workspace** — open this folder in the app |
+| [requestly/WALKTHROUGH.md](requestly/WALKTHROUGH.md) | Requestly test run + operator sign-off (SF-02-11–13) |
 
 ## Run locally
 
@@ -68,11 +69,16 @@ Set `"wait": false` to return immediately after starting the scan (status `START
 
 Legacy web UI (CherryPy) remains `.\start.ps1` or `.\start.ps1 -Mode web`.
 
+## Requestly (Stage 2 sign-off)
+
+1. Start API (above).
+2. In Requestly → **Local project** → folder: `C:\projects\spiderfeet\.docs\api\requestly`
+3. Environment: **SpiderFeet Local** → collection **SpiderFeet API v1**
+4. Follow [requestly/WALKTHROUGH.md](requestly/WALKTHROUGH.md)
+
 ## Verify
 
 ```bash
 poetry run pytest .tests/api -q -m "not slow"
 poetry run pytest .tests/api -q -m slow
 ```
-
-Requestly: import [requestly/spiderfeet-api.postman_collection.json](requestly/spiderfeet-api.postman_collection.json) and follow [requestly/WALKTHROUGH.md](requestly/WALKTHROUGH.md).

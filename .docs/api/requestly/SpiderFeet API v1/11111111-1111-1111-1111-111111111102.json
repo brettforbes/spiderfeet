@@ -1,0 +1,20 @@
+{
+  "name": "02 GET modules",
+  "request": {
+    "type": "http",
+    "url": "{{base_url}}/api/v1/modules",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": "pm.test('status 200', function () { pm.response.to.have.status(200); });\npm.test('has sfp_dnsresolve', function () {\n  var list = pm.response.json();\n  pm.expect(list.some(function (m) { return m.name === 'sfp_dnsresolve'; })).to.be.true;\n});"
+    },
+    "method": "GET",
+    "queryParams": [],
+    "headers": [],
+    "body": null,
+    "contentType": "text/plain",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  }
+}
