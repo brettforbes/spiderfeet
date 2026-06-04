@@ -1,0 +1,32 @@
+---
+description: Spiderfeet v2 first-four-stages program boundaries
+globs:
+alwaysApply: true
+---
+# Project: Stages 0–4 delivery program
+
+**Canonical plan:** `.seed/02_stage_by_stage_reengineer.md`  
+**Spec:** `.governance/specs/SPEC-002-first-four-stages.md`  
+**Issue map:** `.seed/planning/FIRST_FOUR_STAGES_EPICS_AND_ISSUES.md`
+
+## Active stages (in order)
+
+| Stage | Focus | Primary repo |
+|-------|--------|--------------|
+| 0 | Governance, SPEC-002, project rules | both |
+| 1 | SpiderFoot → Spiderfeet rebrand, Apache 2.0, logo | both |
+| 2 | FastAPI over CLI | spiderfeet only |
+| 3 | TypeDB map + Maps force graph UI | both |
+| 4 | Module testing (177 issues, one per OSINT module) | both |
+
+## Out of scope until new spec
+
+Stages 5–8: quarantine conversion, favourites/sequences, TypeDB storage replacement, main investigation UI.
+
+## Execution rules
+
+1. Bind work to SPEC-002 requirement IDs (R2-xx-xx) or explicit `SPEC_GAP` with follow-up issue
+2. Pick up GitHub issues from epics; comment on issue at start, plan change, blocker, and completion (GOV-06)
+3. Branch `feature/<issue>-<slug>` from integration branch; PR to `develop` when aligned, else document divergence
+4. Stage 4: one GitHub issue per module; all routes for that module close within that single issue
+5. Record completed issue closure in `.tasks/issue-<n>.json` and `.tasks/issue-<n>.md` when operator approves merge

@@ -7,7 +7,10 @@ Governed SpiderFoot fork. Read this before doing substantive work.
 | What | Where |
 |------|--------|
 | Project intent | `.governance/project/PROJECT_INTENT.md` |
-| Active spec | `.governance/specs/SPEC-001-governance-bootstrap.md` |
+| Active spec (bootstrap) | `.governance/specs/SPEC-001-governance-bootstrap.md` |
+| Active spec (product) | `.governance/specs/SPEC-002-first-four-stages.md` |
+| Project rules | `.governance/project/rules/` (mirrored in `.cursor/rules/proj-*.mdc`) |
+| Stage plan | `.seed/02_stage_by_stage_reengineer.md` |
 | Backlog | `.governance/project/BACKLOG.md` |
 | Governance rules | `.governance/rules/gov-*.mdc` (mirrored in `.cursor/rules/`) |
 | Bootstrap status | `.governance/project/bootstrap/STATUS.md` |
@@ -23,7 +26,7 @@ Governed SpiderFoot fork. Read this before doing substantive work.
 
 ## Operating rules
 
-1. **No product code** until bootstrap Pass Gate #1 is green and work is tied to a spec section.
+1. **Stage 0–4 work** must map to SPEC-002 requirement IDs (see `.governance/project/BACKLOG.md`).
 2. Follow GOV-02 delivery loop: Observe → Plan → Implement → Verify → Document.
 3. Issue-first / spec-first for implementation tasks (GOV-06).
 4. Checkpoint continuity per GOV-09 when instructions change, blockers appear, or handoff risk is high.

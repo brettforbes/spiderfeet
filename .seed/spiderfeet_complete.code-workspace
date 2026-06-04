@@ -1,11 +1,13 @@
 {
-	"folders": [
-		{
-			"path": ".."
-		},
-		{
-			"path": "../../spiderfeet-widget"
-		}
-	],
-	"settings": {}
+  "folders": [
+    { "path": "..", "name": "spiderfeet" },
+    { "path": "../../spiderfeet-widget", "name": "spiderfeet-widget" }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/node_modules": true,
+      "**/.venv": true
+    }
+  }
 }
