@@ -11,7 +11,7 @@ Spec: **SPEC-002** (stages 0–4). Legacy bootstrap items: SPEC-001 below.
 | 0 cross | [#7](https://github.com/brettforbes/spiderfeet/issues/7) Program setup | — | R2-00-02 | Backlog |
 | 1 | [#13](https://github.com/brettforbes/spiderfeet/issues/13) Rebrand backend | [widget #7](https://github.com/brettforbes/spiderFeet-widget/issues/7) | R2-01-01 | Backlog |
 | 1 cross | [#21](https://github.com/brettforbes/spiderfeet/issues/21) Logo sign-off | — | R2-01-01 | Backlog |
-| 2 | [#26](https://github.com/brettforbes/spiderfeet/issues/26) FastAPI over CLI | — | R2-02-01 | Backlog |
+| 2 | [#26](https://github.com/brettforbes/spiderfeet/issues/26) FastAPI over CLI | — | R2-02-01 | Done (2026-06-04, PRs #645–#652) |
 | 3a | [#40](https://github.com/brettforbes/spiderfeet/issues/40) TypeDB ORM | — | R2-03-01 | Backlog |
 | 3b | [#48](https://github.com/brettforbes/spiderfeet/issues/48) Map FastAPI | — | R2-03-02 | Backlog |
 | 3c | — | [widget #13](https://github.com/brettforbes/spiderFeet-widget/issues/13) Maps UI | R2-03-03 | Backlog |
