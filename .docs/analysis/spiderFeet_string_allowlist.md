@@ -25,6 +25,11 @@ Canonical product name: **SpiderFeet** (capital F in Feet).
 - Public site host remains `spiderfeet.net` (DNS); display name is SpiderFeet
 - Upstream fork links may still point at `github.com/smicallef/spiderfoot` until repo URL is updated
 
+## Branding assets
+
+- Provisional logo: `.docs/branding/spiderfeet-light-stacked.png` (operator-supplied; not legacy SpiderFoot)
+- Do not add generated logo concept SVGs; replace only when firm/final artwork is delivered
+
 ## Vendor API strings
 
 - GreyNoise user-agents were migrated to `greynoise-spiderFeet-*` (verify with provider if scans fail)
