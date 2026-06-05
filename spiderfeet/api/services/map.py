@@ -88,6 +88,8 @@ def force_graph(*, limit_per_role: Optional[int] = None) -> MapForceGraphRespons
                 label=n.label,
                 colour=n.colour,
                 service_state=n.service_state,
+                icon=n.icon,
+                fav_icon=n.fav_icon,
             )
             for n in graph.nodes
         ],
