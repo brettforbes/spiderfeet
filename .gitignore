@@ -174,3 +174,6 @@ cover/
 # Documentation #
 #################
 docs/_build/
+
+# TypeDB connection (operator-local; see .config/typedb.connection.example.json) #
+.config/typedb.connection.json

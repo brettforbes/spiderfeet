@@ -233,10 +233,10 @@ define
 		owns service_state,
 		plays scan-record:service,
 		plays data-source:service,
-		plays route:service,
+		plays route:osint-service,
 		plays opts:service,
-		relates consumed,
-		relates produced;
+		relates consumed @card(0..),
+		relates produced @card(0..);
 
 	entity osint-source,
 		owns website,
@@ -454,12 +454,11 @@ define
 		owns route_name,
 		owns route_state,
 		relates osint-service,
-		relates consumed,
-		relates produced,
+		relates consumed @card(0..),
+		relates produced @card(0..),
 		plays sequence:prior,
 		plays sequence:next,
-		plays scan-record:route,
-		plays opts:opt;
+		plays scan-record:route;
 
 	relation sequence,
 		owns sequence_name,
@@ -496,8 +495,8 @@ define
 		owns scan_duration,
 		owns scan_timestamp,
 		owns scan_notes,
-		relates consumed,
-		relates produced,
+		relates consumed @card(0..),
+		relates produced @card(0..),
 		relates service,
 		relates route,
 		plays enrichment:prior,
@@ -520,12 +519,12 @@ define
 	# (only attributes referenced by owns on entity/relation types)
 	####################################
 
-	attribute route_state, value string @values{ "in-test", "favourite", "unique", "error", "dominated" };
-	attribute service_state, value string @values{ "in-test", "favourite", "unique", "error", "dominated" };
+	attribute route_state, value string @values("in-test", "favourite", "unique", "error", "dominated");
+	attribute service_state, value string @values("in-test", "favourite", "unique", "error", "dominated");
 	attribute route_name, value string;
 	attribute sequence_name, value string;
-	attribute access_tier, value string @values{ "free_no_auth", "free_auth", "paid" };
-	attribute consumption_group, value string @values{ "domain", "hostname", "domain_and_hostname", "ip_netblock", "ip_only", "email", "email_identity_bundle", "phone", "crypto", "web_url_content", "org_entity", "other" };
+	attribute access_tier, value string @values("free_no_auth", "free_auth", "paid");
+	attribute consumption_group, value string @values("domain", "hostname", "domain_and_hostname", "ip_netblock", "ip_only", "email", "email_identity_bundle", "phone", "crypto", "web_url_content", "org_entity", "other");
 	attribute route_seed_nugget, value string;
 	attribute module_id,  value string;
 	attribute name,  value string;
@@ -549,7 +548,7 @@ define
 	attribute nugget_event_type, value string;
 	attribute nugget_icon,  value string;
 	attribute nugget_colour,  value string;
-	attribute nugget_data,  value object;
+	attribute nugget_data,  value string;
 	attribute nugget_source_data, value string;
 	attribute nugget_module, value string;
 	attribute nugget_generated, value integer;
@@ -563,10 +562,10 @@ define
 	attribute bo_value, value boolean;
 	attribute st_value, value string;
 	attribute scan_instance_id, value string;
-	attribute scan_status, value string @values{ "STARTING", "RUNNING", "FINISHED", "ERROR-FAILED", "ABORTED", "ABORT-REQUESTED", "UNKNOWN" };
+	attribute scan_status, value string @values("STARTING", "RUNNING", "FINISHED", "ERROR-FAILED", "ABORTED", "ABORT-REQUESTED", "UNKNOWN");
 	attribute scan_event_count, value integer;
-	attribute scan_results_by_type, value object;
-	attribute scan_results, value object;
+	attribute scan_results_by_type, value string;
+	attribute scan_results, value string;
 	attribute scan_duration, value double;
 	attribute scan_timestamp, value datetime;
 	attribute scan_notes, value string;

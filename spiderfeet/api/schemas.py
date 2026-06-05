@@ -263,3 +263,77 @@ class ScanUiResponse(BaseModel):
     scan_record: ScanRecordUi
     consumed: List[NuggetInstance]
     produced: List[NuggetInstance]
+
+
+class MapConnectionInfo(BaseModel):
+    database: str
+    addresses: List[str]
+    username: str
+    tls_enabled: bool = False
+    configured: bool = True
+
+
+class MapConnectionPingResponse(BaseModel):
+    reachable: bool
+    database: str
+
+
+class MapInventoryCounts(BaseModel):
+    nugget_count: int
+    service_count: int
+    link_count: int
+
+
+class MapStatusResponse(BaseModel):
+    database: str
+    reachable: bool
+    inventory: Optional[MapInventoryCounts] = None
+
+
+class MapBootstrapResponse(BaseModel):
+    database: str
+    created_database: bool
+    applied_schema: bool
+    nuggets_inserted: int
+    nuggets_skipped: int
+    services_inserted: int
+    services_skipped: int
+    services_failed: int
+    links_added: int
+    ok: bool
+    errors: List[str]
+
+    @classmethod
+    def from_report(cls, report) -> "MapBootstrapResponse":
+        return cls(
+            database=report.database,
+            created_database=report.created_database,
+            applied_schema=report.applied_schema,
+            nuggets_inserted=report.nuggets_inserted,
+            nuggets_skipped=report.nuggets_skipped,
+            services_inserted=report.services_inserted,
+            services_skipped=report.services_skipped,
+            services_failed=report.services_failed,
+            links_added=report.links_added,
+            ok=report.ok,
+            errors=list(report.errors),
+        )
+
+
+class ForceGraphNodeModel(BaseModel):
+    id: str
+    kind: str
+    label: str
+    colour: Optional[str] = None
+    service_state: Optional[str] = None
+
+
+class ForceGraphLinkModel(BaseModel):
+    source: str
+    target: str
+    role: str
+
+
+class MapForceGraphResponse(BaseModel):
+    nodes: List[ForceGraphNodeModel]
+    links: List[ForceGraphLinkModel]

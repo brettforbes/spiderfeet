@@ -97,10 +97,10 @@ To install and run SpiderFeet, you need at least **Python 3.8+** and dependencie
 ```powershell
 poetry install
 .\start.ps1                    # legacy web UI (CherryPy) — http://127.0.0.1:5001
-.\start.ps1 -Mode api          # FastAPI for widget / Requestly — http://127.0.0.1:8000/docs
+.\start.ps1 -Mode api          # FastAPI for widget / Requestly — http://127.0.0.1:8001/docs
 ```
 
-Open `http://127.0.0.1:5001` for the web UI, or `http://127.0.0.1:8000/docs` for the Stage 2 API. CLI usage: `poetry run python sf.py -h`. API mapping: [.docs/api/cli_capability_matrix.md](.docs/api/cli_capability_matrix.md).
+Open `http://127.0.0.1:5001` for the web UI, or `http://127.0.0.1:8001/docs` for the Stage 2 API (TypeDB HTTP stays on port 8000). CLI usage: `poetry run python sf.py -h`. API mapping: [.docs/api/cli_capability_matrix.md](.docs/api/cli_capability_matrix.md).
 
 #### Packaged release (legacy upstream layout):
 
