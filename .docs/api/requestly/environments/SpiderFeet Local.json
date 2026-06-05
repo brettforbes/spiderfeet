@@ -4,7 +4,7 @@
   "variables": {
     "base_url": {
       "id": "fb19fd01-4eb6-457c-a9eb-007b794b0626",
-      "syncValue": "http://127.0.0.1:8000",
+      "syncValue": "http://127.0.0.1:8001",
       "type": "string",
       "isEnabled": true,
       "rank": "a0000",

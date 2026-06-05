@@ -1,13 +1,13 @@
 {
   "info": {
     "name": "SpiderFeet API v1 (Stage 2)",
-    "description": "R2-02-01 / Epic #26. Import into Requestly: Import → Postman. Use environment spiderfeet-local.environment.json with base_url=http://127.0.0.1:8000. Start API: .\\start.ps1 -Mode api",
+    "description": "R2-02-01 / Epic #26. Import into Requestly: Import → Postman. Use environment spiderfeet-local.environment.json with base_url=http://127.0.0.1:8001. Start API: .\\start.ps1 -Mode api",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
     {
       "key": "base_url",
-      "value": "http://127.0.0.1:8000"
+      "value": "http://127.0.0.1:8001"
     },
     {
       "key": "scan_id",

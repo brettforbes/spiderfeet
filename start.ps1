@@ -1,6 +1,6 @@
 # SpiderFeet development entry
 #   .\start.ps1              — CherryPy web UI (legacy, port 5001)
-#   .\start.ps1 -Mode api    — FastAPI for widget / Requestly (port 8000)
+#   .\start.ps1 -Mode api    — FastAPI for widget / Requestly (port 8001; TypeDB HTTP uses 8000)
 param(
     [ValidateSet("web", "api")]
     [string]$Mode = "web",
@@ -15,10 +15,10 @@ if (-not (Get-Command poetry -ErrorAction SilentlyContinue)) {
 }
 
 if ($Mode -eq "api") {
-    if (-not $Listen) { $Listen = "127.0.0.1:8000" }
+    if (-not $Listen) { $Listen = "127.0.0.1:8001" }
     $parts = $Listen -split ":", 2
     if ($parts.Count -ne 2) {
-        Write-Error "Listen must be IP:port (e.g. 127.0.0.1:8000)"
+        Write-Error "Listen must be IP:port (e.g. 127.0.0.1:8001)"
     }
     $env:SPIDERFEET_API_HOST = $parts[0]
     $env:SPIDERFEET_API_PORT = $parts[1]

@@ -55,7 +55,7 @@ This document maps today’s `sf.py` / `sfcli.py` / CherryPy web UI behaviour to
 
 ## Planned FastAPI v1 resource map (Stage 2 epic)
 
-Base URL: `http://127.0.0.1:8000` (default; override via `start.ps1 -Mode api`).
+Base URL: `http://127.0.0.1:8001` (default; override via `start.ps1 -Mode api -Listen host:port`).
 
 | Method | Path | SF-02 story | CLI / legacy parity |
 |--------|------|-------------|---------------------|

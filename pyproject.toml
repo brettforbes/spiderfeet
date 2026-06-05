@@ -37,6 +37,7 @@ openpyxl = ">=3.1.1,<4"
 pyyaml = ">=6.0.0,<7"
 fastapi = ">=0.115.0,<1"
 uvicorn = { version = ">=0.32.0,<1", extras = ["standard"] }
+typedb-driver = "^3.11.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -47,6 +48,7 @@ httpx = ">=0.27.0,<1"
 [tool.pytest.ini_options]
 markers = [
     "slow: integration tests that run a real OSINT scan (seconds)",
+    "typedb: integration tests that require a running TypeDB server",
 ]
 filterwarnings = [
     "ignore::DeprecationWarning:spiderfeet.api.app",

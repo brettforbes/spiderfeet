@@ -15,7 +15,7 @@
    .\start.ps1 -Mode api
    ```
 
-2. Confirm in a browser: http://127.0.0.1:8000/api/v1/health → `"status": "ok"`
+2. Confirm in a browser: http://127.0.0.1:8001/api/v1/health → `"status": "ok"`
 
 3. Open **Requestly** → **API Client** workspace.
 
@@ -72,7 +72,7 @@ Run in order:
 **Manual check (PowerShell):**
 
 ```powershell
-Invoke-RestMethod http://127.0.0.1:8000/api/v1/scans/YOUR_SCAN_ID
+Invoke-RestMethod http://127.0.0.1:8001/api/v1/scans/YOUR_SCAN_ID
 ```
 
 ---

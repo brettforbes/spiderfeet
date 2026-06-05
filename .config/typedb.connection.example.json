@@ -1,0 +1,9 @@
+{
+  "addresses": "127.0.0.1:1729",
+  "username": "admin",
+  "password": "YOUR_PASSWORD_HERE",
+  "database": "spiderfeet-map",
+  "tls": {
+    "enabled": false
+  }
+}

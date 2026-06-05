@@ -1,9 +1,9 @@
 # SpiderFeet API reference (v1)
 
 **Spec:** R2-02-01 (SPEC-002) · **Epic:** [#26](https://github.com/brettforbes/spiderfeet/issues/26)  
-**Base URL:** `http://127.0.0.1:8000` (default from `.\start.ps1 -Mode api`)  
+**Base URL:** `http://127.0.0.1:8001` (default from `.\start.ps1 -Mode api`)  
 **Prefix:** `/api/v1`  
-**OpenAPI:** http://127.0.0.1:8000/openapi.json · **Swagger:** http://127.0.0.1:8000/docs
+**OpenAPI:** http://127.0.0.1:8001/openapi.json · **Swagger:** http://127.0.0.1:8001/docs
 
 ---
 
@@ -222,6 +222,20 @@ Default origins include local widget dev hosts. Override:
 $env:SPIDERFEET_CORS_ORIGINS = "http://localhost:3000,https://my-widget.example"
 .\start.ps1 -Mode api
 ```
+
+---
+
+## Map (Stage 3b)
+
+Requires `.config/typedb.connection.json` and bootstrapped `spiderfeet-map`. See [typedb/README.md](../typedb/README.md).
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/api/v1/map/connection` | Redacted TypeDB connection info |
+| POST | `/api/v1/map/connection/ping` | Test TypeDB reachability |
+| GET | `/api/v1/map/status` | Nugget / service / link counts |
+| POST | `/api/v1/map/bootstrap` | Idempotent seed (`?reset=true` dev only) |
+| GET | `/api/v1/map/graph` | Force-graph `{ nodes[], links[] }` |
 
 ---
 
