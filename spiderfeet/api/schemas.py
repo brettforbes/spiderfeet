@@ -337,3 +337,45 @@ class ForceGraphLinkModel(BaseModel):
 class MapForceGraphResponse(BaseModel):
     nodes: List[ForceGraphNodeModel]
     links: List[ForceGraphLinkModel]
+
+
+class TestsSummaryResponse(BaseModel):
+    module_count: int
+    route_count: int
+    consumption_group_count: int
+    typedb_connected: bool = False
+    route_states: Dict[str, int] = Field(
+        default_factory=dict,
+        description="Counts by route_state (not_started, in_test, favourite, …)",
+    )
+
+
+class TestsModuleSummary(BaseModel):
+    module_id: str
+    name: str
+    summary: str
+    consumption_group: str
+    access_tier: str
+    route_count: int
+    routes_tested: int = Field(
+        0,
+        description="Routes with a non-not-started state in TypeDB (when connected)",
+    )
+
+
+class RouteCatalogItem(BaseModel):
+    route_name: str
+    consumed_nugget_id: str
+    produced_nugget_id: str
+    route_state: str = "not-started"
+
+
+class TestsModuleDetail(BaseModel):
+    module_id: str
+    name: str
+    summary: str
+    consumption_group: str
+    access_tier: str
+    route_seed_nugget: Optional[str] = None
+    route_count: int
+    routes: List[RouteCatalogItem]
