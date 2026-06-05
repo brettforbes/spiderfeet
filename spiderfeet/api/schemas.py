@@ -326,6 +326,14 @@ class ForceGraphNodeModel(BaseModel):
     label: str
     colour: Optional[str] = None
     service_state: Optional[str] = None
+    icon: Optional[str] = Field(
+        None,
+        description="Nugget icon filename (e.g. icon_domain_name.svg)",
+    )
+    fav_icon: Optional[str] = Field(
+        None,
+        description="OSINT service favicon URL from data_source.fav_icon",
+    )
 
 
 class ForceGraphLinkModel(BaseModel):

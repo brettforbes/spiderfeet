@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, field
+from functools import lru_cache
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 from typedb.api.connection.driver import Driver
 from typedb.api.connection.transaction import TransactionType
 
 from spiderfeet.map import typeql_util
+from spiderfeet.map.constants import OSINT_SERVICES_JSON
 
 
 @dataclass
@@ -25,6 +28,8 @@ class ForceGraphNode:
     label: str
     colour: Optional[str] = None
     service_state: Optional[str] = None
+    icon: Optional[str] = None
+    fav_icon: Optional[str] = None
 
 
 @dataclass
@@ -83,6 +88,9 @@ match
     has nugget_id $nid,
     has nugget_description $desc,
     has nugget_colour $colour;
+optional {{
+  $nug has nugget_icon $icon;
+}};
 """
     if limit is not None:
         pipeline += f"offset 0;\nlimit {int(limit)};\n"
@@ -93,10 +101,49 @@ fetch {
   "service_state": $state,
   "nugget_id": $nid,
   "nugget_description": $desc,
-  "nugget_colour": $colour
+  "nugget_colour": $colour,
+  "nugget_icon": $icon
 };
 """
     return pipeline
+
+
+@lru_cache(maxsize=1)
+def _fav_icons_from_catalog() -> Dict[str, str]:
+    """module_id → data_source.fav_icon from osint_services.json."""
+    if not OSINT_SERVICES_JSON.is_file():
+        return {}
+    with OSINT_SERVICES_JSON.open(encoding="utf-8") as handle:
+        rows = json.load(handle)
+    out: Dict[str, str] = {}
+    for row in rows:
+        module_id = row.get("module_id")
+        fav = (row.get("data_source") or {}).get("fav_icon")
+        if module_id and fav:
+            out[str(module_id)] = str(fav)
+    return out
+
+
+def _fetch_service_fav_icons(driver: Driver, database: str) -> Dict[str, str]:
+    """module_id → fav_icon URL from TypeDB osint-source links."""
+    query = """
+match
+  $osint isa osint-service,
+    has module_id $mid;
+  (service: $osint, source: $src) isa data-source;
+  $src has fav_icon $fav;
+fetch {
+  "module_id": $mid,
+  "fav_icon": $fav
+};
+"""
+    icons: Dict[str, str] = {}
+    for row in _fetch_documents(driver, database, query):
+        mid = row.get("module_id")
+        fav = row.get("fav_icon")
+        if mid and fav:
+            icons[str(mid)] = str(fav)
+    return icons
 
 
 def export_force_graph(
@@ -134,7 +181,15 @@ def export_force_graph(
                     kind="nugget",
                     label=str(row.get("nugget_description") or nid),
                     colour=row.get("nugget_colour"),
+                    icon=str(row.get("nugget_icon") or "") or None,
                 )
             links.append(ForceGraphLink(source=mid, target=nid, role=role))
+
+    catalog_fav = _fav_icons_from_catalog()
+    typedb_fav = _fetch_service_fav_icons(driver, database)
+    for node in nodes.values():
+        if node.kind != "osint-service":
+            continue
+        node.fav_icon = typedb_fav.get(node.id) or catalog_fav.get(node.id)
 
     return ForceGraphExport(nodes=list(nodes.values()), links=links)

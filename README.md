@@ -123,13 +123,11 @@ Open `http://127.0.0.1:5001` for the web UI, or `http://127.0.0.1:8001/docs` for
 
 Check out the [documentation](https://www.spiderfeet.net/documentation) and our [asciinema videos](https://asciinema.org/~spiderFeet) for more tutorials.
 
-### Branding (provisional)
+### Branding
 
-Stage 1 uses the operator-supplied stacked mark until firm/final artwork is delivered:
+![SpiderFeet logo — horizontal, dark](.docs/branding/spiderfeet_logo_horizontal_dark.svg)
 
-![SpiderFeet provisional logo](.docs/branding/spiderfeet-light-stacked.png)
-
-Source: [.docs/branding/spiderfeet-light-stacked.png](.docs/branding/spiderfeet-light-stacked.png) — see [.docs/branding/README.md](.docs/branding/README.md).
+Source: [.docs/branding/spiderfeet_logo_horizontal_dark.svg](.docs/branding/spiderfeet_logo_horizontal_dark.svg) — see [.docs/branding/README.md](.docs/branding/README.md).
 
 ### COMMUNITY
 
