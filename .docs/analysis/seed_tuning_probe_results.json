@@ -1,0 +1,38 @@
+[
+  {
+    "module_id": "sfp_h1nobbdde",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "google.com",
+    "produced_count": 3
+  },
+  {
+    "module_id": "sfp_phishtank",
+    "consumed_nugget_id": "INTERNET_NAME",
+    "input_value": "google.com",
+    "produced_count": 2
+  },
+  {
+    "module_id": "sfp_spamhaus",
+    "consumed_nugget_id": "IP_ADDRESS",
+    "input_value": "185.220.101.1",
+    "produced_count": 4
+  },
+  {
+    "module_id": "sfp_torexits",
+    "consumed_nugget_id": "IP_ADDRESS",
+    "input_value": "185.220.101.1",
+    "produced_count": 1
+  },
+  {
+    "module_id": "sfp_uceprotect",
+    "consumed_nugget_id": "IP_ADDRESS",
+    "input_value": "185.220.101.1",
+    "produced_count": 2
+  },
+  {
+    "module_id": "sfp_vxvault",
+    "consumed_nugget_id": "INTERNET_NAME",
+    "input_value": "github.com",
+    "produced_count": 1
+  }
+]
