@@ -1,14 +1,17 @@
 """Default test target values per consumed nugget_id (Stage 4c pilot).
 
-Full corpus lives in ``test_nugget_data.csv`` (Stage 4b). Until that ships,
-these samples enable route smoke tests from the Tests tab.
+Module-specific seeds live in ``.docs/analysis/module_test_seeds.json`` (Stage 4b).
+Generic nugget fallbacks remain here until the full corpus ships (SF-04B-06).
 """
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+import json
+from functools import lru_cache
+from typing import Any, Dict, Optional
 
 from spiderfeet import SpiderFeetHelpers
+from spiderfeet.map.constants import MODULE_TEST_SEEDS_JSON
 
 # Keys are catalogue nugget_id values from osint_services consumed_nuggets.
 _NUGGET_SAMPLES: Dict[str, str] = {
@@ -24,7 +27,7 @@ _NUGGET_SAMPLES: Dict[str, str] = {
     "CO_HOSTED_SITE": "sbs.com.au",
     "DOMAIN_NAME": "sbs.com.au",
     "DOMAIN_NAME_PARENT": "com.au",
-    "EMAILADDR": "noreply@spiderfeet.net",
+    "EMAILADDR": "noreply@spiderfoot.net",
     "ETHEREUM_ADDRESS": "0x0000000000000000000000000000000000000000",
     "HUMAN_NAME": '"Jane Citizen"',
     "INTERESTING_FILE": "sbs.com.au",
@@ -34,7 +37,7 @@ _NUGGET_SAMPLES: Dict[str, str] = {
     "IP_ADDRESS": "8.8.8.8",
     "LEI": "sbs.com.au",
     "LINKED_URL_EXTERNAL": "sbs.com.au",
-    "LINKED_URL_INTERNAL": "sbs.com.au",
+    "LINKED_URL_INTERNAL": "https://example.com/",
     "NETBLOCKV6_MEMBER": "2001:4860::/32",
     "NETBLOCKV6_OWNER": "2001:4860::/32",
     "NETBLOCK_MEMBER": "8.8.8.0/24",
@@ -57,13 +60,33 @@ _NUGGET_SAMPLES: Dict[str, str] = {
     "WEB_ANALYTICS_ID": "sbs.com.au",
 }
 
-# Module-specific seed overrides to improve yield for modules with strict inputs.
-# Key format: (module_id, consumed_nugget_id)
-_MODULE_SEED_OVERRIDES: Dict[tuple[str, str], str] = {
-    ("sfp_emailrep", "EMAILADDR"): "security@spiderfoot.net",
-    ("sfp_haveibeenpwned", "EMAILADDR"): "security@spiderfoot.net",
-    ("sfp_dnsdb", "DOMAIN_NAME"): "sbs.com.au",
-}
+
+@lru_cache(maxsize=1)
+def load_module_test_seeds() -> Dict[str, Dict[str, Dict[str, Any]]]:
+    """Return module_id → consumed_nugget_id → seed metadata from JSON registry."""
+    if not MODULE_TEST_SEEDS_JSON.is_file():
+        return {}
+    with MODULE_TEST_SEEDS_JSON.open(encoding="utf-8") as handle:
+        payload = json.load(handle)
+    seeds = payload.get("seeds") or {}
+    if not isinstance(seeds, dict):
+        return {}
+    return seeds
+
+
+def registry_input_value(module_id: str, consumed_nugget_id: str) -> Optional[str]:
+    """Lookup module-specific seed input, if registered."""
+    module_seeds = load_module_test_seeds().get(module_id) or {}
+    entry = module_seeds.get(consumed_nugget_id) or {}
+    raw = entry.get("input_value")
+    if raw is None:
+        return None
+    text = str(raw).strip()
+    if not text:
+        return None
+    if SpiderFeetHelpers.targetTypeFromString(text) is None:
+        return None
+    return text
 
 
 def sample_target_for_nugget(nugget_id: str) -> Optional[str]:
@@ -84,13 +107,13 @@ def sample_target_for_module(
     """Return the best seed target for a module test.
 
     Preference order:
-    1) module+consumed override
+    1) module_test_seeds.json registry entry
     2) module route_seed_nugget sample (if compatible)
     3) generic nugget sample
     """
-    override = _MODULE_SEED_OVERRIDES.get((module_id, consumed_nugget_id))
-    if override and SpiderFeetHelpers.targetTypeFromString(override) is not None:
-        return override
+    registry_value = registry_input_value(module_id, consumed_nugget_id)
+    if registry_value:
+        return registry_value
 
     if route_seed_nugget and route_seed_nugget == consumed_nugget_id:
         route_seed = sample_target_for_nugget(route_seed_nugget)
@@ -107,3 +130,8 @@ def all_nugget_samples() -> Dict[str, str]:
         if SpiderFeetHelpers.targetTypeFromString(value) is not None:
             out[nugget_id] = value
     return out
+
+
+def pilot_module_ids() -> list[str]:
+    """Module IDs with entries in the seed registry (Stage 4b pilot)."""
+    return sorted(load_module_test_seeds().keys())

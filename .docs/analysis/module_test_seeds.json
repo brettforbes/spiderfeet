@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "description": "Module-validated test seeds for Stage 4b (R2-04-07). Keys: module_id → consumed_nugget_id.",
+  "seeds": {
+    "sfp_arin": {
+      "DOMAIN_NAME": {
+        "input_value": "arin.net",
+        "region": "US",
+        "validation": "smoke",
+        "expected_produced_nugget_ids": ["RAW_RIR_DATA", "HUMAN_NAME"]
+      },
+      "HUMAN_NAME": {
+        "input_value": "\"ARIN Registry\"",
+        "region": "US",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": ["RAW_RIR_DATA", "HUMAN_NAME"]
+      }
+    },
+    "sfp_blockchain": {
+      "BITCOIN_ADDRESS": {
+        "input_value": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
+        "region": "global",
+        "validation": "smoke",
+        "expected_produced_nugget_ids": ["BITCOIN_BALANCE"]
+      }
+    },
+    "sfp_bgpview": {
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
+        "region": "US",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": ["BGP_AS_MEMBER", "NETBLOCK_MEMBER", "RAW_RIR_DATA"]
+      },
+      "BGP_AS_MEMBER": {
+        "input_value": "15169",
+        "region": "US",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": ["BGP_AS_MEMBER", "NETBLOCK_MEMBER"]
+      }
+    },
+    "sfp_crt": {
+      "DOMAIN_NAME": {
+        "input_value": "google.com",
+        "region": "US",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": ["SSL_CERTIFICATE_RAW", "INTERNET_NAME"]
+      },
+      "INTERNET_NAME": {
+        "input_value": "google.com",
+        "region": "US",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": ["SSL_CERTIFICATE_RAW", "INTERNET_NAME"]
+      }
+    },
+    "sfp_duckduckgo": {
+      "INTERNET_NAME": {
+        "input_value": "bbc.co.uk",
+        "region": "UK",
+        "validation": "smoke",
+        "expected_produced_nugget_ids": [
+          "DESCRIPTION_ABSTRACT",
+          "DESCRIPTION_CATEGORY",
+          "AFFILIATE_DESCRIPTION_ABSTRACT"
+        ]
+      },
+      "DOMAIN_NAME": {
+        "input_value": "bbc.co.uk",
+        "region": "UK",
+        "validation": "smoke",
+        "expected_produced_nugget_ids": ["DESCRIPTION_ABSTRACT", "DESCRIPTION_CATEGORY"]
+      },
+      "AFFILIATE_INTERNET_NAME": {
+        "input_value": "bbc.co.uk",
+        "region": "UK",
+        "validation": "smoke",
+        "expected_produced_nugget_ids": ["AFFILIATE_DESCRIPTION_ABSTRACT"]
+      },
+      "DOMAIN_NAME_PARENT": {
+        "input_value": "co.uk",
+        "region": "UK",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": ["DESCRIPTION_CATEGORY"]
+      }
+    },
+    "sfp_hackertarget": {
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
+        "region": "US",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": ["CO_HOSTED_SITE", "INTERNET_NAME"]
+      },
+      "DOMAIN_NAME_PARENT": {
+        "input_value": "com.au",
+        "region": "AU",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": ["DOMAIN_NAME", "INTERNET_NAME"]
+      }
+    },
+    "sfp_robtex": {
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
+        "region": "US",
+        "validation": "smoke",
+        "expected_produced_nugget_ids": ["INTERNET_NAME", "RAW_RIR_DATA"]
+      },
+      "INTERNET_NAME": {
+        "input_value": "8.8.8.8",
+        "region": "US",
+        "validation": "smoke",
+        "expected_produced_nugget_ids": ["INTERNET_NAME", "RAW_RIR_DATA"]
+      }
+    },
+    "sfp_threatcrowd": {
+      "INTERNET_NAME": {
+        "input_value": "google.com",
+        "region": "US",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": ["MALICIOUS_IPADDR", "MALICIOUS_INTERNET_NAME"]
+      },
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
+        "region": "US",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": ["MALICIOUS_IPADDR"]
+      }
+    },
+    "sfp_wikipediaedits": {
+      "IP_ADDRESS": {
+        "input_value": "91.198.174.192",
+        "region": "EU",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": ["WIKIPEDIA_PAGE_EDIT"]
+      }
+    },
+    "sfp_zoneh": {
+      "INTERNET_NAME": {
+        "input_value": "zone-h.org",
+        "region": "US",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": ["DEFACED_INTERNET_NAME"]
+      }
+    }
+  }
+}

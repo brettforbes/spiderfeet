@@ -98,6 +98,11 @@ def test_tests_plan_duckduckgo_open_tier(api_client):
         assert item["subscription_tier"] == "none"
         assert item["requires_api_key"] is False
         assert item["skip_reason"] is None
+    internet = [
+        row for row in body["items"] if row["consumed_nugget_id"] == "INTERNET_NAME"
+    ]
+    assert internet
+    assert internet[0]["input_value"] == "bbc.co.uk"
 
 
 def test_tests_modules_subscription_fields(api_client):
