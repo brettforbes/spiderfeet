@@ -23,7 +23,7 @@ Stages 0–4 only (governance → rebrand → FastAPI → TypeDB map UI → per-
 | R2-03-02 | 3 | Map CRUD and force-graph export APIs |
 | R2-03-03 | 3 | Widget Maps tab with D3 force graph; non-Maps tabs are empty placeholders |
 | R2-04-01 | 4 | `scan-record` and `route` relations in map DB |
-| R2-04-02 | 4 | Realistic test nugget corpus (AU, UK, US) |
+| R2-04-02 | 4 | Realistic test nugget corpus (`test_nugget_data.csv` + validation script) |
 | R2-04-03 | 4 | **One GitHub issue per OSINT module** (177); each issue covers all routes for that module (consumed×produced pairs exercised within the issue) |
 | R2-04-04 | 4 | Widget Tests tab for running/viewing route tests and history |
 | R2-04-05 | 4 | **SPEC_GAP** — Subscriptions page: per-module API key CRUD (masked) |
