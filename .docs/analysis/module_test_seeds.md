@@ -37,6 +37,18 @@ The Tests tab and `/tests/plan` call `sample_target_for_module()`, which reads t
 
 Full corpus tuning is **SF-04B-06** (177 modules).
 
+## Corpus validation (SF-04B-06)
+
+**CSV:** `test_nugget_data.csv` — columns: `module_id`, `consumed_nugget_id`, `region`, `input_value`, `validated_produces`, `notes`
+
+**Script:**
+
+```powershell
+poetry run python .seed/scripts/validate_test_seeds.py --tier none --limit 40 --write
+```
+
+Writes `.docs/analysis/test_seed_validation_report.json` and optionally updates the registry + CSV when `--write` is passed. Target for `none` tier: ≥60% `validated_produces` (strict pass = `FINISHED` + `produced.length > 0`).
+
 ## Fallback order
 
 1. Registry `(module_id, consumed_nugget_id)`
