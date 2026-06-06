@@ -180,9 +180,9 @@ def main() -> int:
         print("Updated module_test_seeds.json and test_nugget_data.csv")
 
     target_rate = 60.0 if args.tier == "none" else 0.0
-    if args.tier == "none" and cumulative["rate_pct"] < target_rate:
+    if args.tier == "none" and cumulative.get("rate_pct", 0) < target_rate:
         print(
-            f"Warning: none-tier cumulative pass rate {cumulative['rate_pct']}% below target {target_rate}%",
+            f"Warning: none-tier coverage rate {cumulative['rate_pct']}% below target {target_rate}%",
             file=sys.stderr,
         )
     return 0

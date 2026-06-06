@@ -25,7 +25,7 @@ from spiderfeet.map.routes_catalog import (
     module_catalog,
 )
 from spiderfeet.map.subscriptions import subscription_status
-from spiderfeet.map.test_targets import sample_target_for_module
+from spiderfeet.map.test_targets import sample_target_for_module, seed_metadata_for_module
 
 
 def _configured_modules(runtime_config: Optional[Dict[str, Any]]) -> Dict[str, Any]:
@@ -183,6 +183,7 @@ def test_plan(
         route_seed_nugget = svc.get("route_seed_nugget")
         tier, requires_api_key, has_api_key, skip_reason = subscription_status(svc, configured)
         for test in expand_module_tests_for_service(svc):
+            meta = seed_metadata_for_module(module_id, test.consumed_nugget_id)
             items.append(
                 TestsPlanItem(
                     test_id=test.test_id,
@@ -197,6 +198,8 @@ def test_plan(
                     requires_api_key=requires_api_key,
                     has_api_key=has_api_key,
                     skip_reason=skip_reason,
+                    fixture_kind=meta["fixture_kind"],
+                    seed_validated=meta["seed_validated"],
                 )
             )
     return TestsPlanResponse(
@@ -211,19 +214,23 @@ def get_module(module_id: str) -> Optional[TestsModuleDetail]:
     if catalog is None:
         return None
     states = _typedb_route_states()
-    tests = [
-        ModuleTestItem(
-            test_id=t.test_id,
-            consumed_nugget_id=t.consumed_nugget_id,
-            test_state=overlay_test_state(t.route_names, states),
-            input_value=sample_target_for_module(
-                catalog.module_id,
-                t.consumed_nugget_id,
-                catalog.route_seed_nugget,
-            ),
+    tests = []
+    for t in catalog.tests:
+        meta = seed_metadata_for_module(catalog.module_id, t.consumed_nugget_id)
+        tests.append(
+            ModuleTestItem(
+                test_id=t.test_id,
+                consumed_nugget_id=t.consumed_nugget_id,
+                test_state=overlay_test_state(t.route_names, states),
+                input_value=sample_target_for_module(
+                    catalog.module_id,
+                    t.consumed_nugget_id,
+                    catalog.route_seed_nugget,
+                ),
+                fixture_kind=meta["fixture_kind"],
+                seed_validated=meta["seed_validated"],
+            )
         )
-        for t in catalog.tests
-    ]
     return TestsModuleDetail(
         module_id=catalog.module_id,
         name=catalog.name,

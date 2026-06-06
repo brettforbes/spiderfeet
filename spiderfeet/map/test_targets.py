@@ -76,8 +76,7 @@ def load_module_test_seeds() -> Dict[str, Dict[str, Dict[str, Any]]]:
 
 def registry_input_value(module_id: str, consumed_nugget_id: str) -> Optional[str]:
     """Lookup module-specific seed input, if registered."""
-    module_seeds = load_module_test_seeds().get(module_id) or {}
-    entry = module_seeds.get(consumed_nugget_id) or {}
+    entry = seed_entry(module_id, consumed_nugget_id)
     raw = entry.get("input_value")
     if raw is None:
         return None
@@ -87,6 +86,42 @@ def registry_input_value(module_id: str, consumed_nugget_id: str) -> Optional[st
     if SpiderFeetHelpers.targetTypeFromString(text) is None:
         return None
     return text
+
+
+def seed_entry(module_id: str, consumed_nugget_id: str) -> Dict[str, Any]:
+    """Return registry metadata for ``(module_id, consumed_nugget_id)``."""
+    module_seeds = load_module_test_seeds().get(module_id) or {}
+    entry = module_seeds.get(consumed_nugget_id) or {}
+    return entry if isinstance(entry, dict) else {}
+
+
+def fixture_kind_for_entry(entry: Dict[str, Any]) -> str:
+    """positive: expect produced objects; negative: expect FINISHED with zero output."""
+    kind = str(entry.get("fixture_kind") or "positive").strip().lower()
+    return kind if kind in ("positive", "negative") else "positive"
+
+
+def seed_coverage_complete(module_id: str, consumed_nugget_id: str) -> bool:
+    """True when seed is smoke-validated (positive or negative fixture)."""
+    entry = seed_entry(module_id, consumed_nugget_id)
+    if not entry:
+        return False
+    kind = fixture_kind_for_entry(entry)
+    if kind == "negative":
+        return bool(entry.get("validated_negative"))
+    return bool(entry.get("validated_produces"))
+
+
+def seed_metadata_for_module(module_id: str, consumed_nugget_id: str) -> Dict[str, Any]:
+    """Fixture metadata exposed to Tests plan API."""
+    entry = seed_entry(module_id, consumed_nugget_id)
+    kind = fixture_kind_for_entry(entry)
+    return {
+        "fixture_kind": kind,
+        "validated_produces": bool(entry.get("validated_produces")),
+        "validated_negative": bool(entry.get("validated_negative")),
+        "seed_validated": seed_coverage_complete(module_id, consumed_nugget_id),
+    }
 
 
 def sample_target_for_nugget(nugget_id: str) -> Optional[str]:

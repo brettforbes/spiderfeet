@@ -55,6 +55,18 @@ def test_tests_plan(api_client):
     assert "requires_api_key" in body["items"][0]
     assert "has_api_key" in body["items"][0]
     assert "skip_reason" in body["items"][0]
+    assert "fixture_kind" in body["items"][0]
+    assert "seed_validated" in body["items"][0]
+
+
+def test_tests_plan_negative_fixture_metadata(api_client):
+    r = api_client.get("/api/v1/tests/plan", params={"search": "spamcop", "limit": 20})
+    assert r.status_code == 200
+    items = r.json()["items"]
+    assert items
+    spamcop = next(row for row in items if row["module_id"] == "sfp_spamcop")
+    assert spamcop["fixture_kind"] == "negative"
+    assert spamcop["seed_validated"] is True
 
 
 def test_tests_plan_search(api_client):

@@ -407,6 +407,14 @@ class ModuleTestItem(BaseModel):
         description="Scan target sent as consumed nugget_data (exploratory test input)",
     )
     test_state: str = "not-started"
+    fixture_kind: str = Field(
+        "positive",
+        description="positive: expect produced objects; negative: expect FINISHED with zero output",
+    )
+    seed_validated: bool = Field(
+        False,
+        description="True when registry has smoke-validated positive or negative fixture",
+    )
 
 
 class RouteCatalogItem(BaseModel):
@@ -467,6 +475,14 @@ class TestsPlanItem(BaseModel):
     skip_reason: Optional[str] = Field(
         None,
         description="Why this test should be skipped in Run All (e.g. missing-api-key)",
+    )
+    fixture_kind: str = Field(
+        "positive",
+        description="positive: expect produced objects; negative: expect FINISHED with zero output",
+    )
+    seed_validated: bool = Field(
+        False,
+        description="True when registry has smoke-validated positive or negative fixture",
     )
 
 

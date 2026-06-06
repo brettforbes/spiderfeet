@@ -51,7 +51,13 @@ poetry run python .seed/scripts/validate_test_seeds.py --tier none --offset 60 -
 
 Writes `.docs/analysis/test_seed_validation_report.json` (batch + cumulative registry stats) and optionally updates the registry + CSV when `--write` is passed. Target for `none` tier: ≥60% `validated_produces` (strict pass = `FINISHED` + `produced.length > 0`).
 
-**Cumulative status (2026-06-07):** 16/87 none-tier modules smoke-validated (~18.4%). Blocklist/threat modules often produce zero on clean inputs (`8.8.8.8`, `sbs.com.au`) — use `tune_test_seeds.py` to probe alternatives (e.g. Tor exit `185.220.101.1` for some list modules) or mark `negative-fixture` in follow-up.
+**Cumulative status (2026-06-07):** 48/87 none-tier modules with validated seeds (~55.2%): 16 positive + 32 negative fixtures. Negative fixtures (Reputation Systems blocklists/DNS filters) pass on `FINISHED` with zero output on clean inputs.
+
+**Negative fixtures:**
+
+```powershell
+poetry run python .seed/scripts/mark_negative_fixtures.py --write
+```
 
 **Tuning script:**
 
