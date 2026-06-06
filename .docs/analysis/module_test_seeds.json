@@ -199,26 +199,30 @@
       "IP_ADDRESS": {
         "input_value": "91.198.174.192",
         "region": "EU",
-        "validation": "pilot",
+        "validation": "smoke",
         "expected_produced_nugget_ids": [
           "WIKIPEDIA_PAGE_EDIT"
         ],
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "fixture_kind": "negative",
+        "validated_negative": true
       }
     },
     "sfp_zoneh": {
       "INTERNET_NAME": {
         "input_value": "zone-h.org",
         "region": "US",
-        "validation": "pilot",
+        "validation": "smoke",
         "expected_produced_nugget_ids": [
           "DEFACED_INTERNET_NAME"
         ],
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "fixture_kind": "negative",
+        "validated_negative": true
       }
     },
     "sfp_adguard_dns": {
@@ -627,7 +631,10 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "fixture_kind": "negative",
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_myspace": {
@@ -654,7 +661,10 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "fixture_kind": "negative",
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_opendns": {
@@ -727,7 +737,10 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "fixture_kind": "negative",
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_punkspider": {
@@ -736,7 +749,10 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "fixture_kind": "negative",
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_quad9": {
@@ -1009,7 +1025,10 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "fixture_kind": "negative",
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_yandexdns": {

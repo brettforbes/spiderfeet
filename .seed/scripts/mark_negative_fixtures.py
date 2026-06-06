@@ -30,7 +30,15 @@ from spiderfeet.map.test_corpus import (  # noqa: E402
 )
 from spiderfeet.map.test_targets import load_module_test_seeds  # noqa: E402
 
-NEGATIVE_CATEGORIES = frozenset({"Reputation Systems"})
+NEGATIVE_CATEGORIES = frozenset({
+    "Reputation Systems",
+    "Leaks, Dumps and Breaches",
+    "Secondary Networks",
+})
+
+NEGATIVE_MODULE_IDS = frozenset({
+    "sfp_psbdmp",
+})
 
 
 def main() -> int:
@@ -57,7 +65,7 @@ def main() -> int:
         consumed_id = item["consumed_nugget_id"]
         svc = services.get(module_id) or {}
         categories = set(svc.get("categories") or [])
-        if not categories.intersection(NEGATIVE_CATEGORIES):
+        if not categories.intersection(NEGATIVE_CATEGORIES) and module_id not in NEGATIVE_MODULE_IDS:
             continue
 
         module_seeds = seeds.setdefault(module_id, {})
