@@ -8,6 +8,7 @@ from spiderfeet.map.test_corpus import (
     load_test_corpus_csv,
     plan_validation_items,
     rows_from_seed_registry,
+    summarize_registry_validation,
     write_test_corpus_csv,
 )
 
@@ -62,3 +63,10 @@ def test_plan_validation_items_offset():
     assert first[0]["module_id"] != second[0]["module_id"]
     all_ids = {item["module_id"] for item in first + second}
     assert len(all_ids) == 6
+
+
+def test_summarize_registry_validation():
+    summary = summarize_registry_validation(configured_modules={}, subscription_tier="none")
+    assert summary["total_modules"] >= 80
+    assert summary["validated_produces_count"] >= 9
+    assert "sfp_duckduckgo" in summary["validated_module_ids"]

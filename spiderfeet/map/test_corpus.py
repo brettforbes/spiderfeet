@@ -168,6 +168,33 @@ def plan_validation_items(
     return items
 
 
+def summarize_registry_validation(
+    *,
+    configured_modules: Optional[Dict[str, Any]] = None,
+    subscription_tier: Optional[str] = None,
+) -> Dict[str, Any]:
+    """Cumulative pass rate from registry vs modules eligible for validation."""
+    items = plan_validation_items(
+        configured_modules=configured_modules,
+        subscription_tier=subscription_tier,
+    )
+    seeds = load_module_test_seeds()
+    validated_ids: List[str] = []
+    for item in items:
+        module_seeds = seeds.get(item["module_id"], {})
+        entry = module_seeds.get(item["consumed_nugget_id"], {})
+        if entry.get("validated_produces"):
+            validated_ids.append(item["module_id"])
+    total = len(items)
+    validated = len(validated_ids)
+    return {
+        "total_modules": total,
+        "validated_produces_count": validated,
+        "rate_pct": round(100 * validated / total, 1) if total else 0.0,
+        "validated_module_ids": sorted(validated_ids),
+    }
+
+
 def merge_validation_results_into_registry(
     results: Iterable[Dict[str, Any]],
     *,
