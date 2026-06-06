@@ -129,11 +129,14 @@
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validation": "pilot",
+        "validation": "smoke",
         "expected_produced_nugget_ids": [
           "CO_HOSTED_SITE",
           "INTERNET_NAME"
-        ]
+        ],
+        "validated_produces": true,
+        "last_produced_count": 100,
+        "notes": "status=FINISHED"
       },
       "DOMAIN_NAME_PARENT": {
         "input_value": "com.au",
@@ -153,7 +156,10 @@
         "expected_produced_nugget_ids": [
           "INTERNET_NAME",
           "RAW_RIR_DATA"
-        ]
+        ],
+        "validated_produces": true,
+        "last_produced_count": 99,
+        "notes": "status=FINISHED"
       },
       "INTERNET_NAME": {
         "input_value": "8.8.8.8",
@@ -474,6 +480,215 @@
         "validated_produces": false,
         "last_produced_count": 0,
         "notes": "status=FINISHED"
+      }
+    },
+    "sfp_gravatar": {
+      "EMAILADDR": {
+        "input_value": "noreply@spiderfoot.net",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_greensnow": {
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_grep_app": {
+      "DOMAIN_NAME": {
+        "input_value": "sbs.com.au",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_h1nobbdde": {
+      "DOMAIN_NAME": {
+        "input_value": "sbs.com.au",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_isc": {
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_keybase": {
+      "USERNAME": {
+        "input_value": "\"spiderfeet\"",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_maltiverse": {
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
+        "region": "US",
+        "validated_produces": true,
+        "last_produced_count": 2,
+        "notes": "status=FINISHED",
+        "validation": "smoke"
+      }
+    },
+    "sfp_mnemonic": {
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_multiproxy": {
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_myspace": {
+      "EMAILADDR": {
+        "input_value": "noreply@spiderfoot.net",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_onionsearchengine": {
+      "DOMAIN_NAME": {
+        "input_value": "sbs.com.au",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_openbugbounty": {
+      "INTERNET_NAME": {
+        "input_value": "sbs.com.au",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_opendns": {
+      "INTERNET_NAME": {
+        "input_value": "sbs.com.au",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_opennic": {
+      "INTERNET_NAME": {
+        "input_value": "sbs.com.au",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_openphish": {
+      "INTERNET_NAME": {
+        "input_value": "sbs.com.au",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_openstreetmap": {
+      "PHYSICAL_ADDRESS": {
+        "input_value": "sbs.com.au",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_phishstats": {
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_phishtank": {
+      "INTERNET_NAME": {
+        "input_value": "sbs.com.au",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_psbdmp": {
+      "EMAILADDR": {
+        "input_value": "noreply@spiderfoot.net",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_punkspider": {
+      "INTERNET_NAME": {
+        "input_value": "sbs.com.au",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_quad9": {
+      "INTERNET_NAME": {
+        "input_value": "sbs.com.au",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_reversewhois": {
+      "DOMAIN_NAME": {
+        "input_value": "sbs.com.au",
+        "region": "US",
+        "validated_produces": false,
+        "last_produced_count": 0,
+        "notes": "status=FINISHED"
+      }
+    },
+    "sfp_ripe": {
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
+        "region": "US",
+        "validated_produces": true,
+        "last_produced_count": 2,
+        "notes": "status=FINISHED",
+        "validation": "smoke"
       }
     }
   }

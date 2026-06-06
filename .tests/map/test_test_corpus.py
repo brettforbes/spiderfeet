@@ -49,3 +49,16 @@ def test_plan_validation_items_none_tier():
     assert len(items) == 5
     assert all(item["subscription_tier"] == "none" for item in items)
     assert all(item["input_value"] for item in items)
+
+
+def test_plan_validation_items_offset():
+    first = plan_validation_items(configured_modules={}, subscription_tier="none", module_limit=3)
+    second = plan_validation_items(
+        configured_modules={},
+        subscription_tier="none",
+        module_limit=3,
+        module_offset=3,
+    )
+    assert first[0]["module_id"] != second[0]["module_id"]
+    all_ids = {item["module_id"] for item in first + second}
+    assert len(all_ids) == 6

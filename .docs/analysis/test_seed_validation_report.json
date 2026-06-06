@@ -1,229 +1,19 @@
 {
   "summary": {
-    "total": 35,
-    "validated": 5,
-    "rate_pct": 14.3,
+    "total": 25,
+    "validated": 4,
+    "rate_pct": 16.0,
     "by_tier": {
       "none": {
-        "total": 35,
-        "validated": 5,
-        "rate_pct": 14.3
+        "total": 25,
+        "validated": 4,
+        "rate_pct": 16.0
       }
     }
   },
   "results": [
     {
-      "module_id": "sfp_adguard_dns",
-      "consumed_nugget_id": "INTERNET_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_ahmia",
-      "consumed_nugget_id": "DOMAIN_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_alienvaultiprep",
-      "consumed_nugget_id": "IP_ADDRESS",
-      "input_value": "8.8.8.8",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_arin",
-      "consumed_nugget_id": "DOMAIN_NAME",
-      "input_value": "arin.net",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 60,
-      "validated_produces": true,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_azureblobstorage",
-      "consumed_nugget_id": "DOMAIN_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 4,
-      "validated_produces": true,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_bgpview",
-      "consumed_nugget_id": "IP_ADDRESS",
-      "input_value": "8.8.8.8",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_blockchain",
-      "consumed_nugget_id": "BITCOIN_ADDRESS",
-      "input_value": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 1,
-      "validated_produces": true,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_blocklistde",
-      "consumed_nugget_id": "IP_ADDRESS",
-      "input_value": "8.8.8.8",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_botvrij",
-      "consumed_nugget_id": "INTERNET_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_callername",
-      "consumed_nugget_id": "PHONE_NUMBER",
-      "input_value": "+61412345678",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_cinsscore",
-      "consumed_nugget_id": "IP_ADDRESS",
-      "input_value": "8.8.8.8",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_cleanbrowsing",
-      "consumed_nugget_id": "INTERNET_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_cleantalk",
-      "consumed_nugget_id": "IP_ADDRESS",
-      "input_value": "8.8.8.8",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_cloudflaredns",
-      "consumed_nugget_id": "INTERNET_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_coinblocker",
-      "consumed_nugget_id": "INTERNET_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_commoncrawl",
-      "consumed_nugget_id": "INTERNET_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_comodo",
-      "consumed_nugget_id": "INTERNET_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_crobat_api",
-      "consumed_nugget_id": "DOMAIN_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_crt",
-      "consumed_nugget_id": "DOMAIN_NAME",
-      "input_value": "google.com",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_crxcavator",
-      "consumed_nugget_id": "DOMAIN_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_cybercrimetracker",
-      "consumed_nugget_id": "INTERNET_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_debounce",
+      "module_id": "sfp_gravatar",
       "consumed_nugget_id": "EMAILADDR",
       "input_value": "noreply@spiderfoot.net",
       "subscription_tier": "none",
@@ -233,37 +23,7 @@
       "notes": ""
     },
     {
-      "module_id": "sfp_digitaloceanspace",
-      "consumed_nugget_id": "DOMAIN_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "HTTP_504",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": "{\"detail\":\"Scan C2D09F2D did not finish within 45s\"}"
-    },
-    {
-      "module_id": "sfp_dns_for_family",
-      "consumed_nugget_id": "INTERNET_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_dnsdumpster",
-      "consumed_nugget_id": "DOMAIN_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_dronebl",
+      "module_id": "sfp_greensnow",
       "consumed_nugget_id": "IP_ADDRESS",
       "input_value": "8.8.8.8",
       "subscription_tier": "none",
@@ -273,27 +33,37 @@
       "notes": ""
     },
     {
-      "module_id": "sfp_duckduckgo",
+      "module_id": "sfp_grep_app",
       "consumed_nugget_id": "DOMAIN_NAME",
-      "input_value": "bbc.co.uk",
+      "input_value": "sbs.com.au",
       "subscription_tier": "none",
       "status": "FINISHED",
-      "produced_count": 8,
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_h1nobbdde",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "sbs.com.au",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_hackertarget",
+      "consumed_nugget_id": "IP_ADDRESS",
+      "input_value": "8.8.8.8",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 100,
       "validated_produces": true,
       "notes": ""
     },
     {
-      "module_id": "sfp_emailformat",
-      "consumed_nugget_id": "INTERNET_NAME",
-      "input_value": "sbs.com.au",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_emergingthreats",
+      "module_id": "sfp_isc",
       "consumed_nugget_id": "IP_ADDRESS",
       "input_value": "8.8.8.8",
       "subscription_tier": "none",
@@ -303,9 +73,9 @@
       "notes": ""
     },
     {
-      "module_id": "sfp_flickr",
-      "consumed_nugget_id": "DOMAIN_NAME",
-      "input_value": "sbs.com.au",
+      "module_id": "sfp_keybase",
+      "consumed_nugget_id": "USERNAME",
+      "input_value": "\"spiderfeet\"",
       "subscription_tier": "none",
       "status": "FINISHED",
       "produced_count": 0,
@@ -313,19 +83,9 @@
       "notes": ""
     },
     {
-      "module_id": "sfp_fortinet",
+      "module_id": "sfp_maltiverse",
       "consumed_nugget_id": "IP_ADDRESS",
       "input_value": "8.8.8.8",
-      "subscription_tier": "none",
-      "status": "FINISHED",
-      "produced_count": 0,
-      "validated_produces": false,
-      "notes": ""
-    },
-    {
-      "module_id": "sfp_github",
-      "consumed_nugget_id": "DOMAIN_NAME",
-      "input_value": "sbs.com.au",
       "subscription_tier": "none",
       "status": "FINISHED",
       "produced_count": 2,
@@ -333,9 +93,9 @@
       "notes": ""
     },
     {
-      "module_id": "sfp_gleif",
-      "consumed_nugget_id": "COMPANY_NAME",
-      "input_value": "sbs.com.au",
+      "module_id": "sfp_mnemonic",
+      "consumed_nugget_id": "IP_ADDRESS",
+      "input_value": "8.8.8.8",
       "subscription_tier": "none",
       "status": "FINISHED",
       "produced_count": 0,
@@ -343,9 +103,9 @@
       "notes": ""
     },
     {
-      "module_id": "sfp_google_tag_manager",
-      "consumed_nugget_id": "WEB_ANALYTICS_ID",
-      "input_value": "sbs.com.au",
+      "module_id": "sfp_multiproxy",
+      "consumed_nugget_id": "IP_ADDRESS",
+      "input_value": "8.8.8.8",
       "subscription_tier": "none",
       "status": "FINISHED",
       "produced_count": 0,
@@ -353,13 +113,153 @@
       "notes": ""
     },
     {
-      "module_id": "sfp_googleobjectstorage",
+      "module_id": "sfp_myspace",
+      "consumed_nugget_id": "EMAILADDR",
+      "input_value": "noreply@spiderfoot.net",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_onionsearchengine",
       "consumed_nugget_id": "DOMAIN_NAME",
       "input_value": "sbs.com.au",
       "subscription_tier": "none",
       "status": "FINISHED",
       "produced_count": 0,
       "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_openbugbounty",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "sbs.com.au",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_opendns",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "sbs.com.au",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_opennic",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "sbs.com.au",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_openphish",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "sbs.com.au",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_openstreetmap",
+      "consumed_nugget_id": "PHYSICAL_ADDRESS",
+      "input_value": "sbs.com.au",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_phishstats",
+      "consumed_nugget_id": "IP_ADDRESS",
+      "input_value": "8.8.8.8",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_phishtank",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "sbs.com.au",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_psbdmp",
+      "consumed_nugget_id": "EMAILADDR",
+      "input_value": "noreply@spiderfoot.net",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_punkspider",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "sbs.com.au",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_quad9",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "sbs.com.au",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_reversewhois",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "sbs.com.au",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 0,
+      "validated_produces": false,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_ripe",
+      "consumed_nugget_id": "IP_ADDRESS",
+      "input_value": "8.8.8.8",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 2,
+      "validated_produces": true,
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_robtex",
+      "consumed_nugget_id": "IP_ADDRESS",
+      "input_value": "8.8.8.8",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "produced_count": 99,
+      "validated_produces": true,
       "notes": ""
     }
   ]

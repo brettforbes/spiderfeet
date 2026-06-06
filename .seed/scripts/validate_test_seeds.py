@@ -115,6 +115,7 @@ def main() -> int:
     parser.add_argument("--api-base", default="http://127.0.0.1:8001/api/v1")
     parser.add_argument("--tier", default="none", help="Subscription tier filter (none, free_auth, paid_auth)")
     parser.add_argument("--limit", type=int, default=0, help="Max modules to validate (0 = all matching tier)")
+    parser.add_argument("--offset", type=int, default=0, help="Skip first N matching modules")
     parser.add_argument("--timeout", type=int, default=60, help="scan_ui timeout seconds per module")
     parser.add_argument("--write", action="store_true", help="Update registry JSON and test_nugget_data.csv")
     parser.add_argument(
@@ -129,6 +130,7 @@ def main() -> int:
         configured_modules=runtime.config.get("__modules__", {}),
         subscription_tier=args.tier if args.tier != "all" else None,
         module_limit=args.limit or None,
+        module_offset=args.offset,
     )
     if not items:
         print("No validation items for filter.", file=sys.stderr)
