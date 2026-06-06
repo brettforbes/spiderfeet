@@ -11,7 +11,7 @@ from typing import Any, Dict, Iterable, List, Optional
 from spiderfeet.map.constants import MODULE_TEST_SEEDS_JSON, REPO_ROOT
 from spiderfeet.map.routes_catalog import expand_module_tests_for_service, load_osint_services
 from spiderfeet.map.subscriptions import subscription_status
-from spiderfeet.map.test_targets import load_module_test_seeds, sample_target_for_module
+from spiderfeet.map.test_targets import load_module_test_seeds, sample_target_for_module, seed_coverage_complete
 
 TEST_NUGGET_DATA_CSV = REPO_ROOT / ".docs" / "analysis" / "test_nugget_data.csv"
 
@@ -101,7 +101,12 @@ def rows_from_seed_registry() -> List[CorpusRow]:
             if not value:
                 continue
             validation = str(entry.get("validation") or "").strip().lower()
-            validated = validation == "smoke" or bool(entry.get("validated_produces"))
+            kind = str(entry.get("fixture_kind") or "positive").strip().lower()
+            validated = (
+                validation == "smoke"
+                or bool(entry.get("validated_produces"))
+                or (kind == "negative" and bool(entry.get("validated_negative")))
+            )
             notes = str(entry.get("notes") or "").strip()
             if validation and not notes:
                 notes = f"validation={validation}"
@@ -180,18 +185,29 @@ def summarize_registry_validation(
     )
     seeds = load_module_test_seeds()
     validated_ids: List[str] = []
+    positive_ids: List[str] = []
+    negative_ids: List[str] = []
     for item in items:
-        module_seeds = seeds.get(item["module_id"], {})
-        entry = module_seeds.get(item["consumed_nugget_id"], {})
-        if entry.get("validated_produces"):
-            validated_ids.append(item["module_id"])
+        module_id = item["module_id"]
+        consumed_id = item["consumed_nugget_id"]
+        if seed_coverage_complete(module_id, consumed_id):
+            validated_ids.append(module_id)
+            entry = seeds.get(module_id, {}).get(consumed_id, {})
+            if str(entry.get("fixture_kind") or "").lower() == "negative":
+                negative_ids.append(module_id)
+            elif entry.get("validated_produces"):
+                positive_ids.append(module_id)
     total = len(items)
     validated = len(validated_ids)
     return {
         "total_modules": total,
-        "validated_produces_count": validated,
+        "validated_produces_count": len(positive_ids),
+        "validated_negative_count": len(negative_ids),
+        "coverage_count": validated,
         "rate_pct": round(100 * validated / total, 1) if total else 0.0,
-        "validated_module_ids": sorted(validated_ids),
+        "validated_module_ids": sorted(set(validated_ids)),
+        "positive_module_ids": sorted(set(positive_ids)),
+        "negative_module_ids": sorted(set(negative_ids)),
     }
 
 
