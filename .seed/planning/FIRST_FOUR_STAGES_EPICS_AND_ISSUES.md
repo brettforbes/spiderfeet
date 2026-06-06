@@ -286,19 +286,41 @@ Stages 3 and 4 intentionally split into **backend / widget** epics with explicit
 
 **Note on SF-04C-08:** At approval time, choose **12 issues (one per consumption group)** vs **1 rolling epic** to avoid 177× separate issues. Default recommendation: **12 group batch stories** + exploratory sub-issues for failures.
 
-### Epic `EPIC-SFW-04` — Tests tab (`spiderFeet-widget`)
+### Epic `EPIC-SFW-04` — Tests tab + Subscriptions (`spiderFeet-widget`)
 
 | ID | Type | Title | Acceptance criteria (summary) |
 |----|------|-------|-------------------------------|
 | SFW-04-01 | Story | Tests tab scaffold | Accordion list grouped by `module_id` |
-| SFW-04-02 | Story | Summary metrics table | Counts: routes, passed, failed, in-progress, not-started, etc. |
-| SFW-04-03 | Story | Filters (consumed/produced/module/grouping) | Left panel controls per §2.4.3.1 |
-| SFW-04-04 | Story | Accordion item: run test + status icon + duration | Header controls |
+| SFW-04-02 | Story | Summary metrics table | Counts incl. session passed/failed/skipped |
+| SFW-04-03 | Story | Filters (tier + runnable-only) | Left panel; subscription tier filter |
+| SFW-04-04 | Story | Accordion header: run, status, duration | Header controls (icons → SFW-04-14) |
 | SFW-04-05 | Story | Accordion body: CLI & API commands + copy | Copy-to-clipboard |
 | SFW-04-06 | Story | Accordion body: scan-record mini force graph | D3 sub-graph per record |
 | SFW-04-07 | Story | Accordion body: results, errors, notes | Pretty display of API payload |
 | SFW-04-08 | Story | Per-module performance table (10 rows/page) | TypeDB-backed via API |
 | SFW-04-09 | Story | **Exploratory review:** Tests tab scenario matrix | GOV-08; persistence verified via refresh |
+| SFW-04-10 | Story | **Subscriptions tab scaffold** | Navbar tab; filters + accordion layout |
+| SFW-04-11 | Story | **Subscriptions API key editor** | Masked key; save unlocks Tests |
+| SFW-04-13 | Story | **Tests visibility gate** | Hide key-required modules until key set |
+| SFW-04-14 | Story | **Accordion pass/fail + tier icons** | Green/red session; none/free/paid icons |
+
+### Epic `EPIC-SF-04B` — Test nugget corpus (additions)
+
+| ID | Type | Title | Acceptance criteria (summary) |
+|----|------|-------|-------------------------------|
+| SF-04B-05 | Story | Module-validated seed registry | `(module_id, consumed)` → input; replaces generic pilot |
+| SF-04B-06 | Story | Corpus validation harness | Tune seeds until `scan_ui` produces objects |
+
+### Epic `EPIC-SF-04C` — Route test execution (additions)
+
+| ID | Type | Title | Acceptance criteria (summary) |
+|----|------|-------|-------------------------------|
+| SF-04C-10 | Story | Subscription tier in catalog + `/tests/plan` | `none` / `free_auth` / `paid_auth`; fix `api_hostname` key bug |
+| SF-04C-11 | Story | Subscriptions API | CRUD masked API keys → module opts |
+
+**Revised stories:** SF-04B-02/03/04 (#63, #65), SF-04C-02 (#68), SFW-04-02/03/04 (#34, #35, #36), X-04 (#75).
+
+**New SPEC requirements (promote before implementation):** R2-04-05 Subscriptions, R2-04-06 tier gating, R2-04-07 validated corpus, R2-04-08 strict pass semantics.
 
 ### Epic `EPIC-X-04` — cross-repo sign-off
 

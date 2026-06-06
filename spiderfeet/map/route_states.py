@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional, Tuple
 
 from typedb.api.connection.driver import Driver
 from typedb.api.connection.transaction import TransactionType
@@ -42,3 +42,24 @@ def overlay_route_state(
     if typedb_states and route_name in typedb_states:
         return typedb_states[route_name]
     return "not-started"
+
+
+_TEST_STATE_RANK = {
+    "not-started": 0,
+    "favourite": 1,
+    "unique": 2,
+    "dominated": 3,
+    "in-test": 4,
+    "error": 5,
+}
+
+
+def overlay_test_state(
+    route_names: Tuple[str, ...] | List[str],
+    typedb_states: Optional[Dict[str, str]],
+) -> str:
+    """Aggregate route_state values for a module test (one consumed nugget)."""
+    if not route_names:
+        return "not-started"
+    states = [overlay_route_state(name, typedb_states) for name in route_names]
+    return max(states, key=lambda state: _TEST_STATE_RANK.get(state, 0))

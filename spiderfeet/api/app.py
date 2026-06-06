@@ -10,7 +10,7 @@ from fastapi.openapi.utils import get_openapi
 from spiderfeet import __version__
 from spiderfeet.api import settings
 from spiderfeet.api.bootstrap import init_runtime
-from spiderfeet.api.routes import catalogue, health, map, scan_ui, scans, tests
+from spiderfeet.api.routes import catalogue, health, map, scan_ui, scans, subscriptions, tests
 from spiderfeet.api.schemas import (
     SCAN_CREATE_OPENAPI_EXAMPLES,
     SCAN_CREATE_SWAGGER_EXAMPLE,
@@ -57,6 +57,7 @@ def create_app() -> FastAPI:
     app.include_router(scan_ui.router, prefix=prefix)
     app.include_router(map.router, prefix=prefix)
     app.include_router(tests.router, prefix=prefix)
+    app.include_router(subscriptions.router, prefix=prefix)
 
     def custom_openapi():
         if app.openapi_schema:

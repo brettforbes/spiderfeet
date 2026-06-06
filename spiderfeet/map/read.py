@@ -88,7 +88,7 @@ match
     has nugget_id $nid,
     has nugget_description $desc,
     has nugget_colour $colour;
-optional {{
+try {{
   $nug has nugget_icon $icon;
 }};
 """

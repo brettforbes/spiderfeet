@@ -349,12 +349,20 @@ class MapForceGraphResponse(BaseModel):
 
 class TestsSummaryResponse(BaseModel):
     module_count: int
-    route_count: int
+    test_count: int = Field(..., description="Executable tests (one per module × consumed nugget)")
+    route_count: int = Field(
+        ...,
+        description="Full route matrix size (consumed × produced) for map coverage metrics",
+    )
     consumption_group_count: int
     typedb_connected: bool = False
+    test_states: Dict[str, int] = Field(
+        default_factory=dict,
+        description="Counts by aggregated test state (not_started, in_test, favourite, …)",
+    )
     route_states: Dict[str, int] = Field(
         default_factory=dict,
-        description="Counts by route_state (not_started, in_test, favourite, …)",
+        description="Deprecated alias of test_states for older clients",
     )
 
 
@@ -364,11 +372,41 @@ class TestsModuleSummary(BaseModel):
     summary: str
     consumption_group: str
     access_tier: str
-    route_count: int
+    subscription_tier: str = Field(
+        "none",
+        description="none | free_auth | paid_auth — subscription/auth classification",
+    )
+    requires_api_key: bool = Field(
+        False,
+        description="True when module needs an API key or token to run",
+    )
+    has_api_key: bool = Field(
+        True,
+        description="True when runtime module opts include configured credentials",
+    )
+    test_count: int
+    route_count: int = Field(
+        0,
+        description="Full route matrix size (consumed × produced)",
+    )
+    tests_run: int = Field(
+        0,
+        description="Module tests with a non-not-started state in TypeDB (when connected)",
+    )
     routes_tested: int = Field(
         0,
-        description="Routes with a non-not-started state in TypeDB (when connected)",
+        description="Deprecated alias of tests_run",
     )
+
+
+class ModuleTestItem(BaseModel):
+    test_id: str
+    consumed_nugget_id: str
+    input_value: Optional[str] = Field(
+        None,
+        description="Scan target sent as consumed nugget_data (exploratory test input)",
+    )
+    test_state: str = "not-started"
 
 
 class RouteCatalogItem(BaseModel):
@@ -376,6 +414,17 @@ class RouteCatalogItem(BaseModel):
     consumed_nugget_id: str
     produced_nugget_id: str
     route_state: str = "not-started"
+    sample_target: Optional[str] = Field(
+        None,
+        description="Pilot test value for consumed nugget (Stage 4c; full corpus in 4b)",
+    )
+
+
+class TestsNuggetSamplesResponse(BaseModel):
+    samples: Dict[str, str] = Field(
+        default_factory=dict,
+        description="nugget_id → valid SpiderFeet scan target string",
+    )
 
 
 class TestsModuleDetail(BaseModel):
@@ -385,5 +434,86 @@ class TestsModuleDetail(BaseModel):
     consumption_group: str
     access_tier: str
     route_seed_nugget: Optional[str] = None
-    route_count: int
-    routes: List[RouteCatalogItem]
+    test_count: int
+    route_count: int = Field(
+        0,
+        description="Full route matrix size (consumed × produced)",
+    )
+    tests: List[ModuleTestItem]
+
+
+class TestsPlanItem(BaseModel):
+    """One runnable catalog test for batch execution (pre-expanded queue row)."""
+
+    test_id: str
+    module_id: str
+    consumed_nugget_id: str
+    input_value: Optional[str] = Field(
+        None,
+        description="Scan target for scan_ui consumed.nugget_data",
+    )
+    subscription_tier: str = Field(
+        "none",
+        description="none | free_auth | paid_auth",
+    )
+    requires_api_key: bool = Field(
+        False,
+        description="True when module metadata indicates auth/API key requirement",
+    )
+    has_api_key: bool = Field(
+        True,
+        description="True when runtime module opts include a configured API key/token",
+    )
+    skip_reason: Optional[str] = Field(
+        None,
+        description="Why this test should be skipped in Run All (e.g. missing-api-key)",
+    )
+
+
+class TestsPlanResponse(BaseModel):
+    items: List[TestsPlanItem] = Field(default_factory=list)
+    module_count: int = 0
+    test_count: int = 0
+
+
+class SecretOptMasked(BaseModel):
+    name: str
+    masked_value: Optional[str] = Field(
+        None,
+        description="Masked secret (never full value on GET)",
+    )
+    configured: bool = Field(
+        False,
+        description="True when a non-empty value is stored",
+    )
+
+
+class SubscriptionModuleSummary(BaseModel):
+    module_id: str
+    name: str
+    subscription_tier: str
+    requires_api_key: bool
+    has_api_key: bool
+    secret_opts: List[SecretOptMasked] = Field(default_factory=list)
+
+
+class SubscriptionModuleDetail(BaseModel):
+    module_id: str
+    name: str
+    summary: str
+    access_tier: str
+    subscription_tier: str
+    requires_api_key: bool
+    has_api_key: bool
+    website: Optional[str] = None
+    api_key_instructions: List[str] = Field(default_factory=list)
+    consumed_nuggets: List[str] = Field(default_factory=list)
+    produced_nuggets: List[str] = Field(default_factory=list)
+    secret_opts: List[SecretOptMasked] = Field(default_factory=list)
+
+
+class SubscriptionModuleUpdate(BaseModel):
+    secrets: Dict[str, Optional[str]] = Field(
+        ...,
+        description="Secret opt name → value; empty string or null clears the stored secret",
+    )

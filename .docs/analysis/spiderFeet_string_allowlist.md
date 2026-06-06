@@ -27,7 +27,7 @@ Canonical product name: **SpiderFeet** (capital F in Feet).
 
 ## Branding assets
 
-- Provisional logo: `.docs/branding/spiderfeet-light-stacked.png` (operator-supplied; not legacy SpiderFoot)
+- Logo: `.docs/branding/spiderfeet_logo_horizontal_dark.svg` (not legacy SpiderFoot)
 - Do not add generated logo concept SVGs; replace only when firm/final artwork is delivered
 
 ## Vendor API strings
