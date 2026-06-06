@@ -26,6 +26,7 @@ from spiderfeet.map.test_corpus import (  # noqa: E402
     merge_validation_results_into_registry,
     plan_validation_items,
     rows_from_seed_registry,
+    summarize_registry_validation,
     write_test_corpus_csv,
 )
 
@@ -155,8 +156,13 @@ def main() -> int:
         )
 
     summary = summarize(paired)
+    cumulative = summarize_registry_validation(
+        configured_modules=runtime.config.get("__modules__", {}),
+        subscription_tier=args.tier if args.tier != "all" else None,
+    )
     report = {
-        "summary": summary,
+        "batch_summary": summary,
+        "cumulative_registry": cumulative,
         "results": [
             {**item, **result}
             for item, result in paired
@@ -165,7 +171,7 @@ def main() -> int:
     report_path = Path(args.report)
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps(summary, indent=2))
+    print(json.dumps({"batch": summary, "cumulative": cumulative}, indent=2))
     print(f"Report: {report_path}")
 
     if args.write:
@@ -174,9 +180,9 @@ def main() -> int:
         print("Updated module_test_seeds.json and test_nugget_data.csv")
 
     target_rate = 60.0 if args.tier == "none" else 0.0
-    if args.tier == "none" and summary["rate_pct"] < target_rate:
+    if args.tier == "none" and cumulative["rate_pct"] < target_rate:
         print(
-            f"Warning: none-tier pass rate {summary['rate_pct']}% below target {target_rate}%",
+            f"Warning: none-tier cumulative pass rate {cumulative['rate_pct']}% below target {target_rate}%",
             file=sys.stderr,
         )
     return 0

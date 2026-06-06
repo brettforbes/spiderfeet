@@ -44,10 +44,14 @@ Full corpus tuning is **SF-04B-06** (177 modules).
 **Script:**
 
 ```powershell
-poetry run python .seed/scripts/validate_test_seeds.py --tier none --limit 40 --write
+poetry run python .seed/scripts/validate_test_seeds.py --tier none --write
+poetry run python .seed/scripts/validate_test_seeds.py --tier none --offset 35 --write   # batch 2
+poetry run python .seed/scripts/validate_test_seeds.py --tier none --offset 60 --write   # batch 3
 ```
 
-Writes `.docs/analysis/test_seed_validation_report.json` and optionally updates the registry + CSV when `--write` is passed. Target for `none` tier: ≥60% `validated_produces` (strict pass = `FINISHED` + `produced.length > 0`).
+Writes `.docs/analysis/test_seed_validation_report.json` (batch + cumulative registry stats) and optionally updates the registry + CSV when `--write` is passed. Target for `none` tier: ≥60% `validated_produces` (strict pass = `FINISHED` + `produced.length > 0`).
+
+**Cumulative status (2026-06-06):** 10/87 none-tier modules smoke-validated (~11.5%). Blocklist/threat modules often produce zero on clean inputs (`8.8.8.8`, `sbs.com.au`) — tune seeds or mark `negative-fixture` in follow-up.
 
 ## Fallback order
 
