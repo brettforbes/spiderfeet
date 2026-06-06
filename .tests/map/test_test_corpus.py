@@ -68,5 +68,5 @@ def test_plan_validation_items_offset():
 def test_summarize_registry_validation():
     summary = summarize_registry_validation(configured_modules={}, subscription_tier="none")
     assert summary["total_modules"] >= 80
-    assert summary["validated_produces_count"] >= 9
+    assert summary["validated_produces_count"] >= 16
     assert "sfp_duckduckgo" in summary["validated_module_ids"]
