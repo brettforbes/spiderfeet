@@ -26,6 +26,10 @@ Stages 0–4 only (governance → rebrand → FastAPI → TypeDB map UI → per-
 | R2-04-02 | 4 | Realistic test nugget corpus (AU, UK, US) |
 | R2-04-03 | 4 | **One GitHub issue per OSINT module** (177); each issue covers all routes for that module (consumed×produced pairs exercised within the issue) |
 | R2-04-04 | 4 | Widget Tests tab for running/viewing route tests and history |
+| R2-04-05 | 4 | **SPEC_GAP** — Subscriptions page: per-module API key CRUD (masked) |
+| R2-04-06 | 4 | **SPEC_GAP** — Subscription tiers (`none` / `free_auth` / `paid_auth`); gate Tests visibility |
+| R2-04-07 | 4 | **SPEC_GAP** — Module-validated test corpus (seeds must produce scan_ui objects) |
+| R2-04-08 | 4 | **SPEC_GAP** — Strict test pass: `FINISHED` + produced objects; session pass/fail counts |
 
 ## Stage 4 route testing
 
