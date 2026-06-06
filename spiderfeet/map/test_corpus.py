@@ -123,6 +123,7 @@ def plan_validation_items(
     configured_modules: Optional[Dict[str, Any]] = None,
     subscription_tier: Optional[str] = None,
     module_limit: Optional[int] = None,
+    module_offset: int = 0,
 ) -> List[Dict[str, Any]]:
     """Build one validation item per module test (primary consumed nugget)."""
     configured = configured_modules or {}
@@ -152,6 +153,8 @@ def plan_validation_items(
         if not input_value:
             continue
         seen_modules.add(module_id)
+        if module_offset and len(seen_modules) <= module_offset:
+            continue
         items.append(
             {
                 "module_id": module_id,
