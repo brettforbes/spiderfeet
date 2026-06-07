@@ -83,10 +83,40 @@ def _state_counts(states: Optional[Dict[str, str]], test_count: int) -> Dict[str
     return counts
 
 
-def tests_summary() -> TestsSummaryResponse:
+def _plan_execution_stats(
+    *,
+    runtime_config: Optional[Dict[str, Any]] = None,
+) -> Dict[str, int]:
+    """Count plan rows by API-key block, seed validation, and runnable status."""
+    plan = test_plan(limit=200, offset=0, runtime_config=runtime_config)
+    missing_api_key = 0
+    seed_validated = 0
+    pending_seed = 0
+    runnable = 0
+    for item in plan.items:
+        if item.skip_reason == "missing-api-key":
+            missing_api_key += 1
+            continue
+        if not item.input_value:
+            continue
+        runnable += 1
+        if item.seed_validated:
+            seed_validated += 1
+        else:
+            pending_seed += 1
+    return {
+        "missing_api_key_count": missing_api_key,
+        "seed_validated_count": seed_validated,
+        "pending_seed_count": pending_seed,
+        "runnable_count": runnable,
+    }
+
+
+def tests_summary(runtime_config: Optional[Dict[str, Any]] = None) -> TestsSummaryResponse:
     summary = catalog_summary()
     states = _typedb_route_states()
     state_counts = _state_counts(states, summary["test_count"])
+    exec_stats = _plan_execution_stats(runtime_config=runtime_config)
     return TestsSummaryResponse(
         module_count=summary["module_count"],
         test_count=summary["test_count"],
@@ -95,6 +125,7 @@ def tests_summary() -> TestsSummaryResponse:
         typedb_connected=states is not None,
         test_states=state_counts,
         route_states=state_counts,
+        **exec_stats,
     )
 
 

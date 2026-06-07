@@ -23,7 +23,8 @@ router = APIRouter(prefix="/tests", tags=["tests"])
 @router.get("/summary", response_model=TestsSummaryResponse)
 def tests_summary() -> TestsSummaryResponse:
     """Aggregate module/route counts for the Tests tab summary table."""
-    return tests_service.tests_summary()
+    runtime = get_runtime()
+    return tests_service.tests_summary(runtime_config=runtime.config)
 
 
 @router.get("/modules", response_model=List[TestsModuleSummary])

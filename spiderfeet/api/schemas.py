@@ -364,6 +364,22 @@ class TestsSummaryResponse(BaseModel):
         default_factory=dict,
         description="Deprecated alias of test_states for older clients",
     )
+    missing_api_key_count: int = Field(
+        0,
+        description="Plan rows blocked until Subscriptions API keys are configured",
+    )
+    seed_validated_count: int = Field(
+        0,
+        description="Plan rows with smoke-validated positive or negative seed in registry",
+    )
+    pending_seed_count: int = Field(
+        0,
+        description="Runnable plan rows lacking validated seed (generic fallback input only)",
+    )
+    runnable_count: int = Field(
+        0,
+        description="Plan rows with input value and not blocked by missing API key",
+    )
 
 
 class TestsModuleSummary(BaseModel):
