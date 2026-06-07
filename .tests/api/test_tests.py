@@ -12,6 +12,10 @@ def test_tests_summary(api_client):
     assert body["route_count"] >= body["test_count"]
     assert "test_states" in body
     assert body["test_states"]["not_started"] >= 0
+    assert body["missing_api_key_count"] >= 0
+    assert body["seed_validated_count"] >= 50
+    assert body["pending_seed_count"] >= 0
+    assert body["runnable_count"] == body["seed_validated_count"] + body["pending_seed_count"]
 
 
 def test_tests_modules_list(api_client):
