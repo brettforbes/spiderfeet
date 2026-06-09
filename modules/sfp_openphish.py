@@ -7,13 +7,13 @@
 #
 # Created:     28/06/2018
 # Copyright:   (c) Steve Micallef, 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_openphish(SpiderFootPlugin):
+class sfp_openphish(SpiderFeetPlugin):
 
     meta = {
         'name': "OpenPhish",
@@ -188,10 +188,10 @@ class sfp_openphish(SpiderFootPlugin):
         url = "https://www.openphish.com/feed.txt"
         text = f"OpenPhish [{eventData}]\n<SFURL>{url}</SFURL>"
 
-        evt = SpiderFootEvent(malicious_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(malicious_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(blacklist_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(blacklist_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_openphish class

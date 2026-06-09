@@ -8,13 +8,13 @@
 #
 # Created:     2021-08-30
 # Copyright:   (c) bcoles 2021
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_stevenblack_hosts(SpiderFootPlugin):
+class sfp_stevenblack_hosts(SpiderFeetPlugin):
 
     meta = {
         'name': "Steven Black Hosts",
@@ -178,10 +178,10 @@ class sfp_stevenblack_hosts(SpiderFootPlugin):
         url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
         text = f"Steven Black Hosts Blocklist [{eventData}]\n<SFURL>{url}</SFURL>"
 
-        evt = SpiderFootEvent(malicious_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(malicious_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(blacklist_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(blacklist_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_stevenblack_hosts class

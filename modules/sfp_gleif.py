@@ -8,16 +8,16 @@
 #
 # Created:     2021-06-21
 # Copyright:   (c) bcoles 2021
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 import urllib
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_gleif(SpiderFootPlugin):
+class sfp_gleif(SpiderFeetPlugin):
 
     meta = {
         'name': "GLEIF",
@@ -206,7 +206,7 @@ class sfp_gleif(SpiderFootPlugin):
                 self.debug(f"Found no results for {eventData}")
                 return
 
-            e = SpiderFootEvent("RAW_RIR_DATA", str(res), self.__name__, event)
+            e = SpiderFeetEvent("RAW_RIR_DATA", str(res), self.__name__, event)
             self.notifyListeners(e)
 
             for record in res:
@@ -223,7 +223,7 @@ class sfp_gleif(SpiderFootPlugin):
                     continue
 
                 lei = data.get('id')
-                if not SpiderFootHelpers.validLEI(lei):
+                if not SpiderFeetHelpers.validLEI(lei):
                     continue
 
                 leis.append(lei)
@@ -234,12 +234,12 @@ class sfp_gleif(SpiderFootPlugin):
             if lei in self.results:
                 continue
 
-            if not SpiderFootHelpers.validLEI(lei):
+            if not SpiderFeetHelpers.validLEI(lei):
                 continue
 
             self.results[lei] = True
 
-            e = SpiderFootEvent("LEI", lei, self.__name__, event)
+            e = SpiderFeetEvent("LEI", lei, self.__name__, event)
             self.notifyListeners(e)
 
             self.results[lei] = True
@@ -261,7 +261,7 @@ class sfp_gleif(SpiderFootPlugin):
             if legal_name:
                 entity_name = legal_name.get('value')
                 if entity_name:
-                    e = SpiderFootEvent("COMPANY_NAME", entity_name, self.__name__, event)
+                    e = SpiderFeetEvent("COMPANY_NAME", entity_name, self.__name__, event)
                     self.notifyListeners(e)
 
             addresses = list()
@@ -305,7 +305,7 @@ class sfp_gleif(SpiderFootPlugin):
                     addresses.append(location)
 
             for address in set(addresses):
-                e = SpiderFootEvent("PHYSICAL_ADDRESS", address, self.__name__, event)
+                e = SpiderFeetEvent("PHYSICAL_ADDRESS", address, self.__name__, event)
                 self.notifyListeners(e)
 
 # End of sfp_gleif class

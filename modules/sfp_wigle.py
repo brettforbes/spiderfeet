@@ -6,7 +6,7 @@
 #
 # Created:     10/09/2017
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import base64
@@ -16,10 +16,10 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_wigle(SpiderFootPlugin):
+class sfp_wigle(SpiderFeetPlugin):
 
     meta = {
         'name': "WiGLE",
@@ -114,7 +114,7 @@ class sfp_wigle(SpiderFootPlugin):
         res = self.sf.fetchUrl(
             "https://api.wigle.net/api/v2/network/search?" + urllib.parse.urlencode(params),
             timeout=30,
-            useragent="SpiderFoot",
+            useragent="SpiderFeet",
             headers=hdrs
         )
 
@@ -181,7 +181,7 @@ class sfp_wigle(SpiderFootPlugin):
             return
 
         for n in nets:
-            e = SpiderFootEvent("WIFI_ACCESS_POINT", n, self.__name__, event)
+            e = SpiderFeetEvent("WIFI_ACCESS_POINT", n, self.__name__, event)
             self.notifyListeners(e)
 
 # End of sfp_wigle class

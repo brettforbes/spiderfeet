@@ -7,15 +7,15 @@
 #
 # Created:     2021-10-11
 # Copyright:   (c) bcoles 2021
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import dns.resolver
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_dns_for_family(SpiderFootPlugin):
+class sfp_dns_for_family(SpiderFeetPlugin):
 
     meta = {
         'name': "DNS for Family",
@@ -112,7 +112,7 @@ class sfp_dns_for_family(SpiderFootPlugin):
                 continue
 
             self.debug(f"{eventData} blocked by DNS for Family")
-            evt = SpiderFootEvent(blacklist_type, f"DNS for Family [{eventData}]", self.__name__, event)
+            evt = SpiderFeetEvent(blacklist_type, f"DNS for Family [{eventData}]", self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_dns_for_family class

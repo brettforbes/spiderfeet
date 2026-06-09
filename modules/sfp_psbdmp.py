@@ -6,16 +6,16 @@
 #
 # Created:     21/11/2016
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_psbdmp(SpiderFootPlugin):
+class sfp_psbdmp(SpiderFeetPlugin):
 
     meta = {
         'name': "Psbdmp",
@@ -64,7 +64,7 @@ class sfp_psbdmp(SpiderFootPlugin):
         else:
             url = "https://psbdmp.cc/api/search/domain/" + qry
 
-        res = self.sf.fetchUrl(url, timeout=15, useragent="SpiderFoot")
+        res = self.sf.fetchUrl(url, timeout=15, useragent="SpiderFeet")
 
         if res['code'] == "403" or res['content'] is None:
             self.info("Unable to fetch data from psbdmp.cc right now.")
@@ -106,7 +106,7 @@ class sfp_psbdmp(SpiderFootPlugin):
             return
 
         for n in data:
-            e = SpiderFootEvent("LEAKSITE_URL", n, self.__name__, event)
+            e = SpiderFeetEvent("LEAKSITE_URL", n, self.__name__, event)
             self.notifyListeners(e)
 
             res = self.sf.fetchUrl(
@@ -126,7 +126,7 @@ class sfp_psbdmp(SpiderFootPlugin):
             ) is None:
                 continue
 
-            evt = SpiderFootEvent("LEAKSITE_CONTENT", res['content'], self.__name__, e)
+            evt = SpiderFeetEvent("LEAKSITE_CONTENT", res['content'], self.__name__, e)
             self.notifyListeners(evt)
 
 # End of sfp_psbdmp class

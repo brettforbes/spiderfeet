@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_etherscan
-# Purpose:      SpiderFoot plug-in to look up a ethereum wallet's balance by
+# Purpose:      SpiderFeet plug-in to look up a ethereum wallet's balance by
 #               querying etherscan.io.
 #
 # Author:      Krishnasis Mandal <krishnasis@hotmail.com>
 #
 # Created:     26/01/2021
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 import time
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_etherscan(SpiderFootPlugin):
+class sfp_etherscan(SpiderFeetPlugin):
 
     meta = {
         'name': "Etherscan",
@@ -131,10 +131,10 @@ class sfp_etherscan(SpiderFootPlugin):
         # Value returned by etherscan was too large in comparison to actual wallet balance
         balance = float(data.get('result')) / 1000000000000000000
 
-        evt = SpiderFootEvent("ETHEREUM_BALANCE", f"{str(balance)} ETH", self.__name__, event)
+        evt = SpiderFeetEvent("ETHEREUM_BALANCE", f"{str(balance)} ETH", self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent("RAW_RIR_DATA", str(data), self.__name__, event)
+        evt = SpiderFeetEvent("RAW_RIR_DATA", str(data), self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_etherscan class

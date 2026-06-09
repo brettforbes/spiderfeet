@@ -7,16 +7,16 @@
 #
 # Created:     2019-09-21
 # Copyright:   (c) bcoles 2019
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 import time
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_metadefender(SpiderFootPlugin):
+class sfp_metadefender(SpiderFeetPlugin):
 
     meta = {
         'name': "MetaDefender",
@@ -178,7 +178,7 @@ class sfp_metadefender(SpiderFootPlugin):
 
             if geo_info:
                 location = ', '.join([_f for _f in [geo_info.get('city').get('name'), geo_info.get('country').get('name')] if _f])
-                evt = SpiderFootEvent('GEOINFO', location, self.__name__, event)
+                evt = SpiderFeetEvent('GEOINFO', location, self.__name__, event)
                 self.notifyListeners(evt)
 
             res = data.get('lookup_results')
@@ -199,9 +199,9 @@ class sfp_metadefender(SpiderFootPlugin):
                 if m['assessment'] != "trustworthy":
                     continue
                 provider = m.get('provider')
-                evt = SpiderFootEvent('MALICIOUS_IPADDR', provider + ' [' + eventData + ']', self.__name__, event)
+                evt = SpiderFeetEvent('MALICIOUS_IPADDR', provider + ' [' + eventData + ']', self.__name__, event)
                 self.notifyListeners(evt)
-                evt = SpiderFootEvent('BLACKLISTED_IPADDR', provider + ' [' + eventData + ']', self.__name__, event)
+                evt = SpiderFeetEvent('BLACKLISTED_IPADDR', provider + ' [' + eventData + ']', self.__name__, event)
                 self.notifyListeners(evt)
 
         if eventName == 'INTERNET_NAME':
@@ -229,9 +229,9 @@ class sfp_metadefender(SpiderFootPlugin):
                 if m['assessment'] == "trustworthy":
                     continue
                 provider = m.get('provider')
-                evt = SpiderFootEvent('MALICIOUS_INTERNET_NAME', provider + ' [' + eventData + ']', self.__name__, event)
+                evt = SpiderFeetEvent('MALICIOUS_INTERNET_NAME', provider + ' [' + eventData + ']', self.__name__, event)
                 self.notifyListeners(evt)
-                evt = SpiderFootEvent('BLACKLISTED_INTERNET_NAME', provider + ' [' + eventData + ']', self.__name__, event)
+                evt = SpiderFeetEvent('BLACKLISTED_INTERNET_NAME', provider + ' [' + eventData + ']', self.__name__, event)
                 self.notifyListeners(evt)
 
 # End of sfp_metadefender class

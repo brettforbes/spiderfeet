@@ -4,7 +4,7 @@
 
 | Branch | Purpose |
 |--------|---------|
-| `master` | Stable / release-aligned with upstream SpiderFoot baseline |
+| `master` | Stable / release-aligned with upstream SpiderFeet baseline |
 | `develop` | Integration branch for governed changes |
 
 ## Flow

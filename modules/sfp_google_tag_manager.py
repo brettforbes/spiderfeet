@@ -7,7 +7,7 @@
 #
 # Created:     2023-10-29
 # Copyright:   (c) bcoles 2023
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
@@ -15,10 +15,10 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_google_tag_manager(SpiderFootPlugin):
+class sfp_google_tag_manager(SpiderFeetPlugin):
 
     meta = {
         'name': "Google Tag Manager",
@@ -119,7 +119,7 @@ class sfp_google_tag_manager(SpiderFootPlugin):
             if self.is_valid_hostname(host):
                 hosts.append(host)
 
-        for url in SpiderFootHelpers.extractUrlsFromText(str(data).replace("\\/", "/")):
+        for url in SpiderFeetHelpers.extractUrlsFromText(str(data).replace("\\/", "/")):
             host = self.sf.urlFQDN(url)
             if not host:
                 continue
@@ -169,7 +169,7 @@ class sfp_google_tag_manager(SpiderFootPlugin):
             else:
                 evt_type = 'AFFILIATE_INTERNET_NAME'
 
-            evt = SpiderFootEvent(evt_type, host, self.__name__, event)
+            evt = SpiderFeetEvent(evt_type, host, self.__name__, event)
             self.notifyListeners(evt)
 
             if self.sf.isDomain(host, self.opts['_internettlds']):
@@ -178,7 +178,7 @@ class sfp_google_tag_manager(SpiderFootPlugin):
                 else:
                     evt_type = 'DOMAIN_NAME'
 
-                evt = SpiderFootEvent(evt_type, host, self.__name__, event)
+                evt = SpiderFeetEvent(evt_type, host, self.__name__, event)
                 self.notifyListeners(evt)
 
 # End of sfp_google_tag_manager class

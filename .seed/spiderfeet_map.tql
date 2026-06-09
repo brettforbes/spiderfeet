@@ -6,7 +6,16 @@ define
 	#   @values string literals: snake_case data values (e.g. free_no_auth, ip_netblock)
 
 	####################################
-	# Spiderfeet Nugget Definitions
+	# SpiderFeet Nugget Definitions
+	#
+	# Archetype nuggets (from nuggets.json): nugget_id, nugget_description,
+	# nugget_type (ENTITY/DATA/DESCRIPTOR/INTERNAL), nugget_icon, nugget_colour.
+	#
+	# Live / scan-instance nuggets (from SpiderFeet scan results) also populate:
+	#   nugget_instance_id @key, nugget_data, nugget_source_data, nugget_module,
+	#   nugget_event_type (e.g. INTERNET_NAME), nugget_generated (unix seconds),
+	#   nugget_confidence, nugget_visibility, nugget_risk, nugget_false_positive.
+	#   nugget_description holds event_description when present (e.g. "Internet Name").
 	####################################
 
 	entity nugget @abstract,
@@ -14,9 +23,17 @@ define
 		owns nugget_instance_id @key,
 		owns nugget_description,
 		owns nugget_type,
+		owns nugget_event_type,
 		owns nugget_icon,
 		owns nugget_colour,
 		owns nugget_data,
+		owns nugget_source_data,
+		owns nugget_module,
+		owns nugget_generated,
+		owns nugget_confidence,
+		owns nugget_visibility,
+		owns nugget_risk,
+		owns nugget_false_positive,
 		plays osint-service:consumed,
 		plays osint-service:produced,
 		plays route:consumed,
@@ -198,7 +215,7 @@ define
 	entity wikipedia-page-edit, sub nugget;
 
 	#####################################
-	# Spiderfeet OSINT Service Definitions
+	# SpiderFeet OSINT Service Definitions
 	####################################
 
 	relation osint-service,
@@ -208,6 +225,7 @@ define
 		owns flags,
 		owns use_cases,
 		owns categories,
+		owns fixture_category,
 		owns access_tier,
 		owns consumption_group,
 		owns route_seed_nugget,
@@ -216,10 +234,10 @@ define
 		owns service_state,
 		plays scan-record:service,
 		plays data-source:service,
-		plays route:service,
+		plays route:osint-service,
 		plays opts:service,
-		relates consumed,
-		relates produced;
+		relates consumed @card(0..),
+		relates produced @card(0..);
 
 	entity osint-source,
 		owns website,
@@ -428,7 +446,7 @@ define
 
 
 	#####################################
-	# Spiderfeet Route Relation Definitions
+	# SpiderFeet Route Relation Definitions
 	####################################
 
 	# Route state is in-test, until proven by tests to be either "favourite", 
@@ -437,12 +455,11 @@ define
 		owns route_name,
 		owns route_state,
 		relates osint-service,
-		relates consumed,
-		relates produced,
+		relates consumed @card(0..),
+		relates produced @card(0..),
 		plays sequence:prior,
 		plays sequence:next,
-		plays scan-record:route,
-		plays opts:opt;
+		plays scan-record:route;
 
 	relation sequence,
 		owns sequence_name,
@@ -450,24 +467,44 @@ define
 		relates next;
 
 	#####################################
-	# Spiderfeet Scan Record Relation Definitions
+	# SpiderFeet Scan Record Relation Definitions
+	#
+	# One scan-record per module invocation (scan_ui / UI workflow). Owns instance
+	# metadata and result summary; links consumed/produced nuggets, the osint-service
+	# that ran (service role), and the route under test (route role).
+	#
+	# API / UI parity (POST /api/v1/scan_ui scan_record):
+	#   scan_instance_id   — SpiderFeet scan id (e.g. CFA30507)
+	#   scan_status        — lifecycle: STARTING, FINISHED, ERROR-FAILED, …
+	#   scan_duration      — seconds (started → ended)
+	#   scan_timestamp     — scan start (datetime)
+	#   scan_notes         — operator / UI notes
+	#   scan_event_count   — total events in this scan instance
+	#   scan_results_by_type — object map event_type → count (e.g. IP_ADDRESS: 2)
+	#   scan_results       — bundled summary object { status, event_count, by_type }
+	#   service (role)     — osint-service: module_id, name (e.g. sfp_dnsresolve)
+	#   route (role)       — route: route_name, route_state (e.g. in-test)
+	#   consumed / produced (roles) — nugget instances
 	####################################
 
 	relation scan-record,
 		owns scan_instance_id,
+		owns scan_status,
+		owns scan_event_count,
+		owns scan_results_by_type,
 		owns scan_results,
 		owns scan_duration,
 		owns scan_timestamp,
 		owns scan_notes,
-		relates consumed,
-		relates produced,
+		relates consumed @card(0..),
+		relates produced @card(0..),
 		relates service,
 		relates route,
 		plays enrichment:prior,
 		plays enrichment:next;
 
 	#####################################
-	# Spiderfeet Enrichment Definitions -
+	# SpiderFeet Enrichment Definitions -
 	####################################
 
 	relation enrichment,
@@ -479,16 +516,17 @@ define
 
 
 	#####################################
-	# Spiderfeet Attribute Definitions
+	# SpiderFeet Attribute Definitions
 	# (only attributes referenced by owns on entity/relation types)
 	####################################
 
-	attribute route_state, value string @values{ "in-test", "favourite", "unique", "error", "dominated" };
-	attribute service_state, value string @values{ "in-test", "favourite", "unique", "error", "dominated" };
+	attribute route_state, value string @values("in-test", "favourite", "unique", "error", "dominated");
+	attribute service_state, value string @values("in-test", "favourite", "unique", "error", "dominated");
+	attribute fixture_category, value string @values("positive", "negative");
 	attribute route_name, value string;
 	attribute sequence_name, value string;
-	attribute access_tier, value string @values{ "free_no_auth", "free_auth", "paid" };
-	attribute consumption_group, value string @values{ "domain", "hostname", "domain_and_hostname", "ip_netblock", "ip_only", "email", "email_identity_bundle", "phone", "crypto", "web_url_content", "org_entity", "other" };
+	attribute access_tier, value string @values("free_no_auth", "free_auth", "paid");
+	attribute consumption_group, value string @values("domain", "hostname", "domain_and_hostname", "ip_netblock", "ip_only", "email", "email_identity_bundle", "phone", "crypto", "web_url_content", "org_entity", "other");
 	attribute route_seed_nugget, value string;
 	attribute module_id,  value string;
 	attribute name,  value string;
@@ -506,18 +544,30 @@ define
 	attribute logo,  value string;
 	attribute description,  value string;
 	attribute nugget_id,  value string;
+	attribute nugget_instance_id, value string;
 	attribute nugget_description,  value string;
 	attribute nugget_type,  value string;
+	attribute nugget_event_type, value string;
 	attribute nugget_icon,  value string;
 	attribute nugget_colour,  value string;
-	attribute nugget_data,  value object;
+	attribute nugget_data,  value string;
+	attribute nugget_source_data, value string;
+	attribute nugget_module, value string;
+	attribute nugget_generated, value integer;
+	attribute nugget_confidence, value integer;
+	attribute nugget_visibility, value integer;
+	attribute nugget_risk, value integer;
+	attribute nugget_false_positive, value boolean;
 	attribute opt_name, value string;
 	attribute in_value, value integer;
 	attribute db_value, value double;
 	attribute bo_value, value boolean;
 	attribute st_value, value string;
 	attribute scan_instance_id, value string;
-	attribute scan_results, value object;
+	attribute scan_status, value string @values("STARTING", "RUNNING", "FINISHED", "ERROR-FAILED", "ABORTED", "ABORT-REQUESTED", "UNKNOWN");
+	attribute scan_event_count, value integer;
+	attribute scan_results_by_type, value string;
+	attribute scan_results, value string;
 	attribute scan_duration, value double;
 	attribute scan_timestamp, value datetime;
 	attribute scan_notes, value string;

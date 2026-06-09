@@ -1,4 +1,4 @@
-# Governance Gap Audit — spiderfeet (Stage 0)
+# Governance Gap Audit — spiderFeet (Stage 0)
 
 **Date:** 2026-06-03  
 **Epic:** GitHub [#1](https://github.com/brettforbes/spiderfeet/issues/1)  
@@ -6,7 +6,7 @@
 
 ## Summary
 
-Generic VibeGov rules (GOV-01–GOV-09) are installed and mirrored to `.cursor/rules/`. Project-specific rules for the Spiderfeet v2 reengineering program were **missing** until this epic. `develop` is not yet aligned with `master` (reengineering baseline lives on `master`).
+Generic VibeGov rules (GOV-01–GOV-09) are installed and mirrored to `.cursor/rules/`. Project-specific rules for the SpiderFeet v2 reengineering program were **missing** until this epic. `develop` is not yet aligned with `master` (reengineering baseline lives on `master`).
 
 ## Matrix
 
@@ -21,7 +21,7 @@ Generic VibeGov rules (GOV-01–GOV-09) are installed and mirrored to `.cursor/r
 | Project intent | — | PROJECT_INTENT.md ⚠️ provisional | — | Update for first-four program → **SF-00-04** |
 | Active product spec | SPEC-001 bootstrap ✅ | — | — | SPEC-002 added for stages 0–4 |
 | Python stack | — | **missing** | **missing** | Poetry, modules/, FastAPI, pytest → **proj-01** |
-| TypeDB / map model | — | **missing** | **missing** | typedb + type-bridge skills, `spiderfeet-map` → **proj-01** |
+| TypeDB / map model | — | **missing** | **missing** | typedb + type-bridge skills, `spiderFeet-map` → **proj-01** |
 | Multi-repo (widget) | — | **missing** | **missing** | Cross-root paths, API base URL → **proj-02** |
 | Stage program | — | **missing** | **missing** | Stages 0–4 boundaries, no stage 5+ without spec → **proj-03** |
 | GitHub Project board | — | BLOCKERS.md ⚠️ | — | Needs `gh auth refresh -s project,read:project` |

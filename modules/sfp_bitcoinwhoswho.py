@@ -7,16 +7,16 @@
 #
 # Created:     2020-09-09
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 import urllib.parse
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_bitcoinwhoswho(SpiderFootPlugin):
+class sfp_bitcoinwhoswho(SpiderFeetPlugin):
     meta = {
         'name': "Bitcoin Who's Who",
         'summary': "Check for Bitcoin addresses against the Bitcoin Who's Who database of suspect/malicious addresses.",
@@ -76,7 +76,7 @@ class sfp_bitcoinwhoswho(SpiderFootPlugin):
         res = self.sf.fetchUrl(
             f"https://bitcoinwhoswho.com/api/scam/{self.opts['api_key']}?{qs}",
             timeout=self.opts["_fetchtimeout"],
-            useragent="SpiderFoot",
+            useragent="SpiderFeet",
         )
 
         if res["content"] is None:
@@ -91,7 +91,7 @@ class sfp_bitcoinwhoswho(SpiderFootPlugin):
         return None
 
     def emit(self, etype, data, pevent, notify=True):
-        evt = SpiderFootEvent(etype, data, self.__name__, pevent)
+        evt = SpiderFeetEvent(etype, data, self.__name__, pevent)
         if notify:
             self.notifyListeners(evt)
         return evt

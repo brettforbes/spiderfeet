@@ -1,6 +1,6 @@
-# Non-OSINT SpiderFoot Modules
+# Non-OSINT SpiderFeet Modules
 
-A reference guide to SpiderFoot modules that are **generic infrastructure**—not tied to any external OSINT data source and not specialised scan logic.
+A reference guide to SpiderFeet modules that are **generic infrastructure**—not tied to any external OSINT data source and not specialised scan logic.
 
 These modules do not declare a `dataSource` in their metadata because they provide core platform behaviour (persisting or printing scan events). They are distinct from:
 
@@ -29,28 +29,28 @@ Detailed notes for each module.
 #### `sfp__stor_db` — Storage
 
 **Category:** Storage & Output  
-**SpiderFoot categories:** —  
+**SpiderFeet categories:** —  
 **Use cases:** —  
 **Flags:** —
 
-**Summary:** Stores scan results into the back-end SpiderFoot database. You will need this.
+**Summary:** Stores scan results into the back-end SpiderFeet database. You will need this.
 
 **Listens for:** `*`
 
 **Produces:** —
 
-**How it works:** Subscribes to every event type (`*`) emitted during a scan and persists them to the SpiderFoot SQLite database via `scanEventStore()`. Optional `maxstorage` truncates oversized event payloads before storage.
+**How it works:** Subscribes to every event type (`*`) emitted during a scan and persists them to the SpiderFeet SQLite database via `scanEventStore()`. Optional `maxstorage` truncates oversized event payloads before storage.
 
 **When to use:** Enable on **every scan** that uses the web UI or needs persistent results. Without it, events are lost after the scan completes.
 
 #### `sfp__stor_stdout` — Command-line output
 
 **Category:** Storage & Output  
-**SpiderFoot categories:** —  
+**SpiderFeet categories:** —  
 **Use cases:** —  
 **Flags:** —
 
-**Summary:** Dumps output to standard out. Used for when a SpiderFoot scan is run via the command-line.
+**Summary:** Dumps output to standard out. Used for when a SpiderFeet scan is run via the command-line.
 
 **Listens for:** `*`
 
@@ -62,4 +62,4 @@ Detailed notes for each module.
 
 ---
 
-*Generated from SpiderFoot module metadata. Total: 2 core non-OSINT modules.*
+*Generated from SpiderFeet module metadata. Total: 2 core non-OSINT modules.*

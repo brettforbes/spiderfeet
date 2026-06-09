@@ -6,17 +6,17 @@
 #
 # Created:     24-01-2021
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 import time
 import urllib
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_grayhatwarfare(SpiderFootPlugin):
+class sfp_grayhatwarfare(SpiderFeetPlugin):
 
     meta = {
         'name': "Grayhat Warfare",
@@ -166,13 +166,13 @@ class sfp_grayhatwarfare(SpiderFootPlugin):
                 bucketKeyword = bucketName.split('.')[0]
                 self.debug(bucketKeyword)
                 if bucketKeyword.startswith(keyword) or bucketKeyword.endswith(keyword):
-                    evt = SpiderFootEvent('CLOUD_STORAGE_BUCKET', bucketName, self.__name__, event)
+                    evt = SpiderFeetEvent('CLOUD_STORAGE_BUCKET', bucketName, self.__name__, event)
                     self.notifyListeners(evt)
 
-                    evt = SpiderFootEvent('CLOUD_STORAGE_BUCKET_OPEN', f"{bucketName}: {row.get('fileCount')} files found.", self.__name__, event)
+                    evt = SpiderFeetEvent('CLOUD_STORAGE_BUCKET_OPEN', f"{bucketName}: {row.get('fileCount')} files found.", self.__name__, event)
                     self.notifyListeners(evt)
 
-                    evt = SpiderFootEvent('RAW_RIR_DATA', str(row), self.__name__, event)
+                    evt = SpiderFeetEvent('RAW_RIR_DATA', str(row), self.__name__, event)
                     self.notifyListeners(evt)
 
             currentPage += 1

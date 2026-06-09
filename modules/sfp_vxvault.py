@@ -7,13 +7,13 @@
 #
 # Created:     14/12/2013
 # Copyright:   (c) Steve Micallef, 2013
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_vxvault(SpiderFootPlugin):
+class sfp_vxvault(SpiderFeetPlugin):
 
     meta = {
         'name': "VXVault.net",
@@ -196,7 +196,7 @@ class sfp_vxvault(SpiderFootPlugin):
         if self.queryBlacklist(eventData):
             url = "http://vxvault.net/URL_List.php"
             text = f"VXVault Malicious URL List [{eventData}]\n<SFURL>{url}</SFURL>"
-            evt = SpiderFootEvent(evtType, text, self.__name__, event)
+            evt = SpiderFeetEvent(evtType, text, self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_vxvault class

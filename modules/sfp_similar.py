@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_similar
-# Purpose:      SpiderFoot plug-in for identifying domains that look similar
+# Purpose:      SpiderFeet plug-in for identifying domains that look similar
 #               to the one being queried.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
 # Created:     26/11/2016
 # Copyright:   (c) Steve Micallef 2012
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 nearchars = {
     'a': ['4', 's'],
@@ -58,7 +58,7 @@ pairs = {
 }
 
 
-class sfp_similar(SpiderFootPlugin):
+class sfp_similar(SpiderFeetPlugin):
 
     meta = {
         'name': "Similar Domain Finder",
@@ -155,7 +155,7 @@ class sfp_similar(SpiderFootPlugin):
                 for domain in [f"{d}{tld}", f"www.{d}{tld}"]:
                     if self.sf.resolveHost(domain) or self.sf.resolveHost6(domain):
                         self.debug(f"Resolved {domain}")
-                        evt = SpiderFootEvent("SIMILARDOMAIN", f"{d}{tld}", self.__name__, event)
+                        evt = SpiderFeetEvent("SIMILARDOMAIN", f"{d}{tld}", self.__name__, event)
                         self.notifyListeners(evt)
                         break
             except Exception:

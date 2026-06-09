@@ -7,12 +7,12 @@
 #
 # Created:     18/01/2015
 # Copyright:   (c) Steve Micallef 2015
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 # Taken from Google Dorks on exploit-db.com
 regexps = dict({
@@ -27,7 +27,7 @@ regexps = dict({
 })
 
 
-class sfp_errors(SpiderFootPlugin):
+class sfp_errors(SpiderFeetPlugin):
 
     meta = {
         'name': "Error String Extractor",
@@ -101,7 +101,7 @@ class sfp_errors(SpiderFootPlugin):
                 if len(matches) > 0 and regexpGrp not in self.results[eventSource]:
                     self.info("Matched " + regexpGrp + " in content from " + eventSource)
                     self.results[eventSource] = self.results[eventSource] + [regexpGrp]
-                    evt = SpiderFootEvent("ERROR_MESSAGE", regexpGrp,
+                    evt = SpiderFeetEvent("ERROR_MESSAGE", regexpGrp,
                                           self.__name__, event)
                     self.notifyListeners(evt)
 

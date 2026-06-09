@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_nameapi
-# Purpose:      Spiderfoot plugin to check if an email is
+# Purpose:      SpiderFeet plugin to check if an email is
 #               disposable using nameapi.org API.
 #
 # Author:      Krishnasis Mandal <krishnasis@hotmail.com>
 #
 # Created:     2020-10-02
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_nameapi(SpiderFootPlugin):
+class sfp_nameapi(SpiderFeetPlugin):
 
     meta = {
         'name': "NameAPI",
@@ -78,7 +78,7 @@ class sfp_nameapi(SpiderFootPlugin):
         res = self.sf.fetchUrl(
             f"http://api.nameapi.org/rest/v5.3/email/disposableemailaddressdetector?apiKey={self.opts['api_key']}&emailAddress={qry}",
             timeout=self.opts['_fetchtimeout'],
-            useragent="SpiderFoot"
+            useragent="SpiderFeet"
         )
 
         if res['content'] is None:
@@ -120,10 +120,10 @@ class sfp_nameapi(SpiderFootPlugin):
         isDisposable = data.get('disposable')
 
         if isDisposable == "YES":
-            evt = SpiderFootEvent("RAW_RIR_DATA", str(data), self.__name__, event)
+            evt = SpiderFeetEvent("RAW_RIR_DATA", str(data), self.__name__, event)
             self.notifyListeners(evt)
 
-            evt = SpiderFootEvent("EMAILADDR_DISPOSABLE", eventData, self.__name__, event)
+            evt = SpiderFeetEvent("EMAILADDR_DISPOSABLE", eventData, self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_nameapi class

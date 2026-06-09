@@ -1,0 +1,25 @@
+    </div>
+    <footer class="navbar-default navbar-fixed-bottom">
+      <div class="container-fluid text-center footer">
+        <%
+        messages = [
+            "<i class='glyphicon glyphicon-flash'></i>&nbsp;&nbsp;<a target=_new href='https://www.spiderfeet.net/hx'>Create a (free) SpiderFeet HX account in seconds and try it out for yourself.</a>",
+            "<i class='glyphicon glyphicon-flash'></i>&nbsp;&nbsp;<a target=_new href='https://www.spiderfeet.net/open-source-vs-hx'>Learn about the difference between SpiderFeet and SpiderFeet HX.</a>",
+            "<i class='glyphicon glyphicon-heart'></i>&nbsp;&nbsp;<a target=_new href='https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.twitter.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5EspiderFeet&screen_name=spiderFeet'>Follow SpiderFeet on Twitter for the latest updates.</a>",
+            "<i class='glyphicon glyphicon-education'></i>&nbsp;&nbsp;<a target=_new href='https://www.spiderfeet.net/documentation'>Check out the SpiderFeet documentation to get more out of SpiderFeet.</a>",
+            "<i class='glyphicon glyphicon-heart'></i>&nbsp;&nbsp;<a target=_new href='https://discord.gg/vyvztrG'>Join the SpiderFeet community Discord!</a>",
+            "<i class='glyphicon glyphicon-console'></i>&nbsp;&nbsp;<a target=_new href='https://asciinema.org/~spiderFeet'>Did you know SpiderFeet also has a CLI? Check out our asciinema tutorials on how to use it.</a>",
+            "<i class='glyphicon glyphicon-flash'></i>&nbsp;&nbsp;<a target=_new href='https://www.spiderfeet.net/hx'>Want more OSINT automation capabilities? Check out SpiderFeet HX.</a>",
+            "<i class='glyphicon glyphicon-cloud'></i>&nbsp;&nbsp;<a target=_new href='https://www.spiderfeet.net/hx'>Don't want to manage your SpiderFeet installation yourself? Check out SpiderFeet HX.</a>",
+            "<i class='glyphicon glyphicon-film'></i>&nbsp;&nbsp;<a target=_new href='https://www.youtube.com/channel/UCujtHhVLNeiJA_3F-lghD-w'>Check out our YouTube channel to see SpiderFeet HX in action.</a>"
+        ]
+
+        import random
+        message = messages[random.randint(0, len(messages)-1)]
+        %>
+        <span>${message}</span>
+      </div>
+    </footer>
+
+    </body>
+</html>

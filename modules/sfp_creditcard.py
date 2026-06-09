@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_creditcard
-# Purpose:      SpiderFoot plug-in for scanning retrieved content by other
+# Purpose:      SpiderFeet plug-in for scanning retrieved content by other
 #               modules (such as sfp_spider) and identifying credit card numbers.
 #
 # Author:      Krishnasis Mandal <krishnasis@hotmail.com>
 #
 # Created:     21/04/2020
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_creditcard(SpiderFootPlugin):
+class sfp_creditcard(SpiderFeetPlugin):
 
     meta = {
         'name': "Credit Card Number Extractor",
@@ -58,11 +58,11 @@ class sfp_creditcard(SpiderFootPlugin):
 
         self.debug(f"Received event, {eventName}, from {srcModuleName}")
 
-        creditCards = SpiderFootHelpers.extractCreditCardsFromText(eventData)
+        creditCards = SpiderFeetHelpers.extractCreditCardsFromText(eventData)
 
         for creditCard in set(creditCards):
             self.info(f"Found credit card number: {creditCard}")
-            evt = SpiderFootEvent("CREDIT_CARD_NUMBER", creditCard, self.__name__, event)
+            evt = SpiderFeetEvent("CREDIT_CARD_NUMBER", creditCard, self.__name__, event)
             if event.moduleDataSource:
                 evt.moduleDataSource = event.moduleDataSource
             else:

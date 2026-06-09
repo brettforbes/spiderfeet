@@ -6,15 +6,15 @@
 #
 # Created:     2018-10-07
 # Copyright:   (c) bcoles 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_myspace(SpiderFootPlugin):
+class sfp_myspace(SpiderFeetPlugin):
 
     meta = {
         'name': "MySpace",
@@ -105,7 +105,7 @@ class sfp_myspace(SpiderFootPlugin):
                 return
 
             name = matches[0]
-            e = SpiderFootEvent(
+            e = SpiderFeetEvent(
                 "SOCIAL_MEDIA",
                 f"MySpace: <SFURL>https://myspace.com/{name}</SFURL>",
                 self.__name__,
@@ -143,7 +143,7 @@ class sfp_myspace(SpiderFootPlugin):
                 self.debug("Skipping likely invalid location.")
                 return
 
-            e = SpiderFootEvent("GEOINFO", location, self.__name__, event)
+            e = SpiderFeetEvent("GEOINFO", location, self.__name__, event)
             self.notifyListeners(e)
 
 # End of sfp_myspace class

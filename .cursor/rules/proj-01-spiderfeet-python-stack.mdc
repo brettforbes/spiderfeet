@@ -1,5 +1,5 @@
 ---
-description: Spiderfeet Python backend — stack, layout, and verification
+description: SpiderFeet Python backend — stack, layout, and verification
 globs:
   - "**/*.py"
   - "pyproject.toml"
@@ -7,7 +7,7 @@ globs:
   - ".tests/**"
 alwaysApply: false
 ---
-# Project: Spiderfeet Python stack
+# Project: SpiderFeet Python stack
 
 ## Stack
 
@@ -21,11 +21,14 @@ alwaysApply: false
 
 | Artifact | Path |
 |----------|------|
-| OSINT catalogue | `.docs/analysis/osint_services.json` |
+| OSINT catalogue (`service_state`, `fixture_category`) | `.docs/analysis/osint_services.json` |
+| Module smoke seeds | `.docs/analysis/module_test_seeds.json` |
+| Stage 4 corpus guide (agents) | `.docs/analysis/stage4_seed_corpus_and_tests.md` |
 | Nuggets | `.docs/analysis/nuggets.json` |
 | Module taxonomy | `.docs/quarantine_modules.md`, `.docs/non_osint_modules.md` |
 | TypeDB connection (local dev) | JSON config file (externalised; no secrets in repo) |
-| Type-bridge classes | TBD under package layout in stage 3 |
+| Map read/bootstrap | `spiderfeet/map/read.py`, `spiderfeet/map/bootstrap.py` |
+| Tests / scan_ui services | `spiderfeet/api/services/tests.py`, `scan_ui.py`, `scan_targets.py` |
 
 ## Skills
 
@@ -37,3 +40,4 @@ Use `.cursor/skills/typedb/` and `.cursor/skills/typedb-bridge/` for schema and 
 - Regenerate analysis JSON after module metadata changes: `python .docs/analysis/analyse_modules.py`
 - API changes require OpenAPI accuracy and pytest coverage per GOV-05
 - Do not add new OSINT modules without SPEC-002 traceability and operator approval
+- After catalogue or seed changes: `sync_service_state.py` / `sync_fixture_category.py` when applicable; see `proj-04-spiderfeet-stage4-corpus.mdc`

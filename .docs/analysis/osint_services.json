@@ -67,7 +67,9 @@
         "value": "",
         "description": "AbstractAPI Phone Validation API key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_abusech",
@@ -173,7 +175,9 @@
         "value": true,
         "description": "Check if any malicious IPs are found within the same subnet of the target?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_abuseipdb",
@@ -251,7 +255,9 @@
         "value": 10000,
         "description": "Maximum number of results to retrieve."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_abusix",
@@ -371,7 +377,9 @@
         "value": true,
         "description": "Look up all IPs on subnets which your target is a part of for blacklisting?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_adblock",
@@ -423,7 +431,9 @@
         "value": 24,
         "description": "Hours to cache list data before re-fetching."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_adguard_dns",
@@ -460,7 +470,9 @@
     ],
     "consumption_group": "hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_ahmia",
@@ -514,7 +526,9 @@
         "value": true,
         "description": "Search for human names?"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_alienvault",
@@ -665,7 +679,9 @@
         "value": true,
         "description": "Verify co-hosts are valid by checking if they still resolve to the shared IP."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_alienvaultiprep",
@@ -735,7 +751,9 @@
         "value": true,
         "description": "Check if any malicious IPs are found within the same subnet of the target?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_apple_itunes",
@@ -770,7 +788,9 @@
     ],
     "consumption_group": "domain",
     "route_seed_nugget": "DOMAIN_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_archiveorg",
@@ -883,7 +903,9 @@
         "value": false,
         "description": "Query the Wayback Machine for historic versions of URLs using Javascript frameworks."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_arin",
@@ -924,7 +946,9 @@
     ],
     "consumption_group": "domain",
     "route_seed_nugget": "DOMAIN_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_azureblobstorage",
@@ -968,7 +992,9 @@
         "value": "test,dev,web,beta,bucket,space,files,content,data,prod,staging,production,stage,app,media,development,-test,-dev,-web,-beta,-bucket,-space,-files,-content,-data,-prod,-staging,-production,-stage,-app,-media,-development",
         "description": "List of suffixes to append to domains tried as blob storage names"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_bgpview",
@@ -1011,7 +1037,9 @@
     ],
     "consumption_group": "ip_netblock",
     "route_seed_nugget": "IP_ADDRESS",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_binaryedge",
@@ -1139,7 +1167,9 @@
         "value": true,
         "description": "Verify that any hostnames found on the target domain still resolve?"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_bingsearch",
@@ -1195,7 +1225,9 @@
         "value": 20,
         "description": "Number of max bing results to request from the API."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_bingsharedip",
@@ -1271,7 +1303,9 @@
         "value": true,
         "description": "Verify co-hosts are valid by checking if they still resolve to the shared IP."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_bitcoinabuse",
@@ -1321,7 +1355,9 @@
         "value": "",
         "description": "BitcoinAbuse API Key."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_bitcoinwhoswho",
@@ -1371,7 +1407,9 @@
         "value": "",
         "description": "Bitcoin Who's Who API Key."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_blockchain",
@@ -1408,7 +1446,9 @@
     ],
     "consumption_group": "crypto",
     "route_seed_nugget": "BITCOIN_ADDRESS",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_blocklistde",
@@ -1484,7 +1524,9 @@
         "value": true,
         "description": "Check if any malicious IPs are found within the same subnet of the target?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_botscout",
@@ -1537,7 +1579,9 @@
         "value": "",
         "description": "Botscout.com API key. Without this you will be limited to 100 look-ups per day."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_botvrij",
@@ -1591,7 +1635,9 @@
         "value": true,
         "description": "Apply checks to sites found to be co-hosted on the target's IP?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_builtwith",
@@ -1658,7 +1704,9 @@
         "value": 30,
         "description": "The maximum age of the data returned, in days, in order to be considered valid."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_c99",
@@ -1743,7 +1791,9 @@
         "value": true,
         "description": "Verify identified domains still resolve to the associated specified IP address."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_callername",
@@ -1779,7 +1829,9 @@
     ],
     "consumption_group": "phone",
     "route_seed_nugget": "PHONE_NUMBER",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_censys",
@@ -1879,7 +1931,9 @@
         "value": true,
         "description": "Look up all IPs on netblocks deemed to be owned by your target for possible blacklisted hosts on the same target subdomain/domain?"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_certspotter",
@@ -1957,7 +2011,9 @@
         "value": true,
         "description": "Verify certificate subject alternative names resolve."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_cinsscore",
@@ -2022,7 +2078,9 @@
         "value": true,
         "description": "Check if any malicious IPs are found within the same subnet of the target?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_circllu",
@@ -2108,7 +2166,9 @@
         "value": true,
         "description": "Verify co-hosts are valid by checking if they still resolve to the shared IP."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_citadel",
@@ -2166,7 +2226,9 @@
         "value": 60,
         "description": "Custom timeout due to heavy traffic at times."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_cleanbrowsing",
@@ -2210,7 +2272,9 @@
     ],
     "consumption_group": "hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_cleantalk",
@@ -2285,7 +2349,9 @@
         "value": true,
         "description": "Check if any malicious IPs are found within the same subnet of the target?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_clearbit",
@@ -2340,7 +2406,9 @@
         "value": "",
         "description": "Clearbit.com API key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_cloudflaredns",
@@ -2380,7 +2448,9 @@
     ],
     "consumption_group": "hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_coinblocker",
@@ -2441,7 +2511,9 @@
         "value": true,
         "description": "Apply checks to sites found to be co-hosted on the target's IP?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_commoncrawl",
@@ -2483,7 +2555,9 @@
         "value": 6,
         "description": "Number of most recent indexes to attempt, because results tend to be occasionally patchy."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "error"
   },
   {
     "module_id": "sfp_comodo",
@@ -2526,7 +2600,9 @@
     ],
     "consumption_group": "hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_crobat_api",
@@ -2577,7 +2653,9 @@
         "value": true,
         "description": "DNS resolve each identified subdomain."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_crt",
@@ -2632,7 +2710,9 @@
         "value": true,
         "description": "Verify certificate subject alternative names resolve."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "error"
   },
   {
     "module_id": "sfp_crxcavator",
@@ -2677,7 +2757,9 @@
         "value": true,
         "description": "Verify identified hostnames resolve."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_cybercrimetracker",
@@ -2743,7 +2825,9 @@
         "value": true,
         "description": "Apply checks to sites found to be co-hosted on the target's IP?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_debounce",
@@ -2778,7 +2862,9 @@
     ],
     "consumption_group": "email",
     "route_seed_nugget": "EMAILADDR",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_dehashed",
@@ -2855,7 +2941,9 @@
         "value": 10000,
         "description": "Maximum number of results per page.(Max: 10000)"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_digitaloceanspace",
@@ -2906,7 +2994,9 @@
         "value": "test,dev,web,beta,bucket,space,files,content,data,prod,staging,production,stage,app,media,development,-test,-dev,-web,-beta,-bucket,-space,-files,-content,-data,-prod,-staging,-production,-stage,-app,-media,-development",
         "description": "List of suffixes to append to domains tried as space names"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_dns_for_family",
@@ -2943,7 +3033,9 @@
     ],
     "consumption_group": "hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_dnsdb",
@@ -3027,7 +3119,9 @@
         "value": true,
         "description": "Verify co-hosts are valid by checking if they still resolve to the shared IP."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_dnsdumpster",
@@ -3058,7 +3152,9 @@
     ],
     "consumption_group": "domain_and_hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "error"
   },
   {
     "module_id": "sfp_dnsgrep",
@@ -3115,7 +3211,9 @@
         "value": 30,
         "description": "Query timeout, in seconds."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_dronebl",
@@ -3187,7 +3285,9 @@
         "value": true,
         "description": "Look up all IPs on subnets which your target is a part of for blacklisting?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_duckduckgo",
@@ -3236,7 +3336,9 @@
         "value": true,
         "description": "For affiliates, look up the domain name, not the hostname. This will usually return more meaningful information about the affiliate."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_emailcrawlr",
@@ -3295,7 +3397,9 @@
         "value": 1,
         "description": "Delay between requests, in seconds."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_emailformat",
@@ -3333,7 +3437,9 @@
     ],
     "consumption_group": "domain_and_hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_emailrep",
@@ -3383,7 +3489,9 @@
         "value": "",
         "description": "EmailRep API key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_emergingthreats",
@@ -3451,7 +3559,9 @@
         "value": true,
         "description": "Check if any malicious IPs are found within the same subnet of the target?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_etherscan",
@@ -3508,7 +3618,9 @@
         "value": 1,
         "description": "Number of seconds to wait between each API call."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_flickr",
@@ -3573,7 +3685,9 @@
         "value": 100,
         "description": "Maximum number of results per page."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "error"
   },
   {
     "module_id": "sfp_focsec",
@@ -3627,7 +3741,9 @@
         "value": "",
         "description": "Focsec API Key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_fortinet",
@@ -3673,7 +3789,9 @@
         "value": true,
         "description": "Apply checks to affiliates?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_fraudguard",
@@ -3787,7 +3905,9 @@
         "value": true,
         "description": "Look up all IPs on subnets which your target is a part of for blacklisting?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_fsecure_riddler",
@@ -3859,7 +3979,9 @@
         "value": true,
         "description": "Verify host names resolve"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_fullcontact",
@@ -3926,7 +4048,9 @@
         "value": "365",
         "description": "Maximum number of age in days for a record before it's considered invalid and not reported."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_fullhunt",
@@ -3982,7 +4106,9 @@
         "value": "",
         "description": "FullHunt API key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_github",
@@ -4026,7 +4152,9 @@
         "value": true,
         "description": "Match repositories by name only, not by their descriptions. Helps reduce false positives."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_gleif",
@@ -4065,7 +4193,9 @@
     ],
     "consumption_group": "org_entity",
     "route_seed_nugget": "COMPANY_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_google_tag_manager",
@@ -4111,7 +4241,9 @@
         "value": true,
         "description": "Verify identified hostnames resolve to an IP address."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_googlemaps",
@@ -4167,7 +4299,9 @@
         "value": "",
         "description": "Google Geocoding API Key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_googleobjectstorage",
@@ -4212,7 +4346,9 @@
         "value": "test,dev,web,beta,bucket,space,files,content,data,prod,staging,production,stage,app,media,development,-test,-dev,-web,-beta,-bucket,-space,-files,-content,-data,-prod,-staging,-production,-stage,-app,-media,-development",
         "description": "List of suffixes to append to domains tried as bucket names"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_googlesafebrowsing",
@@ -4276,7 +4412,9 @@
         "value": "",
         "description": "Google Safe Browsing API key."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_googlesearch",
@@ -4335,7 +4473,9 @@
         "value": "013611106330597893267:tfgl3wxdtbp",
         "description": "Google Custom Search Engine ID."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_gravatar",
@@ -4376,7 +4516,9 @@
     ],
     "consumption_group": "email",
     "route_seed_nugget": "EMAILADDR",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_grayhatwarfare",
@@ -4445,7 +4587,9 @@
         "value": 1000,
         "description": "Maximum number of results per page (Max: 1000)."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_greensnow",
@@ -4514,7 +4658,9 @@
         "value": true,
         "description": "Check if any malicious IPs are found within the same subnet of the target?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_grep_app",
@@ -4565,7 +4711,9 @@
         "value": 20,
         "description": "Maximum number of pages of results to fetch."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_greynoise",
@@ -4656,7 +4804,9 @@
         "value": true,
         "description": "Look up subnets which your target is a part of for blacklisting?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_greynoise_community",
@@ -4716,7 +4866,9 @@
         "value": "",
         "description": "GreyNoise Community API Key."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_h1nobbdde",
@@ -4751,7 +4903,9 @@
     ],
     "consumption_group": "domain",
     "route_seed_nugget": "DOMAIN_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_hackertarget",
@@ -4833,7 +4987,9 @@
         "value": true,
         "description": "Verify co-hosts are valid by checking if they still resolve to the shared IP."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_haveibeenpwned",
@@ -4886,7 +5042,9 @@
         "value": "",
         "description": "HaveIBeenPwned.com API key."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_honeypot",
@@ -4989,7 +5147,9 @@
         "value": 30,
         "description": "Maximum days old an entry can be. 255 is the maximum, 0 means you'll get nothing."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_hostio",
@@ -5042,7 +5202,9 @@
         "value": "",
         "description": "Host.io API Key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_hunter",
@@ -5095,7 +5257,9 @@
         "value": "",
         "description": "Hunter.io API key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_hybrid_analysis",
@@ -5162,7 +5326,9 @@
         "value": true,
         "description": "Verify identified domains still resolve to the associated specified IP address."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_iknowwhatyoudownload",
@@ -5219,7 +5385,9 @@
         "value": 30,
         "description": "How far back (in days) to look for activity."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_intelx",
@@ -5328,7 +5496,9 @@
         "value": false,
         "description": "Look up all IPs on subnets which your target is a part of?"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_ipapico",
@@ -5364,7 +5534,9 @@
     ],
     "consumption_group": "ip_only",
     "route_seed_nugget": "IP_ADDRESS",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_ipapicom",
@@ -5415,7 +5587,9 @@
         "value": "",
         "description": "ipapi.com API Key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_ipinfo",
@@ -5465,7 +5639,9 @@
         "value": "",
         "description": "Ipinfo.io access token."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_ipqualityscore",
@@ -5537,7 +5713,9 @@
         "value": 0,
         "description": "Depth of the reputation checks to be performed on the target (0 - 2)"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_ipregistry",
@@ -5590,7 +5768,9 @@
         "value": "",
         "description": "Ipregistry API Key."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_ipstack",
@@ -5640,7 +5820,9 @@
         "value": "",
         "description": "Ipstack.com API key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_isc",
@@ -5690,7 +5872,9 @@
         "value": true,
         "description": "Apply checks to affiliates?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_jsonwhoiscom",
@@ -5754,7 +5938,9 @@
         "value": 1,
         "description": "Delay between requests, in seconds."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_keybase",
@@ -5795,7 +5981,9 @@
     ],
     "consumption_group": "domain",
     "route_seed_nugget": "DOMAIN_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_koodous",
@@ -5851,7 +6039,9 @@
         "value": 10,
         "description": "Maximum number of pages of results to fetch."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_leakix",
@@ -5921,7 +6111,9 @@
         "value": true,
         "description": "Verify discovered hostnames are valid by checking if they still resolve."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_maltiverse",
@@ -5998,7 +6190,9 @@
         "value": false,
         "description": "Look up all IPs on subnets which your target is a part of?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_malwarepatrol",
@@ -6073,7 +6267,9 @@
         "value": true,
         "description": "Apply checks to sites found to be co-hosted on the target's IP?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_metadefender",
@@ -6133,7 +6329,9 @@
         "value": 6,
         "description": "Delay between requests, in seconds."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_mnemonic",
@@ -6220,7 +6418,9 @@
         "value": true,
         "description": "Verify identified domains still resolve to the associated specified IP address."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_multiproxy",
@@ -6279,7 +6479,9 @@
         "value": true,
         "description": "Apply checks to affiliates?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_myspace",
@@ -6315,7 +6517,9 @@
     ],
     "consumption_group": "email_identity_bundle",
     "route_seed_nugget": "EMAILADDR",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "error"
   },
   {
     "module_id": "sfp_nameapi",
@@ -6365,7 +6569,9 @@
         "value": "",
         "description": "API Key for NameAPI"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_networksdb",
@@ -6447,7 +6653,9 @@
         "value": true,
         "description": "Verify co-hosts are valid by checking if they still resolve to the shared IP."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_neutrinoapi",
@@ -6520,7 +6728,9 @@
         "value": "",
         "description": "NeutrinoAPI user ID."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_numverify",
@@ -6572,7 +6782,9 @@
         "value": "",
         "description": "numverify API key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_onioncity",
@@ -6645,7 +6857,9 @@
         "value": true,
         "description": "Search for human names?"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_onionsearchengine",
@@ -6715,7 +6929,9 @@
         "value": 10,
         "description": "Query timeout, in seconds."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_onyphe",
@@ -6813,7 +7029,9 @@
         "value": true,
         "description": "Verify identified domains still resolve to the associated specified IP address."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_openbugbounty",
@@ -6847,7 +7065,9 @@
     ],
     "consumption_group": "hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_opencorporates",
@@ -6905,7 +7125,9 @@
         "value": 100,
         "description": "Confidence that the search result objects are correct (numeric value between 0 and 100)."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_opendns",
@@ -6947,7 +7169,9 @@
     ],
     "consumption_group": "hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_opennic",
@@ -6993,7 +7217,9 @@
         "value": true,
         "description": "Apply checks to affiliates?"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_openphish",
@@ -7053,7 +7279,9 @@
         "value": true,
         "description": "Apply checks to sites found to be co-hosted on the target's IP?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_openstreetmap",
@@ -7088,7 +7316,9 @@
     ],
     "consumption_group": "other",
     "route_seed_nugget": "PHYSICAL_ADDRESS",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_pastebin",
@@ -7148,7 +7378,9 @@
         "value": "013611106330597893267:tfgl3wxdtbp",
         "description": "Google Custom Search Engine ID."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_phishstats",
@@ -7222,7 +7454,9 @@
         "value": true,
         "description": "Look up all IPs on subnets which your target is a part of for blacklisting?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_phishtank",
@@ -7281,7 +7515,9 @@
         "value": true,
         "description": "Apply checks to sites found to be co-hosted on the target's IP?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_projectdiscovery",
@@ -7341,7 +7577,9 @@
         "value": true,
         "description": "Verify that any hostnames found on the target domain still resolve?"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_psbdmp",
@@ -7378,7 +7616,9 @@
     ],
     "consumption_group": "email_identity_bundle",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_pulsedive",
@@ -7492,7 +7732,9 @@
         "value": true,
         "description": "Look up all IPs on subnets which your target is a part of for blacklisting?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_punkspider",
@@ -7522,7 +7764,9 @@
     ],
     "consumption_group": "hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_quad9",
@@ -7563,7 +7807,9 @@
     ],
     "consumption_group": "hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_reversewhois",
@@ -7594,7 +7840,9 @@
     ],
     "consumption_group": "domain",
     "route_seed_nugget": "DOMAIN_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_ripe",
@@ -7644,7 +7892,9 @@
     ],
     "consumption_group": "ip_netblock",
     "route_seed_nugget": "IP_ADDRESS",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_riskiq",
@@ -7729,7 +7979,9 @@
         "value": true,
         "description": "Verify co-hosts are valid by checking if they still resolve to the shared IP."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_robtex",
@@ -7826,7 +8078,9 @@
         "value": true,
         "description": "Verify co-hosts are valid by checking if they still resolve to the shared IP."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_s3bucket",
@@ -7877,7 +8131,9 @@
         "value": "test,dev,web,beta,bucket,space,files,content,data,prod,staging,production,stage,app,media,development,-test,-dev,-web,-beta,-bucket,-space,-files,-content,-data,-prod,-staging,-production,-stage,-app,-media,-development",
         "description": "List of suffixes to append to domains tried as bucket names"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "error"
   },
   {
     "module_id": "sfp_searchcode",
@@ -7927,7 +8183,9 @@
         "value": 10,
         "description": "Maximum number of pages of results to fetch."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "error"
   },
   {
     "module_id": "sfp_securitytrails",
@@ -8003,7 +8261,9 @@
         "value": true,
         "description": "Verify co-hosts are valid by checking if they still resolve to the shared IP."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_seon",
@@ -8078,7 +8338,9 @@
         "value": 80,
         "description": "Minimum fraud score for target to be marked as malicious (0-100)"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_shodan",
@@ -8154,7 +8416,9 @@
         "value": true,
         "description": "Look up all IPs on netblocks deemed to be owned by your target for possible hosts on the same target subdomain/domain?"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_skymem",
@@ -8190,7 +8454,9 @@
     ],
     "consumption_group": "domain_and_hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_slideshare",
@@ -8228,7 +8494,9 @@
     ],
     "consumption_group": "other",
     "route_seed_nugget": "SOCIAL_MEDIA",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_snov",
@@ -8285,7 +8553,9 @@
         "value": "",
         "description": "Snov.io API Client Secret"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_sociallinks",
@@ -8341,7 +8611,9 @@
         "value": "",
         "description": "Social Links API Key"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_socialprofiles",
@@ -8430,7 +8702,9 @@
         "value": true,
         "description": "Tighten results by expecting to find the keyword of the target domain mentioned in the social media profile page results?"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_sorbs",
@@ -8501,7 +8775,9 @@
         "value": true,
         "description": "Look up all IPs on subnets which your target is a part of for blacklisting?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_spamcop",
@@ -8571,7 +8847,9 @@
         "value": true,
         "description": "Look up all IPs on subnets which your target is a part of for blacklisting?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_spamhaus",
@@ -8643,7 +8921,9 @@
         "value": true,
         "description": "Look up all IPs on subnets which your target is a part of for blacklisting?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_spur",
@@ -8730,7 +9010,9 @@
         "value": false,
         "description": "Look up all IPs on subnets which your target is a part of?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_spyonweb",
@@ -8824,7 +9106,9 @@
         "value": true,
         "description": "Verify co-hosts are valid by checking if they still resolve to the shared IP."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_stackoverflow",
@@ -8877,7 +9161,9 @@
         "value": "",
         "description": "StackApps has an optional API key. Using an API key will increase the amount of requests allowed."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_stevenblack_hosts",
@@ -8931,7 +9217,9 @@
         "value": true,
         "description": "Apply checks to sites found to be co-hosted on the target's IP?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_sublist3r",
@@ -8962,7 +9250,9 @@
     ],
     "consumption_group": "domain_and_hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "error"
   },
   {
     "module_id": "sfp_surbl",
@@ -9051,7 +9341,9 @@
         "value": true,
         "description": "Look up all IPs on subnets which your target is a part of for blacklisting?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_talosintel",
@@ -9120,12 +9412,14 @@
         "value": true,
         "description": "Check if any malicious IPs are found within the same subnet of the target?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_template",
     "name": "Template Module",
-    "summary": "This is an example module to help developers create their own SpiderFoot modules.",
+    "summary": "This is an example module to help developers create their own SpiderFeet modules.",
     "flags": [
       "slow",
       "apikey"
@@ -9238,7 +9532,9 @@
       "description": "Detailed descriptive text about the tool",
       "website": "https://tool.org",
       "repository": "https://github.com/author/tool"
-    }
+    },
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_textmagic",
@@ -9293,7 +9589,9 @@
         "value": "",
         "description": "TextMagic API Username"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_threatcrowd",
@@ -9377,7 +9675,9 @@
         "value": true,
         "description": "Look up all IPs on subnets which your target is a part of?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_threatfox",
@@ -9421,7 +9721,9 @@
         "value": true,
         "description": "Apply checks to affiliates?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_threatjammer",
@@ -9498,7 +9800,9 @@
         "value": 35,
         "description": "Minimum Threat Jammer risk score"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_threatminer",
@@ -9580,7 +9884,9 @@
         "value": true,
         "description": "Verify that any hostnames found on the target domain still resolve?"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_torch",
@@ -9633,7 +9939,9 @@
         "value": 20,
         "description": "Number of results pages to iterate through."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_torexits",
@@ -9692,7 +10000,9 @@
         "value": true,
         "description": "Report if any malicious IPs are found within owned netblocks?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_trashpanda",
@@ -9747,7 +10057,9 @@
         "value": "",
         "description": "Trashpanda API Username"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_trumail",
@@ -9782,7 +10094,9 @@
     ],
     "consumption_group": "email",
     "route_seed_nugget": "EMAILADDR",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_twilio",
@@ -9839,7 +10153,9 @@
         "value": "",
         "description": "Twilio Auth Token"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_twitter",
@@ -9872,7 +10188,9 @@
     ],
     "consumption_group": "other",
     "route_seed_nugget": "SOCIAL_MEDIA",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_uceprotect",
@@ -9944,7 +10262,9 @@
         "value": true,
         "description": "Look up all IPs on subnets which your target is a part of for blacklisting?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_urlscan",
@@ -9992,7 +10312,9 @@
         "value": true,
         "description": "Verify that any hostnames found on the target domain still resolve?"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_venmo",
@@ -10025,7 +10347,9 @@
     ],
     "consumption_group": "other",
     "route_seed_nugget": "USERNAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_viewdns",
@@ -10092,7 +10416,9 @@
         "value": true,
         "description": "Verify co-hosts are valid by checking if they still resolve to the shared IP."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_virustotal",
@@ -10190,7 +10516,7 @@
         "name": "publicapi",
         "value_type": "boolean",
         "value": true,
-        "description": "Are you using a public key? If so SpiderFoot will pause for 15 seconds after each query to avoid VirusTotal dropping requests."
+        "description": "Are you using a public key? If so SpiderFeet will pause for 15 seconds after each query to avoid VirusTotal dropping requests."
       },
       {
         "name": "subnetlookup",
@@ -10204,7 +10530,9 @@
         "value": true,
         "description": "Verify that any hostnames found on the target domain still resolve?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_voipbl",
@@ -10273,7 +10601,9 @@
         "value": true,
         "description": "Check if any malicious IPs are found within the same subnet of the target?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_vxvault",
@@ -10336,7 +10666,9 @@
         "value": true,
         "description": "Apply checks to sites found to be co-hosted on the target's IP?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_whatcms",
@@ -10400,7 +10732,9 @@
         "value": 25,
         "description": "Query timeout, in seconds."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_whoisology",
@@ -10451,7 +10785,9 @@
         "value": "",
         "description": "Whoisology.com API key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_whoxy",
@@ -10502,7 +10838,9 @@
         "value": "",
         "description": "Whoxy.com API key."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_wigle",
@@ -10565,7 +10903,9 @@
         "value": "0.01",
         "description": "How tightly to bound queries against the latitude/longitude box extracted from idenified addresses. This value must be between 0.001 and 0.2."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_wikileaks",
@@ -10616,7 +10956,9 @@
         "value": true,
         "description": "Include external leak sources such as Associated Twitter accounts, Snowden + Hammond Documents, Cryptome Documents, ICWatch, This Day in WikiLeaks Blog and WikiLeaks Press, WL Central."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_wikipediaedits",
@@ -10660,7 +11002,9 @@
         "value": "365",
         "description": "Maximum age of data to be considered valid (0 = unlimited)."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_xforce",
@@ -10802,7 +11146,9 @@
         "value": "",
         "description": "X-Force Exchange API Password."
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_yandexdns",
@@ -10843,7 +11189,9 @@
     ],
     "consumption_group": "hostname",
     "route_seed_nugget": "INTERNET_NAME",
-    "module_opts": []
+    "module_opts": [],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_zetalytics",
@@ -10898,7 +11246,9 @@
         "value": true,
         "description": "Verify that any hostnames found on the target domain still resolve?"
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_zonefiles",
@@ -10964,7 +11314,9 @@
         "value": true,
         "description": "Verify specified domains still resolve to the identified IP address."
       }
-    ]
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
   },
   {
     "module_id": "sfp_zoneh",
@@ -11021,6 +11373,8 @@
         "value": true,
         "description": "Check co-hosted sites?"
       }
-    ]
+    ],
+    "fixture_category": "negative",
+    "service_state": "in-test"
   }
 ]

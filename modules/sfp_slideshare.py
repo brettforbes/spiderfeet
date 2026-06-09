@@ -6,15 +6,15 @@
 #
 # Created:     2018-10-15
 # Copyright:   (c) bcoles 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_slideshare(SpiderFootPlugin):
+class sfp_slideshare(SpiderFeetPlugin):
 
     meta = {
         'name': "SlideShare",
@@ -107,7 +107,7 @@ class sfp_slideshare(SpiderFootPlugin):
             self.debug(f"{url} is not a valid SlideShare profile")
             return
 
-        e = SpiderFootEvent("RAW_RIR_DATA", f"Possible full name: {human_name[0]}", self.__name__, event)
+        e = SpiderFeetEvent("RAW_RIR_DATA", f"Possible full name: {human_name[0]}", self.__name__, event)
         self.notifyListeners(e)
 
         # Retrieve location (country)
@@ -120,7 +120,7 @@ class sfp_slideshare(SpiderFootPlugin):
             self.debug("Skipping likely invalid location.")
             return
 
-        e = SpiderFootEvent("GEOINFO", location[0], self.__name__, event)
+        e = SpiderFeetEvent("GEOINFO", location[0], self.__name__, event)
         self.notifyListeners(e)
 
 # End of sfp_slideshare class

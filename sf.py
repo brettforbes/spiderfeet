@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sf
-# Purpose:      Main wrapper for calling all SpiderFoot modules
+# Purpose:      Main wrapper for calling all SpiderFeet modules
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
 # Created:     03/04/2012
 # Copyright:   (c) Steve Micallef 2012
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import argparse
@@ -26,14 +26,14 @@ import cherrypy
 import cherrypy_cors
 from cherrypy.lib import auth_digest
 
-from sflib import SpiderFoot
-from sfscan import startSpiderFootScanner
-from sfwebui import SpiderFootWebUi
-from spiderfoot import SpiderFootHelpers
-from spiderfoot import SpiderFootDb
-from spiderfoot import SpiderFootCorrelator
-from spiderfoot.logger import logListenerSetup, logWorkerSetup
-from spiderfoot import __version__
+from sflib import SpiderFeet
+from sfscan import startSpiderFeetScanner
+from sfwebui import SpiderFeetWebUi
+from spiderfeet import SpiderFeetHelpers
+from spiderfeet import SpiderFeetDb
+from spiderfeet import SpiderFeetCorrelator
+from spiderfeet.logger import logListenerSetup, logWorkerSetup
+from spiderfeet import __version__
 
 scanId = None
 dbh = None
@@ -61,8 +61,8 @@ def main() -> None:
         '_fetchtimeout': 5,  # number of seconds before giving up on a fetch
         '_internettlds': 'https://publicsuffix.org/list/effective_tld_names.dat',
         '_internettlds_cache': 72,
-        '_genericusers': ",".join(SpiderFootHelpers.usernamesFromWordlists(['generic-usernames'])),
-        '__database': f"{SpiderFootHelpers.dataPath()}/spiderfoot.db",
+        '_genericusers': ",".join(SpiderFeetHelpers.usernamesFromWordlists(['generic-usernames'])),
+        '__database': f"{SpiderFeetHelpers.dataPath()}/spiderFeet.db",
         '__modules__': None,  # List of modules. Will be set after start-up.
         '__correlationrules__': None,  # List of correlation rules. Will be set after start-up.
         '_socks1type': '',
@@ -91,7 +91,7 @@ def main() -> None:
 
     # Legacy way to run the server
     args = None
-    p = argparse.ArgumentParser(description=f"SpiderFoot {__version__}: Open Source Intelligence Automation.")
+    p = argparse.ArgumentParser(description=f"SpiderFeet {__version__}: Open Source Intelligence Automation.")
     p.add_argument("-d", "--debug", action='store_true', help="Enable debug output.")
     p.add_argument("-l", metavar="IP:port", help="IP and port to listen on.")
     p.add_argument("-m", metavar="mod1,mod2,...", type=str, help="Modules to enable.")
@@ -111,12 +111,12 @@ def main() -> None:
     p.add_argument("-F", metavar="type1,type2,...", type=str, help="Show only a set of event types, comma-separated.")
     p.add_argument("-x", action='store_true', help="STRICT MODE. Will only enable modules that can directly consume your target, and if -t was specified only those events will be consumed by modules. This overrides -t and -m options.")
     p.add_argument("-q", action='store_true', help="Disable logging. This will also hide errors!")
-    p.add_argument("-V", "--version", action='store_true', help="Display the version of SpiderFoot and exit.")
+    p.add_argument("-V", "--version", action='store_true', help="Display the version of SpiderFeet and exit.")
     p.add_argument("-max-threads", type=int, help="Max number of modules to run concurrently.")
     args = p.parse_args()
 
     if args.version:
-        print(f"SpiderFoot {__version__}: Open Source Intelligence Automation.")
+        print(f"SpiderFeet {__version__}: Open Source Intelligence Automation.")
         sys.exit(0)
 
     if args.max_threads:
@@ -133,7 +133,7 @@ def main() -> None:
     loggingQueue = mp.Queue()
     logListenerSetup(loggingQueue, sfConfig)
     logWorkerSetup(loggingQueue)
-    log = logging.getLogger(f"spiderfoot.{__name__}")
+    log = logging.getLogger(f"spiderFeet.{__name__}")
 
     # Add descriptions of the global config options
     sfConfig['__globaloptdescs__'] = sfOptdescs
@@ -141,7 +141,7 @@ def main() -> None:
     # Load each module in the modules directory with a .py extension
     try:
         mod_dir = os.path.dirname(os.path.abspath(__file__)) + '/modules/'
-        sfModules = SpiderFootHelpers.loadModulesAsDict(mod_dir, ['sfp_template.py'])
+        sfModules = SpiderFeetHelpers.loadModulesAsDict(mod_dir, ['sfp_template.py'])
     except BaseException as e:
         log.critical(f"Failed to load modules: {e}", exc_info=True)
         sys.exit(-1)
@@ -154,14 +154,14 @@ def main() -> None:
     # a .yaml extension
     try:
         correlations_dir = os.path.dirname(os.path.abspath(__file__)) + '/correlations/'
-        correlationRulesRaw = SpiderFootHelpers.loadCorrelationRulesRaw(correlations_dir, ['template.yaml'])
+        correlationRulesRaw = SpiderFeetHelpers.loadCorrelationRulesRaw(correlations_dir, ['template.yaml'])
     except BaseException as e:
         log.critical(f"Failed to load correlation rules: {e}", exc_info=True)
         sys.exit(-1)
 
     # Initialize database handle
     try:
-        dbh = SpiderFootDb(sfConfig)
+        dbh = SpiderFeetDb(sfConfig)
     except Exception as e:
         log.critical(f"Failed to initialize database: {e}", exc_info=True)
         sys.exit(-1)
@@ -172,7 +172,7 @@ def main() -> None:
         log.error(f"No correlation rules found in correlations directory: {correlations_dir}")
     else:
         try:
-            correlator = SpiderFootCorrelator(dbh, correlationRulesRaw)
+            correlator = SpiderFeetCorrelator(dbh, correlationRulesRaw)
             sfCorrelationRules = correlator.get_ruleset()
         except Exception as e:
             log.critical(f"Failure initializing correlation rules: {e}", exc_info=True)
@@ -189,7 +189,7 @@ def main() -> None:
 
         try:
             log.info(f"Running {len(correlationRulesRaw)} correlation rules against scan, {args.correlate}.")
-            corr = SpiderFootCorrelator(dbh, correlationRulesRaw, args.correlate)
+            corr = SpiderFeetCorrelator(dbh, correlationRulesRaw, args.correlate)
             corr.run_correlations()
         except Exception as e:
             log.critical(f"Unable to run correlation rules: {e}", exc_info=True)
@@ -205,7 +205,7 @@ def main() -> None:
         sys.exit(0)
 
     if args.types:
-        dbh = SpiderFootDb(sfConfig, init=True)
+        dbh = SpiderFeetDb(sfConfig, init=True)
         log.info("Types available:")
         typedata = dbh.eventTypes()
         types = dict()
@@ -236,18 +236,18 @@ def start_scan(sfConfig: dict, sfModules: dict, args, loggingQueue) -> None:
     """Start scan
 
     Args:
-        sfConfig (dict): SpiderFoot config options
+        sfConfig (dict): SpiderFeet config options
         sfModules (dict): modules
         args (argparse.Namespace): command line args
-        loggingQueue (Queue): main SpiderFoot logging queue
+        loggingQueue (Queue): main SpiderFeet logging queue
     """
-    log = logging.getLogger(f"spiderfoot.{__name__}")
+    log = logging.getLogger(f"spiderFeet.{__name__}")
 
     global dbh
     global scanId
 
-    dbh = SpiderFootDb(sfConfig, init=True)
-    sf = SpiderFoot(sfConfig)
+    dbh = SpiderFeetDb(sfConfig, init=True)
+    sf = SpiderFeet(sfConfig)
 
     if not args.s:
         log.error("You must specify a target when running in scan mode. Try --help for guidance.")
@@ -277,12 +277,12 @@ def start_scan(sfConfig: dict, sfModules: dict, args, loggingQueue) -> None:
     # Usernames and names - quoted on the commandline - won't have quotes,
     # so add them. Skip auto-quoting when the target is already recognised
     # (e.g. IPv6 addresses contain ':' but no '.', and would otherwise match USERNAME).
-    pre_type = SpiderFootHelpers.targetTypeFromString(target)
+    pre_type = SpiderFeetHelpers.targetTypeFromString(target)
     if " " in target:
         target = f"\"{target}\""
     elif pre_type is None and "." not in target and not target.startswith("+") and '"' not in target:
         target = f"\"{target}\""
-    targetType = SpiderFootHelpers.targetTypeFromString(target)
+    targetType = SpiderFeetHelpers.targetTypeFromString(target)
 
     if not targetType:
         log.error(f"Could not determine target type. Invalid target: {target}")
@@ -428,9 +428,9 @@ def start_scan(sfConfig: dict, sfModules: dict, args, loggingQueue) -> None:
 
     # Start running a new scan
     scanName = target
-    scanId = SpiderFootHelpers.genScanInstanceId()
+    scanId = SpiderFeetHelpers.genScanInstanceId()
     try:
-        p = mp.Process(target=startSpiderFootScanner, args=(loggingQueue, scanName, scanId, target, targetType, modlist, cfg))
+        p = mp.Process(target=startSpiderFeetScanner, args=(loggingQueue, scanName, scanId, target, targetType, modlist, cfg))
         p.daemon = True
         p.start()
     except BaseException as e:
@@ -465,10 +465,10 @@ def start_web_server(sfWebUiConfig: dict, sfConfig: dict, loggingQueue=None) -> 
 
     Args:
         sfWebUiConfig (dict): web server options
-        sfConfig (dict): SpiderFoot config options
-        loggingQueue (Queue): main SpiderFoot logging queue
+        sfConfig (dict): SpiderFeet config options
+        loggingQueue (Queue): main SpiderFeet logging queue
     """
-    log = logging.getLogger(f"spiderfoot.{__name__}")
+    log = logging.getLogger(f"spiderFeet.{__name__}")
 
     web_host = sfWebUiConfig.get('host', '127.0.0.1')
     web_port = sfWebUiConfig.get('port', 5001)
@@ -492,12 +492,12 @@ def start_web_server(sfWebUiConfig: dict, sfConfig: dict, loggingQueue=None) -> 
         '/static': {
             'tools.staticdir.on': True,
             'tools.staticdir.dir': 'static',
-            'tools.staticdir.root': f"{os.path.dirname(os.path.abspath(__file__))}/spiderfoot"
+            'tools.staticdir.root': f"{os.path.dirname(os.path.abspath(__file__))}/spiderFeet"
         }
     }
 
     secrets = dict()
-    passwd_file = SpiderFootHelpers.dataPath() + '/passwd'
+    passwd_file = SpiderFeetHelpers.dataPath() + '/passwd'
     if os.path.isfile(passwd_file):
         if not os.access(passwd_file, os.R_OK):
             log.error("Could not read passwd file. Permission denied.")
@@ -535,13 +535,13 @@ def start_web_server(sfWebUiConfig: dict, sfConfig: dict, loggingQueue=None) -> 
         warn_msg = "\n********************************************************************\n"
         warn_msg += "Warning: passwd file contains no passwords. Authentication disabled.\n"
         warn_msg += "Please consider adding authentication to protect this instance!\n"
-        warn_msg += "Refer to https://www.spiderfoot.net/documentation/#security.\n"
+        warn_msg += "Refer to https://www.spiderfeet.net/documentation/#security.\n"
         warn_msg += "********************************************************************\n"
         log.warning(warn_msg)
 
     using_ssl = False
-    key_path = SpiderFootHelpers.dataPath() + '/spiderfoot.key'
-    crt_path = SpiderFootHelpers.dataPath() + '/spiderfoot.crt'
+    key_path = SpiderFeetHelpers.dataPath() + '/spiderFeet.key'
+    crt_path = SpiderFeetHelpers.dataPath() + '/spiderFeet.crt'
     if os.path.isfile(key_path) and os.path.isfile(crt_path):
         if not os.access(crt_path, os.R_OK):
             log.critical(f"Could not read {crt_path} file. Permission denied.")
@@ -577,7 +577,7 @@ def start_web_server(sfWebUiConfig: dict, sfConfig: dict, loggingQueue=None) -> 
 
     print("")
     print("*************************************************************")
-    print(" Use SpiderFoot by starting your web browser of choice and ")
+    print(" Use SpiderFeet by starting your web browser of choice and ")
     print(f" browse to {url}")
     print("*************************************************************")
     print("")
@@ -585,7 +585,7 @@ def start_web_server(sfWebUiConfig: dict, sfConfig: dict, loggingQueue=None) -> 
     # Disable auto-reloading of content
     cherrypy.engine.autoreload.unsubscribe()
 
-    cherrypy.quickstart(SpiderFootWebUi(sfWebUiConfig, sfConfig, loggingQueue), script_name=web_root, config=conf)
+    cherrypy.quickstart(SpiderFeetWebUi(sfWebUiConfig, sfConfig, loggingQueue), script_name=web_root, config=conf)
 
 
 def handle_abort(signal, frame) -> None:
@@ -595,7 +595,7 @@ def handle_abort(signal, frame) -> None:
         signal: TBD
         frame: TBD
     """
-    log = logging.getLogger(f"spiderfoot.{__name__}")
+    log = logging.getLogger(f"spiderFeet.{__name__}")
 
     global dbh
     global scanId
@@ -608,28 +608,28 @@ def handle_abort(signal, frame) -> None:
 
 if __name__ == '__main__':
     if sys.version_info < (3, 7):
-        print("SpiderFoot requires Python 3.7 or higher.")
+        print("SpiderFeet requires Python 3.7 or higher.")
         sys.exit(-1)
 
     if len(sys.argv) <= 1:
-        print("SpiderFoot requires -l <ip>:<port> to start the web server. Try --help for guidance.")
+        print("SpiderFeet requires -l <ip>:<port> to start the web server. Try --help for guidance.")
         sys.exit(-1)
 
     # TODO: remove this after a few releases (added in 3.5 pre-release 2021-09-05)
     from pathlib import Path
-    if os.path.exists('spiderfoot.db'):
-        print(f"ERROR: spiderfoot.db file exists in {os.path.dirname(__file__)}")
-        print("SpiderFoot no longer supports loading the spiderfoot.db database from the application directory.")
-        print(f"The database is now loaded from your home directory: {Path.home()}/.spiderfoot/spiderfoot.db")
-        print(f"This message will go away once you move or remove spiderfoot.db from {os.path.dirname(__file__)}")
+    if os.path.exists('spiderFeet.db'):
+        print(f"ERROR: spiderFeet.db file exists in {os.path.dirname(__file__)}")
+        print("SpiderFeet no longer supports loading the spiderFeet.db database from the application directory.")
+        print(f"The database is now loaded from your home directory: {Path.home()}/.spiderFeet/spiderFeet.db")
+        print(f"This message will go away once you move or remove spiderFeet.db from {os.path.dirname(__file__)}")
         sys.exit(-1)
 
     # TODO: remove this after a few releases (added in 3.5 pre-release 2021-09-05)
     from pathlib import Path
     if os.path.exists('passwd'):
         print(f"ERROR: passwd file exists in {os.path.dirname(__file__)}")
-        print("SpiderFoot no longer supports loading credentials from the application directory.")
-        print(f"The passwd file is now loaded from your home directory: {Path.home()}/.spiderfoot/passwd")
+        print("SpiderFeet no longer supports loading credentials from the application directory.")
+        print(f"The passwd file is now loaded from your home directory: {Path.home()}/.spiderFeet/passwd")
         print(f"This message will go away once you move or remove passwd from {os.path.dirname(__file__)}")
         sys.exit(-1)
 

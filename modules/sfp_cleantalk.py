@@ -7,15 +7,15 @@
 #
 # Created:     05/08/2018
 # Copyright:   (c) Steve Micallef, 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 from netaddr import IPAddress, IPNetwork
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_cleantalk(SpiderFootPlugin):
+class sfp_cleantalk(SpiderFeetPlugin):
 
     meta = {
         'name': "CleanTalk Spam List",
@@ -188,10 +188,10 @@ class sfp_cleantalk(SpiderFootPlugin):
 
         text = f"CleanTalk Spam List [{eventData}]\n<SFURL>{url}</SFURL>"
 
-        evt = SpiderFootEvent(blacklist_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(blacklist_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(malicious_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(malicious_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_cleantalk class

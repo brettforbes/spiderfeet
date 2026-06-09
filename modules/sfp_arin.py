@@ -8,15 +8,15 @@
 #
 # Created:     23/02/2018
 # Copyright:   (c) Steve Micallef 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_arin(SpiderFootPlugin):
+class sfp_arin(SpiderFeetPlugin):
 
     meta = {
         'name': "ARIN",
@@ -115,7 +115,7 @@ class sfp_arin(SpiderFootPlugin):
             self.debug(f"Error processing JSON response: {e}")
             return None
 
-        evt = SpiderFootEvent("RAW_RIR_DATA", str(data), self.__name__, self.currentEventSrc)
+        evt = SpiderFeetEvent("RAW_RIR_DATA", str(data), self.__name__, self.currentEventSrc)
         self.notifyListeners(evt)
         return data
 
@@ -153,7 +153,7 @@ class sfp_arin(SpiderFootPlugin):
                             sname = name.split(", ", 1)
                             name = sname[1] + " " + sname[0]
 
-                        evt = SpiderFootEvent("HUMAN_NAME", name,
+                        evt = SpiderFeetEvent("HUMAN_NAME", name,
                                               self.__name__, self.currentEventSrc)
                         self.notifyListeners(evt)
 

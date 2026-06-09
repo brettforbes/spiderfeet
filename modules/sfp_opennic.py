@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_opnenic
-# Purpose:     SpiderFoot plug-in for resolving host names on the OpenNIC
+# Purpose:     SpiderFeet plug-in for resolving host names on the OpenNIC
 #              alternative DNS system.
 #
 # Author:      <bcoles@gmail.com>
 #
 # Created:     2021-10-16
 # Copyright:   (c) bcoles 2021
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import dns.resolver
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_opennic(SpiderFootPlugin):
+class sfp_opennic(SpiderFeetPlugin):
 
     meta = {
         'name': "OpenNIC DNS",
@@ -157,16 +157,16 @@ class sfp_opennic(SpiderFootPlugin):
         for addr in set(addrs):
             if self.sf.validIP(addr):
                 if affiliate and not self.getTarget().matches(addr, includeParents=True):
-                    evt = SpiderFootEvent("AFFILIATE_IPADDR", addr, self.__name__, event)
+                    evt = SpiderFeetEvent("AFFILIATE_IPADDR", addr, self.__name__, event)
                 else:
-                    evt = SpiderFootEvent("IP_ADDRESS", addr, self.__name__, event)
+                    evt = SpiderFeetEvent("IP_ADDRESS", addr, self.__name__, event)
 
                 self.notifyListeners(evt)
             elif self.sf.validIP6(addr):
                 if affiliate and not self.getTarget().matches(addr, includeParents=True):
-                    evt = SpiderFootEvent("AFFILIATE_IPV6_ADDRESS", addr, self.__name__, event)
+                    evt = SpiderFeetEvent("AFFILIATE_IPV6_ADDRESS", addr, self.__name__, event)
                 else:
-                    evt = SpiderFootEvent("IPV6_ADDRESS", addr, self.__name__, event)
+                    evt = SpiderFeetEvent("IPV6_ADDRESS", addr, self.__name__, event)
 
                 self.notifyListeners(evt)
             else:

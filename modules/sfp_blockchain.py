@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_blockchain
-# Purpose:      SpiderFoot plug-in to look up a bitcoin wallet's balance by
+# Purpose:      SpiderFeet plug-in to look up a bitcoin wallet's balance by
 #               querying blockchain.info.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
 # Created:     18/06/2017
 # Copyright:   (c) Steve Micallef 2017
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_blockchain(SpiderFootPlugin):
+class sfp_blockchain(SpiderFeetPlugin):
 
     meta = {
         'name': "Blockchain",
@@ -92,7 +92,7 @@ class sfp_blockchain(SpiderFootPlugin):
             self.debug(f"Error processing JSON response: {e}")
             return
 
-        evt = SpiderFootEvent("BITCOIN_BALANCE", str(balance) + " BTC", self.__name__, event)
+        evt = SpiderFeetEvent("BITCOIN_BALANCE", str(balance) + " BTC", self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_blockchain class

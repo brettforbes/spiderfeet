@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_tool_trufflehog
-# Purpose:     SpiderFoot plug-in for using the trufflehog tool.
+# Purpose:     SpiderFeet plug-in for using the trufflehog tool.
 #              Tool: https://github.com/trufflesecurity/truffleHog
 #
 # Author:      <steve@binarypool.com>
 #
 # Created:     2022-04-02
 # Copyright:   (c) Steve Micallef 2022
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import sys
@@ -16,10 +16,10 @@ import json
 import os
 from subprocess import PIPE, Popen, TimeoutExpired
 
-from spiderfoot import SpiderFootPlugin, SpiderFootEvent
+from spiderfeet import SpiderFeetPlugin, SpiderFeetEvent
 
 
-class sfp_tool_trufflehog(SpiderFootPlugin):
+class sfp_tool_trufflehog(SpiderFeetPlugin):
 
     meta = {
         'name': "Tool - TruffleHog",
@@ -165,7 +165,7 @@ class sfp_tool_trufflehog(SpiderFootPlugin):
                 for k in rowjson
                 if k not in ["diff", "printDiff"]
             )
-            evt = SpiderFootEvent('PASSWORD_COMPROMISED', descr, self.__name__, event)
+            evt = SpiderFeetEvent('PASSWORD_COMPROMISED', descr, self.__name__, event)
             self.notifyListeners(evt)
 
         return

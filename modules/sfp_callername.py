@@ -1,22 +1,22 @@
 # -------------------------------------------------------------------------------
 # Name:        sfp_callername
-# Purpose:     SpiderFoot plug-in to search CallerName.com for a phone number
+# Purpose:     SpiderFeet plug-in to search CallerName.com for a phone number
 #              (US only) and retrieve location and reputation information.
 #
 # Author:      <bcoles@gmail.com>
 #
 # Created:     2019-05-28
 # Copyright:   (c) bcoles 2019
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
 import time
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_callername(SpiderFootPlugin):
+class sfp_callername(SpiderFeetPlugin):
 
     meta = {
         'name': "CallerName",
@@ -118,7 +118,7 @@ class sfp_callername(SpiderFootPlugin):
             if len(location) < 5 or len(location) > 100:
                 self.debug("Skipping likely invalid location.")
             else:
-                evt = SpiderFootEvent('GEOINFO', location, self.__name__, event)
+                evt = SpiderFeetEvent('GEOINFO', location, self.__name__, event)
                 self.notifyListeners(evt)
 
         rep_good_match = re.findall(r'>SAFE.*?>(\d+) votes?<', str(res['content']))
@@ -130,7 +130,7 @@ class sfp_callername(SpiderFootPlugin):
 
             if bad_votes > good_votes:
                 text = f"CallerName [{eventData}]\n<SFURL>{url}</SFURL>"
-                evt = SpiderFootEvent('MALICIOUS_PHONE_NUMBER', text, self.__name__, event)
+                evt = SpiderFeetEvent('MALICIOUS_PHONE_NUMBER', text, self.__name__, event)
                 self.notifyListeners(evt)
 
 # End of sfp_callername class

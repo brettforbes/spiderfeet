@@ -7,13 +7,13 @@
 #
 # Created:     07/05/2012
 # Copyright:   (c) Steve Micallef 2012
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_googlesearch(SpiderFootPlugin):
+class sfp_googlesearch(SpiderFeetPlugin):
 
     meta = {
         'name': "Google",
@@ -127,11 +127,11 @@ class sfp_googlesearch(SpiderFootPlugin):
         for link in internal_links:
             self.debug("Found a link: " + link)
 
-            evt = SpiderFootEvent("LINKED_URL_INTERNAL", link, self.__name__, event)
+            evt = SpiderFeetEvent("LINKED_URL_INTERNAL", link, self.__name__, event)
             self.notifyListeners(evt)
 
         if internal_links:
-            evt = SpiderFootEvent(
+            evt = SpiderFeetEvent(
                 "RAW_RIR_DATA", str(res), self.__name__, event
             )
             self.notifyListeners(evt)

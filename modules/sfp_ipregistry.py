@@ -7,16 +7,16 @@
 #
 # Created:     2020-09-08
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 import urllib.parse
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_ipregistry(SpiderFootPlugin):
+class sfp_ipregistry(SpiderFeetPlugin):
     meta = {
         "name": "ipregistry",
         "summary": "Query the ipregistry.co database for reputation and geo-location.",
@@ -72,7 +72,7 @@ class sfp_ipregistry(SpiderFootPlugin):
         res = self.sf.fetchUrl(
             f"https://api.ipregistry.co/{qry}?{qs}",
             timeout=self.opts["_fetchtimeout"],
-            useragent="SpiderFoot",
+            useragent="SpiderFeet",
         )
 
         if res["content"] is None:
@@ -89,7 +89,7 @@ class sfp_ipregistry(SpiderFootPlugin):
         return None
 
     def emit(self, etype, data, pevent):
-        evt = SpiderFootEvent(etype, data, self.__name__, pevent)
+        evt = SpiderFeetEvent(etype, data, self.__name__, pevent)
         self.notifyListeners(evt)
         return evt
 

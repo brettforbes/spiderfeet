@@ -7,16 +7,16 @@
 #
 # Created:     2022-05-03
 # Copyright:   (c) Diego Parrilla 2022
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 import time
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_threatjammer(SpiderFootPlugin):
+class sfp_threatjammer(SpiderFeetPlugin):
 
     meta = {
         'name': "Threat Jammer",
@@ -217,7 +217,7 @@ class sfp_threatjammer(SpiderFootPlugin):
 
         self.info(f"Malicious IP address {eventData} found in any Threat Jammer lists")
 
-        evt = SpiderFootEvent(
+        evt = SpiderFeetEvent(
             malicious_type,
             f"Threat Jammer - {detail}",
             self.__name__,
@@ -225,7 +225,7 @@ class sfp_threatjammer(SpiderFootPlugin):
         )
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(
+        evt = SpiderFeetEvent(
             blacklist_type,
             f"Threat Jammer  - {detail}",
             self.__name__,

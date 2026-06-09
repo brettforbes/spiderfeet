@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_snov
-# Purpose:      Spiderfoot plugin to search Snov.IO API for emails
+# Purpose:      SpiderFeet plugin to search Snov.IO API for emails
 #               associated to target domain
 #
 # Author:      Krishnasis Mandal <krishnasis@hotmail.com>
 #
 # Created:     16/05/2020
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
@@ -16,10 +16,10 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_snov(SpiderFootPlugin):
+class sfp_snov(SpiderFeetPlugin):
 
     meta = {
         'name': "Snov",
@@ -193,7 +193,7 @@ class sfp_snov(SpiderFootPlugin):
                 self.debug("No email address found for target domain")
                 break
 
-            evt = SpiderFootEvent("RAW_RIR_DATA", str(data), self.__name__, event)
+            evt = SpiderFeetEvent("RAW_RIR_DATA", str(data), self.__name__, event)
             self.notifyListeners(evt)
 
             records = data.get('emails')
@@ -206,7 +206,7 @@ class sfp_snov(SpiderFootPlugin):
                         if email:
                             if email in self.results:
                                 continue
-                            if not SpiderFootHelpers.validEmail(email):
+                            if not SpiderFeetHelpers.validEmail(email):
                                 continue
                             self.results[email] = True
 
@@ -215,7 +215,7 @@ class sfp_snov(SpiderFootPlugin):
                             else:
                                 evttype = "EMAILADDR"
 
-                            evt = SpiderFootEvent(evttype, email, self.__name__, event)
+                            evt = SpiderFeetEvent(evttype, email, self.__name__, event)
                             self.notifyListeners(evt)
 
             # Determine whether another page of data exists

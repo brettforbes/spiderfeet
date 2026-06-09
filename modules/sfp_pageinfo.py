@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_pageinfo
-# Purpose:      SpiderFoot plug-in for scanning retrieved content by other
+# Purpose:      SpiderFeet plug-in for scanning retrieved content by other
 #               modules (such as sfp_spider) and building up information about
 #               the page, such as whether it uses Javascript, has forms, and more.
 #
@@ -9,12 +9,12 @@
 #
 # Created:     02/05/2012
 # Copyright:   (c) Steve Micallef 2012
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 # Indentify pages that use Javascript libs, handle passwords, have forms,
 # permit file uploads and more to come.
@@ -28,7 +28,7 @@ regexps = dict({
 })
 
 
-class sfp_pageinfo(SpiderFootPlugin):
+class sfp_pageinfo(SpiderFeetPlugin):
 
     meta = {
         'name': "Page Information",
@@ -111,13 +111,13 @@ class sfp_pageinfo(SpiderFootPlugin):
                 if len(matches) > 0 and regexpGrp not in self.results[eventSource]:
                     self.info("Matched " + regexpGrp + " in content from " + eventSource)
                     self.results[eventSource] = self.results[eventSource] + [regexpGrp]
-                    evt = SpiderFootEvent(regexpGrp, eventSource, self.__name__, event)
+                    evt = SpiderFeetEvent(regexpGrp, eventSource, self.__name__, event)
                     self.notifyListeners(evt)
 
         # If no regexps were matched, consider this a static page
         if len(self.results[eventSource]) == 0:
             self.info("Treating " + eventSource + " as URL_STATIC")
-            evt = SpiderFootEvent("URL_STATIC", eventSource, self.__name__, event)
+            evt = SpiderFeetEvent("URL_STATIC", eventSource, self.__name__, event)
             self.notifyListeners(evt)
 
         # Check for externally referenced Javascript pages
@@ -132,7 +132,7 @@ class sfp_pageinfo(SpiderFootPlugin):
                 if self.getTarget().matches(self.sf.urlFQDN(match)):
                     continue
                 self.debug(f"Externally hosted JavaScript found at: {match}")
-                evt = SpiderFootEvent("PROVIDER_JAVASCRIPT", match, self.__name__, event)
+                evt = SpiderFeetEvent("PROVIDER_JAVASCRIPT", match, self.__name__, event)
                 self.notifyListeners(evt)
 
 # End of sfp_pageinfo class

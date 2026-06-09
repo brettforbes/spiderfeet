@@ -7,7 +7,7 @@
 #
 # Created:     12/04/2014
 # Copyright:   (c) Steve Micallef 2014
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
@@ -15,10 +15,10 @@ import time
 
 from netaddr import IPNetwork
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_robtex(SpiderFootPlugin):
+class sfp_robtex(SpiderFeetPlugin):
 
     meta = {
         'name': "Robtex",
@@ -196,7 +196,7 @@ class sfp_robtex(SpiderFootPlugin):
                 self.errorState = True
                 return
 
-            evt = SpiderFootEvent("RAW_RIR_DATA", json.dumps(data), self.__name__, event)
+            evt = SpiderFeetEvent("RAW_RIR_DATA", json.dumps(data), self.__name__, event)
             self.notifyListeners(evt)
 
             pas = data.get('pas')
@@ -224,17 +224,17 @@ class sfp_robtex(SpiderFootPlugin):
                     continue
 
                 if eventName == "NETBLOCK_OWNER":
-                    ipe = SpiderFootEvent("IP_ADDRESS", ip, self.__name__, event)
+                    ipe = SpiderFeetEvent("IP_ADDRESS", ip, self.__name__, event)
                     self.notifyListeners(ipe)
-                    evt = SpiderFootEvent("CO_HOSTED_SITE", host, self.__name__, ipe)
+                    evt = SpiderFeetEvent("CO_HOSTED_SITE", host, self.__name__, ipe)
                     self.notifyListeners(evt)
                 elif eventName == "NETBLOCKV6_OWNER":
-                    ipe = SpiderFootEvent("IPV6_ADDRESS", ip, self.__name__, event)
+                    ipe = SpiderFeetEvent("IPV6_ADDRESS", ip, self.__name__, event)
                     self.notifyListeners(ipe)
-                    evt = SpiderFootEvent("CO_HOSTED_SITE", host, self.__name__, ipe)
+                    evt = SpiderFeetEvent("CO_HOSTED_SITE", host, self.__name__, ipe)
                     self.notifyListeners(evt)
                 else:
-                    evt = SpiderFootEvent("CO_HOSTED_SITE", host, self.__name__, event)
+                    evt = SpiderFeetEvent("CO_HOSTED_SITE", host, self.__name__, event)
                     self.notifyListeners(evt)
 
                 self.cohostcount += 1

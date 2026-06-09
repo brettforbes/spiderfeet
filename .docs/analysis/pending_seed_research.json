@@ -1,0 +1,669 @@
+{
+  "wins": [
+    {
+      "module_id": "sfp_googleobjectstorage",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "youtube.com",
+      "status": "FINISHED",
+      "verdict": "hit",
+      "produced_count": 2,
+      "validated_produces": true,
+      "validated_negative": false,
+      "scan_id": "83FECE7E",
+      "region": "US",
+      "notes": "Per-module research probe; status=FINISHED",
+      "validation": "smoke"
+    }
+  ],
+  "findings": [
+    {
+      "module_id": "sfp_ahmia",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "facebookcorewwwi.onion",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "38B1CBBC",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sflib:STATUS:Fetched https://ahmia.fi/search/?q=facebookcorewwwi.onion (4727 bytes in 1.15773606300354s); sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:Fetching (GET): https://ahmia.fi/search/?q=facebookcorewwwi.onion (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; ; sfp_ahmia:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sflib:STATUS:sfp_ahmia module loaded.; sflib:STAT",
+      "candidates_tried": [
+        "facebookcorewwwi.onion",
+        "google.com",
+        "bbc.co.uk",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_bgpview",
+      "consumed_nugget_id": "IP_ADDRESS",
+      "input_value": "8.8.8.8",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "C5F073CD",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sflib:STATUS:Scan [C5F073CD] completed.; sflib:STATUS:Running 37 correlation rules on scan C5F073CD.; sfp_bgpview:STATUS:No results found for IP address 8.8.8.8; sflib:ERROR:Failed to connect to https://api.bgpview.io/ip/8.8.8.8: HTTPSConnectionPool(host='api.bgpview.io', port=443): Max retrie; sflib:STATUS:Fetching (GET): https://api.bgpview.io/ip/8.8.8.8 (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:6; sfp_bgpview:DEBUG:Received event, IP_ADDRESS, from SpiderFeet UI; sfp",
+      "candidates_tried": [
+        "8.8.8.8",
+        "1.1.1.1",
+        "8.8.8.0/24",
+        "15169"
+      ]
+    },
+    {
+      "module_id": "sfp_callername",
+      "consumed_nugget_id": "PHONE_NUMBER",
+      "input_value": "+12125551234",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "DBEF2178",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sfp_callername:DEBUG:Received event, PHONE_NUMBER, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: PHONE_NUMBER; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_callername module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [DBEF2178] for '+12125551234' initiated.",
+      "candidates_tried": [
+        "+12125551234",
+        "+18005551212",
+        "+14155552671",
+        "+61412345678"
+      ]
+    },
+    {
+      "module_id": "sfp_commoncrawl",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "google.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "4BD66CFF",
+      "outcome": "blocked",
+      "blocker_class": "api-timeout",
+      "log_snippet": "sflib:STATUS:Fetched https://index.commoncrawl.org/ (7391 bytes in 0.707312822341919s); sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp_commoncrawl:DEBUG:Received event, INTERNET_NAME, from SpiderFeet UI; sflib:STATUS:Fetching (GET): https://index.commoncrawl.org/ (proxy=None, user-agent=SpiderFeet, timeout=60, cookies=None); sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_commoncrawl module loaded.; sflib:STATUS:sfp__stor_db ",
+      "candidates_tried": [
+        "google.com",
+        "bbc.co.uk",
+        "github.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_crobat_api",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "google.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "9CD8EE25",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sflib:STATUS:Fetched https://sonar.omnisint.io/subdomains/google.com?page=0 (977 bytes in 19.457515478134155s); sfp_crobat_api:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sflib:STATUS:Fetching (GET): https://sonar.omnisint.io/subdomains/google.com?page=0 (proxy=None, user-agent=Mozilla/5.0 (Windows NT 1; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_crobat_api module loa",
+      "candidates_tried": [
+        "google.com",
+        "microsoft.com",
+        "github.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_crt",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "google.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "722BAC04",
+      "outcome": "blocked",
+      "blocker_class": "api-json",
+      "log_snippet": "sflib:STATUS:Fetched https://crt.sh/?q=%25.google.com&output=json (150 bytes in 1.2163667678833008s); sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:Fetching (GET): https://crt.sh/?q=%25.google.com&output=json (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; sfp_crt:DEBUG:Received event, INTERNET_NAME, from SpiderFeet UI; sflib:STATUS:sfp_crt module loaded.; sflib:STATUS:sfp",
+      "candidates_tried": [
+        "google.com",
+        "github.com",
+        "microsoft.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_crxcavator",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "google.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "EF803788",
+      "outcome": "blocked",
+      "blocker_class": "api-json",
+      "log_snippet": "sflib:STATUS:Scan [EF803788] completed.; sflib:STATUS:Running 37 correlation rules on scan EF803788.; sfp_crxcavator:STATUS:No results found for google; sfp_crxcavator:DEBUG:Error processing JSON response from CRXcavator: Expecting value: line 1 column 1 (char 0); sflib:STATUS:Fetched https://api.crxcavator.io/v1/search?q=google (122 bytes in 3.8406858444213867s); sflib:STATUS:Fetching (GET): https://api.crxcavator.io/v1/search?q=google (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64",
+      "candidates_tried": [
+        "google.com",
+        "github.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_digitaloceanspace",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "digitalocean.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "85E71BB7",
+      "outcome": "blocked",
+      "blocker_class": "api-404",
+      "log_snippet": "sflib:STATUS:Scan [85E71BB7] completed.; sflib:STATUS:Running 37 correlation rules on scan 85E71BB7.; sfp_digitaloceanspace:DEBUG:Not a valid bucket: https://digitalocean-staging.ams3.digitaloceanspaces.com; sflib:STATUS:Fetched https://digitalocean-stage.ams3.digitaloceanspaces.com (208 bytes in 0.9342780113220215s); sfp_digitaloceanspace:DEBUG:Not a valid bucket: https://digitalocean-stage.ams3.digitaloceanspaces.com; sflib:STATUS:Fetched https://digitalocean-staging.ams3.digitaloceanspaces.co",
+      "candidates_tried": [
+        "digitalocean.com",
+        "github.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_dnsdumpster",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "google.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "error_failed",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "BBE360D7",
+      "outcome": "blocked",
+      "blocker_class": "module-error",
+      "log_snippet": "sflib:STATUS:Scan [BBE360D7] completed.; sflib:STATUS:Running 37 correlation rules on scan BBE360D7.; sfp_dnsdumpster:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sfp_dnsdumpster:DEBUG:Skipping already-processed event, DOMAIN_NAME, from SpiderFeet UI; sfp_dnsdumpster:ERROR:Error obtaining CSRF tokens; sflib:STATUS:Fetched https://dnsdumpster.com (107326 bytes in 0.0779109001159668s); sfp_dnsdumpster:DEBUG:Valid response code \"200\" from DNSDumpster; sflib:STATUS:Fetching (GET): https://",
+      "candidates_tried": [
+        "google.com",
+        "microsoft.com",
+        "github.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_emailformat",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "google.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "D39875A6",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sflib:STATUS:Scan [D39875A6] completed.; sflib:STATUS:Running 37 correlation rules on scan D39875A6.; sflib:STATUS:Fetched https://www.email-format.com/d/google.com/ (75812 bytes in 0.25608348846435547s); sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:Fetching (GET): https://www.email-format.com/d/google.com/ (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; ; sfp_emailformat",
+      "candidates_tried": [
+        "google.com",
+        "bbc.co.uk",
+        "microsoft.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_flickr",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "flickr.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "CD05C6F8",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sflib:STATUS:Fetched https://www.flickr.com/ (55370 bytes in 0.6885278224945068s); sflib:STATUS:Fetching (GET): https://www.flickr.com/ (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:62.0) Gecko; sfp_flickr:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:sfp_flickr modul",
+      "candidates_tried": [
+        "flickr.com",
+        "yahoo.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_gleif",
+      "consumed_nugget_id": "COMPANY_NAME",
+      "input_value": "Google LLC",
+      "subscription_tier": "none",
+      "status": "HTTP_400",
+      "verdict": null,
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "notes": "{\"detail\":\"nugget_data is not a valid SpiderFeet target\"}",
+      "outcome": "blocked",
+      "blocker_class": "unknown",
+      "log_snippet": "",
+      "candidates_tried": [
+        "Google LLC",
+        "Microsoft Corporation",
+        "Apple Inc.",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_google_tag_manager",
+      "consumed_nugget_id": "WEB_ANALYTICS_ID",
+      "input_value": "GTM-5K8Q5L",
+      "subscription_tier": "none",
+      "status": "HTTP_400",
+      "verdict": null,
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "notes": "{\"detail\":\"nugget_data is not a valid SpiderFeet target\"}",
+      "outcome": "blocked",
+      "blocker_class": "unknown",
+      "log_snippet": "",
+      "candidates_tried": [
+        "GTM-5K8Q5L",
+        "GTM-WQZ7T5",
+        "google.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_googleobjectstorage",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "youtube.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "hit",
+      "produced_count": 2,
+      "validated_produces": true,
+      "validated_negative": false,
+      "scan_id": "83FECE7E",
+      "region": "US",
+      "notes": "Per-module research probe; status=FINISHED",
+      "validation": "smoke",
+      "outcome": "validated"
+    },
+    {
+      "module_id": "sfp_gravatar",
+      "consumed_nugget_id": "EMAILADDR",
+      "input_value": "noreply@google.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "AF88972D",
+      "outcome": "blocked",
+      "blocker_class": "api-json",
+      "log_snippet": "sflib:STATUS:Fetched https://secure.gravatar.com/b713d76a68338e1a1d00ad0045c8717f.json (16 bytes in 0.26789331436157227s); sflib:STATUS:Fetching (GET): https://secure.gravatar.com/b713d76a68338e1a1d00ad0045c8717f.json (proxy=None, user-agent=Mozilla/5.0 (W; sfp__stor_db:DEBUG:Storing an event: EMAILADDR; sfp_gravatar:DEBUG:Received event, EMAILADDR, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:sfp_gravatar module loaded.; s",
+      "candidates_tried": [
+        "noreply@google.com",
+        "test@gmail.com",
+        "admin@bbc.co.uk",
+        "noreply@spiderfoot.net"
+      ]
+    },
+    {
+      "module_id": "sfp_grep_app",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "google.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "7CC3277A",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sflib:STATUS:Fetched https://grep.app/api/search?q=google.com&page=1 (33569 bytes in 0.562312126159668s); sfp_grep_app:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sflib:STATUS:Fetching (GET): https://grep.app/api/search?q=google.com&page=1 (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Wi; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_grep_app module loaded.; sfli",
+      "candidates_tried": [
+        "google.com",
+        "github.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_keybase",
+      "consumed_nugget_id": "USERNAME",
+      "input_value": "google",
+      "subscription_tier": "none",
+      "status": "HTTP_400",
+      "verdict": null,
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "notes": "{\"detail\":\"nugget_data is not a valid SpiderFeet target\"}",
+      "outcome": "blocked",
+      "blocker_class": "unknown",
+      "log_snippet": "",
+      "candidates_tried": [
+        "google",
+        "github",
+        "spiderfoot",
+        "\"spiderfeet\""
+      ]
+    },
+    {
+      "module_id": "sfp_mnemonic",
+      "consumed_nugget_id": "IP_ADDRESS",
+      "input_value": "8.8.8.8",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "399C2E31",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 0.adad.ir is too old, skipping.; sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 100rx.com is too old, skipping.; sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 113.11.194.16.mianidc.net is too old, skipping.; sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 097.com is too old, skipping.; sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 1.xiazaiwu.com is too old, skipping.; sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 117hb.com is too old, skipping.; sfp_mnemonic:DEBUG:",
+      "candidates_tried": [
+        "8.8.8.8",
+        "google.com",
+        "1.1.1.1"
+      ]
+    },
+    {
+      "module_id": "sfp_myspace",
+      "consumed_nugget_id": "EMAILADDR",
+      "input_value": "test@gmail.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "error_failed",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "ACC63F5E",
+      "outcome": "blocked",
+      "blocker_class": "module-error",
+      "log_snippet": "sflib:STATUS:Running 37 correlation rules on scan ACC63F5E.; sfp_myspace:ERROR:Could not fetch MySpace content for test@gmail.com; sflib:ERROR:Failed to connect to https://myspace.com/search/people?q=test@gmail.com: HTTPSConnectionPool(host='myspace.com', port=44; sflib:STATUS:Fetching (GET): https://myspace.com/search/people?q=test@gmail.com (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0;; sfp_myspace:DEBUG:Received event, EMAILADDR, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event",
+      "candidates_tried": [
+        "test@gmail.com",
+        "admin@yahoo.com",
+        "noreply@spiderfoot.net"
+      ]
+    },
+    {
+      "module_id": "sfp_onionsearchengine",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "facebookcorewwwi.onion",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "B754117A",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sflib:STATUS:Running 37 correlation rules on scan B754117A.; sflib:STATUS:Fetched https://onionsearchengine.com/search.php?search=%22facebookcorewwwi.onion%22&submit=Search&page=1 (2257 bytes in; sflib:STATUS:Fetching (GET): https://onionsearchengine.com/search.php?search=%22facebookcorewwwi.onion%22&submit=Search&page=1 (proxy; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_onionse",
+      "candidates_tried": [
+        "facebookcorewwwi.onion",
+        "google.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_opennic",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "opennic.org",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "24B551B3",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sflib:STATUS:Running 37 correlation rules on scan 24B551B3.; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp_opennic:DEBUG:Received event, INTERNET_NAME, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:sfp_opennic module loaded.; sflib:STATUS:Scan [24B551B3] for 'opennic.org' initiated.",
+      "candidates_tried": [
+        "opennic.org",
+        "wiki.opennic.org",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_openstreetmap",
+      "consumed_nugget_id": "PHYSICAL_ADDRESS",
+      "input_value": "1600 Amphitheatre Parkway, Mountain View, CA",
+      "subscription_tier": "none",
+      "status": "HTTP_400",
+      "verdict": null,
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "notes": "{\"detail\":\"nugget_data is not a valid SpiderFeet target\"}",
+      "outcome": "blocked",
+      "blocker_class": "unknown",
+      "log_snippet": "",
+      "candidates_tried": [
+        "1600 Amphitheatre Parkway, Mountain View, CA",
+        "London, UK",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_reversewhois",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "google.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "1B73ED43",
+      "outcome": "blocked",
+      "blocker_class": "api-timeout",
+      "log_snippet": "sfp_reversewhois:STATUS:No ReverseWhois info found for google.com; sflib:STATUS:Fetched https://reversewhois.io?searchterm=google.com (15881 bytes in 0.4332253932952881s); sflib:STATUS:Fetching (GET): https://reversewhois.io?searchterm=google.com (proxy=None, user-agent=SpiderFeet, timeout=5, cookies=Non; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp_reversewhois:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sfp__stor_db:DEBUG:",
+      "candidates_tried": [
+        "google.com",
+        "microsoft.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_s3bucket",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "amazon.com",
+      "subscription_tier": "none",
+      "status": "HTTP_504",
+      "verdict": null,
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "notes": "{\"detail\":\"Scan 87D2BEF8 did not finish within 90s\"}",
+      "outcome": "blocked",
+      "blocker_class": "unknown",
+      "log_snippet": "",
+      "candidates_tried": [
+        "amazon.com",
+        "github.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_searchcode",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "google.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "error_failed",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "0F443D37",
+      "outcome": "blocked",
+      "blocker_class": "module-error",
+      "log_snippet": "sflib:STATUS:Scan [0F443D37] completed.; sflib:STATUS:Running 37 correlation rules on scan 0F443D37.; sfp_searchcode:ERROR:Unexpected reply from searchcode: 404; sflib:STATUS:Fetched https://searchcode.com/api/codesearch_I/?q=google.com&p=0&per_page=100 (19 bytes in 0.8939671516418457s); sflib:STATUS:Fetching (GET): https://searchcode.com/api/codesearch_I/?q=google.com&p=0&per_page=100 (proxy=None, user-agent=Mozilla/5; sfp_searchcode:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sfp__s",
+      "candidates_tried": [
+        "google.com",
+        "github.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_skymem",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "google.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "593B7731",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sflib:STATUS:Scan [593B7731] completed.; sflib:STATUS:Running 37 correlation rules on scan 593B7731.; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:Fetched http://www.skymem.info/srch?q=google.com (5621 bytes in 0.07103157043457031s); sfp_skymem:DEBUG:Received event, INTERNET_NAME, from SpiderFeet UI; sflib:STATUS:Fetching (GET): http://www.skymem.info/srch?q=google.com (proxy=None, us",
+      "candidates_tried": [
+        "google.com",
+        "bbc.co.uk",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_slideshare",
+      "consumed_nugget_id": "SOCIAL_MEDIA",
+      "input_value": "slideshare.net",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "F20A5B2E",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sflib:STATUS:Scan [F20A5B2E] completed.; sflib:STATUS:Running 37 correlation rules on scan F20A5B2E.; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_slideshare module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [F20A5B2E] for 'slideshare.net' initiated.",
+      "candidates_tried": [
+        "slideshare.net",
+        "linkedin.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_sublist3r",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "google.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "error_failed",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "4129B76B",
+      "outcome": "blocked",
+      "blocker_class": "module-error",
+      "log_snippet": "sflib:STATUS:Scan [4129B76B] completed.; sflib:STATUS:Running 37 correlation rules on scan 4129B76B.; sfp_sublist3r:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sfp_sublist3r:DEBUG:Skipping already-processed event, DOMAIN_NAME, from SpiderFeet UI; sfp_sublist3r:ERROR:Error decoding JSON response: Expecting value: line 1 column 1 (char 0); sflib:STATUS:Fetched https://api.sublist3r.com/search.php?domain=google.com (4701 bytes in 0.6344945430755615s); sfp__stor_db:DEBUG:Storing an event:",
+      "candidates_tried": [
+        "google.com",
+        "microsoft.com",
+        "github.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_threatminer",
+      "consumed_nugget_id": "IP_ADDRESS",
+      "input_value": "8.8.8.8",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "2856B712",
+      "outcome": "blocked",
+      "blocker_class": "api-timeout",
+      "log_snippet": "sflib:STATUS:Scan [2856B712] completed.; sflib:STATUS:Running 37 correlation rules on scan 2856B712.; sflib:STATUS:Fetched https://api.threatminer.org/v2/host.php?q=8.8.8.8&rt=2 (0 bytes in 0.6857688426971436s); sfp_threatminer:STATUS:No ThreatMiner info found for 8.8.8.8; sfp_threatminer:STATUS:No Passive DNS info for 8.8.8.8; sfp__stor_db:DEBUG:Storing an event: IP_ADDRESS; sflib:STATUS:Fetching (GET): https://api.threatminer.org/v2/host.php?q=8.8.8.8&rt=2 (proxy=None, user-agent=SpiderFeet, t",
+      "candidates_tried": [
+        "8.8.8.8",
+        "google.com"
+      ]
+    },
+    {
+      "module_id": "sfp_torch",
+      "consumed_nugget_id": "DOMAIN_NAME",
+      "input_value": "facebookcorewwwi.onion",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "ACC7431B",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sflib:STATUS:Scan [ACC7431B] completed.; sflib:STATUS:Running 37 correlation rules on scan ACC7431B.; sflib:ERROR:Failed to connect to http://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77c54dqd.onion/: HTTPConnectionPool(host='to; sfp_torch:STATUS:Couldn't connect to TORCH, it might be down.; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sflib:STATUS:Fetching (GET): http://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77c54dqd.onion/",
+      "candidates_tried": [
+        "facebookcorewwwi.onion",
+        "google.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_twitter",
+      "consumed_nugget_id": "SOCIAL_MEDIA",
+      "input_value": "twitter.com",
+      "subscription_tier": "none",
+      "status": "FINISHED",
+      "verdict": "clean_miss",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "F5C03A59",
+      "outcome": "blocked",
+      "blocker_class": "no-output-clean-input",
+      "log_snippet": "sflib:STATUS:Scan [F5C03A59] completed.; sflib:STATUS:Running 37 correlation rules on scan F5C03A59.; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_twitter module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [F5C03A59] for 'twitter.com' initiated.",
+      "candidates_tried": [
+        "twitter.com",
+        "x.com",
+        "sbs.com.au"
+      ]
+    },
+    {
+      "module_id": "sfp_venmo",
+      "consumed_nugget_id": "USERNAME",
+      "input_value": "venmo",
+      "subscription_tier": "none",
+      "status": "HTTP_400",
+      "verdict": null,
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "notes": "{\"detail\":\"nugget_data is not a valid SpiderFeet target\"}",
+      "outcome": "blocked",
+      "blocker_class": "unknown",
+      "log_snippet": "",
+      "candidates_tried": [
+        "venmo",
+        "paypal",
+        "google",
+        "\"spiderfeet\""
+      ]
+    }
+  ]
+}

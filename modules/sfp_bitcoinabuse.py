@@ -7,17 +7,17 @@
 #
 # Created:     2020-09-01
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 import time
 import urllib.parse
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_bitcoinabuse(SpiderFootPlugin):
+class sfp_bitcoinabuse(SpiderFeetPlugin):
     meta = {
         "name": "BitcoinAbuse",
         "summary": "Check Bitcoin addresses against the bitcoinabuse.com database of suspect/malicious addresses.",
@@ -83,7 +83,7 @@ class sfp_bitcoinabuse(SpiderFootPlugin):
         res = self.sf.fetchUrl(
             f"https://www.bitcoinabuse.com/api/reports/check?{urllib.parse.urlencode(params)}",
             timeout=self.opts["_fetchtimeout"],
-            useragent="SpiderFoot",
+            useragent="SpiderFeet",
         )
 
         # All endpoints other than Report Address have a rate limit of
@@ -176,7 +176,7 @@ class sfp_bitcoinabuse(SpiderFootPlugin):
                 return
 
             url = f"https://www.bitcoinabuse.com/reports/{address}"
-            evt = SpiderFootEvent(
+            evt = SpiderFeetEvent(
                 "MALICIOUS_BITCOIN_ADDRESS",
                 f"BitcoinAbuse [{address}]\n<SFURL>{url}</SFURL>",
                 self.__name__,
@@ -184,7 +184,7 @@ class sfp_bitcoinabuse(SpiderFootPlugin):
             )
             self.notifyListeners(evt)
 
-            rirevt = SpiderFootEvent(
+            rirevt = SpiderFeetEvent(
                 "RAW_RIR_DATA", json.dumps(rec), self.__name__, event
             )
             self.notifyListeners(rirevt)

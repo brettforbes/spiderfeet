@@ -163,7 +163,7 @@ def how_it_works(module: dict) -> str:
     details = {
         "sfp__stor_db": (
             "Subscribes to every event type (`*`) emitted during a scan and persists them to the "
-            "SpiderFoot SQLite database via `scanEventStore()`. Optional `maxstorage` truncates "
+            "SpiderFeet SQLite database via `scanEventStore()`. Optional `maxstorage` truncates "
             "oversized event payloads before storage."
         ),
         "sfp__stor_stdout": (
@@ -352,11 +352,11 @@ def how_it_works(module: dict) -> str:
             f"Wraps the external **{tool_name}** CLI tool. When triggered by "
             f"{fmt_list(watched, 4)} events, executes the tool against the target, parses stdout/stderr, "
             f"and maps findings to {fmt_list(produced, 4)} events. Requires the tool binary to be "
-            f"installed and available on the host running SpiderFoot."
+            f"installed and available on the host running SpiderFeet."
         )
 
     return (
-        f"Internal SpiderFoot module in the **{(module.get('categories') or ['General'])[0]}** category. "
+        f"Internal SpiderFeet module in the **{(module.get('categories') or ['General'])[0]}** category. "
         f"Listens for {fmt_list(watched, 4)} and produces {fmt_list(produced, 4)}."
     )
 
@@ -452,7 +452,7 @@ def section_for(module: dict, *, quarantined: bool = False) -> str:
         f"#### `{mid}` — {name}",
         "",
         f"**Category:** {cat}  ",
-        f"**SpiderFoot categories:** {', '.join(meta_cats) if meta_cats else '—'}  ",
+        f"**SpiderFeet categories:** {', '.join(meta_cats) if meta_cats else '—'}  ",
         f"**Use cases:** {fmt_use_cases(use_cases)}  ",
         f"**Flags:** {fmt_flags(flags)}",
         "",
@@ -536,9 +536,9 @@ def write_module_reference(
 
 def write_non_osint_doc(modules: list[dict]) -> None:
     lines = [
-        "# Non-OSINT SpiderFoot Modules",
+        "# Non-OSINT SpiderFeet Modules",
         "",
-        "A reference guide to SpiderFoot modules that are **generic infrastructure**—not tied to "
+        "A reference guide to SpiderFeet modules that are **generic infrastructure**—not tied to "
         "any external OSINT data source and not specialised scan logic.",
         "",
         "These modules do not declare a `dataSource` in their metadata because they provide core "
@@ -559,7 +559,7 @@ def write_non_osint_doc(modules: list[dict]) -> None:
     lines.extend([
         "---",
         "",
-        f"*Generated from SpiderFoot module metadata. Total: {len(modules)} core non-OSINT modules.*",
+        f"*Generated from SpiderFeet module metadata. Total: {len(modules)} core non-OSINT modules.*",
         "",
     ])
     OUTPUT_PATH.write_text("\n".join(lines), encoding="utf-8")
@@ -569,7 +569,7 @@ def write_non_osint_doc(modules: list[dict]) -> None:
 def write_quarantine_doc(modules: list[dict]) -> None:
     counts = Counter(m["_category"] for m in modules)
     lines = [
-        "# Quarantined SpiderFoot Modules",
+        "# Quarantined SpiderFeet Modules",
         "",
         "Modules listed here **do not** declare an external `dataSource` in their metadata, but they "
         "are **not** generic non-OSINT infrastructure. Each implements specialised scan behaviour "
@@ -614,7 +614,7 @@ def write_quarantine_doc(modules: list[dict]) -> None:
     lines.extend([
         "---",
         "",
-        "*Generated from SpiderFoot module metadata. Quarantined = no `dataSource` in module `meta`, "
+        "*Generated from SpiderFeet module metadata. Quarantined = no `dataSource` in module `meta`, "
         f"specialised behaviour pending verification. Total: {len(modules)} modules.*",
         "",
     ])

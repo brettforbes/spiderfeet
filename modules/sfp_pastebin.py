@@ -8,15 +8,15 @@
 #
 # Created:     20/03/2014
 # Copyright:   (c) Steve Micallef 2014
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_pastebin(SpiderFootPlugin):
+class sfp_pastebin(SpiderFeetPlugin):
 
     meta = {
         'name': "PasteBin",
@@ -124,7 +124,7 @@ class sfp_pastebin(SpiderFootPlugin):
                 self.results[link] = True
 
             relevant_links = [
-                link for link in new_links if SpiderFootHelpers.urlBaseUrl(link).endswith(target)
+                link for link in new_links if SpiderFeetHelpers.urlBaseUrl(link).endswith(target)
             ]
 
             for link in relevant_links:
@@ -147,10 +147,10 @@ class sfp_pastebin(SpiderFootPlugin):
                 ) is None:
                     continue
 
-                evt1 = SpiderFootEvent("LEAKSITE_URL", link, self.__name__, event)
+                evt1 = SpiderFeetEvent("LEAKSITE_URL", link, self.__name__, event)
                 self.notifyListeners(evt1)
 
-                evt2 = SpiderFootEvent("LEAKSITE_CONTENT", res['content'], self.__name__, evt1)
+                evt2 = SpiderFeetEvent("LEAKSITE_CONTENT", res['content'], self.__name__, evt1)
                 self.notifyListeners(evt2)
 
 # End of sfp_pastebin class

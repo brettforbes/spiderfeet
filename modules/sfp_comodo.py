@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_comodo
-# Purpose:     SpiderFoot plug-in for looking up whether hosts are blocked by
+# Purpose:     SpiderFeet plug-in for looking up whether hosts are blocked by
 #              Comodo Secure DNS.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
 # Created:     30/05/2018
 # Copyright:   (c) Steve Micallef 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import dns.resolver
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_comodo(SpiderFootPlugin):
+class sfp_comodo(SpiderFeetPlugin):
 
     meta = {
         'name': "Comodo Secure DNS",
@@ -124,10 +124,10 @@ class sfp_comodo(SpiderFootPlugin):
         if found:
             return
 
-        evt = SpiderFootEvent(blacklist_type, f"Comodo Secure DNS [{eventData}]", self.__name__, event)
+        evt = SpiderFeetEvent(blacklist_type, f"Comodo Secure DNS [{eventData}]", self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(malicious_type, f"Comodo Secure DNS [{eventData}]", self.__name__, event)
+        evt = SpiderFeetEvent(malicious_type, f"Comodo Secure DNS [{eventData}]", self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_comodo class

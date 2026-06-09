@@ -7,16 +7,16 @@
 #
 # Created:     2022-05-29
 # Copyright:   (c) bcoles 2022
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 import time
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_zonefiles(SpiderFootPlugin):
+class sfp_zonefiles(SpiderFeetPlugin):
 
     meta = {
         'name': "ZoneFile.io",
@@ -164,23 +164,23 @@ class sfp_zonefiles(SpiderFootPlugin):
             self.debug(f"No information found for domain {eventData}")
             return
 
-        evt = SpiderFootEvent('RAW_RIR_DATA', str(data), self.__name__, event)
+        evt = SpiderFeetEvent('RAW_RIR_DATA', str(data), self.__name__, event)
         self.notifyListeners(evt)
 
         ip = data.get('ip')
         if ip:
             if self.opts['verify']:
                 if self.sf.validateIP(eventData, str(ip)):
-                    evt = SpiderFootEvent('IP_ADDRESS', str(ip), self.__name__, event)
+                    evt = SpiderFeetEvent('IP_ADDRESS', str(ip), self.__name__, event)
                     self.notifyListeners(evt)
             else:
-                evt = SpiderFootEvent('IP_ADDRESS', str(ip), self.__name__, event)
+                evt = SpiderFeetEvent('IP_ADDRESS', str(ip), self.__name__, event)
                 self.notifyListeners(evt)
 
         dns = data.get('dns')
         if dns:
             for nameserver in set(dns.split(',')):
-                evt = SpiderFootEvent('PROVIDER_DNS', nameserver, self.__name__, event)
+                evt = SpiderFeetEvent('PROVIDER_DNS', nameserver, self.__name__, event)
                 self.notifyListeners(evt)
 
         emails = data.get('emails')
@@ -196,20 +196,20 @@ class sfp_zonefiles(SpiderFootPlugin):
                 evt_type = "EMAILADDR"
                 if email.split("@")[0] in self.opts['_genericusers'].split(","):
                     evt_type = "EMAILADDR_GENERIC"
-                evt = SpiderFootEvent(evt_type, email, self.__name__, event)
+                evt = SpiderFeetEvent(evt_type, email, self.__name__, event)
                 self.notifyListeners(evt)
 
         phones = data.get('phones')
         if phones:
             for phone in set(phones.split(',')):
-                if SpiderFootHelpers.validPhoneNumber(phone):
-                    evt = SpiderFootEvent('PHONE_NUMBER', phone, self.__name__, event)
+                if SpiderFeetHelpers.validPhoneNumber(phone):
+                    evt = SpiderFeetEvent('PHONE_NUMBER', phone, self.__name__, event)
                     self.notifyListeners(evt)
 
         technologies = data.get('technologies')
         if technologies and isinstance(technologies, dict):
             for tech in technologies.keys():
-                evt = SpiderFootEvent('SOFTWARE_USED', tech, self.__name__, event)
+                evt = SpiderFeetEvent('SOFTWARE_USED', tech, self.__name__, event)
                 self.notifyListeners(evt)
 
 # End of sfp_zonefiles class

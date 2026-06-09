@@ -6,15 +6,15 @@
 # Author:      Dhiraj Mishra <dhiraj@notsosecure.com>
 # Created:     28/10/2018
 # Copyright:   (c) Dhiraj Mishra
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_h1nobbdde(SpiderFootPlugin):
+class sfp_h1nobbdde(SpiderFeetPlugin):
 
     meta = {
         'name': "HackerOne (Unofficial)",
@@ -106,7 +106,7 @@ class sfp_h1nobbdde(SpiderFootPlugin):
             data.extend(obb)
 
         for n in data:
-            e = SpiderFootEvent("VULNERABILITY_DISCLOSURE", n, self.__name__, event)
+            e = SpiderFeetEvent("VULNERABILITY_DISCLOSURE", n, self.__name__, event)
             self.notifyListeners(e)
 
 # End of sfp_h1nobbdde class

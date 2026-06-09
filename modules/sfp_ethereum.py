@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_ethereum
-# Purpose:      SpiderFoot plug-in for scanning retrieved content by other
+# Purpose:      SpiderFeet plug-in for scanning retrieved content by other
 #               modules (such as sfp_spider) and identifying ethereum addresses.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
 # Created:     03/09/2018
 # Copyright:   (c) Steve Micallef 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_ethereum(SpiderFootPlugin):
+class sfp_ethereum(SpiderFeetPlugin):
 
     meta = {
         'name': "Ethereum Address Extractor",
@@ -67,7 +67,7 @@ class sfp_ethereum(SpiderFootPlugin):
         matches = re.findall(r"[\s:=\>](0x[a-fA-F0-9]{40})", eventData)
         for m in matches:
             self.debug("Ethereum address match: " + m)
-            evt = SpiderFootEvent("ETHEREUM_ADDRESS", m, self.__name__, event)
+            evt = SpiderFeetEvent("ETHEREUM_ADDRESS", m, self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_ethereum class

@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_company
-# Purpose:      SpiderFoot plug-in for scanning retrieved content by other
+# Purpose:      SpiderFeet plug-in for scanning retrieved content by other
 #               modules (such as sfp_spider) and identifying company names.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
 # Created:     09/09/2018
 # Copyright:   (c) Steve Micallef 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_company(SpiderFootPlugin):
+class sfp_company(SpiderFeetPlugin):
 
     meta = {
         'name': "Company Name Extractor",
@@ -152,7 +152,7 @@ class sfp_company(SpiderFootPlugin):
                     else:
                         etype = "COMPANY_NAME"
 
-                    evt = SpiderFootEvent(etype, fullcompany, self.__name__, event)
+                    evt = SpiderFeetEvent(etype, fullcompany, self.__name__, event)
                     if event.moduleDataSource:
                         evt.moduleDataSource = event.moduleDataSource
                     else:

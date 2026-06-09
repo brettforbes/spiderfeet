@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_ipstack
-# Purpose:      SpiderFoot plug-in to identify the Geo-location of IP addresses
+# Purpose:      SpiderFeet plug-in to identify the Geo-location of IP addresses
 #               identified by other modules using ipstack.com.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
 # Created:     20/08/2018
 # Copyright:   (c) Steve Micallef 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_ipstack(SpiderFootPlugin):
+class sfp_ipstack(SpiderFeetPlugin):
 
     meta = {
         'name': "ipstack",
@@ -114,7 +114,7 @@ class sfp_ipstack(SpiderFootPlugin):
         geoinfo = hostip.get('country_name')
         if geoinfo:
             self.info(f"Found GeoIP for {eventData}: {geoinfo}")
-            evt = SpiderFootEvent("GEOINFO", geoinfo, self.__name__, event)
+            evt = SpiderFeetEvent("GEOINFO", geoinfo, self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_ipstack class

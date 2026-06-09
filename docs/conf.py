@@ -12,12 +12,12 @@
 #
 # import os
 # import sys
-# sys.path.insert(0, '/root/Desktop/spiderfoot/spiderfoot')
+# sys.path.insert(0, '/root/Desktop/spiderfeet/spiderFeet')
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'SpiderFoot'
+project = 'SpiderFeet'
 copyright = '2012, Steve Micallef'
 author = 'Steve Micallef'
 

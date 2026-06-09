@@ -7,15 +7,15 @@
 #
 # Created:     14/12/2013
 # Copyright:   (c) Steve Micallef, 2013
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_isc(SpiderFootPlugin):
+class sfp_isc(SpiderFeetPlugin):
 
     meta = {
         'name': "Internet Storm Center",
@@ -145,10 +145,10 @@ class sfp_isc(SpiderFootPlugin):
         url = f"https://isc.sans.edu/api/ip/{eventData}"
         text = f"Internet Storm Center [{eventData}]\n<SFURL>{url}</SFURL>"
 
-        evt = SpiderFootEvent(malicious_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(malicious_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(blacklist_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(blacklist_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_isc class

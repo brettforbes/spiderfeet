@@ -1,0 +1,54 @@
+---
+description: Stage 4 test corpus, fixture semantics, service_state, and seed scripts
+globs:
+  - ".docs/analysis/module_test_seeds.json"
+  - ".docs/analysis/osint_services.json"
+  - ".docs/analysis/stage4_seed_corpus_and_tests.md"
+  - ".seed/scripts/**"
+  - "spiderfeet/map/test_*.py"
+  - "spiderfeet/map/seed_probe.py"
+  - "spiderfeet/map/service_states.py"
+  - "spiderfeet/map/fixture_categories.py"
+  - "spiderfeet/api/services/scan_ui.py"
+  - "spiderfeet/api/services/scan_targets.py"
+  - "spiderfeet/api/services/module_execution.py"
+  - "spiderfeet/api/services/tests.py"
+alwaysApply: false
+---
+# Project: Stage 4 corpus and Tests semantics
+
+**Canonical doc:** `.docs/analysis/stage4_seed_corpus_and_tests.md`  
+**Spec:** R2-04-07, R2-04-08, R2-04-09
+
+## Fixture pass rules
+
+- **Positive:** `FINISHED` + produced nuggets (`validated_produces`).
+- **Negative:** `FINISHED` + `module_execution.verdict === clean_miss` (`validated_negative`, `expected_absent_types`).
+- Do not treat HTTP 200 or zero output alone as negative pass.
+
+## Coverage metrics
+
+- **Smoke coverage** — modules with validated seeds (Tests UI runnable).
+- **Research complete** — smoke + `upstream_blocked` / `service_state: error`.
+- None-tier pool: 87 modules; 79 smoke + 8 error (research closed).
+
+## Operator UI visibility
+
+`service_state: error` modules are **excluded** from Tests and Subscriptions (`include_in_operator_ui` in `service_states.py`).  
+Maps graph still includes them until a map filter ships.
+
+Upstream error set: `UPSTREAM_ERROR_MODULE_IDS` in `service_states.py` (8 modules).
+
+## `scan_ui` targets
+
+Use `resolve_scan_ui_target()` — catalogue nugget types (`COMPANY_NAME`, `PHYSICAL_ADDRESS`, `WEB_ANALYTICS_ID`, `LEI`, quoted `USERNAME`) are valid even when not CLI-regex inferrable.
+
+## Seed changes
+
+1. Probe live (`seed_probe` / research scripts) before editing `module_test_seeds.json`.
+2. Sync catalogue: `sync_service_state.py`, `sync_fixture_category.py` when changing classification.
+3. Upstream-dead modules → module-fix issue, not endless seed tuning.
+
+## Scripts
+
+Prefer `.seed/scripts/research_pending_seeds*.py` and `validate_test_seeds.py` over ad-hoc one-offs. API must be running on 8001 for probes.

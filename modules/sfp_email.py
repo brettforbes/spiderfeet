@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_email
-# Purpose:      SpiderFoot plug-in for scanning retrieved content by other
+# Purpose:      SpiderFeet plug-in for scanning retrieved content by other
 #               modules (such as sfp_spider) and identifying e-mail addresses
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
 # Created:     06/04/2012
 # Copyright:   (c) Steve Micallef 2012
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_email(SpiderFootPlugin):
+class sfp_email(SpiderFeetPlugin):
 
     meta = {
         'name': "E-Mail Address Extractor",
@@ -56,7 +56,7 @@ class sfp_email(SpiderFootPlugin):
 
         self.debug(f"Received event, {eventName}, from {srcModuleName}")
 
-        emails = SpiderFootHelpers.extractEmailsFromText(eventData)
+        emails = SpiderFeetHelpers.extractEmailsFromText(eventData)
         for email in set(emails):
             evttype = "EMAILADDR"
             email = email.lower()
@@ -80,7 +80,7 @@ class sfp_email(SpiderFootPlugin):
             self.info(f"Found e-mail address: {email}")
             mail = email.strip('.')
 
-            evt = SpiderFootEvent(evttype, mail, self.__name__, event)
+            evt = SpiderFeetEvent(evttype, mail, self.__name__, event)
             if event.moduleDataSource:
                 evt.moduleDataSource = event.moduleDataSource
             else:

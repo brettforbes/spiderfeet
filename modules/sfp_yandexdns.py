@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_yandexdns
-# Purpose:      SpiderFoot plug-in for looking up whether hosts are blocked by
+# Purpose:      SpiderFeet plug-in for looking up whether hosts are blocked by
 #               Yandex DNS.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
 # Created:     30/05/2018
 # Copyright:   (c) Steve Micallef 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import dns.resolver
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_yandexdns(SpiderFootPlugin):
+class sfp_yandexdns(SpiderFeetPlugin):
 
     meta = {
         'name': "Yandex DNS",
@@ -129,11 +129,11 @@ class sfp_yandexdns(SpiderFootPlugin):
             if k not in self.checks:
                 continue
 
-            evt = SpiderFootEvent(blacklist_type, f"{self.checks[k]} [{eventData}]", self.__name__, event)
+            evt = SpiderFeetEvent(blacklist_type, f"{self.checks[k]} [{eventData}]", self.__name__, event)
             self.notifyListeners(evt)
 
             if k == '213.180.193.250':
-                evt = SpiderFootEvent(malicious_type, f"{self.checks[k]} [{eventData}]", self.__name__, event)
+                evt = SpiderFeetEvent(malicious_type, f"{self.checks[k]} [{eventData}]", self.__name__, event)
                 self.notifyListeners(evt)
 
 # End of sfp_yandexdns class

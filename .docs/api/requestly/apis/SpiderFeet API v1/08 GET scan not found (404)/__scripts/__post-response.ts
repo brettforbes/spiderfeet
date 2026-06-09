@@ -1,0 +1,1 @@
+pm.test('status 404', function () { pm.response.to.have.status(404); });

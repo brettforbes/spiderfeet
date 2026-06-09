@@ -7,13 +7,13 @@
 #
 # Created:     14/12/2013
 # Copyright:   (c) Steve Micallef, 2013
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_cybercrimetracker(SpiderFootPlugin):
+class sfp_cybercrimetracker(SpiderFeetPlugin):
 
     meta = {
         'name': "CyberCrime-Tracker.net",
@@ -200,10 +200,10 @@ class sfp_cybercrimetracker(SpiderFootPlugin):
         url = f"https://cybercrime-tracker.net/index.php?search={eventData}"
         text = f"CyberCrime-Tracker.net Malicious Submissions [{eventData}]\n<SFURL>{url}</SFURL>"
 
-        evt = SpiderFootEvent(malicious_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(malicious_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(blacklist_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(blacklist_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_cybercrimetracker class

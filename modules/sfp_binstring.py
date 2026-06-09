@@ -7,15 +7,15 @@
 #
 # Created:     03/12/2016
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import string
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_binstring(SpiderFootPlugin):
+class sfp_binstring(SpiderFeetPlugin):
 
     meta = {
         'name': "Binary String Extractor",
@@ -57,7 +57,7 @@ class sfp_binstring(SpiderFootPlugin):
         self.results = list()
         self.__dataSource__ = "Target Website"
 
-        self.d = SpiderFootHelpers.dictionaryWordsFromWordlists()
+        self.d = SpiderFeetHelpers.dictionaryWordsFromWordlists()
 
         for opt in list(userOpts.keys()):
             self.opts[opt] = userOpts[opt]
@@ -143,7 +143,7 @@ class sfp_binstring(SpiderFootPlugin):
 
                 if words:
                     wordstr = '\n'.join(words[0:self.opts['maxwords']])
-                    evt = SpiderFootEvent("RAW_FILE_META_DATA", wordstr, self.__name__, event)
+                    evt = SpiderFeetEvent("RAW_FILE_META_DATA", wordstr, self.__name__, event)
                     self.notifyListeners(evt)
 
 # End of sfp_binstring class

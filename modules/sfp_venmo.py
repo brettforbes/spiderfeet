@@ -6,16 +6,16 @@
 #
 # Created:     2019-07-16
 # Copyright:   (c) bcoles 2019
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 import time
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_venmo(SpiderFootPlugin):
+class sfp_venmo(SpiderFeetPlugin):
 
     meta = {
         'name': "Venmo",
@@ -109,10 +109,10 @@ class sfp_venmo(SpiderFootPlugin):
             display_name = data['first_name'] + " " + data['last_name']
 
         if display_name:
-            evt = SpiderFootEvent('HUMAN_NAME', display_name, self.__name__, event)
+            evt = SpiderFeetEvent('HUMAN_NAME', display_name, self.__name__, event)
             self.notifyListeners(evt)
 
-            evt = SpiderFootEvent('RAW_RIR_DATA', str(data),
+            evt = SpiderFeetEvent('RAW_RIR_DATA', str(data),
                                   self.__name__, event)
             self.notifyListeners(evt)
 

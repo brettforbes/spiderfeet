@@ -7,7 +7,7 @@
 #
 # Created:     06/09/2018
 # Copyright:   (c) Steve Micallef, 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
@@ -16,10 +16,10 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_abuseipdb(SpiderFootPlugin):
+class sfp_abuseipdb(SpiderFeetPlugin):
 
     meta = {
         'name': "AbuseIPDB",
@@ -322,7 +322,7 @@ class sfp_abuseipdb(SpiderFootPlugin):
 
         url = f"https://www.abuseipdb.com/check/{eventData}"
 
-        evt = SpiderFootEvent(
+        evt = SpiderFeetEvent(
             malicious_type,
             f"AbuseIPDB [{eventData}]\n<SFURL>{url}</SFURL>",
             self.__name__,
@@ -330,7 +330,7 @@ class sfp_abuseipdb(SpiderFootPlugin):
         )
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(
+        evt = SpiderFeetEvent(
             blacklist_type,
             f"AbuseIPDB [{eventData}]\n<SFURL>{url}</SFURL>",
             self.__name__,

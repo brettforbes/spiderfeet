@@ -7,16 +7,16 @@
 #
 # Created:     14/06/2020
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import base64
 import json
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_twilio(SpiderFootPlugin):
+class sfp_twilio(SpiderFeetPlugin):
 
     meta = {
         'name': "Twilio",
@@ -142,7 +142,7 @@ class sfp_twilio(SpiderFootPlugin):
 
         data = json.loads(content)
 
-        evt = SpiderFootEvent("RAW_RIR_DATA", str(data), self.__name__, event)
+        evt = SpiderFeetEvent("RAW_RIR_DATA", str(data), self.__name__, event)
         self.notifyListeners(evt)
 
         callerName = data.get('caller_name')
@@ -150,7 +150,7 @@ class sfp_twilio(SpiderFootPlugin):
             callerName = callerName.get('caller_name')
 
         if callerName:
-            evt = SpiderFootEvent("COMPANY_NAME", callerName, self.__name__, event)
+            evt = SpiderFeetEvent("COMPANY_NAME", callerName, self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_twilio class

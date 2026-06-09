@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_hashes
-# Purpose:      SpiderFoot plug-in for scanning retrieved content by other
+# Purpose:      SpiderFeet plug-in for scanning retrieved content by other
 #               modules (such as sfp_spider) and identifying hashes
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
 # Created:     24/01/2020
 # Copyright:   (c) Steve Micallef 2020
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_hashes(SpiderFootPlugin):
+class sfp_hashes(SpiderFeetPlugin):
 
     meta = {
         'name': "Hash Extractor",
@@ -59,11 +59,11 @@ class sfp_hashes(SpiderFootPlugin):
 
         self.debug(f"Received event, {eventName}, from {srcModuleName}")
 
-        hashes = SpiderFootHelpers.extractHashesFromText(eventData)
+        hashes = SpiderFeetHelpers.extractHashesFromText(eventData)
         for hashtup in hashes:
             hashalgo, hashval = hashtup
 
-            evt = SpiderFootEvent("HASH", f"[{hashalgo}] {hashval}", self.__name__, event)
+            evt = SpiderFeetEvent("HASH", f"[{hashalgo}] {hashval}", self.__name__, event)
             if event.moduleDataSource:
                 evt.moduleDataSource = event.moduleDataSource
             else:

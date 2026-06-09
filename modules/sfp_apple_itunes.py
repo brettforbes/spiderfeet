@@ -7,7 +7,7 @@
 #
 # Created:     2020-09-19
 # Copyright:   (c) bcoles 2019
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
@@ -16,10 +16,10 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_apple_itunes(SpiderFootPlugin):
+class sfp_apple_itunes(SpiderFeetPlugin):
 
     meta = {
         'name': "Apple iTunes",
@@ -160,7 +160,7 @@ class sfp_apple_itunes(SpiderFootPlugin):
 
             app_data = f"{app_full_name}\n<SFURL>{trackViewUrl}</SFURL>"
 
-            evt = SpiderFootEvent('APPSTORE_ENTRY', app_data, self.__name__, event)
+            evt = SpiderFeetEvent('APPSTORE_ENTRY', app_data, self.__name__, event)
             self.notifyListeners(evt)
             found = True
 
@@ -178,7 +178,7 @@ class sfp_apple_itunes(SpiderFootPlugin):
                 continue
 
             if self.getTarget().matches(host, includeChildren=True, includeParents=True):
-                evt = SpiderFootEvent('LINKED_URL_INTERNAL', url, self.__name__, event)
+                evt = SpiderFeetEvent('LINKED_URL_INTERNAL', url, self.__name__, event)
                 self.notifyListeners(evt)
                 found = True
 
@@ -189,15 +189,15 @@ class sfp_apple_itunes(SpiderFootPlugin):
                 continue
 
             if self.getTarget().matches(host, includeChildren=True, includeParents=True):
-                evt = SpiderFootEvent('INTERNET_NAME', host, self.__name__, event)
+                evt = SpiderFeetEvent('INTERNET_NAME', host, self.__name__, event)
                 self.notifyListeners(evt)
             else:
-                evt = SpiderFootEvent('AFFILIATE_INTERNET_NAME', host, self.__name__, event)
+                evt = SpiderFeetEvent('AFFILIATE_INTERNET_NAME', host, self.__name__, event)
                 self.notifyListeners(evt)
             found = True
 
         if found:
-            evt = SpiderFootEvent('RAW_RIR_DATA', json.dumps(data), self.__name__, event)
+            evt = SpiderFeetEvent('RAW_RIR_DATA', json.dumps(data), self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_apple_itunes class

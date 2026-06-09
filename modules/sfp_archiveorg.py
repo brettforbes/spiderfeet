@@ -8,16 +8,16 @@
 #
 # Created:     20/07/2015
 # Copyright:   (c) Steve Micallef 2015
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import datetime
 import json
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_archiveorg(SpiderFootPlugin):
+class sfp_archiveorg(SpiderFeetPlugin):
 
     meta = {
         'name': "Archive.org",
@@ -181,7 +181,7 @@ class sfp_archiveorg(SpiderFootPlugin):
             name = eventName + "_HISTORIC"
 
             self.info("Found a historic file: " + wbmlink)
-            evt = SpiderFootEvent(name, wbmlink, self.__name__, event)
+            evt = SpiderFeetEvent(name, wbmlink, self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_archiveorg class

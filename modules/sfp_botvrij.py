@@ -7,13 +7,13 @@
 #
 # Created:     16/05/2020
 # Copyright:   (c) Steve Micallef, 2020
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_botvrij(SpiderFootPlugin):
+class sfp_botvrij(SpiderFeetPlugin):
 
     meta = {
         'name': "botvrij.eu",
@@ -177,10 +177,10 @@ class sfp_botvrij(SpiderFootPlugin):
         url = "https://www.botvrij.eu/data/blocklist/blocklist_full.csv"
         text = f"botvrij.eu Domain Blocklist [{eventData}]\n<SFURL>{url}</SFURL>"
 
-        evt = SpiderFootEvent(malicious_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(malicious_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
-        evt = SpiderFootEvent(blacklist_type, text, self.__name__, event)
+        evt = SpiderFeetEvent(blacklist_type, text, self.__name__, event)
         self.notifyListeners(evt)
 
 # End of sfp_botvrij class

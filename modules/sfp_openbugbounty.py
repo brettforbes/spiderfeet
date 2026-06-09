@@ -6,15 +6,15 @@
 #
 # Created:     04/10/2015
 # Copyright:   (c) Steve Micallef
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_openbugbounty(SpiderFootPlugin):
+class sfp_openbugbounty(SpiderFeetPlugin):
 
     meta = {
         'name': "Open Bug Bounty",
@@ -114,7 +114,7 @@ class sfp_openbugbounty(SpiderFootPlugin):
 
         for n in data:
             # Notify other modules of what you've found
-            e = SpiderFootEvent("VULNERABILITY_DISCLOSURE", n, self.__name__, event)
+            e = SpiderFeetEvent("VULNERABILITY_DISCLOSURE", n, self.__name__, event)
             self.notifyListeners(e)
 
 # End of sfp_openbugbounty class

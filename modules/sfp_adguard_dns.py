@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:        sfp_adguard_dns
-# Purpose:     SpiderFoot plug-in for looking up whether hosts are blocked by
+# Purpose:     SpiderFeet plug-in for looking up whether hosts are blocked by
 #              AdGuard DNS servers.
 #
 # Author:      <bcoles@gmail.com>
 #
 # Created:     2021-10-11
 # Copyright:   (c) bcoles 2021
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import dns.resolver
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_adguard_dns(SpiderFootPlugin):
+class sfp_adguard_dns(SpiderFeetPlugin):
 
     meta = {
         'name': "AdGuard DNS",
@@ -118,12 +118,12 @@ class sfp_adguard_dns(SpiderFootPlugin):
 
         if '94.140.14.35' in family:
             self.debug(f"{eventData} blocked by AdGuard Family DNS")
-            evt = SpiderFootEvent(blacklist_type, f"AdGuard - Family Filter [{eventData}]", self.__name__, event)
+            evt = SpiderFeetEvent(blacklist_type, f"AdGuard - Family Filter [{eventData}]", self.__name__, event)
             self.notifyListeners(evt)
 
         if '94.140.14.35' in default:
             self.debug(f"{eventData} blocked by AdGuard Default DNS")
-            evt = SpiderFootEvent(blacklist_type, f"AdGuard - Default Filter [{eventData}]", self.__name__, event)
+            evt = SpiderFeetEvent(blacklist_type, f"AdGuard - Default Filter [{eventData}]", self.__name__, event)
             self.notifyListeners(evt)
 
 # End of sfp_adguard_dns class

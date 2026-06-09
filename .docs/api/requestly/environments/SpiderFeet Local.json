@@ -1,0 +1,28 @@
+{
+  "$schema": "https://assets.requestly.com/local/v1.11.0/environment.json",
+  "id": "fa1e9135-09b2-4a18-befd-88d0e9bef17f",
+  "variables": {
+    "base_url": {
+      "id": "fb19fd01-4eb6-457c-a9eb-007b794b0626",
+      "syncValue": "http://127.0.0.1:8001",
+      "type": "string",
+      "isEnabled": true,
+      "rank": "a0000",
+      "createdAt": "2026-06-04T06:54:12.644Z",
+      "updatedAt": "2026-06-04T06:54:12.645Z",
+      "createdBy": null,
+      "updatedBy": null
+    },
+    "scan_id": {
+      "id": "5a7436c5-339d-4ff2-a1ac-9844766d3f11",
+      "syncValue": "",
+      "type": "string",
+      "isEnabled": true,
+      "rank": "a0001",
+      "createdAt": "2026-06-04T06:54:12.645Z",
+      "updatedAt": "2026-06-04T06:54:12.645Z",
+      "createdBy": null,
+      "updatedBy": null
+    }
+  }
+}

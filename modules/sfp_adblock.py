@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_adblock
-# Purpose:      SpiderFoot plug-in to test if external/internally linked pages
+# Purpose:      SpiderFeet plug-in to test if external/internally linked pages
 #               would be blocked by AdBlock Plus.
 #
 # Author:      Steve Micallef <steve@binarypool.com>
 #
 # Created:     22/09/2014
 # Copyright:   (c) Steve Micallef 2014
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import adblockparser
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_adblock(SpiderFootPlugin):
+class sfp_adblock(SpiderFeetPlugin):
 
     meta = {
         'name': "AdBlock Check",
@@ -155,17 +155,17 @@ class sfp_adblock(SpiderFootPlugin):
         try:
             if eventName == 'PROVIDER_JAVASCRIPT':
                 if self.rules and self.rules.should_block(eventData, {'third-party': True, 'script': True}):
-                    evt = SpiderFootEvent("URL_ADBLOCKED_EXTERNAL", eventData, self.__name__, event)
+                    evt = SpiderFeetEvent("URL_ADBLOCKED_EXTERNAL", eventData, self.__name__, event)
                     self.notifyListeners(evt)
 
             if eventName == 'LINKED_URL_EXTERNAL':
                 if self.rules and self.rules.should_block(eventData, {'third-party': True}):
-                    evt = SpiderFootEvent("URL_ADBLOCKED_EXTERNAL", eventData, self.__name__, event)
+                    evt = SpiderFeetEvent("URL_ADBLOCKED_EXTERNAL", eventData, self.__name__, event)
                     self.notifyListeners(evt)
 
             if eventName == 'LINKED_URL_INTERNAL':
                 if self.rules and self.rules.should_block(eventData):
-                    evt = SpiderFootEvent("URL_ADBLOCKED_INTERNAL", eventData, self.__name__, event)
+                    evt = SpiderFeetEvent("URL_ADBLOCKED_INTERNAL", eventData, self.__name__, event)
                     self.notifyListeners(evt)
 
         except ValueError as e:

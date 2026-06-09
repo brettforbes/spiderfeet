@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 # Name:         sfp_skymem
-# Purpose:      SpiderFoot plug-in for retrieving up to 100 e-mail addresses
+# Purpose:      SpiderFeet plug-in for retrieving up to 100 e-mail addresses
 #               belonging to your target from Skymem.
 #
 # Author:      <bcoles@gmail.com>
 #
 # Created:     29/09/2018
 # Copyright:   (c) bcoles 2018
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import re
 
-from spiderfoot import SpiderFootEvent, SpiderFootHelpers, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin
 
 
-class sfp_skymem(SpiderFootPlugin):
+class sfp_skymem(SpiderFeetPlugin):
 
     meta = {
         'name': "Skymem",
@@ -83,7 +83,7 @@ class sfp_skymem(SpiderFootPlugin):
             return
 
         # Extract emails from results page
-        emails = SpiderFootHelpers.extractEmailsFromText(res['content'])
+        emails = SpiderFeetHelpers.extractEmailsFromText(res['content'])
 
         for email in emails:
             # Skip unrelated emails
@@ -98,7 +98,7 @@ class sfp_skymem(SpiderFootPlugin):
                     evttype = "EMAILADDR_GENERIC"
                 else:
                     evttype = "EMAILADDR"
-                evt = SpiderFootEvent(evttype, email, self.__name__, event)
+                evt = SpiderFeetEvent(evttype, email, self.__name__, event)
                 self.notifyListeners(evt)
                 self.results[email] = True
 
@@ -120,7 +120,7 @@ class sfp_skymem(SpiderFootPlugin):
             if res['content'] is None:
                 break
 
-            emails = SpiderFootHelpers.extractEmailsFromText(res['content'])
+            emails = SpiderFeetHelpers.extractEmailsFromText(res['content'])
             for email in emails:
                 # Skip unrelated emails
                 mailDom = email.lower().split('@')[1]
@@ -134,7 +134,7 @@ class sfp_skymem(SpiderFootPlugin):
                         evttype = "EMAILADDR_GENERIC"
                     else:
                         evttype = "EMAILADDR"
-                    evt = SpiderFootEvent(evttype, email, self.__name__, event)
+                    evt = SpiderFeetEvent(evttype, email, self.__name__, event)
                     self.notifyListeners(evt)
                     self.results[email] = True
 

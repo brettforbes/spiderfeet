@@ -1,0 +1,15 @@
+{
+  "name": "SpiderFeet Local",
+  "variables": [
+    {
+      "name": "base_url",
+      "value": "http://127.0.0.1:8001",
+      "type": "string"
+    },
+    {
+      "name": "scan_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

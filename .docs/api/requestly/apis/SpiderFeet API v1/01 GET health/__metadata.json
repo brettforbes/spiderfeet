@@ -1,0 +1,10 @@
+{
+  "$schema": "https://assets.requestly.com/local/v1.11.0/metadata.json",
+  "type": "api",
+  "entryType": "http",
+  "id": "4498aec6-8a65-4a69-8c07-1126313d23e5",
+  "rank": "a01get17805560526421",
+  "url": "{{base_url}}/api/v1/health",
+  "method": "GET",
+  "contentType": "raw"
+}

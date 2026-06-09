@@ -7,16 +7,16 @@
 #
 # Created:     01/02/2017
 # Copyright:   (c) Steve Micallef 2017
-# Licence:     MIT
+# Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
 import json
 import time
 
-from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 
-class sfp_securitytrails(SpiderFootPlugin):
+class sfp_securitytrails(SpiderFeetPlugin):
 
     meta = {
         'name': "SecurityTrails",
@@ -109,7 +109,7 @@ class sfp_securitytrails(SpiderFootPlugin):
             headers['Content-Type'] = 'application/json'
 
         res = self.sf.fetchUrl(url, timeout=self.opts['_fetchtimeout'],
-                               useragent="SpiderFoot", headers=headers,
+                               useragent="SpiderFeet", headers=headers,
                                postData=request)
 
         if res['code'] in ["400", "429", "500", "403"]:
@@ -181,7 +181,7 @@ class sfp_securitytrails(SpiderFootPlugin):
                         for dat in r['host_provider']:
                             if dat in hosters:
                                 continue
-                            e = SpiderFootEvent("PROVIDER_HOSTING", dat,
+                            e = SpiderFeetEvent("PROVIDER_HOSTING", dat,
                                                 self.__name__, event)
                             self.notifyListeners(e)
                             hosters.append(dat)
@@ -202,7 +202,7 @@ class sfp_securitytrails(SpiderFootPlugin):
                                 self.debug("Host " + h + " no longer resolves to our IP.")
                                 continue
                         myres.append(h.lower())
-                        e = SpiderFootEvent("CO_HOSTED_SITE", h, self.__name__, event)
+                        e = SpiderFeetEvent("CO_HOSTED_SITE", h, self.__name__, event)
                         self.notifyListeners(e)
                         self.cohostcount += 1
 
@@ -220,11 +220,11 @@ class sfp_securitytrails(SpiderFootPlugin):
                             myres.append(h.lower())
                         else:
                             continue
-                        e = SpiderFootEvent("AFFILIATE_INTERNET_NAME", h, self.__name__, event)
+                        e = SpiderFeetEvent("AFFILIATE_INTERNET_NAME", h, self.__name__, event)
                         self.notifyListeners(e)
 
                         if self.sf.isDomain(h, self.opts['_internettlds']):
-                            evt = SpiderFootEvent("AFFILIATE_DOMAIN_NAME", h, self.__name__, event)
+                            evt = SpiderFeetEvent("AFFILIATE_DOMAIN_NAME", h, self.__name__, event)
                             self.notifyListeners(evt)
 
         if eventName in ["DOMAIN_NAME"]:
@@ -239,7 +239,7 @@ class sfp_securitytrails(SpiderFootPlugin):
                         myres.append(h.lower())
                     else:
                         continue
-                    e = SpiderFootEvent("INTERNET_NAME", h + "." + domain,
+                    e = SpiderFeetEvent("INTERNET_NAME", h + "." + domain,
                                         self.__name__, event)
                     self.notifyListeners(e)
 
