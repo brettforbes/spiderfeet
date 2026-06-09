@@ -18,6 +18,21 @@ def test_is_secret_module_opt_rejects_hostname():
     assert is_secret_module_opt("token") is True
 
 
+def test_is_secret_module_opt_rejects_passwordpages_toggle():
+    assert is_secret_module_opt("passwordpages") is False
+    assert is_secret_module_opt("api_key_password") is True
+    assert is_secret_module_opt("password") is True
+
+
+def test_archiveorg_free_no_auth_not_key_gated():
+    from spiderfeet.map.routes_catalog import service_by_module_id
+
+    service = service_by_module_id("sfp_archiveorg")
+    assert service is not None
+    assert requires_api_key(service) is False
+    assert subscription_tier_for_service(service) == "none"
+
+
 def test_threatjammer_requires_key_without_hostname_false_positive():
     service = {
         "module_id": "sfp_threatjammer",

@@ -12,6 +12,7 @@ DEFAULT_SERVICE_STATE = "in-test"
 # Upstream-broken none-tier modules (seed research finalize pass).
 UPSTREAM_ERROR_MODULE_IDS = frozenset(
     {
+        "sfp_binaryedge",  # BinaryEdge shut down 2025-03-31; migrate to Coalition Control
         "sfp_commoncrawl",
         "sfp_crt",
         "sfp_dnsdumpster",

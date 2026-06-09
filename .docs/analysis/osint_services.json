@@ -2,7 +2,7 @@
   {
     "module_id": "sfp_abstractapi",
     "name": "AbstractAPI",
-    "summary": "Look up domain, phone and IP address information from AbstractAPI.",
+    "summary": "Look up domain, phone, IP, and email reputation information from AbstractAPI.",
     "flags": [
       "apikey"
     ],
@@ -16,7 +16,7 @@
     ],
     "data_source": {
       "website": "https://app.abstractapi.com/",
-      "model": "FREE_NOAUTH_LIMITED",
+      "model": "FREE_AUTH_LIMITED",
       "references": [
         "https://app.abstractapi.com/"
       ],
@@ -25,18 +25,20 @@
         "Register a free account",
         "Visit https://app.abstractapi.com/api/",
         "Visit each API page and click on 'Try it out'",
-        "Your API Key will be listed under 'This is your private API key, specific to this API.'"
+        "Visit https://app.abstractapi.com/api/email-reputation-test",
+        "Your Email Reputation API key is shown on that product page"
       ],
       "fav_icon": "https://app.abstractapi.com/favicon.ico",
       "logo": "https://app.abstractapi.com/logo192.png",
       "description": "Abstract provides powerful APIs to help you enrich any user experience or automate any workflow."
     },
-    "access_tier": "free_no_auth",
+    "access_tier": "free_auth",
     "consumed_nuggets": [
       "DOMAIN_NAME",
       "PHONE_NUMBER",
       "IP_ADDRESS",
-      "IPV6_ADDRESS"
+      "IPV6_ADDRESS",
+      "EMAILADDR"
     ],
     "produced_nuggets": [
       "COMPANY_NAME",
@@ -44,7 +46,11 @@
       "GEOINFO",
       "PHYSICAL_COORDINATES",
       "PROVIDER_TELCO",
-      "RAW_RIR_DATA"
+      "RAW_RIR_DATA",
+      "EMAILADDR_DELIVERABLE",
+      "EMAILADDR_UNDELIVERABLE",
+      "EMAILADDR_DISPOSABLE",
+      "EMAILADDR_COMPROMISED"
     ],
     "consumption_group": "other",
     "route_seed_nugget": "DOMAIN_NAME",
@@ -66,6 +72,12 @@
         "value_type": "string",
         "value": "",
         "description": "AbstractAPI Phone Validation API key."
+      },
+      {
+        "name": "emailreputation_api_key",
+        "value_type": "string",
+        "value": "",
+        "description": "AbstractAPI Email Reputation API key."
       }
     ],
     "fixture_category": "positive",
@@ -1169,7 +1181,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test"
+    "service_state": "error"
   },
   {
     "module_id": "sfp_bingsearch",
