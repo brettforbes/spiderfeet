@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify bitcoin addresses in scraped webpages.
 import codecs
 import re
 from hashlib import sha256

@@ -10,6 +10,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify common error messages in content like SQL errors, etc.
 import re
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

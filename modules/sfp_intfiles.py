@@ -10,6 +10,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identifies potential files of interest, e.g. office documents, zip files.
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 

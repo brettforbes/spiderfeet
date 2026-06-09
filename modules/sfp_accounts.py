@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Look for possible associated accounts on over 500 social and other websites such as Instagram, Reddit, etc.
 import json
 import random
 import threading

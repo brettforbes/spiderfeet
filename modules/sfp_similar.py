@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Search various sources to identify similar looking domain names, for instance squatted domains.
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
 
 nearchars = {

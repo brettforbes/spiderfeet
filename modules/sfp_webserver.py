@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Obtain web server banners to identify versions of web servers being used.
 import json
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

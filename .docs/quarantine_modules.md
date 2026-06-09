@@ -4,8 +4,31 @@ Modules listed here **do not** declare an external `dataSource` in their metadat
 
 Do **not** treat these as validated non-OSINT modules. They were moved here from an earlier classification that incorrectly grouped all `dataSource`-less modules together. Only [`sfp__stor_db` and `sfp__stor_stdout`](non_osint_modules.md) are confirmed generic modules.
 
-**Total: 54 modules** pending review.
+**Total: 22 modules** pending review.
 
+
+
+## Promoted to external (`in-test`)
+
+The following modules passed quarantine smoke validation and were removed from the quarantine catalogue:
+
+- `sfp_base64`
+- `sfp_bitcoin`
+- `sfp_company`
+- `sfp_countryname`
+- `sfp_creditcard`
+- `sfp_dnsbrute`
+- `sfp_dnsraw`
+- `sfp_dnsresolve`
+- `sfp_email`
+- `sfp_ethereum`
+- `sfp_filemeta`
+- `sfp_hashes`
+- `sfp_pgp`
+- `sfp_portscan_tcp`
+- `sfp_similar`
+- `sfp_spider`
+- `sfp_whois`
 ---
 
 ## Module Categories (provisional)
@@ -26,47 +49,15 @@ Do **not** treat these as validated non-OSINT modules. They were moved here from
 
 | Module | Name | Category | Use Cases | Flags |
 |--------|------|----------|-----------|-------|
-| `sfp_dnsbrute` | DNS Brute-forcer | DNS & Domain Intelligence | Footprint, Investigate | — |
 | `sfp_dnscommonsrv` | DNS Common SRV | DNS & Domain Intelligence | Footprint, Investigate | `slow` |
-| `sfp_dnsneighbor` | DNS Look-aside | DNS & Domain Intelligence | Footprint, Investigate | — |
-| `sfp_dnsraw` | DNS Raw Records | DNS & Domain Intelligence | Footprint, Investigate, Passive | — |
-| `sfp_dnsresolve` | DNS Resolver | DNS & Domain Intelligence | Footprint, Investigate, Passive | — |
 | `sfp_dnszonexfer` | DNS Zone Transfer | DNS & Domain Intelligence | Footprint, Investigate | — |
-| `sfp_similar` | Similar Domain Finder | DNS & Domain Intelligence | Footprint, Investigate | — |
 | `sfp_subdomain_takeover` | Subdomain Takeover Checker | DNS & Domain Intelligence | Footprint, Investigate | — |
 | `sfp_tldsearch` | TLD Searcher | DNS & Domain Intelligence | Footprint | `slow` |
-| `sfp_whois` | Whois | DNS & Domain Intelligence | Footprint, Investigate, Passive | — |
 | `sfp_crossref` | Cross-Referencer | Web Crawling & Scanning | Footprint | — |
-| `sfp_intfiles` | Interesting File Finder | Web Crawling & Scanning | Footprint, Passive | — |
 | `sfp_junkfiles` | Junk File Finder | Web Crawling & Scanning | Footprint | `slow`, `errorprone`, `invasive` |
-| `sfp_portscan_tcp` | Port Scanner - TCP | Web Crawling & Scanning | Footprint, Investigate | `slow`, `invasive` |
-| `sfp_spider` | Web Spider | Web Crawling & Scanning | Footprint, Investigate | `slow` |
-| `sfp_sslcert` | SSL Certificate Analyzer | Web Crawling & Scanning | Footprint, Investigate | — |
-| `sfp_base64` | Base64 Decoder | Content Analysis & Extraction | Investigate, Passive | — |
-| `sfp_binstring` | Binary String Extractor | Content Analysis & Extraction | Footprint | `errorprone` |
-| `sfp_bitcoin` | Bitcoin Finder | Content Analysis & Extraction | Footprint, Investigate, Passive | — |
-| `sfp_company` | Company Name Extractor | Content Analysis & Extraction | Footprint, Investigate, Passive | — |
-| `sfp_cookie` | Cookie Extractor | Content Analysis & Extraction | Footprint, Investigate, Passive | — |
-| `sfp_countryname` | Country Name Extractor | Content Analysis & Extraction | Footprint, Investigate, Passive | — |
-| `sfp_creditcard` | Credit Card Number Extractor | Content Analysis & Extraction | Footprint, Investigate, Passive | `errorprone` |
-| `sfp_email` | E-Mail Address Extractor | Content Analysis & Extraction | Passive, Investigate, Footprint | — |
-| `sfp_errors` | Error String Extractor | Content Analysis & Extraction | Footprint, Passive | — |
-| `sfp_ethereum` | Ethereum Address Extractor | Content Analysis & Extraction | Footprint, Investigate, Passive | — |
-| `sfp_filemeta` | File Metadata Extractor | Content Analysis & Extraction | Footprint | — |
-| `sfp_hashes` | Hash Extractor | Content Analysis & Extraction | Footprint, Investigate, Passive | — |
 | `sfp_hosting` | Hosting Provider Identifier | Content Analysis & Extraction | Footprint, Investigate, Passive | — |
-| `sfp_iban` | IBAN Number Extractor | Content Analysis & Extraction | Footprint, Investigate, Passive | `errorprone` |
-| `sfp_names` | Human Name Extractor | Content Analysis & Extraction | Footprint, Passive | `errorprone` |
-| `sfp_pageinfo` | Page Information | Content Analysis & Extraction | Footprint, Investigate, Passive | — |
-| `sfp_phone` | Phone Number Extractor | Content Analysis & Extraction | Passive, Footprint, Investigate | — |
-| `sfp_strangeheaders` | Strange Header Identifier | Content Analysis & Extraction | Footprint, Passive | — |
-| `sfp_webanalytics` | Web Analytics Extractor | Content Analysis & Extraction | Footprint, Investigate, Passive | — |
-| `sfp_webframework` | Web Framework Identifier | Content Analysis & Extraction | Footprint, Passive | — |
-| `sfp_webserver` | Web Server Identifier | Content Analysis & Extraction | Footprint, Investigate, Passive | — |
 | `sfp_accounts` | Account Finder | Social & Identity | Footprint, Passive | — |
-| `sfp_social` | Social Network Identifier | Social & Identity | Footprint, Passive | — |
 | `sfp_customfeed` | Custom Threat Feed | Reputation | Investigate, Passive | — |
-| `sfp_pgp` | PGP Key Servers | Public Registries | Footprint, Investigate, Passive | — |
 | `sfp_tool_cmseek` | Tool - CMSeeK | External Tool Wrappers | Footprint, Investigate | `tool` |
 | `sfp_tool_dnstwist` | Tool - DNSTwist | External Tool Wrappers | Footprint, Investigate | `tool` |
 | `sfp_tool_nbtscan` | Tool - nbtscan | External Tool Wrappers | Footprint, Investigate | `tool`, `slow` |

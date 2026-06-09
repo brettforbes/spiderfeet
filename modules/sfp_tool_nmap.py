@@ -10,6 +10,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify what Operating System might be used.
 import os.path
 from subprocess import PIPE, Popen
 

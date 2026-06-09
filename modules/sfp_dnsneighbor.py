@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Attempt to reverse-resolve the IP addresses next to your target to see if they are related.
 import ipaddress
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

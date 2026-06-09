@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Scans for open NETBIOS nameservers on your target's network.
 import sys
 import os.path
 from netaddr import IPNetwork

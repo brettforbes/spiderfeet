@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify various TLS/SSL weaknesses, including Heartbleed, CRIME and ROBOT.
 import os
 import sys
 import json

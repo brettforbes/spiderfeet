@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Check if a host/domain, netblock, ASN or IP is malicious according to your custom feed.
 import re
 
 from netaddr import IPAddress, IPNetwork

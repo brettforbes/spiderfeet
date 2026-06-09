@@ -31,8 +31,9 @@ Spec: **SPEC-002** (stages 0–4). Legacy bootstrap items: SPEC-001 below.
 | BL-006 | R4 | GitHub project board | Blocked | P1 |
 | BL-007 | R5 | Continuity scaffold | Done | P1 |
 | BL-008 | R6 | Bootstrap reporting | Done | P0 |
-| BL-009 | R2 | Verify quarantined DNS modules | Deferred → stage 5 | P1 |
-| BL-010 | R2 | Verify quarantined tool wrappers | Deferred → stage 5 | P2 |
+| BL-009 | R3 | Verify quarantined DNS modules | **Active** — Epic [#722](https://github.com/brettforbes/spiderfeet/issues/722), batch [#727](https://github.com/brettforbes/spiderfeet/issues/727) | P1 |
+| BL-010 | R3 | Verify quarantined tool wrappers | **Active** — Epic [#722](https://github.com/brettforbes/spiderfeet/issues/722), batch [#733](https://github.com/brettforbes/spiderfeet/issues/733) | P2 |
+| BL-011 | R3 | Custom OSINT service registration spike | Epic [#723](https://github.com/brettforbes/spiderfeet/issues/723) | P2 |
 | BL-011 | — | SPEC-002 first-four-stages | Done | P0 |
 
 ## Pickup flow

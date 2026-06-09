@@ -49,7 +49,7 @@ class SpiderFeetScanner():
     __modconfig = dict()
     __scanName = None
 
-    def __init__(self, scanName: str, scanId: str, targetValue: str, targetType: str, moduleList: list, globalOpts: dict, start: bool = True) -> None:
+    def __init__(self, scanName: str, scanId: str, targetValue: str, targetType: str, moduleList: list, globalOpts: dict, start: bool = True, seedPayloadEvent: tuple | None = None) -> None:
         """Initialize SpiderFeetScanner object.
 
         Args:
@@ -108,6 +108,7 @@ class SpiderFeetScanner():
             raise ValueError("moduleList is empty")
 
         self.__moduleList = moduleList
+        self.__seedPayloadEvent = seedPayloadEvent
         self.__sf = SpiderFeet(self.__config)
         self.__sf.dbh = self.__dbh
 
@@ -391,6 +392,21 @@ class SpiderFeetScanner():
             if self.__targetType == 'INTERNET_NAME' and self.__sf.isDomain(self.__targetValue, self.__config['_internettlds']):
                 firstEvent = SpiderFeetEvent('DOMAIN_NAME', self.__targetValue, "SpiderFeet UI", rootEvent)
                 psMod.notifyListeners(firstEvent)
+
+            if self.__seedPayloadEvent:
+                payload_type, payload_data = self.__seedPayloadEvent
+                # Content modules only accept spider-sourced web events.
+                source_module = (
+                    "sfp_spider"
+                    if payload_type in ("TARGET_WEB_CONTENT", "WEBSERVER_HTTPHEADERS")
+                    else "SpiderFeet UI"
+                )
+                payload_event = SpiderFeetEvent(
+                    payload_type, payload_data, source_module, rootEvent
+                )
+                if self.__targetType in ("INTERNET_NAME", "DOMAIN_NAME"):
+                    payload_event.actualSource = f"https://{self.__targetValue}/"
+                psMod.notifyListeners(payload_event)
 
             # If in interactive mode, loop through this shared global variable
             # waiting for inputs, and process them until my status is set to

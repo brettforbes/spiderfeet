@@ -58,6 +58,19 @@ _NUGGET_SAMPLES: Dict[str, str] = {
     "URL_WEB_FRAMEWORK": "sbs.com.au",
     "USERNAME": '"spiderfeet"',
     "WEB_ANALYTICS_ID": "sbs.com.au",
+    "LINKED_URL_INTERNAL": "https://example.com/about",
+    "TARGET_WEB_CONTENT": (
+        "<html><body>Contact admin@example.com wallet "
+        "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</body></html>"
+    ),
+    "BASE64_DATA": "U3BpZGVyRm9vdA== (SpiderFeet)",
+    "WEBSERVER_HTTPHEADERS": "Server: nginx/1.18.0\r\nSet-Cookie: session=abc",
+    "WEBSERVER_BANNER": "nginx/1.18.0",
+    "DNS_TEXT": "v=spf1 include:_spf.google.com ~all",
+    "DARKNET_MENTION_CONTENT": "sample leak text mentioning user@example.com",
+    "AFFILIATE_DOMAIN_WHOIS": "Domain Name: EXAMPLE.COM\nRegistrar: Example Registrar",
+    "DOMAIN_WHOIS": "Domain Name: EXAMPLE.COM\nRegistrar: Example Registrar",
+    "RAW_DNS_RECORDS": "example.com. 300 IN A 93.184.216.34",
 }
 
 

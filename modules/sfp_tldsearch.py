@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Search all Internet TLDs for domains with the same name as the target (this can be very slow.)
 import random
 import threading
 import time

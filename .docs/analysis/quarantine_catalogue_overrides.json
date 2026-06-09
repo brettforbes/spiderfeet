@@ -1,0 +1,6 @@
+{
+  "sfp_dnsbrute": {
+    "consumed_nuggets": ["DOMAIN_NAME", "INTERNET_NAME"],
+    "notes": "watchedEvents() is conditional; defaults domainonly=true and numbersuffix=true include both."
+  }
+}

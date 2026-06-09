@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Perform a WHOIS look-up on domain names and owned netblocks.
 import ipwhois
 import netaddr
 import whois

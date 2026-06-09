@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Scans for commonly open TCP ports on Internet-facing systems.
 import random
 import threading
 import time

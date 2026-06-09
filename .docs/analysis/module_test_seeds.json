@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Module-validated test seeds for Stage 4b (R2-04-07). Keys: module_id \u2192 consumed_nugget_id.",
+  "description": "Module-validated test seeds for Stage 4b (R2-04-07). Keys: module_id → consumed_nugget_id.",
   "seeds": {
     "sfp_arin": {
       "DOMAIN_NAME": {
@@ -630,6 +630,23 @@
           "BLACKLISTED_COHOST"
         ],
         "last_verdict": "clean_miss"
+      }
+    },
+    "sfp_dnsresolve": {
+      "INTERNET_NAME": {
+        "input_value": "one.one.one.one",
+        "region": "global",
+        "validation": "smoke",
+        "expected_produced_nugget_ids": [
+          "IP_ADDRESS",
+          "IPV6_ADDRESS",
+          "INTERNET_NAME"
+        ],
+        "notes": "status=UNKNOWN; verdict=hit; produced=5",
+        "last_verdict": "hit",
+        "last_produced_count": 5,
+        "validated_produces": true,
+        "fixture_kind": "positive"
       }
     },
     "sfp_dnsdumpster": {
@@ -1659,6 +1676,763 @@
           "MALICIOUS_COHOST"
         ],
         "last_verdict": "clean_miss"
+      }
+    },
+    "sfp_accounts": {
+      "EMAILADDR": {
+        "input_value": "noreply@spiderfoot.net",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": ""
+      },
+      "DOMAIN_NAME": {
+        "input_value": "spiderfoot.net",
+        "region": "global",
+        "validation": "smoke-negative",
+        "last_verdict": "validated_negative",
+        "last_produced_count": 0,
+        "notes": "Scan 29189A80 did not finish within 180s",
+        "validated_negative": true,
+        "fixture_kind": "negative"
+      }
+    },
+    "sfp_base64": {
+      "LINKED_URL_INTERNAL": {
+        "input_value": "https://example.com/x?d=U3BpZGVyRm9vdA%3d%3d",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_binstring": {
+      "LINKED_URL_INTERNAL": {
+        "input_value": "https://example.com/sample.exe",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_bitcoin": {
+      "TARGET_WEB_CONTENT": {
+        "input_value": "wallet 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa on page",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_company": {
+      "AFFILIATE_DOMAIN_WHOIS": {
+        "input_value": "Registrant Organization: Example Corp\nRegistrant Country: US",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_cookie": {
+      "WEBSERVER_HTTPHEADERS": {
+        "input_value": "{\"cookie\": \"sessionid=abc123; Path=/; HttpOnly\"}",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_countryname": {
+      "TARGET_WEB_CONTENT": {
+        "input_value": "Server located in United States",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_creditcard": {
+      "DARKNET_MENTION_CONTENT": {
+        "input_value": "card 4111111111111111 expires 12/30",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_crossref": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": ""
+      },
+      "LINKED_URL_EXTERNAL": {
+        "input_value": "https://www.iana.org/domains/reserved",
+        "region": "global",
+        "validation": "smoke-negative",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "validated_negative": true,
+        "fixture_kind": "negative"
+      }
+    },
+    "sfp_customfeed": {
+      "INTERNET_NAME": {
+        "input_value": "8.8.8.8",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": ""
+      },
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
+        "region": "global",
+        "validation": "smoke-negative",
+        "last_verdict": "error_failed",
+        "last_produced_count": 0,
+        "notes": "",
+        "service_state_note": "error_failed",
+        "validated_negative": true,
+        "fixture_kind": "negative"
+      }
+    },
+    "sfp_dnsbrute": {
+      "DOMAIN_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_dnscommonsrv": {
+      "DOMAIN_NAME": {
+        "input_value": "microsoft.com",
+        "region": "global",
+        "validation": "smoke-negative",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "validated_negative": true,
+        "fixture_kind": "negative"
+      }
+    },
+    "sfp_dnsneighbor": {
+      "NETBLOCK_MEMBER": {
+        "input_value": "8.8.8.0/24",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": ""
+      },
+      "IP_ADDRESS": {
+        "input_value": "1.1.1.1",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 2,
+        "notes": "status=UNKNOWN; verdict=hit; produced=2",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_dnsraw": {
+      "DOMAIN_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 10,
+        "notes": "status=UNKNOWN; verdict=hit; produced=10",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_dnszonexfer": {
+      "DOMAIN_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": ""
+      },
+      "PROVIDER_DNS": {
+        "input_value": "a.iana-servers.net",
+        "region": "global",
+        "validation": "smoke-negative",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "validated_negative": true,
+        "fixture_kind": "negative"
+      }
+    },
+    "sfp_email": {
+      "AFFILIATE_DOMAIN_WHOIS": {
+        "input_value": "Admin Email: admin@example.com",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_errors": {
+      "TARGET_WEB_CONTENT": {
+        "input_value": "PHP warning: undefined index in /var/www/html/index.php on line 1",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_ethereum": {
+      "TARGET_WEB_CONTENT": {
+        "input_value": "send to 0x0000000000000000000000000000000000000000",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_filemeta": {
+      "LINKED_URL_INTERNAL": {
+        "input_value": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 3,
+        "notes": "status=UNKNOWN; verdict=hit; produced=3",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_hashes": {
+      "BASE64_DATA": {
+        "input_value": "5d41402abc4b2a76b9719d911017c592 (md5)",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_hosting": {
+      "TARGET_WEB_CONTENT": {
+        "input_value": "Hosted on Amazon Web Services",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "service_state_note": "error_failed"
+      },
+      "IP_ADDRESS": {
+        "input_value": "54.239.28.85",
+        "region": "global",
+        "validation": "smoke-negative",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "validated_negative": true,
+        "fixture_kind": "negative"
+      }
+    },
+    "sfp_iban": {
+      "DARKNET_MENTION_CONTENT": {
+        "input_value": "IBAN GB82WEST12345698765432",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "service_state_note": "error_failed"
+      },
+      "TARGET_WEB_CONTENT": {
+        "input_value": " DE89370400440532013000 ",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_intfiles": {
+      "LINKED_URL_INTERNAL": {
+        "input_value": "https://example.com/report.pdf",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_junkfiles": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": ""
+      },
+      "LINKED_URL_INTERNAL": {
+        "input_value": "https://example.com/.git/config",
+        "region": "global",
+        "validation": "smoke-negative",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "validated_negative": true,
+        "fixture_kind": "negative"
+      }
+    },
+    "sfp_names": {
+      "TARGET_WEB_CONTENT": {
+        "input_value": "Contact \"Jane Citizen\" for details",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "service_state_note": "error_failed"
+      },
+      "EMAILADDR": {
+        "input_value": "jane.citizen@example.com",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_pageinfo": {
+      "TARGET_WEB_CONTENT": {
+        "input_value": "<title>Example Domain</title>",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_pgp": {
+      "EMAILADDR": {
+        "input_value": "security@gnu.org",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_phone": {
+      "TARGET_WEB_CONTENT": {
+        "input_value": "Contact us at +1-415-555-2671 today",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_portscan_tcp": {
+      "IP_ADDRESS": {
+        "input_value": "127.0.0.1",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_similar": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 61,
+        "notes": "status=UNKNOWN; verdict=hit; produced=61",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_social": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": ""
+      },
+      "LINKED_URL_EXTERNAL": {
+        "input_value": "https://twitter.com/example",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 2,
+        "notes": "status=UNKNOWN; verdict=hit; produced=2",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_spider": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 7,
+        "notes": "status=UNKNOWN; verdict=hit; produced=7",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_sslcert": {
+      "INTERNET_NAME": {
+        "input_value": "one.one.one.one",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 4,
+        "notes": "status=UNKNOWN; verdict=hit; produced=4",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_strangeheaders": {
+      "WEBSERVER_HTTPHEADERS": {
+        "input_value": "{\"x-powered-by\": \"PHP/7.4\", \"x-obscure-header\": \"test\"}",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_subdomain_takeover": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "error",
+        "last_verdict": "error_failed",
+        "last_produced_count": 0,
+        "notes": "",
+        "service_state_note": "error_failed"
+      },
+      "AFFILIATE_INTERNET_NAME": {
+        "input_value": "pages.github.io",
+        "region": "global",
+        "validation": "smoke-negative",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "validated_negative": true,
+        "fixture_kind": "negative"
+      }
+    },
+    "sfp_tldsearch": {
+      "DOMAIN_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "timeout",
+        "last_produced_count": 0,
+        "notes": "Scan 4196A0DE did not finish within 180s",
+        "service_state_note": "invalid_target"
+      },
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "blocked-slow",
+        "last_verdict": "validated_negative",
+        "last_produced_count": 0,
+        "notes": "Scan C5ED76CD did not finish within 300s",
+        "validated_negative": true,
+        "fixture_kind": "negative"
+      }
+    },
+    "sfp_tool_cmseek": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "error_failed",
+        "last_produced_count": 0,
+        "notes": "",
+        "upstream_blocked": true
+      }
+    },
+    "sfp_tool_dnstwist": {
+      "DOMAIN_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "error_failed",
+        "last_produced_count": 0,
+        "notes": "",
+        "upstream_blocked": true
+      }
+    },
+    "sfp_tool_nbtscan": {
+      "IP_ADDRESS": {
+        "input_value": "127.0.0.1",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "error_failed",
+        "last_produced_count": 0,
+        "notes": "",
+        "upstream_blocked": true,
+        "service_state_note": "error_failed"
+      }
+    },
+    "sfp_tool_nmap": {
+      "IP_ADDRESS": {
+        "input_value": "127.0.0.1",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "error_failed",
+        "last_produced_count": 0,
+        "notes": "",
+        "upstream_blocked": true,
+        "service_state_note": "error_failed"
+      }
+    },
+    "sfp_tool_nuclei": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "error_failed",
+        "last_produced_count": 0,
+        "notes": "",
+        "upstream_blocked": true,
+        "service_state_note": "error_failed"
+      }
+    },
+    "sfp_tool_onesixtyone": {
+      "IP_ADDRESS": {
+        "input_value": "127.0.0.1",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "error_failed",
+        "last_produced_count": 0,
+        "notes": "",
+        "upstream_blocked": true
+      }
+    },
+    "sfp_tool_retirejs": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "upstream_blocked": true
+      }
+    },
+    "sfp_tool_snallygaster": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "error_failed",
+        "last_produced_count": 0,
+        "notes": "",
+        "upstream_blocked": true
+      }
+    },
+    "sfp_tool_testsslsh": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "upstream_blocked": true
+      }
+    },
+    "sfp_tool_trufflehog": {
+      "INTERNET_NAME": {
+        "input_value": "github.com",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "service_state_note": "invalid_target",
+        "upstream_blocked": true
+      }
+    },
+    "sfp_tool_wafw00f": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "error_failed",
+        "last_produced_count": 0,
+        "notes": "",
+        "upstream_blocked": true,
+        "service_state_note": "error_failed"
+      }
+    },
+    "sfp_tool_wappalyzer": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "error_failed",
+        "last_produced_count": 0,
+        "notes": "",
+        "upstream_blocked": true
+      }
+    },
+    "sfp_tool_whatweb": {
+      "INTERNET_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "blocked-tool",
+        "last_verdict": "error_failed",
+        "last_produced_count": 0,
+        "notes": "",
+        "upstream_blocked": true
+      }
+    },
+    "sfp_webanalytics": {
+      "DNS_TEXT": {
+        "input_value": "google-site-verification=abc123",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "service_state_note": "error_failed"
+      },
+      "TARGET_WEB_CONTENT": {
+        "input_value": "google-analytics.com/ga.js UA-87654321-9",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_webframework": {
+      "TARGET_WEB_CONTENT": {
+        "input_value": "<script src=\"/wp-content/themes/twentytwenty/style.css\"></script>",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_webserver": {
+      "WEBSERVER_HTTPHEADERS": {
+        "input_value": "{\"server\": \"Apache/2.4.57 (Ubuntu)\"}",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 1,
+        "notes": "status=UNKNOWN; verdict=hit; produced=1",
+        "service_state_note": "error_failed",
+        "validated_produces": true,
+        "fixture_kind": "positive"
+      }
+    },
+    "sfp_whois": {
+      "DOMAIN_NAME": {
+        "input_value": "example.com",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 2,
+        "notes": "status=UNKNOWN; verdict=hit; produced=2",
+        "validated_produces": true,
+        "fixture_kind": "positive"
       }
     }
   }
