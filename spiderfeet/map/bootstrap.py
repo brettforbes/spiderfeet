@@ -39,6 +39,7 @@ class BootstrapReport:
     database: str
     created_database: bool = False
     applied_schema: bool = False
+    applied_schema_extensions: bool = False
     nuggets_inserted: int = 0
     nuggets_skipped: int = 0
     services_inserted: int = 0
@@ -92,6 +93,69 @@ def apply_schema(driver: Driver, database: str) -> None:
     run_schema(driver, database, schema_text)
 
 
+def _live_type_schema(driver: Driver, database: str) -> str:
+    return driver.databases.get(database).type_schema()
+
+
+def relation_type_in_schema(schema: str, rel_type: str) -> bool:
+    # Require the trailing comma so e.g. sfp-bitcoin does not match sfp-bitcoinabuse.
+    return f"relation {rel_type}," in schema
+
+
+def service_origin_in_schema(schema: str) -> bool:
+    return "attribute service_origin" in schema
+
+
+def build_schema_extension_ddl(
+    *,
+    add_service_origin: bool,
+    relation_types: List[str],
+) -> Optional[str]:
+    """Incremental define block for catalogue growth on an existing map database."""
+    lines: List[str] = []
+    if add_service_origin:
+        lines.append(
+            '\tattribute service_origin, value string @values("external", "quarantine", "custom");'
+        )
+        lines.append("\tosint-service owns service_origin;")
+    for rel_type in relation_types:
+        lines.append(f"\trelation {rel_type}, sub osint-service;")
+    if not lines:
+        return None
+    return "define\n" + "\n".join(lines)
+
+
+def apply_schema_extensions(driver: Driver, database: str) -> bool:
+    """
+    Apply catalogue-driven schema deltas when the base map schema is already loaded.
+
+    Fresh databases receive the full seed schema via apply_schema(); this path covers
+    stage-5+ relation subtypes and new attributes on long-lived dev databases.
+    """
+    if not schema_already_loaded(driver, database):
+        return False
+
+    schema = _live_type_schema(driver, database)
+    services = _load_json(OSINT_SERVICES_JSON)
+    missing_relations: List[str] = []
+    for svc in services:
+        module_id = svc.get("module_id", "")
+        if not module_id:
+            continue
+        rel_type = relation_type_for_module_id(module_id)
+        if not relation_type_in_schema(schema, rel_type):
+            missing_relations.append(rel_type)
+
+    ddl = build_schema_extension_ddl(
+        add_service_origin=not service_origin_in_schema(schema),
+        relation_types=sorted(set(missing_relations)),
+    )
+    if ddl is None:
+        return False
+    run_schema(driver, database, ddl)
+    return True
+
+
 def _archetype_instance_id(nugget_id: str) -> str:
     return f"{ARCHETYPE_INSTANCE_PREFIX}{nugget_id}"
 
@@ -141,11 +205,13 @@ def _json_list_has(attr: str, values: List[str]) -> Optional[str]:
 
 
 def _service_attr_lines(svc: Dict[str, Any], module_id: str) -> List[str]:
+    origin = str(svc.get("service_origin") or "external")
     attrs: List[str] = [
         f"has module_id {literal_string(module_id)}",
         f"has name {literal_string(svc.get('name', ''))}",
         f"has summary {literal_string(svc.get('summary', ''))}",
         f'has service_state "{service_state_for_service(svc)}"',
+        f'has service_origin {literal_string(origin)}',
     ]
     category = fixture_category_for_service(svc)
     attrs.append(f'has fixture_category {literal_string(category)}')
@@ -391,6 +457,8 @@ def bootstrap_map(
         if not schema_already_loaded(driver, db_name):
             apply_schema(driver, db_name)
             report.applied_schema = True
+        else:
+            report.applied_schema_extensions = apply_schema_extensions(driver, db_name)
         seed_nuggets(driver, db_name, report)
         seed_services(driver, db_name, report)
 

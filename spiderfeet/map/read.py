@@ -29,6 +29,7 @@ class ForceGraphNode:
     label: str
     colour: Optional[str] = None
     service_state: Optional[str] = None
+    service_origin: Optional[str] = None
     fixture_category: Optional[str] = None
     requires_api_key: Optional[bool] = None
     icon: Optional[str] = None
@@ -208,5 +209,6 @@ def export_force_graph(
         cat_row = catalog.get(node.id)
         if cat_row is not None:
             node.requires_api_key = requires_api_key(cat_row)
+            node.service_origin = str(cat_row.get("service_origin") or "external")
 
     return ForceGraphExport(nodes=list(nodes.values()), links=links)

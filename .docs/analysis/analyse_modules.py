@@ -26,7 +26,11 @@ ACCESS_TIER_BY_MODEL: dict[str, str] = {
     "FREE_AUTH_UNLIMITED": "free_auth",
     "COMMERCIAL_ONLY": "paid",
     "PRIVATE_ONLY": "paid",
+    "LOCAL_NOAUTH": "free_no_auth",
 }
+
+QUARANTINE_OVERRIDES_FILE = Path(__file__).resolve().parent / "quarantine_catalogue_overrides.json"
+CORE_NON_OSINT_MODULE_IDS = frozenset({"sfp__stor_db", "sfp__stor_stdout"})
 
 CONSUMPTION_GROUPS = frozenset({
     "domain",
@@ -273,6 +277,65 @@ def merge_module_opts(
     return merged
 
 
+def service_icon_path(module_id: str) -> str:
+    slug = module_id.replace("sfp_", "", 1) if module_id.startswith("sfp_") else module_id
+    return f"icons/icon_service_{slug}.svg"
+
+
+def local_data_source(module_id: str, meta: dict) -> dict[str, Any]:
+    """Synthetic data_source for quarantine / local SpiderFeet modules (SPEC-003)."""
+    summary = str(meta.get("summary") or meta.get("name") or module_id)
+    website = f"spiderfeet://local/{module_id}"
+    return {
+        "website": website,
+        "model": "LOCAL_NOAUTH",
+        "references": [website],
+        "fav_icon": service_icon_path(module_id),
+        "description": summary,
+    }
+
+
+def build_service_record(
+    module_id: str,
+    meta: dict,
+    watched_events: list[str],
+    produced_events: list[str],
+    module_opts: list[dict[str, Any]],
+    *,
+    data_source: dict[str, Any] | None = None,
+    service_origin: str = "external",
+) -> dict:
+    """Flatten meta onto the service root and snake_case all field names."""
+    raw = snake_case_keys({
+        "module_id": module_id,
+        **meta,
+    })
+    ds = data_source if data_source is not None else (raw.get("data_source") or {})
+    model = ds.get("model")
+    consumed = list(watched_events)
+    produced = list(produced_events)
+
+    return {
+        "module_id": raw.get("module_id", module_id),
+        "service_origin": service_origin,
+        "name": raw.get("name"),
+        "summary": raw.get("summary"),
+        "flags": raw.get("flags", []),
+        "use_cases": raw.get("use_cases", []),
+        "categories": raw.get("categories", []),
+        "data_source": ds,
+        "access_tier": access_tier(model),
+        "consumed_nuggets": consumed,
+        "produced_nuggets": produced,
+        "consumption_group": consumption_group(consumed),
+        "route_seed_nugget": route_seed_nugget(consumed),
+        "module_opts": module_opts,
+        "fixture_category": "positive",
+        "service_state": "in-test",
+        **({"tool_details": raw["tool_details"]} if "tool_details" in raw else {}),
+    }
+
+
 def build_service(
     module_id: str,
     meta: dict,
@@ -280,32 +343,17 @@ def build_service(
     produced_events: list[str],
     module_opts: list[dict[str, Any]],
 ) -> dict:
-    """Flatten meta onto the service root and snake_case all field names."""
-    raw = snake_case_keys({
-        "module_id": module_id,
-        **meta,
-    })
-    data_source = raw.get("data_source") or {}
-    model = data_source.get("model")
-    consumed = list(watched_events)
-    produced = list(produced_events)
-
-    return {
-        "module_id": raw.get("module_id", module_id),
-        "name": raw.get("name"),
-        "summary": raw.get("summary"),
-        "flags": raw.get("flags", []),
-        "use_cases": raw.get("use_cases", []),
-        "categories": raw.get("categories", []),
-        "data_source": data_source,
-        "access_tier": access_tier(model),
-        "consumed_nuggets": consumed,
-        "produced_nuggets": produced,
-        "consumption_group": consumption_group(consumed),
-        "route_seed_nugget": route_seed_nugget(consumed),
-        "module_opts": module_opts,
-        **({"tool_details": raw["tool_details"]} if "tool_details" in raw else {}),
-    }
+    rec = build_service_record(
+        module_id,
+        meta,
+        watched_events,
+        produced_events,
+        module_opts,
+        service_origin="external",
+    )
+    rec.pop("fixture_category", None)
+    rec.pop("service_state", None)
+    return rec
 
 
 def literal_value(node: ast.AST | None):
@@ -383,11 +431,55 @@ def method_return_list(class_node: ast.ClassDef, method_name: str) -> list[str] 
             continue
         for stmt in node.body:
             if isinstance(stmt, ast.Return) and stmt.value is not None:
-                value = literal_value(stmt.value)
+                if isinstance(stmt.value, ast.Name):
+                    return _resolve_list_var(node, stmt.value.id)
+                try:
+                    value = literal_value(stmt.value)
+                except ValueError:
+                    return None
                 if isinstance(value, list):
                     return [str(item) for item in value]
                 return None
     return None
+
+
+def _resolve_list_var(func_node: ast.FunctionDef, var_name: str) -> list[str] | None:
+    """Best-effort: ret = [...]; ret.append('X'); return ret."""
+    lists: dict[str, list[str]] = {}
+    for stmt in func_node.body:
+        if isinstance(stmt, ast.Assign):
+            for target in stmt.targets:
+                if isinstance(target, ast.Name) and isinstance(stmt.value, ast.List):
+                    try:
+                        raw = literal_value(stmt.value)
+                        if isinstance(raw, list):
+                            lists[target.id] = [str(x) for x in raw]
+                    except ValueError:
+                        pass
+        if isinstance(stmt, ast.Expr) and isinstance(stmt.value, ast.Call):
+            call = stmt.value
+            if (
+                isinstance(call.func, ast.Attribute)
+                and call.func.attr == "append"
+                and isinstance(call.func.value, ast.Name)
+                and call.args
+            ):
+                var = call.func.value.id
+                if var in lists:
+                    try:
+                        item = literal_value(call.args[0])
+                        if isinstance(item, str):
+                            lists[var].append(item)
+                    except ValueError:
+                        pass
+    return lists.get(var_name)
+
+
+def load_quarantine_overrides() -> dict[str, dict[str, Any]]:
+    if not QUARANTINE_OVERRIDES_FILE.is_file():
+        return {}
+    with QUARANTINE_OVERRIDES_FILE.open(encoding="utf-8") as handle:
+        return json.load(handle)
 
 
 def parse_module(path: Path) -> dict | None:
@@ -419,6 +511,66 @@ def parse_module(path: Path) -> dict | None:
     return build_service(path.stem, meta, watched_events, produced_events, module_opts)
 
 
+def parse_quarantine_module(path: Path) -> dict | None:
+    if path.stem in CORE_NON_OSINT_MODULE_IDS:
+        return None
+
+    source = path.read_text(encoding="utf-8")
+    tree = ast.parse(source, filename=str(path))
+
+    plugin_class = find_plugin_class(tree)
+    if plugin_class is None:
+        return None
+
+    meta_node = class_assignment(plugin_class, "meta")
+    if meta_node is None:
+        return None
+
+    try:
+        meta = literal_value(meta_node)
+    except ValueError:
+        return None
+
+    if not isinstance(meta, dict) or "dataSource" in meta:
+        return None
+
+    watched_events = method_return_list(plugin_class, "watchedEvents") or []
+    produced_events = method_return_list(plugin_class, "producedEvents") or []
+    overrides = load_quarantine_overrides().get(path.stem, {})
+    if overrides.get("consumed_nuggets"):
+        watched_events = list(overrides["consumed_nuggets"])
+    if overrides.get("produced_nuggets"):
+        produced_events = list(overrides["produced_nuggets"])
+
+    opts = parse_class_dict(plugin_class, "opts") or {}
+    optdescs = parse_class_dict(plugin_class, "optdescs") or {}
+    module_opts = merge_module_opts(opts, optdescs)
+
+    return build_service_record(
+        path.stem,
+        meta,
+        watched_events,
+        produced_events,
+        module_opts,
+        data_source=local_data_source(path.stem, meta),
+        service_origin="quarantine",
+    )
+
+
+def analyse_quarantine_modules() -> list[dict]:
+    services: list[dict] = []
+    for path in sorted(MODULES_DIR.glob("sfp_*.py")):
+        try:
+            service = parse_quarantine_module(path)
+        except SyntaxError:
+            continue
+        if service is None:
+            continue
+        services.append(service)
+    services.sort(key=lambda item: item["module_id"])
+    return services
+
+
 def analyse_modules() -> list[dict]:
     services: list[dict] = []
     skipped: list[str] = []
@@ -438,24 +590,34 @@ def analyse_modules() -> list[dict]:
     return services
 
 
+def _print_summary(label: str, services: list[dict]) -> None:
+    tiers: dict[str, int] = {}
+    origins: dict[str, int] = {}
+    for service in services:
+        tiers[service["access_tier"]] = tiers.get(service["access_tier"], 0) + 1
+        origin = str(service.get("service_origin") or "external")
+        origins[origin] = origins.get(origin, 0) + 1
+    print(f"{label}: {len(services)} services")
+    print(f"  access_tier: {dict(sorted(tiers.items()))}")
+    print(f"  service_origin: {dict(sorted(origins.items()))}")
+
+
 def main() -> None:
+    import sys
+
+    if "--quarantine-only" in sys.argv:
+        services = analyse_quarantine_modules()
+        out = Path(__file__).resolve().parent / "quarantine_services.json"
+        out.write_text(json.dumps(services, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        _print_summary(f"Wrote quarantine catalogue to {out}", services)
+        return
+
     services = analyse_modules()
     OUTPUT_FILE.write_text(
         json.dumps(services, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
-    tiers = {}
-    groups = {}
-    opt_counts = {}
-    for service in services:
-        tiers[service["access_tier"]] = tiers.get(service["access_tier"], 0) + 1
-        groups[service["consumption_group"]] = groups.get(service["consumption_group"], 0) + 1
-        count = len(service.get("module_opts", []))
-        opt_counts[count] = opt_counts.get(count, 0) + 1
-    print(f"Wrote {len(services)} OSINT services to {OUTPUT_FILE}")
-    print(f"  access_tier: {dict(sorted(tiers.items()))}")
-    print(f"  consumption_group: {dict(sorted(groups.items(), key=lambda x: -x[1]))}")
-    print(f"  module_opts count distribution: {dict(sorted(opt_counts.items()))}")
+    _print_summary(f"Wrote external OSINT services to {OUTPUT_FILE}", services)
 
 
 if __name__ == "__main__":
