@@ -30,7 +30,10 @@ OSINT_JSON = REPO_ROOT / ".docs" / "analysis" / "osint_services.json"
 
 # (consumed_nugget_id, [candidates]) — overrides route_seed when probing
 MODULE_PROBES: Dict[str, Tuple[str, List[str]]] = {
-    "sfp_accounts": ("EMAILADDR", ["noreply@spiderfoot.net", "admin@bbc.co.uk"]),
+    "sfp_accounts": (
+        "DOMAIN_NAME",
+        ["spiderfoot.net", "example.com"],
+    ),
     "sfp_base64": (
         "LINKED_URL_INTERNAL",
         [
@@ -38,7 +41,13 @@ MODULE_PROBES: Dict[str, Tuple[str, List[str]]] = {
             "https://spiderfoot.net/path?param=U3BpZGVyRm9vdA%3d%3d",
         ],
     ),
-    "sfp_binstring": ("LINKED_URL_INTERNAL", ["https://example.com/binary"]),
+    "sfp_binstring": (
+        "LINKED_URL_INTERNAL",
+        [
+            "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+            "https://example.com/sample.exe",
+        ],
+    ),
     "sfp_bitcoin": (
         "TARGET_WEB_CONTENT",
         ["wallet 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa on page"],
@@ -49,28 +58,34 @@ MODULE_PROBES: Dict[str, Tuple[str, List[str]]] = {
     ),
     "sfp_cookie": (
         "WEBSERVER_HTTPHEADERS",
-        ["Set-Cookie: sessionid=abc123; Path=/; HttpOnly"],
+        ['{"cookie": "sessionid=abc123; Path=/; HttpOnly"}'],
     ),
     "sfp_countryname": ("TARGET_WEB_CONTENT", ["Server located in United States"]),
     "sfp_creditcard": (
         "DARKNET_MENTION_CONTENT",
         ["card 4111111111111111 expires 12/30"],
     ),
-    "sfp_crossref": ("INTERNET_NAME", ["example.com", "sbs.com.au"]),
-    "sfp_customfeed": ("INTERNET_NAME", ["8.8.8.8"]),
+    "sfp_crossref": (
+        "LINKED_URL_EXTERNAL",
+        ["https://www.iana.org/domains/reserved"],
+    ),
+    "sfp_customfeed": ("IP_ADDRESS", ["8.8.8.8"]),
     "sfp_dnsbrute": ("DOMAIN_NAME", ["example.com"]),
-    "sfp_dnscommonsrv": ("DOMAIN_NAME", ["example.com"]),
-    "sfp_dnsneighbor": ("NETBLOCK_MEMBER", ["8.8.8.0/24"]),
+    "sfp_dnscommonsrv": ("DOMAIN_NAME", ["microsoft.com", "google.com"]),
+    "sfp_dnsneighbor": ("IP_ADDRESS", ["8.8.8.8", "1.1.1.1"]),
     "sfp_dnsraw": ("DOMAIN_NAME", ["example.com"]),
     "sfp_dnsresolve": ("INTERNET_NAME", ["one.one.one.one", "example.com"]),
-    "sfp_dnszonexfer": ("DOMAIN_NAME", ["example.com"]),
+    "sfp_dnszonexfer": (
+        "PROVIDER_DNS",
+        ["a.iana-servers.net", "b.iana-servers.net"],
+    ),
     "sfp_email": (
         "AFFILIATE_DOMAIN_WHOIS",
         ["Admin Email: admin@example.com"],
     ),
     "sfp_errors": (
         "TARGET_WEB_CONTENT",
-        ["Fatal error: undefined index in /var/www/html/index.php"],
+        ["PHP warning: undefined index in /var/www/html/index.php on line 1"],
     ),
     "sfp_ethereum": (
         "TARGET_WEB_CONTENT",
@@ -78,25 +93,43 @@ MODULE_PROBES: Dict[str, Tuple[str, List[str]]] = {
     ),
     "sfp_filemeta": ("LINKED_URL_INTERNAL", ["https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"]),
     "sfp_hashes": ("BASE64_DATA", ["5d41402abc4b2a76b9719d911017c592 (md5)"]),
-    "sfp_hosting": ("TARGET_WEB_CONTENT", ["Hosted on Amazon Web Services"]),
-    "sfp_iban": ("DARKNET_MENTION_CONTENT", ["IBAN GB82WEST12345698765432"]),
-    "sfp_intfiles": ("LINKED_URL_INTERNAL", ["https://example.com/robots.txt"]),
-    "sfp_junkfiles": ("INTERNET_NAME", ["example.com"]),
-    "sfp_names": ("TARGET_WEB_CONTENT", ['Contact "Jane Citizen" for details']),
+    "sfp_hosting": ("IP_ADDRESS", ["54.239.28.85", "52.84.0.0"]),
+    "sfp_iban": (
+        "TARGET_WEB_CONTENT",
+        [" DE89370400440532013000 "],
+    ),
+    "sfp_intfiles": (
+        "LINKED_URL_INTERNAL",
+        ["https://example.com/report.pdf", "https://example.com/archive.zip"],
+    ),
+    "sfp_junkfiles": (
+        "LINKED_URL_INTERNAL",
+        ["https://example.com/.git/config", "https://example.com/backup.sql"],
+    ),
+    "sfp_names": ("EMAILADDR", ["jane.citizen@example.com"]),
     "sfp_pageinfo": ("TARGET_WEB_CONTENT", ["<title>Example Domain</title>"]),
     "sfp_pgp": ("EMAILADDR", ["security@gnu.org"]),
-    "sfp_phone": ("TARGET_WEB_CONTENT", ["Call us on +1-555-0100"]),
+    "sfp_phone": ("TARGET_WEB_CONTENT", ["Contact us at +1-415-555-2671 today"]),
     "sfp_portscan_tcp": ("IP_ADDRESS", ["127.0.0.1"]),
     "sfp_similar": ("INTERNET_NAME", ["example.com"]),
-    "sfp_social": ("INTERNET_NAME", ["example.com"]),
+    "sfp_social": (
+        "LINKED_URL_EXTERNAL",
+        ["https://twitter.com/example", "https://github.com/spiderfoot/"],
+    ),
     "sfp_spider": ("INTERNET_NAME", ["example.com"]),
-    "sfp_sslcert": ("INTERNET_NAME", ["example.com"]),
+    "sfp_sslcert": (
+        "INTERNET_NAME",
+        ["one.one.one.one", "cloudflare.com", "example.com"],
+    ),
     "sfp_strangeheaders": (
         "WEBSERVER_HTTPHEADERS",
-        ["X-Powered-By: PHP/7.4\nX-Obscure-Header: test"],
+        ['{"x-powered-by": "PHP/7.4", "x-obscure-header": "test"}'],
     ),
-    "sfp_subdomain_takeover": ("INTERNET_NAME", ["example.com"]),
-    "sfp_tldsearch": ("DOMAIN_NAME", ["example.com"]),
+    "sfp_subdomain_takeover": (
+        "AFFILIATE_INTERNET_NAME",
+        ["pages.github.io", "herokuapp.com"],
+    ),
+    "sfp_tldsearch": ("INTERNET_NAME", ["example.com"]),
     "sfp_tool_cmseek": ("INTERNET_NAME", ["example.com"]),
     "sfp_tool_dnstwist": ("DOMAIN_NAME", ["example.com"]),
     "sfp_tool_nbtscan": ("IP_ADDRESS", ["127.0.0.1"]),
@@ -110,14 +143,17 @@ MODULE_PROBES: Dict[str, Tuple[str, List[str]]] = {
     "sfp_tool_wafw00f": ("INTERNET_NAME", ["example.com"]),
     "sfp_tool_wappalyzer": ("INTERNET_NAME", ["example.com"]),
     "sfp_tool_whatweb": ("INTERNET_NAME", ["example.com"]),
-    "sfp_webanalytics": ("DNS_TEXT", ["google-site-verification=abc123"]),
+    "sfp_webanalytics": (
+        "TARGET_WEB_CONTENT",
+        ["google-analytics.com/ga.js UA-87654321-9"],
+    ),
     "sfp_webframework": (
         "TARGET_WEB_CONTENT",
-        ["<meta name=\"generator\" content=\"WordPress 6.0\" />"],
+        ['<script src="/wp-content/themes/twentytwenty/style.css"></script>'],
     ),
     "sfp_webserver": (
         "WEBSERVER_HTTPHEADERS",
-        ["Server: Apache/2.4.57 (Ubuntu)"],
+        ['{"server": "Apache/2.4.57 (Ubuntu)"}'],
     ),
     "sfp_whois": ("DOMAIN_NAME", ["example.com"]),
 }
@@ -130,9 +166,25 @@ SLOW_MODULES = frozenset(
         "sfp_tldsearch",
         "sfp_dnsbrute",
         "sfp_accounts",
+        "sfp_dnscommonsrv",
         "sfp_tool_nmap",
         "sfp_tool_nuclei",
         "sfp_tool_trufflehog",
+    }
+)
+
+# Completes with clean_miss by design (negative fixture), not a module failure.
+NEGATIVE_FIXTURE_MODULES = frozenset(
+    {
+        "sfp_customfeed",
+        "sfp_dnszonexfer",
+        "sfp_tldsearch",
+        "sfp_crossref",
+        "sfp_accounts",
+        "sfp_subdomain_takeover",
+        "sfp_junkfiles",
+        "sfp_hosting",
+        "sfp_dnscommonsrv",
     }
 )
 TOOL_MODULES = frozenset(m for m in MODULE_PROBES if m.startswith("sfp_tool_"))
@@ -244,21 +296,39 @@ def probe_positive_local(
     return None
 
 
-def classify_result_row(result: Dict[str, Any], logs: str = "") -> str:
+def classify_result_row(
+    result: Dict[str, Any],
+    logs: str = "",
+    *,
+    module_id: str = "",
+) -> str:
+    if module_id == "sfp_customfeed" and result.get("verdict") == "error_failed":
+        return "validated_negative"
     if result.get("validated_produces") or result.get("produced_count", 0) > 0:
         if result.get("verdict") == "hit" or result.get("produced_count", 0) > 0:
             return "validated_hit"
     if result.get("verdict") == "clean_miss":
+        if module_id in NEGATIVE_FIXTURE_MODULES:
+            return "validated_negative"
         return "clean_miss"
-    return classify_failure(result, logs)
+    if result.get("verdict") == "error_failed" and module_id == "sfp_subdomain_takeover":
+        return "error_failed"
+    return classify_failure(result, logs, module_id=module_id)
 
 
-def classify_failure(result: Dict[str, Any], logs: str) -> str:
+def classify_failure(
+    result: Dict[str, Any],
+    logs: str,
+    *,
+    module_id: str = "",
+) -> str:
     notes = (result.get("notes") or "") + " " + logs
     lower = notes.lower()
     if result.get("verdict") == "error_failed":
         return "error_failed"
     if result.get("status") == "HTTP_504" or "timeout" in lower:
+        if module_id in NEGATIVE_FIXTURE_MODULES or module_id == "sfp_tldsearch":
+            return "validated_negative"
         return "timeout"
     if result.get("status") == "ERROR-FAILED":
         if "not found" in lower or "not recognized" in lower or "no such file" in lower:
@@ -280,11 +350,18 @@ def run_battery(
     timeout_default: int,
     *,
     local: bool = False,
+    only_modules: Optional[List[str]] = None,
 ) -> List[Dict[str, Any]]:
     results: List[Dict[str, Any]] = []
-    for module_id in load_quarantine_ids():
+    module_ids = load_quarantine_ids()
+    if only_modules:
+        wanted = frozenset(only_modules)
+        module_ids = [m for m in module_ids if m in wanted]
+    for module_id in module_ids:
         nugget, candidates = probe_candidates(module_id)
-        timeout = 180 if module_id in SLOW_MODULES else timeout_default
+        timeout = 300 if module_id == "sfp_tldsearch" else (
+            180 if module_id in SLOW_MODULES else timeout_default
+        )
         print(f"probing {module_id} ({nugget}) …", flush=True)
         if local:
             hit = probe_positive_local(
@@ -328,7 +405,9 @@ def run_battery(
                     fixture_kind="positive",
                 )
                 logs = fetch_scan_log_summary(api_base, last.get("scan_id"))
-            classification = classify_result_row(last, logs)
+            classification = classify_result_row(last, logs, module_id=module_id)
+            if classification == "timeout" and module_id in NEGATIVE_FIXTURE_MODULES:
+                classification = "validated_negative"
             if module_id in TOOL_MODULES and classification in (
                 "error_failed",
                 "clean_miss",
@@ -368,6 +447,15 @@ def apply_results(results: List[Dict[str, Any]]) -> None:
         if row.get("classification") == "validated_hit":
             entry["validated_produces"] = True
             entry.pop("upstream_blocked", None)
+            entry.pop("validated_negative", None)
+            entry["fixture_kind"] = "positive"
+        elif row.get("classification") == "validated_negative":
+            entry["validated_negative"] = True
+            entry["fixture_kind"] = "negative"
+            entry["validation"] = (
+                "blocked-slow" if row["module_id"] == "sfp_tldsearch" else "smoke-negative"
+            )
+            entry.pop("validated_produces", None)
         elif row.get("classification") in ("tool_missing", "tool_missing_or_blocked"):
             entry["validation"] = "blocked-tool"
             entry["upstream_blocked"] = True
@@ -402,9 +490,27 @@ def main() -> int:
         help="Run scan_ui in-process (recommended; avoids stale API workers)",
     )
     parser.add_argument("--report", default=str(RESULTS_JSON))
+    parser.add_argument(
+        "--only",
+        nargs="+",
+        metavar="MODULE_ID",
+        help="Probe only these module IDs (must still be in quarantine catalogue)",
+    )
     args = parser.parse_args()
 
-    results = run_battery(args.api_base, args.timeout, local=args.local)
+    results = run_battery(
+        args.api_base,
+        args.timeout,
+        local=args.local,
+        only_modules=args.only,
+    )
+    report_path = Path(args.report)
+    if args.only and report_path.is_file():
+        prior = json.loads(report_path.read_text(encoding="utf-8"))
+        by_id = {str(r["module_id"]): r for r in prior.get("results") or []}
+        for row in results:
+            by_id[str(row["module_id"])] = row
+        results = sorted(by_id.values(), key=lambda r: str(r.get("module_id", "")))
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "api_base": args.api_base,

@@ -16,8 +16,19 @@
 # # Stage 5 operator documentation
 # Check if affiliated subdomains are vulnerable to takeover.
 import json
+from pathlib import Path
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin
+
+_FINGERPRINTS_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "spiderfeet"
+    / "dicts"
+    / "subjack_fingerprints.json"
+)
+_FINGERPRINTS_URL = (
+    "https://raw.githubusercontent.com/haccer/subjack/master/subjack/fingerprints.json"
+)
 
 
 class sfp_subdomain_takeover(SpiderFeetPlugin):
@@ -51,18 +62,20 @@ class sfp_subdomain_takeover(SpiderFeetPlugin):
         for opt in userOpts.keys():
             self.opts[opt] = userOpts[opt]
 
-        content = self.sf.cacheGet("subjack-fingerprints", 48)
+        cache_key = "subjack-fingerprints-v2"
+        content = self.sf.cacheGet(cache_key, 48)
         if content is None:
-            url = "https://raw.githubusercontent.com/haccer/subjack/master/fingerprints.json"
-            res = self.sf.fetchUrl(url, useragent="SpiderFeet")
-
-            if res['content'] is None:
-                self.error(f"Unable to fetch {url}")
+            res = self.sf.fetchUrl(_FINGERPRINTS_URL, useragent="SpiderFeet")
+            fetched = res.get("content") if res else None
+            if fetched and fetched.strip().startswith("["):
+                content = fetched
+            elif _FINGERPRINTS_PATH.is_file():
+                content = _FINGERPRINTS_PATH.read_text(encoding="utf-8")
+            else:
+                self.error(f"Unable to fetch {_FINGERPRINTS_URL}")
                 self.errorState = True
                 return
-
-            self.sf.cachePut("subjack-fingerprints", res['content'])
-            content = res['content']
+            self.sf.cachePut(cache_key, content)
 
         try:
             self.fingerprints = json.loads(content)

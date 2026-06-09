@@ -16,7 +16,15 @@ def test_payload_nugget_webserver_headers():
     headers = "Server: nginx\r\nSet-Cookie: a=b"
     anchor, typ, seed = resolve_scan_ui_seed("WEBSERVER_HTTPHEADERS", headers)
     assert typ == "INTERNET_NAME"
+    assert anchor == "example.com"
     assert seed == ("WEBSERVER_HTTPHEADERS", headers)
+
+
+def test_linked_url_external_uses_host_anchor():
+    url = "https://twitter.com/example"
+    anchor, typ, seed = resolve_scan_ui_seed("LINKED_URL_EXTERNAL", url)
+    assert anchor == "twitter.com"
+    assert seed == ("LINKED_URL_EXTERNAL", url)
 
 
 def test_linked_url_internal_payload_seed():

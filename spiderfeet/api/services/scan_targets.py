@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from urllib.parse import urlparse
+
 from spiderfeet import SpiderFeetHelpers
 
 # Catalogue nugget types used as explicit scan seeds (not CLI-regex inferrable).
@@ -25,6 +27,7 @@ PAYLOAD_NUGGET_TYPES = frozenset(
         "DOMAIN_WHOIS",
         "LEAKSITE_CONTENT",
         "LINKED_URL_INTERNAL",
+        "LINKED_URL_EXTERNAL",
         "NETBLOCK_WHOIS",
         "RAW_DNS_RECORDS",
         "RAW_FILE_META_DATA",
@@ -35,6 +38,7 @@ PAYLOAD_NUGGET_TYPES = frozenset(
         "TCP_PORT_OPEN_BANNER",
         "WEBSERVER_BANNER",
         "WEBSERVER_HTTPHEADERS",
+        "PROVIDER_DNS",
     }
 )
 
@@ -68,10 +72,12 @@ def resolve_scan_ui_seed(
 
     if nugget_id in PAYLOAD_NUGGET_TYPES:
         anchor = "example.com"
-        for token in data.replace("/", " ").split():
-            if SpiderFeetHelpers.targetTypeFromString(token) == "INTERNET_NAME":
-                anchor = token.lower()
-                break
+        if nugget_id in ("LINKED_URL_INTERNAL", "LINKED_URL_EXTERNAL") and data.lower().startswith(
+            ("http://", "https://")
+        ):
+            host = urlparse(data).hostname
+            if host:
+                anchor = host.lower()
         return anchor, "INTERNET_NAME", (nugget_id, data)
 
     inferred = SpiderFeetHelpers.targetTypeFromString(data)
