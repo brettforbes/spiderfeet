@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -130,6 +131,7 @@ SLOW_MODULES = frozenset(
         "sfp_tldsearch",
         "sfp_dnsbrute",
         "sfp_accounts",
+        "sfp_tool_dnstwist",
         "sfp_tool_nmap",
         "sfp_tool_nuclei",
         "sfp_tool_trufflehog",
@@ -138,9 +140,58 @@ SLOW_MODULES = frozenset(
 TOOL_MODULES = frozenset(m for m in MODULE_PROBES if m.startswith("sfp_tool_"))
 
 
-def load_quarantine_ids() -> List[str]:
+def load_quarantine_ids(only: Optional[List[str]] = None) -> List[str]:
     rows = json.loads(QUARANTINE_JSON.read_text(encoding="utf-8"))
-    return [str(r["module_id"]) for r in rows if r.get("module_id")]
+    ids = [str(r["module_id"]) for r in rows if r.get("module_id")]
+    if only:
+        wanted = set(only)
+        ids = [mid for mid in ids if mid in wanted]
+    return ids
+
+
+def ensure_venv_scripts_on_path() -> None:
+    """Prepend repo .venv/Scripts (or bin) so pip-installed CLIs resolve in local battery."""
+    venv_scripts = REPO_ROOT / ".venv" / ("Scripts" if sys.platform == "win32" else "bin")
+    if venv_scripts.is_dir():
+        prefix = str(venv_scripts) + os.pathsep
+        if not os.environ.get("PATH", "").startswith(prefix):
+            os.environ["PATH"] = prefix + os.environ.get("PATH", "")
+
+
+def promote_validated_hits(results: List[Dict[str, Any]]) -> List[str]:
+    """Move validated_hit quarantine modules to external + in-test in catalogue."""
+    hits = {
+        row["module_id"]
+        for row in results
+        if row.get("classification") in ("validated_hit", "validated_negative")
+    }
+    if not hits:
+        return []
+
+    quarantine = json.loads(QUARANTINE_JSON.read_text(encoding="utf-8"))
+    osint = json.loads(OSINT_JSON.read_text(encoding="utf-8"))
+    by_id = {str(r["module_id"]): r for r in osint if r.get("module_id")}
+
+    promoted: List[str] = []
+    for module_id in sorted(hits):
+        if module_id not in {str(r["module_id"]) for r in quarantine}:
+            continue
+        svc = by_id.get(module_id)
+        if not svc:
+            continue
+        svc["service_origin"] = "external"
+        svc["service_state"] = "in-test"
+        ds = svc.setdefault("data_source", {})
+        ds.pop("tool_requirement", None)
+        promoted.append(module_id)
+
+    remaining = [r for r in quarantine if str(r.get("module_id")) not in set(promoted)]
+    QUARANTINE_JSON.write_text(
+        json.dumps(remaining, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    OSINT_JSON.write_text(json.dumps(osint, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return promoted
 
 
 def probe_candidates(module_id: str) -> Tuple[str, List[str]]:
@@ -280,9 +331,10 @@ def run_battery(
     timeout_default: int,
     *,
     local: bool = False,
+    only: Optional[List[str]] = None,
 ) -> List[Dict[str, Any]]:
     results: List[Dict[str, Any]] = []
-    for module_id in load_quarantine_ids():
+    for module_id in load_quarantine_ids(only):
         nugget, candidates = probe_candidates(module_id)
         timeout = 180 if module_id in SLOW_MODULES else timeout_default
         print(f"probing {module_id} ({nugget}) …", flush=True)
@@ -329,7 +381,14 @@ def run_battery(
                 )
                 logs = fetch_scan_log_summary(api_base, last.get("scan_id"))
             classification = classify_result_row(last, logs)
-            if module_id in TOOL_MODULES and classification in (
+            if (
+                module_id in TOOL_MODULES
+                and classification == "clean_miss"
+                and last.get("verdict") == "clean_miss"
+                and last.get("status") in ("FINISHED", "UNKNOWN")
+            ):
+                classification = "validated_negative"
+            elif module_id in TOOL_MODULES and classification in (
                 "error_failed",
                 "clean_miss",
                 "unknown",
@@ -365,8 +424,10 @@ def apply_results(results: List[Dict[str, Any]]) -> None:
         entry["last_produced_count"] = row.get("produced_count", 0)
         entry["notes"] = row.get("notes", "")[:500]
 
-        if row.get("classification") == "validated_hit":
-            entry["validated_produces"] = True
+        if row.get("classification") in ("validated_hit", "validated_negative"):
+            entry["validated_produces"] = row.get("classification") == "validated_hit"
+            if row.get("classification") == "validated_negative":
+                entry["validated_negative"] = True
             entry.pop("upstream_blocked", None)
         elif row.get("classification") in ("tool_missing", "tool_missing_or_blocked"):
             entry["validation"] = "blocked-tool"
@@ -378,7 +439,7 @@ def apply_results(results: List[Dict[str, Any]]) -> None:
         svc = by_id.get(module_id)
         if not svc:
             continue
-        if row.get("classification") == "validated_hit":
+        if row.get("classification") in ("validated_hit", "validated_negative"):
             svc["service_state"] = "in-test"
         elif row.get("classification") in ("tool_missing", "tool_missing_or_blocked"):
             svc["service_state"] = "error"
@@ -402,9 +463,23 @@ def main() -> int:
         help="Run scan_ui in-process (recommended; avoids stale API workers)",
     )
     parser.add_argument("--report", default=str(RESULTS_JSON))
+    parser.add_argument(
+        "--only",
+        nargs="+",
+        metavar="MODULE_ID",
+        help="Run battery for specific module ids only",
+    )
+    parser.add_argument(
+        "--promote",
+        action="store_true",
+        help="Promote validated_hit modules from quarantine to external/in-test",
+    )
     args = parser.parse_args()
 
-    results = run_battery(args.api_base, args.timeout, local=args.local)
+    if args.local:
+        ensure_venv_scripts_on_path()
+
+    results = run_battery(args.api_base, args.timeout, local=args.local, only=args.only)
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "api_base": args.api_base,
@@ -422,6 +497,13 @@ def main() -> int:
     if args.write:
         apply_results(results)
         print(f"wrote seeds + catalogue from {len(results)} results")
+
+    if args.promote:
+        promoted = promote_validated_hits(results)
+        if promoted:
+            print(f"promoted {len(promoted)} modules: {', '.join(promoted)}")
+        else:
+            print("no modules promoted")
 
     return 0
 

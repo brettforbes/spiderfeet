@@ -2088,11 +2088,11 @@
       "DOMAIN_NAME": {
         "input_value": "example.com",
         "region": "global",
-        "validation": "blocked-tool",
-        "last_verdict": "error_failed",
-        "last_produced_count": 0,
-        "notes": "",
-        "upstream_blocked": true
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 106,
+        "notes": "status=UNKNOWN; verdict=hit; produced=106",
+        "validated_produces": true
       }
     },
     "sfp_tool_nbtscan": {
@@ -2157,11 +2157,12 @@
       "INTERNET_NAME": {
         "input_value": "example.com",
         "region": "global",
-        "validation": "blocked-tool",
-        "last_verdict": "error_failed",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
         "last_produced_count": 0,
         "notes": "",
-        "upstream_blocked": true
+        "validated_produces": false,
+        "validated_negative": true
       }
     },
     "sfp_tool_testsslsh": {
@@ -2191,12 +2192,12 @@
       "INTERNET_NAME": {
         "input_value": "example.com",
         "region": "global",
-        "validation": "blocked-tool",
-        "last_verdict": "error_failed",
-        "last_produced_count": 0,
-        "notes": "",
-        "upstream_blocked": true,
-        "service_state_note": "error_failed"
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 3,
+        "notes": "status=UNKNOWN; verdict=hit; produced=3",
+        "service_state_note": "error_failed",
+        "validated_produces": true
       }
     },
     "sfp_tool_wappalyzer": {

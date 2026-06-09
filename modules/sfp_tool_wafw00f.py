@@ -16,6 +16,7 @@
 # Identify what web application firewall (WAF) is in use on the specified website.
 import json
 import os.path
+from shutil import which
 from subprocess import PIPE, Popen, TimeoutExpired
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin, SpiderFeetHelpers
@@ -43,7 +44,7 @@ class sfp_tool_wafw00f(SpiderFeetPlugin):
 
     optdescs = {
         'python_path': "Path to Python 3 interpreter to use for wafw00f. If just 'python3' then it must be in your $PATH.",
-        'wafw00f_path': "Path to the wafw00f executable file. Must be set."
+        'wafw00f_path': "Path to the wafw00f executable file. Optional if wafw00f is on PATH."
     }
 
     results = None
@@ -64,6 +65,25 @@ class sfp_tool_wafw00f(SpiderFeetPlugin):
     def producedEvents(self):
         return ['RAW_RIR_DATA', 'WEBSERVER_TECHNOLOGY']
 
+    def _wafw00f_command(self, url: str):
+        wafw00f_on_path = which('wafw00f')
+        if wafw00f_on_path and os.path.isfile(wafw00f_on_path):
+            return [wafw00f_on_path, '-a', '-o-', '-f', 'json', url]
+
+        if not self.opts['wafw00f_path']:
+            self.error("You enabled sfp_tool_wafw00f but did not set a path to the tool!")
+            return None
+
+        exe = self.opts['wafw00f_path']
+        if self.opts['wafw00f_path'].endswith('/'):
+            exe = exe + 'wafw00f'
+
+        if not os.path.isfile(exe):
+            self.error(f"File does not exist: {exe}")
+            return None
+
+        return [self.opts['python_path'], exe, '-a', '-o-', '-f', 'json', url]
+
     def handleEvent(self, event):
         eventName = event.eventType
         srcModuleName = event.module
@@ -80,35 +100,16 @@ class sfp_tool_wafw00f(SpiderFeetPlugin):
 
         self.results[eventData] = True
 
-        if not self.opts['wafw00f_path']:
-            self.error("You enabled sfp_tool_wafw00f but did not set a path to the tool!")
-            self.errorState = True
-            return
-
-        exe = self.opts['wafw00f_path']
-        if self.opts['wafw00f_path'].endswith('/'):
-            exe = exe + 'wafw00f'
-
-        if not os.path.isfile(exe):
-            self.error(f"File does not exist: {exe}")
-            self.errorState = True
-            return
-
         url = eventData
 
         if not SpiderFeetHelpers.sanitiseInput(url):
             self.error("Invalid input, refusing to run.")
             return
 
-        args = [
-            self.opts['python_path'],
-            exe,
-            '-a',
-            '-o-',
-            '-f',
-            'json',
-            url
-        ]
+        args = self._wafw00f_command(url)
+        if not args:
+            self.errorState = True
+            return
         try:
             p = Popen(args, stdout=PIPE, stderr=PIPE)
             stdout, stderr = p.communicate(input=None, timeout=300)
