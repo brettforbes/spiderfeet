@@ -65,22 +65,29 @@ def resolve_module_list(
 def normalize_target(target: str, target_type: str) -> str:
     if target_type in ["HUMAN_NAME", "USERNAME", "BITCOIN_ADDRESS"]:
         return target.replace('"', "")
+    if target_type in ("COMPANY_NAME", "PHYSICAL_ADDRESS", "WEB_ANALYTICS_ID", "LEI"):
+        return target
     return target.lower()
 
 
-def start_scan(runtime: Runtime, request: ScanCreateRequest) -> str:
+def start_scan(
+    runtime: Runtime,
+    request: ScanCreateRequest,
+    *,
+    target_type: str | None = None,
+) -> str:
     """Launch scan worker process and return scan_id immediately (non-blocking)."""
     target = request.target.strip()
     scan_name = (request.scan_name or target).strip()
     if not scan_name:
         raise ScanStartError("scan_name is required")
 
-    target_type = SpiderFeetHelpers.targetTypeFromString(target)
-    if target_type is None:
+    resolved_type = target_type or SpiderFeetHelpers.targetTypeFromString(target)
+    if resolved_type is None:
         raise ScanStartError("Unrecognised target type")
 
     modlist = resolve_module_list(runtime.config, request)
-    scantarget = normalize_target(target, target_type)
+    scantarget = normalize_target(target, resolved_type)
 
     cfg = deepcopy(runtime.config)
     if request.debug:
@@ -96,7 +103,7 @@ def start_scan(runtime: Runtime, request: ScanCreateRequest) -> str:
                 scan_name,
                 scan_id,
                 scantarget,
-                target_type,
+                resolved_type,
                 modlist,
                 cfg,
             ),

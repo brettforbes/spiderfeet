@@ -117,6 +117,16 @@ class ScanDetail(BaseModel):
     status: str
 
 
+class ScanLogEntry(BaseModel):
+    """One row from tbl_scan_log (CherryPy /scanlog parity)."""
+
+    generated_ms: int
+    component: Optional[str] = None
+    type: str = Field(..., description="Log classification (INFO, ERROR, STATUS, …)")
+    message: str
+    row_id: Optional[int] = None
+
+
 class ScanResultItem(BaseModel):
     generated: int
     data: str
@@ -259,10 +269,38 @@ class NuggetInstance(BaseModel):
     nugget_false_positive: bool = False
 
 
+class ModuleExecutionSummary(BaseModel):
+    """Per-module outcome inferred from scan events and logs (Stage 4c — R2-04-08)."""
+
+    module_id: str
+    status: str = Field(
+        ...,
+        description="Terminal or in-flight scan status for this run",
+    )
+    events_emitted: int = Field(
+        0,
+        description="Result events emitted by the target module (excludes storage/UI)",
+    )
+    verdict: str = Field(
+        ...,
+        description=(
+            "clean_miss | hit | error_failed | incomplete | absent_violation"
+        ),
+    )
+    absent_violations: List[str] = Field(
+        default_factory=list,
+        description="expected_absent_types that appeared in scan_results_by_type",
+    )
+
+
 class ScanUiResponse(BaseModel):
     scan_record: ScanRecordUi
     consumed: List[NuggetInstance]
     produced: List[NuggetInstance]
+    module_execution: Optional[ModuleExecutionSummary] = Field(
+        None,
+        description="Inferred module outcome for pass/fail (negative fixture support)",
+    )
 
 
 class MapConnectionInfo(BaseModel):
@@ -286,7 +324,22 @@ class MapInventoryCounts(BaseModel):
 
 class MapStatusResponse(BaseModel):
     database: str
-    reachable: bool
+    reachable: bool = Field(
+        ...,
+        description="TypeDB server accepts a connection (same as server_reachable)",
+    )
+    server_reachable: bool = Field(
+        ...,
+        description="TypeDB server accepts a connection",
+    )
+    database_ready: bool = Field(
+        False,
+        description="Map database exists and inventory query succeeded",
+    )
+    bootstrapped: bool = Field(
+        False,
+        description="True when this status check auto-created or re-seeded the map DB",
+    )
     inventory: Optional[MapInventoryCounts] = None
 
 
@@ -326,6 +379,10 @@ class ForceGraphNodeModel(BaseModel):
     label: str
     colour: Optional[str] = None
     service_state: Optional[str] = None
+    fixture_category: Optional[str] = Field(
+        None,
+        description="positive | negative — module fixture semantics",
+    )
     icon: Optional[str] = Field(
         None,
         description="Nugget icon filename (e.g. icon_domain_name.svg)",
@@ -388,6 +445,10 @@ class TestsModuleSummary(BaseModel):
     summary: str
     consumption_group: str
     access_tier: str
+    fixture_category: str = Field(
+        "positive",
+        description="Module-level fixture: positive expects output; negative expects clean_miss",
+    )
     subscription_tier: str = Field(
         "none",
         description="none | free_auth | paid_auth — subscription/auth classification",
@@ -430,6 +491,10 @@ class ModuleTestItem(BaseModel):
     seed_validated: bool = Field(
         False,
         description="True when registry has smoke-validated positive or negative fixture",
+    )
+    expected_absent_types: List[str] = Field(
+        default_factory=list,
+        description="For negative fixtures: types that must not appear in scan_results_by_type",
     )
 
 
@@ -500,6 +565,10 @@ class TestsPlanItem(BaseModel):
         False,
         description="True when registry has smoke-validated positive or negative fixture",
     )
+    expected_absent_types: List[str] = Field(
+        default_factory=list,
+        description="For negative fixtures: types that must not appear in scan_results_by_type",
+    )
 
 
 class TestsPlanResponse(BaseModel):
@@ -526,6 +595,10 @@ class SubscriptionModuleSummary(BaseModel):
     subscription_tier: str
     requires_api_key: bool
     has_api_key: bool
+    fixture_category: str = Field(
+        "positive",
+        description="Module-level fixture: positive expects output; negative expects clean_miss",
+    )
     secret_opts: List[SecretOptMasked] = Field(default_factory=list)
 
 

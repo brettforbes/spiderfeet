@@ -25,6 +25,8 @@ from spiderfeet.map.routes_catalog import (
     module_catalog,
 )
 from spiderfeet.map.subscriptions import subscription_status
+from spiderfeet.map.fixture_categories import fixture_category_for_service
+from spiderfeet.map.service_states import include_in_operator_ui
 from spiderfeet.map.test_targets import sample_target_for_module, seed_metadata_for_module
 
 
@@ -67,6 +69,8 @@ def _state_counts(states: Optional[Dict[str, str]], test_count: int) -> Dict[str
         "dominated": 0,
     }
     for svc in load_osint_services():
+        if not include_in_operator_ui(svc):
+            continue
         for test in expand_module_tests_for_service(svc):
             state = overlay_test_state(test.route_names, states)
             key = state.replace("-", "_")
@@ -136,6 +140,8 @@ def _count_tests_run(module_id: str, states: Optional[Dict[str, str]]) -> int:
     for svc in load_osint_services():
         if svc.get("module_id") != module_id:
             continue
+        if not include_in_operator_ui(svc):
+            return 0
         for test in expand_module_tests_for_service(svc):
             if overlay_test_state(test.route_names, states) != "not-started":
                 count += 1
@@ -179,6 +185,7 @@ def _module_summary_row(
         summary=m.summary,
         consumption_group=m.consumption_group,
         access_tier=m.access_tier,
+        fixture_category=fixture_category_for_service(svc),
         subscription_tier=tier,
         requires_api_key=requires_key,
         has_api_key=has_key,
@@ -211,6 +218,8 @@ def test_plan(
         module_id = svc.get("module_id", "")
         if module_id not in module_ids:
             continue
+        if not include_in_operator_ui(svc):
+            continue
         route_seed_nugget = svc.get("route_seed_nugget")
         tier, requires_api_key, has_api_key, skip_reason = subscription_status(svc, configured)
         for test in expand_module_tests_for_service(svc):
@@ -231,6 +240,7 @@ def test_plan(
                     skip_reason=skip_reason,
                     fixture_kind=meta["fixture_kind"],
                     seed_validated=meta["seed_validated"],
+                    expected_absent_types=meta["expected_absent_types"],
                 )
             )
     return TestsPlanResponse(
@@ -241,7 +251,7 @@ def test_plan(
 
 
 def get_module(module_id: str) -> Optional[TestsModuleDetail]:
-    catalog = module_catalog(module_id)
+    catalog = module_catalog(module_id, operator_ui=True)
     if catalog is None:
         return None
     states = _typedb_route_states()
@@ -260,6 +270,7 @@ def get_module(module_id: str) -> Optional[TestsModuleDetail]:
                 ),
                 fixture_kind=meta["fixture_kind"],
                 seed_validated=meta["seed_validated"],
+                expected_absent_types=meta["expected_absent_types"],
             )
         )
     return TestsModuleDetail(

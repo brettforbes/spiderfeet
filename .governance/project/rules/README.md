@@ -7,5 +7,6 @@ Canonical copies live here. **Mirror to `.cursor/rules/`** when adding or changi
 | `proj-01-spiderFeet-python-stack.mdc` | Python, FastAPI, TypeDB, pytest |
 | `proj-02-spiderFeet-multi-repo.mdc` | Widget coordination |
 | `proj-03-spiderFeet-stages.mdc` | Stages 0–4 program boundaries |
+| `proj-04-spiderFeet-stage4-corpus.mdc` | Seed registry, fixture pass rules, `service_state`, probe scripts |
 
 Generic VibeGov rules remain in `.governance/rules/gov-*.mdc`.

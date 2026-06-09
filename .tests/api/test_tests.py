@@ -7,7 +7,7 @@ def test_tests_summary(api_client):
     r = api_client.get("/api/v1/tests/summary")
     assert r.status_code == 200
     body = r.json()
-    assert body["module_count"] >= 170
+    assert body["module_count"] >= 169
     assert body["test_count"] > 0
     assert body["route_count"] >= body["test_count"]
     assert "test_states" in body
@@ -61,6 +61,14 @@ def test_tests_plan(api_client):
     assert "skip_reason" in body["items"][0]
     assert "fixture_kind" in body["items"][0]
     assert "seed_validated" in body["items"][0]
+
+
+def test_error_state_modules_hidden_from_tests(api_client):
+  r = api_client.get("/api/v1/tests/modules", params={"search": "dnsdumpster", "limit": 20})
+  assert r.status_code == 200
+  assert r.json() == []
+  r = api_client.get("/api/v1/tests/modules/sfp_dnsdumpster")
+  assert r.status_code == 404
 
 
 def test_tests_plan_negative_fixture_metadata(api_client):

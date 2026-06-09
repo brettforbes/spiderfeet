@@ -225,6 +225,7 @@ define
 		owns flags,
 		owns use_cases,
 		owns categories,
+		owns fixture_category,
 		owns access_tier,
 		owns consumption_group,
 		owns route_seed_nugget,
@@ -521,6 +522,7 @@ define
 
 	attribute route_state, value string @values("in-test", "favourite", "unique", "error", "dominated");
 	attribute service_state, value string @values("in-test", "favourite", "unique", "error", "dominated");
+	attribute fixture_category, value string @values("positive", "negative");
 	attribute route_name, value string;
 	attribute sequence_name, value string;
 	attribute access_tier, value string @values("free_no_auth", "free_auth", "paid");

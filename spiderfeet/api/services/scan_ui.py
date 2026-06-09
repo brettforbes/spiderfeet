@@ -7,8 +7,6 @@ from collections import Counter
 from datetime import datetime, timezone
 from typing import List, Optional
 
-from spiderfeet import SpiderFeetHelpers
-
 from spiderfeet.api.bootstrap import Runtime
 from spiderfeet.api.nugget_catalog import (
     archetype_for_event_type,
@@ -26,12 +24,19 @@ from spiderfeet.api.schemas import (
     ScanUiRequest,
     ScanUiResponse,
 )
+from spiderfeet.api.services.module_execution import (
+    count_module_produced,
+    infer_module_execution,
+)
 from spiderfeet.api.services.scan_results import (
     _STORAGE_MODULES,
+    fetch_scan_logs,
     fetch_scan_results,
     wait_for_scan,
 )
+from spiderfeet.api.services.scan_targets import resolve_scan_ui_target
 from spiderfeet.api.services.scans import ScanStartError, start_scan
+from spiderfeet.map.test_targets import expected_absent_types_for_entry, seed_entry
 
 
 class ScanUiError(Exception):
@@ -126,18 +131,23 @@ def run_scan_ui(runtime: Runtime, request: ScanUiRequest) -> ScanUiResponse:
     if not validate_catalogue_nugget_id(consumed_input.nugget_id):
         raise ScanUiError(f"Unknown catalogue nugget_id: {consumed_input.nugget_id}")
 
-    if SpiderFeetHelpers.targetTypeFromString(consumed_input.nugget_data) is None:
-        raise ScanUiError("nugget_data is not a valid SpiderFeet target")
+    try:
+        target_value, target_type = resolve_scan_ui_target(
+            consumed_input.nugget_id,
+            consumed_input.nugget_data,
+        )
+    except ValueError:
+        raise ScanUiError("nugget_data is not a valid SpiderFeet target") from None
 
     scan_request = ScanCreateRequest(
-        target=consumed_input.nugget_data,
+        target=target_value,
         scan_name=request.scan_name or consumed_input.nugget_data,
         modules=[module_id],
         debug=request.debug,
     )
 
     try:
-        scan_id = start_scan(runtime, scan_request)
+        scan_id = start_scan(runtime, scan_request, target_type=target_type)
     except ScanStartError as exc:
         raise ScanUiError(exc.message, exc.status_code) from exc
 
@@ -160,6 +170,7 @@ def run_scan_ui(runtime: Runtime, request: ScanUiRequest) -> ScanUiResponse:
     by_type_dict: dict[str, int] = {}
     event_count = 0
     scan_results_summary = {"status": status, "event_count": 0, "by_type": {}}
+    raw: List[ScanResultItem] = []
 
     if status == "FINISHED":
         raw = fetch_scan_results(runtime.config, scan_id)
@@ -200,6 +211,36 @@ def run_scan_ui(runtime: Runtime, request: ScanUiRequest) -> ScanUiResponse:
             f"{consumed_input.nugget_id}-to-{produced_types[0]}-via-{module_id}"
         )
 
+    module_execution = None
+    if status in ("FINISHED", "ERROR-FAILED"):
+        module_events = (
+            count_module_produced(
+                raw,
+                module_id,
+                storage_modules=_STORAGE_MODULES,
+            )
+            if status == "FINISHED"
+            else 0
+        )
+        log_rows: List = []
+        try:
+            log_rows = fetch_scan_logs(runtime.config, scan_id, limit=500)
+        except Exception:
+            log_rows = []
+
+        entry = seed_entry(module_id, consumed_input.nugget_id)
+        module_execution = infer_module_execution(
+            module_id=module_id,
+            status=status,
+            events_emitted=module_events,
+            log_rows=[
+                (e.generated_ms, e.component, e.type, e.message, e.row_id)
+                for e in log_rows
+            ],
+            expected_absent_types=expected_absent_types_for_entry(entry),
+            scan_results_by_type=by_type_dict,
+        )
+
     scan_record = ScanRecordUi(
         scan_instance_id=scan_id,
         status=status,
@@ -222,4 +263,5 @@ def run_scan_ui(runtime: Runtime, request: ScanUiRequest) -> ScanUiResponse:
         scan_record=scan_record,
         consumed=[consumed_nugget],
         produced=produced,
+        module_execution=module_execution,
     )

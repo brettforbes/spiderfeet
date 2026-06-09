@@ -10,8 +10,15 @@ from typing import Any, Dict, Iterable, List, Optional
 
 from spiderfeet.map.constants import MODULE_TEST_SEEDS_JSON, REPO_ROOT
 from spiderfeet.map.routes_catalog import expand_module_tests_for_service, load_osint_services
+from spiderfeet.map.service_states import include_in_operator_ui
 from spiderfeet.map.subscriptions import subscription_status
-from spiderfeet.map.test_targets import load_module_test_seeds, sample_target_for_module, seed_coverage_complete
+from spiderfeet.map.test_targets import (
+    load_module_test_seeds,
+    sample_target_for_module,
+    seed_coverage_complete,
+    seed_research_complete,
+    seed_upstream_blocked,
+)
 
 TEST_NUGGET_DATA_CSV = REPO_ROOT / ".docs" / "analysis" / "test_nugget_data.csv"
 
@@ -139,6 +146,8 @@ def plan_validation_items(
         module_id = str(svc.get("module_id") or "")
         if not module_id:
             continue
+        if not include_in_operator_ui(svc):
+            continue
         tier, _needs_key, has_key, skip = subscription_status(svc, configured)
         if skip == "missing-api-key":
             continue
@@ -187,6 +196,8 @@ def summarize_registry_validation(
     validated_ids: List[str] = []
     positive_ids: List[str] = []
     negative_ids: List[str] = []
+    blocked_ids: List[str] = []
+    pending_ids: List[str] = []
     for item in items:
         module_id = item["module_id"]
         consumed_id = item["consumed_nugget_id"]
@@ -197,17 +208,29 @@ def summarize_registry_validation(
                 negative_ids.append(module_id)
             elif entry.get("validated_produces"):
                 positive_ids.append(module_id)
+        elif seed_upstream_blocked(module_id, consumed_id):
+            blocked_ids.append(module_id)
+        else:
+            pending_ids.append(module_id)
     total = len(items)
     validated = len(validated_ids)
+    blocked = len(blocked_ids)
+    research_closed = validated + blocked
     return {
         "total_modules": total,
         "validated_produces_count": len(positive_ids),
         "validated_negative_count": len(negative_ids),
         "coverage_count": validated,
         "rate_pct": round(100 * validated / total, 1) if total else 0.0,
+        "blocked_upstream_count": blocked,
+        "research_complete_count": research_closed,
+        "research_complete_pct": round(100 * research_closed / total, 1) if total else 0.0,
+        "actionable_pending_count": len(pending_ids),
         "validated_module_ids": sorted(set(validated_ids)),
         "positive_module_ids": sorted(set(positive_ids)),
         "negative_module_ids": sorted(set(negative_ids)),
+        "blocked_upstream_module_ids": sorted(set(blocked_ids)),
+        "pending_module_ids": sorted(set(pending_ids)),
     }
 
 
@@ -216,7 +239,7 @@ def merge_validation_results_into_registry(
     *,
     registry_path: Path | None = None,
 ) -> Dict[str, Any]:
-    """Update module_test_seeds.json entries with validated_produces + notes."""
+    """Update module_test_seeds.json with positive or negative smoke validation."""
     path = registry_path or MODULE_TEST_SEEDS_JSON
     with path.open(encoding="utf-8") as handle:
         payload = json.load(handle)
@@ -227,26 +250,58 @@ def merge_validation_results_into_registry(
         consumed_id = row.get("consumed_nugget_id")
         if not module_id or not consumed_id:
             continue
+        target = row.get("merge_target") or "primary"
         module_seeds = seeds.setdefault(module_id, {})
         entry = module_seeds.setdefault(consumed_id, {})
+        if target == "positive_hit":
+            hit = entry.setdefault("positive_hit", {})
+            if row.get("input_value"):
+                hit["input_value"] = row["input_value"]
+            hit["validated_produces"] = bool(row.get("validated_produces"))
+            if row.get("produced_count") is not None:
+                hit["last_produced_count"] = int(row["produced_count"])
+            if row.get("notes"):
+                hit["notes"] = str(row["notes"])
+            continue
+
         if row.get("input_value"):
             entry["input_value"] = row["input_value"]
         if row.get("region"):
             entry["region"] = row["region"]
         elif not entry.get("region"):
             entry["region"] = "US"
-        entry["validated_produces"] = bool(row.get("validated_produces"))
+        if row.get("fixture_kind"):
+            entry["fixture_kind"] = row["fixture_kind"]
+
+        if row.get("expected_absent_types"):
+            entry["expected_absent_types"] = list(row["expected_absent_types"])
+        if row.get("validated_negative"):
+            entry["fixture_kind"] = "negative"
+            entry["validated_negative"] = True
+            entry.pop("validated_produces", None)
+        elif row.get("validated_produces"):
+            entry["validated_produces"] = True
+            entry.pop("validated_negative", None)
+
         if row.get("produced_count") is not None:
             entry["last_produced_count"] = int(row["produced_count"])
+        if row.get("verdict"):
+            entry["last_verdict"] = str(row["verdict"])
+
         status = row.get("status")
         note_bits = []
         if status:
             note_bits.append(f"status={status}")
+        if row.get("verdict"):
+            note_bits.append(f"verdict={row['verdict']}")
         if row.get("notes"):
             note_bits.append(str(row["notes"]))
+        if row.get("upstream_blocked"):
+            entry["upstream_blocked"] = True
         if note_bits:
             entry["notes"] = "; ".join(note_bits)
-        if entry.get("validated_produces"):
+
+        if entry.get("validated_produces") or entry.get("validated_negative"):
             entry["validation"] = "smoke"
         elif entry.get("validation") == "smoke":
             entry["validation"] = "pilot"

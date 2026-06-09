@@ -14,9 +14,11 @@ from spiderfeet.api.schemas import (
     ScanCreateRequest,
     ScanCreateResponse,
     ScanDetail,
+    ScanLogEntry,
     ScanResultItem,
     ScanSummary,
 )
+from spiderfeet.api.services.scan_results import fetch_scan_logs
 from spiderfeet.api.services.scans import ScanStartError, start_scan
 
 router = APIRouter(tags=["scans"])
@@ -98,6 +100,30 @@ def get_scan(
         ended=_int_or_none(row[4]),
         status=row[5] or "UNKNOWN",
     )
+
+
+@router.get("/scans/{scan_id}/logs", response_model=List[ScanLogEntry])
+def get_scan_logs(
+    scan_id: str,
+    limit: Optional[int] = Query(None, ge=1, le=5000),
+    from_row_id: int = Query(0, alias="from_row_id", ge=0),
+    reverse: bool = Query(False),
+    runtime: Runtime = Depends(runtime_dep),
+) -> List[ScanLogEntry]:
+    """Scan diagnostic logs (CherryPy ``/scanlog`` parity) for seed tuning."""
+    dbh = SpiderFeetDb(runtime.config)
+    if not dbh.scanInstanceGet(scan_id):
+        raise HTTPException(status_code=404, detail="Scan not found")
+    try:
+        return fetch_scan_logs(
+            runtime.config,
+            scan_id,
+            limit=limit,
+            from_row_id=from_row_id,
+            reverse=reverse,
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 
 @router.get("/scans/{scan_id}/results", response_model=List[ScanResultItem])

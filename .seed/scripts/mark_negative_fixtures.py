@@ -70,9 +70,14 @@ def main() -> int:
 
         module_seeds = seeds.setdefault(module_id, {})
         entry = module_seeds.setdefault(consumed_id, {})
-        if entry.get("validated_produces"):
-            continue
+        produced_types = list(svc.get("produced_nuggets") or [])
+        if produced_types and not entry.get("expected_absent_types"):
+            entry["expected_absent_types"] = produced_types
         if entry.get("validated_negative"):
+            if args.write and produced_types and not entry.get("expected_absent_types"):
+                entry["expected_absent_types"] = produced_types
+            continue
+        if entry.get("validated_produces"):
             continue
         notes = str(entry.get("notes") or "")
         if "status=FINISHED" not in notes and "status=HTTP" not in notes:

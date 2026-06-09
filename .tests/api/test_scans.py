@@ -31,3 +31,8 @@ def test_list_scans_returns_array(api_client: TestClient):
     response = api_client.get("/api/v1/scans")
     assert response.status_code == 200
     assert isinstance(response.json(), list)
+
+
+def test_get_scan_logs_not_found(api_client: TestClient):
+    response = api_client.get("/api/v1/scans/nonexistent-scan-id/logs")
+    assert response.status_code == 404

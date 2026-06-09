@@ -29,13 +29,15 @@ Stages 0–4 only (governance → rebrand → FastAPI → TypeDB map UI → per-
 | R2-04-05 | 4 | **SPEC_GAP** — Subscriptions page: per-module API key CRUD (masked) |
 | R2-04-06 | 4 | **SPEC_GAP** — Subscription tiers (`none` / `free_auth` / `paid_auth`); gate Tests visibility |
 | R2-04-07 | 4 | Module-validated test corpus (`module_test_seeds.json`; pilot 10 none-tier modules) |
-| R2-04-08 | 4 | Strict test pass: `FINISHED` + produced objects (positive) or `FINISHED` + zero output (negative fixture); session pass/fail counts |
+| R2-04-08 | 4 | Strict test pass: **positive** — `FINISHED` + produced objects; **negative** — `FINISHED` + `module_execution.verdict = clean_miss` (and `expected_absent_types` absent). `fixture_category` on TypeDB `osint-service`; dual seeds (`positive_hit` for dirty tuning); `GET /scans/{id}/logs` |
+| R2-04-09 | 4 | `service_state` on catalogue + TypeDB `osint-service` (`in-test` default; `error` for upstream-broken modules). Tests and Subscriptions APIs exclude `error`; Maps may still show until filter added. Sync: `sync_service_state.py` |
 
 ## Stage 4 route testing
 
 - **177 module-test issues** (one per entry in `osint_services.json`). Each issue tracks testing of all routes for that module (typically many consumed×produced combinations inside one issue).
 - A module issue closes when all viable routes are exercised: `scan-record` per run, `route` on success, failures annotated per seed doc §2.4.3.
 - Quarantine modules are **not** in this tranche; they follow in stage 5.
+- None-tier free modules: seed research closed (79 smoke-validated, 8 `service_state: error`). See `.docs/analysis/stage4_seed_corpus_and_tests.md`.
 
 ## Verification
 

@@ -46,10 +46,23 @@ def driver_session(
 
 
 def ping(cfg: TypeDBConnectionConfig, timeout_note: Optional[str] = None) -> bool:
-    """Return True if the server accepts a connection."""
+    """Return True if the TypeDB server accepts a connection."""
     try:
         with driver_session(cfg) as driver:
             _ = driver.databases.all()
         return True
+    except Exception:
+        return False
+
+
+def database_exists(
+    cfg: TypeDBConnectionConfig,
+    database: Optional[str] = None,
+) -> bool:
+    """Return True when the configured map database exists on the server."""
+    db_name = database or cfg.database
+    try:
+        with driver_session(cfg) as driver:
+            return driver.databases.contains(db_name)
     except Exception:
         return False

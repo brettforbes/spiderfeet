@@ -17,7 +17,7 @@ from spiderfeet.api.schemas import (
 )
 from spiderfeet.map.bootstrap import BootstrapReport, bootstrap_map
 from spiderfeet.map.config import TypeDBConfigError, load_connection_config
-from spiderfeet.map.connection import driver_session, ping
+from spiderfeet.map.connection import database_exists, driver_session, ping
 from spiderfeet.map.read import export_force_graph, get_inventory
 
 
@@ -43,11 +43,24 @@ def ping_connection() -> MapConnectionPingResponse:
     return MapConnectionPingResponse(reachable=ping(cfg), database=cfg.database)
 
 
-def map_status() -> MapStatusResponse:
+def map_status(*, auto_bootstrap: bool = True) -> MapStatusResponse:
+    """Server connectivity plus map database readiness.
+
+    ``reachable`` / ``server_reachable`` reflect the TypeDB server only.
+    When the server is up but the map database is missing, bootstrap runs
+    idempotently (same as ``POST /map/bootstrap``) so a deleted DB is recreated.
+    """
     cfg = load_connection_config()
-    reachable = ping(cfg)
+    server_reachable = ping(cfg)
+    database_ready = False
     inventory = None
-    if reachable:
+    bootstrapped = False
+
+    if server_reachable and auto_bootstrap and not database_exists(cfg):
+        bootstrap_map(cfg)
+        bootstrapped = True
+
+    if server_reachable and database_exists(cfg):
         try:
             with driver_session(cfg) as driver:
                 inv = get_inventory(driver, cfg.database)
@@ -56,11 +69,16 @@ def map_status() -> MapStatusResponse:
                 "service_count": inv.service_count,
                 "link_count": inv.link_count,
             }
+            database_ready = True
         except TypeDBDriverException:
-            reachable = False
+            database_ready = False
+
     return MapStatusResponse(
         database=cfg.database,
-        reachable=reachable,
+        reachable=server_reachable,
+        server_reachable=server_reachable,
+        database_ready=database_ready,
+        bootstrapped=bootstrapped,
         inventory=inventory,
     )
 
@@ -88,6 +106,7 @@ def force_graph(*, limit_per_role: Optional[int] = None) -> MapForceGraphRespons
                 label=n.label,
                 colour=n.colour,
                 service_state=n.service_state,
+                fixture_category=n.fixture_category,
                 icon=n.icon,
                 fav_icon=n.fav_icon,
             )

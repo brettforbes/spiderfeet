@@ -8,6 +8,7 @@ from functools import lru_cache
 from typing import Any, Dict, List, Optional, Tuple
 
 from spiderfeet.map.constants import OSINT_SERVICES_JSON
+from spiderfeet.map.service_states import filter_operator_services, include_in_operator_ui
 
 
 @dataclass(frozen=True)
@@ -111,24 +112,36 @@ def expand_routes_for_service(svc: Dict[str, Any]) -> List[RouteDefinition]:
     return routes
 
 
-def all_route_definitions() -> List[RouteDefinition]:
+def all_route_definitions(*, operator_ui: bool = False) -> List[RouteDefinition]:
     routes: List[RouteDefinition] = []
-    for svc in load_osint_services():
+    services = (
+        filter_operator_services(load_osint_services())
+        if operator_ui
+        else load_osint_services()
+    )
+    for svc in services:
         routes.extend(expand_routes_for_service(svc))
     return routes
 
 
-def all_module_test_definitions() -> List[ModuleTestDefinition]:
+def all_module_test_definitions(*, operator_ui: bool = False) -> List[ModuleTestDefinition]:
     tests: List[ModuleTestDefinition] = []
-    for svc in load_osint_services():
+    services = (
+        filter_operator_services(load_osint_services())
+        if operator_ui
+        else load_osint_services()
+    )
+    for svc in services:
         tests.extend(expand_module_tests_for_service(svc))
     return tests
 
 
-def module_catalog(module_id: str) -> Optional[ModuleRouteCatalog]:
+def module_catalog(module_id: str, *, operator_ui: bool = False) -> Optional[ModuleRouteCatalog]:
     for svc in load_osint_services():
         if svc.get("module_id") != module_id:
             continue
+        if operator_ui and not include_in_operator_ui(svc):
+            return None
         routes = expand_routes_for_service(svc)
         tests = expand_module_tests_for_service(svc)
         return ModuleRouteCatalog(
@@ -158,6 +171,8 @@ def list_module_summaries(
         module_id = svc.get("module_id", "")
         if not module_id:
             continue
+        if not include_in_operator_ui(svc):
+            continue
         if group_filter and str(svc.get("consumption_group", "")).lower() != group_filter:
             continue
         name = str(svc.get("name") or module_id)
@@ -183,8 +198,8 @@ def list_module_summaries(
 
 def catalog_summary() -> Dict[str, int]:
     modules = list_module_summaries()
-    routes = all_route_definitions()
-    tests = all_module_test_definitions()
+    routes = all_route_definitions(operator_ui=True)
+    tests = all_module_test_definitions(operator_ui=True)
     groups: Dict[str, int] = {}
     for module in modules:
         groups[module.consumption_group] = groups.get(module.consumption_group, 0) + 1

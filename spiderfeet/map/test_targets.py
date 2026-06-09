@@ -101,6 +101,14 @@ def fixture_kind_for_entry(entry: Dict[str, Any]) -> str:
     return kind if kind in ("positive", "negative") else "positive"
 
 
+def seed_upstream_blocked(module_id: str, consumed_nugget_id: str) -> bool:
+    """True when research concluded the module cannot be smoke-tested (upstream dead)."""
+    entry = seed_entry(module_id, consumed_nugget_id)
+    return bool(entry.get("upstream_blocked")) or str(
+        entry.get("validation") or ""
+    ).strip() == "blocked-upstream"
+
+
 def seed_coverage_complete(module_id: str, consumed_nugget_id: str) -> bool:
     """True when seed is smoke-validated (positive or negative fixture)."""
     entry = seed_entry(module_id, consumed_nugget_id)
@@ -112,6 +120,27 @@ def seed_coverage_complete(module_id: str, consumed_nugget_id: str) -> bool:
     return bool(entry.get("validated_produces"))
 
 
+def seed_research_complete(module_id: str, consumed_nugget_id: str) -> bool:
+    """True when per-module seed research is closed (smoke-validated or upstream-blocked)."""
+    return seed_coverage_complete(module_id, consumed_nugget_id) or seed_upstream_blocked(
+        module_id, consumed_nugget_id
+    )
+
+
+def expected_absent_types_for_entry(entry: Dict[str, Any]) -> list[str]:
+    """Types that must not appear in scan_results_by_type for negative clean runs."""
+    raw = entry.get("expected_absent_types")
+    if not isinstance(raw, list):
+        return []
+    return [str(item).strip() for item in raw if str(item).strip()]
+
+
+def positive_hit_entry(entry: Dict[str, Any]) -> Dict[str, Any]:
+    """Optional dirty-input sub-seed for negative fixtures (tuning / confirmation)."""
+    sub = entry.get("positive_hit")
+    return sub if isinstance(sub, dict) else {}
+
+
 def seed_metadata_for_module(module_id: str, consumed_nugget_id: str) -> Dict[str, Any]:
     """Fixture metadata exposed to Tests plan API."""
     entry = seed_entry(module_id, consumed_nugget_id)
@@ -121,6 +150,7 @@ def seed_metadata_for_module(module_id: str, consumed_nugget_id: str) -> Dict[st
         "validated_produces": bool(entry.get("validated_produces")),
         "validated_negative": bool(entry.get("validated_negative")),
         "seed_validated": seed_coverage_complete(module_id, consumed_nugget_id),
+        "expected_absent_types": expected_absent_types_for_entry(entry),
     }
 
 

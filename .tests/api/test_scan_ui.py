@@ -46,6 +46,23 @@ def test_scan_ui_unknown_nugget_id(api_client: TestClient):
     assert "Unknown catalogue nugget_id" in response.json()["detail"]
 
 
+def test_scan_ui_catalogue_company_name(api_client: TestClient):
+    response = api_client.post(
+        "/api/v1/scan_ui",
+        json={
+            "module_id": "sfp_gleif",
+            "consumed": {
+                "nugget_id": "COMPANY_NAME",
+                "nugget_data": "Google LLC",
+            },
+            "wait": False,
+        },
+    )
+    assert response.status_code != 400 or "not a valid SpiderFeet target" not in (
+        response.json().get("detail") or ""
+    )
+
+
 def test_scan_ui_invalid_target(api_client: TestClient):
     response = api_client.post(
         "/api/v1/scan_ui",

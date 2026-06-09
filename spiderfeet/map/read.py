@@ -28,6 +28,7 @@ class ForceGraphNode:
     label: str
     colour: Optional[str] = None
     service_state: Optional[str] = None
+    fixture_category: Optional[str] = None
     icon: Optional[str] = None
     fav_icon: Optional[str] = None
 
@@ -83,6 +84,9 @@ match
     has module_id $mid,
     has name $name,
     has service_state $state;
+try {{
+  $osint has fixture_category $fixture;
+}};
   $osint links ({role}: $nug);
   $nug isa nugget,
     has nugget_id $nid,
@@ -99,6 +103,7 @@ fetch {
   "module_id": $mid,
   "service_name": $name,
   "service_state": $state,
+  "fixture_category": $fixture,
   "nugget_id": $nid,
   "nugget_description": $desc,
   "nugget_colour": $colour,
@@ -174,6 +179,7 @@ def export_force_graph(
                     kind="osint-service",
                     label=str(row.get("service_name") or mid),
                     service_state=str(row.get("service_state") or ""),
+                    fixture_category=str(row.get("fixture_category") or "") or None,
                 )
             if nid not in nodes:
                 nodes[nid] = ForceGraphNode(
