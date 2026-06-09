@@ -9,6 +9,7 @@ Governed SpiderFeet fork. Read this before doing substantive work.
 | Project intent | `.governance/project/PROJECT_INTENT.md` |
 | Active spec (bootstrap) | `.governance/specs/SPEC-001-governance-bootstrap.md` |
 | Active spec (product) | `.governance/specs/SPEC-002-first-four-stages.md` |
+| Active spec (stage 5) | `.governance/specs/SPEC-003-stage5-quarantine.md` |
 | Project rules | `.governance/project/rules/` (mirrored in `.cursor/rules/proj-*.mdc`) |
 | Stage plan | `.seed/02_stage_by_stage_reengineer.md` |
 | Backlog | `.governance/project/BACKLOG.md` |
