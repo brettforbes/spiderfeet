@@ -22,7 +22,7 @@ class SpiderFeetTarget():
 
     _validTypes = ["IP_ADDRESS", 'IPV6_ADDRESS', "NETBLOCK_OWNER", "NETBLOCKV6_OWNER", "INTERNET_NAME",
                    "EMAILADDR", "HUMAN_NAME", "BGP_AS_OWNER", 'PHONE_NUMBER', "USERNAME",
-                   "BITCOIN_ADDRESS"]
+                   "BITCOIN_ADDRESS", "COMPANY_NAME", "PHYSICAL_ADDRESS", "WEB_ANALYTICS_ID", "LEI"]
     _targetType: str
     _targetValue: str
     _targetAliases: typing.List[TargetAlias]
@@ -189,7 +189,16 @@ class SpiderFeetTarget():
 
         # We can't really say anything about names, username, bitcoin addresses
         # or phone numbers, so everything matches
-        if self.targetType in ["HUMAN_NAME", "PHONE_NUMBER", "USERNAME", "BITCOIN_ADDRESS"]:
+        if self.targetType in [
+            "HUMAN_NAME",
+            "PHONE_NUMBER",
+            "USERNAME",
+            "BITCOIN_ADDRESS",
+            "COMPANY_NAME",
+            "PHYSICAL_ADDRESS",
+            "WEB_ANALYTICS_ID",
+            "LEI",
+        ]:
             return True
 
         # TODO: review handling of other potential self.targetType target types:

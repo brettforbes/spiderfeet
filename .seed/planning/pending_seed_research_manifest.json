@@ -1,0 +1,655 @@
+[
+  {
+    "module_id": "sfp_ahmia",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "Ahmia",
+    "summary": "Search Tor 'Ahmia' search engine for mentions of the target.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "DARKNET_MENTION_URL",
+      "DARKNET_MENTION_CONTENT"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Running 37 correlation rules on scan 08C2C245.; sfp_ahmia:STATUS:No results for sbs.com.au returned from Ahmia.fi.; sflib:STATUS:Fetched https://ahmia.fi/search/?q=sbs.com.au (4727 bytes in 1.7729709148406982s); sflib:STATUS:Fetching (GET): https://ahmia.fi/search/?q=sbs.com.au (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; ; sfp_ahmia:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT"
+  },
+  {
+    "module_id": "sfp_bgpview",
+    "consumed_nugget_id": "IP_ADDRESS",
+    "input_value": "8.8.8.8",
+    "subscription_tier": "none",
+    "name": "BGPView",
+    "summary": "Obtain network information from BGPView API.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "BGP_AS_MEMBER",
+      "NETBLOCK_MEMBER",
+      "NETBLOCKV6_MEMBER",
+      "PHYSICAL_ADDRESS",
+      "RAW_RIR_DATA"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Fetching (GET): https://api.bgpview.io/ip/8.8.8.8 (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:6; sfp_bgpview:DEBUG:Received event, IP_ADDRESS, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: IP_ADDRESS; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_bgpview module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [B9E153D3] for '8.8.8.8' initiated."
+  },
+  {
+    "module_id": "sfp_callername",
+    "consumed_nugget_id": "PHONE_NUMBER",
+    "input_value": "+61412345678",
+    "subscription_tier": "none",
+    "name": "CallerName",
+    "summary": "Lookup US phone number location and reputation information.",
+    "categories": [
+      "Real World"
+    ],
+    "produced_nuggets": [
+      "GEOINFO",
+      "MALICIOUS_PHONE_NUMBER"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sfp__stor_db:DEBUG:Storing an event: PHONE_NUMBER; sfp__stor_db:DEBUG:Storing an event: ROOT; sfp_callername:DEBUG:Received event, PHONE_NUMBER, from SpiderFeet UI; sfp_callername:DEBUG:Unsupported phone number: +61412345678; sflib:STATUS:sfp_callername module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [EDFAE270] for '+61412345678' initiated."
+  },
+  {
+    "module_id": "sfp_commoncrawl",
+    "consumed_nugget_id": "INTERNET_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "CommonCrawl",
+    "summary": "Searches for URLs found through CommonCrawl.org.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "LINKED_URL_INTERNAL"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "error_failed",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Running 37 correlation rules on scan 7D67C70F.; sfp_commoncrawl:ERROR:Unable to fetch CommonCrawl index.; sfp_commoncrawl:ERROR:Not able to find latest CommonCrawl indexes.; sflib:STATUS:Fetched https://index.commoncrawl.org/ (7391 bytes in 0.7319164276123047s); sfp_commoncrawl:DEBUG:Received event, INTERNET_NAME, from SpiderFeet UI; sflib:STATUS:Fetching (GET): https://index.commoncrawl.org/ (proxy=None, user-agent=SpiderFeet, timeout=60, cookies=None); sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME"
+  },
+  {
+    "module_id": "sfp_crobat_api",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "Crobat API",
+    "summary": "Search Crobat API for subdomains.",
+    "categories": [
+      "Passive DNS"
+    ],
+    "produced_nuggets": [
+      "RAW_RIR_DATA",
+      "INTERNET_NAME",
+      "INTERNET_NAME_UNRESOLVED"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Fetched https://sonar.omnisint.io/subdomains/sbs.com.au?page=0 (977 bytes in 19.6142737865448s); sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:Fetching (GET): https://sonar.omnisint.io/subdomains/sbs.com.au?page=0 (proxy=None, user-agent=Mozilla/5.0 (Windows NT 1; sfp_crobat_api:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sflib:STATUS:sfp_crobat_api module loaded.; sflib:STATUS:sfp__stor_db module loaded."
+  },
+  {
+    "module_id": "sfp_crt",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "google.com",
+    "subscription_tier": "none",
+    "name": "Certificate Transparency",
+    "summary": "Gather hostnames from historical certificates in crt.sh.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "SSL_CERTIFICATE_RAW",
+      "RAW_RIR_DATA",
+      "INTERNET_NAME",
+      "INTERNET_NAME_UNRESOLVED",
+      "DOMAIN_NAME",
+      "CO_HOSTED_SITE",
+      "CO_HOSTED_SITE_DOMAIN"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "error_failed",
+    "last_produced_count": 0,
+    "last_notes": "sfp_crt:ERROR:crt.sh service is unavailable; sfp_crt:DEBUG:No certificate transparency results for domain google.com; sflib:STATUS:Fetched https://crt.sh/?q=%25.google.com&output=json (150 bytes in 1.394859790802002s); sflib:STATUS:Fetching (GET): https://crt.sh/?q=%25.google.com&output=json (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; sfp_crt:DEBUG:Received event, INTERNET_NAME, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT"
+  },
+  {
+    "module_id": "sfp_crxcavator",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "CRXcavator",
+    "summary": "Search CRXcavator for Chrome extensions.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "APPSTORE_ENTRY",
+      "INTERNET_NAME",
+      "INTERNET_NAME_UNRESOLVED",
+      "LINKED_URL_INTERNAL",
+      "AFFILIATE_INTERNET_NAME",
+      "AFFILIATE_INTERNET_NAME_UNRESOLVED",
+      "PHYSICAL_ADDRESS",
+      "RAW_RIR_DATA"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Scan [D40B5CE1] completed.; sflib:STATUS:Running 37 correlation rules on scan D40B5CE1.; sfp_crxcavator:STATUS:No results found for sbs; sfp_crxcavator:DEBUG:Error processing JSON response from CRXcavator: Expecting value: line 1 column 1 (char 0); sflib:STATUS:Fetched https://api.crxcavator.io/v1/search?q=sbs (122 bytes in 3.7777981758117676s); sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sflib:STATUS:Fetching (GET): https://api.crxcavator.io/v1/search?q=sbs (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x; sfp_crxcavator:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI"
+  },
+  {
+    "module_id": "sfp_digitaloceanspace",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "Digital Ocean Space Finder",
+    "summary": "Search for potential Digital Ocean Spaces associated with the target and attempt to list their contents.",
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "produced_nuggets": [
+      "CLOUD_STORAGE_BUCKET",
+      "CLOUD_STORAGE_BUCKET_OPEN"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Scan [C963DAD1] completed.; sflib:STATUS:Running 37 correlation rules on scan C963DAD1.; sflib:STATUS:Fetched https://sbs-production.ams3.digitaloceanspaces.com (204 bytes in 0.957613468170166s); sfp_digitaloceanspace:DEBUG:Not a valid bucket: https://sbs-stage.ams3.digitaloceanspaces.com; sfp_digitaloceanspace:DEBUG:Not a valid bucket: https://sbs-production.ams3.digitaloceanspaces.com; sflib:STATUS:Fetched https://sbs-stage.ams3.digitaloceanspaces.com (199 bytes in 0.9525139331817627s); sflib:STATUS:Fetched https://sbs-staging.ams3.digitaloceanspaces.com (201 bytes in 0.9138731956481934s); sfp_digitaloceanspace:DEBUG:Not a valid bucket: https://sbs-staging.ams3.digitaloceanspaces.com"
+  },
+  {
+    "module_id": "sfp_dnsdumpster",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "DNSDumpster",
+    "summary": "Passive subdomain enumeration using HackerTarget's DNSDumpster",
+    "categories": [
+      "Passive DNS"
+    ],
+    "produced_nuggets": [
+      "INTERNET_NAME",
+      "INTERNET_NAME_UNRESOLVED"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "error_failed",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Scan [9B001F54] completed.; sflib:STATUS:Running 37 correlation rules on scan 9B001F54.; sfp_dnsdumpster:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sfp_dnsdumpster:DEBUG:Skipping already-processed event, DOMAIN_NAME, from SpiderFeet UI; sfp_dnsdumpster:ERROR:Error obtaining CSRF tokens; sfp_dnsdumpster:DEBUG:Valid response code \"200\" from DNSDumpster; sflib:STATUS:Fetched https://dnsdumpster.com (107326 bytes in 0.09827017784118652s); sfp_dnsdumpster:DEBUG:Received event, INTERNET_NAME, from SpiderFeet UI"
+  },
+  {
+    "module_id": "sfp_emailformat",
+    "consumed_nugget_id": "INTERNET_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "EmailFormat",
+    "summary": "Look up e-mail addresses on email-format.com.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "EMAILADDR",
+      "EMAILADDR_GENERIC"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sfp_emailformat:DEBUG:Received event, INTERNET_NAME, from SpiderFeet UI; sflib:STATUS:Fetching (GET): https://www.email-format.com/d/sbs.com.au/ (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; ; sflib:STATUS:sfp_emailformat module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [8C9C7595] for 'sbs.com.au' initiated."
+  },
+  {
+    "module_id": "sfp_flickr",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "Flickr",
+    "summary": "Search Flickr for domains, URLs and emails related to the specified domain.",
+    "categories": [
+      "Social Media"
+    ],
+    "produced_nuggets": [
+      "EMAILADDR",
+      "EMAILADDR_GENERIC",
+      "INTERNET_NAME",
+      "DOMAIN_NAME",
+      "LINKED_URL_INTERNAL"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "error_failed",
+    "last_produced_count": 0,
+    "last_notes": "sfp_flickr:ERROR:Failed to obtain API key; sflib:STATUS:Fetched https://www.flickr.com/ (55370 bytes in 0.32018208503723145s); sflib:STATUS:Fetching (GET): https://www.flickr.com/ (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:62.0) Gecko; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp_flickr:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_flickr module loaded."
+  },
+  {
+    "module_id": "sfp_gleif",
+    "consumed_nugget_id": "COMPANY_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "GLEIF",
+    "summary": "Look up company information from Global Legal Entity Identifier Foundation (GLEIF).",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "COMPANY_NAME",
+      "LEI",
+      "PHYSICAL_ADDRESS",
+      "RAW_RIR_DATA"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_gleif module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [86FAF2B7] for 'sbs.com.au' initiated."
+  },
+  {
+    "module_id": "sfp_google_tag_manager",
+    "consumed_nugget_id": "WEB_ANALYTICS_ID",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "Google Tag Manager",
+    "summary": "Search Google Tag Manager (GTM) for hosts sharing the same GTM code.",
+    "categories": [
+      "Passive DNS"
+    ],
+    "produced_nuggets": [
+      "DOMAIN_NAME",
+      "INTERNET_NAME",
+      "AFFILIATE_DOMAIN_NAME",
+      "AFFILIATE_INTERNET_NAME"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_google_tag_manager module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [5165F7CF] for 'sbs.com.au' initiated."
+  },
+  {
+    "module_id": "sfp_googleobjectstorage",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "Google Object Storage Finder",
+    "summary": "Search for potential Google Object Storage buckets associated with the target and attempt to list their contents.",
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "produced_nuggets": [
+      "CLOUD_STORAGE_BUCKET",
+      "CLOUD_STORAGE_BUCKET_OPEN"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Scan [A58DFE65] completed.; sflib:STATUS:Running 37 correlation rules on scan A58DFE65.; sfp_googleobjectstorage:DEBUG:Not a valid bucket: https://sbs-stage.storage.googleapis.com; sfp_googleobjectstorage:DEBUG:Not a valid bucket: https://sbs-production.storage.googleapis.com; sflib:STATUS:Fetched https://sbs-stage.storage.googleapis.com (133 bytes in 0.8191864490509033s); sflib:STATUS:Fetched https://sbs-production.storage.googleapis.com (133 bytes in 0.8240556716918945s); sflib:STATUS:Fetched https://sbs-staging.storage.googleapis.com (133 bytes in 0.8178431987762451s); sfp_googleobjectstorage:DEBUG:Not a valid bucket: https://sbs-staging.storage.googleapis.com"
+  },
+  {
+    "module_id": "sfp_gravatar",
+    "consumed_nugget_id": "EMAILADDR",
+    "input_value": "noreply@spiderfoot.net",
+    "subscription_tier": "none",
+    "name": "Gravatar",
+    "summary": "Retrieve user information from Gravatar API.",
+    "categories": [
+      "Social Media"
+    ],
+    "produced_nuggets": [
+      "RAW_RIR_DATA",
+      "USERNAME",
+      "EMAILADDR",
+      "EMAILADDR_GENERIC",
+      "PHONE_NUMBER",
+      "GEOINFO",
+      "ACCOUNT_EXTERNAL_OWNED",
+      "SOCIAL_MEDIA"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Running 37 correlation rules on scan 4BDF0BCE.; sfp_gravatar:DEBUG:No user information found for noreply@spiderfoot.net; sflib:STATUS:Fetched https://secure.gravatar.com/690d7832f3b8145e2cbd608214fa68a0.json (16 bytes in 0.29934263229370117s); sfp__stor_db:DEBUG:Storing an event: EMAILADDR; sflib:STATUS:Fetching (GET): https://secure.gravatar.com/690d7832f3b8145e2cbd608214fa68a0.json (proxy=None, user-agent=Mozilla/5.0 (W; sfp_gravatar:DEBUG:Received event, EMAILADDR, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_gravatar module loaded."
+  },
+  {
+    "module_id": "sfp_grep_app",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "grep.app",
+    "summary": "Search grep.app API for links and emails related to the specified domain.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "EMAILADDR",
+      "EMAILADDR_GENERIC",
+      "DOMAIN_NAME",
+      "INTERNET_NAME",
+      "RAW_RIR_DATA",
+      "INTERNET_NAME_UNRESOLVED",
+      "LINKED_URL_INTERNAL"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sfp_grep_app:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sflib:STATUS:Fetching (GET): https://grep.app/api/search?q=sbs.com.au&page=1 (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Wi; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_grep_app module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [5CAF88BD] for 'sbs.com.au' initiated."
+  },
+  {
+    "module_id": "sfp_keybase",
+    "consumed_nugget_id": "USERNAME",
+    "input_value": "\"spiderfeet\"",
+    "subscription_tier": "none",
+    "name": "Keybase",
+    "summary": "Obtain additional information about domain names and identified usernames.",
+    "categories": [
+      "Public Registries"
+    ],
+    "produced_nuggets": [
+      "RAW_RIR_DATA",
+      "SOCIAL_MEDIA",
+      "USERNAME",
+      "GEOINFO",
+      "BITCOIN_ADDRESS",
+      "PGP_KEY"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Scan [B7805019] completed.; sflib:STATUS:Running 37 correlation rules on scan B7805019.; sflib:STATUS:Fetched https://keybase.io/_/api/1.0/user/lookup.json?usernames=spiderfeet (47 bytes in 0.7841622829437256s); sflib:STATUS:Fetching (GET): https://keybase.io/_/api/1.0/user/lookup.json?usernames=spiderfeet (proxy=None, user-agent=Mozilla/5.0 (; sfp_keybase:DEBUG:Received event, USERNAME, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: USERNAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_keybase module loaded."
+  },
+  {
+    "module_id": "sfp_mnemonic",
+    "consumed_nugget_id": "IP_ADDRESS",
+    "input_value": "8.8.8.8",
+    "subscription_tier": "none",
+    "name": "Mnemonic PassiveDNS",
+    "summary": "Obtain Passive DNS information from PassiveDNS.mnemonic.no.",
+    "categories": [
+      "Passive DNS"
+    ],
+    "produced_nuggets": [
+      "IP_ADDRESS",
+      "IPV6_ADDRESS",
+      "INTERNAL_IP_ADDRESS",
+      "CO_HOSTED_SITE",
+      "INTERNET_NAME",
+      "DOMAIN_NAME"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Running 37 correlation rules on scan EC1B4C75.; sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 100rx.com is too old, skipping.; sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 097.com is too old, skipping.; sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 1.xiazaiwu.com is too old, skipping.; sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 117hb.com is too old, skipping.; sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 0007423241writing-pdf.african-americangifts.com is too old, skipping.; sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 002.mooo.com is too old, skipping.; sfp_mnemonic:DEBUG:Record 8.8.8.8 found for 000189.com is too old, skipping."
+  },
+  {
+    "module_id": "sfp_myspace",
+    "consumed_nugget_id": "EMAILADDR",
+    "input_value": "noreply@spiderfoot.net",
+    "subscription_tier": "none",
+    "name": "MySpace",
+    "summary": "Gather username and location from MySpace.com profiles.",
+    "categories": [
+      "Social Media"
+    ],
+    "produced_nuggets": [
+      "SOCIAL_MEDIA",
+      "GEOINFO"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:ERROR:Failed to connect to https://myspace.com/search/people?q=noreply@spiderfoot.net: HTTPSConnectionPool(host='myspace.com',; sflib:STATUS:Fetching (GET): https://myspace.com/search/people?q=noreply@spiderfoot.net (proxy=None, user-agent=Mozilla/5.0 (Windows ; sfp_myspace:DEBUG:Received event, EMAILADDR, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: EMAILADDR; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_myspace module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [9AF821FA] for 'noreply@spiderfoot.net' initiated."
+  },
+  {
+    "module_id": "sfp_onionsearchengine",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "Onionsearchengine.com",
+    "summary": "Search Tor onionsearchengine.com for mentions of the target domain.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "DARKNET_MENTION_URL",
+      "DARKNET_MENTION_CONTENT"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:Fetching (GET): https://onionsearchengine.com/search.php?search=%22sbs.com.au%22&submit=Search&page=1 (proxy=None, user-; sflib:STATUS:sfp_onionsearchengine module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [69CB51BB] for 'sbs.com.au' initiated."
+  },
+  {
+    "module_id": "sfp_opennic",
+    "consumed_nugget_id": "INTERNET_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "OpenNIC DNS",
+    "summary": "Resolves host names in the OpenNIC alternative DNS system.",
+    "categories": [
+      "DNS"
+    ],
+    "produced_nuggets": [
+      "IP_ADDRESS",
+      "IPV6_ADDRESS",
+      "AFFILIATE_IPADDR",
+      "AFFILIATE_IPV6_ADDRESS"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sfp_opennic:DEBUG:Received event, INTERNET_NAME, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_opennic module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [407CD37D] for 'sbs.com.au' initiated."
+  },
+  {
+    "module_id": "sfp_openstreetmap",
+    "consumed_nugget_id": "PHYSICAL_ADDRESS",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "OpenStreetMap",
+    "summary": "Retrieves latitude/longitude coordinates for physical addresses from OpenStreetMap API.",
+    "categories": [
+      "Real World"
+    ],
+    "produced_nuggets": [
+      "PHYSICAL_COORDINATES"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_openstreetmap module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [583D7E08] for 'sbs.com.au' initiated."
+  },
+  {
+    "module_id": "sfp_reversewhois",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "ReverseWhois",
+    "summary": "Reverse Whois lookups using reversewhois.io.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "AFFILIATE_INTERNET_NAME",
+      "AFFILIATE_DOMAIN_NAME",
+      "DOMAIN_REGISTRAR"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Scan [AB578DF6] completed.; sflib:STATUS:Running 37 correlation rules on scan AB578DF6.; sfp_reversewhois:STATUS:No ReverseWhois info found for sbs.com.au; sflib:STATUS:Fetched https://reversewhois.io?searchterm=sbs.com.au (15881 bytes in 0.9890127182006836s); sflib:STATUS:Fetching (GET): https://reversewhois.io?searchterm=sbs.com.au (proxy=None, user-agent=SpiderFeet, timeout=5, cookies=Non; sfp_reversewhois:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME"
+  },
+  {
+    "module_id": "sfp_s3bucket",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "Amazon S3 Bucket Finder",
+    "summary": "Search for potential Amazon S3 buckets associated with the target and attempt to list their contents.",
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "produced_nuggets": [
+      "CLOUD_STORAGE_BUCKET",
+      "CLOUD_STORAGE_BUCKET_OPEN"
+    ],
+    "last_status": "HTTP_504",
+    "last_verdict": null,
+    "last_produced_count": 0,
+    "last_notes": "{\"detail\":\"Scan 51AB0CB1 did not finish within 75s\"}"
+  },
+  {
+    "module_id": "sfp_searchcode",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "searchcode",
+    "summary": "Search searchcode for code repositories mentioning the target domain.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "EMAILADDR",
+      "EMAILADDR_GENERIC",
+      "LINKED_URL_INTERNAL",
+      "PUBLIC_CODE_REPO",
+      "RAW_RIR_DATA"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "error_failed",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Running 37 correlation rules on scan 9F3235E7.; sfp_searchcode:ERROR:Unexpected reply from searchcode: 404; sflib:STATUS:Fetched https://searchcode.com/api/codesearch_I/?q=sbs.com.au&p=0&per_page=100 (19 bytes in 0.9420442581176758s); sflib:STATUS:Fetching (GET): https://searchcode.com/api/codesearch_I/?q=sbs.com.au&p=0&per_page=100 (proxy=None, user-agent=Mozilla/5; sfp_searchcode:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT"
+  },
+  {
+    "module_id": "sfp_skymem",
+    "consumed_nugget_id": "INTERNET_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "Skymem",
+    "summary": "Look up e-mail addresses on Skymem.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "EMAILADDR",
+      "EMAILADDR_GENERIC"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Scan [077D380E] completed.; sflib:STATUS:Running 37 correlation rules on scan 077D380E.; sflib:STATUS:Fetched http://www.skymem.info/srch?q=sbs.com.au (5621 bytes in 0.1034543514251709s); sfp_skymem:DEBUG:Received event, INTERNET_NAME, from SpiderFeet UI; sflib:STATUS:Fetching (GET): http://www.skymem.info/srch?q=sbs.com.au (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x6; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT"
+  },
+  {
+    "module_id": "sfp_slideshare",
+    "consumed_nugget_id": "SOCIAL_MEDIA",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "SlideShare",
+    "summary": "Gather name and location from SlideShare profiles.",
+    "categories": [
+      "Social Media"
+    ],
+    "produced_nuggets": [
+      "RAW_RIR_DATA",
+      "GEOINFO"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Running 37 correlation rules on scan 25DC17E9.; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_slideshare module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [25DC17E9] for 'sbs.com.au' initiated."
+  },
+  {
+    "module_id": "sfp_sublist3r",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "Sublist3r PassiveDNS",
+    "summary": "Passive subdomain enumeration using Sublist3r's API",
+    "categories": [
+      "Passive DNS"
+    ],
+    "produced_nuggets": [
+      "INTERNET_NAME",
+      "INTERNET_NAME_UNRESOLVED"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "error_failed",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Scan [3B5428E9] completed.; sflib:STATUS:Running 37 correlation rules on scan 3B5428E9.; sfp_sublist3r:DEBUG:Received event, DOMAIN_NAME, from SpiderFeet UI; sfp_sublist3r:DEBUG:Skipping already-processed event, DOMAIN_NAME, from SpiderFeet UI; sfp_sublist3r:ERROR:Error decoding JSON response: Expecting value: line 1 column 1 (char 0); sflib:STATUS:Fetched https://api.sublist3r.com/search.php?domain=sbs.com.au (4701 bytes in 0.820101261138916s); sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME"
+  },
+  {
+    "module_id": "sfp_threatminer",
+    "consumed_nugget_id": "IP_ADDRESS",
+    "input_value": "8.8.8.8",
+    "subscription_tier": "none",
+    "name": "ThreatMiner",
+    "summary": "Obtain information from ThreatMiner's database for passive DNS and threat intelligence.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "INTERNET_NAME",
+      "CO_HOSTED_SITE"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Scan [CBFA2D87] completed.; sflib:STATUS:Running 37 correlation rules on scan CBFA2D87.; sfp_threatminer:STATUS:No Passive DNS info for 8.8.8.8; sfp_threatminer:STATUS:No ThreatMiner info found for 8.8.8.8; sflib:STATUS:Fetched https://api.threatminer.org/v2/host.php?q=8.8.8.8&rt=2 (0 bytes in 0.7170267105102539s); sfp_threatminer:DEBUG:Received event, IP_ADDRESS, from SpiderFeet UI; sflib:STATUS:Fetching (GET): https://api.threatminer.org/v2/host.php?q=8.8.8.8&rt=2 (proxy=None, user-agent=SpiderFeet, timeout=10, c; sfp__stor_db:DEBUG:Storing an event: IP_ADDRESS"
+  },
+  {
+    "module_id": "sfp_torch",
+    "consumed_nugget_id": "DOMAIN_NAME",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "TORCH",
+    "summary": "Search Tor 'TORCH' search engine for mentions of the target domain.",
+    "categories": [
+      "Search Engines"
+    ],
+    "produced_nuggets": [
+      "DARKNET_MENTION_URL",
+      "DARKNET_MENTION_CONTENT"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Scan [91C8198F] completed.; sflib:STATUS:Running 37 correlation rules on scan 91C8198F.; sfp_torch:STATUS:Couldn't connect to TORCH, it might be down.; sflib:ERROR:Failed to connect to http://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77c54dqd.onion/: HTTPConnectionPool(host='to; sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sflib:STATUS:Fetching (GET): http://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77c54dqd.onion/ (proxy=None, user-agent=Mozilla/5; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT"
+  },
+  {
+    "module_id": "sfp_twitter",
+    "consumed_nugget_id": "SOCIAL_MEDIA",
+    "input_value": "sbs.com.au",
+    "subscription_tier": "none",
+    "name": "Twitter",
+    "summary": "Gather name and location from Twitter profiles.",
+    "categories": [
+      "Social Media"
+    ],
+    "produced_nuggets": [
+      "RAW_RIR_DATA",
+      "GEOINFO"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_twitter module loaded.; sflib:STATUS:sfp__stor_db module loaded.; sflib:STATUS:Scan [76C6F5E0] for 'sbs.com.au' initiated."
+  },
+  {
+    "module_id": "sfp_venmo",
+    "consumed_nugget_id": "USERNAME",
+    "input_value": "\"spiderfeet\"",
+    "subscription_tier": "none",
+    "name": "Venmo",
+    "summary": "Gather user information from Venmo API.",
+    "categories": [
+      "Social Media"
+    ],
+    "produced_nuggets": [
+      "RAW_RIR_DATA",
+      "HUMAN_NAME"
+    ],
+    "last_status": "FINISHED",
+    "last_verdict": "clean_miss",
+    "last_produced_count": 0,
+    "last_notes": "sflib:STATUS:Scan [D44A6D07] completed.; sflib:STATUS:Running 37 correlation rules on scan D44A6D07.; sfp_venmo:DEBUG:spiderfeet is not a valid Venmo username; sflib:STATUS:Fetched https://api.venmo.com/v1/users/spiderfeet (91 bytes in 0.7210297584533691s); sflib:STATUS:Fetching (GET): https://api.venmo.com/v1/users/spiderfeet (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x; sfp_venmo:DEBUG:Received event, USERNAME, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: USERNAME; sfp__stor_db:DEBUG:Storing an event: ROOT"
+  }
+]

@@ -7,7 +7,7 @@ from typing import List, Optional, Tuple
 
 from spiderfeet import SpiderFeetDb
 
-from spiderfeet.api.schemas import ScanResultItem
+from spiderfeet.api.schemas import ScanLogEntry, ScanResultItem
 
 _STORAGE_MODULES = {"sfp__stor_db", "sfp__stor_stdout"}
 
@@ -33,6 +33,31 @@ def fetch_scan_results(
     dbh = SpiderFeetDb(config)
     rows = dbh.scanResultEvent(scan_id, "ALL", filterFp=filter_fp)
     return [parse_scan_result_row(row) for row in rows]
+
+
+def fetch_scan_logs(
+    config: dict,
+    scan_id: str,
+    *,
+    limit: Optional[int] = None,
+    from_row_id: int = 0,
+    reverse: bool = False,
+) -> List[ScanLogEntry]:
+    dbh = SpiderFeetDb(config)
+    rows = dbh.scanLogs(scan_id, limit, from_row_id or None, reverse)
+    items: List[ScanLogEntry] = []
+    for row in rows:
+        generated = int(row[0]) if row[0] is not None else 0
+        items.append(
+            ScanLogEntry(
+                generated_ms=generated,
+                component=row[1],
+                type=str(row[2] or ""),
+                message=str(row[3] or ""),
+                row_id=int(row[4]) if len(row) > 4 and row[4] is not None else None,
+            )
+        )
+    return items
 
 
 def wait_for_scan(

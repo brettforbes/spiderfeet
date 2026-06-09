@@ -20,9 +20,22 @@ Governed SpiderFeet fork. Read this before doing substantive work.
 
 ## Module taxonomy docs
 
-- OSINT services: `.docs/analysis/osint_services.json`
+- OSINT services: `.docs/analysis/osint_services.json` (`service_state`, `fixture_category`)
 - Quarantined modules: `.docs/quarantine_modules.md`
 - Core non-OSINT: `.docs/non_osint_modules.md`
+
+## Stage 4 — Tests corpus (read before seed or Tests work)
+
+| Topic | Where |
+|-------|--------|
+| **Agent guide** | `.docs/analysis/stage4_seed_corpus_and_tests.md` |
+| **Smoke seeds** | `.docs/analysis/module_test_seeds.json` |
+| **Project rule** | `.cursor/rules/proj-04-spiderfeet-stage4-corpus.mdc` |
+| **Pass semantics** | Positive: produced output · Negative: `module_execution.verdict = clean_miss` |
+| **Hidden modules** | 8 upstream-broken services: `service_state: error` (excluded from Tests/Subscriptions) |
+| **Probe scripts** | `.seed/scripts/validate_test_seeds.py`, `research_pending_seeds*.py`, `sync_service_state.py` |
+
+None-tier seed research is **closed** (79 smoke + 8 error). Upstream-blocked modules need **module fixes**, not more seed tuning.
 
 ## Operating rules
 

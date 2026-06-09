@@ -1,97 +1,97 @@
 module_id,consumed_nugget_id,region,input_value,validated_produces,notes
-sfp_adguard_dns,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_ahmia,DOMAIN_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_alienvaultiprep,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_arin,DOMAIN_NAME,US,arin.net,true,status=FINISHED
+sfp_adguard_dns,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_ahmia,DOMAIN_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)
+sfp_alienvaultiprep,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_arin,DOMAIN_NAME,US,arin.net,true,status=FINISHED; verdict=hit
 sfp_arin,HUMAN_NAME,US,"""ARIN Registry""",false,validation=pilot
-sfp_azureblobstorage,DOMAIN_NAME,US,sbs.com.au,true,status=FINISHED
+sfp_azureblobstorage,DOMAIN_NAME,US,sbs.com.au,true,status=FINISHED; verdict=hit
 sfp_bgpview,BGP_AS_MEMBER,US,15169,false,validation=pilot
-sfp_bgpview,IP_ADDRESS,US,8.8.8.8,false,status=FINISHED
-sfp_blockchain,BITCOIN_ADDRESS,global,1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa,true,status=FINISHED
-sfp_blocklistde,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_botvrij,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_callername,PHONE_NUMBER,US,+61412345678,false,status=FINISHED
-sfp_cinsscore,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_cleanbrowsing,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_cleantalk,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_cloudflaredns,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_coinblocker,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_commoncrawl,INTERNET_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_comodo,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_crobat_api,DOMAIN_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_crt,DOMAIN_NAME,US,google.com,false,status=FINISHED
+sfp_bgpview,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)
+sfp_blockchain,BITCOIN_ADDRESS,global,1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa,true,status=FINISHED; verdict=hit
+sfp_blocklistde,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_botvrij,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_callername,PHONE_NUMBER,US,+18005551212,true,status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)
+sfp_cinsscore,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_cleanbrowsing,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_cleantalk,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_cloudflaredns,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_coinblocker,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_commoncrawl,INTERNET_NAME,US,sbs.com.au,false,SPEC_GAP upstream: CommonCrawl index list HTML changed; module cannot parse latest indexes
+sfp_comodo,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_crobat_api,DOMAIN_NAME,US,example.com,true,status=FINISHED; verdict=error_failed; Finalize: benign input clean_miss (negative fixture)
+sfp_crt,DOMAIN_NAME,US,google.com,false,SPEC_GAP upstream: crt.sh returns errors/unavailable JSON for automated queries (rate-limit or outage)
 sfp_crt,INTERNET_NAME,US,google.com,false,validation=pilot
-sfp_crxcavator,DOMAIN_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_cybercrimetracker,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_debounce,EMAILADDR,US,noreply@spiderfoot.net,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_digitaloceanspace,DOMAIN_NAME,US,sbs.com.au,false,"status=HTTP_504; {""detail"":""Scan C2D09F2D did not finish within 45s""}"
-sfp_dns_for_family,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_dnsdumpster,DOMAIN_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_dronebl,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
+sfp_crxcavator,DOMAIN_NAME,US,example.com,true,status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)
+sfp_cybercrimetracker,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_debounce,EMAILADDR,US,noreply@spiderfoot.net,true,status=FINISHED; verdict=clean_miss
+sfp_digitaloceanspace,DOMAIN_NAME,US,example.com,true,status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)
+sfp_dns_for_family,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_dnsdumpster,DOMAIN_NAME,US,sbs.com.au,false,SPEC_GAP upstream: dnsdumpster.com removed CSRF form (2026); module needs rewrite
+sfp_dronebl,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
 sfp_duckduckgo,AFFILIATE_INTERNET_NAME,UK,bbc.co.uk,true,validation=smoke
-sfp_duckduckgo,DOMAIN_NAME,UK,bbc.co.uk,true,status=FINISHED
+sfp_duckduckgo,DOMAIN_NAME,UK,bbc.co.uk,true,status=FINISHED; verdict=hit
 sfp_duckduckgo,DOMAIN_NAME_PARENT,UK,co.uk,false,validation=pilot
 sfp_duckduckgo,INTERNET_NAME,UK,bbc.co.uk,true,validation=smoke
-sfp_emailformat,INTERNET_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_emergingthreats,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_flickr,DOMAIN_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_fortinet,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_github,DOMAIN_NAME,US,sbs.com.au,true,status=FINISHED
-sfp_gleif,COMPANY_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_google_tag_manager,WEB_ANALYTICS_ID,US,sbs.com.au,false,status=FINISHED
-sfp_googleobjectstorage,DOMAIN_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_gravatar,EMAILADDR,US,noreply@spiderfoot.net,false,status=FINISHED
-sfp_greensnow,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_grep_app,DOMAIN_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_h1nobbdde,DOMAIN_NAME,US,google.com,true,status=FINISHED
+sfp_emailformat,INTERNET_NAME,US,example.com,true,status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)
+sfp_emergingthreats,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_flickr,DOMAIN_NAME,US,sbs.com.au,false,SPEC_GAP upstream: Flickr API key scrape fails (Failed to obtain API key); needs API key config
+sfp_fortinet,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_github,DOMAIN_NAME,US,sbs.com.au,true,status=FINISHED; verdict=hit
+sfp_gleif,COMPANY_NAME,US,Google LLC,true,status=FINISHED; verdict=hit; Pass 3 targeted probe; status=FINISHED
+sfp_google_tag_manager,WEB_ANALYTICS_ID,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)
+sfp_googleobjectstorage,DOMAIN_NAME,US,youtube.com,true,status=FINISHED; verdict=hit; Per-module research probe; status=FINISHED
+sfp_gravatar,EMAILADDR,US,noreply@example.com,true,status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)
+sfp_greensnow,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_grep_app,DOMAIN_NAME,US,example.com,true,status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)
+sfp_h1nobbdde,DOMAIN_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
 sfp_hackertarget,DOMAIN_NAME_PARENT,AU,com.au,false,validation=pilot
-sfp_hackertarget,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED
-sfp_isc,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_keybase,USERNAME,US,"""spiderfeet""",false,status=FINISHED
-sfp_maltiverse,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED
-sfp_mnemonic,IP_ADDRESS,US,8.8.8.8,false,status=FINISHED
-sfp_multiproxy,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_myspace,EMAILADDR,US,noreply@spiderfoot.net,false,status=FINISHED
-sfp_onionsearchengine,DOMAIN_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_openbugbounty,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_opendns,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_opennic,INTERNET_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_openphish,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_openstreetmap,PHYSICAL_ADDRESS,US,sbs.com.au,false,status=FINISHED
-sfp_phishstats,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_phishtank,INTERNET_NAME,US,google.com,true,status=FINISHED
-sfp_psbdmp,EMAILADDR,US,noreply@spiderfoot.net,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_punkspider,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_quad9,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_reversewhois,DOMAIN_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_ripe,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED
+sfp_hackertarget,IP_ADDRESS,US,8.8.8.8,true,"status=HTTP_504; {""detail"":""Scan 8D7CBA4F did not finish within 75s""}"
+sfp_isc,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_keybase,USERNAME,US,spiderfeet,true,status=FINISHED; verdict=clean_miss; Finalize: benign input clean_miss (negative fixture)
+sfp_maltiverse,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=hit
+sfp_mnemonic,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)
+sfp_multiproxy,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_myspace,EMAILADDR,US,noreply@spiderfoot.net,false,SPEC_GAP upstream: myspace.com search endpoint connection failures
+sfp_onionsearchengine,DOMAIN_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)
+sfp_openbugbounty,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_opendns,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_opennic,INTERNET_NAME,US,example.com,true,status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)
+sfp_openphish,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_openstreetmap,PHYSICAL_ADDRESS,US,"1600 Amphitheatre Parkway, Mountain View, CA 94043",true,status=FINISHED; verdict=hit; Pass 3 targeted probe; status=FINISHED
+sfp_phishstats,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_phishtank,INTERNET_NAME,US,sbs.com.au,true,"status=FINISHED; verdict=error_failed; sfp_phishtank:ERROR:Unexpected HTTP response code 429 from phishtank.com.; sflib:STATUS:Fetched https://data.phishtank.com/data/online-valid.csv (236 bytes in 0.8407688140869141s); sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:Fetching (GET): https://data.phishtank.com/data/online-valid.csv (proxy=None, user-agent=SpiderFeet, timeout=5, cookies=; sfp_phishtank:DEBUG:Received event, INTERNET_NAME, from SpiderFeet UI; sfp_phishtank:DEBUG:Checking maliciousness of sbs.com.au (INTERNET_NAME) with phishtank.com"
+sfp_psbdmp,EMAILADDR,US,noreply@spiderfoot.net,true,"status=FINISHED; verdict=error_failed; sflib:STATUS:Running 37 correlation rules on scan C73F8DA0.; sfp_psbdmp:ERROR:Error processing JSON response from psbdmp.cc: Expecting value: line 1 column 1 (char 0); sflib:STATUS:Fetched https://psbdmp.cc/api/search/email/noreply@spiderfoot.net (146 bytes in 0.6718180179595947s); sfp_psbdmp:DEBUG:Received event, EMAILADDR, from SpiderFeet UI; sflib:STATUS:Fetching (GET): https://psbdmp.cc/api/search/email/noreply@spiderfoot.net (proxy=None, user-agent=SpiderFeet, timeout=15; sfp__stor_db:DEBUG:Storing an event: EMAILADDR; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_psbdmp module loaded."
+sfp_punkspider,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_quad9,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_reversewhois,DOMAIN_NAME,US,example.com,true,status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)
+sfp_ripe,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=hit
 sfp_robtex,INTERNET_NAME,US,8.8.8.8,true,validation=smoke
-sfp_robtex,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED
-sfp_s3bucket,DOMAIN_NAME,US,sbs.com.au,false,"status=HTTP_504; {""detail"":""Scan 7E2176D2 did not finish within 90s""}"
-sfp_searchcode,DOMAIN_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_skymem,INTERNET_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_slideshare,SOCIAL_MEDIA,US,sbs.com.au,false,status=FINISHED
-sfp_sorbs,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_spamcop,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_spamhaus,IP_ADDRESS,global,185.220.101.1,true,Tor exit node test IP; status=FINISHED
-sfp_stevenblack_hosts,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_sublist3r,DOMAIN_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_surbl,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_talosintel,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
+sfp_robtex,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=hit
+sfp_s3bucket,DOMAIN_NAME,US,sbs.com.au,false,SPEC_GAP upstream: S3 bucket brute-force exceeds practical scan_ui timeout; defer to module-tuning issue
+sfp_searchcode,DOMAIN_NAME,US,sbs.com.au,false,SPEC_GAP upstream: searchcode.com API returns HTTP 404
+sfp_skymem,INTERNET_NAME,US,example.com,true,status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)
+sfp_slideshare,SOCIAL_MEDIA,US,example.com,true,status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)
+sfp_sorbs,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_spamcop,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_spamhaus,IP_ADDRESS,global,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_stevenblack_hosts,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_sublist3r,DOMAIN_NAME,US,sbs.com.au,false,SPEC_GAP upstream: api.sublist3r.com returns empty/non-JSON body
+sfp_surbl,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_talosintel,IP_ADDRESS,US,8.8.8.8,true,"status=FINISHED; verdict=error_failed; sflib:STATUS:Scan [300AE55A] completed.; sflib:STATUS:Running 37 correlation rules on scan 300AE55A.; sfp_talosintel:ERROR:Unexpected HTTP response code 403 from Talos Intelligence.; sflib:STATUS:Fetched https://snort.org/downloads/ip-block-list (5690 bytes in 0.11820507049560547s); sflib:STATUS:Fetching (GET): https://snort.org/downloads/ip-block-list (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x; sfp_talosintel:DEBUG:Received event, IP_ADDRESS, from SpiderFeet UI; sfp_talosintel:DEBUG:Checking maliciousness of 8.8.8.8 (IP_ADDRESS) with Talos Intelligence; sfp__stor_db:DEBUG:Storing an event: IP_ADDRESS"
 sfp_threatcrowd,INTERNET_NAME,US,google.com,false,validation=pilot
-sfp_threatcrowd,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_threatfox,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_threatminer,IP_ADDRESS,US,8.8.8.8,false,status=FINISHED
-sfp_torch,DOMAIN_NAME,US,sbs.com.au,false,status=FINISHED
-sfp_torexits,IP_ADDRESS,global,185.220.101.1,true,Tor exit node test IP; status=FINISHED
-sfp_trumail,EMAILADDR,US,noreply@spiderfoot.net,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_twitter,SOCIAL_MEDIA,US,sbs.com.au,false,status=FINISHED
-sfp_uceprotect,IP_ADDRESS,global,185.220.101.1,true,Tor exit node test IP; status=FINISHED
-sfp_urlscan,INTERNET_NAME,UK,bbc.co.uk,true,status=FINISHED
-sfp_venmo,USERNAME,US,"""spiderfeet""",false,status=FINISHED
-sfp_voipbl,IP_ADDRESS,US,8.8.8.8,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_vxvault,INTERNET_NAME,US,github.com,true,status=FINISHED
-sfp_wikileaks,DOMAIN_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_wikipediaedits,IP_ADDRESS,EU,91.198.174.192,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_yandexdns,INTERNET_NAME,US,sbs.com.au,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
-sfp_zoneh,INTERNET_NAME,US,zone-h.org,true,Clean input not listed/blocked; status=FINISHED; negative-fixture
+sfp_threatcrowd,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_threatfox,IP_ADDRESS,US,8.8.8.8,true,"status=FINISHED; verdict=error_failed; sflib:STATUS:Scan [6F7581F8] completed.; sflib:STATUS:Running 37 correlation rules on scan 6F7581F8.; sfp_threatfox:ERROR:Unexpected reply from ThreatFox: 401; sflib:STATUS:Fetched https://threatfox-api.abuse.ch/api/v1/ (25 bytes in 0.9671077728271484s); sflib:STATUS:Fetching (POST): https://threatfox-api.abuse.ch/api/v1/ (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; sfp_threatfox:DEBUG:Received event, IP_ADDRESS, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: IP_ADDRESS; sfp__stor_db:DEBUG:Storing an event: ROOT"
+sfp_threatminer,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)
+sfp_torch,DOMAIN_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)
+sfp_torexits,IP_ADDRESS,global,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_trumail,EMAILADDR,US,noreply@spiderfoot.net,true,status=FINISHED; verdict=clean_miss
+sfp_twitter,SOCIAL_MEDIA,US,example.com,true,status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)
+sfp_uceprotect,IP_ADDRESS,global,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_urlscan,INTERNET_NAME,UK,bbc.co.uk,true,status=FINISHED; verdict=hit
+sfp_venmo,USERNAME,US,paypal,true,status=FINISHED; verdict=hit; Pass 3 targeted probe; status=FINISHED
+sfp_voipbl,IP_ADDRESS,US,8.8.8.8,true,status=FINISHED; verdict=clean_miss
+sfp_vxvault,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_wikileaks,DOMAIN_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_wikipediaedits,IP_ADDRESS,EU,91.198.174.192,true,status=FINISHED; verdict=clean_miss
+sfp_yandexdns,INTERNET_NAME,US,sbs.com.au,true,status=FINISHED; verdict=clean_miss
+sfp_zoneh,INTERNET_NAME,US,zone-h.org,true,status=FINISHED; verdict=clean_miss

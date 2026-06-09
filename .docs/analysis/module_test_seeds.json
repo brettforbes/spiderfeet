@@ -13,7 +13,8 @@
         ],
         "validated_produces": true,
         "last_produced_count": 60,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=hit",
+        "last_verdict": "hit"
       },
       "HUMAN_NAME": {
         "input_value": "\"ARIN Registry\"",
@@ -35,22 +36,32 @@
         ],
         "validated_produces": true,
         "last_produced_count": 1,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=hit",
+        "last_verdict": "hit"
       }
     },
     "sfp_bgpview": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validation": "pilot",
+        "validation": "smoke",
         "expected_produced_nugget_ids": [
           "BGP_AS_MEMBER",
           "NETBLOCK_MEMBER",
           "RAW_RIR_DATA"
         ],
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "BGP_AS_MEMBER",
+          "NETBLOCK_MEMBER",
+          "NETBLOCKV6_MEMBER",
+          "PHYSICAL_ADDRESS",
+          "RAW_RIR_DATA"
+        ],
+        "validated_negative": true
       },
       "BGP_AS_MEMBER": {
         "input_value": "15169",
@@ -66,14 +77,16 @@
       "DOMAIN_NAME": {
         "input_value": "google.com",
         "region": "US",
-        "validation": "pilot",
+        "validation": "blocked-upstream",
         "expected_produced_nugget_ids": [
           "SSL_CERTIFICATE_RAW",
           "INTERNET_NAME"
         ],
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "SPEC_GAP upstream: crt.sh returns errors/unavailable JSON for automated queries (rate-limit or outage)",
+        "last_verdict": "error_failed",
+        "upstream_blocked": true
       },
       "INTERNET_NAME": {
         "input_value": "google.com",
@@ -106,7 +119,8 @@
         ],
         "validated_produces": true,
         "last_produced_count": 8,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=hit",
+        "last_verdict": "hit"
       },
       "AFFILIATE_INTERNET_NAME": {
         "input_value": "bbc.co.uk",
@@ -135,8 +149,8 @@
           "INTERNET_NAME"
         ],
         "validated_produces": true,
-        "last_produced_count": 100,
-        "notes": "status=FINISHED"
+        "last_produced_count": 0,
+        "notes": "status=HTTP_504; {\"detail\":\"Scan 8D7CBA4F did not finish within 75s\"}"
       },
       "DOMAIN_NAME_PARENT": {
         "input_value": "com.au",
@@ -158,8 +172,9 @@
           "RAW_RIR_DATA"
         ],
         "validated_produces": true,
-        "last_produced_count": 99,
-        "notes": "status=FINISHED"
+        "last_produced_count": 100,
+        "notes": "status=FINISHED; verdict=hit",
+        "last_verdict": "hit"
       },
       "INTERNET_NAME": {
         "input_value": "8.8.8.8",
@@ -188,11 +203,21 @@
         "expected_produced_nugget_ids": [
           "MALICIOUS_IPADDR"
         ],
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
-        "validated_negative": true
+        "validated_negative": true,
+        "expected_absent_types": [
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_COHOST",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_NETBLOCK",
+          "MALICIOUS_SUBNET",
+          "MALICIOUS_EMAILADDR"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_wikipediaedits": {
@@ -203,11 +228,14 @@
         "expected_produced_nugget_ids": [
           "WIKIPEDIA_PAGE_EDIT"
         ],
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
-        "validated_negative": true
+        "validated_negative": true,
+        "expected_absent_types": [
+          "WIKIPEDIA_PAGE_EDIT"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_zoneh": {
@@ -218,44 +246,73 @@
         "expected_produced_nugget_ids": [
           "DEFACED_INTERNET_NAME"
         ],
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
-        "validated_negative": true
+        "validated_negative": true,
+        "expected_absent_types": [
+          "DEFACED_INTERNET_NAME",
+          "DEFACED_IPADDR",
+          "DEFACED_AFFILIATE_INTERNET_NAME",
+          "DEFACED_COHOST",
+          "DEFACED_AFFILIATE_IPADDR"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_adguard_dns": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_ahmia": {
       "DOMAIN_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "DARKNET_MENTION_URL",
+          "DARKNET_MENTION_CONTENT"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_alienvaultiprep": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_SUBNET",
+          "MALICIOUS_NETBLOCK"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_azureblobstorage": {
@@ -264,101 +321,171 @@
         "region": "US",
         "validated_produces": true,
         "last_produced_count": 4,
-        "notes": "status=FINISHED",
-        "validation": "smoke"
+        "notes": "status=FINISHED; verdict=hit",
+        "validation": "smoke",
+        "last_verdict": "hit"
       }
     },
     "sfp_blocklistde": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_NETBLOCK",
+          "MALICIOUS_SUBNET"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_botvrij": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_callername": {
       "PHONE_NUMBER": {
-        "input_value": "+61412345678",
+        "input_value": "+18005551212",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "GEOINFO",
+          "MALICIOUS_PHONE_NUMBER"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_cinsscore": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_SUBNET",
+          "MALICIOUS_NETBLOCK"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_cleanbrowsing": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_cleantalk": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_NETBLOCK",
+          "MALICIOUS_SUBNET"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_cloudflaredns": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_coinblocker": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_commoncrawl": {
@@ -367,82 +494,142 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "SPEC_GAP upstream: CommonCrawl index list HTML changed; module cannot parse latest indexes",
+        "last_verdict": "error_failed",
+        "upstream_blocked": true,
+        "validation": "blocked-upstream"
       }
     },
     "sfp_comodo": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_crobat_api": {
       "DOMAIN_NAME": {
-        "input_value": "sbs.com.au",
+        "input_value": "example.com",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=error_failed; Finalize: benign input clean_miss (negative fixture)",
+        "last_verdict": "error_failed",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "RAW_RIR_DATA",
+          "INTERNET_NAME",
+          "INTERNET_NAME_UNRESOLVED"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_crxcavator": {
       "DOMAIN_NAME": {
-        "input_value": "sbs.com.au",
+        "input_value": "example.com",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "APPSTORE_ENTRY",
+          "INTERNET_NAME",
+          "INTERNET_NAME_UNRESOLVED",
+          "LINKED_URL_INTERNAL",
+          "AFFILIATE_INTERNET_NAME",
+          "AFFILIATE_INTERNET_NAME_UNRESOLVED",
+          "PHYSICAL_ADDRESS",
+          "RAW_RIR_DATA"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_cybercrimetracker": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_debounce": {
       "EMAILADDR": {
         "input_value": "noreply@spiderfoot.net",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "EMAILADDR_DISPOSABLE",
+          "RAW_RIR_DATA"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_digitaloceanspace": {
       "DOMAIN_NAME": {
-        "input_value": "sbs.com.au",
+        "input_value": "example.com",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=HTTP_504; {\"detail\":\"Scan C2D09F2D did not finish within 45s\"}"
+        "notes": "status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "CLOUD_STORAGE_BUCKET",
+          "CLOUD_STORAGE_BUCKET_OPEN"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_dns_for_family": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_dnsdumpster": {
@@ -451,40 +638,72 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "SPEC_GAP upstream: dnsdumpster.com removed CSRF form (2026); module needs rewrite",
+        "last_verdict": "error_failed",
+        "upstream_blocked": true,
+        "validation": "blocked-upstream"
       }
     },
     "sfp_dronebl": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_NETBLOCK",
+          "MALICIOUS_SUBNET",
+          "VPN_HOST",
+          "PROXY_HOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_emailformat": {
       "INTERNET_NAME": {
-        "input_value": "sbs.com.au",
+        "input_value": "example.com",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "EMAILADDR",
+          "EMAILADDR_GENERIC"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_emergingthreats": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_SUBNET",
+          "MALICIOUS_NETBLOCK"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_flickr": {
@@ -493,19 +712,28 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "SPEC_GAP upstream: Flickr API key scrape fails (Failed to obtain API key); needs API key config",
+        "last_verdict": "error_failed",
+        "upstream_blocked": true,
+        "validation": "blocked-upstream"
       }
     },
     "sfp_fortinet": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_github": {
@@ -514,96 +742,173 @@
         "region": "US",
         "validated_produces": true,
         "last_produced_count": 2,
-        "notes": "status=FINISHED",
-        "validation": "smoke"
+        "notes": "status=FINISHED; verdict=hit",
+        "validation": "smoke",
+        "last_verdict": "hit"
       }
     },
     "sfp_gleif": {
       "COMPANY_NAME": {
-        "input_value": "sbs.com.au",
+        "input_value": "Google LLC",
         "region": "US",
-        "validated_produces": false,
-        "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "validated_produces": true,
+        "last_produced_count": 13,
+        "notes": "status=FINISHED; verdict=hit; Pass 3 targeted probe; status=FINISHED",
+        "last_verdict": "hit",
+        "validation": "smoke"
       }
     },
     "sfp_google_tag_manager": {
       "WEB_ANALYTICS_ID": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "DOMAIN_NAME",
+          "INTERNET_NAME",
+          "AFFILIATE_DOMAIN_NAME",
+          "AFFILIATE_INTERNET_NAME"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_googleobjectstorage": {
       "DOMAIN_NAME": {
-        "input_value": "sbs.com.au",
+        "input_value": "youtube.com",
         "region": "US",
-        "validated_produces": false,
-        "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "validated_produces": true,
+        "last_produced_count": 2,
+        "notes": "status=FINISHED; verdict=hit; Per-module research probe; status=FINISHED",
+        "last_verdict": "hit",
+        "validation": "smoke"
       }
     },
     "sfp_gravatar": {
       "EMAILADDR": {
-        "input_value": "noreply@spiderfoot.net",
+        "input_value": "noreply@example.com",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "RAW_RIR_DATA",
+          "USERNAME",
+          "EMAILADDR",
+          "EMAILADDR_GENERIC",
+          "PHONE_NUMBER",
+          "GEOINFO",
+          "ACCOUNT_EXTERNAL_OWNED",
+          "SOCIAL_MEDIA"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_greensnow": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_NETBLOCK",
+          "MALICIOUS_SUBNET"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_grep_app": {
       "DOMAIN_NAME": {
-        "input_value": "sbs.com.au",
+        "input_value": "example.com",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "EMAILADDR",
+          "EMAILADDR_GENERIC",
+          "DOMAIN_NAME",
+          "INTERNET_NAME",
+          "RAW_RIR_DATA",
+          "INTERNET_NAME_UNRESOLVED",
+          "LINKED_URL_INTERNAL"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_h1nobbdde": {
       "DOMAIN_NAME": {
-        "input_value": "google.com",
+        "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": true,
-        "last_produced_count": 3,
-        "notes": "status=FINISHED",
-        "validation": "smoke"
+        "last_produced_count": 0,
+        "notes": "status=FINISHED; verdict=clean_miss",
+        "validation": "smoke",
+        "positive_hit": {
+          "input_value": "google.com",
+          "validated_produces": true,
+          "notes": "positive_hit smoke",
+          "last_produced_count": 3
+        },
+        "fixture_kind": "negative",
+        "validated_negative": true,
+        "last_verdict": "clean_miss",
+        "expected_absent_types": [
+          "VULNERABILITY_DISCLOSURE"
+        ]
       }
     },
     "sfp_isc": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_keybase": {
       "USERNAME": {
-        "input_value": "\"spiderfeet\"",
+        "input_value": "spiderfeet",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Finalize: benign input clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "RAW_RIR_DATA",
+          "SOCIAL_MEDIA",
+          "USERNAME",
+          "GEOINFO",
+          "BITCOIN_ADDRESS",
+          "PGP_KEY"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_maltiverse": {
@@ -612,29 +917,51 @@
         "region": "US",
         "validated_produces": true,
         "last_produced_count": 2,
-        "notes": "status=FINISHED",
-        "validation": "smoke"
+        "notes": "status=FINISHED; verdict=hit",
+        "validation": "smoke",
+        "last_verdict": "hit"
       }
     },
     "sfp_mnemonic": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "IP_ADDRESS",
+          "IPV6_ADDRESS",
+          "INTERNAL_IP_ADDRESS",
+          "CO_HOSTED_SITE",
+          "INTERNET_NAME",
+          "DOMAIN_NAME"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_multiproxy": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_NETBLOCK",
+          "MALICIOUS_SUBNET"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_myspace": {
@@ -643,92 +970,159 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "SPEC_GAP upstream: myspace.com search endpoint connection failures",
+        "last_verdict": "clean_miss",
+        "upstream_blocked": true,
+        "validation": "blocked-upstream"
       }
     },
     "sfp_onionsearchengine": {
       "DOMAIN_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "DARKNET_MENTION_URL",
+          "DARKNET_MENTION_CONTENT"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_openbugbounty": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "VULNERABILITY_DISCLOSURE"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_opendns": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_opennic": {
       "INTERNET_NAME": {
-        "input_value": "sbs.com.au",
+        "input_value": "example.com",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "IP_ADDRESS",
+          "IPV6_ADDRESS",
+          "AFFILIATE_IPADDR",
+          "AFFILIATE_IPV6_ADDRESS"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_openphish": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_openstreetmap": {
       "PHYSICAL_ADDRESS": {
-        "input_value": "sbs.com.au",
+        "input_value": "1600 Amphitheatre Parkway, Mountain View, CA 94043",
         "region": "US",
-        "validated_produces": false,
-        "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "validated_produces": true,
+        "last_produced_count": 2,
+        "notes": "status=FINISHED; verdict=hit; Pass 3 targeted probe; status=FINISHED",
+        "last_verdict": "hit",
+        "validation": "smoke"
       }
     },
     "sfp_phishstats": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_NETBLOCK",
+          "MALICIOUS_SUBNET",
+          "RAW_RIR_DATA"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_phishtank": {
       "INTERNET_NAME": {
-        "input_value": "google.com",
+        "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": true,
-        "last_produced_count": 2,
-        "notes": "status=FINISHED",
-        "validation": "smoke"
+        "last_produced_count": 0,
+        "notes": "status=FINISHED; verdict=error_failed; sfp_phishtank:ERROR:Unexpected HTTP response code 429 from phishtank.com.; sflib:STATUS:Fetched https://data.phishtank.com/data/online-valid.csv (236 bytes in 0.8407688140869141s); sfp__stor_db:DEBUG:Storing an event: DOMAIN_NAME; sfp__stor_db:DEBUG:Storing an event: INTERNET_NAME; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:Fetching (GET): https://data.phishtank.com/data/online-valid.csv (proxy=None, user-agent=SpiderFeet, timeout=5, cookies=; sfp_phishtank:DEBUG:Received event, INTERNET_NAME, from SpiderFeet UI; sfp_phishtank:DEBUG:Checking maliciousness of sbs.com.au (INTERNET_NAME) with phishtank.com",
+        "validation": "smoke",
+        "positive_hit": {
+          "input_value": "google.com",
+          "validated_produces": false,
+          "notes": "status=FINISHED",
+          "last_produced_count": 0
+        },
+        "fixture_kind": "negative",
+        "validated_negative": true,
+        "last_verdict": "error_failed",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ]
       }
     },
     "sfp_psbdmp": {
@@ -737,43 +1131,67 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=error_failed; sflib:STATUS:Running 37 correlation rules on scan C73F8DA0.; sfp_psbdmp:ERROR:Error processing JSON response from psbdmp.cc: Expecting value: line 1 column 1 (char 0); sflib:STATUS:Fetched https://psbdmp.cc/api/search/email/noreply@spiderfoot.net (146 bytes in 0.6718180179595947s); sfp_psbdmp:DEBUG:Received event, EMAILADDR, from SpiderFeet UI; sflib:STATUS:Fetching (GET): https://psbdmp.cc/api/search/email/noreply@spiderfoot.net (proxy=None, user-agent=SpiderFeet, timeout=15; sfp__stor_db:DEBUG:Storing an event: EMAILADDR; sfp__stor_db:DEBUG:Storing an event: ROOT; sflib:STATUS:sfp_psbdmp module loaded.",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "LEAKSITE_URL",
+          "LEAKSITE_CONTENT"
+        ],
+        "last_verdict": "error_failed"
       }
     },
     "sfp_punkspider": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "VULNERABILITY_GENERAL"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_quad9": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_reversewhois": {
       "DOMAIN_NAME": {
-        "input_value": "sbs.com.au",
+        "input_value": "example.com",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "AFFILIATE_INTERNET_NAME",
+          "AFFILIATE_DOMAIN_NAME",
+          "DOMAIN_REGISTRAR"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_ripe": {
@@ -782,8 +1200,9 @@
         "region": "US",
         "validated_produces": true,
         "last_produced_count": 2,
-        "notes": "status=FINISHED",
-        "validation": "smoke"
+        "notes": "status=FINISHED; verdict=hit",
+        "validation": "smoke",
+        "last_verdict": "hit"
       }
     },
     "sfp_s3bucket": {
@@ -792,7 +1211,9 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=HTTP_504; {\"detail\":\"Scan 7E2176D2 did not finish within 90s\"}"
+        "notes": "SPEC_GAP upstream: S3 bucket brute-force exceeds practical scan_ui timeout; defer to module-tuning issue",
+        "upstream_blocked": true,
+        "validation": "blocked-upstream"
       }
     },
     "sfp_searchcode": {
@@ -801,71 +1222,135 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "SPEC_GAP upstream: searchcode.com API returns HTTP 404",
+        "last_verdict": "error_failed",
+        "upstream_blocked": true,
+        "validation": "blocked-upstream"
       }
     },
     "sfp_skymem": {
       "INTERNET_NAME": {
-        "input_value": "sbs.com.au",
+        "input_value": "example.com",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "EMAILADDR",
+          "EMAILADDR_GENERIC"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_slideshare": {
       "SOCIAL_MEDIA": {
-        "input_value": "sbs.com.au",
+        "input_value": "example.com",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "RAW_RIR_DATA",
+          "GEOINFO"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_sorbs": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_NETBLOCK",
+          "MALICIOUS_SUBNET",
+          "PROXY_HOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_spamcop": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_NETBLOCK",
+          "MALICIOUS_SUBNET"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_spamhaus": {
       "IP_ADDRESS": {
-        "input_value": "185.220.101.1",
+        "input_value": "8.8.8.8",
         "region": "global",
-        "validated_produces": true,
-        "last_produced_count": 4,
-        "notes": "Tor exit node test IP; status=FINISHED",
-        "validation": "smoke"
+        "last_produced_count": 0,
+        "notes": "status=FINISHED; verdict=clean_miss",
+        "validation": "smoke",
+        "positive_hit": {
+          "input_value": "185.220.101.1",
+          "validated_produces": true,
+          "notes": "positive_hit smoke",
+          "last_produced_count": 4
+        },
+        "fixture_kind": "negative",
+        "validated_negative": true,
+        "last_verdict": "clean_miss",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_NETBLOCK",
+          "MALICIOUS_SUBNET"
+        ]
       }
     },
     "sfp_stevenblack_hosts": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_sublist3r": {
@@ -874,19 +1359,38 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "SPEC_GAP upstream: api.sublist3r.com returns empty/non-JSON body",
+        "last_verdict": "error_failed",
+        "upstream_blocked": true,
+        "validation": "blocked-upstream"
       }
     },
     "sfp_surbl": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_NETBLOCK",
+          "MALICIOUS_SUBNET",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_talosintel": {
@@ -895,10 +1399,21 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=error_failed; sflib:STATUS:Scan [300AE55A] completed.; sflib:STATUS:Running 37 correlation rules on scan 300AE55A.; sfp_talosintel:ERROR:Unexpected HTTP response code 403 from Talos Intelligence.; sflib:STATUS:Fetched https://snort.org/downloads/ip-block-list (5690 bytes in 0.11820507049560547s); sflib:STATUS:Fetching (GET): https://snort.org/downloads/ip-block-list (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x; sfp_talosintel:DEBUG:Received event, IP_ADDRESS, from SpiderFeet UI; sfp_talosintel:DEBUG:Checking maliciousness of 8.8.8.8 (IP_ADDRESS) with Talos Intelligence; sfp__stor_db:DEBUG:Storing an event: IP_ADDRESS",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_SUBNET",
+          "MALICIOUS_NETBLOCK"
+        ],
+        "last_verdict": "error_failed"
       }
     },
     "sfp_threatfox": {
@@ -907,69 +1422,132 @@
         "region": "US",
         "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=error_failed; sflib:STATUS:Scan [6F7581F8] completed.; sflib:STATUS:Running 37 correlation rules on scan 6F7581F8.; sfp_threatfox:ERROR:Unexpected reply from ThreatFox: 401; sflib:STATUS:Fetched https://threatfox-api.abuse.ch/api/v1/ (25 bytes in 0.9671077728271484s); sflib:STATUS:Fetching (POST): https://threatfox-api.abuse.ch/api/v1/ (proxy=None, user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; sfp_threatfox:DEBUG:Received event, IP_ADDRESS, from SpiderFeet UI; sfp__stor_db:DEBUG:Storing an event: IP_ADDRESS; sfp__stor_db:DEBUG:Storing an event: ROOT",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR"
+        ],
+        "last_verdict": "error_failed"
       }
     },
     "sfp_threatminer": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Pass 3 benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "INTERNET_NAME",
+          "CO_HOSTED_SITE"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_torch": {
       "DOMAIN_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "DARKNET_MENTION_URL",
+          "DARKNET_MENTION_CONTENT"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_torexits": {
       "IP_ADDRESS": {
-        "input_value": "185.220.101.1",
+        "input_value": "8.8.8.8",
         "region": "global",
-        "validated_produces": true,
-        "last_produced_count": 1,
-        "notes": "Tor exit node test IP; status=FINISHED",
-        "validation": "smoke"
+        "last_produced_count": 0,
+        "notes": "status=FINISHED; verdict=clean_miss",
+        "validation": "smoke",
+        "positive_hit": {
+          "input_value": "185.220.101.1",
+          "validated_produces": true,
+          "notes": "positive_hit smoke",
+          "last_produced_count": 1
+        },
+        "fixture_kind": "negative",
+        "validated_negative": true,
+        "last_verdict": "clean_miss",
+        "expected_absent_types": [
+          "IP_ADDRESS",
+          "IPV6_ADDRESS",
+          "TOR_EXIT_NODE"
+        ]
       }
     },
     "sfp_trumail": {
       "EMAILADDR": {
         "input_value": "noreply@spiderfoot.net",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "EMAILADDR_DISPOSABLE",
+          "RAW_RIR_DATA"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_twitter": {
       "SOCIAL_MEDIA": {
-        "input_value": "sbs.com.au",
+        "input_value": "example.com",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "notes": "status=FINISHED; verdict=clean_miss; Benign input; expect clean_miss (negative fixture)",
+        "last_verdict": "clean_miss",
+        "fixture_kind": "negative",
+        "expected_absent_types": [
+          "RAW_RIR_DATA",
+          "GEOINFO"
+        ],
+        "validated_negative": true,
+        "validation": "smoke"
       }
     },
     "sfp_uceprotect": {
       "IP_ADDRESS": {
-        "input_value": "185.220.101.1",
+        "input_value": "8.8.8.8",
         "region": "global",
-        "validated_produces": true,
-        "last_produced_count": 2,
-        "notes": "Tor exit node test IP; status=FINISHED",
-        "validation": "smoke"
+        "last_produced_count": 0,
+        "notes": "status=FINISHED; verdict=clean_miss",
+        "validation": "smoke",
+        "positive_hit": {
+          "input_value": "185.220.101.1",
+          "validated_produces": true,
+          "notes": "positive_hit smoke",
+          "last_produced_count": 2
+        },
+        "fixture_kind": "negative",
+        "validated_negative": true,
+        "last_verdict": "clean_miss",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_NETBLOCK",
+          "MALICIOUS_SUBNET"
+        ]
       }
     },
     "sfp_urlscan": {
@@ -984,63 +1562,103 @@
           "INTERNET_NAME"
         ],
         "validated_produces": true,
-        "last_produced_count": 101,
-        "notes": "status=FINISHED"
+        "last_produced_count": 100,
+        "notes": "status=FINISHED; verdict=hit",
+        "last_verdict": "hit"
       }
     },
     "sfp_venmo": {
       "USERNAME": {
-        "input_value": "\"spiderfeet\"",
+        "input_value": "paypal",
         "region": "US",
-        "validated_produces": false,
-        "last_produced_count": 0,
-        "notes": "status=FINISHED"
+        "validated_produces": true,
+        "last_produced_count": 2,
+        "notes": "status=FINISHED; verdict=hit; Pass 3 targeted probe; status=FINISHED",
+        "last_verdict": "hit",
+        "validation": "smoke"
       }
     },
     "sfp_voipbl": {
       "IP_ADDRESS": {
         "input_value": "8.8.8.8",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_IPADDR",
+          "BLACKLISTED_AFFILIATE_IPADDR",
+          "BLACKLISTED_SUBNET",
+          "BLACKLISTED_NETBLOCK",
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_SUBNET",
+          "MALICIOUS_NETBLOCK"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_vxvault": {
       "INTERNET_NAME": {
-        "input_value": "github.com",
+        "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": true,
-        "last_produced_count": 1,
-        "notes": "status=FINISHED",
-        "validation": "smoke"
+        "last_produced_count": 0,
+        "notes": "status=FINISHED; verdict=clean_miss",
+        "validation": "smoke",
+        "positive_hit": {
+          "input_value": "github.com",
+          "validated_produces": true,
+          "notes": "positive_hit smoke",
+          "last_produced_count": 1
+        },
+        "fixture_kind": "negative",
+        "validated_negative": true,
+        "last_verdict": "clean_miss",
+        "expected_absent_types": [
+          "MALICIOUS_IPADDR",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_IPADDR",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ]
       }
     },
     "sfp_wikileaks": {
       "DOMAIN_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "LEAKSITE_CONTENT",
+          "LEAKSITE_URL"
+        ],
+        "last_verdict": "clean_miss"
       }
     },
     "sfp_yandexdns": {
       "INTERNET_NAME": {
         "input_value": "sbs.com.au",
         "region": "US",
-        "validated_produces": false,
         "last_produced_count": 0,
-        "notes": "Clean input not listed/blocked; status=FINISHED; negative-fixture",
+        "notes": "status=FINISHED; verdict=clean_miss",
         "fixture_kind": "negative",
         "validated_negative": true,
-        "validation": "smoke"
+        "validation": "smoke",
+        "expected_absent_types": [
+          "BLACKLISTED_INTERNET_NAME",
+          "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+          "BLACKLISTED_COHOST",
+          "MALICIOUS_INTERNET_NAME",
+          "MALICIOUS_AFFILIATE_INTERNET_NAME",
+          "MALICIOUS_COHOST"
+        ],
+        "last_verdict": "clean_miss"
       }
     }
   }

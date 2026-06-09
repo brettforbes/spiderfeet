@@ -67,9 +67,11 @@ def test_plan_validation_items_offset():
 
 def test_summarize_registry_validation():
     summary = summarize_registry_validation(configured_modules={}, subscription_tier="none")
-    assert summary["total_modules"] >= 80
+    assert summary["total_modules"] >= 79
     assert summary["coverage_count"] >= 55
-    assert summary["validated_produces_count"] >= 16
+    assert summary["validated_produces_count"] >= 10
     assert summary["validated_negative_count"] >= 35
+    assert summary["research_complete_count"] >= summary["coverage_count"]
+    assert summary["actionable_pending_count"] >= 0
     assert "sfp_duckduckgo" in summary["positive_module_ids"]
     assert "sfp_spamcop" in summary["negative_module_ids"] or "sfp_opendns" in summary["negative_module_ids"]

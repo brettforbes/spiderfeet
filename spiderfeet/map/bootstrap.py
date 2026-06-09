@@ -18,6 +18,8 @@ from spiderfeet.map.constants import (
     OSINT_SERVICES_JSON,
     SCHEMA_TQL,
 )
+from spiderfeet.map.fixture_categories import fixture_category_for_service
+from spiderfeet.map.service_states import service_state_for_service
 from spiderfeet.map.naming import entity_type_for_nugget_id, relation_type_for_module_id
 from spiderfeet.map.typeql_util import (
     literal_string,
@@ -143,8 +145,10 @@ def _service_attr_lines(svc: Dict[str, Any], module_id: str) -> List[str]:
         f"has module_id {literal_string(module_id)}",
         f"has name {literal_string(svc.get('name', ''))}",
         f"has summary {literal_string(svc.get('summary', ''))}",
-        'has service_state "in-test"',
+        f'has service_state "{service_state_for_service(svc)}"',
     ]
+    category = fixture_category_for_service(svc)
+    attrs.append(f'has fixture_category {literal_string(category)}')
     for key in ("access_tier", "consumption_group", "route_seed_nugget"):
         val = svc.get(key)
         if val:

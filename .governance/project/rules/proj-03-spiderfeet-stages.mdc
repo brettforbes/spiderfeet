@@ -19,6 +19,14 @@ alwaysApply: true
 | 3 | TypeDB map + Maps force graph UI | both |
 | 4 | Module testing (177 issues, one per OSINT module) | both |
 
+## Stage 4 corpus (2026-06)
+
+- **None-tier research closed:** 87/87 — 79 smoke-validated, 8 `service_state: error` (upstream-blocked).
+- **Tests/Subscriptions** hide `error` services; **Maps** still shows all (filter TBD).
+- **Pass semantics:** positive = produced output; negative = `module_execution.verdict = clean_miss`.
+- **Agent doc:** `.docs/analysis/stage4_seed_corpus_and_tests.md` · **Rule:** `proj-04-spiderfeet-stage4-corpus.mdc`
+- **Epic:** GitHub #674 (seed research). Local `develop` may be ahead of remote until PR lands.
+
 ## Out of scope until new spec
 
 Stages 5–8: quarantine conversion, favourites/sequences, TypeDB storage replacement, main investigation UI.

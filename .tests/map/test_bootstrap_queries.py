@@ -41,6 +41,7 @@ def test_build_service_insert_queries():
     assert "isa sfp-dnsresolve" in queries[0]
     assert 'has module_id "sfp_dnsresolve"' in queries[0]
     assert 'has service_state "in-test"' in queries[0]
+    assert 'has fixture_category "positive"' in queries[0]
     assert "links (consumed: $nug0)" in queries[0]
     assert "links (produced: $nug1)" in queries[0]
     assert "has use_cases " in queries[0] and "Footprint" in queries[0]

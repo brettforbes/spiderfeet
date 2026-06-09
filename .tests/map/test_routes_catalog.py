@@ -45,7 +45,7 @@ def test_expand_module_tests_one_per_consumed():
 
 def test_catalog_summary_matches_osint_json():
     summary = catalog_summary()
-    assert summary["module_count"] >= 170
+    assert summary["module_count"] >= 169
     assert summary["test_count"] > summary["module_count"]
     assert summary["route_count"] >= summary["test_count"]
 

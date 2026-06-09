@@ -141,7 +141,7 @@ Run **one module** from a **consumed nugget**; intended for the spiderfeet-widge
 |-------|------|----------|-------|
 | `module_id` | string | yes | e.g. `sfp_dnsresolve` |
 | `consumed.nugget_id` | string | yes | Catalogue id, e.g. `INTERNET_NAME` |
-| `consumed.nugget_data` | string | yes | Target value, e.g. `sbs.com.au` |
+| `consumed.nugget_data` | string | yes | Target value, e.g. `sbs.com.au`. Catalogue types (`COMPANY_NAME`, `PHYSICAL_ADDRESS`, `WEB_ANALYTICS_ID`, `LEI`) and bare `USERNAME` handles are resolved by `scan_targets.py` (not only CLI regex). |
 | `wait` | bool | no | Default `true` |
 | `timeout_seconds` | int | no | 5–600, default `120` when `wait` is true |
 | `scan_name` | string | no | Defaults to `nugget_data` |
@@ -192,9 +192,15 @@ Run **one module** from a **consumed nugget**; intended for the spiderfeet-widge
     }
   },
   "consumed": [ { "nugget_id": "INTERNET_NAME", "nugget_data": "sbs.com.au", ... } ],
-  "produced": [ { "nugget_id": "IP_ADDRESS", "nugget_data": "...", ... } ]
+  "produced": [ { "nugget_id": "IP_ADDRESS", "nugget_data": "...", ... } ],
+  "module_execution": {
+    "verdict": "hit",
+    "events_emitted": 2
+  }
 }
 ```
+
+**`module_execution.verdict`:** `hit` (positive pass), `clean_miss` (negative pass), `error_failed`, `incomplete`, `absent_violation`. Widget Tests tab uses verdict for pass/fail, not produced count alone.
 
 | Status | Meaning |
 |--------|---------|
@@ -222,6 +228,21 @@ Default origins include local widget dev hosts. Override:
 $env:SPIDERFEET_CORS_ORIGINS = "http://localhost:3000,https://my-widget.example"
 .\start.ps1 -Mode api
 ```
+
+---
+
+## Tests & Subscriptions (Stage 4)
+
+Catalogue modules with `service_state: error` in `osint_services.json` are **omitted** from these endpoints (169 visible of 177). Maps graph still includes all services.
+
+| Method | Path | Notes |
+|--------|------|-------|
+| GET | `/api/v1/tests/summary` | Counts exclude `error` services |
+| GET | `/api/v1/tests/modules` | Plan rows include `fixture_kind`, `seed_validated` |
+| GET | `/api/v1/tests/plan` | Executable list for widget Tests tab |
+| GET | `/api/v1/subscriptions/modules` | API-key modules only, excludes `error` |
+
+Corpus: `.docs/analysis/stage4_seed_corpus_and_tests.md`
 
 ---
 
@@ -254,4 +275,5 @@ Requires `.config/typedb.connection.json` and bootstrapped `spiderfeet-map`. See
 
 - [README.md](README.md) — quick start
 - [cli_capability_matrix.md](cli_capability_matrix.md) — CLI → REST mapping
+- [../analysis/stage4_seed_corpus_and_tests.md](../analysis/stage4_seed_corpus_and_tests.md) — seeds, fixtures, `service_state`
 - [requestly/spiderfeet-api.postman_collection.json](requestly/spiderfeet-api.postman_collection.json) — import into Requestly

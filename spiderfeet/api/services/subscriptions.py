@@ -11,6 +11,8 @@ from spiderfeet.api.schemas import (
     SubscriptionModuleSummary,
     SubscriptionModuleUpdate,
 )
+from spiderfeet.map.fixture_categories import fixture_category_for_service
+from spiderfeet.map.service_states import include_in_operator_ui
 from spiderfeet.map.routes_catalog import load_osint_services, service_by_module_id
 from spiderfeet.map.subscriptions import (
     has_configured_api_key,
@@ -54,6 +56,7 @@ def _summary_row(service: Dict[str, Any], configured: Dict[str, Any]) -> Subscri
         subscription_tier=tier,
         requires_api_key=needs_key,
         has_api_key=has_key,
+        fixture_category=fixture_category_for_service(service),
         secret_opts=_secret_opts_masked(service, configured),
     )
 
@@ -69,6 +72,8 @@ def list_subscription_modules(
     query = (search or "").strip().lower()
     rows: List[SubscriptionModuleSummary] = []
     for svc in load_osint_services():
+        if not include_in_operator_ui(svc):
+            continue
         if not requires_api_key(svc):
             continue
         module_id = str(svc.get("module_id") or "")
@@ -85,7 +90,7 @@ def get_subscription_module(
     runtime_config: Optional[Dict[str, Any]] = None,
 ) -> Optional[SubscriptionModuleDetail]:
     service = service_by_module_id(module_id)
-    if service is None:
+    if service is None or not include_in_operator_ui(service):
         return None
     configured = _configured_modules(runtime_config or {})
     tier = subscription_tier_for_service(service)
