@@ -33,13 +33,13 @@ These can be installed into the project venv for local battery runs:
 |--------|--------|-----------|
 | `sfp_tool_cmseek` | `cmseek` | https://github.com/Tuhinshubhra/CMSeeK |
 | `sfp_tool_nbtscan` | `nbtscan` | http://www.unixwiz.net/tools/nbtscan.html |
-| `sfp_tool_nmap` | `nmap` | https://nmap.org/ |
+| `sfp_tool_nmap` | `nmap` | https://nmap.org/ (Windows: `winget install Insecure.Nmap`) |
 | `sfp_tool_nuclei` | `nuclei` | https://nuclei.projectdiscovery.io/ |
 | `sfp_tool_onesixtyone` | `onesixtyone` | https://github.com/trailofbits/onesixtyone |
 | `sfp_tool_retirejs` | `retire` | `npm install -g retire` |
 | `sfp_tool_testsslsh` | `testssl.sh` | https://testssl.sh |
 | `sfp_tool_trufflehog` | `trufflehog` | https://github.com/trufflesecurity/trufflehog |
-| `sfp_tool_wappalyzer` | `wappalyzer` | https://www.wappalyzer.com/ |
+| `sfp_tool_wappalyzer` | `wappalyzer` | Legacy AliasIO CLI (`cli.js`); npm `wappalyzer@6` deprecated |
 | `sfp_tool_whatweb` | `whatweb` | https://github.com/urbanadventurer/WhatWeb |
 
 ## Validate and promote

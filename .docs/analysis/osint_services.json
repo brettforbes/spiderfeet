@@ -12231,7 +12231,7 @@
   },
   {
     "module_id": "sfp_tool_nmap",
-    "service_origin": "quarantine",
+    "service_origin": "external",
     "name": "Tool - Nmap",
     "summary": "Identify what Operating System might be used.",
     "flags": [
@@ -12256,8 +12256,7 @@
       "description": "Identify what Operating System might be used.\n\n**Module ID:** `sfp_tool_nmap`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** IP_ADDRESS, NETBLOCK_OWNER\n**Produces:** OPERATING_SYSTEM, IP_ADDRESS\n**Flags:** tool, slow, invasive\n\n**Tool requirement:**\nInstall Nmap and ensure `nmap` is on PATH.\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `IP_ADDRESS`\n- Input: `127.0.0.1`\n- Produced count: 0",
       "api_key_instructions": [
         "Install Nmap and ensure `nmap` is on PATH."
-      ],
-      "tool_requirement": "Install Nmap and ensure `nmap` is on PATH."
+      ]
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12291,7 +12290,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "error",
+    "service_state": "in-test",
     "tool_details": {
       "name": "Nmap",
       "description": "Nmap (\"Network Mapper\") is a free and open source utility for network discovery and security auditing.\nNmap uses raw IP packets in novel ways to determine what hosts are available on the network, what services (application name and version) those hosts are offering, what operating systems (and OS versions) they are running, what type of packet filters/firewalls are in use, and dozens of other characteristics.\n",
@@ -12458,7 +12457,7 @@
   },
   {
     "module_id": "sfp_tool_retirejs",
-    "service_origin": "quarantine",
+    "service_origin": "external",
     "name": "Tool - Retire.js",
     "summary": "Scanner detecting the use of JavaScript libraries with known vulnerabilities",
     "flags": [
@@ -12481,8 +12480,7 @@
       "description": "Scanner detecting the use of JavaScript libraries with known vulnerabilities\n\n**Module ID:** `sfp_tool_retirejs`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** LINKED_URL_INTERNAL, LINKED_URL_EXTERNAL\n**Produces:** VULNERABILITY_CVE_CRITICAL, VULNERABILITY_CVE_HIGH, VULNERABILITY_CVE_MEDIUM, VULNERABILITY_CVE_LOW, VULNERABILITY_GENERAL\n**Flags:** tool\n\n**Tool requirement:**\nInstall retire.js CLI.\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
       "api_key_instructions": [
         "Install retire.js CLI."
-      ],
-      "tool_requirement": "Install retire.js CLI."
+      ]
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12507,7 +12505,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "error",
+    "service_state": "in-test",
     "tool_details": {
       "name": "Retire.js",
       "description": "Scanner detecting the use of JavaScript libraries with known vulnerabilities",

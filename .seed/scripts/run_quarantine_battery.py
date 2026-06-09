@@ -101,13 +101,19 @@ MODULE_PROBES: Dict[str, Tuple[str, List[str]]] = {
     "sfp_tool_cmseek": ("INTERNET_NAME", ["example.com"]),
     "sfp_tool_dnstwist": ("DOMAIN_NAME", ["example.com"]),
     "sfp_tool_nbtscan": ("IP_ADDRESS", ["127.0.0.1"]),
-    "sfp_tool_nmap": ("IP_ADDRESS", ["127.0.0.1"]),
+    "sfp_tool_nmap": ("IP_ADDRESS", ["8.8.8.8", "127.0.0.1"]),
     "sfp_tool_nuclei": ("INTERNET_NAME", ["example.com"]),
     "sfp_tool_onesixtyone": ("IP_ADDRESS", ["127.0.0.1"]),
-    "sfp_tool_retirejs": ("INTERNET_NAME", ["example.com"]),
+    "sfp_tool_retirejs": (
+        "LINKED_URL_INTERNAL",
+        ["https://code.jquery.com/jquery-1.2.6.min.js"],
+    ),
     "sfp_tool_snallygaster": ("INTERNET_NAME", ["example.com"]),
     "sfp_tool_testsslsh": ("INTERNET_NAME", ["example.com"]),
-    "sfp_tool_trufflehog": ("INTERNET_NAME", ["github.com"]),
+    "sfp_tool_trufflehog": (
+        "SOCIAL_MEDIA",
+        ["GitHub: https://github.com/octocat/Hello-World"],
+    ),
     "sfp_tool_wafw00f": ("INTERNET_NAME", ["example.com"]),
     "sfp_tool_wappalyzer": ("INTERNET_NAME", ["example.com"]),
     "sfp_tool_whatweb": ("INTERNET_NAME", ["example.com"]),
@@ -150,12 +156,30 @@ def load_quarantine_ids(only: Optional[List[str]] = None) -> List[str]:
 
 
 def ensure_venv_scripts_on_path() -> None:
-    """Prepend repo .venv/Scripts (or bin) so pip-installed CLIs resolve in local battery."""
+    """Prepend common dev tool locations so local battery finds pip/npm/OS CLIs."""
+    prefixes: List[str] = []
     venv_scripts = REPO_ROOT / ".venv" / ("Scripts" if sys.platform == "win32" else "bin")
     if venv_scripts.is_dir():
-        prefix = str(venv_scripts) + os.pathsep
-        if not os.environ.get("PATH", "").startswith(prefix):
-            os.environ["PATH"] = prefix + os.environ.get("PATH", "")
+        prefixes.append(str(venv_scripts))
+
+    if sys.platform == "win32":
+        for candidate in (
+            r"C:\Program Files (x86)\Nmap",
+            r"C:\Program Files\Nmap",
+        ):
+            if os.path.isdir(candidate):
+                prefixes.append(candidate)
+
+    nodejs = Path(os.environ.get("ProgramFiles", r"C:\Program Files")) / "nodejs"
+    nvm_node = Path(r"C:\nvm4w\nodejs")
+    for node_bin in (nodejs, nvm_node):
+        if node_bin.is_dir():
+            prefixes.append(str(node_bin))
+
+    current = os.environ.get("PATH", "")
+    merged = os.pathsep.join(p for p in prefixes if p and p not in current.split(os.pathsep))
+    if merged:
+        os.environ["PATH"] = merged + os.pathsep + current
 
 
 def promote_validated_hits(results: List[Dict[str, Any]]) -> List[str]:

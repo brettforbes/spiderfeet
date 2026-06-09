@@ -1,54 +1,40 @@
 {
-  "generated_at": "2026-06-09T23:03:06.835606+00:00",
+  "generated_at": "2026-06-09T23:23:15.411597+00:00",
   "api_base": "http://127.0.0.1:8001/api/v1",
-  "module_count": 3,
+  "module_count": 2,
   "summary": {
-    "validated_hit": 2,
-    "validated_negative": 1
+    "validated_negative": 1,
+    "validated_hit": 1
   },
   "results": [
     {
-      "module_id": "sfp_tool_dnstwist",
-      "consumed_nugget_id": "DOMAIN_NAME",
-      "input_value": "example.com",
-      "status": "UNKNOWN",
-      "verdict": "hit",
-      "produced_count": 106,
-      "validated_produces": true,
-      "validated_negative": false,
-      "scan_id": "380AD162",
-      "classification": "validated_hit",
-      "fixture_kind": "positive",
-      "notes": "status=UNKNOWN; verdict=hit; produced=106"
-    },
-    {
-      "module_id": "sfp_tool_snallygaster",
-      "consumed_nugget_id": "INTERNET_NAME",
-      "input_value": "example.com",
+      "module_id": "sfp_tool_nmap",
+      "consumed_nugget_id": "IP_ADDRESS",
+      "input_value": "8.8.8.8",
       "status": "UNKNOWN",
       "verdict": "clean_miss",
       "produced_count": 0,
       "validated_produces": false,
       "validated_negative": false,
-      "scan_id": "64A05AA5",
+      "scan_id": "F38E89A8",
       "classification": "validated_negative",
       "fixture_kind": "positive",
       "log_snippet": "",
       "notes": ""
     },
     {
-      "module_id": "sfp_tool_wafw00f",
-      "consumed_nugget_id": "INTERNET_NAME",
-      "input_value": "example.com",
+      "module_id": "sfp_tool_retirejs",
+      "consumed_nugget_id": "LINKED_URL_INTERNAL",
+      "input_value": "https://code.jquery.com/jquery-1.2.6.min.js",
       "status": "UNKNOWN",
       "verdict": "hit",
-      "produced_count": 3,
+      "produced_count": 6,
       "validated_produces": true,
       "validated_negative": false,
-      "scan_id": "81AA8A0D",
+      "scan_id": "0922E6AF",
       "classification": "validated_hit",
       "fixture_kind": "positive",
-      "notes": "status=UNKNOWN; verdict=hit; produced=3"
+      "notes": "status=UNKNOWN; verdict=hit; produced=6"
     }
   ]
 }
