@@ -1,0 +1,2967 @@
+[
+  {
+    "module_id": "sfp_accounts",
+    "service_origin": "quarantine",
+    "name": "Account Finder",
+    "summary": "Look for possible associated accounts on over 500 social and other websites such as Instagram, Reddit, etc.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Passive"
+    ],
+    "categories": [
+      "Social Media"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_accounts",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_accounts"
+      ],
+      "fav_icon": "icons/icon_service_accounts.svg",
+      "description": "Look for possible associated accounts on over 500 social and other websites such as Instagram, Reddit, etc."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "EMAILADDR",
+      "DOMAIN_NAME",
+      "HUMAN_NAME",
+      "USERNAME"
+    ],
+    "produced_nuggets": [
+      "USERNAME",
+      "ACCOUNT_EXTERNAL_OWNED",
+      "SIMILAR_ACCOUNT_EXTERNAL"
+    ],
+    "consumption_group": "email_identity_bundle",
+    "route_seed_nugget": "DOMAIN_NAME",
+    "module_opts": [
+      {
+        "name": "_maxthreads",
+        "value_type": "integer",
+        "value": 20,
+        "description": "Maximum threads"
+      },
+      {
+        "name": "ignorenamedict",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Don't bother looking up names that are just stand-alone first names (too many false positives)."
+      },
+      {
+        "name": "ignoreworddict",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Don't bother looking up names that appear in the dictionary."
+      },
+      {
+        "name": "musthavename",
+        "value_type": "boolean",
+        "value": true,
+        "description": "The username must be mentioned on the social media page to consider it valid (helps avoid false positives)."
+      },
+      {
+        "name": "permutate",
+        "value_type": "boolean",
+        "value": false,
+        "description": "Look for the existence of account name permutations. Useful to identify fraudulent social media accounts or account squatting."
+      },
+      {
+        "name": "userfromemail",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Extract usernames from e-mail addresses at all? If disabled this can reduce false positives for common usernames but for highly unique usernames it would result in missed accounts."
+      },
+      {
+        "name": "usernamesize",
+        "value_type": "integer",
+        "value": 4,
+        "description": "The minimum length of a username to query across social media sites. Helps avoid false positives for very common short usernames."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_base64",
+    "service_origin": "quarantine",
+    "name": "Base64 Decoder",
+    "summary": "Identify Base64-encoded strings in URLs, often revealing interesting hidden information.",
+    "flags": [],
+    "use_cases": [
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_base64",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_base64"
+      ],
+      "fav_icon": "icons/icon_service_base64.svg",
+      "description": "Identify Base64-encoded strings in URLs, often revealing interesting hidden information."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "LINKED_URL_INTERNAL"
+    ],
+    "produced_nuggets": [
+      "BASE64_DATA"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "LINKED_URL_INTERNAL",
+    "module_opts": [
+      {
+        "name": "minlength",
+        "value_type": "integer",
+        "value": 10,
+        "description": "The minimum length a string that looks like a base64-encoded string needs to be."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_binstring",
+    "service_origin": "quarantine",
+    "name": "Binary String Extractor",
+    "summary": "Attempt to identify strings in binary content.",
+    "flags": [
+      "errorprone"
+    ],
+    "use_cases": [
+      "Footprint"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_binstring",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_binstring"
+      ],
+      "fav_icon": "icons/icon_service_binstring.svg",
+      "description": "Attempt to identify strings in binary content."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "LINKED_URL_INTERNAL"
+    ],
+    "produced_nuggets": [
+      "RAW_FILE_META_DATA"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "LINKED_URL_INTERNAL",
+    "module_opts": [
+      {
+        "name": "fileexts",
+        "value_type": "string",
+        "value": "[\"png\", \"gif\", \"jpg\", \"jpeg\", \"tiff\", \"tif\", \"ico\", \"flv\", \"mp4\", \"mp3\", \"avi\", \"mpg\", \"mpeg\", \"dat\", \"mov\", \"swf\", \"exe\", \"bin\"]",
+        "description": "File types to fetch and analyse."
+      },
+      {
+        "name": "filterchars",
+        "value_type": "string",
+        "value": "#}{|%^&*()=+,;[]~",
+        "description": "Ignore strings with these characters, as they may just be garbage ASCII."
+      },
+      {
+        "name": "maxfilesize",
+        "value_type": "integer",
+        "value": 1000000,
+        "description": "Maximum file size in bytes to download for analysis."
+      },
+      {
+        "name": "maxwords",
+        "value_type": "integer",
+        "value": 100,
+        "description": "Stop reporting strings from a single binary after this many are found."
+      },
+      {
+        "name": "minwordsize",
+        "value_type": "integer",
+        "value": 5,
+        "description": "Upon finding a string in a binary, ensure it is at least this length. Helps weed out false positives."
+      },
+      {
+        "name": "usedict",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Use the dictionary to further reduce false positives - any string found must contain a word from the dictionary (can be very slow, especially for larger files)."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_bitcoin",
+    "service_origin": "quarantine",
+    "name": "Bitcoin Finder",
+    "summary": "Identify bitcoin addresses in scraped webpages.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_bitcoin",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_bitcoin"
+      ],
+      "fav_icon": "icons/icon_service_bitcoin.svg",
+      "description": "Identify bitcoin addresses in scraped webpages."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "TARGET_WEB_CONTENT"
+    ],
+    "produced_nuggets": [
+      "BITCOIN_ADDRESS"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_company",
+    "service_origin": "quarantine",
+    "name": "Company Name Extractor",
+    "summary": "Identify company names in any obtained data.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_company",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_company"
+      ],
+      "fav_icon": "icons/icon_service_company.svg",
+      "description": "Identify company names in any obtained data."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "TARGET_WEB_CONTENT",
+      "SSL_CERTIFICATE_ISSUED",
+      "DOMAIN_WHOIS",
+      "NETBLOCK_WHOIS",
+      "AFFILIATE_DOMAIN_WHOIS",
+      "AFFILIATE_WEB_CONTENT"
+    ],
+    "produced_nuggets": [
+      "COMPANY_NAME",
+      "AFFILIATE_COMPANY_NAME"
+    ],
+    "consumption_group": "other",
+    "route_seed_nugget": "AFFILIATE_DOMAIN_WHOIS",
+    "module_opts": [
+      {
+        "name": "filterjscss",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Filter out company names that originated from CSS/JS content. Enabling this avoids detection of popular Javascript and web framework author company names."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_cookie",
+    "service_origin": "quarantine",
+    "name": "Cookie Extractor",
+    "summary": "Extract Cookies from HTTP headers.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_cookie",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_cookie"
+      ],
+      "fav_icon": "icons/icon_service_cookie.svg",
+      "description": "Extract Cookies from HTTP headers."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "WEBSERVER_HTTPHEADERS"
+    ],
+    "produced_nuggets": [
+      "TARGET_WEB_COOKIE"
+    ],
+    "consumption_group": "other",
+    "route_seed_nugget": "WEBSERVER_HTTPHEADERS",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_countryname",
+    "service_origin": "quarantine",
+    "name": "Country Name Extractor",
+    "summary": "Identify country names in any obtained data.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_countryname",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_countryname"
+      ],
+      "fav_icon": "icons/icon_service_countryname.svg",
+      "description": "Identify country names in any obtained data."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "IBAN_NUMBER",
+      "PHONE_NUMBER",
+      "AFFILIATE_DOMAIN_NAME",
+      "CO_HOSTED_SITE_DOMAIN",
+      "DOMAIN_NAME",
+      "SIMILARDOMAIN",
+      "AFFILIATE_DOMAIN_WHOIS",
+      "CO_HOSTED_SITE_DOMAIN_WHOIS",
+      "DOMAIN_WHOIS",
+      "GEOINFO",
+      "PHYSICAL_ADDRESS"
+    ],
+    "produced_nuggets": [
+      "COUNTRY_NAME"
+    ],
+    "consumption_group": "domain_and_hostname",
+    "route_seed_nugget": "DOMAIN_NAME",
+    "module_opts": [
+      {
+        "name": "affiliate",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Obtain country name from affiliate sites"
+      },
+      {
+        "name": "cohosted",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Obtain country name from co-hosted sites"
+      },
+      {
+        "name": "noncountrytld",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Parse TLDs not associated with any country as default country domains"
+      },
+      {
+        "name": "similardomain",
+        "value_type": "boolean",
+        "value": false,
+        "description": "Obtain country name from similar domains"
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_creditcard",
+    "service_origin": "quarantine",
+    "name": "Credit Card Number Extractor",
+    "summary": "Identify Credit Card Numbers in any data",
+    "flags": [
+      "errorprone"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_creditcard",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_creditcard"
+      ],
+      "fav_icon": "icons/icon_service_creditcard.svg",
+      "description": "Identify Credit Card Numbers in any data"
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "DARKNET_MENTION_CONTENT",
+      "LEAKSITE_CONTENT"
+    ],
+    "produced_nuggets": [
+      "CREDIT_CARD_NUMBER"
+    ],
+    "consumption_group": "other",
+    "route_seed_nugget": "DARKNET_MENTION_CONTENT",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_crossref",
+    "service_origin": "quarantine",
+    "name": "Cross-Referencer",
+    "summary": "Identify whether other domains are associated ('Affiliates') of the target by looking for links back to the target site(s).",
+    "flags": [],
+    "use_cases": [
+      "Footprint"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_crossref",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_crossref"
+      ],
+      "fav_icon": "icons/icon_service_crossref.svg",
+      "description": "Identify whether other domains are associated ('Affiliates') of the target by looking for links back to the target site(s)."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "LINKED_URL_EXTERNAL",
+      "SIMILARDOMAIN",
+      "CO_HOSTED_SITE",
+      "DARKNET_MENTION_URL"
+    ],
+    "produced_nuggets": [
+      "AFFILIATE_INTERNET_NAME",
+      "AFFILIATE_WEB_CONTENT"
+    ],
+    "consumption_group": "domain_and_hostname",
+    "route_seed_nugget": "LINKED_URL_EXTERNAL",
+    "module_opts": [
+      {
+        "name": "checkbase",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Check the base URL of the potential affiliate if no direct affiliation found?"
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_customfeed",
+    "service_origin": "quarantine",
+    "name": "Custom Threat Feed",
+    "summary": "Check if a host/domain, netblock, ASN or IP is malicious according to your custom feed.",
+    "flags": [],
+    "use_cases": [
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Reputation Systems"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_customfeed",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_customfeed"
+      ],
+      "fav_icon": "icons/icon_service_customfeed.svg",
+      "description": "Check if a host/domain, netblock, ASN or IP is malicious according to your custom feed."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME",
+      "IP_ADDRESS",
+      "AFFILIATE_INTERNET_NAME",
+      "AFFILIATE_IPADDR",
+      "CO_HOSTED_SITE"
+    ],
+    "produced_nuggets": [
+      "MALICIOUS_IPADDR",
+      "MALICIOUS_INTERNET_NAME",
+      "MALICIOUS_AFFILIATE_IPADDR",
+      "MALICIOUS_AFFILIATE_INTERNET_NAME",
+      "MALICIOUS_COHOST"
+    ],
+    "consumption_group": "other",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "cacheperiod",
+        "value_type": "integer",
+        "value": 0,
+        "description": "Maximum age of data in hours before re-downloading. 0 to always download."
+      },
+      {
+        "name": "checkaffiliates",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Apply checks to affiliates?"
+      },
+      {
+        "name": "checkcohosts",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Apply checks to sites found to be co-hosted on the target's IP?"
+      },
+      {
+        "name": "url",
+        "value_type": "string",
+        "value": "",
+        "description": "The URL where the feed can be found. Exact matching is performed so the format must be a single line per host, ASN, domain, IP or netblock."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_dnsbrute",
+    "service_origin": "quarantine",
+    "name": "DNS Brute-forcer",
+    "summary": "Attempts to identify hostnames through brute-forcing common names and iterations.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "DNS"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_dnsbrute",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_dnsbrute"
+      ],
+      "fav_icon": "icons/icon_service_dnsbrute.svg",
+      "description": "Attempts to identify hostnames through brute-forcing common names and iterations."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "DOMAIN_NAME",
+      "INTERNET_NAME"
+    ],
+    "produced_nuggets": [
+      "INTERNET_NAME"
+    ],
+    "consumption_group": "domain_and_hostname",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "_maxthreads",
+        "value_type": "integer",
+        "value": 100,
+        "description": "Maximum threads"
+      },
+      {
+        "name": "commons",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Try a list of about 750 common hostnames/sub-domains."
+      },
+      {
+        "name": "domainonly",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Only attempt to brute-force names on domain names, not hostnames (some hostnames are also sub-domains)."
+      },
+      {
+        "name": "numbersuffix",
+        "value_type": "boolean",
+        "value": true,
+        "description": "For any host found, try appending 1, 01, 001, -1, -01, -001, 2, 02, etc. (up to 10)"
+      },
+      {
+        "name": "numbersuffixlimit",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Limit using the number suffixes for hosts that have already been resolved? If disabled this will significantly extend the duration of scans."
+      },
+      {
+        "name": "skipcommonwildcard",
+        "value_type": "boolean",
+        "value": true,
+        "description": "If wildcard DNS is detected, don't bother brute-forcing."
+      },
+      {
+        "name": "top10000",
+        "value_type": "boolean",
+        "value": false,
+        "description": "Try a further 10,000 common hostnames/sub-domains. Will make the scan much slower."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_dnscommonsrv",
+    "service_origin": "quarantine",
+    "name": "DNS Common SRV",
+    "summary": "Attempts to identify hostnames through brute-forcing common DNS SRV records.",
+    "flags": [
+      "slow"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "DNS"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_dnscommonsrv",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_dnscommonsrv"
+      ],
+      "fav_icon": "icons/icon_service_dnscommonsrv.svg",
+      "description": "Attempts to identify hostnames through brute-forcing common DNS SRV records."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME",
+      "DOMAIN_NAME"
+    ],
+    "produced_nuggets": [
+      "INTERNET_NAME",
+      "AFFILIATE_INTERNET_NAME"
+    ],
+    "consumption_group": "domain_and_hostname",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_dnsneighbor",
+    "service_origin": "quarantine",
+    "name": "DNS Look-aside",
+    "summary": "Attempt to reverse-resolve the IP addresses next to your target to see if they are related.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "DNS"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_dnsneighbor",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_dnsneighbor"
+      ],
+      "fav_icon": "icons/icon_service_dnsneighbor.svg",
+      "description": "Attempt to reverse-resolve the IP addresses next to your target to see if they are related."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "IP_ADDRESS"
+    ],
+    "produced_nuggets": [
+      "AFFILIATE_IPADDR",
+      "IP_ADDRESS"
+    ],
+    "consumption_group": "ip_only",
+    "route_seed_nugget": "IP_ADDRESS",
+    "module_opts": [
+      {
+        "name": "lookasidebits",
+        "value_type": "integer",
+        "value": 4,
+        "description": "If look-aside is enabled, the netmask size (in CIDR notation) to check. Default is 4 bits (16 hosts)."
+      },
+      {
+        "name": "validatereverse",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Validate that reverse-resolved hostnames still resolve back to that IP before considering them as aliases of your target."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_dnsraw",
+    "service_origin": "quarantine",
+    "name": "DNS Raw Records",
+    "summary": "Retrieves raw DNS records such as MX, TXT and others.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "DNS"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_dnsraw",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_dnsraw"
+      ],
+      "fav_icon": "icons/icon_service_dnsraw.svg",
+      "description": "Retrieves raw DNS records such as MX, TXT and others."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME",
+      "DOMAIN_NAME",
+      "DOMAIN_NAME_PARENT"
+    ],
+    "produced_nuggets": [
+      "PROVIDER_MAIL",
+      "PROVIDER_DNS",
+      "RAW_DNS_RECORDS",
+      "DNS_TEXT",
+      "DNS_SPF",
+      "INTERNET_NAME",
+      "INTERNET_NAME_UNRESOLVED",
+      "AFFILIATE_INTERNET_NAME",
+      "AFFILIATE_INTERNET_NAME_UNRESOLVED"
+    ],
+    "consumption_group": "domain_and_hostname",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "verify",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Verify identified hostnames resolve."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_dnsresolve",
+    "service_origin": "quarantine",
+    "name": "DNS Resolver",
+    "summary": "Resolves hosts and IP addresses identified, also extracted from raw content.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "DNS"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_dnsresolve",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_dnsresolve"
+      ],
+      "fav_icon": "icons/icon_service_dnsresolve.svg",
+      "description": "Resolves hosts and IP addresses identified, also extracted from raw content."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "CO_HOSTED_SITE",
+      "AFFILIATE_INTERNET_NAME",
+      "NETBLOCK_OWNER",
+      "NETBLOCKV6_OWNER",
+      "IP_ADDRESS",
+      "IPV6_ADDRESS",
+      "INTERNET_NAME",
+      "AFFILIATE_IPADDR",
+      "AFFILIATE_IPV6_ADDRESS",
+      "TARGET_WEB_CONTENT",
+      "BASE64_DATA",
+      "AFFILIATE_DOMAIN_WHOIS",
+      "CO_HOSTED_SITE_DOMAIN_WHOIS",
+      "DOMAIN_WHOIS",
+      "NETBLOCK_WHOIS",
+      "LEAKSITE_CONTENT",
+      "RAW_DNS_RECORDS",
+      "RAW_FILE_META_DATA",
+      "RAW_RIR_DATA",
+      "SIMILARDOMAIN_WHOIS",
+      "SSL_CERTIFICATE_RAW",
+      "SSL_CERTIFICATE_ISSUED",
+      "TCP_PORT_OPEN_BANNER",
+      "WEBSERVER_BANNER",
+      "WEBSERVER_HTTPHEADERS"
+    ],
+    "produced_nuggets": [
+      "IP_ADDRESS",
+      "INTERNET_NAME",
+      "AFFILIATE_INTERNET_NAME",
+      "AFFILIATE_IPADDR",
+      "AFFILIATE_IPV6_ADDRESS",
+      "DOMAIN_NAME",
+      "IPV6_ADDRESS",
+      "INTERNAL_IP_ADDRESS",
+      "DOMAIN_NAME_PARENT",
+      "CO_HOSTED_SITE_DOMAIN",
+      "AFFILIATE_DOMAIN_NAME",
+      "INTERNET_NAME_UNRESOLVED"
+    ],
+    "consumption_group": "ip_netblock",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "maxnetblock",
+        "value_type": "integer",
+        "value": 24,
+        "description": "Maximum owned IPv4 netblock size to look up all IPs within (CIDR value, 24 = /24, 16 = /16, etc.)"
+      },
+      {
+        "name": "maxv6netblock",
+        "value_type": "integer",
+        "value": 120,
+        "description": "Maximum owned IPv6 netblock size to look up all IPs within (CIDR value, 24 = /24, 16 = /16, etc.)"
+      },
+      {
+        "name": "netblocklookup",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Look up all IPs on netblocks deemed to be owned by your target for possible hosts on the same target subdomain/domain?"
+      },
+      {
+        "name": "skipcommononwildcard",
+        "value_type": "boolean",
+        "value": true,
+        "description": "If wildcard DNS is detected, only attempt to look up the first common sub-domain from the common sub-domain list."
+      },
+      {
+        "name": "validatereverse",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Validate that reverse-resolved hostnames still resolve back to that IP before considering them as aliases of your target."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_dnszonexfer",
+    "service_origin": "quarantine",
+    "name": "DNS Zone Transfer",
+    "summary": "Attempts to perform a full DNS zone transfer.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "DNS"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_dnszonexfer",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_dnszonexfer"
+      ],
+      "fav_icon": "icons/icon_service_dnszonexfer.svg",
+      "description": "Attempts to perform a full DNS zone transfer."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "PROVIDER_DNS"
+    ],
+    "produced_nuggets": [
+      "RAW_DNS_RECORDS",
+      "INTERNET_NAME"
+    ],
+    "consumption_group": "other",
+    "route_seed_nugget": "PROVIDER_DNS",
+    "module_opts": [
+      {
+        "name": "timeout",
+        "value_type": "integer",
+        "value": 30,
+        "description": "Timeout in seconds"
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_email",
+    "service_origin": "quarantine",
+    "name": "E-Mail Address Extractor",
+    "summary": "Identify e-mail addresses in any obtained data.",
+    "flags": [],
+    "use_cases": [
+      "Passive",
+      "Investigate",
+      "Footprint"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_email",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_email"
+      ],
+      "fav_icon": "icons/icon_service_email.svg",
+      "description": "Identify e-mail addresses in any obtained data."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "TARGET_WEB_CONTENT",
+      "BASE64_DATA",
+      "AFFILIATE_DOMAIN_WHOIS",
+      "CO_HOSTED_SITE_DOMAIN_WHOIS",
+      "DOMAIN_WHOIS",
+      "NETBLOCK_WHOIS",
+      "LEAKSITE_CONTENT",
+      "RAW_DNS_RECORDS",
+      "RAW_FILE_META_DATA",
+      "RAW_RIR_DATA",
+      "SIMILARDOMAIN_WHOIS",
+      "SSL_CERTIFICATE_RAW",
+      "SSL_CERTIFICATE_ISSUED",
+      "TCP_PORT_OPEN_BANNER",
+      "WEBSERVER_BANNER",
+      "WEBSERVER_HTTPHEADERS"
+    ],
+    "produced_nuggets": [
+      "EMAILADDR",
+      "EMAILADDR_GENERIC",
+      "AFFILIATE_EMAILADDR"
+    ],
+    "consumption_group": "domain_and_hostname",
+    "route_seed_nugget": "AFFILIATE_DOMAIN_WHOIS",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_errors",
+    "service_origin": "quarantine",
+    "name": "Error String Extractor",
+    "summary": "Identify common error messages in content like SQL errors, etc.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_errors",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_errors"
+      ],
+      "fav_icon": "icons/icon_service_errors.svg",
+      "description": "Identify common error messages in content like SQL errors, etc."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "TARGET_WEB_CONTENT"
+    ],
+    "produced_nuggets": [
+      "ERROR_MESSAGE"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_ethereum",
+    "service_origin": "quarantine",
+    "name": "Ethereum Address Extractor",
+    "summary": "Identify ethereum addresses in scraped webpages.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_ethereum",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_ethereum"
+      ],
+      "fav_icon": "icons/icon_service_ethereum.svg",
+      "description": "Identify ethereum addresses in scraped webpages."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "TARGET_WEB_CONTENT"
+    ],
+    "produced_nuggets": [
+      "ETHEREUM_ADDRESS"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_filemeta",
+    "service_origin": "quarantine",
+    "name": "File Metadata Extractor",
+    "summary": "Extracts meta data from documents and images.",
+    "flags": [],
+    "use_cases": [
+      "Footprint"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_filemeta",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_filemeta"
+      ],
+      "fav_icon": "icons/icon_service_filemeta.svg",
+      "description": "Extracts meta data from documents and images."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "LINKED_URL_INTERNAL",
+      "INTERESTING_FILE"
+    ],
+    "produced_nuggets": [
+      "RAW_FILE_META_DATA",
+      "SOFTWARE_USED"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "LINKED_URL_INTERNAL",
+    "module_opts": [
+      {
+        "name": "fileexts",
+        "value_type": "string",
+        "value": "[\"docx\", \"pptx\", \"pdf\", \"jpg\", \"jpeg\", \"tiff\", \"tif\"]",
+        "description": "File extensions of files you want to analyze the meta data of (only PDF, DOCX, XLSX and PPTX are supported.)"
+      },
+      {
+        "name": "timeout",
+        "value_type": "integer",
+        "value": 300,
+        "description": "Download timeout for files, in seconds."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_hashes",
+    "service_origin": "quarantine",
+    "name": "Hash Extractor",
+    "summary": "Identify MD5 and SHA hashes in web content, files and more.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_hashes",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_hashes"
+      ],
+      "fav_icon": "icons/icon_service_hashes.svg",
+      "description": "Identify MD5 and SHA hashes in web content, files and more."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "TARGET_WEB_CONTENT",
+      "BASE64_DATA",
+      "LEAKSITE_CONTENT",
+      "RAW_DNS_RECORDS",
+      "RAW_FILE_META_DATA"
+    ],
+    "produced_nuggets": [
+      "HASH"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "BASE64_DATA",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_hosting",
+    "service_origin": "quarantine",
+    "name": "Hosting Provider Identifier",
+    "summary": "Find out if any IP addresses identified fall within known 3rd party hosting ranges, e.g. Amazon, Azure, etc.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_hosting",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_hosting"
+      ],
+      "fav_icon": "icons/icon_service_hosting.svg",
+      "description": "Find out if any IP addresses identified fall within known 3rd party hosting ranges, e.g. Amazon, Azure, etc."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "IP_ADDRESS"
+    ],
+    "produced_nuggets": [
+      "PROVIDER_HOSTING"
+    ],
+    "consumption_group": "ip_only",
+    "route_seed_nugget": "IP_ADDRESS",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_iban",
+    "service_origin": "quarantine",
+    "name": "IBAN Number Extractor",
+    "summary": "Identify International Bank Account Numbers (IBANs) in any data.",
+    "flags": [
+      "errorprone"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_iban",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_iban"
+      ],
+      "fav_icon": "icons/icon_service_iban.svg",
+      "description": "Identify International Bank Account Numbers (IBANs) in any data."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "TARGET_WEB_CONTENT",
+      "DARKNET_MENTION_CONTENT",
+      "LEAKSITE_CONTENT"
+    ],
+    "produced_nuggets": [
+      "IBAN_NUMBER"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "DARKNET_MENTION_CONTENT",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_intfiles",
+    "service_origin": "quarantine",
+    "name": "Interesting File Finder",
+    "summary": "Identifies potential files of interest, e.g. office documents, zip files.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Passive"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_intfiles",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_intfiles"
+      ],
+      "fav_icon": "icons/icon_service_intfiles.svg",
+      "description": "Identifies potential files of interest, e.g. office documents, zip files."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "LINKED_URL_INTERNAL"
+    ],
+    "produced_nuggets": [
+      "INTERESTING_FILE"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "LINKED_URL_INTERNAL",
+    "module_opts": [
+      {
+        "name": "fileexts",
+        "value_type": "string",
+        "value": "[\"doc\", \"docx\", \"ppt\", \"pptx\", \"pdf\", \"xls\", \"xlsx\", \"zip\"]",
+        "description": "File extensions of files you consider interesting."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_junkfiles",
+    "service_origin": "quarantine",
+    "name": "Junk File Finder",
+    "summary": "Looks for old/temporary and other similar files.",
+    "flags": [
+      "slow",
+      "errorprone",
+      "invasive"
+    ],
+    "use_cases": [
+      "Footprint"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_junkfiles",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_junkfiles"
+      ],
+      "fav_icon": "icons/icon_service_junkfiles.svg",
+      "description": "Looks for old/temporary and other similar files."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "LINKED_URL_INTERNAL"
+    ],
+    "produced_nuggets": [
+      "JUNK_FILE"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "LINKED_URL_INTERNAL",
+    "module_opts": [
+      {
+        "name": "dirs",
+        "value_type": "string",
+        "value": "[\"zip\", \"tar.gz\", \"tgz\", \"tar\"]",
+        "description": "Try to fetch the containing folder with these extensions."
+      },
+      {
+        "name": "fileexts",
+        "value_type": "string",
+        "value": "[\"tmp\", \"bak\", \"old\"]",
+        "description": "File extensions to try."
+      },
+      {
+        "name": "files",
+        "value_type": "string",
+        "value": "[\"old\", \"passwd\", \".htaccess\", \".htpasswd\", \"Thumbs.db\", \"backup\"]",
+        "description": "Try to fetch each of these files from the directory of the URL."
+      },
+      {
+        "name": "urlextstry",
+        "value_type": "string",
+        "value": "[\"asp\", \"php\", \"jsp\"]",
+        "description": "Try those extensions against URLs with these extensions."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_names",
+    "service_origin": "quarantine",
+    "name": "Human Name Extractor",
+    "summary": "Attempt to identify human names in fetched content.",
+    "flags": [
+      "errorprone"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_names",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_names"
+      ],
+      "fav_icon": "icons/icon_service_names.svg",
+      "description": "Attempt to identify human names in fetched content."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "TARGET_WEB_CONTENT",
+      "EMAILADDR",
+      "DOMAIN_WHOIS",
+      "NETBLOCK_WHOIS",
+      "RAW_RIR_DATA",
+      "RAW_FILE_META_DATA"
+    ],
+    "produced_nuggets": [
+      "HUMAN_NAME"
+    ],
+    "consumption_group": "email_identity_bundle",
+    "route_seed_nugget": "EMAILADDR",
+    "module_opts": [
+      {
+        "name": "algolimit",
+        "value_type": "integer",
+        "value": 75,
+        "description": "A value between 0-100 to tune the sensitivity of the name finder. Less than 40 will give you a lot of junk, over 50 and you'll probably miss things but will have less false positives."
+      },
+      {
+        "name": "emailtoname",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Convert e-mail addresses in the form of firstname.surname@target to names?"
+      },
+      {
+        "name": "filterjscss",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Filter out names that originated from CSS/JS content. Enabling this avoids detection of popular Javascript and web framework author names."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_pageinfo",
+    "service_origin": "quarantine",
+    "name": "Page Information",
+    "summary": "Obtain information about web pages (do they take passwords, do they contain forms, etc.)",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_pageinfo",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_pageinfo"
+      ],
+      "fav_icon": "icons/icon_service_pageinfo.svg",
+      "description": "Obtain information about web pages (do they take passwords, do they contain forms, etc.)"
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "TARGET_WEB_CONTENT"
+    ],
+    "produced_nuggets": [
+      "URL_STATIC",
+      "URL_JAVASCRIPT",
+      "URL_FORM",
+      "URL_PASSWORD",
+      "URL_UPLOAD",
+      "URL_JAVA_APPLET",
+      "URL_FLASH",
+      "PROVIDER_JAVASCRIPT"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_pgp",
+    "service_origin": "quarantine",
+    "name": "PGP Key Servers",
+    "summary": "Look up domains and e-mail addresses in PGP public key servers.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Public Registries"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_pgp",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_pgp"
+      ],
+      "fav_icon": "icons/icon_service_pgp.svg",
+      "description": "Look up domains and e-mail addresses in PGP public key servers."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME",
+      "EMAILADDR",
+      "DOMAIN_NAME"
+    ],
+    "produced_nuggets": [
+      "EMAILADDR",
+      "EMAILADDR_GENERIC",
+      "AFFILIATE_EMAILADDR",
+      "PGP_KEY"
+    ],
+    "consumption_group": "email_identity_bundle",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "keyserver_fetch1",
+        "value_type": "string",
+        "value": "https://keyserver.ubuntu.com/pks/lookup?op=get&search=",
+        "description": "PGP public key server URL to find the public key for an e-mail address. Email address will get appended."
+      },
+      {
+        "name": "keyserver_fetch2",
+        "value_type": "string",
+        "value": "http://the.earth.li:11371/pks/lookup?op=get&search=",
+        "description": "Backup PGP public key server URL to find the public key for an e-mail address. Email address will get appended."
+      },
+      {
+        "name": "keyserver_search1",
+        "value_type": "string",
+        "value": "https://keyserver.ubuntu.com/pks/lookup?fingerprint=on&op=vindex&search=",
+        "description": "PGP public key server URL to find e-mail addresses on a domain. Domain will get appended."
+      },
+      {
+        "name": "keyserver_search2",
+        "value_type": "string",
+        "value": "http://the.earth.li:11371/pks/lookup?fingerprint=on&op=vindex&search=",
+        "description": "Backup PGP public key server URL to find e-mail addresses on a domain. Domain will get appended."
+      },
+      {
+        "name": "retrieve_keys",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Retrieve PGP keys."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_phone",
+    "service_origin": "quarantine",
+    "name": "Phone Number Extractor",
+    "summary": "Identify phone numbers in scraped webpages.",
+    "flags": [],
+    "use_cases": [
+      "Passive",
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_phone",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_phone"
+      ],
+      "fav_icon": "icons/icon_service_phone.svg",
+      "description": "Identify phone numbers in scraped webpages."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "TARGET_WEB_CONTENT",
+      "DOMAIN_WHOIS",
+      "NETBLOCK_WHOIS",
+      "PHONE_NUMBER"
+    ],
+    "produced_nuggets": [
+      "PHONE_NUMBER",
+      "PROVIDER_TELCO"
+    ],
+    "consumption_group": "other",
+    "route_seed_nugget": "PHONE_NUMBER",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_portscan_tcp",
+    "service_origin": "quarantine",
+    "name": "Port Scanner - TCP",
+    "summary": "Scans for commonly open TCP ports on Internet-facing systems.",
+    "flags": [
+      "slow",
+      "invasive"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_portscan_tcp",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_portscan_tcp"
+      ],
+      "fav_icon": "icons/icon_service_portscan_tcp.svg",
+      "description": "Scans for commonly open TCP ports on Internet-facing systems."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "IP_ADDRESS",
+      "NETBLOCK_OWNER"
+    ],
+    "produced_nuggets": [
+      "TCP_PORT_OPEN",
+      "TCP_PORT_OPEN_BANNER"
+    ],
+    "consumption_group": "ip_netblock",
+    "route_seed_nugget": "IP_ADDRESS",
+    "module_opts": [
+      {
+        "name": "maxthreads",
+        "value_type": "integer",
+        "value": 10,
+        "description": "Number of ports to try to open simultaneously (number of threads to spawn at once.)"
+      },
+      {
+        "name": "netblockscan",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Port scan all IPs within identified owned netblocks?"
+      },
+      {
+        "name": "netblockscanmax",
+        "value_type": "integer",
+        "value": 24,
+        "description": "Maximum netblock/subnet size to scan IPs within (CIDR value, 24 = /24, 16 = /16, etc.)"
+      },
+      {
+        "name": "ports",
+        "value_type": "string",
+        "value": "[\"21\", \"22\", \"23\", \"25\", \"53\", \"79\", \"80\", \"81\", \"88\", \"110\", \"111\", \"113\", \"119\", \"123\", \"137\", \"138\", \"139\", \"143\", \"161\", \"179\", \"389\", \"443\", \"445\", \"465\", \"512\", \"513\", \"514\", \"515\", \"3306\", \"5432\", \"1521\", \"2638\", \"1433\", \"3389\", \"5900\", \"5901\", \"5902\", \"5903\", \"5631\", \"631\", \"636\", \"990\", \"992\", \"993\", \"995\", \"1080\", \"8080\", \"8888\", \"9000\"]",
+        "description": "The TCP ports to scan. Prefix with an '@' to iterate through a file containing ports to try (one per line), e.g. @C:\\ports.txt or @/home/bob/ports.txt. Or supply a URL to load the list from there."
+      },
+      {
+        "name": "randomize",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Randomize the order of ports scanned."
+      },
+      {
+        "name": "timeout",
+        "value_type": "integer",
+        "value": 15,
+        "description": "Seconds before giving up on a port."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_similar",
+    "service_origin": "quarantine",
+    "name": "Similar Domain Finder",
+    "summary": "Search various sources to identify similar looking domain names, for instance squatted domains.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "DNS"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_similar",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_similar"
+      ],
+      "fav_icon": "icons/icon_service_similar.svg",
+      "description": "Search various sources to identify similar looking domain names, for instance squatted domains."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "DOMAIN_NAME"
+    ],
+    "produced_nuggets": [
+      "SIMILARDOMAIN"
+    ],
+    "consumption_group": "domain",
+    "route_seed_nugget": "DOMAIN_NAME",
+    "module_opts": [
+      {
+        "name": "skipwildcards",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Skip TLDs and sub-TLDs that have wildcard DNS."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_social",
+    "service_origin": "quarantine",
+    "name": "Social Network Identifier",
+    "summary": "Identify presence on social media networks such as LinkedIn, Twitter and others.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Passive"
+    ],
+    "categories": [
+      "Social Media"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_social",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_social"
+      ],
+      "fav_icon": "icons/icon_service_social.svg",
+      "description": "Identify presence on social media networks such as LinkedIn, Twitter and others."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "LINKED_URL_EXTERNAL"
+    ],
+    "produced_nuggets": [
+      "SOCIAL_MEDIA",
+      "USERNAME"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "LINKED_URL_EXTERNAL",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_spider",
+    "service_origin": "quarantine",
+    "name": "Web Spider",
+    "summary": "Spidering of web-pages to extract content for searching.",
+    "flags": [
+      "slow"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_spider",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_spider"
+      ],
+      "fav_icon": "icons/icon_service_spider.svg",
+      "description": "Spidering of web-pages to extract content for searching."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "LINKED_URL_INTERNAL",
+      "INTERNET_NAME"
+    ],
+    "produced_nuggets": [
+      "WEBSERVER_HTTPHEADERS",
+      "HTTP_CODE",
+      "LINKED_URL_INTERNAL",
+      "LINKED_URL_EXTERNAL",
+      "TARGET_WEB_CONTENT",
+      "TARGET_WEB_CONTENT_TYPE"
+    ],
+    "consumption_group": "hostname",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "filterfiles",
+        "value_type": "string",
+        "value": "[\"png\", \"gif\", \"jpg\", \"jpeg\", \"tiff\", \"tif\", \"tar\", \"pdf\", \"ico\", \"flv\", \"mp4\", \"mp3\", \"avi\", \"mpg\", \"gz\", \"mpeg\", \"iso\", \"dat\", \"mov\", \"swf\", \"rar\", \"exe\", \"zip\", \"bin\", \"bz2\", \"xsl\", \"doc\", \"docx\", \"ppt\", \"pptx\", \"xls\", \"xlsx\", \"csv\"]",
+        "description": "File extensions to ignore (don't fetch them.)"
+      },
+      {
+        "name": "filtermime",
+        "value_type": "string",
+        "value": "[\"image/\"]",
+        "description": "MIME types to ignore."
+      },
+      {
+        "name": "filterusers",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Skip spidering of /~user directories?"
+      },
+      {
+        "name": "maxlevels",
+        "value_type": "integer",
+        "value": 3,
+        "description": "Maximum levels to traverse per starting point (e.g. hostname or link identified by another module) identified."
+      },
+      {
+        "name": "maxpages",
+        "value_type": "integer",
+        "value": 100,
+        "description": "Maximum number of pages to fetch per starting point identified."
+      },
+      {
+        "name": "nosubs",
+        "value_type": "boolean",
+        "value": false,
+        "description": "Skip spidering of subdomains of the target?"
+      },
+      {
+        "name": "pausesec",
+        "value_type": "integer",
+        "value": 0,
+        "description": "Number of seconds to pause between page fetches."
+      },
+      {
+        "name": "reportduplicates",
+        "value_type": "boolean",
+        "value": false,
+        "description": "Report links every time one is found, even if found before?"
+      },
+      {
+        "name": "robotsonly",
+        "value_type": "boolean",
+        "value": false,
+        "description": "Only follow links specified by robots.txt?"
+      },
+      {
+        "name": "start",
+        "value_type": "string",
+        "value": "[\"http://\", \"https://\"]",
+        "description": "Prepend targets with these until you get a hit, to start spidering."
+      },
+      {
+        "name": "usecookies",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Accept and use cookies?"
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_sslcert",
+    "service_origin": "quarantine",
+    "name": "SSL Certificate Analyzer",
+    "summary": "Gather information about SSL certificates used by the target's HTTPS sites.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_sslcert",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_sslcert"
+      ],
+      "fav_icon": "icons/icon_service_sslcert.svg",
+      "description": "Gather information about SSL certificates used by the target's HTTPS sites."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME",
+      "LINKED_URL_INTERNAL",
+      "IP_ADDRESS"
+    ],
+    "produced_nuggets": [
+      "TCP_PORT_OPEN",
+      "INTERNET_NAME",
+      "INTERNET_NAME_UNRESOLVED",
+      "CO_HOSTED_SITE",
+      "CO_HOSTED_SITE_DOMAIN",
+      "SSL_CERTIFICATE_ISSUED",
+      "SSL_CERTIFICATE_ISSUER",
+      "SSL_CERTIFICATE_MISMATCH",
+      "SSL_CERTIFICATE_EXPIRED",
+      "SSL_CERTIFICATE_EXPIRING",
+      "SSL_CERTIFICATE_RAW",
+      "DOMAIN_NAME"
+    ],
+    "consumption_group": "other",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "certexpiringdays",
+        "value_type": "integer",
+        "value": 30,
+        "description": "Number of days in the future a certificate expires to consider it as expiring."
+      },
+      {
+        "name": "ssltimeout",
+        "value_type": "integer",
+        "value": 10,
+        "description": "Seconds before giving up trying to HTTPS connect."
+      },
+      {
+        "name": "tryhttp",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Also try to HTTPS-connect to HTTP sites and hostnames."
+      },
+      {
+        "name": "verify",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Verify certificate subject alternative names resolve."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_strangeheaders",
+    "service_origin": "quarantine",
+    "name": "Strange Header Identifier",
+    "summary": "Obtain non-standard HTTP headers returned by web servers.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_strangeheaders",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_strangeheaders"
+      ],
+      "fav_icon": "icons/icon_service_strangeheaders.svg",
+      "description": "Obtain non-standard HTTP headers returned by web servers."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "WEBSERVER_HTTPHEADERS"
+    ],
+    "produced_nuggets": [
+      "WEBSERVER_STRANGEHEADER"
+    ],
+    "consumption_group": "other",
+    "route_seed_nugget": "WEBSERVER_HTTPHEADERS",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_subdomain_takeover",
+    "service_origin": "quarantine",
+    "name": "Subdomain Takeover Checker",
+    "summary": "Check if affiliated subdomains are vulnerable to takeover.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_subdomain_takeover",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_subdomain_takeover"
+      ],
+      "fav_icon": "icons/icon_service_subdomain_takeover.svg",
+      "description": "Check if affiliated subdomains are vulnerable to takeover."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "AFFILIATE_INTERNET_NAME",
+      "AFFILIATE_INTERNET_NAME_UNRESOLVED"
+    ],
+    "produced_nuggets": [
+      "AFFILIATE_INTERNET_NAME_HIJACKABLE"
+    ],
+    "consumption_group": "hostname",
+    "route_seed_nugget": "AFFILIATE_INTERNET_NAME",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_tldsearch",
+    "service_origin": "quarantine",
+    "name": "TLD Searcher",
+    "summary": "Search all Internet TLDs for domains with the same name as the target (this can be very slow.)",
+    "flags": [
+      "slow"
+    ],
+    "use_cases": [
+      "Footprint"
+    ],
+    "categories": [
+      "DNS"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tldsearch",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tldsearch"
+      ],
+      "fav_icon": "icons/icon_service_tldsearch.svg",
+      "description": "Search all Internet TLDs for domains with the same name as the target (this can be very slow.)"
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME"
+    ],
+    "produced_nuggets": [
+      "SIMILARDOMAIN"
+    ],
+    "consumption_group": "hostname",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "_maxthreads",
+        "value_type": "integer",
+        "value": 50,
+        "description": "Maximum threads"
+      },
+      {
+        "name": "activeonly",
+        "value_type": "boolean",
+        "value": false,
+        "description": "Only report domains that have content (try to fetch the page)?"
+      },
+      {
+        "name": "skipwildcards",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Skip TLDs and sub-TLDs that have wildcard DNS."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_tool_cmseek",
+    "service_origin": "quarantine",
+    "name": "Tool - CMSeeK",
+    "summary": "Identify what Content Management System (CMS) might be used.",
+    "flags": [
+      "tool"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_cmseek",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_cmseek"
+      ],
+      "fav_icon": "icons/icon_service_tool_cmseek.svg",
+      "description": "Identify what Content Management System (CMS) might be used."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME"
+    ],
+    "produced_nuggets": [
+      "WEBSERVER_TECHNOLOGY"
+    ],
+    "consumption_group": "hostname",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "cmseekpath",
+        "value_type": "string",
+        "value": "",
+        "description": "Path to the where the cmseek.py file lives. Must be set."
+      },
+      {
+        "name": "pythonpath",
+        "value_type": "string",
+        "value": "python3",
+        "description": "Path to Python 3 interpreter to use for CMSeeK. If just 'python3' then it must be in your PATH."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "CMSeeK",
+      "description": "CMSeek is a tool that is used to extract Content Management System(CMS) details of a website.",
+      "website": "https://github.com/Tuhinshubhra/CMSeeK",
+      "repository": "https://github.com/Tuhinshubhra/CMSeeK"
+    }
+  },
+  {
+    "module_id": "sfp_tool_dnstwist",
+    "service_origin": "quarantine",
+    "name": "Tool - DNSTwist",
+    "summary": "Identify bit-squatting, typo and other similar domains to the target using a local DNSTwist installation.",
+    "flags": [
+      "tool"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "DNS"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_dnstwist",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_dnstwist"
+      ],
+      "fav_icon": "icons/icon_service_tool_dnstwist.svg",
+      "description": "Identify bit-squatting, typo and other similar domains to the target using a local DNSTwist installation."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "DOMAIN_NAME"
+    ],
+    "produced_nuggets": [
+      "SIMILARDOMAIN"
+    ],
+    "consumption_group": "domain",
+    "route_seed_nugget": "DOMAIN_NAME",
+    "module_opts": [
+      {
+        "name": "dnstwistpath",
+        "value_type": "string",
+        "value": "",
+        "description": "Path to the where the dnstwist.py file lives. Optional."
+      },
+      {
+        "name": "pythonpath",
+        "value_type": "string",
+        "value": "python",
+        "description": "Path to Python interpreter to use for DNSTwist. If just 'python' then it must be in your PATH."
+      },
+      {
+        "name": "skipwildcards",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Skip TLDs and sub-TLDs that have wildcard DNS."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "DNSTwist",
+      "description": "See what sort of trouble users can get in trying to type your domain name. Find lookalike domains that adversaries can use to attack you. Can detect typosquatters, phishing attacks, fraud, and brand impersonation. Useful as an additional source of targeted threat intelligence.",
+      "website": "https://github.com/elceef/dnstwist",
+      "repository": "https://github.com/elceef/dnstwist"
+    }
+  },
+  {
+    "module_id": "sfp_tool_nbtscan",
+    "service_origin": "quarantine",
+    "name": "Tool - nbtscan",
+    "summary": "Scans for open NETBIOS nameservers on your target's network.",
+    "flags": [
+      "tool",
+      "slow"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_nbtscan",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_nbtscan"
+      ],
+      "fav_icon": "icons/icon_service_tool_nbtscan.svg",
+      "description": "Scans for open NETBIOS nameservers on your target's network."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "IP_ADDRESS",
+      "NETBLOCK_OWNER"
+    ],
+    "produced_nuggets": [
+      "UDP_PORT_OPEN",
+      "UDP_PORT_OPEN_INFO",
+      "IP_ADDRESS"
+    ],
+    "consumption_group": "ip_netblock",
+    "route_seed_nugget": "IP_ADDRESS",
+    "module_opts": [
+      {
+        "name": "nbtscan_path",
+        "value_type": "string",
+        "value": "",
+        "description": "The path to your nbtscan binary"
+      },
+      {
+        "name": "netblockscan",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Scan all IPs within identified owned netblocks?"
+      },
+      {
+        "name": "netblockscanmax",
+        "value_type": "integer",
+        "value": 24,
+        "description": "Maximum netblock/subnet size to scan IPs within (CIDR value, 24 = /24, 16 = /16, etc.)"
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "nbtscan",
+      "description": "nbtscan is a tool that scans for open NETBIOS nameservers on a local or remote TCP/IP network, and this is a first step in finding of open shares. It is based on the functionality of the standard Windows tool nbtstat, but it operates on a range of addresses instead of just one.",
+      "website": "http://www.unixwiz.net/tools/nbtscan.html",
+      "repository": "http://www.unixwiz.net/tools/nbtscan.html"
+    }
+  },
+  {
+    "module_id": "sfp_tool_nmap",
+    "service_origin": "quarantine",
+    "name": "Tool - Nmap",
+    "summary": "Identify what Operating System might be used.",
+    "flags": [
+      "tool",
+      "slow",
+      "invasive"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_nmap",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_nmap"
+      ],
+      "fav_icon": "icons/icon_service_tool_nmap.svg",
+      "description": "Identify what Operating System might be used."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "IP_ADDRESS",
+      "NETBLOCK_OWNER"
+    ],
+    "produced_nuggets": [
+      "OPERATING_SYSTEM",
+      "IP_ADDRESS"
+    ],
+    "consumption_group": "ip_netblock",
+    "route_seed_nugget": "IP_ADDRESS",
+    "module_opts": [
+      {
+        "name": "netblockscan",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Port scan all IPs within identified owned netblocks?"
+      },
+      {
+        "name": "netblockscanmax",
+        "value_type": "integer",
+        "value": 24,
+        "description": "Maximum netblock/subnet size to scan IPs within (CIDR value, 24 = /24, 16 = /16, etc.)"
+      },
+      {
+        "name": "nmappath",
+        "value_type": "string",
+        "value": "",
+        "description": "Path to the where the nmap binary lives. Must be set."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "Nmap",
+      "description": "Nmap (\"Network Mapper\") is a free and open source utility for network discovery and security auditing.\nNmap uses raw IP packets in novel ways to determine what hosts are available on the network, what services (application name and version) those hosts are offering, what operating systems (and OS versions) they are running, what type of packet filters/firewalls are in use, and dozens of other characteristics.\n",
+      "website": "https://nmap.org/",
+      "repository": "https://svn.nmap.org/nmap"
+    }
+  },
+  {
+    "module_id": "sfp_tool_nuclei",
+    "service_origin": "quarantine",
+    "name": "Tool - Nuclei",
+    "summary": "Fast and customisable vulnerability scanner.",
+    "flags": [
+      "tool",
+      "slow",
+      "invasive"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_nuclei",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_nuclei"
+      ],
+      "fav_icon": "icons/icon_service_tool_nuclei.svg",
+      "description": "Fast and customisable vulnerability scanner."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME",
+      "IP_ADDRESS",
+      "NETBLOCK_OWNER"
+    ],
+    "produced_nuggets": [
+      "VULNERABILITY_CVE_CRITICAL",
+      "VULNERABILITY_CVE_HIGH",
+      "VULNERABILITY_CVE_MEDIUM",
+      "VULNERABILITY_CVE_LOW",
+      "IP_ADDRESS",
+      "VULNERABILITY_GENERAL",
+      "WEBSERVER_TECHNOLOGY"
+    ],
+    "consumption_group": "ip_netblock",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "netblockscan",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Check all IPs within identified owned netblocks?"
+      },
+      {
+        "name": "netblockscanmax",
+        "value_type": "integer",
+        "value": 24,
+        "description": "Maximum netblock/subnet size to scan IPs within (CIDR value, 24 = /24, 16 = /16, etc.)"
+      },
+      {
+        "name": "nuclei_path",
+        "value_type": "string",
+        "value": "",
+        "description": "The path to your nuclei binary. Must be set."
+      },
+      {
+        "name": "template_path",
+        "value_type": "string",
+        "value": "",
+        "description": "The path to your nuclei templates. Must be set."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "Nuclei",
+      "description": "Fast and customisable vulnerability scanner based on simple YAML based DSL.",
+      "website": "https://nuclei.projectdiscovery.io/",
+      "repository": "https://github.com/projectdiscovery/nuclei"
+    }
+  },
+  {
+    "module_id": "sfp_tool_onesixtyone",
+    "service_origin": "quarantine",
+    "name": "Tool - onesixtyone",
+    "summary": "Fast scanner to find publicly exposed SNMP services.",
+    "flags": [
+      "tool"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_onesixtyone",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_onesixtyone"
+      ],
+      "fav_icon": "icons/icon_service_tool_onesixtyone.svg",
+      "description": "Fast scanner to find publicly exposed SNMP services."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "IP_ADDRESS",
+      "NETBLOCK_OWNER"
+    ],
+    "produced_nuggets": [
+      "UDP_PORT_OPEN_INFO",
+      "UDP_PORT_OPEN",
+      "IP_ADDRESS"
+    ],
+    "consumption_group": "ip_netblock",
+    "route_seed_nugget": "IP_ADDRESS",
+    "module_opts": [
+      {
+        "name": "communities",
+        "value_type": "string",
+        "value": "1234,2read,4changes,CISCO,IBM,OrigEquipMfr,SNMP,SUN,access,admin,agent,all,cisco,community,default,enable,field,guest,hello,ibm,manager,mngt,monitor,netman,network,none,openview,pass,password,private,proxy,public,read,read-only,read-write,root,router,secret,security,snmp,snmpd,solaris,sun,switch,system,tech,test,world,write",
+        "description": "Comma-separated list of SNMP communities to try."
+      },
+      {
+        "name": "netblockscan",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Scan all IPs within identified owned netblocks?"
+      },
+      {
+        "name": "netblockscanmax",
+        "value_type": "integer",
+        "value": 24,
+        "description": "Maximum netblock/subnet size to scan IPs within (CIDR value, 24 = /24, 16 = /16, etc.)"
+      },
+      {
+        "name": "onesixtyone_path",
+        "value_type": "string",
+        "value": "",
+        "description": "The path to your onesixtyone binary. Must be set."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "onesixtyone",
+      "description": "onesixtyone is a fast scanner for finding publicly exposed SNMP services.",
+      "website": "https://github.com/trailofbits/onesixtyone",
+      "repository": "https://github.com/trailofbits/onesixtyone"
+    }
+  },
+  {
+    "module_id": "sfp_tool_retirejs",
+    "service_origin": "quarantine",
+    "name": "Tool - Retire.js",
+    "summary": "Scanner detecting the use of JavaScript libraries with known vulnerabilities",
+    "flags": [
+      "tool"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_retirejs",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_retirejs"
+      ],
+      "fav_icon": "icons/icon_service_tool_retirejs.svg",
+      "description": "Scanner detecting the use of JavaScript libraries with known vulnerabilities"
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "LINKED_URL_INTERNAL",
+      "LINKED_URL_EXTERNAL"
+    ],
+    "produced_nuggets": [
+      "VULNERABILITY_CVE_CRITICAL",
+      "VULNERABILITY_CVE_HIGH",
+      "VULNERABILITY_CVE_MEDIUM",
+      "VULNERABILITY_CVE_LOW",
+      "VULNERABILITY_GENERAL"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "LINKED_URL_EXTERNAL",
+    "module_opts": [
+      {
+        "name": "retirejs_path",
+        "value_type": "string",
+        "value": "",
+        "description": "Path to your retire binary. Must be set."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "Retire.js",
+      "description": "Scanner detecting the use of JavaScript libraries with known vulnerabilities",
+      "website": "http://retirejs.github.io/retire.js/",
+      "repository": "https://github.com/RetireJS/retire.js"
+    }
+  },
+  {
+    "module_id": "sfp_tool_snallygaster",
+    "service_origin": "quarantine",
+    "name": "Tool - snallygaster",
+    "summary": "Finds file leaks and other security problems on HTTP servers.",
+    "flags": [
+      "tool"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_snallygaster",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_snallygaster"
+      ],
+      "fav_icon": "icons/icon_service_tool_snallygaster.svg",
+      "description": "Finds file leaks and other security problems on HTTP servers."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME"
+    ],
+    "produced_nuggets": [
+      "VULNERABILITY_GENERAL",
+      "VULNERABILITY_CVE_CRITICAL",
+      "VULNERABILITY_CVE_HIGH",
+      "VULNERABILITY_CVE_MEDIUM",
+      "VULNERABILITY_CVE_LOW"
+    ],
+    "consumption_group": "hostname",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "snallygaster_path",
+        "value_type": "string",
+        "value": "",
+        "description": "Path to your snallygaster binary. Must be set."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "snallygaster",
+      "description": "snallygaster is a tool that looks for files accessible on web servers that shouldn't be public and can pose a security risk. Typical examples include publicly accessible git repositories, backup files potentially containing passwords  or database dumps. In addition, it contains a few checks  for other security vulnerabilities.",
+      "website": "https://github.com/hannob/snallygaster",
+      "repository": "https://github.com/hannob/snallygaster"
+    }
+  },
+  {
+    "module_id": "sfp_tool_testsslsh",
+    "service_origin": "quarantine",
+    "name": "Tool - testssl.sh",
+    "summary": "Identify various TLS/SSL weaknesses, including Heartbleed, CRIME and ROBOT.",
+    "flags": [
+      "tool"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_testsslsh",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_testsslsh"
+      ],
+      "fav_icon": "icons/icon_service_tool_testsslsh.svg",
+      "description": "Identify various TLS/SSL weaknesses, including Heartbleed, CRIME and ROBOT."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME",
+      "IP_ADDRESS",
+      "NETBLOCK_OWNER"
+    ],
+    "produced_nuggets": [
+      "VULNERABILITY_CVE_CRITICAL",
+      "VULNERABILITY_CVE_HIGH",
+      "VULNERABILITY_CVE_MEDIUM",
+      "VULNERABILITY_CVE_LOW",
+      "VULNERABILITY_GENERAL",
+      "IP_ADDRESS"
+    ],
+    "consumption_group": "ip_netblock",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "mincve",
+        "value_type": "string",
+        "value": "LOW",
+        "description": "Only report CVEs equal to or higher than this level, must be either LOW, MEDIUM, HIGH or CRITICAL."
+      },
+      {
+        "name": "netblockscan",
+        "value_type": "boolean",
+        "value": true,
+        "description": "Test all IPs within identified owned netblocks?"
+      },
+      {
+        "name": "netblockscanmax",
+        "value_type": "integer",
+        "value": 24,
+        "description": "Maximum netblock/subnet size to test IPs within (CIDR value, 24 = /24, 16 = /16, etc.)"
+      },
+      {
+        "name": "testsslsh_path",
+        "value_type": "string",
+        "value": "",
+        "description": "Path to your testssl.sh executable. Must be set."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "testssl.sh",
+      "description": "testssl.sh is a free command line tool which checks a server's service on any port for the support of TLS/SSL ciphers, protocols as well as some cryptographic flaws.",
+      "website": "https://testssl.sh",
+      "repository": "https://github.com/drwetter/testssl.sh"
+    }
+  },
+  {
+    "module_id": "sfp_tool_trufflehog",
+    "service_origin": "quarantine",
+    "name": "Tool - TruffleHog",
+    "summary": "Searches through git repositories for high entropy strings and secrets, digging deep into commit history.",
+    "flags": [
+      "tool",
+      "slow"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_trufflehog",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_trufflehog"
+      ],
+      "fav_icon": "icons/icon_service_tool_trufflehog.svg",
+      "description": "Searches through git repositories for high entropy strings and secrets, digging deep into commit history."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "SOCIAL_MEDIA",
+      "PUBLIC_CODE_REPO"
+    ],
+    "produced_nuggets": [
+      "PASSWORD_COMPROMISED"
+    ],
+    "consumption_group": "other",
+    "route_seed_nugget": "SOCIAL_MEDIA",
+    "module_opts": [
+      {
+        "name": "allrepos",
+        "value_type": "boolean",
+        "value": false,
+        "description": "Search all code repositories found. By default TruffleHog only searches those linked from the target website."
+      },
+      {
+        "name": "entropy",
+        "value_type": "boolean",
+        "value": false,
+        "description": "Enable entropy checks? If disabled, TruffleHog will solely rely on high-signal regular expressions to identify secrets."
+      },
+      {
+        "name": "trufflehog_path",
+        "value_type": "string",
+        "value": "",
+        "description": "Path to your trufflehog binary. Must be set."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "TruffleHog",
+      "description": "TruffleHog searches through git repositories for secrets, digging deep into commit history and branches. This is effective at finding secrets accidentally committed.",
+      "website": "https://github.com/trufflesecurity/truffleHog",
+      "repository": "https://github.com/trufflesecurity/truffleHog"
+    }
+  },
+  {
+    "module_id": "sfp_tool_wafw00f",
+    "service_origin": "quarantine",
+    "name": "Tool - WAFW00F",
+    "summary": "Identify what web application firewall (WAF) is in use on the specified website.",
+    "flags": [
+      "tool"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Crawling and Scanning"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_wafw00f",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_wafw00f"
+      ],
+      "fav_icon": "icons/icon_service_tool_wafw00f.svg",
+      "description": "Identify what web application firewall (WAF) is in use on the specified website."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME"
+    ],
+    "produced_nuggets": [
+      "RAW_RIR_DATA",
+      "WEBSERVER_TECHNOLOGY"
+    ],
+    "consumption_group": "hostname",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "python_path",
+        "value_type": "string",
+        "value": "python3",
+        "description": "Path to Python 3 interpreter to use for wafw00f. If just 'python3' then it must be in your $PATH."
+      },
+      {
+        "name": "wafw00f_path",
+        "value_type": "string",
+        "value": "",
+        "description": "Path to the wafw00f executable file. Must be set."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "WAFW00F",
+      "description": "WAFW00F allows one to identify and fingerprint Web Application Firewall (WAF) products protecting a website.",
+      "website": "https://github.com/EnableSecurity/wafw00f",
+      "repository": "https://github.com/EnableSecurity/wafw00f"
+    }
+  },
+  {
+    "module_id": "sfp_tool_wappalyzer",
+    "service_origin": "quarantine",
+    "name": "Tool - Wappalyzer",
+    "summary": "Wappalyzer indentifies technologies on websites.",
+    "flags": [
+      "tool"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_wappalyzer",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_wappalyzer"
+      ],
+      "fav_icon": "icons/icon_service_tool_wappalyzer.svg",
+      "description": "Wappalyzer indentifies technologies on websites."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME"
+    ],
+    "produced_nuggets": [
+      "OPERATING_SYSTEM",
+      "SOFTWARE_USED",
+      "WEBSERVER_TECHNOLOGY"
+    ],
+    "consumption_group": "hostname",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "node_path",
+        "value_type": "string",
+        "value": "/usr/bin/node",
+        "description": "Path to your NodeJS binary. Must be set."
+      },
+      {
+        "name": "wappalyzer_path",
+        "value_type": "string",
+        "value": "",
+        "description": "Path to your wappalyzer cli.js file. Must be set."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "Wappalyzer",
+      "description": "Wappalyzer identifies technologies on websites, including content management systems, ecommerce platforms, JavaScript frameworks, analytics tools and much more.",
+      "website": "https://www.wappalyzer.com/",
+      "repository": "https://github.com/AliasIO/Wappalyzer"
+    }
+  },
+  {
+    "module_id": "sfp_tool_whatweb",
+    "service_origin": "quarantine",
+    "name": "Tool - WhatWeb",
+    "summary": "Identify what software is in use on the specified website.",
+    "flags": [
+      "tool"
+    ],
+    "use_cases": [
+      "Footprint",
+      "Investigate"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_tool_whatweb",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_tool_whatweb"
+      ],
+      "fav_icon": "icons/icon_service_tool_whatweb.svg",
+      "description": "Identify what software is in use on the specified website."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "INTERNET_NAME"
+    ],
+    "produced_nuggets": [
+      "RAW_RIR_DATA",
+      "WEBSERVER_BANNER",
+      "WEBSERVER_TECHNOLOGY"
+    ],
+    "consumption_group": "hostname",
+    "route_seed_nugget": "INTERNET_NAME",
+    "module_opts": [
+      {
+        "name": "aggression",
+        "value_type": "integer",
+        "value": 1,
+        "description": "Set WhatWeb aggression level (1-4)"
+      },
+      {
+        "name": "ruby_path",
+        "value_type": "string",
+        "value": "ruby",
+        "description": "Path to Ruby interpreter to use for WhatWeb. If just 'ruby' then it must be in your $PATH."
+      },
+      {
+        "name": "whatweb_path",
+        "value_type": "string",
+        "value": "",
+        "description": "Path to the whatweb executable file. Must be set."
+      }
+    ],
+    "fixture_category": "positive",
+    "service_state": "in-test",
+    "tool_details": {
+      "name": "WhatWeb",
+      "description": "WhatWeb identifies websites. Its goal is to answer the question, \"What is that Website?\". WhatWeb recognises web technologies including content management systems (CMS), blogging platforms, statistic/analytics packages, JavaScript libraries, web servers, and embedded devices. WhatWeb has over 1800 plugins, each to recognise something different. WhatWeb also identifies version numbers, email addresses, account IDs, web framework modules, SQL errors, and more.",
+      "website": "https://github.com/urbanadventurer/whatweb",
+      "repository": "https://github.com/urbanadventurer/whatweb"
+    }
+  },
+  {
+    "module_id": "sfp_webanalytics",
+    "service_origin": "quarantine",
+    "name": "Web Analytics Extractor",
+    "summary": "Identify web analytics IDs in scraped webpages and DNS TXT records.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_webanalytics",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_webanalytics"
+      ],
+      "fav_icon": "icons/icon_service_webanalytics.svg",
+      "description": "Identify web analytics IDs in scraped webpages and DNS TXT records."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "TARGET_WEB_CONTENT",
+      "DNS_TEXT"
+    ],
+    "produced_nuggets": [
+      "WEB_ANALYTICS_ID"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "DNS_TEXT",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_webframework",
+    "service_origin": "quarantine",
+    "name": "Web Framework Identifier",
+    "summary": "Identify the usage of popular web frameworks like jQuery, YUI and others.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_webframework",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_webframework"
+      ],
+      "fav_icon": "icons/icon_service_webframework.svg",
+      "description": "Identify the usage of popular web frameworks like jQuery, YUI and others."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "TARGET_WEB_CONTENT"
+    ],
+    "produced_nuggets": [
+      "URL_WEB_FRAMEWORK"
+    ],
+    "consumption_group": "web_url_content",
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_webserver",
+    "service_origin": "quarantine",
+    "name": "Web Server Identifier",
+    "summary": "Obtain web server banners to identify versions of web servers being used.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Content Analysis"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_webserver",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_webserver"
+      ],
+      "fav_icon": "icons/icon_service_webserver.svg",
+      "description": "Obtain web server banners to identify versions of web servers being used."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "WEBSERVER_HTTPHEADERS"
+    ],
+    "produced_nuggets": [
+      "WEBSERVER_BANNER",
+      "WEBSERVER_TECHNOLOGY",
+      "LINKED_URL_INTERNAL",
+      "LINKED_URL_EXTERNAL"
+    ],
+    "consumption_group": "other",
+    "route_seed_nugget": "WEBSERVER_HTTPHEADERS",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  },
+  {
+    "module_id": "sfp_whois",
+    "service_origin": "quarantine",
+    "name": "Whois",
+    "summary": "Perform a WHOIS look-up on domain names and owned netblocks.",
+    "flags": [],
+    "use_cases": [
+      "Footprint",
+      "Investigate",
+      "Passive"
+    ],
+    "categories": [
+      "Public Registries"
+    ],
+    "data_source": {
+      "website": "spiderfeet://local/sfp_whois",
+      "model": "LOCAL_NOAUTH",
+      "references": [
+        "spiderfeet://local/sfp_whois"
+      ],
+      "fav_icon": "icons/icon_service_whois.svg",
+      "description": "Perform a WHOIS look-up on domain names and owned netblocks."
+    },
+    "access_tier": "free_no_auth",
+    "consumed_nuggets": [
+      "DOMAIN_NAME",
+      "DOMAIN_NAME_PARENT",
+      "NETBLOCK_OWNER",
+      "NETBLOCKV6_OWNER",
+      "CO_HOSTED_SITE_DOMAIN",
+      "AFFILIATE_DOMAIN_NAME",
+      "SIMILARDOMAIN"
+    ],
+    "produced_nuggets": [
+      "DOMAIN_WHOIS",
+      "NETBLOCK_WHOIS",
+      "DOMAIN_REGISTRAR",
+      "CO_HOSTED_SITE_DOMAIN_WHOIS",
+      "AFFILIATE_DOMAIN_WHOIS",
+      "SIMILARDOMAIN_WHOIS"
+    ],
+    "consumption_group": "domain_and_hostname",
+    "route_seed_nugget": "DOMAIN_NAME",
+    "module_opts": [],
+    "fixture_category": "positive",
+    "service_state": "in-test"
+  }
+]

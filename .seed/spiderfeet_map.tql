@@ -232,6 +232,7 @@ define
 		owns consumed_nuggets,
 		owns produced_nuggets,
 		owns service_state,
+		owns service_origin,
 		plays scan-record:service,
 		plays data-source:service,
 		plays route:osint-service,
@@ -444,6 +445,60 @@ define
 	relation sfp-zonefiles, sub osint-service;
 	relation sfp-zoneh, sub osint-service;
 
+	relation sfp-accounts, sub osint-service;
+	relation sfp-base64, sub osint-service;
+	relation sfp-binstring, sub osint-service;
+	relation sfp-bitcoin, sub osint-service;
+	relation sfp-company, sub osint-service;
+	relation sfp-cookie, sub osint-service;
+	relation sfp-countryname, sub osint-service;
+	relation sfp-creditcard, sub osint-service;
+	relation sfp-crossref, sub osint-service;
+	relation sfp-customfeed, sub osint-service;
+	relation sfp-dnsbrute, sub osint-service;
+	relation sfp-dnscommonsrv, sub osint-service;
+	relation sfp-dnsneighbor, sub osint-service;
+	relation sfp-dnsraw, sub osint-service;
+	relation sfp-dnsresolve, sub osint-service;
+	relation sfp-dnszonexfer, sub osint-service;
+	relation sfp-email, sub osint-service;
+	relation sfp-errors, sub osint-service;
+	relation sfp-ethereum, sub osint-service;
+	relation sfp-filemeta, sub osint-service;
+	relation sfp-hashes, sub osint-service;
+	relation sfp-hosting, sub osint-service;
+	relation sfp-iban, sub osint-service;
+	relation sfp-intfiles, sub osint-service;
+	relation sfp-junkfiles, sub osint-service;
+	relation sfp-names, sub osint-service;
+	relation sfp-pageinfo, sub osint-service;
+	relation sfp-pgp, sub osint-service;
+	relation sfp-phone, sub osint-service;
+	relation sfp-portscan-tcp, sub osint-service;
+	relation sfp-similar, sub osint-service;
+	relation sfp-social, sub osint-service;
+	relation sfp-spider, sub osint-service;
+	relation sfp-sslcert, sub osint-service;
+	relation sfp-strangeheaders, sub osint-service;
+	relation sfp-subdomain-takeover, sub osint-service;
+	relation sfp-tldsearch, sub osint-service;
+	relation sfp-tool-cmseek, sub osint-service;
+	relation sfp-tool-dnstwist, sub osint-service;
+	relation sfp-tool-nbtscan, sub osint-service;
+	relation sfp-tool-nmap, sub osint-service;
+	relation sfp-tool-nuclei, sub osint-service;
+	relation sfp-tool-onesixtyone, sub osint-service;
+	relation sfp-tool-retirejs, sub osint-service;
+	relation sfp-tool-snallygaster, sub osint-service;
+	relation sfp-tool-testsslsh, sub osint-service;
+	relation sfp-tool-trufflehog, sub osint-service;
+	relation sfp-tool-wafw00f, sub osint-service;
+	relation sfp-tool-wappalyzer, sub osint-service;
+	relation sfp-tool-whatweb, sub osint-service;
+	relation sfp-webanalytics, sub osint-service;
+	relation sfp-webframework, sub osint-service;
+	relation sfp-webserver, sub osint-service;
+	relation sfp-whois, sub osint-service;
 
 	#####################################
 	# SpiderFeet Route Relation Definitions
@@ -521,6 +576,7 @@ define
 	####################################
 
 	attribute route_state, value string @values("in-test", "favourite", "unique", "error", "dominated");
+	attribute service_origin, value string @values("external", "quarantine", "custom");
 	attribute service_state, value string @values("in-test", "favourite", "unique", "error", "dominated");
 	attribute fixture_category, value string @values("positive", "negative");
 	attribute route_name, value string;

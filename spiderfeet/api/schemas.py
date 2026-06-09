@@ -379,6 +379,10 @@ class ForceGraphNodeModel(BaseModel):
     label: str
     colour: Optional[str] = None
     service_state: Optional[str] = None
+    service_origin: Optional[str] = Field(
+        None,
+        description="external | quarantine | custom — catalogue provenance",
+    )
     fixture_category: Optional[str] = Field(
         None,
         description="positive | negative — module fixture semantics",
