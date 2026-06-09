@@ -18,6 +18,7 @@ import sys
 import json
 import shutil
 import tempfile
+from shutil import which
 from subprocess import Popen, PIPE, TimeoutExpired
 
 from spiderfeet import SpiderFeetPlugin, SpiderFeetEvent
@@ -46,7 +47,7 @@ class sfp_tool_retirejs(SpiderFeetPlugin):
 
     # Option descriptions
     optdescs = {
-        "retirejs_path": "Path to your retire binary. Must be set."
+        "retirejs_path": "Path to your retire binary. Optional if retire is on PATH."
     }
 
     # Target
@@ -72,6 +73,34 @@ class sfp_tool_retirejs(SpiderFeetPlugin):
             "VULNERABILITY_GENERAL"
         ]
 
+    def _resolve_retire_executable(self):
+        found = which("retire") or which("retire.cmd") or which("retire.exe")
+        if not found:
+            for folder in os.environ.get("PATH", "").split(os.pathsep):
+                for name in ("retire", "retire.cmd", "retire.exe"):
+                    candidate = os.path.join(folder, name)
+                    if os.path.isfile(candidate):
+                        found = candidate
+                        break
+                if found:
+                    break
+        if found and os.path.isfile(found):
+            return found
+
+        if not self.opts['retirejs_path']:
+            self.error("You enabled sfp_tool_retirejs but did not set a path to the tool!")
+            return None
+
+        exe = self.opts['retirejs_path']
+        if self.opts['retirejs_path'].endswith('/'):
+            exe = f"{exe}retire"
+
+        if not os.path.isfile(exe):
+            self.error(f"File does not exist: {exe}")
+            return None
+
+        return exe
+
     # Handle events sent to this module
     def handleEvent(self, event):
         eventName = event.eventType
@@ -83,20 +112,6 @@ class sfp_tool_retirejs(SpiderFeetPlugin):
         if self.errorState:
             return
 
-        if not self.opts['retirejs_path']:
-            self.error("You enabled sfp_tool_retirejs but did not set a path to the tool!")
-            self.errorState = True
-            return
-
-        exe = self.opts['retirejs_path']
-        if self.opts['retirejs_path'].endswith('/'):
-            exe = f"{exe}retire"
-
-        if not os.path.isfile(exe):
-            self.error(f"File does not exist: {exe}")
-            self.errorState = True
-            return
-
         if ".js" not in eventData:
             return
 
@@ -105,6 +120,11 @@ class sfp_tool_retirejs(SpiderFeetPlugin):
             self.debug(f"Skipping {eventData} as already scanned.")
             return
         self.results[eventData] = True
+
+        exe = self._resolve_retire_executable()
+        if not exe:
+            self.errorState = True
+            return
 
         # Store the javascript file being analyzed somewhere temporary
         tmpdirname = tempfile.mkdtemp()
@@ -125,8 +145,7 @@ class sfp_tool_retirejs(SpiderFeetPlugin):
                 f.write(res["content"])
 
             p = Popen(
-                # Keep -j to avoid Deprecation warning. It could be removed in the future
-                [exe, "--outputformat", "json", "-j"],
+                [exe, "--outputformat", "json", "--path", "."],
                 cwd=tmpdirname,
                 stdout=PIPE,
                 stderr=PIPE,

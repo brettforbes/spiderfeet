@@ -2109,14 +2109,15 @@
     },
     "sfp_tool_nmap": {
       "IP_ADDRESS": {
-        "input_value": "127.0.0.1",
+        "input_value": "8.8.8.8",
         "region": "global",
-        "validation": "blocked-tool",
-        "last_verdict": "error_failed",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
         "last_produced_count": 0,
         "notes": "",
-        "upstream_blocked": true,
-        "service_state_note": "error_failed"
+        "service_state_note": "error_failed",
+        "validated_produces": false,
+        "validated_negative": true
       }
     },
     "sfp_tool_nuclei": {
@@ -2151,6 +2152,15 @@
         "last_produced_count": 0,
         "notes": "",
         "upstream_blocked": true
+      },
+      "LINKED_URL_INTERNAL": {
+        "input_value": "https://code.jquery.com/jquery-1.2.6.min.js",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 6,
+        "notes": "status=UNKNOWN; verdict=hit; produced=6",
+        "validated_produces": true
       }
     },
     "sfp_tool_snallygaster": {

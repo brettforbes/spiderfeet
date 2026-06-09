@@ -38,13 +38,20 @@ def ensure_venv_scripts_on_path() -> None:
 
 
 def _resolve_binary(name: str) -> str | None:
-    found = shutil.which(name) or shutil.which(f"{name}.exe")
+    found = shutil.which(name) or shutil.which(f"{name}.exe") or shutil.which(f"{name}.cmd")
     if found:
         return found
     if sys.platform == "win32":
         for folder in os.environ.get("PATH", "").split(os.pathsep):
-            for candidate_name in (name, f"{name}.exe"):
+            for candidate_name in (name, f"{name}.exe", f"{name}.cmd"):
                 candidate = os.path.join(folder, candidate_name)
+                if os.path.isfile(candidate):
+                    return candidate
+        if name == "nmap":
+            for candidate in (
+                r"C:\Program Files (x86)\Nmap\nmap.exe",
+                r"C:\Program Files\Nmap\nmap.exe",
+            ):
                 if os.path.isfile(candidate):
                     return candidate
     return None

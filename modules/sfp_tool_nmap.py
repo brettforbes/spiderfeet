@@ -14,6 +14,8 @@
 # # Stage 5 operator documentation
 # Identify what Operating System might be used.
 import os.path
+import sys
+from shutil import which
 from subprocess import PIPE, Popen
 
 from netaddr import IPNetwork
@@ -50,7 +52,7 @@ class sfp_tool_nmap(SpiderFeetPlugin):
 
     # Option descriptions
     optdescs = {
-        'nmappath': "Path to the where the nmap binary lives. Must be set.",
+        'nmappath': "Path to the nmap binary. Optional if nmap is on PATH.",
         'netblockscan': "Port scan all IPs within identified owned netblocks?",
         'netblockscanmax': "Maximum netblock/subnet size to scan IPs within (CIDR value, 24 = /24, 16 = /16, etc.)"
     }
@@ -76,6 +78,36 @@ class sfp_tool_nmap(SpiderFeetPlugin):
     # produced.
     def producedEvents(self):
         return ["OPERATING_SYSTEM", "IP_ADDRESS"]
+
+    def _resolve_nmap_executable(self):
+        if self.opts.get('nmappath'):
+            path = self.opts['nmappath']
+            if path.endswith('/') or path.endswith('\\'):
+                names = ('nmap.exe', 'nmap') if sys.platform == 'win32' else ('nmap',)
+                for name in names:
+                    candidate = os.path.join(path, name)
+                    if os.path.isfile(candidate):
+                        return candidate
+            elif path.endswith('nmap') or path.endswith('nmap.exe'):
+                if os.path.isfile(path):
+                    return path
+            self.error("Could not recognize your nmap path configuration.")
+            return None
+
+        found = which('nmap') or which('nmap.exe')
+        if found and os.path.isfile(found):
+            return found
+
+        if sys.platform == 'win32':
+            for candidate in (
+                r"C:\Program Files (x86)\Nmap\nmap.exe",
+                r"C:\Program Files\Nmap\nmap.exe",
+            ):
+                if os.path.isfile(candidate):
+                    return candidate
+
+        self.error("You enabled sfp_tool_nmap but did not set a path to the tool!")
+        return None
 
     # Handle events sent to this module
     def handleEvent(self, event):
@@ -116,24 +148,8 @@ class sfp_tool_nmap(SpiderFeetPlugin):
 
         self.results[eventData] = True
 
-        if not self.opts['nmappath']:
-            self.error("You enabled sfp_tool_nmap but did not set a path to the tool!")
-            self.errorState = True
-            return
-
-        # Normalize path
-        if self.opts['nmappath'].endswith('nmap'):
-            exe = self.opts['nmappath']
-        elif self.opts['nmappath'].endswith('/'):
-            exe = self.opts['nmappath'] + "nmap"
-        else:
-            self.error("Could not recognize your nmap path configuration.")
-            self.errorState = True
-            return
-
-        # If tool is not found, abort
-        if not os.path.isfile(exe):
-            self.error("File does not exist: " + exe)
+        exe = self._resolve_nmap_executable()
+        if not exe:
             self.errorState = True
             return
 
