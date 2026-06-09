@@ -21,13 +21,13 @@ class sfp_abstractapi(SpiderFeetPlugin):
 
     meta = {
         'name': "AbstractAPI",
-        'summary': "Look up domain, phone and IP address information from AbstractAPI.",
+        'summary': "Look up domain, phone, IP, and email reputation information from AbstractAPI.",
         'flags': ["apikey"],
         'useCases': ["Passive", "Footprint", "Investigate"],
         'categories': ["Search Engines"],
         'dataSource': {
             'website': "https://app.abstractapi.com/",
-            'model': "FREE_NOAUTH_LIMITED",
+            'model': "FREE_AUTH_LIMITED",
             'references': [
                 "https://app.abstractapi.com/",
             ],
@@ -36,7 +36,8 @@ class sfp_abstractapi(SpiderFeetPlugin):
                 "Register a free account",
                 "Visit https://app.abstractapi.com/api/",
                 "Visit each API page and click on 'Try it out'",
-                "Your API Key will be listed under 'This is your private API key, specific to this API.'",
+                "Visit https://app.abstractapi.com/api/email-reputation-test",
+                "Your Email Reputation API key is shown on that product page",
             ],
             'favIcon': "https://app.abstractapi.com/favicon.ico",
             'logo': "https://app.abstractapi.com/logo192.png",
@@ -48,12 +49,14 @@ class sfp_abstractapi(SpiderFeetPlugin):
         "companyenrichment_api_key": "",
         "phonevalidation_api_key": "",
         "ipgeolocation_api_key": "",
+        "emailreputation_api_key": "",
     }
 
     optdescs = {
         "companyenrichment_api_key": "AbstractAPI Company Enrichment API key.",
         "phonevalidation_api_key": "AbstractAPI Phone Validation API key.",
         "ipgeolocation_api_key": "AbstractAPI IP Geolocation API key.",
+        "emailreputation_api_key": "AbstractAPI Email Reputation API key.",
     }
 
     results = None
@@ -68,10 +71,21 @@ class sfp_abstractapi(SpiderFeetPlugin):
             self.opts[opt] = userOpts[opt]
 
     def watchedEvents(self):
-        return ["DOMAIN_NAME", "PHONE_NUMBER", "IP_ADDRESS", "IPV6_ADDRESS"]
+        return ["DOMAIN_NAME", "PHONE_NUMBER", "IP_ADDRESS", "IPV6_ADDRESS", "EMAILADDR"]
 
     def producedEvents(self):
-        return ["COMPANY_NAME", "SOCIAL_MEDIA", "GEOINFO", "PHYSICAL_COORDINATES", "PROVIDER_TELCO", "RAW_RIR_DATA"]
+        return [
+            "COMPANY_NAME",
+            "SOCIAL_MEDIA",
+            "GEOINFO",
+            "PHYSICAL_COORDINATES",
+            "PROVIDER_TELCO",
+            "RAW_RIR_DATA",
+            "EMAILADDR_DELIVERABLE",
+            "EMAILADDR_UNDELIVERABLE",
+            "EMAILADDR_DISPOSABLE",
+            "EMAILADDR_COMPROMISED",
+        ]
 
     def parseApiResponse(self, res: dict):
         if not res:
@@ -212,6 +226,31 @@ class sfp_abstractapi(SpiderFeetPlugin):
 
         return self.parseApiResponse(res)
 
+    def queryEmailReputation(self, qry):
+        """Look up email reputation and deliverability."""
+
+        api_key = self.opts['emailreputation_api_key']
+        if not api_key:
+            return None
+
+        params = urllib.parse.urlencode({
+            'api_key': api_key,
+            'email': qry.encode('raw_unicode_escape').decode("ascii", errors='replace'),
+        })
+
+        res = self.sf.fetchUrl(
+            f"https://emailreputation.abstractapi.com/v1/?{params}",
+            useragent=self.opts['_useragent']
+        )
+
+        time.sleep(1)
+
+        if not res:
+            self.debug("No response from AbstractAPI Email Reputation API endpoint")
+            return None
+
+        return self.parseApiResponse(res)
+
     def handleEvent(self, event):
         eventName = event.eventType
         srcModuleName = event.module
@@ -225,7 +264,12 @@ class sfp_abstractapi(SpiderFeetPlugin):
 
         self.results[eventData] = True
 
-        if self.opts["companyenrichment_api_key"] == "" and self.opts["phonevalidation_api_key"] == "" and self.opts["ipgeolocation_api_key"] == "":
+        if (
+            self.opts["companyenrichment_api_key"] == ""
+            and self.opts["phonevalidation_api_key"] == ""
+            and self.opts["ipgeolocation_api_key"] == ""
+            and self.opts["emailreputation_api_key"] == ""
+        ):
             self.error(
                 f"You enabled {self.__class__.__name__} but did not set any API keys!"
             )
@@ -350,6 +394,40 @@ class sfp_abstractapi(SpiderFeetPlugin):
             longitude = data.get('longitude')
             if latitude and longitude:
                 e = SpiderFeetEvent("PHYSICAL_COORDINATES", f"{latitude}, {longitude}", self.__name__, event)
+                self.notifyListeners(e)
+
+        elif eventName == "EMAILADDR":
+            if self.opts["emailreputation_api_key"] == "":
+                self.info(
+                    f"No API key set for Email Reputation API endpoint. Ignoring {eventData}"
+                )
+                return
+
+            data = self.queryEmailReputation(eventData)
+
+            if not data:
+                return
+
+            e = SpiderFeetEvent("RAW_RIR_DATA", str(data), self.__name__, event)
+            self.notifyListeners(e)
+
+            deliverability = data.get('email_deliverability') or {}
+            status = str(deliverability.get('status') or '').lower()
+            if status == 'deliverable':
+                e = SpiderFeetEvent("EMAILADDR_DELIVERABLE", eventData, self.__name__, event)
+                self.notifyListeners(e)
+            elif status:
+                e = SpiderFeetEvent("EMAILADDR_UNDELIVERABLE", eventData, self.__name__, event)
+                self.notifyListeners(e)
+
+            quality = data.get('email_quality') or {}
+            if quality.get('is_disposable'):
+                e = SpiderFeetEvent("EMAILADDR_DISPOSABLE", eventData, self.__name__, event)
+                self.notifyListeners(e)
+
+            breaches = data.get('email_breaches') or {}
+            if int(breaches.get('total_breaches') or 0) > 0:
+                e = SpiderFeetEvent("EMAILADDR_COMPROMISED", eventData + " [AbstractAPI]", self.__name__, event)
                 self.notifyListeners(e)
 
 # End of sfp_abstractapi class

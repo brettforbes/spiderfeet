@@ -2,12 +2,16 @@
 
 from unittest.mock import patch
 
+from spiderfeet.map.routes_catalog import load_osint_services
+from spiderfeet.map.service_states import include_in_operator_ui
+
 
 def test_tests_summary(api_client):
     r = api_client.get("/api/v1/tests/summary")
     assert r.status_code == 200
     body = r.json()
-    assert body["module_count"] >= 169
+    visible = sum(1 for s in load_osint_services() if include_in_operator_ui(s))
+    assert body["module_count"] == visible
     assert body["test_count"] > 0
     assert body["route_count"] >= body["test_count"]
     assert "test_states" in body

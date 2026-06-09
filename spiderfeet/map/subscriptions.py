@@ -18,7 +18,18 @@ _NON_SECRET_OPT_NAMES = frozenset(
     }
 )
 
-_SECRET_OPT_MARKERS = ("api_key", "apikey", "token", "secret", "password", "client_secret")
+_SECRET_OPT_MARKERS = ("api_key", "apikey", "token", "secret", "client_secret")
+
+
+def _matches_password_credential(name: str) -> bool:
+    """True for credential field names, not feature toggles like passwordpages."""
+    if name == "password":
+        return True
+    if name.endswith("_password"):
+        return True
+    if name.startswith("password_"):
+        return True
+    return False
 
 
 def is_secret_module_opt(name: str) -> bool:
@@ -28,6 +39,8 @@ def is_secret_module_opt(name: str) -> bool:
         return False
     if lowered.endswith("_hostname") or lowered.endswith("_host") or lowered.endswith("_url"):
         return False
+    if _matches_password_credential(lowered):
+        return True
     return any(marker in lowered for marker in _SECRET_OPT_MARKERS)
 
 

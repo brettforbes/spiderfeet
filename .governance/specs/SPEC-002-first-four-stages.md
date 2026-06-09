@@ -37,7 +37,7 @@ Stages 0–4 only (governance → rebrand → FastAPI → TypeDB map UI → per-
 - **177 module-test issues** (one per entry in `osint_services.json`). Each issue tracks testing of all routes for that module (typically many consumed×produced combinations inside one issue).
 - A module issue closes when all viable routes are exercised: `scan-record` per run, `route` on success, failures annotated per seed doc §2.4.3.
 - Quarantine modules are **not** in this tranche; they follow in stage 5.
-- None-tier free modules: seed research closed (79 smoke-validated, 8 `service_state: error`). See `.docs/analysis/stage4_seed_corpus_and_tests.md`.
+- None-tier free modules: seed research closed (79 smoke-validated; upstream-broken modules in `UPSTREAM_ERROR_MODULE_IDS`, currently 9). See `.docs/analysis/stage4_seed_corpus_and_tests.md`.
 
 ## Verification
 
