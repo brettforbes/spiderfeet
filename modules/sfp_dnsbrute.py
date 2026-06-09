@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Attempts to identify hostnames through brute-forcing common names and iterations.
 import importlib
 import random
 import threading

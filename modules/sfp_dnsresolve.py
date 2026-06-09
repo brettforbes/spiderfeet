@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Resolves hosts and IP addresses identified, also extracted from raw content.
 import re
 import urllib
 

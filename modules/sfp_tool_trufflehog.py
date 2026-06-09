@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Searches through git repositories for high entropy strings and secrets, digging deep into commit history.
 import sys
 import json
 import os

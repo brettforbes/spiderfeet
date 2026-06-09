@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Wappalyzer indentifies technologies on websites.
 import os
 import sys
 import json

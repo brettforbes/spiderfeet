@@ -12,6 +12,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Check if affiliated subdomains are vulnerable to takeover.
 import json
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

@@ -13,6 +13,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify whether other domains are associated ('Affiliates') of the target by looking for links back to the target site(s).
 import re
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin

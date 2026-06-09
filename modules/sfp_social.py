@@ -10,6 +10,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify presence on social media networks such as LinkedIn, Twitter and others.
 import re
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

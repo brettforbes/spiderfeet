@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify what web application firewall (WAF) is in use on the specified website.
 import json
 import os.path
 from subprocess import PIPE, Popen, TimeoutExpired

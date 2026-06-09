@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Retrieves raw DNS records such as MX, TXT and others.
 import re
 
 import dns.query

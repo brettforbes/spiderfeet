@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify company names in any obtained data.
 import re
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

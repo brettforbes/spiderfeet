@@ -34,7 +34,7 @@ from spiderfeet.api.services.scan_results import (
     fetch_scan_results,
     wait_for_scan,
 )
-from spiderfeet.api.services.scan_targets import resolve_scan_ui_target
+from spiderfeet.api.services.scan_targets import resolve_scan_ui_seed
 from spiderfeet.api.services.scans import ScanStartError, start_scan
 from spiderfeet.map.test_targets import expected_absent_types_for_entry, seed_entry
 
@@ -132,7 +132,7 @@ def run_scan_ui(runtime: Runtime, request: ScanUiRequest) -> ScanUiResponse:
         raise ScanUiError(f"Unknown catalogue nugget_id: {consumed_input.nugget_id}")
 
     try:
-        target_value, target_type = resolve_scan_ui_target(
+        target_value, target_type, seed_payload = resolve_scan_ui_seed(
             consumed_input.nugget_id,
             consumed_input.nugget_data,
         )
@@ -147,7 +147,12 @@ def run_scan_ui(runtime: Runtime, request: ScanUiRequest) -> ScanUiResponse:
     )
 
     try:
-        scan_id = start_scan(runtime, scan_request, target_type=target_type)
+        scan_id = start_scan(
+            runtime,
+            scan_request,
+            target_type=target_type,
+            seed_payload_event=seed_payload,
+        )
     except ScanStartError as exc:
         raise ScanUiError(exc.message, exc.status_code) from exc
 

@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify ethereum addresses in scraped webpages.
 import re
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

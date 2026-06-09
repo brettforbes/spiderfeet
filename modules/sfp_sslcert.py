@@ -10,6 +10,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Gather information about SSL certificates used by the target's HTTPS sites.
 from urllib.parse import urlparse
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin, SpiderFeetHelpers

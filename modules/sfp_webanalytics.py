@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify web analytics IDs in scraped webpages and DNS TXT records.
 import re
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

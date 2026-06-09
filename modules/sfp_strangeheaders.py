@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Obtain non-standard HTTP headers returned by web servers.
 import json
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

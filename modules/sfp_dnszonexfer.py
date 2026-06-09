@@ -10,6 +10,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Attempts to perform a full DNS zone transfer.
 import re
 
 import dns.query

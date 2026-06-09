@@ -12,6 +12,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Obtain information about web pages (do they take passwords, do they contain forms, etc.)
 import re
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

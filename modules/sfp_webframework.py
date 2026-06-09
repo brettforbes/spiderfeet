@@ -10,6 +10,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify the usage of popular web frameworks like jQuery, YUI and others.
 import re
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

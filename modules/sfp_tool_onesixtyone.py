@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Fast scanner to find publicly exposed SNMP services.
 import sys
 import os.path
 import tempfile
