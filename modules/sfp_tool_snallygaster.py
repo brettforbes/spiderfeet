@@ -17,6 +17,7 @@
 import sys
 import json
 import os.path
+from shutil import which
 from subprocess import PIPE, Popen, TimeoutExpired
 
 from spiderfeet import SpiderFeetPlugin, SpiderFeetEvent, SpiderFeetHelpers
@@ -48,7 +49,7 @@ class sfp_tool_snallygaster(SpiderFeetPlugin):
     }
 
     optdescs = {
-        "snallygaster_path": "Path to your snallygaster binary. Must be set."
+        "snallygaster_path": "Path to your snallygaster binary. Optional if snallygaster is on PATH."
     }
 
     results = None
@@ -75,6 +76,34 @@ class sfp_tool_snallygaster(SpiderFeetPlugin):
             'VULNERABILITY_CVE_LOW'
         ]
 
+    def _snallygaster_executable(self):
+        found = which("snallygaster") or which("snallygaster.exe")
+        if not found:
+            for folder in os.environ.get("PATH", "").split(os.pathsep):
+                for name in ("snallygaster", "snallygaster.exe"):
+                    candidate = os.path.join(folder, name)
+                    if os.path.isfile(candidate):
+                        found = candidate
+                        break
+                if found:
+                    break
+        if found and os.path.isfile(found):
+            return found
+
+        if not self.opts['snallygaster_path']:
+            self.error("You enabled sfp_tool_snallygaster but did not set a path to the tool!")
+            return None
+
+        exe = self.opts["snallygaster_path"]
+        if self.opts["snallygaster_path"].endswith("/"):
+            exe = f"{exe}snallygaster"
+
+        if not os.path.isfile(exe):
+            self.error(f"File does not exist: {exe}")
+            return None
+
+        return exe
+
     def handleEvent(self, event):
         eventName = event.eventType
         srcModuleName = event.module
@@ -91,30 +120,19 @@ class sfp_tool_snallygaster(SpiderFeetPlugin):
 
         self.results[eventData] = True
 
-        if not self.opts['snallygaster_path']:
-            self.error("You enabled sfp_tool_snallygaster but did not set a path to the tool!")
-            self.errorState = True
-            return
-
-        exe = self.opts["snallygaster_path"]
-        if self.opts["snallygaster_path"].endswith("/"):
-            exe = f"{exe}snallygaster"
-
-        if not os.path.isfile(exe):
-            self.error(f"File does not exist: {exe}")
-            self.errorState = True
-            return
-
         if not SpiderFeetHelpers.sanitiseInput(eventData):
             self.error("Invalid input, refusing to run.")
             return
 
-        args = [
-            exe,
-            '--nowww',
-            '-j',
-            eventData
-        ]
+        exe = self._snallygaster_executable()
+        if not exe:
+            self.errorState = True
+            return
+
+        if sys.platform == "win32" and not exe.lower().endswith(".exe"):
+            args = [sys.executable, exe, "--nowww", "-j", eventData]
+        else:
+            args = [exe, "--nowww", "-j", eventData]
         try:
             p = Popen(args, stdout=PIPE, stderr=PIPE)
             out, stderr = p.communicate(input=None, timeout=600)

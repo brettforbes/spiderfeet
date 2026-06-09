@@ -12096,7 +12096,7 @@
   },
   {
     "module_id": "sfp_tool_dnstwist",
-    "service_origin": "quarantine",
+    "service_origin": "external",
     "name": "Tool - DNSTwist",
     "summary": "Identify bit-squatting, typo and other similar domains to the target using a local DNSTwist installation.",
     "flags": [
@@ -12119,8 +12119,7 @@
       "description": "Identify bit-squatting, typo and other similar domains to the target using a local DNSTwist installation.\n\n**Module ID:** `sfp_tool_dnstwist`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** DOMAIN_NAME\n**Produces:** SIMILARDOMAIN\n**Flags:** tool\n\n**Tool requirement:**\nInstall dnstwist (`dnstwist` on PATH).\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `DOMAIN_NAME`\n- Input: `example.com`\n- Produced count: 0",
       "api_key_instructions": [
         "Install dnstwist (`dnstwist` on PATH)."
-      ],
-      "tool_requirement": "Install dnstwist (`dnstwist` on PATH)."
+      ]
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12152,7 +12151,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "error",
+    "service_state": "in-test",
     "tool_details": {
       "name": "DNSTwist",
       "description": "See what sort of trouble users can get in trying to type your domain name. Find lookalike domains that adversaries can use to attack you. Can detect typosquatters, phishing attacks, fraud, and brand impersonation. Useful as an additional source of targeted threat intelligence.",
@@ -12518,7 +12517,7 @@
   },
   {
     "module_id": "sfp_tool_snallygaster",
-    "service_origin": "quarantine",
+    "service_origin": "external",
     "name": "Tool - snallygaster",
     "summary": "Finds file leaks and other security problems on HTTP servers.",
     "flags": [
@@ -12541,8 +12540,7 @@
       "description": "Finds file leaks and other security problems on HTTP servers.\n\n**Module ID:** `sfp_tool_snallygaster`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME\n**Produces:** VULNERABILITY_GENERAL, VULNERABILITY_CVE_CRITICAL, VULNERABILITY_CVE_HIGH, VULNERABILITY_CVE_MEDIUM, VULNERABILITY_CVE_LOW\n**Flags:** tool\n\n**Tool requirement:**\nInstall snallygaster (`snallygaster` on PATH).\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
       "api_key_instructions": [
         "Install snallygaster (`snallygaster` on PATH)."
-      ],
-      "tool_requirement": "Install snallygaster (`snallygaster` on PATH)."
+      ]
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12566,7 +12564,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "error",
+    "service_state": "in-test",
     "tool_details": {
       "name": "snallygaster",
       "description": "snallygaster is a tool that looks for files accessible on web servers that shouldn't be public and can pose a security risk. Typical examples include publicly accessible git repositories, backup files potentially containing passwords  or database dumps. In addition, it contains a few checks  for other security vulnerabilities.",
@@ -12723,7 +12721,7 @@
   },
   {
     "module_id": "sfp_tool_wafw00f",
-    "service_origin": "quarantine",
+    "service_origin": "external",
     "name": "Tool - WAFW00F",
     "summary": "Identify what web application firewall (WAF) is in use on the specified website.",
     "flags": [
@@ -12746,8 +12744,7 @@
       "description": "Identify what web application firewall (WAF) is in use on the specified website.\n\n**Module ID:** `sfp_tool_wafw00f`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME\n**Produces:** RAW_RIR_DATA, WEBSERVER_TECHNOLOGY\n**Flags:** tool\n\n**Tool requirement:**\nInstall wafw00f (`wafw00f` on PATH).\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
       "api_key_instructions": [
         "Install wafw00f (`wafw00f` on PATH)."
-      ],
-      "tool_requirement": "Install wafw00f (`wafw00f` on PATH)."
+      ]
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12774,7 +12771,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "error",
+    "service_state": "in-test",
     "tool_details": {
       "name": "WAFW00F",
       "description": "WAFW00F allows one to identify and fingerprint Web Application Firewall (WAF) products protecting a website.",

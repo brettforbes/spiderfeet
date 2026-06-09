@@ -1,5 +1,7 @@
 import pytest
 import unittest
+import os
+from unittest.mock import patch
 
 from modules.sfp_tool_snallygaster import sfp_tool_snallygaster
 from sflib import SpiderFeet
@@ -26,7 +28,9 @@ class TestModuleToolSnallygaster(unittest.TestCase):
         module = sfp_tool_snallygaster()
         self.assertIsInstance(module.producedEvents(), list)
 
-    def test_handleEvent_no_tool_path_configured_should_set_errorState(self):
+    @patch.dict(os.environ, {"PATH": ""}, clear=False)
+    @patch("modules.sfp_tool_snallygaster.which", return_value=None)
+    def test_handleEvent_no_tool_path_configured_should_set_errorState(self, _which):
         sf = SpiderFeet(self.default_options)
 
         module = sfp_tool_snallygaster()
@@ -37,11 +41,11 @@ class TestModuleToolSnallygaster(unittest.TestCase):
         target = SpiderFeetTarget(target_value, target_type)
         module.setTarget(target)
 
-        event_type = 'ROOT'
-        event_data = 'example data'
-        event_module = ''
-        source_event = ''
-        evt = SpiderFeetEvent(event_type, event_data, event_module, source_event)
+        root = SpiderFeetEvent('ROOT', target_value, '', '')
+        event_type = 'INTERNET_NAME'
+        event_data = 'example.com'
+        event_module = 'sfp_test'
+        evt = SpiderFeetEvent(event_type, event_data, event_module, root)
 
         result = module.handleEvent(evt)
 
