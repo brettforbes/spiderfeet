@@ -632,6 +632,19 @@
         "last_verdict": "clean_miss"
       }
     },
+    "sfp_dnsresolve": {
+      "INTERNET_NAME": {
+        "input_value": "one.one.one.one",
+        "region": "global",
+        "validation": "pilot",
+        "expected_produced_nugget_ids": [
+          "IP_ADDRESS",
+          "IPV6_ADDRESS",
+          "INTERNET_NAME"
+        ],
+        "notes": "Stage 5 quarantine pilot #739; local DNS resolver"
+      }
+    },
     "sfp_dnsdumpster": {
       "DOMAIN_NAME": {
         "input_value": "sbs.com.au",
