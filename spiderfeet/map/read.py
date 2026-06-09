@@ -12,6 +12,7 @@ from typedb.api.connection.transaction import TransactionType
 
 from spiderfeet.map import typeql_util
 from spiderfeet.map.constants import OSINT_SERVICES_JSON
+from spiderfeet.map.subscriptions import requires_api_key
 
 
 @dataclass
@@ -29,6 +30,7 @@ class ForceGraphNode:
     colour: Optional[str] = None
     service_state: Optional[str] = None
     fixture_category: Optional[str] = None
+    requires_api_key: Optional[bool] = None
     icon: Optional[str] = None
     fav_icon: Optional[str] = None
 
@@ -114,18 +116,23 @@ fetch {
 
 
 @lru_cache(maxsize=1)
-def _fav_icons_from_catalog() -> Dict[str, str]:
-    """module_id → data_source.fav_icon from osint_services.json."""
+def _catalog_rows_by_module() -> Dict[str, Dict[str, Any]]:
+    """module_id → catalogue row from osint_services.json."""
     if not OSINT_SERVICES_JSON.is_file():
         return {}
     with OSINT_SERVICES_JSON.open(encoding="utf-8") as handle:
         rows = json.load(handle)
+    return {str(row["module_id"]): row for row in rows if row.get("module_id")}
+
+
+@lru_cache(maxsize=1)
+def _fav_icons_from_catalog() -> Dict[str, str]:
+    """module_id → data_source.fav_icon from osint_services.json."""
     out: Dict[str, str] = {}
-    for row in rows:
-        module_id = row.get("module_id")
+    for module_id, row in _catalog_rows_by_module().items():
         fav = (row.get("data_source") or {}).get("fav_icon")
-        if module_id and fav:
-            out[str(module_id)] = str(fav)
+        if fav:
+            out[module_id] = str(fav)
     return out
 
 
@@ -191,11 +198,15 @@ def export_force_graph(
                 )
             links.append(ForceGraphLink(source=mid, target=nid, role=role))
 
+    catalog = _catalog_rows_by_module()
     catalog_fav = _fav_icons_from_catalog()
     typedb_fav = _fetch_service_fav_icons(driver, database)
     for node in nodes.values():
         if node.kind != "osint-service":
             continue
         node.fav_icon = typedb_fav.get(node.id) or catalog_fav.get(node.id)
+        cat_row = catalog.get(node.id)
+        if cat_row is not None:
+            node.requires_api_key = requires_api_key(cat_row)
 
     return ForceGraphExport(nodes=list(nodes.values()), links=links)

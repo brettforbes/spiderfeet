@@ -383,6 +383,10 @@ class ForceGraphNodeModel(BaseModel):
         None,
         description="positive | negative — module fixture semantics",
     )
+    requires_api_key: Optional[bool] = Field(
+        None,
+        description="True when module needs subscription/API credentials before tests can run",
+    )
     icon: Optional[str] = Field(
         None,
         description="Nugget icon filename (e.g. icon_domain_name.svg)",
@@ -599,6 +603,18 @@ class SubscriptionModuleSummary(BaseModel):
         "positive",
         description="Module-level fixture: positive expects output; negative expects clean_miss",
     )
+    signup_url: Optional[str] = Field(
+        None,
+        description="Primary signup or API key registration URL from catalogue",
+    )
+    signup_bucket: Optional[str] = Field(
+        None,
+        description="self-serve | review | manual | paid-risk",
+    )
+    signup_note: Optional[str] = Field(
+        None,
+        description="Heuristic guidance for operator signup (confirm free tier on site)",
+    )
     secret_opts: List[SecretOptMasked] = Field(default_factory=list)
 
 
@@ -611,6 +627,9 @@ class SubscriptionModuleDetail(BaseModel):
     requires_api_key: bool
     has_api_key: bool
     website: Optional[str] = None
+    signup_url: Optional[str] = None
+    signup_bucket: Optional[str] = None
+    signup_note: Optional[str] = None
     api_key_instructions: List[str] = Field(default_factory=list)
     consumed_nuggets: List[str] = Field(default_factory=list)
     produced_nuggets: List[str] = Field(default_factory=list)

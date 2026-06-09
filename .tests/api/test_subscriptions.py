@@ -9,6 +9,8 @@ def test_subscriptions_modules_list(api_client):
     assert rows[0]["requires_api_key"] is True
     assert "secret_opts" in rows[0]
     assert "subscription_tier" in rows[0]
+    assert "signup_url" in rows[0]
+    assert "signup_bucket" in rows[0]
 
 
 def test_subscriptions_modules_search(api_client):
@@ -29,6 +31,8 @@ def test_subscriptions_module_detail(api_client):
     body = r.json()
     assert body["module_id"] == "sfp_emailrep"
     assert body["requires_api_key"] is True
+    assert body["signup_bucket"] == "manual"
+    assert body["signup_url"]
     assert "EMAILADDR" in body["consumed_nuggets"]
     assert any(opt["name"] == "api_key" for opt in body["secret_opts"])
 

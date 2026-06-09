@@ -14,6 +14,7 @@ from spiderfeet.api.schemas import (
 from spiderfeet.map.fixture_categories import fixture_category_for_service
 from spiderfeet.map.service_states import include_in_operator_ui
 from spiderfeet.map.routes_catalog import load_osint_services, service_by_module_id
+from spiderfeet.map.signup_links import signup_metadata
 from spiderfeet.map.subscriptions import (
     has_configured_api_key,
     mask_secret,
@@ -50,6 +51,7 @@ def _secret_opts_masked(
 
 def _summary_row(service: Dict[str, Any], configured: Dict[str, Any]) -> SubscriptionModuleSummary:
     tier, needs_key, has_key, _skip = subscription_status(service, configured)
+    signup = signup_metadata(service)
     return SubscriptionModuleSummary(
         module_id=str(service.get("module_id") or ""),
         name=str(service.get("name") or ""),
@@ -57,6 +59,9 @@ def _summary_row(service: Dict[str, Any], configured: Dict[str, Any]) -> Subscri
         requires_api_key=needs_key,
         has_api_key=has_key,
         fixture_category=fixture_category_for_service(service),
+        signup_url=signup.get("signup_url"),
+        signup_bucket=signup.get("signup_bucket"),
+        signup_note=signup.get("signup_note"),
         secret_opts=_secret_opts_masked(service, configured),
     )
 
@@ -100,6 +105,7 @@ def get_subscription_module(
     instructions = data_source.get("api_key_instructions") or []
     if isinstance(instructions, str):
         instructions = [instructions]
+    signup = signup_metadata(service)
     return SubscriptionModuleDetail(
         module_id=module_id,
         name=str(service.get("name") or ""),
@@ -109,6 +115,9 @@ def get_subscription_module(
         requires_api_key=needs_key,
         has_api_key=has_key,
         website=data_source.get("website"),
+        signup_url=signup.get("signup_url"),
+        signup_bucket=signup.get("signup_bucket"),
+        signup_note=signup.get("signup_note"),
         api_key_instructions=[str(x) for x in instructions],
         consumed_nuggets=[str(x) for x in (service.get("consumed_nuggets") or [])],
         produced_nuggets=[str(x) for x in (service.get("produced_nuggets") or [])],
