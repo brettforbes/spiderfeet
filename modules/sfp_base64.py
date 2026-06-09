@@ -9,6 +9,9 @@
 # Copyright:   (c) Steve Micallef 2017
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify Base64-encoded strings in URLs, often revealing interesting hidden information.
 import base64
 import re
 import urllib.parse

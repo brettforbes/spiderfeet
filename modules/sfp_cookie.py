@@ -10,6 +10,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Extract Cookies from HTTP headers.
 import json
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetPlugin

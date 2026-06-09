@@ -75,6 +75,7 @@ def start_scan(
     request: ScanCreateRequest,
     *,
     target_type: str | None = None,
+    seed_payload_event: tuple[str, str] | None = None,
 ) -> str:
     """Launch scan worker process and return scan_id immediately (non-blocking)."""
     target = request.target.strip()
@@ -106,6 +107,8 @@ def start_scan(
                 resolved_type,
                 modlist,
                 cfg,
+                True,
+                seed_payload_event,
             ),
         )
         proc.daemon = True

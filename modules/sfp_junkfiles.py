@@ -10,6 +10,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Looks for old/temporary and other similar files.
 import random
 
 from spiderfeet import SpiderFeetEvent, SpiderFeetHelpers, SpiderFeetPlugin

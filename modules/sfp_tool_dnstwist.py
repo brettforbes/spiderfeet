@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Identify bit-squatting, typo and other similar domains to the target using a local DNSTwist installation.
 import json
 from pathlib import Path
 from shutil import which

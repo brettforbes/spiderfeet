@@ -11,6 +11,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Finds file leaks and other security problems on HTTP servers.
 import sys
 import json
 import os.path

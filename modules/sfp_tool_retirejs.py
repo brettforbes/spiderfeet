@@ -10,6 +10,9 @@
 # Licence:     Apache-2.0
 # -------------------------------------------------------------------------------
 
+
+# # Stage 5 operator documentation
+# Scanner detecting the use of JavaScript libraries with known vulnerabilities
 import os
 import sys
 import json

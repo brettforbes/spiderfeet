@@ -417,7 +417,7 @@
         "spiderfeet://local/sfp_accounts"
       ],
       "fav_icon": "icons/icon_service_accounts.svg",
-      "description": "Look for possible associated accounts on over 500 social and other websites such as Instagram, Reddit, etc."
+      "description": "Look for possible associated accounts on over 500 social and other websites such as Instagram, Reddit, etc.\n\n**Module ID:** `sfp_accounts`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** EMAILADDR, DOMAIN_NAME, HUMAN_NAME, USERNAME\n**Produces:** USERNAME, ACCOUNT_EXTERNAL_OWNED, SIMILAR_ACCOUNT_EXTERNAL\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `EMAILADDR`\n- Input: `noreply@spiderfoot.net`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -1124,7 +1124,7 @@
         "spiderfeet://local/sfp_base64"
       ],
       "fav_icon": "icons/icon_service_base64.svg",
-      "description": "Identify Base64-encoded strings in URLs, often revealing interesting hidden information."
+      "description": "Identify Base64-encoded strings in URLs, often revealing interesting hidden information.\n\n**Module ID:** `sfp_base64`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** LINKED_URL_INTERNAL\n**Produces:** BASE64_DATA\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `LINKED_URL_INTERNAL`\n- Input: `https://example.com/x?d=U3BpZGVyRm9vdA%3d%3d`\n- Produced count: 1"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -1482,7 +1482,7 @@
         "spiderfeet://local/sfp_binstring"
       ],
       "fav_icon": "icons/icon_service_binstring.svg",
-      "description": "Attempt to identify strings in binary content."
+      "description": "Attempt to identify strings in binary content.\n\n**Module ID:** `sfp_binstring`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** LINKED_URL_INTERNAL\n**Produces:** RAW_FILE_META_DATA\n**Flags:** errorprone\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `LINKED_URL_INTERNAL`\n- Input: `https://example.com/binary`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -1555,7 +1555,7 @@
         "spiderfeet://local/sfp_bitcoin"
       ],
       "fav_icon": "icons/icon_service_bitcoin.svg",
-      "description": "Identify bitcoin addresses in scraped webpages."
+      "description": "Identify bitcoin addresses in scraped webpages.\n\n**Module ID:** `sfp_bitcoin`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** TARGET_WEB_CONTENT\n**Produces:** BITCOIN_ADDRESS\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `TARGET_WEB_CONTENT`\n- Input: `wallet 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa on page`\n- Produced count: 1"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -2909,7 +2909,7 @@
         "spiderfeet://local/sfp_company"
       ],
       "fav_icon": "icons/icon_service_company.svg",
-      "description": "Identify company names in any obtained data."
+      "description": "Identify company names in any obtained data.\n\n**Module ID:** `sfp_company`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** TARGET_WEB_CONTENT, SSL_CERTIFICATE_ISSUED, DOMAIN_WHOIS, NETBLOCK_WHOIS, AFFILIATE_DOMAIN_WHOIS, AFFILIATE_WEB_CONTENT\n**Produces:** COMPANY_NAME, AFFILIATE_COMPANY_NAME\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `AFFILIATE_DOMAIN_WHOIS`\n- Input: `Registrant Organization: Example Corp\nRegistrant Country: US`\n- Produced count: 1"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -2958,7 +2958,7 @@
         "spiderfeet://local/sfp_cookie"
       ],
       "fav_icon": "icons/icon_service_cookie.svg",
-      "description": "Extract Cookies from HTTP headers."
+      "description": "Extract Cookies from HTTP headers.\n\n**Module ID:** `sfp_cookie`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** WEBSERVER_HTTPHEADERS\n**Produces:** TARGET_WEB_COOKIE\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `WEBSERVER_HTTPHEADERS`\n- Input: `Set-Cookie: sessionid=abc123; Path=/; HttpOnly`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -2994,7 +2994,7 @@
         "spiderfeet://local/sfp_countryname"
       ],
       "fav_icon": "icons/icon_service_countryname.svg",
-      "description": "Identify country names in any obtained data."
+      "description": "Identify country names in any obtained data.\n\n**Module ID:** `sfp_countryname`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** IBAN_NUMBER, PHONE_NUMBER, AFFILIATE_DOMAIN_NAME, CO_HOSTED_SITE_DOMAIN, DOMAIN_NAME, SIMILARDOMAIN, AFFILIATE_DOMAIN_WHOIS, CO_HOSTED_SITE_DOMAIN_WHOIS…\n**Produces:** COUNTRY_NAME\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `TARGET_WEB_CONTENT`\n- Input: `Server located in United States`\n- Produced count: 1"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -3067,7 +3067,7 @@
         "spiderfeet://local/sfp_creditcard"
       ],
       "fav_icon": "icons/icon_service_creditcard.svg",
-      "description": "Identify Credit Card Numbers in any data"
+      "description": "Identify Credit Card Numbers in any data\n\n**Module ID:** `sfp_creditcard`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** DARKNET_MENTION_CONTENT, LEAKSITE_CONTENT\n**Produces:** CREDIT_CARD_NUMBER\n**Flags:** errorprone\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `DARKNET_MENTION_CONTENT`\n- Input: `card 4111111111111111 expires 12/30`\n- Produced count: 1"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -3156,7 +3156,7 @@
         "spiderfeet://local/sfp_crossref"
       ],
       "fav_icon": "icons/icon_service_crossref.svg",
-      "description": "Identify whether other domains are associated ('Affiliates') of the target by looking for links back to the target site(s)."
+      "description": "Identify whether other domains are associated ('Affiliates') of the target by looking for links back to the target site(s).\n\n**Module ID:** `sfp_crossref`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** LINKED_URL_EXTERNAL, SIMILARDOMAIN, CO_HOSTED_SITE, DARKNET_MENTION_URL\n**Produces:** AFFILIATE_INTERNET_NAME, AFFILIATE_WEB_CONTENT\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -3308,7 +3308,7 @@
         "spiderfeet://local/sfp_customfeed"
       ],
       "fav_icon": "icons/icon_service_customfeed.svg",
-      "description": "Check if a host/domain, netblock, ASN or IP is malicious according to your custom feed."
+      "description": "Check if a host/domain, netblock, ASN or IP is malicious according to your custom feed.\n\n**Module ID:** `sfp_customfeed`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME, IP_ADDRESS, AFFILIATE_INTERNET_NAME, AFFILIATE_IPADDR, CO_HOSTED_SITE\n**Produces:** MALICIOUS_IPADDR, MALICIOUS_INTERNET_NAME, MALICIOUS_AFFILIATE_IPADDR, MALICIOUS_AFFILIATE_INTERNET_NAME, MALICIOUS_COHOST\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `INTERNET_NAME`\n- Input: `8.8.8.8`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -3657,7 +3657,7 @@
         "spiderfeet://local/sfp_dnsbrute"
       ],
       "fav_icon": "icons/icon_service_dnsbrute.svg",
-      "description": "Attempts to identify hostnames through brute-forcing common names and iterations."
+      "description": "Attempts to identify hostnames through brute-forcing common names and iterations.\n\n**Module ID:** `sfp_dnsbrute`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** DOMAIN_NAME, INTERNET_NAME\n**Produces:** INTERNET_NAME\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `DOMAIN_NAME`\n- Input: `example.com`\n- Produced count: 1"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -3738,7 +3738,7 @@
         "spiderfeet://local/sfp_dnscommonsrv"
       ],
       "fav_icon": "icons/icon_service_dnscommonsrv.svg",
-      "description": "Attempts to identify hostnames through brute-forcing common DNS SRV records."
+      "description": "Attempts to identify hostnames through brute-forcing common DNS SRV records.\n\n**Module ID:** `sfp_dnscommonsrv`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME, DOMAIN_NAME\n**Produces:** INTERNET_NAME, AFFILIATE_INTERNET_NAME\n**Flags:** slow\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `DOMAIN_NAME`\n- Input: `example.com`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -3956,7 +3956,7 @@
         "spiderfeet://local/sfp_dnsneighbor"
       ],
       "fav_icon": "icons/icon_service_dnsneighbor.svg",
-      "description": "Attempt to reverse-resolve the IP addresses next to your target to see if they are related."
+      "description": "Attempt to reverse-resolve the IP addresses next to your target to see if they are related.\n\n**Module ID:** `sfp_dnsneighbor`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** IP_ADDRESS\n**Produces:** AFFILIATE_IPADDR, IP_ADDRESS\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `NETBLOCK_MEMBER`\n- Input: `8.8.8.0/24`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -4006,7 +4006,7 @@
         "spiderfeet://local/sfp_dnsraw"
       ],
       "fav_icon": "icons/icon_service_dnsraw.svg",
-      "description": "Retrieves raw DNS records such as MX, TXT and others."
+      "description": "Retrieves raw DNS records such as MX, TXT and others.\n\n**Module ID:** `sfp_dnsraw`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME, DOMAIN_NAME, DOMAIN_NAME_PARENT\n**Produces:** PROVIDER_MAIL, PROVIDER_DNS, RAW_DNS_RECORDS, DNS_TEXT, DNS_SPF, INTERNET_NAME, INTERNET_NAME_UNRESOLVED, AFFILIATE_INTERNET_NAME…\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `DOMAIN_NAME`\n- Input: `example.com`\n- Produced count: 10"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -4059,7 +4059,7 @@
         "spiderfeet://local/sfp_dnsresolve"
       ],
       "fav_icon": "icons/icon_service_dnsresolve.svg",
-      "description": "Resolves hosts and IP addresses identified, also extracted from raw content."
+      "description": "Resolves hosts and IP addresses identified, also extracted from raw content.\n\n**Module ID:** `sfp_dnsresolve`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** CO_HOSTED_SITE, AFFILIATE_INTERNET_NAME, NETBLOCK_OWNER, NETBLOCKV6_OWNER, IP_ADDRESS, IPV6_ADDRESS, INTERNET_NAME, AFFILIATE_IPADDR…\n**Produces:** IP_ADDRESS, INTERNET_NAME, AFFILIATE_INTERNET_NAME, AFFILIATE_IPADDR, AFFILIATE_IPV6_ADDRESS, DOMAIN_NAME, IPV6_ADDRESS, INTERNAL_IP_ADDRESS…\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `INTERNET_NAME`\n- Input: `one.one.one.one`\n- Produced count: 5"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -4160,7 +4160,7 @@
         "spiderfeet://local/sfp_dnszonexfer"
       ],
       "fav_icon": "icons/icon_service_dnszonexfer.svg",
-      "description": "Attempts to perform a full DNS zone transfer."
+      "description": "Attempts to perform a full DNS zone transfer.\n\n**Module ID:** `sfp_dnszonexfer`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** PROVIDER_DNS\n**Produces:** RAW_DNS_RECORDS, INTERNET_NAME\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `DOMAIN_NAME`\n- Input: `example.com`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -4331,7 +4331,7 @@
         "spiderfeet://local/sfp_email"
       ],
       "fav_icon": "icons/icon_service_email.svg",
-      "description": "Identify e-mail addresses in any obtained data."
+      "description": "Identify e-mail addresses in any obtained data.\n\n**Module ID:** `sfp_email`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** TARGET_WEB_CONTENT, BASE64_DATA, AFFILIATE_DOMAIN_WHOIS, CO_HOSTED_SITE_DOMAIN_WHOIS, DOMAIN_WHOIS, NETBLOCK_WHOIS, LEAKSITE_CONTENT, RAW_DNS_RECORDS…\n**Produces:** EMAILADDR, EMAILADDR_GENERIC, AFFILIATE_EMAILADDR\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `AFFILIATE_DOMAIN_WHOIS`\n- Input: `Admin Email: admin@example.com`\n- Produced count: 1"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -4610,7 +4610,7 @@
         "spiderfeet://local/sfp_errors"
       ],
       "fav_icon": "icons/icon_service_errors.svg",
-      "description": "Identify common error messages in content like SQL errors, etc."
+      "description": "Identify common error messages in content like SQL errors, etc.\n\n**Module ID:** `sfp_errors`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** TARGET_WEB_CONTENT\n**Produces:** ERROR_MESSAGE\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `TARGET_WEB_CONTENT`\n- Input: `Fatal error: undefined index in /var/www/html/index.php`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -4646,7 +4646,7 @@
         "spiderfeet://local/sfp_ethereum"
       ],
       "fav_icon": "icons/icon_service_ethereum.svg",
-      "description": "Identify ethereum addresses in scraped webpages."
+      "description": "Identify ethereum addresses in scraped webpages.\n\n**Module ID:** `sfp_ethereum`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** TARGET_WEB_CONTENT\n**Produces:** ETHEREUM_ADDRESS\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `TARGET_WEB_CONTENT`\n- Input: `send to 0x0000000000000000000000000000000000000000`\n- Produced count: 1"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -4740,7 +4740,7 @@
         "spiderfeet://local/sfp_filemeta"
       ],
       "fav_icon": "icons/icon_service_filemeta.svg",
-      "description": "Extracts meta data from documents and images."
+      "description": "Extracts meta data from documents and images.\n\n**Module ID:** `sfp_filemeta`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** LINKED_URL_INTERNAL, INTERESTING_FILE\n**Produces:** RAW_FILE_META_DATA, SOFTWARE_USED\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `LINKED_URL_INTERNAL`\n- Input: `https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf`\n- Produced count: 3"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -6182,7 +6182,7 @@
         "spiderfeet://local/sfp_hashes"
       ],
       "fav_icon": "icons/icon_service_hashes.svg",
-      "description": "Identify MD5 and SHA hashes in web content, files and more."
+      "description": "Identify MD5 and SHA hashes in web content, files and more.\n\n**Module ID:** `sfp_hashes`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** TARGET_WEB_CONTENT, BASE64_DATA, LEAKSITE_CONTENT, RAW_DNS_RECORDS, RAW_FILE_META_DATA\n**Produces:** HASH\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `BASE64_DATA`\n- Input: `5d41402abc4b2a76b9719d911017c592 (md5)`\n- Produced count: 1"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -6384,7 +6384,7 @@
         "spiderfeet://local/sfp_hosting"
       ],
       "fav_icon": "icons/icon_service_hosting.svg",
-      "description": "Find out if any IP addresses identified fall within known 3rd party hosting ranges, e.g. Amazon, Azure, etc."
+      "description": "Find out if any IP addresses identified fall within known 3rd party hosting ranges, e.g. Amazon, Azure, etc.\n\n**Module ID:** `sfp_hosting`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** IP_ADDRESS\n**Produces:** PROVIDER_HOSTING\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `TARGET_WEB_CONTENT`\n- Input: `Hosted on Amazon Web Services`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -6604,7 +6604,7 @@
         "spiderfeet://local/sfp_iban"
       ],
       "fav_icon": "icons/icon_service_iban.svg",
-      "description": "Identify International Bank Account Numbers (IBANs) in any data."
+      "description": "Identify International Bank Account Numbers (IBANs) in any data.\n\n**Module ID:** `sfp_iban`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** TARGET_WEB_CONTENT, DARKNET_MENTION_CONTENT, LEAKSITE_CONTENT\n**Produces:** IBAN_NUMBER\n**Flags:** errorprone\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `DARKNET_MENTION_CONTENT`\n- Input: `IBAN GB82WEST12345698765432`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -6813,7 +6813,7 @@
         "spiderfeet://local/sfp_intfiles"
       ],
       "fav_icon": "icons/icon_service_intfiles.svg",
-      "description": "Identifies potential files of interest, e.g. office documents, zip files."
+      "description": "Identifies potential files of interest, e.g. office documents, zip files.\n\n**Module ID:** `sfp_intfiles`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** LINKED_URL_INTERNAL\n**Produces:** INTERESTING_FILE\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `LINKED_URL_INTERNAL`\n- Input: `https://example.com/robots.txt`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -7308,7 +7308,7 @@
         "spiderfeet://local/sfp_junkfiles"
       ],
       "fav_icon": "icons/icon_service_junkfiles.svg",
-      "description": "Looks for old/temporary and other similar files."
+      "description": "Looks for old/temporary and other similar files.\n\n**Module ID:** `sfp_junkfiles`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** LINKED_URL_INTERNAL\n**Produces:** JUNK_FILE\n**Flags:** slow, errorprone, invasive\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -8011,7 +8011,7 @@
         "spiderfeet://local/sfp_names"
       ],
       "fav_icon": "icons/icon_service_names.svg",
-      "description": "Attempt to identify human names in fetched content."
+      "description": "Attempt to identify human names in fetched content.\n\n**Module ID:** `sfp_names`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** TARGET_WEB_CONTENT, EMAILADDR, DOMAIN_WHOIS, NETBLOCK_WHOIS, RAW_RIR_DATA, RAW_FILE_META_DATA\n**Produces:** HUMAN_NAME\n**Flags:** errorprone\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `TARGET_WEB_CONTENT`\n- Input: `Contact \"Jane Citizen\" for details`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -8830,7 +8830,7 @@
         "spiderfeet://local/sfp_pageinfo"
       ],
       "fav_icon": "icons/icon_service_pageinfo.svg",
-      "description": "Obtain information about web pages (do they take passwords, do they contain forms, etc.)"
+      "description": "Obtain information about web pages (do they take passwords, do they contain forms, etc.)\n\n**Module ID:** `sfp_pageinfo`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** TARGET_WEB_CONTENT\n**Produces:** URL_STATIC, URL_JAVASCRIPT, URL_FORM, URL_PASSWORD, URL_UPLOAD, URL_JAVA_APPLET, URL_FLASH, PROVIDER_JAVASCRIPT\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `TARGET_WEB_CONTENT`\n- Input: `<title>Example Domain</title>`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -8936,7 +8936,7 @@
         "spiderfeet://local/sfp_pgp"
       ],
       "fav_icon": "icons/icon_service_pgp.svg",
-      "description": "Look up domains and e-mail addresses in PGP public key servers."
+      "description": "Look up domains and e-mail addresses in PGP public key servers.\n\n**Module ID:** `sfp_pgp`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME, EMAILADDR, DOMAIN_NAME\n**Produces:** EMAILADDR, EMAILADDR_GENERIC, AFFILIATE_EMAILADDR, PGP_KEY\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `EMAILADDR`\n- Input: `security@gnu.org`\n- Produced count: 1"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -9147,7 +9147,7 @@
         "spiderfeet://local/sfp_phone"
       ],
       "fav_icon": "icons/icon_service_phone.svg",
-      "description": "Identify phone numbers in scraped webpages."
+      "description": "Identify phone numbers in scraped webpages.\n\n**Module ID:** `sfp_phone`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** TARGET_WEB_CONTENT, DOMAIN_WHOIS, NETBLOCK_WHOIS, PHONE_NUMBER\n**Produces:** PHONE_NUMBER, PROVIDER_TELCO\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `TARGET_WEB_CONTENT`\n- Input: `Call us on +1-555-0100`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -9189,7 +9189,7 @@
         "spiderfeet://local/sfp_portscan_tcp"
       ],
       "fav_icon": "icons/icon_service_portscan_tcp.svg",
-      "description": "Scans for commonly open TCP ports on Internet-facing systems."
+      "description": "Scans for commonly open TCP ports on Internet-facing systems.\n\n**Module ID:** `sfp_portscan_tcp`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** IP_ADDRESS, NETBLOCK_OWNER\n**Produces:** TCP_PORT_OPEN, TCP_PORT_OPEN_BANNER\n**Flags:** slow, invasive\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `IP_ADDRESS`\n- Input: `127.0.0.1`\n- Produced count: 1"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -10178,7 +10178,7 @@
         "spiderfeet://local/sfp_similar"
       ],
       "fav_icon": "icons/icon_service_similar.svg",
-      "description": "Search various sources to identify similar looking domain names, for instance squatted domains."
+      "description": "Search various sources to identify similar looking domain names, for instance squatted domains.\n\n**Module ID:** `sfp_similar`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** DOMAIN_NAME\n**Produces:** SIMILARDOMAIN\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 61"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -10360,7 +10360,7 @@
         "spiderfeet://local/sfp_social"
       ],
       "fav_icon": "icons/icon_service_social.svg",
-      "description": "Identify presence on social media networks such as LinkedIn, Twitter and others."
+      "description": "Identify presence on social media networks such as LinkedIn, Twitter and others.\n\n**Module ID:** `sfp_social`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** LINKED_URL_EXTERNAL\n**Produces:** SOCIAL_MEDIA, USERNAME\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -10771,7 +10771,7 @@
         "spiderfeet://local/sfp_spider"
       ],
       "fav_icon": "icons/icon_service_spider.svg",
-      "description": "Spidering of web-pages to extract content for searching."
+      "description": "Spidering of web-pages to extract content for searching.\n\n**Module ID:** `sfp_spider`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** LINKED_URL_INTERNAL, INTERNET_NAME\n**Produces:** WEBSERVER_HTTPHEADERS, HTTP_CODE, LINKED_URL_INTERNAL, LINKED_URL_EXTERNAL, TARGET_WEB_CONTENT, TARGET_WEB_CONTENT_TYPE\n**Flags:** slow\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 7"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -11066,7 +11066,7 @@
         "spiderfeet://local/sfp_sslcert"
       ],
       "fav_icon": "icons/icon_service_sslcert.svg",
-      "description": "Gather information about SSL certificates used by the target's HTTPS sites."
+      "description": "Gather information about SSL certificates used by the target's HTTPS sites.\n\n**Module ID:** `sfp_sslcert`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME, LINKED_URL_INTERNAL, IP_ADDRESS\n**Produces:** TCP_PORT_OPEN, INTERNET_NAME, INTERNET_NAME_UNRESOLVED, CO_HOSTED_SITE, CO_HOSTED_SITE_DOMAIN, SSL_CERTIFICATE_ISSUED, SSL_CERTIFICATE_ISSUER, SSL_CERTIFICATE_MISMATCH…\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -11252,7 +11252,7 @@
         "spiderfeet://local/sfp_strangeheaders"
       ],
       "fav_icon": "icons/icon_service_strangeheaders.svg",
-      "description": "Obtain non-standard HTTP headers returned by web servers."
+      "description": "Obtain non-standard HTTP headers returned by web servers.\n\n**Module ID:** `sfp_strangeheaders`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** WEBSERVER_HTTPHEADERS\n**Produces:** WEBSERVER_STRANGEHEADER\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `WEBSERVER_HTTPHEADERS`\n- Input: `X-Powered-By: PHP/7.4\nX-Obscure-Header: test`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -11287,7 +11287,7 @@
         "spiderfeet://local/sfp_subdomain_takeover"
       ],
       "fav_icon": "icons/icon_service_subdomain_takeover.svg",
-      "description": "Check if affiliated subdomains are vulnerable to takeover."
+      "description": "Check if affiliated subdomains are vulnerable to takeover.\n\n**Module ID:** `sfp_subdomain_takeover`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** AFFILIATE_INTERNET_NAME, AFFILIATE_INTERNET_NAME_UNRESOLVED\n**Produces:** AFFILIATE_INTERNET_NAME_HIJACKABLE\n\n**Smoke battery:**\n- Classification: `error_failed`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12000,7 +12000,7 @@
         "spiderfeet://local/sfp_tldsearch"
       ],
       "fav_icon": "icons/icon_service_tldsearch.svg",
-      "description": "Search all Internet TLDs for domains with the same name as the target (this can be very slow.)"
+      "description": "Search all Internet TLDs for domains with the same name as the target (this can be very slow.)\n\n**Module ID:** `sfp_tldsearch`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME\n**Produces:** SIMILARDOMAIN\n**Flags:** slow\n\n**Smoke battery:**\n- Classification: `timeout`\n- Seed nugget: `DOMAIN_NAME`\n- Input: `example.com`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12056,7 +12056,11 @@
         "spiderfeet://local/sfp_tool_cmseek"
       ],
       "fav_icon": "icons/icon_service_tool_cmseek.svg",
-      "description": "Identify what Content Management System (CMS) might be used."
+      "description": "Identify what Content Management System (CMS) might be used.\n\n**Module ID:** `sfp_tool_cmseek`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME\n**Produces:** WEBSERVER_TECHNOLOGY\n**Flags:** tool\n\n**Tool requirement:**\nInstall CMSeeK (`cmseek.py` or `cmsseek` on PATH).\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install CMSeeK (`cmseek.py` or `cmsseek` on PATH)."
+      ],
+      "tool_requirement": "Install CMSeeK (`cmseek.py` or `cmsseek` on PATH)."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12082,7 +12086,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "CMSeeK",
       "description": "CMSeek is a tool that is used to extract Content Management System(CMS) details of a website.",
@@ -12112,7 +12116,11 @@
         "spiderfeet://local/sfp_tool_dnstwist"
       ],
       "fav_icon": "icons/icon_service_tool_dnstwist.svg",
-      "description": "Identify bit-squatting, typo and other similar domains to the target using a local DNSTwist installation."
+      "description": "Identify bit-squatting, typo and other similar domains to the target using a local DNSTwist installation.\n\n**Module ID:** `sfp_tool_dnstwist`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** DOMAIN_NAME\n**Produces:** SIMILARDOMAIN\n**Flags:** tool\n\n**Tool requirement:**\nInstall dnstwist (`dnstwist` on PATH).\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `DOMAIN_NAME`\n- Input: `example.com`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install dnstwist (`dnstwist` on PATH)."
+      ],
+      "tool_requirement": "Install dnstwist (`dnstwist` on PATH)."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12144,7 +12152,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "DNSTwist",
       "description": "See what sort of trouble users can get in trying to type your domain name. Find lookalike domains that adversaries can use to attack you. Can detect typosquatters, phishing attacks, fraud, and brand impersonation. Useful as an additional source of targeted threat intelligence.",
@@ -12175,7 +12183,11 @@
         "spiderfeet://local/sfp_tool_nbtscan"
       ],
       "fav_icon": "icons/icon_service_tool_nbtscan.svg",
-      "description": "Scans for open NETBIOS nameservers on your target's network."
+      "description": "Scans for open NETBIOS nameservers on your target's network.\n\n**Module ID:** `sfp_tool_nbtscan`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** IP_ADDRESS, NETBLOCK_OWNER\n**Produces:** UDP_PORT_OPEN, UDP_PORT_OPEN_INFO, IP_ADDRESS\n**Flags:** tool, slow\n\n**Tool requirement:**\nInstall nbtscan.\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `IP_ADDRESS`\n- Input: `127.0.0.1`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install nbtscan."
+      ],
+      "tool_requirement": "Install nbtscan."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12210,7 +12222,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "nbtscan",
       "description": "nbtscan is a tool that scans for open NETBIOS nameservers on a local or remote TCP/IP network, and this is a first step in finding of open shares. It is based on the functionality of the standard Windows tool nbtstat, but it operates on a range of addresses instead of just one.",
@@ -12242,7 +12254,11 @@
         "spiderfeet://local/sfp_tool_nmap"
       ],
       "fav_icon": "icons/icon_service_tool_nmap.svg",
-      "description": "Identify what Operating System might be used."
+      "description": "Identify what Operating System might be used.\n\n**Module ID:** `sfp_tool_nmap`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** IP_ADDRESS, NETBLOCK_OWNER\n**Produces:** OPERATING_SYSTEM, IP_ADDRESS\n**Flags:** tool, slow, invasive\n\n**Tool requirement:**\nInstall Nmap and ensure `nmap` is on PATH.\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `IP_ADDRESS`\n- Input: `127.0.0.1`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install Nmap and ensure `nmap` is on PATH."
+      ],
+      "tool_requirement": "Install Nmap and ensure `nmap` is on PATH."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12276,7 +12292,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "Nmap",
       "description": "Nmap (\"Network Mapper\") is a free and open source utility for network discovery and security auditing.\nNmap uses raw IP packets in novel ways to determine what hosts are available on the network, what services (application name and version) those hosts are offering, what operating systems (and OS versions) they are running, what type of packet filters/firewalls are in use, and dozens of other characteristics.\n",
@@ -12308,7 +12324,11 @@
         "spiderfeet://local/sfp_tool_nuclei"
       ],
       "fav_icon": "icons/icon_service_tool_nuclei.svg",
-      "description": "Fast and customisable vulnerability scanner."
+      "description": "Fast and customisable vulnerability scanner.\n\n**Module ID:** `sfp_tool_nuclei`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME, IP_ADDRESS, NETBLOCK_OWNER\n**Produces:** VULNERABILITY_CVE_CRITICAL, VULNERABILITY_CVE_HIGH, VULNERABILITY_CVE_MEDIUM, VULNERABILITY_CVE_LOW, IP_ADDRESS, VULNERABILITY_GENERAL, WEBSERVER_TECHNOLOGY\n**Flags:** tool, slow, invasive\n\n**Tool requirement:**\nInstall ProjectDiscovery Nuclei; `nuclei` on PATH.\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install ProjectDiscovery Nuclei; `nuclei` on PATH."
+      ],
+      "tool_requirement": "Install ProjectDiscovery Nuclei; `nuclei` on PATH."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12354,7 +12374,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "Nuclei",
       "description": "Fast and customisable vulnerability scanner based on simple YAML based DSL.",
@@ -12384,7 +12404,11 @@
         "spiderfeet://local/sfp_tool_onesixtyone"
       ],
       "fav_icon": "icons/icon_service_tool_onesixtyone.svg",
-      "description": "Fast scanner to find publicly exposed SNMP services."
+      "description": "Fast scanner to find publicly exposed SNMP services.\n\n**Module ID:** `sfp_tool_onesixtyone`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** IP_ADDRESS, NETBLOCK_OWNER\n**Produces:** UDP_PORT_OPEN_INFO, UDP_PORT_OPEN, IP_ADDRESS\n**Flags:** tool\n\n**Tool requirement:**\nInstall onesixtyone SNMP scanner.\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `IP_ADDRESS`\n- Input: `127.0.0.1`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install onesixtyone SNMP scanner."
+      ],
+      "tool_requirement": "Install onesixtyone SNMP scanner."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12425,7 +12449,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "onesixtyone",
       "description": "onesixtyone is a fast scanner for finding publicly exposed SNMP services.",
@@ -12455,7 +12479,11 @@
         "spiderfeet://local/sfp_tool_retirejs"
       ],
       "fav_icon": "icons/icon_service_tool_retirejs.svg",
-      "description": "Scanner detecting the use of JavaScript libraries with known vulnerabilities"
+      "description": "Scanner detecting the use of JavaScript libraries with known vulnerabilities\n\n**Module ID:** `sfp_tool_retirejs`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** LINKED_URL_INTERNAL, LINKED_URL_EXTERNAL\n**Produces:** VULNERABILITY_CVE_CRITICAL, VULNERABILITY_CVE_HIGH, VULNERABILITY_CVE_MEDIUM, VULNERABILITY_CVE_LOW, VULNERABILITY_GENERAL\n**Flags:** tool\n\n**Tool requirement:**\nInstall retire.js CLI.\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install retire.js CLI."
+      ],
+      "tool_requirement": "Install retire.js CLI."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12480,7 +12508,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "Retire.js",
       "description": "Scanner detecting the use of JavaScript libraries with known vulnerabilities",
@@ -12510,7 +12538,11 @@
         "spiderfeet://local/sfp_tool_snallygaster"
       ],
       "fav_icon": "icons/icon_service_tool_snallygaster.svg",
-      "description": "Finds file leaks and other security problems on HTTP servers."
+      "description": "Finds file leaks and other security problems on HTTP servers.\n\n**Module ID:** `sfp_tool_snallygaster`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME\n**Produces:** VULNERABILITY_GENERAL, VULNERABILITY_CVE_CRITICAL, VULNERABILITY_CVE_HIGH, VULNERABILITY_CVE_MEDIUM, VULNERABILITY_CVE_LOW\n**Flags:** tool\n\n**Tool requirement:**\nInstall snallygaster (`snallygaster` on PATH).\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install snallygaster (`snallygaster` on PATH)."
+      ],
+      "tool_requirement": "Install snallygaster (`snallygaster` on PATH)."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12534,7 +12566,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "snallygaster",
       "description": "snallygaster is a tool that looks for files accessible on web servers that shouldn't be public and can pose a security risk. Typical examples include publicly accessible git repositories, backup files potentially containing passwords  or database dumps. In addition, it contains a few checks  for other security vulnerabilities.",
@@ -12564,7 +12596,11 @@
         "spiderfeet://local/sfp_tool_testsslsh"
       ],
       "fav_icon": "icons/icon_service_tool_testsslsh.svg",
-      "description": "Identify various TLS/SSL weaknesses, including Heartbleed, CRIME and ROBOT."
+      "description": "Identify various TLS/SSL weaknesses, including Heartbleed, CRIME and ROBOT.\n\n**Module ID:** `sfp_tool_testsslsh`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME, IP_ADDRESS, NETBLOCK_OWNER\n**Produces:** VULNERABILITY_CVE_CRITICAL, VULNERABILITY_CVE_HIGH, VULNERABILITY_CVE_MEDIUM, VULNERABILITY_CVE_LOW, VULNERABILITY_GENERAL, IP_ADDRESS\n**Flags:** tool\n\n**Tool requirement:**\nInstall testssl.sh and OpenSSL dependencies.\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install testssl.sh and OpenSSL dependencies."
+      ],
+      "tool_requirement": "Install testssl.sh and OpenSSL dependencies."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12609,7 +12645,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "testssl.sh",
       "description": "testssl.sh is a free command line tool which checks a server's service on any port for the support of TLS/SSL ciphers, protocols as well as some cryptographic flaws.",
@@ -12640,7 +12676,11 @@
         "spiderfeet://local/sfp_tool_trufflehog"
       ],
       "fav_icon": "icons/icon_service_tool_trufflehog.svg",
-      "description": "Searches through git repositories for high entropy strings and secrets, digging deep into commit history."
+      "description": "Searches through git repositories for high entropy strings and secrets, digging deep into commit history.\n\n**Module ID:** `sfp_tool_trufflehog`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** SOCIAL_MEDIA, PUBLIC_CODE_REPO\n**Produces:** PASSWORD_COMPROMISED\n**Flags:** tool, slow\n\n**Tool requirement:**\nInstall TruffleHog v3+ (`trufflehog` on PATH).\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `github.com`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install TruffleHog v3+ (`trufflehog` on PATH)."
+      ],
+      "tool_requirement": "Install TruffleHog v3+ (`trufflehog` on PATH)."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12673,7 +12713,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "TruffleHog",
       "description": "TruffleHog searches through git repositories for secrets, digging deep into commit history and branches. This is effective at finding secrets accidentally committed.",
@@ -12703,7 +12743,11 @@
         "spiderfeet://local/sfp_tool_wafw00f"
       ],
       "fav_icon": "icons/icon_service_tool_wafw00f.svg",
-      "description": "Identify what web application firewall (WAF) is in use on the specified website."
+      "description": "Identify what web application firewall (WAF) is in use on the specified website.\n\n**Module ID:** `sfp_tool_wafw00f`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME\n**Produces:** RAW_RIR_DATA, WEBSERVER_TECHNOLOGY\n**Flags:** tool\n\n**Tool requirement:**\nInstall wafw00f (`wafw00f` on PATH).\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install wafw00f (`wafw00f` on PATH)."
+      ],
+      "tool_requirement": "Install wafw00f (`wafw00f` on PATH)."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12730,7 +12774,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "WAFW00F",
       "description": "WAFW00F allows one to identify and fingerprint Web Application Firewall (WAF) products protecting a website.",
@@ -12760,7 +12804,11 @@
         "spiderfeet://local/sfp_tool_wappalyzer"
       ],
       "fav_icon": "icons/icon_service_tool_wappalyzer.svg",
-      "description": "Wappalyzer indentifies technologies on websites."
+      "description": "Wappalyzer indentifies technologies on websites.\n\n**Module ID:** `sfp_tool_wappalyzer`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME\n**Produces:** OPERATING_SYSTEM, SOFTWARE_USED, WEBSERVER_TECHNOLOGY\n**Flags:** tool\n\n**Tool requirement:**\nInstall wappalyzer CLI or use the supported wrapper path.\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install wappalyzer CLI or use the supported wrapper path."
+      ],
+      "tool_requirement": "Install wappalyzer CLI or use the supported wrapper path."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12788,7 +12836,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "Wappalyzer",
       "description": "Wappalyzer identifies technologies on websites, including content management systems, ecommerce platforms, JavaScript frameworks, analytics tools and much more.",
@@ -12818,7 +12866,11 @@
         "spiderfeet://local/sfp_tool_whatweb"
       ],
       "fav_icon": "icons/icon_service_tool_whatweb.svg",
-      "description": "Identify what software is in use on the specified website."
+      "description": "Identify what software is in use on the specified website.\n\n**Module ID:** `sfp_tool_whatweb`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME\n**Produces:** RAW_RIR_DATA, WEBSERVER_BANNER, WEBSERVER_TECHNOLOGY\n**Flags:** tool\n\n**Tool requirement:**\nInstall WhatWeb (`whatweb` on PATH).\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
+      "api_key_instructions": [
+        "Install WhatWeb (`whatweb` on PATH)."
+      ],
+      "tool_requirement": "Install WhatWeb (`whatweb` on PATH)."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12852,7 +12904,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "in-test",
+    "service_state": "error",
     "tool_details": {
       "name": "WhatWeb",
       "description": "WhatWeb identifies websites. Its goal is to answer the question, \"What is that Website?\". WhatWeb recognises web technologies including content management systems (CMS), blogging platforms, statistic/analytics packages, JavaScript libraries, web servers, and embedded devices. WhatWeb has over 1800 plugins, each to recognise something different. WhatWeb also identifies version numbers, email addresses, account IDs, web framework modules, SQL errors, and more.",
@@ -13676,7 +13728,7 @@
         "spiderfeet://local/sfp_webanalytics"
       ],
       "fav_icon": "icons/icon_service_webanalytics.svg",
-      "description": "Identify web analytics IDs in scraped webpages and DNS TXT records."
+      "description": "Identify web analytics IDs in scraped webpages and DNS TXT records.\n\n**Module ID:** `sfp_webanalytics`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** TARGET_WEB_CONTENT, DNS_TEXT\n**Produces:** WEB_ANALYTICS_ID\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `DNS_TEXT`\n- Input: `google-site-verification=abc123`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -13712,7 +13764,7 @@
         "spiderfeet://local/sfp_webframework"
       ],
       "fav_icon": "icons/icon_service_webframework.svg",
-      "description": "Identify the usage of popular web frameworks like jQuery, YUI and others."
+      "description": "Identify the usage of popular web frameworks like jQuery, YUI and others.\n\n**Module ID:** `sfp_webframework`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** TARGET_WEB_CONTENT\n**Produces:** URL_WEB_FRAMEWORK\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `TARGET_WEB_CONTENT`\n- Input: `<meta name=\"generator\" content=\"WordPress 6.0\" />`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -13748,7 +13800,7 @@
         "spiderfeet://local/sfp_webserver"
       ],
       "fav_icon": "icons/icon_service_webserver.svg",
-      "description": "Obtain web server banners to identify versions of web servers being used."
+      "description": "Obtain web server banners to identify versions of web servers being used.\n\n**Module ID:** `sfp_webserver`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** WEBSERVER_HTTPHEADERS\n**Produces:** WEBSERVER_BANNER, WEBSERVER_TECHNOLOGY, LINKED_URL_INTERNAL, LINKED_URL_EXTERNAL\n\n**Smoke battery:**\n- Classification: `clean_miss`\n- Seed nugget: `WEBSERVER_HTTPHEADERS`\n- Input: `Server: Apache/2.4.57 (Ubuntu)`\n- Produced count: 0"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -13854,7 +13906,7 @@
         "spiderfeet://local/sfp_whois"
       ],
       "fav_icon": "icons/icon_service_whois.svg",
-      "description": "Perform a WHOIS look-up on domain names and owned netblocks."
+      "description": "Perform a WHOIS look-up on domain names and owned netblocks.\n\n**Module ID:** `sfp_whois`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** DOMAIN_NAME, DOMAIN_NAME_PARENT, NETBLOCK_OWNER, NETBLOCKV6_OWNER, CO_HOSTED_SITE_DOMAIN, AFFILIATE_DOMAIN_NAME, SIMILARDOMAIN\n**Produces:** DOMAIN_WHOIS, NETBLOCK_WHOIS, DOMAIN_REGISTRAR, CO_HOSTED_SITE_DOMAIN_WHOIS, AFFILIATE_DOMAIN_WHOIS, SIMILARDOMAIN_WHOIS\n\n**Smoke battery:**\n- Classification: `validated_hit`\n- Seed nugget: `DOMAIN_NAME`\n- Input: `example.com`\n- Produced count: 2"
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [

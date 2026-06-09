@@ -65,7 +65,9 @@ def evaluate_scan_ui_payload(
             "scan_id": record.get("scan_instance_id"),
         }
 
-    passed = status == "FINISHED" and count > 0
+    passed = (status == "FINISHED" and count > 0) or verdict == "hit" or (
+        count > 0 and verdict not in ("error_failed", "clean_miss")
+    )
     return {
         "status": status,
         "verdict": verdict,
