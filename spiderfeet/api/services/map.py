@@ -107,6 +107,7 @@ def force_graph(*, limit_per_role: Optional[int] = None) -> MapForceGraphRespons
                 colour=n.colour,
                 service_state=n.service_state,
                 fixture_category=n.fixture_category,
+                requires_api_key=n.requires_api_key,
                 icon=n.icon,
                 fav_icon=n.fav_icon,
             )

@@ -233,7 +233,7 @@ $env:SPIDERFEET_CORS_ORIGINS = "http://localhost:3000,https://my-widget.example"
 
 ## Tests & Subscriptions (Stage 4)
 
-Catalogue modules with `service_state: error` in `osint_services.json` are **omitted** from these endpoints (169 visible of 177). Maps graph still includes all services.
+Catalogue modules with `service_state: error` in `osint_services.json` are **omitted** from these endpoints (177 total minus `UPSTREAM_ERROR_MODULE_IDS`). Maps graph still includes all services.
 
 | Method | Path | Notes |
 |--------|------|-------|

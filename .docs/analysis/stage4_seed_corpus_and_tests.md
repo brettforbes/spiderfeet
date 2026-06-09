@@ -111,7 +111,7 @@ Allowed values: `in-test`, `favourite`, `unique`, `error`, `dominated` (schema `
 | State | Tests/Subscriptions | Maps (current) | Bootstrap default |
 |-------|--------------------|----------------|-------------------|
 | `in-test` | visible | visible | default for healthy modules |
-| `error` | **hidden** | visible | upstream-broken eight |
+| `error` | **hidden** | visible | upstream-broken set (`UPSTREAM_ERROR_MODULE_IDS`) |
 
 **Sync script:** `.seed/scripts/sync_service_state.py --write [--typedb]`
 
@@ -150,4 +150,4 @@ Run probes against API: `.\start.ps1 -Mode api` (port 8001).
 
 ## Git / delivery note
 
-Seed research, `scan_targets`, `module_execution`, `service_state` filtering, and registry updates from 2026-06 sessions are **local on `develop`** until an operator-requested PR lands. Do not assume remote `develop` includes this work.
+**Landed** 2026-06-09: spiderfeet PR [#707](https://github.com/brettforbes/spiderfeet/pull/707) → `develop`, promotion [#708](https://github.com/brettforbes/spiderfeet/pull/708) → `master`. Widget [#56](https://github.com/brettforbes/spiderfeet-widget/pull/56) / [#57](https://github.com/brettforbes/spiderfeet-widget/pull/57).

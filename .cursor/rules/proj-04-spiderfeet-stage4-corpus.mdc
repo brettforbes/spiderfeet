@@ -37,7 +37,7 @@ alwaysApply: false
 `service_state: error` modules are **excluded** from Tests and Subscriptions (`include_in_operator_ui` in `service_states.py`).  
 Maps graph still includes them until a map filter ships.
 
-Upstream error set: `UPSTREAM_ERROR_MODULE_IDS` in `service_states.py` (8 modules).
+Upstream error set: `UPSTREAM_ERROR_MODULE_IDS` in `service_states.py` (includes `sfp_binaryedge` post-shutdown).
 
 ## `scan_ui` targets
 

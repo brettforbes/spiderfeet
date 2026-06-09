@@ -5,10 +5,12 @@ from spiderfeet.map.routes_catalog import (
     expand_module_tests_for_service,
     expand_routes_for_service,
     list_module_summaries,
+    load_osint_services,
     module_catalog,
     module_test_id,
     route_name,
 )
+from spiderfeet.map.service_states import include_in_operator_ui
 
 
 def test_route_name_format():
@@ -45,7 +47,8 @@ def test_expand_module_tests_one_per_consumed():
 
 def test_catalog_summary_matches_osint_json():
     summary = catalog_summary()
-    assert summary["module_count"] >= 169
+    visible = sum(1 for s in load_osint_services() if include_in_operator_ui(s))
+    assert summary["module_count"] == visible
     assert summary["test_count"] > summary["module_count"]
     assert summary["route_count"] >= summary["test_count"]
 

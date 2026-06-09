@@ -68,6 +68,7 @@ POSITIVE_PROBE: Dict[str, List[str]] = {
 
 # Upstream API dead — document in registry, do not expect seed validation
 UPSTREAM_BLOCKED = {
+    "sfp_binaryedge": "BinaryEdge shut down 2025-03-31; migrate to Coalition Control API",
     "sfp_dnsdumpster": "dnsdumpster.com removed CSRF form (2026); module needs rewrite",
     "sfp_sublist3r": "api.sublist3r.com returns empty/non-JSON body",
     "sfp_searchcode": "searchcode.com API returns HTTP 404",

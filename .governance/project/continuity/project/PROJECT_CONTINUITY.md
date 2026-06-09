@@ -26,17 +26,16 @@ Only `sfp__stor_db` and `sfp__stor_stdout` are confirmed generic non-OSINT modul
 
 ## Stage 4 seed corpus (2026-06-08)
 
-- None-tier pool (87): **79 smoke-validated**, **8** `service_state: error` (upstream-blocked), research **100% closed**.
+- None-tier pool (87): **79 smoke-validated**, **9** `service_state: error` (upstream-blocked incl. `sfp_binaryedge`), research **100% closed**.
 - Fixture semantics: positive = produced; negative = `module_execution.verdict = clean_miss`.
 - `scan_ui` resolves catalogue nugget types via `scan_targets.py`.
 - Tests/Subscriptions hide `error` modules; Maps still includes all.
-- **Unmerged:** seed research + `service_state` work is local on `develop` until PR.
+- **Landed:** PR #707 → `develop`, promotion PR #708 → `master` (2026-06-09). Widget PR #56/#57.
 - **Agent doc:** `.docs/analysis/stage4_seed_corpus_and_tests.md`
 - **Epic:** GitHub #674
 
 ## Next durable actions
 
-1. PR local `develop` changes (seeds, scan_targets, service_state, module_execution).
-2. Open module-fix issues for 8 upstream-blocked modules.
-3. Maps UI: optional filter for `service_state: error`.
-4. See `.governance/project/BACKLOG.md` and `INIT-TODO.md`.
+1. Per-module route testing (#74 / 177 module issues); upstream migrations (#710 BinaryEdge, #716 Archive.org hardening).
+2. Maps UI: `service_state: error` filter landed (widget PR #58).
+3. See `.governance/project/BACKLOG.md` and `INIT-TODO.md`.
