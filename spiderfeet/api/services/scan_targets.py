@@ -30,6 +30,8 @@ PAYLOAD_NUGGET_TYPES = frozenset(
         "RAW_FILE_META_DATA",
         "RAW_RIR_DATA",
         "SIMILARDOMAIN_WHOIS",
+        "SOCIAL_MEDIA",
+        "PUBLIC_CODE_REPO",
         "SSL_CERTIFICATE_RAW",
         "TARGET_WEB_CONTENT",
         "TCP_PORT_OPEN_BANNER",
@@ -68,10 +70,15 @@ def resolve_scan_ui_seed(
 
     if nugget_id in PAYLOAD_NUGGET_TYPES:
         anchor = "example.com"
-        for token in data.replace("/", " ").split():
-            if SpiderFeetHelpers.targetTypeFromString(token) == "INTERNET_NAME":
-                anchor = token.lower()
-                break
+        if "://" in data:
+            host = data.split("://", 1)[1].split("/")[0].split(":")[0]
+            if SpiderFeetHelpers.targetTypeFromString(host) == "INTERNET_NAME":
+                anchor = host.lower()
+        else:
+            for token in data.replace("/", " ").split():
+                if SpiderFeetHelpers.targetTypeFromString(token) == "INTERNET_NAME":
+                    anchor = token.lower()
+                    break
         return anchor, "INTERNET_NAME", (nugget_id, data)
 
     inferred = SpiderFeetHelpers.targetTypeFromString(data)

@@ -1,5 +1,6 @@
 import pytest
 import unittest
+from unittest.mock import patch
 
 from modules.sfp_tool_trufflehog import sfp_tool_trufflehog
 from sflib import SpiderFeet
@@ -26,7 +27,8 @@ class TestModuleToolTrufflehog(unittest.TestCase):
         module = sfp_tool_trufflehog()
         self.assertIsInstance(module.producedEvents(), list)
 
-    def test_handleEvent_no_tool_path_configured_should_set_errorState(self):
+    @patch.object(sfp_tool_trufflehog, "_trufflehog_command", return_value=None)
+    def test_handleEvent_no_tool_path_configured_should_set_errorState(self, _cmd):
         sf = SpiderFeet(self.default_options)
 
         module = sfp_tool_trufflehog()
@@ -37,11 +39,11 @@ class TestModuleToolTrufflehog(unittest.TestCase):
         target = SpiderFeetTarget(target_value, target_type)
         module.setTarget(target)
 
-        event_type = 'ROOT'
-        event_data = 'example value'
-        event_module = ''
-        source_event = ''
-        evt = SpiderFeetEvent(event_type, event_data, event_module, source_event)
+        root = SpiderFeetEvent('ROOT', target_value, '', '')
+        event_type = 'SOCIAL_MEDIA'
+        event_data = 'GitHub: https://github.com/octocat/Hello-World'
+        event_module = 'sfp_test'
+        evt = SpiderFeetEvent(event_type, event_data, event_module, root)
 
         result = module.handleEvent(evt)
 

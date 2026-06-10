@@ -19,6 +19,14 @@ def test_payload_nugget_webserver_headers():
     assert seed == ("WEBSERVER_HTTPHEADERS", headers)
 
 
+def test_social_media_payload_seed():
+    payload = "GitHub: https://github.com/octocat/Hello-World"
+    anchor, typ, seed = resolve_scan_ui_seed("SOCIAL_MEDIA", payload)
+    assert typ == "INTERNET_NAME"
+    assert anchor == "github.com"
+    assert seed == ("SOCIAL_MEDIA", payload)
+
+
 def test_linked_url_internal_payload_seed():
     url = "https://example.com/path"
     anchor, typ, seed = resolve_scan_ui_seed("LINKED_URL_INTERNAL", url)

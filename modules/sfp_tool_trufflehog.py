@@ -20,6 +20,7 @@ import os
 from subprocess import PIPE, Popen, TimeoutExpired
 
 from spiderfeet import SpiderFeetPlugin, SpiderFeetEvent
+from spiderfeet.tools.cli_paths import resolve_cli_binary
 
 
 class sfp_tool_trufflehog(SpiderFeetPlugin):
@@ -47,7 +48,7 @@ class sfp_tool_trufflehog(SpiderFeetPlugin):
     }
 
     optdescs = {
-        'trufflehog_path': "Path to your trufflehog binary. Must be set.",
+        'trufflehog_path': "Path to your trufflehog binary. Optional if trufflehog is on PATH.",
         'entropy': "Enable entropy checks? If disabled, TruffleHog will solely rely on high-signal regular expressions to identify secrets.",
         'allrepos': "Search all code repositories found. By default TruffleHog only searches those linked from the target website."
     }
@@ -70,6 +71,40 @@ class sfp_tool_trufflehog(SpiderFeetPlugin):
     def producedEvents(self):
         return ['PASSWORD_COMPROMISED']
 
+    def _resolve_trufflehog_executable(self):
+        if self.opts.get("trufflehog_path"):
+            exe = self.opts["trufflehog_path"]
+            if self.opts["trufflehog_path"].endswith("/"):
+                exe = f"{exe}trufflehog"
+            if not os.path.isfile(exe):
+                self.error(f"File does not exist: {exe}")
+                return None
+            return exe
+
+        found = resolve_cli_binary("trufflehog")
+        if not found:
+            self.error("You enabled sfp_tool_trufflehog but did not set a path to the tool!")
+            return None
+        return found
+
+    def _trufflehog_command(self, url: str):
+        exe = self._resolve_trufflehog_executable()
+        if not exe:
+            return None
+
+        probe = Popen([exe, "git", "--help"], stdout=PIPE, stderr=PIPE)
+        probe.communicate(timeout=10)
+        if probe.returncode == 0:
+            return [exe, "git", "--json-legacy", "--no-verification", url]
+
+        args = [exe, "--json", "--regex"]
+        if not self.opts["entropy"]:
+            args.append("--entropy=False")
+        else:
+            args.append("--entropy=True")
+        args.append(url)
+        return args
+
     def handleEvent(self, event):
         eventName = event.eventType
         srcModuleName = event.module
@@ -79,20 +114,6 @@ class sfp_tool_trufflehog(SpiderFeetPlugin):
         self.debug(f"Received event, {eventName}, from {srcModuleName}")
 
         if self.errorState:
-            return
-
-        if not self.opts['trufflehog_path']:
-            self.error("You enabled sfp_tool_trufflehog but did not set a path to the tool!")
-            self.errorState = True
-            return
-
-        exe = self.opts['trufflehog_path']
-        if self.opts['trufflehog_path'].endswith('/'):
-            exe = f"{exe}trufflehog"
-
-        if not os.path.isfile(exe):
-            self.error(f"File does not exist: {exe}")
-            self.errorState = True
             return
 
         if eventName == "SOCIAL_MEDIA":
@@ -124,18 +145,11 @@ class sfp_tool_trufflehog(SpiderFeetPlugin):
 
         self.results[url] = True
 
-        args = [
-            exe,
-            '--json',
-            '--regex',
-        ]
+        args = self._trufflehog_command(url)
+        if not args:
+            self.errorState = True
+            return
 
-        if not self.opts['entropy']:
-            args.append("--entropy=False")
-        else:
-            args.append("--entropy=True")
-
-        args.append(url)
         try:
             p = Popen(args, stdout=PIPE, stderr=PIPE)
             out, _ = p.communicate(input=None, timeout=600)

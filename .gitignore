@@ -1,5 +1,6 @@
 # SpiderFeet specific #
 #######################
+/.tools/
 /cache/
 /log/
 /spiderfeet.db*

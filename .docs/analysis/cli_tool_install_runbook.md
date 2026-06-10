@@ -9,7 +9,24 @@ cd c:\projects\spiderfeet
 .\.venv\Scripts\python.exe .seed\scripts\probe_cli_tools.py
 ```
 
-Prepends `.venv\Scripts` (Windows) or `.venv/bin` (Unix) before checking.
+Prepends `.venv\Scripts` (Windows) or `.venv/bin` (Unix) and `.tools/bin` before checking.
+
+## Local dev binaries (no admin)
+
+Download nuclei + trufflehog into gitignored `.tools/`:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .seed\scripts\install_dev_cli_tools.ps1
+```
+
+Modules and battery scripts resolve binaries via `spiderfeet.tools.cli_paths` (PATH → `.tools/bin` → Windows nmap defaults).
+
+| Module | Binary | Local install |
+|--------|--------|---------------|
+| `sfp_tool_nuclei` | `nuclei` | Script above; templates in `.tools/nuclei-templates/` |
+| `sfp_tool_trufflehog` | `trufflehog` | Script above |
+
+Nuclei v3 uses `-jsonl` (not `-json`); battery needs `--timeout 600` for nuclei/trufflehog.
 
 ## Pip-installable (dev venv)
 

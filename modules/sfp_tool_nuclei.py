@@ -22,6 +22,7 @@ from netaddr import IPNetwork
 from subprocess import Popen, PIPE, TimeoutExpired
 
 from spiderfeet import SpiderFeetPlugin, SpiderFeetEvent, SpiderFeetHelpers
+from spiderfeet.tools.cli_paths import resolve_cli_binary, resolve_nuclei_templates
 
 
 class sfp_tool_nuclei(SpiderFeetPlugin):
@@ -54,8 +55,8 @@ class sfp_tool_nuclei(SpiderFeetPlugin):
 
     # Option descriptions
     optdescs = {
-        'nuclei_path': "The path to your nuclei binary. Must be set.",
-        'template_path': "The path to your nuclei templates. Must be set.",
+        'nuclei_path': "The path to your nuclei binary. Optional if nuclei is on PATH.",
+        'template_path': "The path to your nuclei templates. Optional if .tools/nuclei-templates exists.",
         'netblockscan': "Check all IPs within identified owned netblocks?",
         'netblockscanmax': "Maximum netblock/subnet size to scan IPs within (CIDR value, 24 = /24, 16 = /16, etc.)"
     }
@@ -85,6 +86,29 @@ class sfp_tool_nuclei(SpiderFeetPlugin):
             "WEBSERVER_TECHNOLOGY"
         ]
 
+    def _resolve_nuclei_paths(self):
+        nuclei_path = self.opts.get("nuclei_path") or resolve_cli_binary("nuclei")
+        if not nuclei_path:
+            self.error("You enabled sfp_tool_nuclei but did not set a path to the tool!")
+            return None, None
+
+        if self.opts.get("nuclei_path"):
+            if self.opts["nuclei_path"].endswith("/"):
+                nuclei_path = f"{self.opts['nuclei_path']}nuclei"
+            else:
+                nuclei_path = self.opts["nuclei_path"]
+
+        if not os.path.isfile(nuclei_path):
+            self.error(f"File does not exist: {nuclei_path}")
+            return None, None
+
+        template_path = self.opts.get("template_path") or resolve_nuclei_templates()
+        if not template_path or not os.path.isdir(template_path):
+            self.error("You enabled sfp_tool_nuclei but did not set a path to templates!")
+            return None, None
+
+        return nuclei_path, template_path
+
     # Handle events sent to this module
     def handleEvent(self, event):
         eventName = event.eventType
@@ -99,17 +123,8 @@ class sfp_tool_nuclei(SpiderFeetPlugin):
         if srcModuleName == "sfp_tool_nuclei":
             return
 
-        if not self.opts['nuclei_path'] or not self.opts['template_path']:
-            self.error("You enabled sfp_tool_nuclei but did not set a path to the tool and/or templates!")
-            self.errorState = True
-            return
-
-        exe = self.opts['nuclei_path']
-        if self.opts['nuclei_path'].endswith('/'):
-            exe = f"{exe}nuclei"
-
-        if not os.path.isfile(exe):
-            self.error(f"File does not exist: {exe}")
+        exe, template_path = self._resolve_nuclei_paths()
+        if not exe:
             self.errorState = True
             return
 
@@ -154,29 +169,27 @@ class sfp_tool_nuclei(SpiderFeetPlugin):
             self.error(f"Strange netblock identified, unable to parse: {eventData} ({e})")
             return
 
+        content = ""
         try:
             args = [
                 exe,
                 "-silent",
-                "-json",
+                "-jsonl",
                 "-concurrency",
                 "100",
                 "-retries",
                 "1",
                 "-t",
-                self.opts["template_path"],
+                template_path,
                 "-no-interactsh",
                 "-etags",
-                "dos",
-                "fuzz",
-                "misc",
+                "dos,fuzz,misc",
             ]
             p = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
             try:
                 stdout, stderr = p.communicate(input=target.encode(sys.stdin.encoding), timeout=timeout)
-                if p.returncode == 0:
-                    content = stdout.decode(sys.stdout.encoding)
-                else:
+                content = stdout.decode(sys.stdout.encoding, errors="replace")
+                if p.returncode != 0 and not content.strip():
                     self.error("Unable to read Nuclei content.")
                     self.debug(f"Error running Nuclei: {stderr}, {stdout}")
                     return
@@ -194,7 +207,8 @@ class sfp_tool_nuclei(SpiderFeetPlugin):
 
         try:
             for line in content.split("\n"):
-                if not line:
+                line = line.strip()
+                if not line or not line.startswith("{"):
                     continue
 
                 data = json.loads(line)
