@@ -2124,12 +2124,12 @@
       "INTERNET_NAME": {
         "input_value": "example.com",
         "region": "global",
-        "validation": "blocked-tool",
-        "last_verdict": "error_failed",
-        "last_produced_count": 0,
-        "notes": "",
-        "upstream_blocked": true,
-        "service_state_note": "error_failed"
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 29,
+        "notes": "status=UNKNOWN; verdict=hit; produced=29",
+        "service_state_note": "error_failed",
+        "validated_produces": true
       }
     },
     "sfp_tool_onesixtyone": {
@@ -2196,6 +2196,17 @@
         "notes": "",
         "service_state_note": "invalid_target",
         "upstream_blocked": true
+      },
+      "SOCIAL_MEDIA": {
+        "input_value": "GitHub: https://github.com/octocat/Hello-World",
+        "region": "global",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
+        "last_produced_count": 0,
+        "notes": "",
+        "service_state_note": "invalid_target",
+        "validated_produces": false,
+        "validated_negative": true
       }
     },
     "sfp_tool_wafw00f": {

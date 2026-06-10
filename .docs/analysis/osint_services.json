@@ -12300,7 +12300,7 @@
   },
   {
     "module_id": "sfp_tool_nuclei",
-    "service_origin": "quarantine",
+    "service_origin": "external",
     "name": "Tool - Nuclei",
     "summary": "Fast and customisable vulnerability scanner.",
     "flags": [
@@ -12325,8 +12325,7 @@
       "description": "Fast and customisable vulnerability scanner.\n\n**Module ID:** `sfp_tool_nuclei`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME, IP_ADDRESS, NETBLOCK_OWNER\n**Produces:** VULNERABILITY_CVE_CRITICAL, VULNERABILITY_CVE_HIGH, VULNERABILITY_CVE_MEDIUM, VULNERABILITY_CVE_LOW, IP_ADDRESS, VULNERABILITY_GENERAL, WEBSERVER_TECHNOLOGY\n**Flags:** tool, slow, invasive\n\n**Tool requirement:**\nInstall ProjectDiscovery Nuclei; `nuclei` on PATH.\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
       "api_key_instructions": [
         "Install ProjectDiscovery Nuclei; `nuclei` on PATH."
-      ],
-      "tool_requirement": "Install ProjectDiscovery Nuclei; `nuclei` on PATH."
+      ]
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12372,7 +12371,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "error",
+    "service_state": "in-test",
     "tool_details": {
       "name": "Nuclei",
       "description": "Fast and customisable vulnerability scanner based on simple YAML based DSL.",
@@ -12651,7 +12650,7 @@
   },
   {
     "module_id": "sfp_tool_trufflehog",
-    "service_origin": "quarantine",
+    "service_origin": "external",
     "name": "Tool - TruffleHog",
     "summary": "Searches through git repositories for high entropy strings and secrets, digging deep into commit history.",
     "flags": [
@@ -12675,8 +12674,7 @@
       "description": "Searches through git repositories for high entropy strings and secrets, digging deep into commit history.\n\n**Module ID:** `sfp_tool_trufflehog`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** SOCIAL_MEDIA, PUBLIC_CODE_REPO\n**Produces:** PASSWORD_COMPROMISED\n**Flags:** tool, slow\n\n**Tool requirement:**\nInstall TruffleHog v3+ (`trufflehog` on PATH).\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `github.com`\n- Produced count: 0",
       "api_key_instructions": [
         "Install TruffleHog v3+ (`trufflehog` on PATH)."
-      ],
-      "tool_requirement": "Install TruffleHog v3+ (`trufflehog` on PATH)."
+      ]
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [
@@ -12709,7 +12707,7 @@
       }
     ],
     "fixture_category": "positive",
-    "service_state": "error",
+    "service_state": "in-test",
     "tool_details": {
       "name": "TruffleHog",
       "description": "TruffleHog searches through git repositories for secrets, digging deep into commit history and branches. This is effective at finding secrets accidentally committed.",

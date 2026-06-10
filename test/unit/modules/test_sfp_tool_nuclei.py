@@ -1,5 +1,6 @@
 import pytest
 import unittest
+from unittest.mock import patch
 
 from modules.sfp_tool_nuclei import sfp_tool_nuclei
 from sflib import SpiderFeet
@@ -26,7 +27,8 @@ class TestModuleToolNuclei(unittest.TestCase):
         module = sfp_tool_nuclei()
         self.assertIsInstance(module.producedEvents(), list)
 
-    def test_handleEvent_no_tool_path_configured_should_set_errorState(self):
+    @patch.object(sfp_tool_nuclei, "_resolve_nuclei_paths", return_value=(None, None))
+    def test_handleEvent_no_tool_path_configured_should_set_errorState(self, _resolve):
         sf = SpiderFeet(self.default_options)
 
         module = sfp_tool_nuclei()
@@ -37,11 +39,11 @@ class TestModuleToolNuclei(unittest.TestCase):
         target = SpiderFeetTarget(target_value, target_type)
         module.setTarget(target)
 
-        event_type = 'ROOT'
-        event_data = 'example data'
-        event_module = ''
-        source_event = ''
-        evt = SpiderFeetEvent(event_type, event_data, event_module, source_event)
+        root = SpiderFeetEvent('ROOT', target_value, '', '')
+        event_type = 'INTERNET_NAME'
+        event_data = 'example.com'
+        event_module = 'sfp_test'
+        evt = SpiderFeetEvent(event_type, event_data, event_module, root)
 
         result = module.handleEvent(evt)
 

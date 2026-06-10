@@ -143,6 +143,12 @@ SLOW_MODULES = frozenset(
         "sfp_tool_trufflehog",
     }
 )
+EXTRA_SLOW_MODULES = frozenset(
+    {
+        "sfp_tool_nuclei",
+        "sfp_tool_trufflehog",
+    }
+)
 TOOL_MODULES = frozenset(m for m in MODULE_PROBES if m.startswith("sfp_tool_"))
 
 
@@ -161,6 +167,10 @@ def ensure_venv_scripts_on_path() -> None:
     venv_scripts = REPO_ROOT / ".venv" / ("Scripts" if sys.platform == "win32" else "bin")
     if venv_scripts.is_dir():
         prefixes.append(str(venv_scripts))
+
+    tools_bin = REPO_ROOT / ".tools" / "bin"
+    if tools_bin.is_dir():
+        prefixes.append(str(tools_bin))
 
     if sys.platform == "win32":
         for candidate in (
@@ -360,7 +370,9 @@ def run_battery(
     results: List[Dict[str, Any]] = []
     for module_id in load_quarantine_ids(only):
         nugget, candidates = probe_candidates(module_id)
-        timeout = 180 if module_id in SLOW_MODULES else timeout_default
+        timeout = 600 if module_id in EXTRA_SLOW_MODULES else (
+            180 if module_id in SLOW_MODULES else timeout_default
+        )
         print(f"probing {module_id} ({nugget}) …", flush=True)
         if local:
             hit = probe_positive_local(
