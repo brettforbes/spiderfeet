@@ -2404,11 +2404,11 @@
       "INTERESTING_FILE": {
         "input_value": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         "region": "global",
-        "validation": "blocked-upstream",
-        "upstream_blocked": true,
-        "last_verdict": "error_failed",
-        "last_produced_count": 0,
-        "notes": "archive.org wayback API times out in local smoke; route injects INTERESTING_FILE payload correctly"
+        "validation": "smoke",
+        "validated_produces": true,
+        "last_verdict": "hit",
+        "last_produced_count": 3,
+        "notes": "status=FINISHED; verdict=hit; archive.org wayback produces URL_* historic nuggets"
       }
     },
     "sfp_binaryedge": {},
