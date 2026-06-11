@@ -39,10 +39,19 @@ def normalize_service_origin(
     """Map legacy catalogue / TypeDB values to external-api | cli | local."""
     value = str(raw or "").strip().lower()
     if value in VALID_SERVICE_ORIGINS:
-        return value
-    if value in _LEGACY_ORIGIN_TO_CLASSIFICATION:
+        resolved = value
+    elif value in _LEGACY_ORIGIN_TO_CLASSIFICATION:
         mapped = _LEGACY_ORIGIN_TO_CLASSIFICATION[value]
         if mapped:
-            return mapped
-        return service_origin_for_module_id(module_id, external_api=external_api)
-    return service_origin_for_module_id(module_id, external_api=external_api)
+            resolved = mapped
+        else:
+            resolved = service_origin_for_module_id(module_id, external_api=external_api)
+    else:
+        resolved = service_origin_for_module_id(module_id, external_api=external_api)
+
+    # Promoted CLI tools were sometimes tagged legacy ``external`` in JSON.
+    if not external_api and str(module_id).startswith("sfp_tool_"):
+        return SERVICE_ORIGIN_CLI
+    if resolved == SERVICE_ORIGIN_EXTERNAL_API and not external_api:
+        return service_origin_for_module_id(module_id, external_api=False)
+    return resolved

@@ -82,7 +82,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_abusech",
@@ -191,7 +191,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_abuseipdb",
@@ -272,7 +272,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_abusix",
@@ -395,7 +395,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_accounts",
@@ -533,7 +533,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_adguard_dns",
@@ -573,7 +573,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_ahmia",
@@ -630,7 +630,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_alienvault",
@@ -784,7 +784,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_alienvaultiprep",
@@ -857,7 +857,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_apple_itunes",
@@ -895,7 +895,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_archiveorg",
@@ -1011,7 +1011,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_arin",
@@ -1055,7 +1055,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_azureblobstorage",
@@ -1102,7 +1102,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_base64",
@@ -1190,7 +1190,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_binaryedge",
@@ -1321,7 +1321,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "error",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_bingsearch",
@@ -1380,7 +1380,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_bingsharedip",
@@ -1459,7 +1459,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_binstring",
@@ -1621,7 +1621,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_bitcoinwhoswho",
@@ -1674,7 +1674,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_blockchain",
@@ -1714,7 +1714,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_blocklistde",
@@ -1793,7 +1793,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_botscout",
@@ -1849,7 +1849,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_botvrij",
@@ -1906,7 +1906,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_builtwith",
@@ -1976,7 +1976,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_c99",
@@ -2064,7 +2064,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_callername",
@@ -2103,7 +2103,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_censys",
@@ -2206,7 +2206,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_certspotter",
@@ -2287,7 +2287,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_cinsscore",
@@ -2355,7 +2355,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_circllu",
@@ -2444,7 +2444,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_citadel",
@@ -2505,7 +2505,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_cleanbrowsing",
@@ -2552,7 +2552,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_cleantalk",
@@ -2630,7 +2630,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_clearbit",
@@ -2688,7 +2688,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_cloudflaredns",
@@ -2731,7 +2731,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_coinblocker",
@@ -2795,7 +2795,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_commoncrawl",
@@ -2840,7 +2840,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "error",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_comodo",
@@ -2886,7 +2886,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_company",
@@ -3135,7 +3135,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_crossref",
@@ -3238,7 +3238,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "error",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_crxcavator",
@@ -3286,7 +3286,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_customfeed",
@@ -3423,7 +3423,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_debounce",
@@ -3461,7 +3461,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_dehashed",
@@ -3541,7 +3541,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_digitaloceanspace",
@@ -3595,7 +3595,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_dns_for_family",
@@ -3635,7 +3635,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_dnsbrute",
@@ -3840,7 +3840,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_dnsdumpster",
@@ -3874,7 +3874,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "error",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_dnsgrep",
@@ -3934,7 +3934,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_dnsneighbor",
@@ -4256,7 +4256,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_duckduckgo",
@@ -4308,7 +4308,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_email",
@@ -4423,7 +4423,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_emailformat",
@@ -4464,7 +4464,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_emailrep",
@@ -4517,7 +4517,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_emergingthreats",
@@ -4588,7 +4588,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_errors",
@@ -4719,7 +4719,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_filemeta",
@@ -4836,7 +4836,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "error",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_focsec",
@@ -4893,7 +4893,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_fortinet",
@@ -4942,7 +4942,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_fraudguard",
@@ -5059,7 +5059,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_fsecure_riddler",
@@ -5134,7 +5134,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_fullcontact",
@@ -5204,7 +5204,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_fullhunt",
@@ -5263,7 +5263,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_github",
@@ -5310,7 +5310,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_gleif",
@@ -5352,7 +5352,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_google_tag_manager",
@@ -5401,7 +5401,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_googlemaps",
@@ -5460,7 +5460,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_googleobjectstorage",
@@ -5508,7 +5508,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_googlesafebrowsing",
@@ -5575,7 +5575,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_googlesearch",
@@ -5637,7 +5637,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_gravatar",
@@ -5681,7 +5681,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_grayhatwarfare",
@@ -5753,7 +5753,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_greensnow",
@@ -5825,7 +5825,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_grep_app",
@@ -5879,7 +5879,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_greynoise",
@@ -5973,7 +5973,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_greynoise_community",
@@ -6036,7 +6036,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_h1nobbdde",
@@ -6074,7 +6074,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_hackertarget",
@@ -6159,7 +6159,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_hashes",
@@ -6255,7 +6255,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_honeypot",
@@ -6361,7 +6361,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_hosting",
@@ -6453,7 +6453,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_hunter",
@@ -6509,7 +6509,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_hybrid_analysis",
@@ -6579,7 +6579,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_iban",
@@ -6679,7 +6679,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_intelx",
@@ -6791,7 +6791,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_intfiles",
@@ -6872,7 +6872,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_ipapicom",
@@ -6926,7 +6926,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_ipinfo",
@@ -6979,7 +6979,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_ipqualityscore",
@@ -7054,7 +7054,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_ipregistry",
@@ -7110,7 +7110,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_ipstack",
@@ -7163,7 +7163,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_isc",
@@ -7216,7 +7216,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_jsonwhoiscom",
@@ -7283,7 +7283,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_junkfiles",
@@ -7390,7 +7390,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_koodous",
@@ -7449,7 +7449,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_leakix",
@@ -7522,7 +7522,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_maltiverse",
@@ -7602,7 +7602,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_malwarepatrol",
@@ -7680,7 +7680,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_metadefender",
@@ -7743,7 +7743,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_mnemonic",
@@ -7833,7 +7833,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_multiproxy",
@@ -7895,7 +7895,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_myspace",
@@ -7934,7 +7934,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "error",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_nameapi",
@@ -7987,7 +7987,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_names",
@@ -8133,7 +8133,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_neutrinoapi",
@@ -8209,7 +8209,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_numverify",
@@ -8264,7 +8264,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_onioncity",
@@ -8340,7 +8340,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_onionsearchengine",
@@ -8413,7 +8413,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_onyphe",
@@ -8514,7 +8514,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_openbugbounty",
@@ -8551,7 +8551,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_opencorporates",
@@ -8612,7 +8612,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_opendns",
@@ -8657,7 +8657,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_opennic",
@@ -8706,7 +8706,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_openphish",
@@ -8769,7 +8769,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_openstreetmap",
@@ -8807,7 +8807,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_pageinfo",
@@ -8913,7 +8913,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_pgp",
@@ -9062,7 +9062,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_phishtank",
@@ -9124,7 +9124,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_phone",
@@ -9304,7 +9304,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_psbdmp",
@@ -9344,7 +9344,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_pulsedive",
@@ -9461,7 +9461,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_punkspider",
@@ -9494,7 +9494,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_quad9",
@@ -9538,7 +9538,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_reversewhois",
@@ -9572,7 +9572,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_ripe",
@@ -9625,7 +9625,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_riskiq",
@@ -9713,7 +9713,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_robtex",
@@ -9813,7 +9813,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_s3bucket",
@@ -9867,7 +9867,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "error",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_searchcode",
@@ -9920,7 +9920,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "error",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_securitytrails",
@@ -9999,7 +9999,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_seon",
@@ -10077,7 +10077,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_shodan",
@@ -10156,7 +10156,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_similar",
@@ -10237,7 +10237,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_slideshare",
@@ -10278,7 +10278,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_snov",
@@ -10338,7 +10338,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_social",
@@ -10433,7 +10433,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_socialprofiles",
@@ -10525,7 +10525,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_sorbs",
@@ -10599,7 +10599,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_spamcop",
@@ -10672,7 +10672,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_spamhaus",
@@ -10747,7 +10747,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_spider",
@@ -10947,7 +10947,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_spyonweb",
@@ -11044,7 +11044,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_sslcert",
@@ -11173,7 +11173,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_stevenblack_hosts",
@@ -11230,7 +11230,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_strangeheaders",
@@ -11335,7 +11335,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "error",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_surbl",
@@ -11427,7 +11427,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_talosintel",
@@ -11499,7 +11499,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_template",
@@ -11620,7 +11620,7 @@
     },
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_textmagic",
@@ -11678,7 +11678,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_threatcrowd",
@@ -11765,7 +11765,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_threatfox",
@@ -11812,7 +11812,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_threatjammer",
@@ -11892,7 +11892,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_threatminer",
@@ -11977,7 +11977,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_tldsearch",
@@ -12095,7 +12095,7 @@
   },
   {
     "module_id": "sfp_tool_dnstwist",
-    "service_origin": "external",
+    "service_origin": "cli",
     "name": "Tool - DNSTwist",
     "summary": "Identify bit-squatting, typo and other similar domains to the target using a local DNSTwist installation.",
     "flags": [
@@ -12229,7 +12229,7 @@
   },
   {
     "module_id": "sfp_tool_nmap",
-    "service_origin": "external",
+    "service_origin": "cli",
     "name": "Tool - Nmap",
     "summary": "Identify what Operating System might be used.",
     "flags": [
@@ -12298,7 +12298,7 @@
   },
   {
     "module_id": "sfp_tool_nuclei",
-    "service_origin": "external",
+    "service_origin": "cli",
     "name": "Tool - Nuclei",
     "summary": "Fast and customisable vulnerability scanner.",
     "flags": [
@@ -12453,7 +12453,7 @@
   },
   {
     "module_id": "sfp_tool_retirejs",
-    "service_origin": "external",
+    "service_origin": "cli",
     "name": "Tool - Retire.js",
     "summary": "Scanner detecting the use of JavaScript libraries with known vulnerabilities",
     "flags": [
@@ -12511,7 +12511,7 @@
   },
   {
     "module_id": "sfp_tool_snallygaster",
-    "service_origin": "external",
+    "service_origin": "cli",
     "name": "Tool - snallygaster",
     "summary": "Finds file leaks and other security problems on HTTP servers.",
     "flags": [
@@ -12646,7 +12646,7 @@
   },
   {
     "module_id": "sfp_tool_trufflehog",
-    "service_origin": "external",
+    "service_origin": "cli",
     "name": "Tool - TruffleHog",
     "summary": "Searches through git repositories for high entropy strings and secrets, digging deep into commit history.",
     "flags": [
@@ -12713,7 +12713,7 @@
   },
   {
     "module_id": "sfp_tool_wafw00f",
-    "service_origin": "external",
+    "service_origin": "cli",
     "name": "Tool - WAFW00F",
     "summary": "Identify what web application firewall (WAF) is in use on the specified website.",
     "flags": [
@@ -12954,7 +12954,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_torexits",
@@ -13016,7 +13016,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_trashpanda",
@@ -13074,7 +13074,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_trumail",
@@ -13112,7 +13112,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_twilio",
@@ -13172,7 +13172,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_twitter",
@@ -13208,7 +13208,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_uceprotect",
@@ -13283,7 +13283,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_urlscan",
@@ -13334,7 +13334,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_venmo",
@@ -13370,7 +13370,7 @@
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_viewdns",
@@ -13440,7 +13440,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_virustotal",
@@ -13555,7 +13555,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_voipbl",
@@ -13627,7 +13627,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_vxvault",
@@ -13693,7 +13693,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_webanalytics",
@@ -13871,7 +13871,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_whois",
@@ -13972,7 +13972,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_whoxy",
@@ -14026,7 +14026,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_wigle",
@@ -14092,7 +14092,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_wikileaks",
@@ -14146,7 +14146,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_wikipediaedits",
@@ -14193,7 +14193,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_xforce",
@@ -14338,7 +14338,7 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_yandexdns",
@@ -14382,7 +14382,7 @@
     "module_opts": [],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_zetalytics",
@@ -14440,7 +14440,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_zonefiles",
@@ -14509,7 +14509,7 @@
     ],
     "fixture_category": "positive",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   },
   {
     "module_id": "sfp_zoneh",
@@ -14569,6 +14569,6 @@
     ],
     "fixture_category": "negative",
     "service_state": "in-test",
-    "service_origin": "external"
+    "service_origin": "external-api"
   }
 ]
