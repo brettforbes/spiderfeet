@@ -307,6 +307,9 @@ def merge_validation_results_into_registry(
         elif row.get("validated_produces"):
             entry["validated_produces"] = True
             entry.pop("validated_negative", None)
+            entry.pop("upstream_blocked", None)
+            if str(entry.get("validation") or "").lower() == "blocked-upstream":
+                entry["validation"] = "smoke"
 
         if row.get("produced_count") is not None:
             entry["last_produced_count"] = int(row["produced_count"])
