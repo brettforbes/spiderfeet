@@ -403,12 +403,23 @@ class SpiderFeetScanner():
                     "LINKED_URL_EXTERNAL",
                     "WEBSERVER_HTTPHEADERS",
                     "WEBSERVER_BANNER",
+                    "INTERESTING_FILE",
+                    "URL_PASSWORD",
+                    "URL_FORM",
+                    "URL_FLASH",
+                    "URL_STATIC",
+                    "URL_JAVA_APPLET",
+                    "URL_UPLOAD",
+                    "URL_JAVASCRIPT",
+                    "URL_WEB_FRAMEWORK",
                 ):
                     seed_module = "sfp_spider"
                 payload_event = SpiderFeetEvent(
                     payload_type, payload_data, seed_module, rootEvent
                 )
-                if self.__targetType in ("INTERNET_NAME", "DOMAIN_NAME"):
+                if "://" in str(payload_data):
+                    payload_event.actualSource = str(payload_data).split("?")[0]
+                elif self.__targetType in ("INTERNET_NAME", "DOMAIN_NAME"):
                     payload_event.actualSource = f"https://{self.__targetValue}/"
                 else:
                     payload_event.actualSource = self.__targetValue

@@ -28,6 +28,7 @@ class sfp_abusix(SpiderFeetPlugin):
         'categories': ["Reputation Systems"],
         'dataSource': {
             'website': "https://abusix.org/",
+            'favIcon': 'icons/icon_service_abusix.svg',
             'model': "FREE_AUTH_LIMITED",
             'references': [
                 "https://abusix.com/products/abusix-mail-intelligence/",

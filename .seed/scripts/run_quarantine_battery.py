@@ -625,6 +625,11 @@ def apply_results(results: List[Dict[str, Any]]) -> None:
             entry["validated_produces"] = row.get("classification") == "validated_hit"
             if row.get("classification") == "validated_negative":
                 entry["validated_negative"] = True
+                entry["fixture_kind"] = "negative"
+                entry.pop("validated_produces", None)
+            else:
+                entry.pop("validated_negative", None)
+                entry.pop("fixture_kind", None)
             entry.pop("upstream_blocked", None)
         elif row.get("classification") in ("tool_missing", "tool_missing_or_blocked"):
             entry["validation"] = "blocked-tool"

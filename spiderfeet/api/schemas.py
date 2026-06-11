@@ -381,7 +381,7 @@ class ForceGraphNodeModel(BaseModel):
     service_state: Optional[str] = None
     service_origin: Optional[str] = Field(
         None,
-        description="external | quarantine | custom — catalogue provenance",
+        description="external-api | cli | local — how the service runs",
     )
     fixture_category: Optional[str] = Field(
         None,

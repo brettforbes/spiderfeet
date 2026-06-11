@@ -24,6 +24,7 @@ class sfp_projectdiscovery(SpiderFeetPlugin):
         "categories": ["Passive DNS"],
         "dataSource": {
             "website": "https://chaos.projectdiscovery.io",
+            "favIcon": "icons/icon_service_projectdiscovery.svg",
             "model": "PRIVATE_ONLY",
             "references": [
                 "https://chaos.projectdiscovery.io/#/docs",

@@ -26,6 +26,7 @@ class sfp_surbl(SpiderFeetPlugin):
         'categories': ["Reputation Systems"],
         'dataSource': {
             'website': "http://www.surbl.org/",
+            'favIcon': 'icons/icon_service_surbl.svg',
             'model': "FREE_NOAUTH_UNLIMITED",  # 250,000 messages per day
             'references': [
                 "http://www.surbl.org/lists",

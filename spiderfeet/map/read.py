@@ -12,6 +12,7 @@ from typedb.api.connection.transaction import TransactionType
 
 from spiderfeet.map import typeql_util
 from spiderfeet.map.constants import OSINT_SERVICES_JSON
+from spiderfeet.map.service_classification import normalize_service_origin
 from spiderfeet.map.subscriptions import requires_api_key
 
 
@@ -209,6 +210,12 @@ def export_force_graph(
         cat_row = catalog.get(node.id)
         if cat_row is not None:
             node.requires_api_key = requires_api_key(cat_row)
-            node.service_origin = str(cat_row.get("service_origin") or "external")
+            ds_model = (cat_row.get("data_source") or {}).get("model")
+            external_api = ds_model != "LOCAL_NOAUTH"
+            node.service_origin = normalize_service_origin(
+                str(cat_row.get("service_origin") or ""),
+                module_id=node.id,
+                external_api=external_api,
+            )
 
     return ForceGraphExport(nodes=list(nodes.values()), links=links)

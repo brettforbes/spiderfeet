@@ -576,8 +576,8 @@ define
 	####################################
 
 	attribute route_state, value string @values("in-test", "favourite", "unique", "error", "dominated");
-	attribute service_origin, value string @values("external", "quarantine", "custom");
-	attribute service_state, value string @values("in-test", "favourite", "unique", "error", "dominated");
+	attribute service_origin, value string @values("external-api", "cli", "local");
+	attribute service_state, value string @values("quarantine", "in-test", "favourite", "unique", "error", "dominated");
 	attribute fixture_category, value string @values("positive", "negative");
 	attribute route_name, value string;
 	attribute sequence_name, value string;

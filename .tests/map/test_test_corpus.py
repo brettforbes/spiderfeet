@@ -65,13 +65,21 @@ def test_plan_validation_items_offset():
     assert len(all_ids) == 6
 
 
+def test_plan_validation_prefers_route_seed_nugget():
+    items = plan_validation_items(configured_modules={}, subscription_tier="none")
+    dnsresolve = next(i for i in items if i["module_id"] == "sfp_dnsresolve")
+    assert dnsresolve["consumed_nugget_id"] == "INTERNET_NAME"
+    tldsearch = next(i for i in items if i["module_id"] == "sfp_tldsearch")
+    assert tldsearch["consumed_nugget_id"] == "DOMAIN_NAME"
+
+
 def test_summarize_registry_validation():
     summary = summarize_registry_validation(configured_modules={}, subscription_tier="none")
-    assert summary["total_modules"] >= 79
-    assert summary["coverage_count"] >= 55
-    assert summary["validated_produces_count"] >= 10
-    assert summary["validated_negative_count"] >= 35
+    assert summary["total_modules"] >= 100
+    assert summary["coverage_count"] >= 100
+    assert summary["validated_produces_count"] >= 40
+    assert summary["validated_negative_count"] >= 50
     assert summary["research_complete_count"] >= summary["coverage_count"]
-    assert summary["actionable_pending_count"] >= 0
-    assert "sfp_duckduckgo" in summary["positive_module_ids"]
-    assert "sfp_spamcop" in summary["negative_module_ids"] or "sfp_opendns" in summary["negative_module_ids"]
+    assert summary["actionable_pending_count"] <= 5
+    assert "sfp_dnsresolve" in summary["validated_module_ids"]
+    assert "sfp_iban" in summary["validated_module_ids"]

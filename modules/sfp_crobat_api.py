@@ -29,6 +29,7 @@ class sfp_crobat_api(SpiderFeetPlugin):
         'categories': ["Passive DNS"],
         'dataSource': {
             'website': "https://sonar.omnisint.io/",
+            'favIcon': 'icons/icon_service_crobat_api.svg',
             'model': "FREE_NOAUTH_UNLIMITED",
             'logo': "https://sonar.omnisint.io/img/crobat.png",
             'description': "The entire Rapid7 Sonar DNS dataset indexed,"

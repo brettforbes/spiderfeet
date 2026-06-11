@@ -41,6 +41,15 @@ PAYLOAD_NUGGET_TYPES = frozenset(
         "TCP_PORT_OPEN_BANNER",
         "WEBSERVER_BANNER",
         "WEBSERVER_HTTPHEADERS",
+        "INTERESTING_FILE",
+        "URL_PASSWORD",
+        "URL_FORM",
+        "URL_FLASH",
+        "URL_STATIC",
+        "URL_JAVA_APPLET",
+        "URL_UPLOAD",
+        "URL_JAVASCRIPT",
+        "URL_WEB_FRAMEWORK",
     }
 )
 

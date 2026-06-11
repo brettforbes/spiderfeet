@@ -25,6 +25,7 @@ class sfp_sublist3r(SpiderFeetPlugin):
         "categories": ["Passive DNS"],
         "dataSource": {
             "website": "https://api.sublist3r.com",
+            "favIcon": "icons/icon_service_sublist3r.svg",
             "model": "FREE_NOAUTH_UNLIMITED",
             "description": "This is the API queried by the Sublist3r tool.",
         }

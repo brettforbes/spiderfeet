@@ -25,6 +25,7 @@ class sfp_punkspider(SpiderFeetPlugin):
         'categories': ["Leaks, Dumps and Breaches"],
         'dataSource': {
             'website': "https://punkspider.io/",
+            'favIcon': 'icons/icon_service_punkspider.svg',
             'model': "FREE_NOAUTH_UNLIMITED",
             'logo': "https://punkspider.io/img/logo.svg",
             'description': "The idea behind Punkspider is very simple - we're doing a bunch "

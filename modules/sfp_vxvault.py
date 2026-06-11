@@ -28,7 +28,7 @@ class sfp_vxvault(SpiderFeetPlugin):
                 "http://vxvault.net/URL_List.php",
                 "https://github.com/InfectedPacket/VxVault"
             ],
-            'favIcon': "",
+            'favIcon': 'icons/icon_service_vxvault.svg',
             'logo': "http://vxvault.net/header.png",
             'description': "VxVault is a malware management program to automatically download and classify malware samples. "
             "VxVault downloads malware samples from links from online sources such as webpages or RSS feeds, "

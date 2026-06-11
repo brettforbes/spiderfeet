@@ -24,6 +24,7 @@ class sfp_stevenblack_hosts(SpiderFeetPlugin):
         'categories': ["Reputation Systems"],
         'dataSource': {
             'website': "https://github.com/StevenBlack/hosts",
+            'favIcon': 'icons/icon_service_stevenblack_hosts.svg',
             'model': "FREE_NOAUTH_UNLIMITED",
             'description': "Consolidating and extending hosts files (for malware and adware)"
             "from several well-curated sources."

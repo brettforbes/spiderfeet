@@ -27,6 +27,7 @@ class sfp_torch(SpiderFeetPlugin):
         'categories': ["Search Engines"],
         'dataSource': {
             'website': "https://torchsearch.wordpress.com/",
+            'favIcon': 'icons/icon_service_torch.svg',
             'model': "FREE_NOAUTH_UNLIMITED",
             'description': "Torch or TorSearch is the best search engine "
                 "for the hidden part of the internet. They're also the "

@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any, Dict, Iterable, Tuple
 
 VALID_SERVICE_STATES = frozenset(
-    {"in-test", "favourite", "unique", "error", "dominated"}
+    {"quarantine", "in-test", "favourite", "unique", "error", "dominated"}
 )
 DEFAULT_SERVICE_STATE = "in-test"
 
