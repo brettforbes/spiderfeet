@@ -1,24 +1,54 @@
 {
-  "generated_at": "2026-06-11T04:27:11.941937+00:00",
+  "generated_at": "2026-06-11T07:09:50.923446+00:00",
   "api_base": "http://127.0.0.1:8001/api/v1",
-  "module_count": 1,
+  "module_count": 3,
   "summary": {
-    "validated_hit": 1
+    "validated_hit": 2,
+    "tool_missing_or_blocked": 1
   },
   "results": [
     {
-      "module_id": "sfp_tldsearch",
-      "consumed_nugget_id": "DOMAIN_NAME",
+      "module_id": "sfp_tool_testsslsh",
+      "consumed_nugget_id": "INTERNET_NAME",
       "input_value": "example.com",
       "status": "UNKNOWN",
       "verdict": "hit",
-      "produced_count": 3,
+      "produced_count": 5,
       "validated_produces": true,
       "validated_negative": false,
-      "scan_id": "1021E611",
+      "scan_id": "6190DE8F",
       "classification": "validated_hit",
       "fixture_kind": "positive",
-      "notes": "status=UNKNOWN; verdict=hit; produced=3"
+      "notes": "status=UNKNOWN; verdict=hit; produced=5"
+    },
+    {
+      "module_id": "sfp_tool_wappalyzer",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "example.com",
+      "status": "UNKNOWN",
+      "verdict": "error_failed",
+      "produced_count": 0,
+      "validated_produces": false,
+      "validated_negative": false,
+      "scan_id": "F30B17F2",
+      "classification": "tool_missing_or_blocked",
+      "fixture_kind": "positive",
+      "log_snippet": "",
+      "notes": ""
+    },
+    {
+      "module_id": "sfp_tool_whatweb",
+      "consumed_nugget_id": "INTERNET_NAME",
+      "input_value": "example.com",
+      "status": "UNKNOWN",
+      "verdict": "hit",
+      "produced_count": 7,
+      "validated_produces": true,
+      "validated_negative": false,
+      "scan_id": "09279A64",
+      "classification": "validated_hit",
+      "fixture_kind": "positive",
+      "notes": "status=UNKNOWN; verdict=hit; produced=7"
     }
   ]
 }

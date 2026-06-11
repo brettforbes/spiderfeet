@@ -44,6 +44,17 @@ These can be installed into the project venv for local battery runs:
 
 `dnstwist`, `wafw00f`, and `snallygaster` modules auto-resolve via `shutil.which()` when the binary is on PATH.
 
+## Quarantine CLI batch (WSL — #806 / #807)
+
+Install all six quarantine tools and run battery from Windows:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .seed/scripts/install_wsl_cli_tools.ps1
+wsl -d Ubuntu-22.04 bash /mnt/c/projects/spiderfeet/.seed/scripts/run_wsl_quarantine_battery.sh
+```
+
+Tool paths resolve via `~/.local/spiderfeet-cli/manifest.env` and `spiderfeet.tools.cli_paths.quarantine_cli_module_opts()`.
+
 ## Ruby / bash tools (WSL recommended on Windows)
 
 `cmseek`, `testssl.sh`, and `whatweb` are unreliable as native Windows binaries. Use WSL2:

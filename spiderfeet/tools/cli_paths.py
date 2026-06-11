@@ -50,3 +50,80 @@ def resolve_nuclei_templates() -> Optional[str]:
     if home.is_dir() and any(home.rglob("*.yaml")):
         return str(home)
     return None
+
+
+def _wsl_cli_root() -> Path:
+    return Path(os.environ.get("SPIDERFEET_CLI_ROOT", Path.home() / ".local" / "spiderfeet-cli"))
+
+
+def load_wsl_cli_manifest() -> bool:
+    """Source ~/.local/spiderfeet-cli/manifest.env into os.environ when present."""
+    manifest = _wsl_cli_root() / "manifest.env"
+    if not manifest.is_file():
+        return False
+    for line in manifest.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        if line.startswith("export "):
+            line = line[len("export ") :]
+        key, _, value = line.partition("=")
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and value:
+            os.environ.setdefault(key, value)
+    return True
+
+
+def _env_or_file(path_key: str, *candidates: Path) -> Optional[str]:
+    raw = os.environ.get(path_key, "").strip()
+    if raw and Path(raw).is_file():
+        return raw
+    for candidate in candidates:
+        if candidate.is_file():
+            return str(candidate)
+    return None
+
+
+def quarantine_cli_module_opts() -> dict[str, dict[str, str]]:
+    """Module opts for the six quarantine CLI wrappers (WSL/apt layout)."""
+    root = _wsl_cli_root()
+    node = os.environ.get("SPIDERFEET_NODE_PATH") or resolve_cli_binary("node") or "/usr/bin/node"
+    wapp_candidates = [
+        Path(os.environ.get("SPIDERFEET_WAPPALYZER_PATH", "")),
+        root / "wappalyzer" / "src" / "drivers" / "npm" / "cli.js",
+        root / "wappalyzer" / "src" / "drivers" / "webextension" / "cli.js",
+    ]
+    wapp = _env_or_file("SPIDERFEET_WAPPALYZER_PATH", *wapp_candidates)
+
+    cmseek = _env_or_file(
+        "SPIDERFEET_CMSEEK_PATH",
+        root / "CMSeeK" / "cmseek.py",
+    )
+    testssl = _env_or_file(
+        "SPIDERFEET_TESTSSL_PATH",
+        root / "testssl.sh" / "testssl.sh",
+    )
+    whatweb = _env_or_file(
+        "SPIDERFEET_WHATWEB_PATH",
+        root / "WhatWeb" / "whatweb",
+    )
+    nbtscan = os.environ.get("SPIDERFEET_NBTSCAN_PATH") or resolve_cli_binary("nbtscan")
+    onesixtyone = os.environ.get("SPIDERFEET_ONESIXTYONE_PATH") or resolve_cli_binary(
+        "onesixtyone"
+    )
+
+    opts: dict[str, dict[str, str]] = {}
+    if cmseek:
+        opts["sfp_tool_cmseek"] = {"cmseekpath": cmseek, "pythonpath": "python3"}
+    if testssl:
+        opts["sfp_tool_testsslsh"] = {"testsslsh_path": testssl}
+    if whatweb:
+        opts["sfp_tool_whatweb"] = {"whatweb_path": whatweb, "ruby_path": "ruby"}
+    if nbtscan:
+        opts["sfp_tool_nbtscan"] = {"nbtscan_path": nbtscan}
+    if onesixtyone:
+        opts["sfp_tool_onesixtyone"] = {"onesixtyone_path": onesixtyone}
+    if wapp:
+        opts["sfp_tool_wappalyzer"] = {"wappalyzer_path": wapp, "node_path": node}
+    return opts

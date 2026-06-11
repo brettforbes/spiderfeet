@@ -131,8 +131,8 @@ class sfp_tool_whatweb(SpiderFeetPlugin):
             eventData
         ]
         try:
-            p = Popen(args, stdout=PIPE, stderr=PIPE, timeout=300)
-            stdout, stderr = p.communicate(input=None)
+            p = Popen(args, stdout=PIPE, stderr=PIPE)
+            stdout, stderr = p.communicate(input=None, timeout=300)
         except TimeoutExpired:
             p.kill()
             stdout, stderr = p.communicate()
