@@ -2323,10 +2323,10 @@
       "INTERNET_NAME": {
         "input_value": "example.com",
         "region": "global",
-        "validation": "blocked-tool",
-        "last_verdict": "tool_missing",
+        "validation": "error",
+        "last_verdict": "tool_retired",
         "last_produced_count": 0,
-        "notes": "Legacy AliasIO cli.js not installable via current npm; WSL git clone blocked in dev — SPEC_GAP retire or vendor cli.js",
+        "notes": "service_state=error; AliasIO/Wappalyzer OSS CLI and GitHub repo no longer available — module not operator-testable",
         "upstream_blocked": true
       }
     },
