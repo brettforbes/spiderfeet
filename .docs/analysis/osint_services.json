@@ -12793,11 +12793,11 @@
         "spiderfeet://local/sfp_tool_wappalyzer"
       ],
       "fav_icon": "icons/icon_service_tool_wappalyzer.svg",
-      "description": "Wappalyzer indentifies technologies on websites.\n\n**Module ID:** `sfp_tool_wappalyzer`\n**Origin:** quarantine (local SpiderFeet processing)\n**Consumes:** INTERNET_NAME\n**Produces:** OPERATING_SYSTEM, SOFTWARE_USED, WEBSERVER_TECHNOLOGY\n**Flags:** tool\n\n**Tool requirement:**\nInstall wappalyzer CLI or use the supported wrapper path.\n\n**Smoke battery:**\n- Classification: `tool_missing_or_blocked`\n- Seed nugget: `INTERNET_NAME`\n- Input: `example.com`\n- Produced count: 0",
+      "description": "Wappalyzer indentifies technologies on websites.\n\n**Module ID:** `sfp_tool_wappalyzer`\n**Service state:** error — legacy open-source CLI retired; AliasIO/Wappalyzer GitHub repo and npm cli.js no longer available for this wrapper.\n**Consumes:** INTERNET_NAME\n**Produces:** OPERATING_SYSTEM, SOFTWARE_USED, WEBSERVER_TECHNOLOGY\n**Flags:** tool\n\n**Operator note:** Module remains in codebase for compatibility but is not testable or promotable until replaced (e.g. retire module or integrate a supported detection path).",
       "api_key_instructions": [
-        "Install wappalyzer CLI or use the supported wrapper path."
+        "Not applicable — external CLI unavailable (service_state: error)."
       ],
-      "tool_requirement": "External CLI must be installed and on PATH (see module meta)."
+      "tool_requirement": "Legacy AliasIO wappalyzer cli.js is no longer distributable; service marked error per #807."
     },
     "access_tier": "free_no_auth",
     "consumed_nuggets": [

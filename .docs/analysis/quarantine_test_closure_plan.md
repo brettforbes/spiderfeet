@@ -5,7 +5,7 @@
 **CLI epic:** GitHub #733 (`SF-05-10`)  
 **Inventory:** 54 modules in `quarantine_services.json`  
 **Baseline (2026-06-05):** 18 route-validated, 36 outstanding  
-**Status (2026-06-11):** **54/54 route-closed** — all modules have `validated_produces`, `validated_negative`, or `upstream_blocked` on `route_seed_nugget` (see `audit_quarantine_route_seeds.py`). **53 promoted** to `in-test` via WSL battery + `promote_quarantine_from_seeds.py`. **1 remains in quarantine:** `sfp_tool_wappalyzer` (`upstream_blocked` — legacy AliasIO `cli.js` unavailable via npm 7+ / WSL git); issues #806/#807.
+**Status (2026-06-11):** **54/54 route-closed** — all modules have `validated_produces`, `validated_negative`, `upstream_blocked`, or documented `service_state: error` on `route_seed_nugget`. **53 promoted** to `in-test` via WSL battery (#814). **Quarantine list empty.** `sfp_tool_wappalyzer` is **`service_state: error`** (legacy OSS CLI / GitHub repo retired — not operator-testable); issue #807.
 
 ## Goal
 
