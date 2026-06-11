@@ -81,7 +81,7 @@ class sfp_hosting(SpiderFeetPlugin):
                 continue
 
             try:
-                if IPAddress(qaddr) > IPAddress(start) and IPAddress(qaddr) < IPAddress(end):
+                if IPAddress(start) <= IPAddress(qaddr) <= IPAddress(end):
                     return [title, url]
             except Exception as e:
                 self.debug("Encountered an issue processing an IP: " + str(e))

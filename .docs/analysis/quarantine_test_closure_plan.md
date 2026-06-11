@@ -4,7 +4,8 @@
 **Parent epic:** GitHub #722 (`EPIC-SF-05`)  
 **CLI epic:** GitHub #733 (`SF-05-10`)  
 **Inventory:** 54 modules in `quarantine_services.json`  
-**Baseline (2026-06-05):** 18 route-validated, 36 outstanding
+**Baseline (2026-06-05):** 18 route-validated, 36 outstanding  
+**Status (2026-06-11):** **54/54 route-closed** — all modules have `validated_produces`, `validated_negative`, or `upstream_blocked` on `route_seed_nugget` (see `audit_quarantine_route_seeds.py`).
 
 ## Goal
 

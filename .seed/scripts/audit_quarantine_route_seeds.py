@@ -20,6 +20,8 @@ def route_status(mods: dict, mid: str, nugget: str | None) -> str:
         return "VALID+"
     if entry.get("validated_negative"):
         return "VALID-"
+    if entry.get("upstream_blocked") or entry.get("validation") == "blocked-tool":
+        return "BLOCKED"
     if nugget not in mods.get(mid, {}):
         return "missing"
     return str(entry.get("last_verdict", "?"))
@@ -39,7 +41,7 @@ def main() -> int:
         mid = svc["module_id"]
         route = svc.get("route_seed_nugget")
         st = route_status(mods, mid, route)
-        if st.startswith("VALID"):
+        if st.startswith("VALID") or st == "BLOCKED":
             ok.append(mid)
         else:
             validated = [

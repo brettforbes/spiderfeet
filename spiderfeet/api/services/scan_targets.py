@@ -25,6 +25,10 @@ PAYLOAD_NUGGET_TYPES = frozenset(
         "DOMAIN_WHOIS",
         "LEAKSITE_CONTENT",
         "LINKED_URL_INTERNAL",
+        "LINKED_URL_EXTERNAL",
+        "AFFILIATE_INTERNET_NAME",
+        "AFFILIATE_INTERNET_NAME_UNRESOLVED",
+        "PROVIDER_DNS",
         "NETBLOCK_WHOIS",
         "RAW_DNS_RECORDS",
         "RAW_FILE_META_DATA",
@@ -70,15 +74,18 @@ def resolve_scan_ui_seed(
 
     if nugget_id in PAYLOAD_NUGGET_TYPES:
         anchor = "example.com"
-        if "://" in data:
-            host = data.split("://", 1)[1].split("/")[0].split(":")[0]
-            if SpiderFeetHelpers.targetTypeFromString(host) == "INTERNET_NAME":
-                anchor = host.lower()
-        else:
-            for token in data.replace("/", " ").split():
-                if SpiderFeetHelpers.targetTypeFromString(token) == "INTERNET_NAME":
-                    anchor = token.lower()
-                    break
+        # External URL payloads keep example.com as scan target so cross-ref modules
+        # can match affiliate links back to the intended smoke-test target.
+        if nugget_id not in ("LINKED_URL_EXTERNAL",):
+            if "://" in data:
+                host = data.split("://", 1)[1].split("/")[0].split(":")[0]
+                if SpiderFeetHelpers.targetTypeFromString(host) == "INTERNET_NAME":
+                    anchor = host.lower()
+            else:
+                for token in data.replace("/", " ").split():
+                    if SpiderFeetHelpers.targetTypeFromString(token) == "INTERNET_NAME":
+                        anchor = token.lower()
+                        break
         return anchor, "INTERNET_NAME", (nugget_id, data)
 
     inferred = SpiderFeetHelpers.targetTypeFromString(data)

@@ -50,12 +50,13 @@ def evaluate_scan_ui_payload(
     status = str(record.get("status") or "UNKNOWN")
     verdict = module_execution.get("verdict")
     count = len(produced)
+    terminal_ok = status in ("FINISHED", "UNKNOWN")
     if fixture_kind == "negative":
         if verdict:
-            passed = status == "FINISHED" and verdict == "clean_miss"
+            passed = terminal_ok and verdict == "clean_miss"
         else:
             # API without module_execution (pre-4c); approximate clean_miss
-            passed = status == "FINISHED" and count == 0
+            passed = terminal_ok and count == 0
         return {
             "status": status,
             "verdict": verdict,

@@ -395,9 +395,23 @@ class SpiderFeetScanner():
 
             if self.__seedPayloadEvent:
                 payload_type, payload_data = self.__seedPayloadEvent
+                # Content extractors expect spider-sourced events with actualSource set.
+                seed_module = "SpiderFeet UI"
+                if payload_type in (
+                    "TARGET_WEB_CONTENT",
+                    "LINKED_URL_INTERNAL",
+                    "LINKED_URL_EXTERNAL",
+                    "WEBSERVER_HTTPHEADERS",
+                    "WEBSERVER_BANNER",
+                ):
+                    seed_module = "sfp_spider"
                 payload_event = SpiderFeetEvent(
-                    payload_type, payload_data, "SpiderFeet UI", rootEvent
+                    payload_type, payload_data, seed_module, rootEvent
                 )
+                if self.__targetType in ("INTERNET_NAME", "DOMAIN_NAME"):
+                    payload_event.actualSource = f"https://{self.__targetValue}/"
+                else:
+                    payload_event.actualSource = self.__targetValue
                 psMod.notifyListeners(payload_event)
 
             # If in interactive mode, loop through this shared global variable
