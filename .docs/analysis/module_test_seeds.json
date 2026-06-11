@@ -1770,13 +1770,13 @@
       }
     },
     "sfp_crossref": {
-      "INTERNET_NAME": {
-        "input_value": "example.com",
+      "LINKED_URL_EXTERNAL": {
+        "input_value": "https://www.example.com/",
         "region": "global",
         "validation": "smoke",
         "last_verdict": "clean_miss",
         "last_produced_count": 0,
-        "notes": ""
+        "notes": "route_seed_nugget alignment SF-05-12"
       }
     },
     "sfp_customfeed": {
@@ -1811,13 +1811,13 @@
       }
     },
     "sfp_dnsneighbor": {
-      "NETBLOCK_MEMBER": {
-        "input_value": "8.8.8.0/24",
+      "IP_ADDRESS": {
+        "input_value": "8.8.8.8",
         "region": "global",
         "validation": "smoke",
         "last_verdict": "clean_miss",
         "last_produced_count": 0,
-        "notes": ""
+        "notes": "route_seed_nugget alignment SF-05-12; was NETBLOCK_MEMBER"
       }
     },
     "sfp_dnsraw": {
@@ -1832,13 +1832,13 @@
       }
     },
     "sfp_dnszonexfer": {
-      "DOMAIN_NAME": {
-        "input_value": "example.com",
+      "PROVIDER_DNS": {
+        "input_value": "8.8.8.8",
         "region": "global",
         "validation": "smoke",
         "last_verdict": "clean_miss",
         "last_produced_count": 0,
-        "notes": ""
+        "notes": "route_seed_nugget alignment SF-05-12; watchedEvents is PROVIDER_DNS"
       }
     },
     "sfp_email": {
@@ -1901,14 +1901,13 @@
       }
     },
     "sfp_hosting": {
-      "TARGET_WEB_CONTENT": {
-        "input_value": "Hosted on Amazon Web Services",
+      "IP_ADDRESS": {
+        "input_value": "52.216.0.0",
         "region": "global",
         "validation": "smoke",
         "last_verdict": "clean_miss",
         "last_produced_count": 0,
-        "notes": "",
-        "service_state_note": "error_failed"
+        "notes": "route_seed_nugget alignment SF-05-12; AWS ipcat range probe"
       }
     },
     "sfp_iban": {
@@ -1934,13 +1933,13 @@
       }
     },
     "sfp_junkfiles": {
-      "INTERNET_NAME": {
-        "input_value": "example.com",
+      "LINKED_URL_INTERNAL": {
+        "input_value": "https://example.com/",
         "region": "global",
         "validation": "smoke",
         "last_verdict": "clean_miss",
         "last_produced_count": 0,
-        "notes": ""
+        "notes": "route_seed_nugget alignment SF-05-12"
       }
     },
     "sfp_names": {
@@ -2010,13 +2009,13 @@
       }
     },
     "sfp_social": {
-      "INTERNET_NAME": {
-        "input_value": "example.com",
+      "LINKED_URL_EXTERNAL": {
+        "input_value": "https://twitter.com/example",
         "region": "global",
         "validation": "smoke",
         "last_verdict": "clean_miss",
         "last_produced_count": 0,
-        "notes": ""
+        "notes": "route_seed_nugget alignment SF-05-12"
       }
     },
     "sfp_spider": {
@@ -2052,14 +2051,13 @@
       }
     },
     "sfp_subdomain_takeover": {
-      "INTERNET_NAME": {
-        "input_value": "example.com",
+      "AFFILIATE_INTERNET_NAME": {
+        "input_value": "affiliate.example.com",
         "region": "global",
-        "validation": "error",
-        "last_verdict": "error_failed",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
         "last_produced_count": 0,
-        "notes": "",
-        "service_state_note": "error_failed"
+        "notes": "route_seed_nugget alignment SF-05-12"
       }
     },
     "sfp_tldsearch": {
