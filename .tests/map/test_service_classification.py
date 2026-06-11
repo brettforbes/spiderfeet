@@ -54,3 +54,14 @@ def test_normalize_legacy_external():
         normalize_service_origin("external", module_id="sfp_shodan", external_api=True)
         == SERVICE_ORIGIN_EXTERNAL_API
     )
+
+
+def test_normalize_legacy_external_cli_tool():
+    assert (
+        normalize_service_origin(
+            "external",
+            module_id="sfp_tool_nuclei",
+            external_api=False,
+        )
+        == SERVICE_ORIGIN_CLI
+    )
