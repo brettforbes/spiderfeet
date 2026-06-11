@@ -161,7 +161,7 @@ class sfp_tool_testsslsh(SpiderFeetPlugin):
             args = [
                 exe,
                 "-U",
-                "--connect-timeout",
+                "--socket-timeout",
                 "5",
                 "--openssl-timeout",
                 "5",

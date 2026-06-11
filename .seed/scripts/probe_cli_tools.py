@@ -11,7 +11,12 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO_ROOT))
 
-from spiderfeet.tools.cli_paths import TOOLS_BIN, resolve_cli_binary  # noqa: E402
+from spiderfeet.tools.cli_paths import (  # noqa: E402
+    TOOLS_BIN,
+    load_wsl_cli_manifest,
+    quarantine_cli_module_opts,
+    resolve_cli_binary,
+)
 
 # module_id -> (binary name, install hint)
 CLI_TOOLS = {
@@ -71,7 +76,14 @@ def probe() -> list[dict]:
 
 def main() -> int:
     ensure_dev_tool_paths()
+    load_wsl_cli_manifest()
     rows = probe()
+    wsl_opts = quarantine_cli_module_opts()
+    if wsl_opts:
+        print(f"WSL quarantine CLI opts: {len(wsl_opts)} modules configured")
+        for module_id, opts in sorted(wsl_opts.items()):
+            print(f"  {module_id}: {opts}")
+        print()
     present = sum(1 for r in rows if r["on_path"])
     print(f"CLI tools on PATH: {present}/{len(rows)}")
     for row in rows:

@@ -26,6 +26,10 @@ from spiderfeet.map.seed_probe import (  # noqa: E402
     probe_positive_candidates,
 )
 from spiderfeet.map.test_targets import sample_target_for_module  # noqa: E402
+from spiderfeet.tools.cli_paths import (  # noqa: E402
+    load_wsl_cli_manifest,
+    quarantine_cli_module_opts,
+)
 
 QUARANTINE_JSON = REPO_ROOT / ".docs" / "analysis" / "quarantine_services.json"
 RESULTS_JSON = REPO_ROOT / ".docs" / "analysis" / "quarantine_battery_results.json"
@@ -219,6 +223,11 @@ NEGATIVE_FIXTURE_MODULES = frozenset(
 )
 CUSTOMFEED_FIXTURE = REPO_ROOT / ".docs" / "analysis" / "fixtures" / "customfeed_smoke.txt"
 MODULE_EXTRA_OPTS: Dict[str, Dict[str, Any]] = {}
+
+
+def _refresh_tool_module_opts() -> None:
+    load_wsl_cli_manifest()
+    MODULE_EXTRA_OPTS.update(quarantine_cli_module_opts())
 _customfeed_server: Optional[ThreadingHTTPServer] = None
 _customfeed_server_lock = threading.Lock()
 TOOL_MODULES = frozenset(m for m in MODULE_PROBES if m.startswith("sfp_tool_"))
@@ -680,6 +689,7 @@ def main() -> int:
 
     if args.local:
         ensure_venv_scripts_on_path()
+    _refresh_tool_module_opts()
 
     results = run_battery(args.api_base, args.timeout, local=args.local, only=args.only)
     report = {

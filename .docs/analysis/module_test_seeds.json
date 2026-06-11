@@ -2172,11 +2172,12 @@
       "INTERNET_NAME": {
         "input_value": "example.com",
         "region": "global",
-        "validation": "blocked-tool",
-        "last_verdict": "error_failed",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
         "last_produced_count": 0,
         "notes": "",
-        "upstream_blocked": true
+        "validated_negative": true,
+        "fixture_kind": "negative"
       }
     },
     "sfp_tool_dnstwist": {
@@ -2194,12 +2195,13 @@
       "IP_ADDRESS": {
         "input_value": "127.0.0.1",
         "region": "global",
-        "validation": "blocked-tool",
-        "last_verdict": "error_failed",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
         "last_produced_count": 0,
         "notes": "",
-        "upstream_blocked": true,
-        "service_state_note": "error_failed"
+        "service_state_note": "error_failed",
+        "validated_negative": true,
+        "fixture_kind": "negative"
       }
     },
     "sfp_tool_nmap": {
@@ -2231,11 +2233,12 @@
       "IP_ADDRESS": {
         "input_value": "127.0.0.1",
         "region": "global",
-        "validation": "blocked-tool",
-        "last_verdict": "error_failed",
+        "validation": "smoke",
+        "last_verdict": "clean_miss",
         "last_produced_count": 0,
         "notes": "",
-        "upstream_blocked": true
+        "validated_negative": true,
+        "fixture_kind": "negative"
       }
     },
     "sfp_tool_retirejs": {
@@ -2274,11 +2277,11 @@
       "INTERNET_NAME": {
         "input_value": "example.com",
         "region": "global",
-        "validation": "blocked-tool",
-        "last_verdict": "clean_miss",
-        "last_produced_count": 0,
-        "notes": "",
-        "upstream_blocked": true
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 5,
+        "notes": "status=UNKNOWN; verdict=hit; produced=5",
+        "validated_produces": true
       }
     },
     "sfp_tool_trufflehog": {
@@ -2321,9 +2324,9 @@
         "input_value": "example.com",
         "region": "global",
         "validation": "blocked-tool",
-        "last_verdict": "error_failed",
+        "last_verdict": "tool_missing",
         "last_produced_count": 0,
-        "notes": "",
+        "notes": "Legacy AliasIO cli.js not installable via current npm; WSL git clone blocked in dev — SPEC_GAP retire or vendor cli.js",
         "upstream_blocked": true
       }
     },
@@ -2331,11 +2334,11 @@
       "INTERNET_NAME": {
         "input_value": "example.com",
         "region": "global",
-        "validation": "blocked-tool",
-        "last_verdict": "error_failed",
-        "last_produced_count": 0,
-        "notes": "",
-        "upstream_blocked": true
+        "validation": "smoke",
+        "last_verdict": "hit",
+        "last_produced_count": 7,
+        "notes": "status=UNKNOWN; verdict=hit; produced=7",
+        "validated_produces": true
       }
     },
     "sfp_webanalytics": {

@@ -1,6 +1,18 @@
 # WSL Ruby CLI tools runbook (Stage 5)
 
-Windows-native installs for **CMSeeK**, **testssl.sh**, and **WhatWeb** are fragile. Use **WSL2 (Ubuntu)** for smoke validation and battery runs.
+Windows-native installs for the six quarantine CLI tools are fragile. Use **WSL2 (`Ubuntu-22.04`)** for smoke validation and battery runs.
+
+**One-command install (Windows):**
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .seed/scripts/install_wsl_cli_tools.ps1
+```
+
+**Run battery (WSL — uses a Linux-only Poetry venv, does not touch Windows `.venv`):**
+
+```powershell
+wsl -d Ubuntu-22.04 bash /mnt/c/projects/spiderfeet/.seed/scripts/run_wsl_quarantine_battery.sh
+```
 
 **Spec:** SPEC-003 R3-05-07  
 **Related issues:** SF-05-14 (WSL Ruby CLI batch)
@@ -8,7 +20,7 @@ Windows-native installs for **CMSeeK**, **testssl.sh**, and **WhatWeb** are frag
 ## Prerequisites
 
 ```powershell
-wsl --install -d Ubuntu
+wsl --install -d Ubuntu-22.04
 # Reboot if prompted; create Linux user
 ```
 
