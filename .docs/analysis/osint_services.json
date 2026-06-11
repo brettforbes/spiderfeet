@@ -399,7 +399,7 @@
   },
   {
     "module_id": "sfp_accounts",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Account Finder",
     "summary": "Look for possible associated accounts on over 500 social and other websites such as Instagram, Reddit, etc.",
     "flags": [],
@@ -432,7 +432,7 @@
       "SIMILAR_ACCOUNT_EXTERNAL"
     ],
     "consumption_group": "email_identity_bundle",
-    "route_seed_nugget": "DOMAIN_NAME",
+    "route_seed_nugget": "EMAILADDR",
     "module_opts": [
       {
         "name": "_maxthreads",
@@ -1106,7 +1106,7 @@
   },
   {
     "module_id": "sfp_base64",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Base64 Decoder",
     "summary": "Identify Base64-encoded strings in URLs, often revealing interesting hidden information.",
     "flags": [],
@@ -1463,7 +1463,7 @@
   },
   {
     "module_id": "sfp_binstring",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Binary String Extractor",
     "summary": "Attempt to identify strings in binary content.",
     "flags": [
@@ -1536,7 +1536,7 @@
   },
   {
     "module_id": "sfp_bitcoin",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Bitcoin Finder",
     "summary": "Identify bitcoin addresses in scraped webpages.",
     "flags": [],
@@ -2890,7 +2890,7 @@
   },
   {
     "module_id": "sfp_company",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Company Name Extractor",
     "summary": "Identify company names in any obtained data.",
     "flags": [],
@@ -2939,7 +2939,7 @@
   },
   {
     "module_id": "sfp_cookie",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Cookie Extractor",
     "summary": "Extract Cookies from HTTP headers.",
     "flags": [],
@@ -2975,7 +2975,7 @@
   },
   {
     "module_id": "sfp_countryname",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Country Name Extractor",
     "summary": "Identify country names in any obtained data.",
     "flags": [],
@@ -3014,7 +3014,7 @@
       "COUNTRY_NAME"
     ],
     "consumption_group": "domain_and_hostname",
-    "route_seed_nugget": "DOMAIN_NAME",
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
     "module_opts": [
       {
         "name": "affiliate",
@@ -3046,7 +3046,7 @@
   },
   {
     "module_id": "sfp_creditcard",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Credit Card Number Extractor",
     "summary": "Identify Credit Card Numbers in any data",
     "flags": [
@@ -3139,7 +3139,7 @@
   },
   {
     "module_id": "sfp_crossref",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Cross-Referencer",
     "summary": "Identify whether other domains are associated ('Affiliates') of the target by looking for links back to the target site(s).",
     "flags": [],
@@ -3290,7 +3290,7 @@
   },
   {
     "module_id": "sfp_customfeed",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Custom Threat Feed",
     "summary": "Check if a host/domain, netblock, ASN or IP is malicious according to your custom feed.",
     "flags": [],
@@ -3639,7 +3639,7 @@
   },
   {
     "module_id": "sfp_dnsbrute",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "DNS Brute-forcer",
     "summary": "Attempts to identify hostnames through brute-forcing common names and iterations.",
     "flags": [],
@@ -3668,7 +3668,7 @@
       "INTERNET_NAME"
     ],
     "consumption_group": "domain_and_hostname",
-    "route_seed_nugget": "INTERNET_NAME",
+    "route_seed_nugget": "DOMAIN_NAME",
     "module_opts": [
       {
         "name": "_maxthreads",
@@ -3718,7 +3718,7 @@
   },
   {
     "module_id": "sfp_dnscommonsrv",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "DNS Common SRV",
     "summary": "Attempts to identify hostnames through brute-forcing common DNS SRV records.",
     "flags": [
@@ -3750,7 +3750,7 @@
       "AFFILIATE_INTERNET_NAME"
     ],
     "consumption_group": "domain_and_hostname",
-    "route_seed_nugget": "INTERNET_NAME",
+    "route_seed_nugget": "DOMAIN_NAME",
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test"
@@ -3938,7 +3938,7 @@
   },
   {
     "module_id": "sfp_dnsneighbor",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "DNS Look-aside",
     "summary": "Attempt to reverse-resolve the IP addresses next to your target to see if they are related.",
     "flags": [],
@@ -3987,7 +3987,7 @@
   },
   {
     "module_id": "sfp_dnsraw",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "DNS Raw Records",
     "summary": "Retrieves raw DNS records such as MX, TXT and others.",
     "flags": [],
@@ -4026,7 +4026,7 @@
       "AFFILIATE_INTERNET_NAME_UNRESOLVED"
     ],
     "consumption_group": "domain_and_hostname",
-    "route_seed_nugget": "INTERNET_NAME",
+    "route_seed_nugget": "DOMAIN_NAME",
     "module_opts": [
       {
         "name": "verify",
@@ -4040,7 +4040,7 @@
   },
   {
     "module_id": "sfp_dnsresolve",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "DNS Resolver",
     "summary": "Resolves hosts and IP addresses identified, also extracted from raw content.",
     "flags": [],
@@ -4142,7 +4142,7 @@
   },
   {
     "module_id": "sfp_dnszonexfer",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "DNS Zone Transfer",
     "summary": "Attempts to perform a full DNS zone transfer.",
     "flags": [],
@@ -4312,7 +4312,7 @@
   },
   {
     "module_id": "sfp_email",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "E-Mail Address Extractor",
     "summary": "Identify e-mail addresses in any obtained data.",
     "flags": [],
@@ -4592,7 +4592,7 @@
   },
   {
     "module_id": "sfp_errors",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Error String Extractor",
     "summary": "Identify common error messages in content like SQL errors, etc.",
     "flags": [],
@@ -4627,7 +4627,7 @@
   },
   {
     "module_id": "sfp_ethereum",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Ethereum Address Extractor",
     "summary": "Identify ethereum addresses in scraped webpages.",
     "flags": [],
@@ -4723,7 +4723,7 @@
   },
   {
     "module_id": "sfp_filemeta",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "File Metadata Extractor",
     "summary": "Extracts meta data from documents and images.",
     "flags": [],
@@ -6163,7 +6163,7 @@
   },
   {
     "module_id": "sfp_hashes",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Hash Extractor",
     "summary": "Identify MD5 and SHA hashes in web content, files and more.",
     "flags": [],
@@ -6365,7 +6365,7 @@
   },
   {
     "module_id": "sfp_hosting",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Hosting Provider Identifier",
     "summary": "Find out if any IP addresses identified fall within known 3rd party hosting ranges, e.g. Amazon, Azure, etc.",
     "flags": [],
@@ -6583,7 +6583,7 @@
   },
   {
     "module_id": "sfp_iban",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "IBAN Number Extractor",
     "summary": "Identify International Bank Account Numbers (IBANs) in any data.",
     "flags": [
@@ -6795,7 +6795,7 @@
   },
   {
     "module_id": "sfp_intfiles",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Interesting File Finder",
     "summary": "Identifies potential files of interest, e.g. office documents, zip files.",
     "flags": [],
@@ -7287,7 +7287,7 @@
   },
   {
     "module_id": "sfp_junkfiles",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Junk File Finder",
     "summary": "Looks for old/temporary and other similar files.",
     "flags": [
@@ -7991,7 +7991,7 @@
   },
   {
     "module_id": "sfp_names",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Human Name Extractor",
     "summary": "Attempt to identify human names in fetched content.",
     "flags": [
@@ -8026,7 +8026,7 @@
       "HUMAN_NAME"
     ],
     "consumption_group": "email_identity_bundle",
-    "route_seed_nugget": "EMAILADDR",
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
     "module_opts": [
       {
         "name": "algolimit",
@@ -8811,7 +8811,7 @@
   },
   {
     "module_id": "sfp_pageinfo",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Page Information",
     "summary": "Obtain information about web pages (do they take passwords, do they contain forms, etc.)",
     "flags": [],
@@ -8917,7 +8917,7 @@
   },
   {
     "module_id": "sfp_pgp",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "PGP Key Servers",
     "summary": "Look up domains and e-mail addresses in PGP public key servers.",
     "flags": [],
@@ -8951,7 +8951,7 @@
       "PGP_KEY"
     ],
     "consumption_group": "email_identity_bundle",
-    "route_seed_nugget": "INTERNET_NAME",
+    "route_seed_nugget": "EMAILADDR",
     "module_opts": [
       {
         "name": "keyserver_fetch1",
@@ -9128,7 +9128,7 @@
   },
   {
     "module_id": "sfp_phone",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Phone Number Extractor",
     "summary": "Identify phone numbers in scraped webpages.",
     "flags": [],
@@ -9161,14 +9161,14 @@
       "PROVIDER_TELCO"
     ],
     "consumption_group": "other",
-    "route_seed_nugget": "PHONE_NUMBER",
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test"
   },
   {
     "module_id": "sfp_portscan_tcp",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Port Scanner - TCP",
     "summary": "Scans for commonly open TCP ports on Internet-facing systems.",
     "flags": [
@@ -10160,7 +10160,7 @@
   },
   {
     "module_id": "sfp_similar",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Similar Domain Finder",
     "summary": "Search various sources to identify similar looking domain names, for instance squatted domains.",
     "flags": [],
@@ -10188,7 +10188,7 @@
       "SIMILARDOMAIN"
     ],
     "consumption_group": "domain",
-    "route_seed_nugget": "DOMAIN_NAME",
+    "route_seed_nugget": "INTERNET_NAME",
     "module_opts": [
       {
         "name": "skipwildcards",
@@ -10342,7 +10342,7 @@
   },
   {
     "module_id": "sfp_social",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Social Network Identifier",
     "summary": "Identify presence on social media networks such as LinkedIn, Twitter and others.",
     "flags": [],
@@ -10751,7 +10751,7 @@
   },
   {
     "module_id": "sfp_spider",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Web Spider",
     "summary": "Spidering of web-pages to extract content for searching.",
     "flags": [
@@ -11048,7 +11048,7 @@
   },
   {
     "module_id": "sfp_sslcert",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "SSL Certificate Analyzer",
     "summary": "Gather information about SSL certificates used by the target's HTTPS sites.",
     "flags": [],
@@ -11234,7 +11234,7 @@
   },
   {
     "module_id": "sfp_strangeheaders",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Strange Header Identifier",
     "summary": "Obtain non-standard HTTP headers returned by web servers.",
     "flags": [],
@@ -11269,7 +11269,7 @@
   },
   {
     "module_id": "sfp_subdomain_takeover",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Subdomain Takeover Checker",
     "summary": "Check if affiliated subdomains are vulnerable to takeover.",
     "flags": [],
@@ -11981,7 +11981,7 @@
   },
   {
     "module_id": "sfp_tldsearch",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "TLD Searcher",
     "summary": "Search all Internet TLDs for domains with the same name as the target (this can be very slow.)",
     "flags": [
@@ -12010,7 +12010,7 @@
       "SIMILARDOMAIN"
     ],
     "consumption_group": "hostname",
-    "route_seed_nugget": "INTERNET_NAME",
+    "route_seed_nugget": "DOMAIN_NAME",
     "module_opts": [
       {
         "name": "_maxthreads",
@@ -12036,7 +12036,7 @@
   },
   {
     "module_id": "sfp_tool_cmseek",
-    "service_origin": "quarantine",
+    "service_origin": "cli",
     "name": "Tool - CMSeeK",
     "summary": "Identify what Content Management System (CMS) might be used.",
     "flags": [
@@ -12161,7 +12161,7 @@
   },
   {
     "module_id": "sfp_tool_nbtscan",
-    "service_origin": "quarantine",
+    "service_origin": "cli",
     "name": "Tool - nbtscan",
     "summary": "Scans for open NETBIOS nameservers on your target's network.",
     "flags": [
@@ -12381,7 +12381,7 @@
   },
   {
     "module_id": "sfp_tool_onesixtyone",
-    "service_origin": "quarantine",
+    "service_origin": "cli",
     "name": "Tool - onesixtyone",
     "summary": "Fast scanner to find publicly exposed SNMP services.",
     "flags": [
@@ -12571,7 +12571,7 @@
   },
   {
     "module_id": "sfp_tool_testsslsh",
-    "service_origin": "quarantine",
+    "service_origin": "cli",
     "name": "Tool - testssl.sh",
     "summary": "Identify various TLS/SSL weaknesses, including Heartbleed, CRIME and ROBOT.",
     "flags": [
@@ -12777,7 +12777,7 @@
   },
   {
     "module_id": "sfp_tool_wappalyzer",
-    "service_origin": "quarantine",
+    "service_origin": "cli",
     "name": "Tool - Wappalyzer",
     "summary": "Wappalyzer indentifies technologies on websites.",
     "flags": [
@@ -12839,7 +12839,7 @@
   },
   {
     "module_id": "sfp_tool_whatweb",
-    "service_origin": "quarantine",
+    "service_origin": "cli",
     "name": "Tool - WhatWeb",
     "summary": "Identify what software is in use on the specified website.",
     "flags": [
@@ -13702,7 +13702,7 @@
   },
   {
     "module_id": "sfp_webanalytics",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Web Analytics Extractor",
     "summary": "Identify web analytics IDs in scraped webpages and DNS TXT records.",
     "flags": [],
@@ -13739,7 +13739,7 @@
   },
   {
     "module_id": "sfp_webframework",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Web Framework Identifier",
     "summary": "Identify the usage of popular web frameworks like jQuery, YUI and others.",
     "flags": [],
@@ -13774,7 +13774,7 @@
   },
   {
     "module_id": "sfp_webserver",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Web Server Identifier",
     "summary": "Obtain web server banners to identify versions of web servers being used.",
     "flags": [],
@@ -13880,7 +13880,7 @@
   },
   {
     "module_id": "sfp_whois",
-    "service_origin": "quarantine",
+    "service_origin": "local",
     "name": "Whois",
     "summary": "Perform a WHOIS look-up on domain names and owned netblocks.",
     "flags": [],

@@ -44,6 +44,18 @@ These can be installed into the project venv for local battery runs:
 
 `dnstwist`, `wafw00f`, and `snallygaster` modules auto-resolve via `shutil.which()` when the binary is on PATH.
 
+## Ruby / bash tools (WSL recommended on Windows)
+
+`cmseek`, `testssl.sh`, and `whatweb` are unreliable as native Windows binaries. Use WSL2:
+
+See **`.docs/analysis/wsl_ruby_cli_runbook.md`** (SF-05-14).
+
+| Module | Binary | WSL |
+|--------|--------|-----|
+| `sfp_tool_cmseek` | `cmseek` | Yes |
+| `sfp_tool_testsslsh` | `testssl.sh` | Yes |
+| `sfp_tool_whatweb` | `whatweb` | Yes |
+
 ## System / manual install
 
 | Module | Binary | Reference |

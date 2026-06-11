@@ -295,6 +295,12 @@ def local_data_source(module_id: str, meta: dict) -> dict[str, Any]:
     }
 
 
+def classify_service_origin(module_id: str, *, external_api: bool) -> str:
+    from spiderfeet.map.service_classification import service_origin_for_module_id
+
+    return service_origin_for_module_id(module_id, external_api=external_api)
+
+
 def build_service_record(
     module_id: str,
     meta: dict,
@@ -303,7 +309,8 @@ def build_service_record(
     module_opts: list[dict[str, Any]],
     *,
     data_source: dict[str, Any] | None = None,
-    service_origin: str = "external",
+    service_origin: str = "external-api",
+    service_state: str = "in-test",
 ) -> dict:
     """Flatten meta onto the service root and snake_case all field names."""
     raw = snake_case_keys({
@@ -331,7 +338,7 @@ def build_service_record(
         "route_seed_nugget": route_seed_nugget(consumed),
         "module_opts": module_opts,
         "fixture_category": "positive",
-        "service_state": "in-test",
+        "service_state": service_state,
         **({"tool_details": raw["tool_details"]} if "tool_details" in raw else {}),
     }
 
@@ -349,7 +356,7 @@ def build_service(
         watched_events,
         produced_events,
         module_opts,
-        service_origin="external",
+        service_origin=classify_service_origin(module_id, external_api=True),
     )
     rec.pop("fixture_category", None)
     rec.pop("service_state", None)
@@ -546,15 +553,20 @@ def parse_quarantine_module(path: Path) -> dict | None:
     optdescs = parse_class_dict(plugin_class, "optdescs") or {}
     module_opts = merge_module_opts(opts, optdescs)
 
-    return build_service_record(
-        path.stem,
+    module_id = path.stem
+    record = build_service_record(
+        module_id,
         meta,
         watched_events,
         produced_events,
         module_opts,
-        data_source=local_data_source(path.stem, meta),
-        service_origin="quarantine",
+        data_source=local_data_source(module_id, meta),
+        service_origin=classify_service_origin(module_id, external_api=False),
+        service_state="quarantine",
     )
+    if overrides.get("route_seed_nugget"):
+        record["route_seed_nugget"] = str(overrides["route_seed_nugget"])
+    return record
 
 
 def analyse_quarantine_modules() -> list[dict]:

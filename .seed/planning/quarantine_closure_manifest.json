@@ -1,0 +1,68 @@
+{
+  "parent_epic": 722,
+  "plan": ".docs\\analysis\\quarantine_test_closure_plan.md",
+  "issues": {
+    "SF-05-12": 804,
+    "SF-05-13": 805,
+    "SF-05-14": 806,
+    "SF-05-15": 807
+  },
+  "batches": {
+    "SF-05-12": {
+      "modules": [
+        "sfp_accounts",
+        "sfp_countryname",
+        "sfp_crossref",
+        "sfp_dnsbrute",
+        "sfp_dnscommonsrv",
+        "sfp_dnsneighbor",
+        "sfp_dnsraw",
+        "sfp_dnszonexfer",
+        "sfp_hosting",
+        "sfp_junkfiles",
+        "sfp_names",
+        "sfp_phone",
+        "sfp_pgp",
+        "sfp_similar",
+        "sfp_social",
+        "sfp_subdomain_takeover",
+        "sfp_tldsearch",
+        "sfp_tool_retirejs"
+      ],
+      "title": "Quarantine batch: route seed alignment (18 modules)"
+    },
+    "SF-05-13": {
+      "modules": [
+        "sfp_binstring",
+        "sfp_cookie",
+        "sfp_customfeed",
+        "sfp_errors",
+        "sfp_iban",
+        "sfp_intfiles",
+        "sfp_pageinfo",
+        "sfp_sslcert",
+        "sfp_strangeheaders",
+        "sfp_webanalytics",
+        "sfp_webframework",
+        "sfp_webserver"
+      ],
+      "title": "Quarantine batch: content extractor seed tuning (12 modules)"
+    },
+    "SF-05-14": {
+      "modules": [
+        "sfp_tool_cmseek",
+        "sfp_tool_testsslsh",
+        "sfp_tool_whatweb"
+      ],
+      "title": "Quarantine: WSL Ruby CLI install (cmseek, testssl.sh, whatweb)"
+    },
+    "SF-05-15": {
+      "modules": [
+        "sfp_tool_nbtscan",
+        "sfp_tool_onesixtyone",
+        "sfp_tool_wappalyzer"
+      ],
+      "title": "Quarantine: blocked native CLI resolution (nbtscan, onesixtyone, wappalyzer)"
+    }
+  }
+}

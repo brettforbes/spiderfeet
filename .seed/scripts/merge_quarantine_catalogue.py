@@ -16,6 +16,17 @@ from analyse_modules import analyse_quarantine_modules  # noqa: E402
 CATALOGUE = REPO_ROOT / ".docs" / "analysis" / "osint_services.json"
 STAGING = REPO_ROOT / ".docs" / "analysis" / "quarantine_services.json"
 
+# Refresh these fields from quarantine extract without demoting promoted modules.
+_QUARANTINE_SYNC_KEYS = (
+    "route_seed_nugget",
+    "consumed_nuggets",
+    "produced_nuggets",
+    "consumption_group",
+    "module_opts",
+    "fixture_category",
+    "service_origin",
+)
+
 
 def merge(*, write: bool, use_staging: bool) -> tuple[int, int, int]:
     if use_staging and STAGING.is_file():
@@ -30,9 +41,18 @@ def merge(*, write: bool, use_staging: bool) -> tuple[int, int, int]:
     for svc in quarantine:
         mid = str(svc["module_id"])
         if mid in by_id:
-            if by_id[mid].get("service_origin") != "quarantine":
-                by_id[mid]["service_origin"] = "quarantine"
-                updated += 1
+            row = by_id[mid]
+            origin = str(row.get("service_origin") or "")
+            # Battery-promoted CLI tools: do not overwrite catalogue row.
+            if row.get("service_state") == "in-test" and (
+                origin in ("cli", "local")
+                or (origin in ("external", "external-api") and mid.startswith("sfp_tool_"))
+            ):
+                continue
+            for key in _QUARANTINE_SYNC_KEYS:
+                if key in svc:
+                    row[key] = svc[key]
+            updated += 1
             continue
         by_id[mid] = svc
         added += 1

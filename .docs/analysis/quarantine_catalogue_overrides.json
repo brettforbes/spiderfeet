@@ -1,6 +1,75 @@
 {
+  "sfp_accounts": {
+    "route_seed_nugget": "EMAILADDR",
+    "notes": "Primary smoke path is e-mail identity lookup; DOMAIN_NAME is secondary."
+  },
+  "sfp_countryname": {
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
+    "notes": "Validates on scraped page text, not domain root scan."
+  },
+  "sfp_crossref": {
+    "route_seed_nugget": "LINKED_URL_EXTERNAL",
+    "notes": "Module watches external URLs; INTERNET_NAME seed was wrong nugget."
+  },
   "sfp_dnsbrute": {
     "consumed_nuggets": ["DOMAIN_NAME", "INTERNET_NAME"],
-    "notes": "watchedEvents() is conditional; defaults domainonly=true and numbersuffix=true include both."
+    "route_seed_nugget": "DOMAIN_NAME",
+    "notes": "watchedEvents() is conditional; defaults include DOMAIN_NAME. Validated on DOMAIN_NAME."
+  },
+  "sfp_dnscommonsrv": {
+    "route_seed_nugget": "DOMAIN_NAME",
+    "notes": "SRV brute-force is domain-scoped; seed registered on DOMAIN_NAME."
+  },
+  "sfp_dnsneighbor": {
+    "route_seed_nugget": "IP_ADDRESS",
+    "notes": "watchedEvents is IP_ADDRESS only; NETBLOCK_MEMBER seed was invalid."
+  },
+  "sfp_dnsraw": {
+    "route_seed_nugget": "DOMAIN_NAME",
+    "notes": "Validated MX/TXT probe uses DOMAIN_NAME."
+  },
+  "sfp_dnszonexfer": {
+    "route_seed_nugget": "PROVIDER_DNS",
+    "notes": "watchedEvents is PROVIDER_DNS; zone transfer follows NS discovery."
+  },
+  "sfp_hosting": {
+    "route_seed_nugget": "IP_ADDRESS",
+    "notes": "ipcat lookup is IP-scoped; TARGET_WEB_CONTENT seed was wrong nugget."
+  },
+  "sfp_junkfiles": {
+    "route_seed_nugget": "LINKED_URL_INTERNAL",
+    "notes": "Crawler emits LINKED_URL_INTERNAL; INTERNET_NAME seed was wrong nugget."
+  },
+  "sfp_names": {
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
+    "notes": "Name extraction runs on page content; EMAILADDR priority was misleading."
+  },
+  "sfp_phone": {
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
+    "notes": "Phone extraction from HTML; PHONE_NUMBER route was wrong for smoke."
+  },
+  "sfp_pgp": {
+    "route_seed_nugget": "EMAILADDR",
+    "notes": "Validated on e-mail keyserver lookup."
+  },
+  "sfp_similar": {
+    "route_seed_nugget": "INTERNET_NAME",
+    "notes": "Similar-domain search validated on hostname input."
+  },
+  "sfp_social": {
+    "route_seed_nugget": "LINKED_URL_EXTERNAL",
+    "notes": "Social links parsed from external URLs."
+  },
+  "sfp_subdomain_takeover": {
+    "route_seed_nugget": "AFFILIATE_INTERNET_NAME",
+    "notes": "watchedEvents is affiliate hostname only."
+  },
+  "sfp_tldsearch": {
+    "route_seed_nugget": "DOMAIN_NAME",
+    "notes": "TLD permutation search is domain-scoped; allow extended timeout."
+  },
+  "sfp_tool_retirejs": {
+    "route_seed_nugget": "LINKED_URL_INTERNAL",
+    "notes": "retire.js validated on internal page URL."
   }
 }
