@@ -71,5 +71,13 @@
   "sfp_tool_retirejs": {
     "route_seed_nugget": "LINKED_URL_INTERNAL",
     "notes": "retire.js validated on internal page URL."
+  },
+  "sfp_webanalytics": {
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
+    "notes": "HTML meta verification tag is a reliable smoke path; DNS_TEXT regex needs 43+ char token."
+  },
+  "sfp_iban": {
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
+    "notes": "IBAN extraction from page content is the reliable smoke path."
   }
 }

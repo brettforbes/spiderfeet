@@ -51,9 +51,13 @@ class sfp_subdomain_takeover(SpiderFeetPlugin):
         for opt in userOpts.keys():
             self.opts[opt] = userOpts[opt]
 
-        content = self.sf.cacheGet("subjack-fingerprints", 48)
+        cache_key = "takeover-fingerprints-v2"
+        content = self.sf.cacheGet(cache_key, 48)
         if content is None:
-            url = "https://raw.githubusercontent.com/haccer/subjack/master/fingerprints.json"
+            url = (
+                "https://raw.githubusercontent.com/EdOverflow/"
+                "can-i-take-over-xyz/master/fingerprints.json"
+            )
             res = self.sf.fetchUrl(url, useragent="SpiderFeet")
 
             if res['content'] is None:
@@ -61,7 +65,7 @@ class sfp_subdomain_takeover(SpiderFeetPlugin):
                 self.errorState = True
                 return
 
-            self.sf.cachePut("subjack-fingerprints", res['content'])
+            self.sf.cachePut(cache_key, res['content'])
             content = res['content']
 
         try:

@@ -110,6 +110,7 @@ class sfp_dnscommonsrv(SpiderFeetPlugin):
         self.events[eventDataHash] = True
 
         res = dns.resolver.Resolver()
+        res.lifetime = 10
         if self.opts.get('_dnsserver', "") != "":
             res.nameservers = [self.opts['_dnsserver']]
 
@@ -127,7 +128,7 @@ class sfp_dnscommonsrv(SpiderFeetPlugin):
                 continue
 
             try:
-                answers = res.query(name, 'SRV', timeout=10)
+                answers = res.resolve(name, 'SRV')
             except Exception:
                 answers = []
 

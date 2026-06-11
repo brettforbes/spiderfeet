@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T00:05:33.548139+00:00",
+  "generated_at": "2026-06-11T04:27:11.941937+00:00",
   "api_base": "http://127.0.0.1:8001/api/v1",
   "module_count": 1,
   "summary": {
@@ -7,18 +7,18 @@
   },
   "results": [
     {
-      "module_id": "sfp_tool_nuclei",
-      "consumed_nugget_id": "INTERNET_NAME",
+      "module_id": "sfp_tldsearch",
+      "consumed_nugget_id": "DOMAIN_NAME",
       "input_value": "example.com",
       "status": "UNKNOWN",
       "verdict": "hit",
-      "produced_count": 29,
+      "produced_count": 3,
       "validated_produces": true,
       "validated_negative": false,
-      "scan_id": "DBB54683",
+      "scan_id": "1021E611",
       "classification": "validated_hit",
       "fixture_kind": "positive",
-      "notes": "status=UNKNOWN; verdict=hit; produced=29"
+      "notes": "status=UNKNOWN; verdict=hit; produced=3"
     }
   ]
 }
