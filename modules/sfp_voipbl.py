@@ -31,7 +31,7 @@ class sfp_voipbl(SpiderFeetPlugin):
                 "https://voipbl.org/#install",
                 "https://voipbl.org/#advanced"
             ],
-            'favIcon': "",
+            'favIcon': 'icons/icon_service_voipbl.svg',
             'logo': "https://voipbl.org/images/scopserv.png",
             'description': "VoIPBL is a distributed VoIP blacklist that is aimed to protect against\n"
             "VoIP Fraud and minimizing abuse for network that have publicly accessible PBXs."

@@ -35,15 +35,16 @@ def test_build_service_insert_queries():
             "access_tier": "free_no_auth",
             "consumed_nuggets": ["INTERNET_NAME"],
             "produced_nuggets": ["IP_ADDRESS"],
-            "service_origin": "quarantine",
-            "data_source": {"website": "https://example.com", "model": "FREE_NOAUTH_LIMITED"},
+            "service_origin": "local",
+            "service_state": "quarantine",
+            "data_source": {"website": "spiderfeet://local/sfp_dnsresolve", "model": "LOCAL_NOAUTH"},
         }
     )
     assert len(queries) >= 2
     assert "isa sfp-dnsresolve" in queries[0]
     assert 'has module_id "sfp_dnsresolve"' in queries[0]
-    assert 'has service_state "in-test"' in queries[0]
-    assert 'has service_origin "quarantine"' in queries[0]
+    assert 'has service_state "quarantine"' in queries[0]
+    assert 'has service_origin "local"' in queries[0]
     assert 'has fixture_category "positive"' in queries[0]
     assert "links (consumed: $nug0)" in queries[0]
     assert "links (produced: $nug1)" in queries[0]

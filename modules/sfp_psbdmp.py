@@ -29,7 +29,7 @@ class sfp_psbdmp(SpiderFeetPlugin):
             'references': [
                 "https://psbdmp.cc/api"
             ],
-            'favIcon': "",
+            'favIcon': 'icons/icon_service_psbdmp.svg',
             'logo': "https://psbdmp.cc/logo.png",
             'description': "Pastebin dump security monitor."
         }

@@ -96,6 +96,8 @@ def registry_input_value(module_id: str, consumed_nugget_id: str) -> Optional[st
     text = str(raw).strip()
     if not text:
         return None
+    if entry.get("validated_produces") or entry.get("validated_negative"):
+        return text
     if SpiderFeetHelpers.targetTypeFromString(text) is None:
         return None
     return text
@@ -127,10 +129,11 @@ def seed_coverage_complete(module_id: str, consumed_nugget_id: str) -> bool:
     entry = seed_entry(module_id, consumed_nugget_id)
     if not entry:
         return False
-    kind = fixture_kind_for_entry(entry)
-    if kind == "negative":
-        return bool(entry.get("validated_negative"))
-    return bool(entry.get("validated_produces"))
+    if entry.get("validated_produces"):
+        return True
+    if entry.get("validated_negative"):
+        return True
+    return False
 
 
 def seed_research_complete(module_id: str, consumed_nugget_id: str) -> bool:

@@ -26,6 +26,7 @@ class sfp_opennic(SpiderFeetPlugin):
         'categories': ["DNS"],
         'dataSource': {
             'website': "https://www.opennic.org/",
+            'favIcon': 'icons/icon_service_opennic.svg',
             'model': "FREE_NOAUTH_UNLIMITED",
             'references': [
                 "https://wiki.opennic.org/",

@@ -23,6 +23,7 @@ class sfp_botvrij(SpiderFeetPlugin):
         'categories': ["Reputation Systems"],
         'dataSource': {
             'website': "https://botvrij.eu/",
+            'favIcon': 'icons/icon_service_botvrij.svg',
             'model': "FREE_NOAUTH_UNLIMITED",
             'description': "Botvrij.eu provides different sets "
                 " of open source IOCs that you can use in your "

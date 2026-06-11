@@ -27,6 +27,7 @@ class sfp_dnsdumpster(SpiderFeetPlugin):
         "categories": ["Passive DNS"],
         "dataSource": {
             "website": "https://dnsdumpster.com/",
+            "favIcon": "icons/icon_service_dnsdumpster.svg",
             "model": "FREE_NOAUTH_UNLIMITED",
             "description": "DNSdumpster.com is a FREE domain research tool that can discover hosts related to a domain.",
         }

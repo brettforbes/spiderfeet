@@ -28,7 +28,7 @@ class sfp_openphish(SpiderFeetPlugin):
                 "https://openphish.com/faq.html",
                 "https://openphish.com/feed.txt"
             ],
-            'favIcon': "",
+            'favIcon': 'icons/icon_service_openphish.svg',
             'logo': "https://openphish.com/static/openphish_logo2.png",
             'description': "Timely. Accurate. Relevant Threat Intelligence.\n"
             "OpenPhish is a fully automated self-contained platform for phishing intelligence. "

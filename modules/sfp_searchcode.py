@@ -33,6 +33,7 @@ class sfp_searchcode(SpiderFeetPlugin):
                 "https://searchcode.com/api/",
             ],
             'website': "https://searchcode.com/",
+            'favIcon': 'icons/icon_service_searchcode.svg',
             'logo': "https://searchcode.com/static/small_logo.png",
             'description': "Simple, comprehensive code search."
         }

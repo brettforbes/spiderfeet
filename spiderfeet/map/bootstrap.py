@@ -19,6 +19,7 @@ from spiderfeet.map.constants import (
     SCHEMA_TQL,
 )
 from spiderfeet.map.fixture_categories import fixture_category_for_service
+from spiderfeet.map.service_classification import normalize_service_origin
 from spiderfeet.map.service_states import service_state_for_service
 from spiderfeet.map.naming import entity_type_for_nugget_id, relation_type_for_module_id
 from spiderfeet.map.typeql_util import (
@@ -115,7 +116,7 @@ def build_schema_extension_ddl(
     lines: List[str] = []
     if add_service_origin:
         lines.append(
-            '\tattribute service_origin, value string @values("external", "quarantine", "custom");'
+            '\tattribute service_origin, value string @values("external-api", "cli", "local");'
         )
         lines.append("\tosint-service owns service_origin;")
     for rel_type in relation_types:
@@ -205,7 +206,13 @@ def _json_list_has(attr: str, values: List[str]) -> Optional[str]:
 
 
 def _service_attr_lines(svc: Dict[str, Any], module_id: str) -> List[str]:
-    origin = str(svc.get("service_origin") or "external")
+    ds_model = (svc.get("data_source") or {}).get("model")
+    external_api = ds_model != "LOCAL_NOAUTH"
+    origin = normalize_service_origin(
+        str(svc.get("service_origin") or ""),
+        module_id=module_id,
+        external_api=external_api,
+    )
     attrs: List[str] = [
         f"has module_id {literal_string(module_id)}",
         f"has name {literal_string(svc.get('name', ''))}",

@@ -6616,7 +6616,7 @@
       "IBAN_NUMBER"
     ],
     "consumption_group": "web_url_content",
-    "route_seed_nugget": "DARKNET_MENTION_CONTENT",
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test"
@@ -12494,7 +12494,7 @@
       "VULNERABILITY_GENERAL"
     ],
     "consumption_group": "web_url_content",
-    "route_seed_nugget": "LINKED_URL_EXTERNAL",
+    "route_seed_nugget": "LINKED_URL_INTERNAL",
     "module_opts": [
       {
         "name": "retirejs_path",
@@ -13732,7 +13732,7 @@
       "WEB_ANALYTICS_ID"
     ],
     "consumption_group": "web_url_content",
-    "route_seed_nugget": "DNS_TEXT",
+    "route_seed_nugget": "TARGET_WEB_CONTENT",
     "module_opts": [],
     "fixture_category": "positive",
     "service_state": "in-test"

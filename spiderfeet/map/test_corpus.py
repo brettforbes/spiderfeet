@@ -9,7 +9,13 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
 from spiderfeet.map.constants import MODULE_TEST_SEEDS_JSON, REPO_ROOT
-from spiderfeet.map.routes_catalog import expand_module_tests_for_service, load_osint_services
+from spiderfeet.map.routes_catalog import (
+    ModuleTestDefinition,
+    expand_module_tests_for_service,
+    load_osint_services,
+    module_test_id,
+    route_name,
+)
 from spiderfeet.map.service_states import include_in_operator_ui
 from spiderfeet.map.subscriptions import subscription_status
 from spiderfeet.map.test_targets import (
@@ -158,11 +164,30 @@ def plan_validation_items(
         tests = expand_module_tests_for_service(svc)
         if not tests:
             continue
+        route_seed = svc.get("route_seed_nugget")
         primary = tests[0]
+        if route_seed:
+            matched = next(
+                (t for t in tests if t.consumed_nugget_id == route_seed),
+                None,
+            )
+            if matched:
+                primary = matched
+            else:
+                produced = tuple(svc.get("produced_nuggets") or [])
+                primary = ModuleTestDefinition(
+                    test_id=module_test_id(module_id, route_seed),
+                    module_id=module_id,
+                    consumed_nugget_id=route_seed,
+                    expected_produced_nugget_ids=produced,
+                    route_names=tuple(
+                        route_name(route_seed, pid, module_id) for pid in produced
+                    ),
+                )
         input_value = sample_target_for_module(
             module_id,
             primary.consumed_nugget_id,
-            svc.get("route_seed_nugget"),
+            route_seed,
         )
         if not input_value:
             continue
