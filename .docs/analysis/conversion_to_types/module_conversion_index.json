@@ -1,0 +1,1669 @@
+{
+  "module_count": 231,
+  "pattern_counts": {
+    "api_json_map": 112,
+    "api_text_or_html": 56,
+    "cli_subprocess_parse": 13,
+    "content_extract": 3,
+    "custom_logic": 17,
+    "dns_network_local": 19,
+    "regex_local": 11
+  },
+  "nugget_types_produced": 166,
+  "patterns": {
+    "api_json_map": [
+      "sfp_abstractapi",
+      "sfp_abuseipdb",
+      "sfp_accounts",
+      "sfp_alienvault",
+      "sfp_apple_itunes",
+      "sfp_archiveorg",
+      "sfp_arin",
+      "sfp_bgpview",
+      "sfp_binaryedge",
+      "sfp_bitcoinabuse",
+      "sfp_bitcoinwhoswho",
+      "sfp_blockchain",
+      "sfp_builtwith",
+      "sfp_c99",
+      "sfp_censys",
+      "sfp_certspotter",
+      "sfp_circllu",
+      "sfp_citadel",
+      "sfp_clearbit",
+      "sfp_commoncrawl",
+      "sfp_crobat_api",
+      "sfp_crt",
+      "sfp_crxcavator",
+      "sfp_debounce",
+      "sfp_dehashed",
+      "sfp_dnsdb",
+      "sfp_dnsgrep",
+      "sfp_duckduckgo",
+      "sfp_emailcrawlr",
+      "sfp_emailrep",
+      "sfp_etherscan",
+      "sfp_flickr",
+      "sfp_focsec",
+      "sfp_fraudguard",
+      "sfp_fsecure_riddler",
+      "sfp_fullcontact",
+      "sfp_fullhunt",
+      "sfp_github",
+      "sfp_gleif",
+      "sfp_googlemaps",
+      "sfp_googlesafebrowsing",
+      "sfp_gravatar",
+      "sfp_grayhatwarfare",
+      "sfp_grep_app",
+      "sfp_greynoise",
+      "sfp_greynoise_community",
+      "sfp_haveibeenpwned",
+      "sfp_hostio",
+      "sfp_hunter",
+      "sfp_hybrid_analysis",
+      "sfp_iknowwhatyoudownload",
+      "sfp_intelx",
+      "sfp_ipapico",
+      "sfp_ipapicom",
+      "sfp_ipinfo",
+      "sfp_ipqualityscore",
+      "sfp_ipregistry",
+      "sfp_ipstack",
+      "sfp_jsonwhoiscom",
+      "sfp_keybase",
+      "sfp_koodous",
+      "sfp_leakix",
+      "sfp_maltiverse",
+      "sfp_metadefender",
+      "sfp_mnemonic",
+      "sfp_nameapi",
+      "sfp_networksdb",
+      "sfp_neutrinoapi",
+      "sfp_numverify",
+      "sfp_onyphe",
+      "sfp_opencorporates",
+      "sfp_openstreetmap",
+      "sfp_phishstats",
+      "sfp_projectdiscovery",
+      "sfp_psbdmp",
+      "sfp_pulsedive",
+      "sfp_punkspider",
+      "sfp_ripe",
+      "sfp_riskiq",
+      "sfp_robtex",
+      "sfp_searchcode",
+      "sfp_securitytrails",
+      "sfp_seon",
+      "sfp_shodan",
+      "sfp_snov",
+      "sfp_sociallinks",
+      "sfp_spur",
+      "sfp_spyonweb",
+      "sfp_stackoverflow",
+      "sfp_subdomain_takeover",
+      "sfp_sublist3r",
+      "sfp_template",
+      "sfp_textmagic",
+      "sfp_threatcrowd",
+      "sfp_threatfox",
+      "sfp_threatjammer",
+      "sfp_threatminer",
+      "sfp_torexits",
+      "sfp_trashpanda",
+      "sfp_trumail",
+      "sfp_twilio",
+      "sfp_urlscan",
+      "sfp_venmo",
+      "sfp_viewdns",
+      "sfp_virustotal",
+      "sfp_whatcms",
+      "sfp_whoisology",
+      "sfp_whoxy",
+      "sfp_wigle",
+      "sfp_xforce",
+      "sfp_zetalytics",
+      "sfp_zonefiles"
+    ],
+    "api_text_or_html": [
+      "sfp_abusech",
+      "sfp_adblock",
+      "sfp_ahmia",
+      "sfp_alienvaultiprep",
+      "sfp_azureblobstorage",
+      "sfp_binstring",
+      "sfp_blocklistde",
+      "sfp_botscout",
+      "sfp_botvrij",
+      "sfp_callername",
+      "sfp_cinsscore",
+      "sfp_cleantalk",
+      "sfp_coinblocker",
+      "sfp_crossref",
+      "sfp_customfeed",
+      "sfp_cybercrimetracker",
+      "sfp_digitaloceanspace",
+      "sfp_dnsdumpster",
+      "sfp_emailformat",
+      "sfp_emergingthreats",
+      "sfp_filemeta",
+      "sfp_fortinet",
+      "sfp_google_tag_manager",
+      "sfp_googleobjectstorage",
+      "sfp_greensnow",
+      "sfp_h1nobbdde",
+      "sfp_hackertarget",
+      "sfp_hosting",
+      "sfp_isc",
+      "sfp_junkfiles",
+      "sfp_malwarepatrol",
+      "sfp_multiproxy",
+      "sfp_myspace",
+      "sfp_onioncity",
+      "sfp_onionsearchengine",
+      "sfp_openbugbounty",
+      "sfp_openphish",
+      "sfp_pastebin",
+      "sfp_pgp",
+      "sfp_phishtank",
+      "sfp_reversewhois",
+      "sfp_s3bucket",
+      "sfp_skymem",
+      "sfp_slideshare",
+      "sfp_socialprofiles",
+      "sfp_spider",
+      "sfp_stevenblack_hosts",
+      "sfp_talosintel",
+      "sfp_tldsearch",
+      "sfp_torch",
+      "sfp_twitter",
+      "sfp_voipbl",
+      "sfp_vxvault",
+      "sfp_wikileaks",
+      "sfp_wikipediaedits",
+      "sfp_zoneh"
+    ],
+    "cli_subprocess_parse": [
+      "sfp_tool_cmseek",
+      "sfp_tool_dnstwist",
+      "sfp_tool_nbtscan",
+      "sfp_tool_nmap",
+      "sfp_tool_nuclei",
+      "sfp_tool_onesixtyone",
+      "sfp_tool_retirejs",
+      "sfp_tool_snallygaster",
+      "sfp_tool_testsslsh",
+      "sfp_tool_trufflehog",
+      "sfp_tool_wafw00f",
+      "sfp_tool_wappalyzer",
+      "sfp_tool_whatweb"
+    ],
+    "content_extract": [
+      "sfp_email",
+      "sfp_hashes",
+      "sfp_iban"
+    ],
+    "custom_logic": [
+      "sfp_adguard_dns",
+      "sfp_bingsearch",
+      "sfp_bingsharedip",
+      "sfp_cloudflaredns",
+      "sfp_cookie",
+      "sfp_creditcard",
+      "sfp_dns_for_family",
+      "sfp_dnscommonsrv",
+      "sfp_googlesearch",
+      "sfp_intfiles",
+      "sfp_opendns",
+      "sfp_phone",
+      "sfp_portscan_tcp",
+      "sfp_strangeheaders",
+      "sfp_webserver",
+      "sfp_whois",
+      "sfp_yandexdns"
+    ],
+    "dns_network_local": [
+      "sfp_abusix",
+      "sfp_cleanbrowsing",
+      "sfp_comodo",
+      "sfp_dnsbrute",
+      "sfp_dnsneighbor",
+      "sfp_dnsraw",
+      "sfp_dnsresolve",
+      "sfp_dnszonexfer",
+      "sfp_dronebl",
+      "sfp_honeypot",
+      "sfp_opennic",
+      "sfp_quad9",
+      "sfp_similar",
+      "sfp_sorbs",
+      "sfp_spamcop",
+      "sfp_spamhaus",
+      "sfp_sslcert",
+      "sfp_surbl",
+      "sfp_uceprotect"
+    ],
+    "regex_local": [
+      "sfp_base64",
+      "sfp_bitcoin",
+      "sfp_company",
+      "sfp_countryname",
+      "sfp_errors",
+      "sfp_ethereum",
+      "sfp_names",
+      "sfp_pageinfo",
+      "sfp_social",
+      "sfp_webanalytics",
+      "sfp_webframework"
+    ]
+  },
+  "type_producers": {
+    "ACCOUNT_EXTERNAL_OWNED": [
+      "sfp_accounts",
+      "sfp_c99",
+      "sfp_gravatar",
+      "sfp_sociallinks"
+    ],
+    "AFFILIATE_COMPANY_NAME": [
+      "sfp_company"
+    ],
+    "AFFILIATE_DESCRIPTION_ABSTRACT": [
+      "sfp_duckduckgo"
+    ],
+    "AFFILIATE_DESCRIPTION_CATEGORY": [
+      "sfp_duckduckgo"
+    ],
+    "AFFILIATE_DOMAIN_NAME": [
+      "sfp_dnsresolve",
+      "sfp_fsecure_riddler",
+      "sfp_google_tag_manager",
+      "sfp_hackertarget",
+      "sfp_reversewhois",
+      "sfp_riskiq",
+      "sfp_securitytrails",
+      "sfp_spyonweb",
+      "sfp_viewdns",
+      "sfp_whoisology",
+      "sfp_whoxy",
+      "sfp_zetalytics"
+    ],
+    "AFFILIATE_DOMAIN_UNREGISTERED": [
+      "sfp_jsonwhoiscom"
+    ],
+    "AFFILIATE_DOMAIN_WHOIS": [
+      "sfp_whois"
+    ],
+    "AFFILIATE_EMAILADDR": [
+      "sfp_email",
+      "sfp_pgp",
+      "sfp_stackoverflow"
+    ],
+    "AFFILIATE_INTERNET_NAME": [
+      "sfp_apple_itunes",
+      "sfp_clearbit",
+      "sfp_crossref",
+      "sfp_crxcavator",
+      "sfp_dnscommonsrv",
+      "sfp_dnsraw",
+      "sfp_dnsresolve",
+      "sfp_fsecure_riddler",
+      "sfp_fullhunt",
+      "sfp_google_tag_manager",
+      "sfp_hackertarget",
+      "sfp_reversewhois",
+      "sfp_riskiq",
+      "sfp_securitytrails",
+      "sfp_spyonweb",
+      "sfp_viewdns",
+      "sfp_virustotal",
+      "sfp_whoisology",
+      "sfp_whoxy"
+    ],
+    "AFFILIATE_INTERNET_NAME_HIJACKABLE": [
+      "sfp_subdomain_takeover"
+    ],
+    "AFFILIATE_INTERNET_NAME_UNRESOLVED": [
+      "sfp_crxcavator",
+      "sfp_dnsraw",
+      "sfp_fsecure_riddler",
+      "sfp_fullhunt",
+      "sfp_hackertarget"
+    ],
+    "AFFILIATE_IPADDR": [
+      "sfp_alienvault",
+      "sfp_dnsneighbor",
+      "sfp_dnsresolve",
+      "sfp_opennic",
+      "sfp_stackoverflow"
+    ],
+    "AFFILIATE_IPV6_ADDRESS": [
+      "sfp_alienvault",
+      "sfp_dnsresolve",
+      "sfp_opennic",
+      "sfp_stackoverflow"
+    ],
+    "AFFILIATE_WEB_CONTENT": [
+      "sfp_crossref"
+    ],
+    "APPSTORE_ENTRY": [
+      "sfp_apple_itunes",
+      "sfp_crxcavator",
+      "sfp_koodous"
+    ],
+    "BASE64_DATA": [
+      "sfp_base64"
+    ],
+    "BGP_AS_MEMBER": [
+      "sfp_bgpview",
+      "sfp_censys",
+      "sfp_greynoise",
+      "sfp_ripe",
+      "sfp_urlscan"
+    ],
+    "BGP_AS_OWNER": [
+      "sfp_ripe"
+    ],
+    "BITCOIN_ADDRESS": [
+      "sfp_bitcoin",
+      "sfp_keybase"
+    ],
+    "BITCOIN_BALANCE": [
+      "sfp_blockchain"
+    ],
+    "BLACKLISTED_AFFILIATE_INTERNET_NAME": [
+      "sfp_abusix",
+      "sfp_adguard_dns",
+      "sfp_botvrij",
+      "sfp_cleanbrowsing",
+      "sfp_cloudflaredns",
+      "sfp_coinblocker",
+      "sfp_comodo",
+      "sfp_cybercrimetracker",
+      "sfp_dns_for_family",
+      "sfp_malwarepatrol",
+      "sfp_opendns",
+      "sfp_openphish",
+      "sfp_phishtank",
+      "sfp_quad9",
+      "sfp_stevenblack_hosts",
+      "sfp_surbl",
+      "sfp_yandexdns"
+    ],
+    "BLACKLISTED_AFFILIATE_IPADDR": [
+      "sfp_abuseipdb",
+      "sfp_abusix",
+      "sfp_alienvaultiprep",
+      "sfp_blocklistde",
+      "sfp_cinsscore",
+      "sfp_cleantalk",
+      "sfp_cybercrimetracker",
+      "sfp_dronebl",
+      "sfp_emergingthreats",
+      "sfp_fortinet",
+      "sfp_greensnow",
+      "sfp_honeypot",
+      "sfp_isc",
+      "sfp_malwarepatrol",
+      "sfp_multiproxy",
+      "sfp_phishstats",
+      "sfp_sorbs",
+      "sfp_spamcop",
+      "sfp_spamhaus",
+      "sfp_surbl",
+      "sfp_talosintel",
+      "sfp_threatfox",
+      "sfp_threatjammer",
+      "sfp_uceprotect",
+      "sfp_voipbl",
+      "sfp_xforce"
+    ],
+    "BLACKLISTED_COHOST": [
+      "sfp_abusix",
+      "sfp_adguard_dns",
+      "sfp_botvrij",
+      "sfp_cleanbrowsing",
+      "sfp_cloudflaredns",
+      "sfp_coinblocker",
+      "sfp_comodo",
+      "sfp_cybercrimetracker",
+      "sfp_dns_for_family",
+      "sfp_malwarepatrol",
+      "sfp_opendns",
+      "sfp_openphish",
+      "sfp_phishtank",
+      "sfp_quad9",
+      "sfp_stevenblack_hosts",
+      "sfp_surbl",
+      "sfp_yandexdns"
+    ],
+    "BLACKLISTED_INTERNET_NAME": [
+      "sfp_abusix",
+      "sfp_adguard_dns",
+      "sfp_botvrij",
+      "sfp_cleanbrowsing",
+      "sfp_cloudflaredns",
+      "sfp_coinblocker",
+      "sfp_comodo",
+      "sfp_cybercrimetracker",
+      "sfp_dns_for_family",
+      "sfp_malwarepatrol",
+      "sfp_metadefender",
+      "sfp_opendns",
+      "sfp_openphish",
+      "sfp_phishtank",
+      "sfp_quad9",
+      "sfp_stevenblack_hosts",
+      "sfp_surbl",
+      "sfp_yandexdns"
+    ],
+    "BLACKLISTED_IPADDR": [
+      "sfp_abuseipdb",
+      "sfp_abusix",
+      "sfp_alienvaultiprep",
+      "sfp_blocklistde",
+      "sfp_botscout",
+      "sfp_cinsscore",
+      "sfp_cleantalk",
+      "sfp_cybercrimetracker",
+      "sfp_dronebl",
+      "sfp_emergingthreats",
+      "sfp_fortinet",
+      "sfp_greensnow",
+      "sfp_honeypot",
+      "sfp_isc",
+      "sfp_malwarepatrol",
+      "sfp_metadefender",
+      "sfp_multiproxy",
+      "sfp_neutrinoapi",
+      "sfp_phishstats",
+      "sfp_sorbs",
+      "sfp_spamcop",
+      "sfp_spamhaus",
+      "sfp_surbl",
+      "sfp_talosintel",
+      "sfp_threatfox",
+      "sfp_threatjammer",
+      "sfp_uceprotect",
+      "sfp_voipbl",
+      "sfp_xforce"
+    ],
+    "BLACKLISTED_NETBLOCK": [
+      "sfp_abusix",
+      "sfp_alienvaultiprep",
+      "sfp_blocklistde",
+      "sfp_cinsscore",
+      "sfp_cleantalk",
+      "sfp_dronebl",
+      "sfp_emergingthreats",
+      "sfp_greensnow",
+      "sfp_honeypot",
+      "sfp_multiproxy",
+      "sfp_phishstats",
+      "sfp_sorbs",
+      "sfp_spamcop",
+      "sfp_spamhaus",
+      "sfp_surbl",
+      "sfp_talosintel",
+      "sfp_uceprotect",
+      "sfp_voipbl",
+      "sfp_xforce"
+    ],
+    "BLACKLISTED_SUBNET": [
+      "sfp_abusix",
+      "sfp_alienvaultiprep",
+      "sfp_blocklistde",
+      "sfp_cinsscore",
+      "sfp_cleantalk",
+      "sfp_dronebl",
+      "sfp_emergingthreats",
+      "sfp_greensnow",
+      "sfp_honeypot",
+      "sfp_multiproxy",
+      "sfp_phishstats",
+      "sfp_sorbs",
+      "sfp_spamcop",
+      "sfp_spamhaus",
+      "sfp_surbl",
+      "sfp_talosintel",
+      "sfp_uceprotect",
+      "sfp_voipbl",
+      "sfp_xforce"
+    ],
+    "CLOUD_STORAGE_BUCKET": [
+      "sfp_azureblobstorage",
+      "sfp_digitaloceanspace",
+      "sfp_googleobjectstorage",
+      "sfp_grayhatwarfare",
+      "sfp_s3bucket"
+    ],
+    "CLOUD_STORAGE_BUCKET_OPEN": [
+      "sfp_digitaloceanspace",
+      "sfp_googleobjectstorage",
+      "sfp_grayhatwarfare",
+      "sfp_s3bucket"
+    ],
+    "COMPANY_NAME": [
+      "sfp_abstractapi",
+      "sfp_company",
+      "sfp_gleif",
+      "sfp_greynoise",
+      "sfp_greynoise_community",
+      "sfp_opencorporates",
+      "sfp_seon",
+      "sfp_sociallinks",
+      "sfp_spur",
+      "sfp_twilio"
+    ],
+    "COUNTRY_NAME": [
+      "sfp_countryname"
+    ],
+    "CO_HOSTED_SITE": [
+      "sfp_alienvault",
+      "sfp_binaryedge",
+      "sfp_bingsharedip",
+      "sfp_builtwith",
+      "sfp_c99",
+      "sfp_certspotter",
+      "sfp_circllu",
+      "sfp_crt",
+      "sfp_dnsdb",
+      "sfp_hackertarget",
+      "sfp_mnemonic",
+      "sfp_networksdb",
+      "sfp_riskiq",
+      "sfp_robtex",
+      "sfp_securitytrails",
+      "sfp_spyonweb",
+      "sfp_sslcert",
+      "sfp_threatminer",
+      "sfp_viewdns",
+      "sfp_xforce"
+    ],
+    "CO_HOSTED_SITE_DOMAIN": [
+      "sfp_certspotter",
+      "sfp_crt",
+      "sfp_dnsresolve",
+      "sfp_sslcert"
+    ],
+    "CO_HOSTED_SITE_DOMAIN_WHOIS": [
+      "sfp_whois"
+    ],
+    "CREDIT_CARD_NUMBER": [
+      "sfp_creditcard"
+    ],
+    "DARKNET_MENTION_CONTENT": [
+      "sfp_ahmia",
+      "sfp_onioncity",
+      "sfp_onionsearchengine",
+      "sfp_torch"
+    ],
+    "DARKNET_MENTION_URL": [
+      "sfp_ahmia",
+      "sfp_intelx",
+      "sfp_onioncity",
+      "sfp_onionsearchengine",
+      "sfp_torch"
+    ],
+    "DEFACED_AFFILIATE_INTERNET_NAME": [
+      "sfp_zoneh"
+    ],
+    "DEFACED_AFFILIATE_IPADDR": [
+      "sfp_zoneh"
+    ],
+    "DEFACED_COHOST": [
+      "sfp_zoneh"
+    ],
+    "DEFACED_INTERNET_NAME": [
+      "sfp_zoneh"
+    ],
+    "DEFACED_IPADDR": [
+      "sfp_zoneh"
+    ],
+    "DESCRIPTION_ABSTRACT": [
+      "sfp_duckduckgo",
+      "sfp_hostio"
+    ],
+    "DESCRIPTION_CATEGORY": [
+      "sfp_duckduckgo"
+    ],
+    "DEVICE_TYPE": [
+      "sfp_shodan",
+      "sfp_template"
+    ],
+    "DNS_SPF": [
+      "sfp_dnsraw"
+    ],
+    "DNS_TEXT": [
+      "sfp_dnsdb",
+      "sfp_dnsraw"
+    ],
+    "DOMAIN_NAME": [
+      "sfp_binaryedge",
+      "sfp_builtwith",
+      "sfp_certspotter",
+      "sfp_crt",
+      "sfp_dnsresolve",
+      "sfp_flickr",
+      "sfp_fsecure_riddler",
+      "sfp_google_tag_manager",
+      "sfp_grep_app",
+      "sfp_hackertarget",
+      "sfp_hybrid_analysis",
+      "sfp_intelx",
+      "sfp_mnemonic",
+      "sfp_riskiq",
+      "sfp_securitytrails",
+      "sfp_spyonweb",
+      "sfp_sslcert",
+      "sfp_urlscan",
+      "sfp_virustotal",
+      "sfp_xforce"
+    ],
+    "DOMAIN_NAME_PARENT": [
+      "sfp_dnsresolve"
+    ],
+    "DOMAIN_REGISTRAR": [
+      "sfp_jsonwhoiscom",
+      "sfp_reversewhois",
+      "sfp_whois"
+    ],
+    "DOMAIN_WHOIS": [
+      "sfp_jsonwhoiscom",
+      "sfp_whois"
+    ],
+    "EMAILADDR": [
+      "sfp_builtwith",
+      "sfp_clearbit",
+      "sfp_dehashed",
+      "sfp_email",
+      "sfp_emailcrawlr",
+      "sfp_emailformat",
+      "sfp_flickr",
+      "sfp_fullcontact",
+      "sfp_gravatar",
+      "sfp_grep_app",
+      "sfp_hostio",
+      "sfp_hunter",
+      "sfp_intelx",
+      "sfp_jsonwhoiscom",
+      "sfp_pgp",
+      "sfp_searchcode",
+      "sfp_skymem",
+      "sfp_snov",
+      "sfp_stackoverflow",
+      "sfp_zonefiles"
+    ],
+    "EMAILADDR_COMPROMISED": [
+      "sfp_abstractapi",
+      "sfp_binaryedge",
+      "sfp_citadel",
+      "sfp_dehashed",
+      "sfp_emailrep",
+      "sfp_haveibeenpwned",
+      "sfp_ipqualityscore",
+      "sfp_seon"
+    ],
+    "EMAILADDR_DELIVERABLE": [
+      "sfp_abstractapi",
+      "sfp_seon"
+    ],
+    "EMAILADDR_DISPOSABLE": [
+      "sfp_abstractapi",
+      "sfp_debounce",
+      "sfp_ipqualityscore",
+      "sfp_nameapi",
+      "sfp_trumail"
+    ],
+    "EMAILADDR_GENERIC": [
+      "sfp_builtwith",
+      "sfp_clearbit",
+      "sfp_email",
+      "sfp_emailcrawlr",
+      "sfp_emailformat",
+      "sfp_flickr",
+      "sfp_fullcontact",
+      "sfp_gravatar",
+      "sfp_grep_app",
+      "sfp_hunter",
+      "sfp_intelx",
+      "sfp_jsonwhoiscom",
+      "sfp_pgp",
+      "sfp_searchcode",
+      "sfp_skymem",
+      "sfp_snov"
+    ],
+    "EMAILADDR_UNDELIVERABLE": [
+      "sfp_abstractapi",
+      "sfp_seon"
+    ],
+    "ERROR_MESSAGE": [
+      "sfp_errors"
+    ],
+    "ETHEREUM_ADDRESS": [
+      "sfp_ethereum"
+    ],
+    "ETHEREUM_BALANCE": [
+      "sfp_etherscan"
+    ],
+    "GEOINFO": [
+      "sfp_abstractapi",
+      "sfp_c99",
+      "sfp_callername",
+      "sfp_censys",
+      "sfp_emailcrawlr",
+      "sfp_focsec",
+      "sfp_fraudguard",
+      "sfp_fullcontact",
+      "sfp_github",
+      "sfp_gravatar",
+      "sfp_greynoise",
+      "sfp_hostio",
+      "sfp_ipapico",
+      "sfp_ipapicom",
+      "sfp_ipinfo",
+      "sfp_ipqualityscore",
+      "sfp_ipregistry",
+      "sfp_ipstack",
+      "sfp_keybase",
+      "sfp_leakix",
+      "sfp_metadefender",
+      "sfp_myspace",
+      "sfp_networksdb",
+      "sfp_neutrinoapi",
+      "sfp_numverify",
+      "sfp_onyphe",
+      "sfp_seon",
+      "sfp_shodan",
+      "sfp_slideshare",
+      "sfp_sociallinks",
+      "sfp_spur",
+      "sfp_template",
+      "sfp_twitter",
+      "sfp_urlscan"
+    ],
+    "HASH": [
+      "sfp_hashes"
+    ],
+    "HASH_COMPROMISED": [
+      "sfp_dehashed"
+    ],
+    "HTTP_CODE": [
+      "sfp_spider"
+    ],
+    "HUMAN_NAME": [
+      "sfp_arin",
+      "sfp_names",
+      "sfp_seon",
+      "sfp_sociallinks",
+      "sfp_stackoverflow",
+      "sfp_venmo"
+    ],
+    "IBAN_NUMBER": [
+      "sfp_iban"
+    ],
+    "INTERESTING_FILE": [
+      "sfp_intfiles"
+    ],
+    "INTERESTING_FILE_HISTORIC": [
+      "sfp_archiveorg"
+    ],
+    "INTERNAL_IP_ADDRESS": [
+      "sfp_dnsresolve",
+      "sfp_mnemonic"
+    ],
+    "INTERNET_NAME": [
+      "sfp_alienvault",
+      "sfp_apple_itunes",
+      "sfp_binaryedge",
+      "sfp_builtwith",
+      "sfp_c99",
+      "sfp_certspotter",
+      "sfp_clearbit",
+      "sfp_crobat_api",
+      "sfp_crt",
+      "sfp_crxcavator",
+      "sfp_dnsbrute",
+      "sfp_dnscommonsrv",
+      "sfp_dnsdb",
+      "sfp_dnsdumpster",
+      "sfp_dnsgrep",
+      "sfp_dnsraw",
+      "sfp_dnsresolve",
+      "sfp_dnszonexfer",
+      "sfp_flickr",
+      "sfp_fsecure_riddler",
+      "sfp_fullhunt",
+      "sfp_google_tag_manager",
+      "sfp_grep_app",
+      "sfp_hackertarget",
+      "sfp_hybrid_analysis",
+      "sfp_intelx",
+      "sfp_leakix",
+      "sfp_mnemonic",
+      "sfp_networksdb",
+      "sfp_onyphe",
+      "sfp_projectdiscovery",
+      "sfp_riskiq",
+      "sfp_securitytrails",
+      "sfp_spyonweb",
+      "sfp_sslcert",
+      "sfp_sublist3r",
+      "sfp_threatminer",
+      "sfp_urlscan",
+      "sfp_virustotal",
+      "sfp_xforce",
+      "sfp_zetalytics"
+    ],
+    "INTERNET_NAME_UNRESOLVED": [
+      "sfp_alienvault",
+      "sfp_c99",
+      "sfp_certspotter",
+      "sfp_crobat_api",
+      "sfp_crt",
+      "sfp_crxcavator",
+      "sfp_dnsdb",
+      "sfp_dnsdumpster",
+      "sfp_dnsgrep",
+      "sfp_dnsraw",
+      "sfp_dnsresolve",
+      "sfp_fsecure_riddler",
+      "sfp_fullhunt",
+      "sfp_grep_app",
+      "sfp_hackertarget",
+      "sfp_onyphe",
+      "sfp_projectdiscovery",
+      "sfp_riskiq",
+      "sfp_sslcert",
+      "sfp_sublist3r",
+      "sfp_urlscan",
+      "sfp_virustotal",
+      "sfp_xforce",
+      "sfp_zetalytics"
+    ],
+    "IPV6_ADDRESS": [
+      "sfp_alienvault",
+      "sfp_dnsdb",
+      "sfp_dnsresolve",
+      "sfp_mnemonic",
+      "sfp_networksdb",
+      "sfp_opennic",
+      "sfp_robtex",
+      "sfp_torexits"
+    ],
+    "IP_ADDRESS": [
+      "sfp_alienvault",
+      "sfp_bingsharedip",
+      "sfp_builtwith",
+      "sfp_c99",
+      "sfp_circllu",
+      "sfp_dnsdb",
+      "sfp_dnsneighbor",
+      "sfp_dnsresolve",
+      "sfp_fsecure_riddler",
+      "sfp_hackertarget",
+      "sfp_hostio",
+      "sfp_maltiverse",
+      "sfp_mnemonic",
+      "sfp_networksdb",
+      "sfp_opennic",
+      "sfp_riskiq",
+      "sfp_robtex",
+      "sfp_shodan",
+      "sfp_spur",
+      "sfp_tool_nbtscan",
+      "sfp_tool_nmap",
+      "sfp_tool_nuclei",
+      "sfp_tool_onesixtyone",
+      "sfp_tool_testsslsh",
+      "sfp_torexits",
+      "sfp_zonefiles"
+    ],
+    "JOB_TITLE": [
+      "sfp_sociallinks"
+    ],
+    "JUNK_FILE": [
+      "sfp_junkfiles"
+    ],
+    "LEAKSITE_CONTENT": [
+      "sfp_haveibeenpwned",
+      "sfp_leakix",
+      "sfp_onyphe",
+      "sfp_pastebin",
+      "sfp_psbdmp",
+      "sfp_trashpanda",
+      "sfp_wikileaks"
+    ],
+    "LEAKSITE_URL": [
+      "sfp_haveibeenpwned",
+      "sfp_intelx",
+      "sfp_pastebin",
+      "sfp_psbdmp",
+      "sfp_trashpanda",
+      "sfp_wikileaks"
+    ],
+    "LEI": [
+      "sfp_gleif"
+    ],
+    "LINKED_URL_EXTERNAL": [
+      "sfp_spider",
+      "sfp_webserver"
+    ],
+    "LINKED_URL_INTERNAL": [
+      "sfp_alienvault",
+      "sfp_apple_itunes",
+      "sfp_bingsearch",
+      "sfp_commoncrawl",
+      "sfp_crxcavator",
+      "sfp_flickr",
+      "sfp_googlesearch",
+      "sfp_grep_app",
+      "sfp_hybrid_analysis",
+      "sfp_searchcode",
+      "sfp_spider",
+      "sfp_urlscan",
+      "sfp_webserver"
+    ],
+    "MALICIOUS_AFFILIATE_INTERNET_NAME": [
+      "sfp_abusech",
+      "sfp_abusix",
+      "sfp_botvrij",
+      "sfp_cleanbrowsing",
+      "sfp_cloudflaredns",
+      "sfp_coinblocker",
+      "sfp_comodo",
+      "sfp_customfeed",
+      "sfp_cybercrimetracker",
+      "sfp_googlesafebrowsing",
+      "sfp_malwarepatrol",
+      "sfp_opendns",
+      "sfp_openphish",
+      "sfp_phishtank",
+      "sfp_quad9",
+      "sfp_stevenblack_hosts",
+      "sfp_surbl",
+      "sfp_threatcrowd",
+      "sfp_virustotal",
+      "sfp_vxvault",
+      "sfp_yandexdns"
+    ],
+    "MALICIOUS_AFFILIATE_IPADDR": [
+      "sfp_abusech",
+      "sfp_abuseipdb",
+      "sfp_abusix",
+      "sfp_alienvault",
+      "sfp_alienvaultiprep",
+      "sfp_blocklistde",
+      "sfp_cinsscore",
+      "sfp_cleantalk",
+      "sfp_customfeed",
+      "sfp_cybercrimetracker",
+      "sfp_dronebl",
+      "sfp_emergingthreats",
+      "sfp_fortinet",
+      "sfp_fraudguard",
+      "sfp_googlesafebrowsing",
+      "sfp_greensnow",
+      "sfp_greynoise",
+      "sfp_honeypot",
+      "sfp_isc",
+      "sfp_maltiverse",
+      "sfp_malwarepatrol",
+      "sfp_multiproxy",
+      "sfp_phishstats",
+      "sfp_pulsedive",
+      "sfp_sorbs",
+      "sfp_spamcop",
+      "sfp_spamhaus",
+      "sfp_spur",
+      "sfp_surbl",
+      "sfp_talosintel",
+      "sfp_threatcrowd",
+      "sfp_threatfox",
+      "sfp_threatjammer",
+      "sfp_uceprotect",
+      "sfp_virustotal",
+      "sfp_voipbl",
+      "sfp_vxvault",
+      "sfp_xforce"
+    ],
+    "MALICIOUS_ASN": [
+      "sfp_greynoise"
+    ],
+    "MALICIOUS_BITCOIN_ADDRESS": [
+      "sfp_bitcoinabuse",
+      "sfp_bitcoinwhoswho"
+    ],
+    "MALICIOUS_COHOST": [
+      "sfp_abusech",
+      "sfp_abusix",
+      "sfp_botvrij",
+      "sfp_cleanbrowsing",
+      "sfp_cloudflaredns",
+      "sfp_coinblocker",
+      "sfp_comodo",
+      "sfp_customfeed",
+      "sfp_cybercrimetracker",
+      "sfp_googlesafebrowsing",
+      "sfp_malwarepatrol",
+      "sfp_opendns",
+      "sfp_openphish",
+      "sfp_phishtank",
+      "sfp_quad9",
+      "sfp_stevenblack_hosts",
+      "sfp_surbl",
+      "sfp_threatcrowd",
+      "sfp_virustotal",
+      "sfp_vxvault",
+      "sfp_yandexdns"
+    ],
+    "MALICIOUS_EMAILADDR": [
+      "sfp_botscout",
+      "sfp_emailrep",
+      "sfp_ipqualityscore",
+      "sfp_seon",
+      "sfp_threatcrowd"
+    ],
+    "MALICIOUS_INTERNET_NAME": [
+      "sfp_abusech",
+      "sfp_abusix",
+      "sfp_botvrij",
+      "sfp_cleanbrowsing",
+      "sfp_cloudflaredns",
+      "sfp_coinblocker",
+      "sfp_comodo",
+      "sfp_customfeed",
+      "sfp_cybercrimetracker",
+      "sfp_googlesafebrowsing",
+      "sfp_ipqualityscore",
+      "sfp_malwarepatrol",
+      "sfp_metadefender",
+      "sfp_opendns",
+      "sfp_openphish",
+      "sfp_phishtank",
+      "sfp_pulsedive",
+      "sfp_quad9",
+      "sfp_stevenblack_hosts",
+      "sfp_surbl",
+      "sfp_threatcrowd",
+      "sfp_virustotal",
+      "sfp_vxvault",
+      "sfp_yandexdns"
+    ],
+    "MALICIOUS_IPADDR": [
+      "sfp_abusech",
+      "sfp_abuseipdb",
+      "sfp_abusix",
+      "sfp_alienvault",
+      "sfp_alienvaultiprep",
+      "sfp_binaryedge",
+      "sfp_blocklistde",
+      "sfp_botscout",
+      "sfp_cinsscore",
+      "sfp_cleantalk",
+      "sfp_customfeed",
+      "sfp_cybercrimetracker",
+      "sfp_dronebl",
+      "sfp_emergingthreats",
+      "sfp_focsec",
+      "sfp_fortinet",
+      "sfp_fraudguard",
+      "sfp_googlesafebrowsing",
+      "sfp_greensnow",
+      "sfp_greynoise",
+      "sfp_greynoise_community",
+      "sfp_honeypot",
+      "sfp_iknowwhatyoudownload",
+      "sfp_ipqualityscore",
+      "sfp_ipregistry",
+      "sfp_isc",
+      "sfp_maltiverse",
+      "sfp_malwarepatrol",
+      "sfp_metadefender",
+      "sfp_multiproxy",
+      "sfp_neutrinoapi",
+      "sfp_onyphe",
+      "sfp_phishstats",
+      "sfp_pulsedive",
+      "sfp_seon",
+      "sfp_sorbs",
+      "sfp_spamcop",
+      "sfp_spamhaus",
+      "sfp_spur",
+      "sfp_surbl",
+      "sfp_talosintel",
+      "sfp_threatcrowd",
+      "sfp_threatfox",
+      "sfp_threatjammer",
+      "sfp_uceprotect",
+      "sfp_virustotal",
+      "sfp_voipbl",
+      "sfp_vxvault",
+      "sfp_xforce"
+    ],
+    "MALICIOUS_NETBLOCK": [
+      "sfp_abusech",
+      "sfp_abusix",
+      "sfp_alienvault",
+      "sfp_alienvaultiprep",
+      "sfp_blocklistde",
+      "sfp_cinsscore",
+      "sfp_cleantalk",
+      "sfp_dronebl",
+      "sfp_emergingthreats",
+      "sfp_fraudguard",
+      "sfp_greensnow",
+      "sfp_greynoise",
+      "sfp_honeypot",
+      "sfp_multiproxy",
+      "sfp_phishstats",
+      "sfp_pulsedive",
+      "sfp_sorbs",
+      "sfp_spamcop",
+      "sfp_spamhaus",
+      "sfp_surbl",
+      "sfp_talosintel",
+      "sfp_threatcrowd",
+      "sfp_uceprotect",
+      "sfp_virustotal",
+      "sfp_voipbl",
+      "sfp_xforce"
+    ],
+    "MALICIOUS_PHONE_NUMBER": [
+      "sfp_callername",
+      "sfp_ipqualityscore",
+      "sfp_seon"
+    ],
+    "MALICIOUS_SUBNET": [
+      "sfp_abusech",
+      "sfp_abusix",
+      "sfp_alienvaultiprep",
+      "sfp_blocklistde",
+      "sfp_cinsscore",
+      "sfp_cleantalk",
+      "sfp_dronebl",
+      "sfp_emergingthreats",
+      "sfp_fraudguard",
+      "sfp_greensnow",
+      "sfp_greynoise",
+      "sfp_honeypot",
+      "sfp_multiproxy",
+      "sfp_phishstats",
+      "sfp_sorbs",
+      "sfp_spamcop",
+      "sfp_spamhaus",
+      "sfp_surbl",
+      "sfp_talosintel",
+      "sfp_threatcrowd",
+      "sfp_uceprotect",
+      "sfp_virustotal",
+      "sfp_voipbl",
+      "sfp_xforce"
+    ],
+    "NETBLOCKV6_MEMBER": [
+      "sfp_bgpview",
+      "sfp_censys",
+      "sfp_ripe"
+    ],
+    "NETBLOCKV6_OWNER": [
+      "sfp_ripe"
+    ],
+    "NETBLOCK_MEMBER": [
+      "sfp_bgpview",
+      "sfp_censys",
+      "sfp_networksdb",
+      "sfp_ripe"
+    ],
+    "NETBLOCK_OWNER": [
+      "sfp_ripe",
+      "sfp_riskiq"
+    ],
+    "NETBLOCK_WHOIS": [
+      "sfp_whois"
+    ],
+    "OPERATING_SYSTEM": [
+      "sfp_censys",
+      "sfp_greynoise",
+      "sfp_leakix",
+      "sfp_shodan",
+      "sfp_template",
+      "sfp_tool_nmap",
+      "sfp_tool_wappalyzer"
+    ],
+    "PASSWORD_COMPROMISED": [
+      "sfp_dehashed",
+      "sfp_tool_trufflehog",
+      "sfp_trashpanda"
+    ],
+    "PGP_KEY": [
+      "sfp_keybase",
+      "sfp_pgp"
+    ],
+    "PHONE_NUMBER": [
+      "sfp_builtwith",
+      "sfp_clearbit",
+      "sfp_emailcrawlr",
+      "sfp_fullcontact",
+      "sfp_gravatar",
+      "sfp_jsonwhoiscom",
+      "sfp_phone",
+      "sfp_sociallinks",
+      "sfp_zonefiles"
+    ],
+    "PHONE_NUMBER_COMPROMISED": [
+      "sfp_haveibeenpwned"
+    ],
+    "PHONE_NUMBER_TYPE": [
+      "sfp_ipqualityscore",
+      "sfp_seon",
+      "sfp_textmagic"
+    ],
+    "PHYSICAL_ADDRESS": [
+      "sfp_bgpview",
+      "sfp_c99",
+      "sfp_clearbit",
+      "sfp_crxcavator",
+      "sfp_fullcontact",
+      "sfp_gleif",
+      "sfp_googlemaps",
+      "sfp_jsonwhoiscom",
+      "sfp_opencorporates"
+    ],
+    "PHYSICAL_COORDINATES": [
+      "sfp_abstractapi",
+      "sfp_c99",
+      "sfp_fsecure_riddler",
+      "sfp_googlemaps",
+      "sfp_hostio",
+      "sfp_ipregistry",
+      "sfp_onyphe",
+      "sfp_openstreetmap"
+    ],
+    "PROVIDER_DNS": [
+      "sfp_c99",
+      "sfp_dnsdb",
+      "sfp_dnsraw",
+      "sfp_fullhunt",
+      "sfp_jsonwhoiscom",
+      "sfp_zonefiles"
+    ],
+    "PROVIDER_HOSTING": [
+      "sfp_c99",
+      "sfp_hosting",
+      "sfp_securitytrails"
+    ],
+    "PROVIDER_JAVASCRIPT": [
+      "sfp_pageinfo"
+    ],
+    "PROVIDER_MAIL": [
+      "sfp_dnsdb",
+      "sfp_dnsraw",
+      "sfp_fullhunt"
+    ],
+    "PROVIDER_TELCO": [
+      "sfp_abstractapi",
+      "sfp_c99",
+      "sfp_numverify",
+      "sfp_phone",
+      "sfp_seon"
+    ],
+    "PROXY_HOST": [
+      "sfp_dronebl",
+      "sfp_focsec",
+      "sfp_neutrinoapi",
+      "sfp_seon",
+      "sfp_sorbs"
+    ],
+    "PUBLIC_CODE_REPO": [
+      "sfp_github",
+      "sfp_searchcode"
+    ],
+    "RAW_DNS_RECORDS": [
+      "sfp_dnsraw",
+      "sfp_dnszonexfer",
+      "sfp_hackertarget"
+    ],
+    "RAW_FILE_META_DATA": [
+      "sfp_binstring",
+      "sfp_filemeta"
+    ],
+    "RAW_RIR_DATA": [
+      "sfp_abstractapi",
+      "sfp_apple_itunes",
+      "sfp_arin",
+      "sfp_bgpview",
+      "sfp_bingsearch",
+      "sfp_bingsharedip",
+      "sfp_bitcoinabuse",
+      "sfp_bitcoinwhoswho",
+      "sfp_builtwith",
+      "sfp_c99",
+      "sfp_censys",
+      "sfp_certspotter",
+      "sfp_clearbit",
+      "sfp_crobat_api",
+      "sfp_crt",
+      "sfp_crxcavator",
+      "sfp_debounce",
+      "sfp_dehashed",
+      "sfp_dnsdb",
+      "sfp_dnsgrep",
+      "sfp_emailcrawlr",
+      "sfp_emailrep",
+      "sfp_etherscan",
+      "sfp_focsec",
+      "sfp_fsecure_riddler",
+      "sfp_fullcontact",
+      "sfp_fullhunt",
+      "sfp_github",
+      "sfp_gleif",
+      "sfp_googlemaps",
+      "sfp_googlesafebrowsing",
+      "sfp_googlesearch",
+      "sfp_gravatar",
+      "sfp_grayhatwarfare",
+      "sfp_grep_app",
+      "sfp_greynoise",
+      "sfp_greynoise_community",
+      "sfp_hostio",
+      "sfp_hunter",
+      "sfp_hybrid_analysis",
+      "sfp_ipapico",
+      "sfp_ipapicom",
+      "sfp_ipqualityscore",
+      "sfp_ipregistry",
+      "sfp_jsonwhoiscom",
+      "sfp_keybase",
+      "sfp_koodous",
+      "sfp_leakix",
+      "sfp_maltiverse",
+      "sfp_nameapi",
+      "sfp_networksdb",
+      "sfp_neutrinoapi",
+      "sfp_numverify",
+      "sfp_onioncity",
+      "sfp_onyphe",
+      "sfp_opencorporates",
+      "sfp_phishstats",
+      "sfp_projectdiscovery",
+      "sfp_ripe",
+      "sfp_robtex",
+      "sfp_searchcode",
+      "sfp_seon",
+      "sfp_shodan",
+      "sfp_slideshare",
+      "sfp_sociallinks",
+      "sfp_socialprofiles",
+      "sfp_spur",
+      "sfp_stackoverflow",
+      "sfp_template",
+      "sfp_textmagic",
+      "sfp_tool_wafw00f",
+      "sfp_tool_whatweb",
+      "sfp_trumail",
+      "sfp_twilio",
+      "sfp_twitter",
+      "sfp_urlscan",
+      "sfp_venmo",
+      "sfp_whatcms",
+      "sfp_xforce",
+      "sfp_zonefiles"
+    ],
+    "SIMILARDOMAIN": [
+      "sfp_similar",
+      "sfp_tldsearch",
+      "sfp_tool_dnstwist"
+    ],
+    "SIMILARDOMAIN_WHOIS": [
+      "sfp_whois"
+    ],
+    "SIMILAR_ACCOUNT_EXTERNAL": [
+      "sfp_accounts"
+    ],
+    "SOCIAL_MEDIA": [
+      "sfp_abstractapi",
+      "sfp_gravatar",
+      "sfp_keybase",
+      "sfp_myspace",
+      "sfp_seon",
+      "sfp_social",
+      "sfp_sociallinks",
+      "sfp_socialprofiles"
+    ],
+    "SOFTWARE_USED": [
+      "sfp_censys",
+      "sfp_filemeta",
+      "sfp_leakix",
+      "sfp_tool_wappalyzer",
+      "sfp_zonefiles"
+    ],
+    "SSL_CERTIFICATE_EXPIRED": [
+      "sfp_certspotter",
+      "sfp_sslcert"
+    ],
+    "SSL_CERTIFICATE_EXPIRING": [
+      "sfp_certspotter",
+      "sfp_sslcert"
+    ],
+    "SSL_CERTIFICATE_ISSUED": [
+      "sfp_certspotter",
+      "sfp_circllu",
+      "sfp_sslcert"
+    ],
+    "SSL_CERTIFICATE_ISSUER": [
+      "sfp_certspotter",
+      "sfp_sslcert"
+    ],
+    "SSL_CERTIFICATE_MISMATCH": [
+      "sfp_certspotter",
+      "sfp_sslcert"
+    ],
+    "SSL_CERTIFICATE_RAW": [
+      "sfp_certspotter",
+      "sfp_crt",
+      "sfp_sslcert"
+    ],
+    "TARGET_WEB_CONTENT": [
+      "sfp_spider"
+    ],
+    "TARGET_WEB_CONTENT_TYPE": [
+      "sfp_spider"
+    ],
+    "TARGET_WEB_COOKIE": [
+      "sfp_cookie"
+    ],
+    "TCP_PORT_OPEN": [
+      "sfp_binaryedge",
+      "sfp_censys",
+      "sfp_fullhunt",
+      "sfp_leakix",
+      "sfp_portscan_tcp",
+      "sfp_pulsedive",
+      "sfp_seon",
+      "sfp_shodan",
+      "sfp_sslcert",
+      "sfp_template"
+    ],
+    "TCP_PORT_OPEN_BANNER": [
+      "sfp_binaryedge",
+      "sfp_censys",
+      "sfp_portscan_tcp",
+      "sfp_shodan",
+      "sfp_template"
+    ],
+    "TOR_EXIT_NODE": [
+      "sfp_focsec",
+      "sfp_neutrinoapi",
+      "sfp_seon",
+      "sfp_torexits"
+    ],
+    "UDP_PORT_OPEN": [
+      "sfp_binaryedge",
+      "sfp_censys",
+      "sfp_tool_nbtscan",
+      "sfp_tool_onesixtyone"
+    ],
+    "UDP_PORT_OPEN_INFO": [
+      "sfp_binaryedge",
+      "sfp_tool_nbtscan",
+      "sfp_tool_onesixtyone"
+    ],
+    "URL_ADBLOCKED_EXTERNAL": [
+      "sfp_adblock"
+    ],
+    "URL_ADBLOCKED_INTERNAL": [
+      "sfp_adblock"
+    ],
+    "URL_FLASH": [
+      "sfp_pageinfo"
+    ],
+    "URL_FLASH_HISTORIC": [
+      "sfp_archiveorg"
+    ],
+    "URL_FORM": [
+      "sfp_pageinfo"
+    ],
+    "URL_FORM_HISTORIC": [
+      "sfp_archiveorg"
+    ],
+    "URL_JAVASCRIPT": [
+      "sfp_pageinfo"
+    ],
+    "URL_JAVASCRIPT_HISTORIC": [
+      "sfp_archiveorg"
+    ],
+    "URL_JAVA_APPLET": [
+      "sfp_pageinfo"
+    ],
+    "URL_JAVA_APPLET_HISTORIC": [
+      "sfp_archiveorg"
+    ],
+    "URL_PASSWORD": [
+      "sfp_pageinfo"
+    ],
+    "URL_PASSWORD_HISTORIC": [
+      "sfp_archiveorg"
+    ],
+    "URL_STATIC": [
+      "sfp_pageinfo"
+    ],
+    "URL_STATIC_HISTORIC": [
+      "sfp_archiveorg"
+    ],
+    "URL_UPLOAD": [
+      "sfp_pageinfo"
+    ],
+    "URL_UPLOAD_HISTORIC": [
+      "sfp_archiveorg"
+    ],
+    "URL_WEB_FRAMEWORK": [
+      "sfp_webframework"
+    ],
+    "URL_WEB_FRAMEWORK_HISTORIC": [
+      "sfp_archiveorg"
+    ],
+    "USERNAME": [
+      "sfp_accounts",
+      "sfp_c99",
+      "sfp_gravatar",
+      "sfp_keybase",
+      "sfp_social",
+      "sfp_stackoverflow"
+    ],
+    "VPN_HOST": [
+      "sfp_dronebl",
+      "sfp_focsec",
+      "sfp_neutrinoapi",
+      "sfp_seon"
+    ],
+    "VULNERABILITY_CVE_CRITICAL": [
+      "sfp_binaryedge",
+      "sfp_onyphe",
+      "sfp_shodan",
+      "sfp_tool_nuclei",
+      "sfp_tool_retirejs",
+      "sfp_tool_snallygaster",
+      "sfp_tool_testsslsh"
+    ],
+    "VULNERABILITY_CVE_HIGH": [
+      "sfp_binaryedge",
+      "sfp_onyphe",
+      "sfp_shodan",
+      "sfp_tool_nuclei",
+      "sfp_tool_retirejs",
+      "sfp_tool_snallygaster",
+      "sfp_tool_testsslsh"
+    ],
+    "VULNERABILITY_CVE_LOW": [
+      "sfp_binaryedge",
+      "sfp_onyphe",
+      "sfp_shodan",
+      "sfp_tool_nuclei",
+      "sfp_tool_retirejs",
+      "sfp_tool_snallygaster",
+      "sfp_tool_testsslsh"
+    ],
+    "VULNERABILITY_CVE_MEDIUM": [
+      "sfp_binaryedge",
+      "sfp_onyphe",
+      "sfp_shodan",
+      "sfp_tool_nuclei",
+      "sfp_tool_retirejs",
+      "sfp_tool_snallygaster",
+      "sfp_tool_testsslsh"
+    ],
+    "VULNERABILITY_DISCLOSURE": [
+      "sfp_h1nobbdde",
+      "sfp_openbugbounty"
+    ],
+    "VULNERABILITY_GENERAL": [
+      "sfp_binaryedge",
+      "sfp_onyphe",
+      "sfp_punkspider",
+      "sfp_shodan",
+      "sfp_template",
+      "sfp_tool_nuclei",
+      "sfp_tool_retirejs",
+      "sfp_tool_snallygaster",
+      "sfp_tool_testsslsh"
+    ],
+    "WEBSERVER_BANNER": [
+      "sfp_leakix",
+      "sfp_tool_whatweb",
+      "sfp_urlscan",
+      "sfp_webserver"
+    ],
+    "WEBSERVER_HTTPHEADERS": [
+      "sfp_censys",
+      "sfp_hackertarget",
+      "sfp_spider"
+    ],
+    "WEBSERVER_STRANGEHEADER": [
+      "sfp_strangeheaders"
+    ],
+    "WEBSERVER_TECHNOLOGY": [
+      "sfp_builtwith",
+      "sfp_c99",
+      "sfp_hostio",
+      "sfp_seon",
+      "sfp_tool_cmseek",
+      "sfp_tool_nuclei",
+      "sfp_tool_wafw00f",
+      "sfp_tool_wappalyzer",
+      "sfp_tool_whatweb",
+      "sfp_webserver",
+      "sfp_whatcms"
+    ],
+    "WEB_ANALYTICS_ID": [
+      "sfp_builtwith",
+      "sfp_hostio",
+      "sfp_spyonweb",
+      "sfp_webanalytics"
+    ],
+    "WIFI_ACCESS_POINT": [
+      "sfp_wigle"
+    ],
+    "WIKIPEDIA_PAGE_EDIT": [
+      "sfp_wikipediaedits"
+    ]
+  }
+}

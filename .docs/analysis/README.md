@@ -8,14 +8,17 @@
 |------|---------|
 | [`.docs/osint-services/OVERVIEW.md`](../osint-services/OVERVIEW.md) | Tables by collection (API ±, local, CLI, other) |
 | [`.docs/osint-services/modules/`](../osint-services/modules/) | One markdown file per module |
+| [`.docs/analysis/conversion_to_types/`](conversion_to_types/README.md) | How modules parse data into nugget types (231 module docs) |
 
-Regenerate: `poetry run python .seed/scripts/generate_osint_service_docs.py`
+Regenerate OSINT UI docs: `poetry run python .seed/scripts/generate_osint_service_docs.py`  
+Regenerate conversion analysis: `poetry run python .seed/scripts/analyse_module_conversions.py`
 
 ## Canonical JSON
 
 | File | Purpose |
 |------|---------|
 | `osint_services.json` | 231 OSINT services — routes, tiers, `service_origin`, `service_state` |
+| `nugget_purposes.json` | Investigation purpose/definition text per nugget type (feeds conversion catalog) |
 | `module_test_seeds.json` | Stage 4b test seeds and smoke validation markers |
 | `quarantine_services.json` | Empty — quarantine programme complete |
 | `quarantine_catalogue_overrides.json` | Route-seed overrides for promoted modules |
