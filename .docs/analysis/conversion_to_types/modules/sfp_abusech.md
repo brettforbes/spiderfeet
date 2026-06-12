@@ -1,0 +1,41 @@
+# sfp_abusech
+
+**Conversion pattern:** `api_text_or_html` — HTTP fetch → text/HTML parsing without structured JSON schema.
+
+## Catalogue
+
+- **Name:** abuse.ch
+- **service_origin:** `external-api`
+- **Summary:** Check if a host/domain, IP address or netblock is malicious according to Abuse.ch.
+
+## Produced nugget types
+
+| Nugget ID | Archetype | Emitted in code (static) |
+|-----------|-----------|--------------------------|
+| `MALICIOUS_IPADDR` | DESCRIPTOR | declared only |
+| `MALICIOUS_INTERNET_NAME` | DESCRIPTOR | declared only |
+| `MALICIOUS_AFFILIATE_IPADDR` | DESCRIPTOR | declared only |
+| `MALICIOUS_AFFILIATE_INTERNET_NAME` | DESCRIPTOR | declared only |
+| `MALICIOUS_SUBNET` | DESCRIPTOR | declared only |
+| `MALICIOUS_COHOST` | DESCRIPTOR | declared only |
+| `MALICIOUS_NETBLOCK` | DESCRIPTOR | declared only |
+
+## Consumed nugget types
+
+`INTERNET_NAME`, `IP_ADDRESS`, `NETBLOCK_MEMBER`, `AFFILIATE_INTERNET_NAME`, `AFFILIATE_IPADDR`, `CO_HOSTED_SITE`, `NETBLOCK_OWNER`
+
+## Parsing signals (static)
+
+fetchUrl
+
+**SpiderFeet/sf helpers used:**
+
+- `sf.fetchUrl`
+- `sf.validHost`
+- `sf.validIP`
+
+## Conversion notes
+
+SpiderFeet stores each finding as `SpiderFeetEvent(eventType, data: str, module, sourceEvent)`. The **nugget type** is `eventType`; **value** is always a string (`data`). Structured fields (port number, CVE id, geo coordinates) are encoded in that string or split across multiple events.
+
+Module source: `modules/sfp_abusech.py`

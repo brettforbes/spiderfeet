@@ -1,0 +1,217 @@
+"""Purpose / definition text for each nugget type (catalog documentation)."""
+
+from __future__ import annotations
+
+# Curated purpose statements: what the type means in an investigation and why it exists.
+NUGGET_PURPOSES: dict[str, str] = {
+    "ROOT": "Scan anchor only — represents the operator-supplied target (domain, IP, etc.). Not an OSINT finding; starts the event chain.",
+    "ACCOUNT_EXTERNAL_OWNED": "User account on a third-party site (GitHub, social, etc.) tied to the target identity. Used for attribution and credential exposure checks.",
+    "ACCOUNT_EXTERNAL_OWNED_COMPROMISED": "Descriptor on an owned external account indicating it appears in breach or compromise corpora. Signals credential risk.",
+    "ACCOUNT_EXTERNAL_USER_SHARED_COMPROMISED": "Descriptor for a compromised account that shares identifiers with the target user but may not be solely owned by them.",
+    "SIMILAR_ACCOUNT_EXTERNAL": "Account on an external site that resembles the target's handle or identity — possible impersonation or related persona.",
+    "USERNAME": "Discovered login handle or alias used across services. Feeds account enumeration and social modules.",
+    "SOCIAL_MEDIA": "Presence on a social network (profile URL or platform identity). Expands the target's public persona graph.",
+    "DOMAIN_NAME": "Registrable domain in scope for the investigation (usually the target or a discovered owned domain). Primary anchor for DNS, WHOIS, and cert workflows.",
+    "DOMAIN_NAME_PARENT": "Parent/registrable domain extracted from a deeper hostname (e.g. `app.example.com` → `example.com`). Used for breadth-first footprinting.",
+    "DOMAIN_REGISTRAR": "Registrar organisation for a domain. Supports supply-chain and takeover research.",
+    "DOMAIN_WHOIS": "Raw or normalised WHOIS payload for a domain. Evidence blob for registration dates, contacts, and nameservers.",
+    "SIMILARDOMAIN": "Typosquat or look-alike domain (homoglyph, missing character, etc.). Relevant to phishing and brand abuse.",
+    "SIMILARDOMAIN_WHOIS": "WHOIS data for a similar/typosquat domain — compare registration patterns to the real domain.",
+    "DESCRIPTION_CATEGORY": "High-level categorical label for a site or entity (e.g. industry vertical from a directory).",
+    "DESCRIPTION_ABSTRACT": "Free-text abstract or bio describing a site, company, or profile.",
+    "AFFILIATE_DOMAIN_NAME": "Domain related to the footprint but not owned by the target (neighbour, co-tenant, or linked org). Kept separate from owned `DOMAIN_NAME`.",
+    "AFFILIATE_DOMAIN_UNREGISTERED": "Affiliate-style hostname whose domain is unregistered — possible dangling DNS or takeover opportunity.",
+    "AFFILIATE_DOMAIN_WHOIS": "WHOIS record for an affiliate domain.",
+    "AFFILIATE_COMPANY_NAME": "Company name associated with an affiliate domain or site, not the primary target org.",
+    "AFFILIATE_DESCRIPTION_CATEGORY": "Category label for an affiliate site or organisation.",
+    "AFFILIATE_DESCRIPTION_ABSTRACT": "Abstract/description text for an affiliate entity.",
+    "INTERNET_NAME": "Resolvable hostname (subdomain or FQDN) on the footprint. Drives DNS, HTTP spider, and active scan modules.",
+    "INTERNET_NAME_UNRESOLVED": "Hostname discovered in content or DNS but which does not resolve at query time — may be stale, internal, or typo.",
+    "AFFILIATE_INTERNET_NAME": "Hostname on an affiliate/co-hosted context, not asserted as target-owned infrastructure.",
+    "AFFILIATE_INTERNET_NAME_UNRESOLVED": "Affiliate hostname that does not resolve when checked.",
+    "AFFILIATE_INTERNET_NAME_HIJACKABLE": "Affiliate hostname vulnerable to takeover (e.g. dangling CNAME). High-risk finding for adjacent attacks.",
+    "CO_HOSTED_SITE": "Site sharing hosting/IP with the target (reverse IP / shared infrastructure). Expands attack surface and third-party risk.",
+    "CO_HOSTED_SITE_DOMAIN": "Domain name of a co-hosted site.",
+    "CO_HOSTED_SITE_DOMAIN_WHOIS": "WHOIS for a co-hosted site's domain.",
+    "IP_ADDRESS": "IPv4 address on the footprint. Hub type for port scans, reputation, geolocation, and passive DNS.",
+    "IPV6_ADDRESS": "IPv6 address on the footprint. Same routing role as `IP_ADDRESS` for v6-capable modules.",
+    "INTERNAL_IP_ADDRESS": "Private RFC1918 or internal-range address found in content (configs, leaks). Indicates internal network exposure.",
+    "AFFILIATE_IPADDR": "IPv4 seen in affiliate/co-hosted context — not labelled as target-owned.",
+    "AFFILIATE_IPV6_ADDRESS": "IPv6 in affiliate context.",
+    "NETBLOCK_OWNER": "CIDR netblock owned or allocated to the target organisation. Enables netblock-wide module fan-out (scan each IP).",
+    "NETBLOCK_MEMBER": "CIDR where the target IP is a member but ownership is another party (e.g. ISP allocation).",
+    "NETBLOCKV6_OWNER": "IPv6 netblock owned by the target.",
+    "NETBLOCKV6_MEMBER": "IPv6 netblock membership without ownership assertion.",
+    "NETBLOCK_WHOIS": "WHOIS/RIR payload for a netblock.",
+    "GEOINFO": "Human-readable location (city, region, country) for an IP or entity. Descriptor on address objects.",
+    "TOR_EXIT_NODE": "Descriptor flagging that an IP is a Tor exit — affects risk interpretation and blocking decisions.",
+    "PROXY_HOST": "Descriptor indicating the host behaves as an open proxy.",
+    "VPN_HOST": "Descriptor indicating the host is associated with VPN exit or VPN service infrastructure.",
+    "BGP_AS_OWNER": "Autonomous System owned or operated by the target org (ASN + context).",
+    "BGP_AS_MEMBER": "ASN announcing an IP or netblock the target uses but may not own.",
+    "MALICIOUS_ASN": "Descriptor that an ASN appears on threat feeds or reputation sources.",
+    "PROVIDER_DNS": "Nameserver hostname from NS records — identifies DNS hosting provider.",
+    "PROVIDER_MAIL": "Mail exchanger (MX) host — identifies email delivery infrastructure.",
+    "PROVIDER_HOSTING": "Hosting provider attribution (datacenter, CDN, cloud) for an IP or site.",
+    "PROVIDER_TELCO": "Telecommunications/carrier attribution for a number or IP.",
+    "PROVIDER_JAVASCRIPT": "Third-party JavaScript host loaded by pages (analytics, widgets, supply chain).",
+    "TCP_PORT_OPEN": "Sub-entity: TCP port observed open on an IP (`ip:port`). Feeds banner grab and vuln scanners.",
+    "TCP_PORT_OPEN_BANNER": "Service banner or initial bytes from an open TCP port. Evidence for service identification.",
+    "UDP_PORT_OPEN": "Sub-entity: UDP port open on an IP.",
+    "UDP_PORT_OPEN_INFO": "Extra metadata from UDP probe (e.g. NetBIOS name, SNMP string).",
+    "OPERATING_SYSTEM": "OS fingerprint guess (nmap, Shodan, etc.) attached to a host/IP.",
+    "DEVICE_TYPE": "Device class (router, webcam, etc.) from passive/active fingerprinting.",
+    "WEBSERVER_BANNER": "HTTP server header or raw server identification string.",
+    "WEBSERVER_HTTPHEADERS": "Full or partial HTTP response headers as evidence.",
+    "WEBSERVER_STRANGEHEADER": "Unusual or non-standard HTTP header worth reviewing.",
+    "WEBSERVER_TECHNOLOGY": "Detected web stack component (server, framework, CMS) as a descriptor.",
+    "SOFTWARE_USED": "Sub-entity: named product/service running on a host (from Shodan, WhatWeb, nuclei, etc.).",
+    "DNS_SPF": "SPF TXT record content — email sender policy for a domain.",
+    "DNS_SRV": "SRV record — locates services (LDAP, SIP, etc.) for a domain.",
+    "DNS_TEXT": "Generic DNS TXT record (verification tokens, policies, etc.).",
+    "RAW_DNS_RECORDS": "Complete DNS answer set preserved for audit and re-parsing.",
+    "TARGET_WEB_CONTENT": "HTML or text body fetched from a target URL. Feeds extractors (email, phone, links, metadata).",
+    "TARGET_WEB_CONTENT_TYPE": "MIME or content-type descriptor for fetched web content.",
+    "TARGET_WEB_COOKIE": "HTTP cookie name/value from a target response — session and tracking analysis.",
+    "AFFILIATE_WEB_CONTENT": "Page body from an affiliate/co-hosted URL context.",
+    "SEARCH_ENGINE_WEB_CONTENT": "Snippet or page content from search-engine results — not direct target fetch.",
+    "HTTP_CODE": "HTTP status code observed for a URL (200, 403, etc.).",
+    "WEB_ANALYTICS_ID": "Tracking ID (Google Analytics, AdSense, etc.) — links sites and tenants.",
+    "LINKED_URL_INTERNAL": "Sub-entity: URL on the same site/domain as the crawl root (spider output).",
+    "LINKED_URL_EXTERNAL": "Sub-entity: outbound URL leaving the target site — third-party dependencies.",
+    "URL_ADBLOCKED_INTERNAL": "Internal URL that would be blocked by ad blockers (trackers, ads).",
+    "URL_ADBLOCKED_EXTERNAL": "External URL classified as ad/tracker by block lists.",
+    "URL_FORM": "URL hosting an HTML form — input surface for testing.",
+    "URL_JAVASCRIPT": "URL serving JavaScript resources.",
+    "URL_STATIC": "URL serving mostly static content.",
+    "URL_FLASH": "URL referencing Flash (legacy attack surface).",
+    "URL_JAVA_APPLET": "URL with Java applet (legacy).",
+    "URL_WEB_FRAMEWORK": "URL associated with a detected web framework.",
+    "URL_PASSWORD": "URL that accepts password submission.",
+    "URL_UPLOAD": "URL that accepts file uploads.",
+    "URL_FORM_HISTORIC": "Historic (archived) URL that had a form — Wayback/archive derived.",
+    "URL_JAVASCRIPT_HISTORIC": "Historic URL serving JavaScript.",
+    "URL_STATIC_HISTORIC": "Historic static URL from archive crawl.",
+    "URL_FLASH_HISTORIC": "Historic Flash URL.",
+    "URL_JAVA_APPLET_HISTORIC": "Historic Java applet URL.",
+    "URL_WEB_FRAMEWORK_HISTORIC": "Historic framework-associated URL.",
+    "URL_PASSWORD_HISTORIC": "Historic password-accepting URL.",
+    "URL_UPLOAD_HISTORIC": "Historic upload URL.",
+    "SSL_CERTIFICATE_ISSUED": "Certificate subject (issued to) — ties cert to hostname/org.",
+    "SSL_CERTIFICATE_ISSUER": "Certificate authority that issued the cert.",
+    "SSL_CERTIFICATE_RAW": "Full PEM/DER or parsed cert blob for audit.",
+    "SSL_CERTIFICATE_MISMATCH": "Descriptor: cert CN/SAN does not match the hostname — misconfiguration or interception risk.",
+    "SSL_CERTIFICATE_EXPIRED": "Descriptor: certificate past validity date.",
+    "SSL_CERTIFICATE_EXPIRING": "Descriptor: certificate nearing expiry.",
+    "EMAILADDR": "Email address on the footprint (owned or discovered in target content).",
+    "EMAILADDR_GENERIC": "Role-based mailbox (info@, admin@) rather than a named individual.",
+    "EMAILADDR_COMPROMISED": "Descriptor: address appears in breach corpora.",
+    "EMAILADDR_DELIVERABLE": "Descriptor: validation API reports mailbox exists.",
+    "EMAILADDR_UNDELIVERABLE": "Descriptor: validation reports mailbox does not exist.",
+    "EMAILADDR_DISPOSABLE": "Descriptor: address is from a disposable provider.",
+    "AFFILIATE_EMAILADDR": "Email found in affiliate/third-party context.",
+    "MALICIOUS_EMAILADDR": "Descriptor: address flagged malicious on reputation feeds.",
+    "PHONE_NUMBER": "E.164 or local-format phone number tied to the target.",
+    "PHONE_NUMBER_TYPE": "Descriptor: line type (mobile, VoIP, fixed) from validation APIs.",
+    "PHONE_NUMBER_COMPROMISED": "Descriptor: number linked to spam/abuse or breach sources.",
+    "MALICIOUS_PHONE_NUMBER": "Descriptor: number on telephony threat lists.",
+    "HUMAN_NAME": "Person name associated with the target (WHOIS, profiles, leaks).",
+    "JOB_TITLE": "Job title descriptor linked to a person or org record.",
+    "DATE_HUMAN_DOB": "Date of birth for a person — high-sensitivity PII for identity verification.",
+    "COMPANY_NAME": "Organisation name on the footprint (owned or attributed).",
+    "COUNTRY_NAME": "Country associated with an entity (registration, geo, or content).",
+    "PHYSICAL_ADDRESS": "Postal or street address.",
+    "PHYSICAL_COORDINATES": "Lat/long or coordinate pair for a location.",
+    "LEI": "Legal Entity Identifier (GLEIF) for a company — formal org identity.",
+    "CREDIT_CARD_NUMBER": "Payment card number found in content or leaks — critical secret.",
+    "IBAN_NUMBER": "International bank account number.",
+    "PASSWORD_COMPROMISED": "Cleartext or recovered password from breaches — critical secret.",
+    "HASH": "Cryptographic hash found in content (file integrity, commits, etc.).",
+    "HASH_COMPROMISED": "Password hash appearing in breach databases.",
+    "BASE64_DATA": "Base64-encoded blob extracted from content — may hide secrets or payloads.",
+    "BITCOIN_ADDRESS": "Bitcoin address on the footprint.",
+    "BITCOIN_BALANCE": "Descriptor: on-chain balance or value observation for a BTC address.",
+    "MALICIOUS_BITCOIN_ADDRESS": "Descriptor: BTC address on scam/ransomware lists.",
+    "ETHEREUM_ADDRESS": "Ethereum address on the footprint.",
+    "ETHEREUM_BALANCE": "Descriptor: ETH balance or token holding observation.",
+    "INTERESTING_FILE": "Descriptor: file path/URL flagged as sensitive (configs, backups, keys).",
+    "INTERESTING_FILE_HISTORIC": "Historic interesting file from archive sources.",
+    "JUNK_FILE": "Descriptor: low-value or noise file (skip further processing).",
+    "LEAKSITE_URL": "URL pointing to a paste/leak site entry.",
+    "LEAKSITE_CONTENT": "Content body from a leak/paste site.",
+    "DARKNET_MENTION_URL": "URL referencing darknet/onion mention of the target.",
+    "DARKNET_MENTION_CONTENT": "Content from darknet mention sources.",
+    "PGP_KEY": "PGP public key material — ties to encrypted comms identity.",
+    "CLOUD_STORAGE_BUCKET": "Object storage bucket name (S3, Azure, GCS, etc.).",
+    "CLOUD_STORAGE_BUCKET_OPEN": "Descriptor: bucket allows public listing or read — data exposure risk.",
+    "APPSTORE_ENTRY": "Mobile app store listing linked to the target org or brand.",
+    "PUBLIC_CODE_REPO": "Source code repository (GitHub, GitLab, etc.).",
+    "BLACKLISTED_INTERNET_NAME": "Descriptor: hostname on DNS or web reputation blocklists.",
+    "BLACKLISTED_AFFILIATE_INTERNET_NAME": "Descriptor: affiliate hostname blacklisted.",
+    "DEFACED_INTERNET_NAME": "Descriptor: hostname reported defaced.",
+    "DEFACED_AFFILIATE_INTERNET_NAME": "Descriptor: affiliate hostname defaced.",
+    "MALICIOUS_INTERNET_NAME": "Descriptor: hostname on malware/phishing feeds.",
+    "MALICIOUS_AFFILIATE_INTERNET_NAME": "Descriptor: affiliate hostname flagged malicious.",
+    "BLACKLISTED_IPADDR": "Descriptor: IPv4 on IP reputation blocklists.",
+    "BLACKLISTED_AFFILIATE_IPADDR": "Descriptor: affiliate IP blacklisted.",
+    "BLACKLISTED_SUBNET": "Descriptor: another IP on same subnet is blacklisted — neighbourhood risk.",
+    "BLACKLISTED_NETBLOCK": "Descriptor: blacklisted IP within target-owned netblock.",
+    "DEFACED_IPADDR": "Descriptor: IP associated with a defacement incident.",
+    "DEFACED_AFFILIATE_IPADDR": "Descriptor: affiliate IP tied to defacement.",
+    "MALICIOUS_IPADDR": "Descriptor: IP on malware/C2/phishing intelligence feeds.",
+    "MALICIOUS_AFFILIATE_IPADDR": "Descriptor: affiliate IP flagged malicious.",
+    "MALICIOUS_SUBNET": "Descriptor: malicious host on same subnet as target IP.",
+    "MALICIOUS_NETBLOCK": "Descriptor: malicious host within owned netblock.",
+    "BLACKLISTED_COHOST": "Descriptor: co-hosted site is blacklisted.",
+    "DEFACED_COHOST": "Descriptor: co-hosted site was defaced.",
+    "MALICIOUS_COHOST": "Descriptor: co-hosted site flagged malicious.",
+    "VULNERABILITY_GENERAL": "Non-CVE security finding (misconfig, exposed panel, nuclei matcher, etc.).",
+    "VULNERABILITY_DISCLOSURE": "Public disclosure reference (advisory, responsible disclosure ticket).",
+    "VULNERABILITY_CVE_CRITICAL": "CVE rated critical severity — patch priority.",
+    "VULNERABILITY_CVE_HIGH": "CVE rated high severity.",
+    "VULNERABILITY_CVE_MEDIUM": "CVE rated medium severity.",
+    "VULNERABILITY_CVE_LOW": "CVE rated low severity.",
+    "WIFI_ACCESS_POINT": "WiFi BSSIDs/SSIDs near a geo location (Wigle, etc.).",
+    "ERROR_MESSAGE": "Error string from a module or HTTP failure — diagnostic, not intelligence.",
+    "WIKIPEDIA_PAGE_EDIT": "Wikipedia edit event tied to target-related pages — reputation/history OSINT.",
+    "RAW_RIR_DATA": "Unprocessed API/RIR JSON — preserves vendor response for replay and deep parsing.",
+    "RAW_FILE_META_DATA": "File metadata blob (EXIF, Office props) from `sfp_filemeta`.",
+}
+
+
+def purpose_for(nugget_id: str, nugget_type: str, description: str) -> str:
+    """Return purpose text; fall back to generated line if not curated."""
+    if nugget_id in NUGGET_PURPOSES:
+        return NUGGET_PURPOSES[nugget_id]
+    if nugget_type == "DESCRIPTOR":
+        return (
+            f"Classification or state applied to a related entity: {description}. "
+            "Interpret alongside the parent entity event in the provenance chain."
+        )
+    if nugget_type == "DATA":
+        return (
+            f"Evidence payload: {description}. "
+            "Typically large or opaque text; used for extraction downstream or audit retention."
+        )
+    if nugget_type == "SUBENTITY":
+        return (
+            f"Component of a parent host or URL: {description}. "
+            "Exists in context of a parent nugget (port on IP, link on site, etc.)."
+        )
+    if nugget_type == "INTERNAL":
+        return description
+    return (
+        f"Identifiable footprint entity: {description}. "
+        "Consumed and produced by OSINT modules according to map routes."
+    )
+
+
+def all_purposes(nuggets: dict[str, dict]) -> dict[str, str]:
+    out: dict[str, str] = {}
+    for nid, meta in nuggets.items():
+        out[nid] = purpose_for(
+            nid,
+            meta.get("nugget_type", ""),
+            meta.get("nugget_description", ""),
+        )
+    return out
