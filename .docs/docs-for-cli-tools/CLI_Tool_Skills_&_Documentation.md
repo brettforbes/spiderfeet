@@ -28,6 +28,7 @@ Base repo: `c:\projects\spiderfeet`
 | katana | [SKILL.md](.cursor/skills/katana/SKILL.md) | [references/SKILLS.md](.cursor/skills/katana/references/SKILLS.md) | [katana-Zero-to-Hero.md](.docs/docs-for-cli-tools/katana-Zero-to-Hero.md) | [katana-CLI-Options.md](.docs/docs-for-cli-tools/katana-CLI-Options.md) | JSONL / crawl output |
 | mapcidr | [SKILL.md](.cursor/skills/mapcidr/SKILL.md) | [references/SKILLS.md](.cursor/skills/mapcidr/references/SKILLS.md) | [mapcidr-Zero-to-Hero.md](.docs/docs-for-cli-tools/mapcidr-Zero-to-Hero.md) | [mapcidr-CLI-Options.md](.docs/docs-for-cli-tools/mapcidr-CLI-Options.md) | Text / expanded CIDRs |
 | uncover | [SKILL.md](.cursor/skills/uncover/SKILL.md) | [references/SKILLS.md](.cursor/skills/uncover/references/SKILLS.md) | [uncover-Zero-to-Hero.md](.docs/docs-for-cli-tools/uncover-Zero-to-Hero.md) | [uncover-CLI-Options.md](.docs/docs-for-cli-tools/uncover-CLI-Options.md) | JSONL / provider output |
+| recon-ng | [SKILL.md](.cursor/skills/recon_ng/SKILL.md) | [references/SKILLS.md](.cursor/skills/recon_ng/references/SKILLS.md) | [recon-ng-Zero-to-Hero.md](.docs/docs-for-cli-tools/recon-ng-Zero-to-Hero.md) | [recon-ng-CLI-Options.md](.docs/docs-for-cli-tools/recon-ng-CLI-Options.md) | SQLite workspace + exports |
 
 ## Reference files by tool
 
@@ -153,6 +154,7 @@ Base repo: `c:\projects\spiderfeet`
 | katana | [SKILLS.md](.cursor/skills/katana/references/SKILLS.md) |
 | mapcidr | [SKILLS.md](.cursor/skills/mapcidr/references/SKILLS.md) |
 | uncover | [SKILLS.md](.cursor/skills/uncover/references/SKILLS.md) |
+| recon-ng | [SKILLS.md](.cursor/skills/recon_ng/references/SKILLS.md) |
 
 ## Prompt sources (instructions used)
 
@@ -180,6 +182,7 @@ Base repo: `c:\projects\spiderfeet`
 | katana | [.seed/03T_Prompt_Making_for_katana.md](.seed/03T_Prompt_Making_for_katana.md) |
 | mapcidr | [.seed/03U_Prompt_Making_for_mapcidr.md](.seed/03U_Prompt_Making_for_mapcidr.md) |
 | uncover | [.seed/03V_Prompt_Making_for_uncover.md](.seed/03V_Prompt_Making_for_uncover.md) |
+| recon-ng | [.seed/03W_Prompt_Making_for_recon-ng.md](.seed/03W_Prompt_Making_for_recon-ng.md) |
 ## Related SpiderFeet context
 
 | Resource | Link |
