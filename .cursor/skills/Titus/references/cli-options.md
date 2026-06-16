@@ -1,0 +1,23 @@
+# Titus CLI Options
+
+Confirm current options with `titus --help`.
+
+## Core commands
+
+- `titus scan <path...>`
+- `titus version` (if supported)
+
+## Common option classes
+
+- Scope and include/exclude controls
+- Output format options
+- Confidence/filter options
+- Verbose/debug and performance controls
+
+## Examples
+
+```bash
+titus scan ./repo
+titus scan ./repo --format json > findings.json
+titus scan ./repo --verbose
+```

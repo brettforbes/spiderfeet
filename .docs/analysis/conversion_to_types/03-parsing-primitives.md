@@ -66,3 +66,4 @@ Content modules (`sfp_spider`, `sfp_pageinfo`, `sfp_email`) chain **fetch → Be
 | `regex_local` | `re` on `event.data` |
 
 See [04-conversion-patterns-taxonomy.md](04-conversion-patterns-taxonomy.md) for module examples.
+

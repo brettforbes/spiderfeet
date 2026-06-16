@@ -1,0 +1,12 @@
+{
+  "database": "spiderfeet-map",
+  "created_database": false,
+  "applied_schema": false,
+  "nuggets_inserted": 0,
+  "nuggets_skipped": 172,
+  "services_inserted": 177,
+  "services_skipped": 0,
+  "services_failed": 0,
+  "links_added": 1445,
+  "errors": []
+}

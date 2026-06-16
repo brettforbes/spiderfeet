@@ -1,1 +1,0 @@
-90['sfp__stor_db', 'sfp_spur', 'sfp_networksdb', 'sfp_botscout', 'sfp_honeypot']
