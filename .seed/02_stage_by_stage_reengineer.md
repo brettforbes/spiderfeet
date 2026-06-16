@@ -363,4 +363,4 @@ Then, for each `nugget` object in the consumed list, you should run the test, an
 
 Finally, you should create a new route and a new scan record for each `nugget` object in the consumed list. If the scan works correctly, then the produced `nugget` object should be created, and the route should be created. In this case, the `scan` will be related to the `osint-service` and the `route` relations. If the scan does not work, then the route should not be created, and the scan record should be created with the `scan-result` being "error", and the `scan-notes` being "scan failed". 
 
-If no route works on the `consumed` `nugget` object, then the route should not be created, and the scan record should be created with the `scan-result` being "error", and the `scan-notes` being "no route found". In this case,k the servcice status should be set to `invalid`.
+If no route works on the `consumed` `nugget` object, then the route should not be created, and the scan record should be created with the `scan-result` being "error", and the `scan-notes` being "no route found". In this case, the servcice status should be set to `invalid`.
