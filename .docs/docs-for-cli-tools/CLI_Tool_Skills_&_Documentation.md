@@ -29,6 +29,7 @@ Base repo: `c:\projects\spiderfeet`
 | mapcidr | [SKILL.md](.cursor/skills/mapcidr/SKILL.md) | [references/SKILLS.md](.cursor/skills/mapcidr/references/SKILLS.md) | [mapcidr-Zero-to-Hero.md](.docs/docs-for-cli-tools/mapcidr-Zero-to-Hero.md) | [mapcidr-CLI-Options.md](.docs/docs-for-cli-tools/mapcidr-CLI-Options.md) | Text / expanded CIDRs |
 | uncover | [SKILL.md](.cursor/skills/uncover/SKILL.md) | [references/SKILLS.md](.cursor/skills/uncover/references/SKILLS.md) | [uncover-Zero-to-Hero.md](.docs/docs-for-cli-tools/uncover-Zero-to-Hero.md) | [uncover-CLI-Options.md](.docs/docs-for-cli-tools/uncover-CLI-Options.md) | JSONL / provider output |
 | recon-ng | [SKILL.md](.cursor/skills/recon_ng/SKILL.md) | [references/SKILLS.md](.cursor/skills/recon_ng/references/SKILLS.md) | [recon-ng-Zero-to-Hero.md](.docs/docs-for-cli-tools/recon-ng-Zero-to-Hero.md) | [recon-ng-CLI-Options.md](.docs/docs-for-cli-tools/recon-ng-CLI-Options.md) | SQLite workspace + exports |
+| Metasploit Framework | [SKILL.md](.cursor/skills/metasploit_framework/SKILL.md) | [references/SKILLS.md](.cursor/skills/metasploit_framework/references/SKILLS.md) | [Metasploit-Framework-Zero-to-Hero.md](.docs/docs-for-cli-tools/Metasploit-Framework-Zero-to-Hero.md) | [Metasploit-Framework-CLI-Options.md](.docs/docs-for-cli-tools/Metasploit-Framework-CLI-Options.md) | DB tables + console/export parsing |
 
 ## Reference files by tool
 
@@ -155,6 +156,7 @@ Base repo: `c:\projects\spiderfeet`
 | mapcidr | [SKILLS.md](.cursor/skills/mapcidr/references/SKILLS.md) |
 | uncover | [SKILLS.md](.cursor/skills/uncover/references/SKILLS.md) |
 | recon-ng | [SKILLS.md](.cursor/skills/recon_ng/references/SKILLS.md) |
+| Metasploit Framework | [SKILLS.md](.cursor/skills/metasploit_framework/references/SKILLS.md) |
 
 ## Prompt sources (instructions used)
 
@@ -183,6 +185,7 @@ Base repo: `c:\projects\spiderfeet`
 | mapcidr | [.seed/03U_Prompt_Making_for_mapcidr.md](.seed/03U_Prompt_Making_for_mapcidr.md) |
 | uncover | [.seed/03V_Prompt_Making_for_uncover.md](.seed/03V_Prompt_Making_for_uncover.md) |
 | recon-ng | [.seed/03W_Prompt_Making_for_recon-ng.md](.seed/03W_Prompt_Making_for_recon-ng.md) |
+| Metasploit Framework | [.seed/03X_Prompt_Making_for_Metasploit_Framework.md](.seed/03X_Prompt_Making_for_Metasploit_Framework.md) |
 ## Related SpiderFeet context
 
 | Resource | Link |
