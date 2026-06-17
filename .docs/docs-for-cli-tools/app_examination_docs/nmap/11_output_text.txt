@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///C:/Program Files (x86)/Nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.80 scan initiated Wed Jun 17 20:53:31 2026 as: nmap -sT -T3 -&#45;top-ports 10 -oX - bbc.co.uk -->
+<nmaprun scanner="nmap" args="nmap -sT -T3 -&#45;top-ports 10 -oX - bbc.co.uk" start="1781693611" startstr="Wed Jun 17 20:53:31 2026" version="7.80" xmloutputversion="1.04">
+<scaninfo type="connect" protocol="tcp" numservices="10" services="21-23,25,80,110,139,443,445,3389"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1781693611" endtime="1781693613"><status state="up" reason="syn-ack" reason_ttl="59"/>
+<address addr="151.101.0.81" addrtype="ipv4"/>
+<hostnames>
+<hostname name="bbc.co.uk" type="user"/>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="23"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="25"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="smtp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="110"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pop3" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ms-wbt-server" method="table" conf="3"/></port>
+</ports>
+<times srtt="10312" rttvar="7312" to="100000"/>
+</host>
+<runstats><finished time="1781693613" timestr="Wed Jun 17 20:53:33 2026" elapsed="1.95" summary="Nmap done at Wed Jun 17 20:53:33 2026; 1 IP address (1 host up) scanned in 1.95 seconds" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

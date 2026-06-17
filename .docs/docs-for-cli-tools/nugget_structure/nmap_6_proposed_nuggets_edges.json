@@ -1,0 +1,79 @@
+{
+  "tool": "nmap",
+  "exam_id": 6,
+  "scenario_id": "service_version_permissive_xml",
+  "source": ".docs/docs-for-cli-tools/app_examination_docs/nmap/6_output_structured.xml",
+  "review_status": "pending",
+  "nodes": [
+    {
+      "id": "scan-001",
+      "nugget_id": "SCAN",
+      "nugget_type": "ENTITY",
+      "data": {
+        "osint_service": "sfp_tool_nmap",
+        "command": "nmap -sT -sV -T3 -p 22,80,443 -oX - scanme.nmap.org",
+        "target": "scanme.nmap.org"
+      }
+    },
+    {
+      "id": "host-scanme",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "data": { "label": "scanme.nmap.org" }
+    },
+    {
+      "id": "net-scanme",
+      "nugget_id": "NETWORKING",
+      "nugget_type": "ENTITY",
+      "data": {}
+    },
+    {
+      "id": "ip-45-33-32-156",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "DATA",
+      "data": { "nugget_data": "45.33.32.156" }
+    },
+    {
+      "id": "name-scanme",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "DATA",
+      "data": { "nugget_data": "scanme.nmap.org" }
+    },
+    {
+      "id": "port-22",
+      "nugget_id": "TCP_PORT_OPEN",
+      "nugget_type": "DATA",
+      "data": { "nugget_data": "22" }
+    },
+    {
+      "id": "port-80",
+      "nugget_id": "TCP_PORT_OPEN",
+      "nugget_type": "DATA",
+      "data": { "nugget_data": "80" }
+    },
+    {
+      "id": "svc-ssh",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "DATA",
+      "data": { "nugget_data": "OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13" }
+    },
+    {
+      "id": "svc-http",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "DATA",
+      "data": { "nugget_data": "Apache httpd 2.4.7 (Ubuntu)" }
+    }
+  ],
+  "edges": [
+    { "source": "scan-001", "target": "host-scanme", "relation": "contains" },
+    { "source": "host-scanme", "target": "net-scanme", "relation": "contains" },
+    { "source": "net-scanme", "target": "ip-45-33-32-156", "relation": "contains" },
+    { "source": "host-scanme", "target": "name-scanme", "relation": "has" },
+    { "source": "host-scanme", "target": "port-22", "relation": "listens on" },
+    { "source": "host-scanme", "target": "port-80", "relation": "listens on" },
+    { "source": "host-scanme", "target": "svc-ssh", "relation": "contains" },
+    { "source": "host-scanme", "target": "svc-http", "relation": "contains" },
+    { "source": "svc-ssh", "target": "port-22", "relation": "listens on" },
+    { "source": "svc-http", "target": "port-80", "relation": "listens on" }
+  ]
+}

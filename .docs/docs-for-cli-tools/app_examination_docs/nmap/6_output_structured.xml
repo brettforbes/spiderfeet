@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///C:/Program Files (x86)/Nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.80 scan initiated Wed Jun 17 20:46:57 2026 as: nmap -sT -sV -T3 -p 22,80,443 -oX - scanme.nmap.org -->
+<nmaprun scanner="nmap" args="nmap -sT -sV -T3 -p 22,80,443 -oX - scanme.nmap.org" start="1781693217" startstr="Wed Jun 17 20:46:57 2026" version="7.80" xmloutputversion="1.04">
+<scaninfo type="connect" protocol="tcp" numservices="3" services="22,80,443"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1781693219" endtime="1781693229"><status state="up" reason="reset" reason_ttl="52"/>
+<address addr="45.33.32.156" addrtype="ipv4"/>
+<hostnames>
+<hostname name="scanme.nmap.org" type="user"/>
+<hostname name="scanme.nmap.org" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" product="OpenSSH" version="6.6.1p1 Ubuntu 2ubuntu2.13" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:6.6.1p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Apache httpd" version="2.4.7" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.7</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3"/></port>
+</ports>
+<times srtt="153625" rttvar="87312" to="502873"/>
+</host>
+<runstats><finished time="1781693229" timestr="Wed Jun 17 20:47:09 2026" elapsed="12.69" summary="Nmap done at Wed Jun 17 20:47:09 2026; 1 IP address (1 host up) scanned in 12.69 seconds" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

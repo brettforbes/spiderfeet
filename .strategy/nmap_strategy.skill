@@ -1,0 +1,51 @@
+# Nmap Strategy Skill
+
+Complements `.cursor/skills/nmap/SKILL.md`. Use together: **skill** = commands and parsing; **strategy** = when and why.
+
+## Strategic posture
+
+Nmap is a **phased network cartographer**. Expert use is not one command — it is choosing the minimum invasive sequence that answers the investigation question.
+
+## Decision tree
+
+1. **What do you need?**
+   - Reachability only → `-sn`
+   - Open services → port scan (`-sT` unprivileged / `-sS` privileged)
+   - Software identity → add `-sV`
+   - OS class → `-O` (privileged, promising hosts only)
+   - App-layer intel → NSE (`--script`) on narrow port sets
+   - Path → `--traceroute`
+
+2. **Target class**
+   - **Permissive** (e.g. scanme.nmap.org): validate parsers against rich open/filtered mix, NSE noise, CPE fields.
+   - **Corporate** (e.g. bbc.co.uk): expect filtered ports, CDN fronts, fewer version probes — tests `clean_miss` and confidence downgrades.
+
+3. **Output for SpiderFeet**
+   - Always capture **XML** for automation (`-oX`).
+   - Capture **text** in a separate run for the text tab (§2.2.1).
+   - Never rely on grep of human output for production parsing.
+
+## Information extraction lenses
+
+| Lens | Where in XML | Investigation value |
+|------|----------------|----------------------|
+| Asset inventory | `host/address`, `hostnames` | Seed graph hosts |
+| Exposure | `port/state=open` | Attack surface |
+| Software stack | `service@product`, `cpe` | Patch/CVE pivot |
+| Weak signals | `filtered`, `open\|filtered` | Firewall/WAF hints |
+| Script intel | `script`, `table`, `elem` | Vulns, headers, analytics IDs |
+| Ownership | whois/RIR scripts | Netblock attribution |
+
+## Anti-patterns
+
+- `-A` or `-p-` on large netblocks without discovery phase
+- Emitting `TCP_PORT_OPEN` for `filtered` or `closed`
+- Single combined run when text tab needs native formatting
+- Ignoring `prescript` broadcast noise on LAN (exam 8 captured local IGMP — not target data)
+
+## Cross-references
+
+- XML schema: `.cursor/skills/nmap/references/xml-output-schema.md`
+- Nugget mapping: `.cursor/skills/nmap/references/nugget-mapping.md`
+- Formal plan: `.docs/docs-for-cli-tools/examination_plans/nmap_formal_examination_plan.md`
+- Evidence bundles: `.docs/docs-for-cli-tools/app_examination_docs/nmap/`
