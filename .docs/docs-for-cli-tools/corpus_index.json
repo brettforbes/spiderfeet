@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-06-17T10:55:00Z",
+  "driving_doc": ".seed/04_Driving and Integrating_CLI_Apps.md",
+  "excluded_tools": ["aircrack-ng"],
+  "targets": {
+    "permissive": ["scanme.nmap.org"],
+    "corporate": ["bbc.co.uk", "sbs.com.au"]
+  },
+  "phases": ["exploration", "formal_examination", "nugget_proposal", "operator_review", "ontology_update"],
+  "tools": [
+    {"id": "nmap", "phase": "nugget_proposal", "priority": 1, "runtime": "windows", "exams": 10, "notes": "Pilot complete; 10 evidence bundles; operator review pending"},
+    {"id": "netdiscover", "phase": "pending", "priority": 2, "runtime": "wsl"},
+    {"id": "nerva", "phase": "pending", "priority": 3, "runtime": "wsl"},
+    {"id": "nuclei", "phase": "pending", "priority": 4, "runtime": "wsl"},
+    {"id": "cmseek", "phase": "pending", "priority": 5, "runtime": "windows"},
+    {"id": "wafwoof", "phase": "pending", "priority": 6, "runtime": "windows"},
+    {"id": "pius", "phase": "pending", "priority": 7, "runtime": "wsl"},
+    {"id": "nosey_parker", "phase": "pending", "priority": 8, "runtime": "wsl"},
+    {"id": "NTLMRecon", "phase": "pending", "priority": 9, "runtime": "wsl"},
+    {"id": "Titus", "phase": "pending", "priority": 10, "runtime": "wsl"},
+    {"id": "trajan", "phase": "pending", "priority": 11, "runtime": "wsl"},
+    {"id": "vespian", "phase": "pending", "priority": 12, "runtime": "wsl"},
+    {"id": "Aurelian", "phase": "pending", "priority": 13, "runtime": "wsl"},
+    {"id": "Augustus", "phase": "pending", "priority": 14, "runtime": "wsl"},
+    {"id": "dnsx", "phase": "pending", "priority": 15, "runtime": "wsl"},
+    {"id": "webanalyze", "phase": "pending", "priority": 16, "runtime": "wsl"},
+    {"id": "tldfinder", "phase": "pending", "priority": 17, "runtime": "wsl"},
+    {"id": "katana", "phase": "pending", "priority": 18, "runtime": "wsl"},
+    {"id": "mapcidr", "phase": "pending", "priority": 19, "runtime": "wsl"},
+    {"id": "uncover", "phase": "pending", "priority": 20, "runtime": "wsl"},
+    {"id": "recon_ng", "phase": "pending", "priority": 21, "runtime": "wsl"},
+    {"id": "metasploit_framework", "phase": "pending", "priority": 22, "runtime": "wsl"}
+  ]
+}

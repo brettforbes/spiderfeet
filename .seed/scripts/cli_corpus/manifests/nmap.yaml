@@ -1,0 +1,70 @@
+tool: nmap
+version: 1
+default_runtime: windows
+default_timeout: 600
+binary_probe: nmap --version
+primary_parser: xml
+output_path_type: 1  # structured + text (separate runs per 2.2.1 rule 4
+
+scenarios:
+  - id: host_discovery_permissive_xml
+    name: Host discovery (permissive target, XML)
+    target: scanme.nmap.org
+    command: nmap -sn -T3 -oX - scanme.nmap.org
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: host_discovery_permissive_text
+    name: Host discovery (permissive target, text)
+    target: scanme.nmap.org
+    command: nmap -sn -T3 scanme.nmap.org
+
+  - id: tcp_top_ports_permissive_xml
+    name: TCP top ports (permissive, XML)
+    target: scanme.nmap.org
+    command: nmap -sT -T3 --top-ports 20 -oX - scanme.nmap.org
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: tcp_top_ports_permissive_text
+    name: TCP top ports (permissive, text)
+    target: scanme.nmap.org
+    command: nmap -sT -T3 --top-ports 20 scanme.nmap.org
+
+  - id: service_version_permissive_xml
+    name: Service version (permissive, XML)
+    target: scanme.nmap.org
+    command: nmap -sT -sV -T3 -p 22,80,443 -oX - scanme.nmap.org
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: service_version_permissive_text
+    name: Service version (permissive, text)
+    target: scanme.nmap.org
+    command: nmap -sT -sV -T3 -p 22,80,443 scanme.nmap.org
+
+  - id: nse_default_permissive_xml
+    name: NSE default scripts (permissive, XML)
+    target: scanme.nmap.org
+    command: nmap -sT -T3 -p 80,443 --script "default,safe" -oX - scanme.nmap.org
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: host_discovery_corporate_xml
+    name: Host discovery (corporate target, XML)
+    target: bbc.co.uk
+    command: nmap -sn -T3 -oX - bbc.co.uk
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: host_discovery_corporate_text
+    name: Host discovery (corporate target, text)
+    target: bbc.co.uk
+    command: nmap -sn -T3 bbc.co.uk
+
+  - id: tcp_top_ports_corporate_xml
+    name: TCP top ports (corporate, XML)
+    target: bbc.co.uk
+    command: nmap -sT -T3 --top-ports 10 -oX - bbc.co.uk
+    structured_kind: xml
+    structured_ext: xml
