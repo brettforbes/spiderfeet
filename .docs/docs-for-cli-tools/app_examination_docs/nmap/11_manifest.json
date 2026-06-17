@@ -1,0 +1,17 @@
+{
+  "tool": "nmap",
+  "exam_id": 11,
+  "scenario_id": "tcp_top_ports_corporate_xml",
+  "scenario_name": "TCP top ports (corporate, XML)",
+  "target": "bbc.co.uk",
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 2.062,
+  "captured_at": "2026-06-17T10:53:33.459767+00:00",
+  "structured_kind": "xml",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\11_output_structured.xml",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\11_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\11_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending"
+}

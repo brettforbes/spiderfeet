@@ -1,0 +1,5 @@
+Starting Nmap 7.80 ( https://nmap.org ) at 2026-06-17 20:53 AUS Eastern Standard Time
+Nmap scan report for bbc.co.uk (151.101.0.81)
+Host is up (0.0050s latency).
+Other addresses for bbc.co.uk (not scanned): 2a04:4e42:200::81 2a04:4e42:400::81 2a04:4e42:600::81 2a04:4e42::81 151.101.64.81 151.101.128.81 151.101.192.81
+Nmap done: 1 IP address (1 host up) scanned in 0.43 seconds
