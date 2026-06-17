@@ -48,7 +48,7 @@ Based strictly on the provided source materials, generate the following things:
 - Refences directory for details on the source material and how to use the tool, indexed through the `SKILLS.md` file.
 
 3. References Directory (`.cursor\skills\nmap\references`): A directory of references to the source material and how to use the tool, indexed through the `SKILLS.md` file.
-4. Zero to Hero Document (`.docs\docs-for-cli-tools\NMAP-Zero-to-Hero copy.md`): A markdown docuemnt that takes the user from zero to hero in using TextFSM to parse CLI App Output into Nuggets.
+4. Zero to Hero Document (`.docs\docs-for-cli-tools\NMAP-Zero-to-Hero.md`): A markdown document that takes the user from zero to hero in using Nmap for OSINT scanning and nugget mapping.
 5. CLI Options Documentation (`.docs\docs-for-cli-tools\NMAP-CLI-Options.md`): A markdown document that lists the standard NMAP CLI Options doc
 
 ## Best Practices for Library Skills
