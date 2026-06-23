@@ -1,0 +1,57 @@
+---
+description: Rules for exercising CLI apps before deriving SpiderFeet nugget graphs
+alwaysApply: true
+---
+
+# Project: CLI App Exercising
+
+Use these rules when onboarding, profiling, or regenerating evidence for a CLI app.
+
+## Goal
+
+The goal is not to run a few successful commands. The goal is to capture the full range of semantically distinct outputs the tool can produce, including sparse output, rich output, alternate object types, clean misses, and errors.
+
+## Exploration Before Formal Runs
+
+First read the appropriate skillset documentation, then use the tool to explore the output.
+
+- Exploration is required before formal examination. Spend enough time to understand how the tool exposes different information classes; do not assume default options are representative.
+- Explore by semantic output variation, and by every flag permutation, as well as the different input types and formats. Add a scenario whenever options, target class, mode, template/module, protocol, privilege, or failure condition changes the shape of returned data.
+- Use permissive targets to maximize rich output and protected/corporate targets to capture filtered, sparse, blocked, or error output.
+- If a run returns too little information, treat the input or option choice as suspect until richer alternatives have been tried or the limitation is proven.
+- Search the web for information of example inputs used by the tool to generate good reports.
+- Keep tuning the inputs until you have a collection of input scenarios that cover every conceivable semantic variation of output. Do not be afraid to use the tool's help text to guide your exploration.
+
+## Formal Examination
+
+- Run the tool with the input scenarios you have collected.
+- For each run, capture the results and capture/convert them into the four output formats as shown below.
+
+
+## Output Capture
+
+- Every scenario must produce a user-readable text artifact and a structured artifact (`json`, `xml`, `yaml`, or `csv`).
+- Prefer structured formats in this order: JSON, XML, YAML, CSV. Use full verbosity where available.
+- If the tool can emit text and structured output in one run, capture both.
+- If the tool can emit only one format per run, execute paired runs for the same scenario: native text and best structured format.
+- If the tool is text-only, parse text into structured form with TextFSM or an equivalent deterministic parser.
+- Capture errors and empty/clean-miss behavior as first-class scenarios with text and structured representations.
+
+## Scenario Coverage
+
+- A formal examination is incomplete until the scenario matrix covers all known output classes and each scenario has command, manifest, text, structured data, proposed graph JSON, markdown graph structure, and review status.
+- Required scenario classes where applicable: baseline, maximum verbosity/rich output, each structured format family, alternate protocol/mode/module/template families, permissive target, protected target, clean miss, invalid input, dependency/auth/rate-limit/network error.
+- Do not collapse distinct output shapes into one scenario just because they come from the same tool.
+
+## Nugget Graph Derivation Discipline
+
+Review the foundation described here to convert the structured artifact to nugget graph JSON (nodes and edges arrays).
+
+- Derive the nugget graph from the structured artifact, even when the structured artifact was parsed from text. The nugget graph is the primary ontology input for the SpiderFeet tool.
+- Keep raw text as review evidence and as a template source for derived text, not as the primary ontology input.
+- Create a markdown document to describe each graph JSON, including the nodes and edges arrays, and the derived nugget graph.
+- Do not mark a tool's output model complete while any observed field, object type, error shape, or output mode is unmapped, intentionally ignored, or captured as a follow-up gap.
+
+## Handoff
+
+For each tool, leave a concise strategy describing how to produce rich, sparse, and error outputs; where the help text is captured; and which scenario set proves the output surface is covered.

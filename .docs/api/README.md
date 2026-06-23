@@ -24,6 +24,22 @@
 
 Requires `.config/typedb.connection.json` and a bootstrapped `spiderfeet-map` database (see [`.docs/typedb/README.md`](../typedb/README.md)).
 
+## CLI corpus API (profiling review UI)
+
+Serves examination bundles from `.docs/docs-for-cli-tools/` for the widget **CLI Profiling** tab (`.seed/04_Driving and Integrating_CLI_Apps.md` §2.1.3).
+
+| Endpoint | Purpose |
+|----------|---------|
+| `GET /api/v1/cli-corpus/config` | Data Viewer embed URL |
+| `GET /api/v1/cli-corpus/tools` | Tools from `corpus_index.json` |
+| `GET /api/v1/cli-corpus/tools/{id}/examinations` | Exam list |
+| `GET /api/v1/cli-corpus/tools/{id}/examinations/{n}` | Full bundle (text, structured, graph proposal, markdown) |
+| `POST /api/v1/cli-corpus/tools/{id}/examinations/{n}/review` | Set `pending` / `approved` / `rejected` |
+
+Structured tab embed: start [json-yaml-xml-csv-widget](https://github.com/brettforbes/json-yaml-xml-csv-widget) (`.\start.ps1` → `http://localhost:3000/widget`). Override with `SPIDERFEET_DATA_VIEWER_URL`.
+
+### Map endpoints
+
 | Endpoint | Purpose |
 |----------|---------|
 | `GET /api/v1/map/connection` | Redacted TypeDB connection info |

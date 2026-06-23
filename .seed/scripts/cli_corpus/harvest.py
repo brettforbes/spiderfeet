@@ -39,6 +39,9 @@ class RunResult:
 
 def ensure_dev_paths() -> None:
     prefixes: list[str] = []
+    tools_bin = REPO_ROOT / ".tools" / "bin"
+    if tools_bin.is_dir():
+        prefixes.append(str(tools_bin))
     if sys.platform == "win32":
         for candidate in (
             r"C:\Program Files (x86)\Nmap",
@@ -55,17 +58,27 @@ def ensure_dev_paths() -> None:
 
 def run_command(command: str, runtime: str, cwd: Path | None, timeout: int) -> RunResult:
     started = time.monotonic()
-    if runtime == "wsl":
-        shell_cmd = ["wsl", "-e", "bash", "-lc", command]
+    if runtime in ("wsl", "wsl-root"):
+        inner = command
+        if cwd:
+            inner = f"cd {cwd} && {command}"
+        wsl_args = ["wsl", "-e", "bash", "-lc", inner]
+        if runtime == "wsl-root":
+            wsl_args = ["wsl", "-u", "root", "bash", "-lc", inner]
+        shell_cmd = wsl_args
+        use_shell = False
+        run_cwd = None
     else:
         shell_cmd = command if sys.platform == "win32" else command
+        use_shell = sys.platform == "win32"
+        run_cwd = str(cwd) if cwd else None
     proc = subprocess.run(
         shell_cmd,
         capture_output=True,
         text=True,
-        cwd=str(cwd) if cwd else None,
+        cwd=run_cwd,
         timeout=timeout,
-        shell=(runtime != "wsl" and sys.platform == "win32"),
+        shell=use_shell,
     )
     duration = time.monotonic() - started
     return RunResult(
@@ -178,6 +191,25 @@ def run_scenario(tool: str, scenario_id: str, dry_run: bool = False) -> None:
 
     print(f"[harvest] {tool}/{scenario_id} ({runtime}) …")
     result = run_command(command, runtime, cwd_path, timeout)
+    # Post-run structured file pickup (e.g. CMSeeK cms.json)
+    src = scenario.get("structured_source_path")
+    if src:
+        src_path = Path(src)
+        if not src_path.is_absolute() and cwd_path:
+            src_path = cwd_path / src
+        if not src_path.is_file() and runtime in ("wsl", "wsl-root"):
+            # Read structured artifact from WSL filesystem
+            wsl_cat = ["wsl", "bash", "-lc", f"cat {src_path}"]
+            if runtime == "wsl-root":
+                wsl_cat = ["wsl", "-u", "root", "bash", "-lc", f"cat {src_path}"]
+            cat_proc = subprocess.run(wsl_cat, capture_output=True, text=True, timeout=30)
+            if cat_proc.returncode == 0 and cat_proc.stdout.strip():
+                tmp = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "app_examination_docs" / tool / "_tmp_structured.json"
+                tmp.parent.mkdir(parents=True, exist_ok=True)
+                tmp.write_text(cat_proc.stdout, encoding="utf-8")
+                scenario = {**scenario, "structured_output_file": str(tmp)}
+        elif src_path.is_file():
+            scenario = {**scenario, "structured_output_file": str(src_path.resolve())}
     write_bundle(tool, scenario, result, manifest)
     print(f"[harvest] exit={result.exit_code} duration={result.duration_s}s")
 

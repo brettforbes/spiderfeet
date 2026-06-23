@@ -24,6 +24,8 @@ Governed SpiderFeet fork. Read this before doing substantive work.
 - OSINT services: `.docs/analysis/osint_services.json` (`service_state`, `fixture_category`)
 - Quarantined modules: `.docs/quarantine_modules.md`
 - Core non-OSINT: `.docs/non_osint_modules.md`
+- **Nugget ontology (canonical):** `.seed/05_Onotology_for_Nuggets.md` · rule: `.cursor/rules/proj-05-spiderfeet-nugget-ontology.mdc`
+- **Widget Data Viewer embed:** `@spiderfeet-widget/.docs/data-viewer-embed.md` (Structured tabs, postMessage contract)
 
 ## Stage 4 — Tests corpus (read before seed or Tests work)
 

@@ -20,7 +20,7 @@ define
 
 	entity nugget @abstract,
 		owns nugget_id,
-		owns nugget_instance_id @key,
+		owns nugget_instance_id @unique  @card(0..1),
 		owns nugget_description,
 		owns nugget_type,
 		owns nugget_event_type,
@@ -559,7 +559,11 @@ define
 		plays enrichment:next;
 
 	#####################################
-	# SpiderFeet Enrichment Definitions -
+	# SpiderFeet User-Initiated Enrichment, a Sequence of scan-records
+	#
+	# A user-initiated enrichment is a sequence of scan-records that are linked together by the enrichment_id.
+	# The enrichment_id is a unique identifier for the enrichment.
+	# The enrichment is a sequence of scan-records that are linked together by the enrichment_id.
 	####################################
 
 	relation enrichment,
