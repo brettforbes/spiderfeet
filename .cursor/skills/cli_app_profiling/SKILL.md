@@ -66,6 +66,18 @@ python .seed/scripts/cli_corpus/harvest.py --tool nmap
 python .seed/scripts/cli_corpus/harvest.py --tool nmap --dry-run
 ```
 
+## Operator review UI
+
+Widget tab **CLI Profiling** (`spiderfeet-widget`) + API `GET /api/v1/cli-corpus/*`.
+
+- **Scenarios:** one API row per scan command (`/tools/{tool}/scenarios/{scenario_key}`), not per file type.
+- **Bundles:** `app_examination_docs/<tool>/scenarios/<key>/` with `output_text.txt`, `output_structured.*`, `proposed_nuggets_edges.json`, `nugget_graph_structure.md`.
+- **Legacy numbered exams:** pairs like `foo_xml` + `foo_text` are one scenario; consolidate into scenario bundles during examination.
+
+**Data Viewer (Structured tab):** embed [json-yaml-xml-csv-widget](https://github.com/brettforbes/json-yaml-xml-csv-widget) via `DataViewerHost` — see `@spiderfeet-widget/.docs/data-viewer-embed.md`. Dev URL `http://localhost:3000/widget` (`SPIDERFEET_DATA_VIEWER_URL` / `data-data-viewer-url` on `#widget-root`). Pass `filename` + content; bridge sends `set-mode` then `set` with inferred format.
+
+Approve/Reject updates `review.status.json` in scenario bundle (or legacy `*_review.status.json`).
+
 ## V2 graph contract
 
 Every examination produces a **scan head** node plus discovered entities linked by:
@@ -87,6 +99,7 @@ Start with **Nmap** (pilot), then follow `corpus_index.json` priority. Do not sk
 | [references/SKILLS.md](references/SKILLS.md) | Index |
 | [references/v2-graph-rules.md](references/v2-graph-rules.md) | Nodes, edges, scan head |
 | [references/examination-checklist.md](references/examination-checklist.md) | Per-tool checklist |
-| [references/evidence-layout.md](references/evidence-layout.md) | File naming |
+| [references/evidence-layout.md](references/evidence-layout.md) | File naming + scenario bundles |
+| `@spiderfeet-widget/.docs/data-viewer-embed.md` | Data Viewer host integration |
 
 Per-tool skills: `.cursor/skills/<tool>/SKILL.md` and Zero-to-Hero docs under `.docs/docs-for-cli-tools/`.

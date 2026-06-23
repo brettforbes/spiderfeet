@@ -56,43 +56,7 @@ graph TD
 
 ### 1.3 The SpiderFeet V2 Hierarchical Processing Rules
 
-Essentially, we need to transition SpiderFeet so that it is no longer a flat model, but a hierarchical model, where the nuggets are grouped into a hierarchy of networks and systems, to encapsulate the relationships between the consumed and produced nuggets.
-
-In short, we expect to transition all modules so they return a nuggets array, and an edges array, where the edges are the relationships between the nuggets. During the transition each service can return an empty array for the edges, until we go through and revise a specific service to return the correct edges.
-
-We will use markdown documents with mermaid diagrams to describe the graph structure of the nuggets and relationships between them. Once we have the graph structrure well defined we will then instantiate the graph structure in TypeQL.
-
-We will use only a very limited number of relationships to describe the relationships between the nuggets, so well adopt a very simple, hierarchical `system` contain `sub system`, which then contain other `sub system`s etc. Nodes can be of two types, entity or attribute, where attributes are related through `has` relationships. Servioces `listen` to ports. We may expand the types of relationships in the future, but we wiull trry to reuse the current ones as much as makes sense.
-
-More formally, we will use the following definitions, which will be used in the underlying TypeQL ontology model:
-
-- Systems can be `Host` or `Device`
-- Traces occur between one or more systems, but the rule is that each Trace connects to an IP Address, which is either a `Host` or `Device`
-- A scan is the overarching entity that owns scan attributes and other entities deilvered by the scan
-
-Alowable relationships are:
-
-- `has` -> an entity has an attribute 
-- `contains` -> an entity contains another entity (e.g. IPADDRESS contains multiple PORT for PROTOCOL) 
-- `listens on` -> an entity listens on another entity, for example a service listens on a port 
-
-
-We will employ a transitive modelling mechanism, so a `host` `contains` an `IPAddress`, even if it is actually the `Networking` entity that contains the `IPAddress`. Further, the host always `listens_on` the `Port` if the `PortState` is `open`, even if it is actually the `Service` that listens on the port. As another example, a trace that links IP Addresses and hops, should actually link to the hosts, through the relation `detects` that the host contains the IPAddress. Ultimately, the trace is linking the hops between the hosts and this is how we will be able to trace the network and system topology. As a final example, a trace that links an IP Address to a port, should actually link to the host, through the relation `contains` that the host contains the IPAddress.
-
-Every nugget should have a `nugget_instance_id` attribute, which is a unique identifier for the nugget. The unique identifier is based on using the `nugget_id` and `nugget_data` as the seed, in the following formula. This is important as it will mean that we can avoid the same value value being enetered in the knowledge graph multiple times, and instead we will link to the single value in the graph.
-
-```python
-nugget_instance_id = f"{nugget_id}-{uuid5(namespace, nugget_data)}"
-```
-
-Every scan should have a `scan_id` attribute, which is a unique identifier for the scan. The unique identifier is based on the following formula.
-
-```python
-scan_id = f"{OSINT_Service_Name}-{uuid4()}"
-```
-
-
-Every scan should return a graph, nodes and edges arrays where the nodes are the nuggets, and the edges are the relationships between the nuggets. The head nugget of the graph should be the scan entity nugget, with some scan attributes linked by `has` relationships, all of the discovered entities should be linked to the scan entity by `contains` relationships. 
+Use the rules described in the nuggets ontology document (`.seed\05_Onotology_for_Nuggets.md`) to define the relationships between the nuggets. Use the `spiderfeet-map` and `spiderfeet-actual` databases in TypeDB to create the ontology.
 
 
 ### 1.4 The New Scanning Process and Output Formats
@@ -172,7 +136,7 @@ We will need to proviude a detailed prompt or skill to enable an agent to unders
 
 Components:
 
-- `Tool manifest (YAML/JSON per tool)
+- Tool manifest (YAML/JSON per tool)
 - Runner (Windows / WSL)
 - Evidence recorder (command + stdout/stderr + files + metadata)
 - Scenario matrix runner
@@ -232,7 +196,7 @@ We will leave it up to you to suggest new nuggets. Nother that it may be better 
 
 ##### 2.1.2.B. Scenario matrix
 
-not every flag combo
+explore every flag combo until you find the set of inputs needed to expose the full breadth of returned semantic data types, so that we can be sure that we can convert the output of any option into nuggets. Convert these into named scenarios.
 named scenarios: baseline, xml_export, json_export, error_case, empty_case
 
 ##### 2.1.2.C. Runner abstraction

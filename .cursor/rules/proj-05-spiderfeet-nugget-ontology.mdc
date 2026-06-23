@@ -1,0 +1,101 @@
+---
+description: SpiderFeet V2 nugget ontology — graph shape, relations, hierarchies
+globs:
+  - ".seed/05_Onotology_for_Nuggets.md"
+  - ".seed/spiderfeet_map.tql"
+  - ".docs/analysis/hierarchy/**"
+  - ".docs/analysis/nuggets.json"
+  - ".docs/analysis/conversion_to_types/**"
+  - ".docs/docs-for-cli-tools/nugget_structure/**"
+alwaysApply: false
+---
+
+# Project: Nugget Ontology
+
+**Canonical doc:** `.seed/05_Onotology_for_Nuggets.md`  
+**TypeDB schema:** `.seed/spiderfeet_map.tql`  
+**Legacy catalogue:** `.docs/analysis/nuggets.json`
+
+Read the canonical doc for narrative, IPS/OSI hierarchy, nmap and PowerShell worked examples, and full Mermaid graphs. This rule captures enforceable constraints agents must apply when editing ontology or graphs.
+
+## Nugget model (summary)
+
+- A **nugget** is an archetype node type (`nugget` → `node` → `entity` | `descriptor` in `spiderfeet_map.tql`).
+- **Entity** — one atom of data; can `contains` other entities.
+- **Descriptor** — attribute of an entity; attached via `had`.
+- **Category** — container with no `nugget_data` (e.g. `NETWORKS`, `APPLICATIONS`); parent system `contains` category; category `contains` instances.
+
+Three deployment shapes:
+
+| Shape | `nugget_data` | Where |
+|-------|---------------|--------|
+| Archetype | empty | `spiderfeet-map` + `spiderfeet-actual`; map DB links via osint-service consumed/produced |
+| Category | empty | `spiderfeet-actual` only; under `HOST` / `DEVICE` / `MOBILE` |
+| Instance | required | Both DBs; carries entity/descriptor values |
+
+**Instance id** (dedup key):
+
+```python
+namespace = "00abedb4-aa42-466c-9c01-fed23315a9b7"
+nugget_instance_id = f"{nugget_id}-{uuid5(namespace, nugget_data)}"
+```
+
+Flat nugget lists are insufficient — graphs must reflect intrinsic hierarchies (IPS, host/network/application, scan metadata).
+
+## Internal vs external scans
+
+- **External** (e.g. nmap): reduced detail — no per-adapter breakdown; `HOST` → `NETWORKS` → `IP_ADDRESS` → `TRANSPORT` → `PORT`; `APPLICATIONS` → `SERVICE`.
+- **Internal** (e.g. PowerShell `Get-NetIPConfiguration`): adds `ADAPTER` and adapter descriptors under `NETWORKS`.
+- **Same ontology** via minimal relation set + transitive `contains` / `listens-to` (host can logically `contains` an IP even when an adapter owns it in the graph).
+
+## Core graph contract
+
+- Output is always `nodes[]` + `edges[]`.
+- One **scan head** (`SCAN_RECORD`): `had` → scan descriptors (CLI, target, times, outcome, …); `contains` → discovered top-level entities (e.g. `HOST`).
+- Allowed relations **only** (unless seed doc is explicitly extended):
+  - `contains` — entity → entity or category containment
+  - `had` — entity → descriptor (`has` is TypeQL reserved)
+  - `listens-to` — service/application → port
+- Do **not** invent `relates`, `detects`, `uses`, `produces`, or other ad-hoc edge names.
+- Uncertain facts: entity + descriptor carrying confidence (not a new relation type).
+
+## Hierarchy discipline
+
+- Stable order: `Scan` → `Host`/`Device`/`Mobile` → category (`NETWORKS`, `APPLICATIONS`, `ENVIRONMENT`) → concrete entities → descriptors.
+- Network stack: IP, transport, port, port state/test/protocol under `NETWORKS` (see nmap example in seed doc).
+- Application stack: service name, version, extrainfo, CPE under `APPLICATIONS` or `SERVICE`.
+- **Port** is the entity; protocol and state are descriptors on the port. `TCP_PORT_OPEN` is only for open TCP — filtered/closed/UDP need distinct semantics.
+- Prefer transitive edges for queryability (host `contains` IP; service `listens-to` port).
+
+## Mapping rules
+
+- Map source fields to existing `nugget_id` first; propose new types only when nothing fits (state entity vs descriptor, parent, gap).
+- Scanner/tool names → `SCAN_*` descriptors on the scan record, not entity classes.
+- `clean_miss` = run finished with no qualifying target intelligence; not a substitute for error modelling.
+- Never duplicate instance nodes for the same canonical `nugget_id` + `nugget_data`.
+
+## Worked examples and diagram tooling
+
+| Scan | Nodes CSV | Edges CSV |
+|------|-----------|-----------|
+| nmap (external) | `.docs/analysis/hierarchy/nmap_example_nodes.csv` | `nmap_example_edges.csv` |
+| PowerShell (internal) | `PS_Example_Nodes.csv` | `PS_Example_Edges.csv` |
+
+Regenerate Mermaid (ontology graphs use **nugget_id titles only**, no values in labels):
+
+```bash
+python .docs/analysis/hierarchy/_gen_mermaid.py nmap_example --layout grouped --titles-only
+python .docs/analysis/hierarchy/_gen_mermaid.py PS_Example --layout flat --titles-only
+```
+
+After CSV or ontology changes, update diagrams in `.seed/05_Onotology_for_Nuggets.md` and keep this rule’s summary in sync if constraints change.
+
+## Review gate
+
+Before accepting a proposed graph:
+
+1. Scan head present with `had` metadata and `contains` for discoveries.
+2. No relation drift (only `contains`, `had`, `listens-to`).
+3. Every node is entity, descriptor, or category with a clear role.
+4. Every source field mapped or explicitly ignored.
+5. New nugget types justified; deterministic instance ids; no duplicate facts.

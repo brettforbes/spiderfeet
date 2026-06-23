@@ -1,1 +1,0 @@
-nmap -sT -T3 -p 80,443 --script "default,safe" -oX - scanme.nmap.org
