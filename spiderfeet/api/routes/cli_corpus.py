@@ -23,6 +23,7 @@ class CliCorpusToolSummary(BaseModel):
     priority: int | None = None
     runtime: str | None = None
     exam_count: int = 0
+    has_graph_structure: bool = False
     notes: str | None = None
 
 
@@ -66,9 +67,16 @@ class CliCorpusScenarioDetail(BaseModel):
     output_text: str = ""
     structured: CliCorpusStructuredPayload | None = None
     graph_proposal: dict | None = None
+    graph_description_markdown: str | None = None
     markdown: str | None = None
     artifacts: CliCorpusArtifacts
     complete: bool = False
+
+
+class CliCorpusMarkdownDocument(BaseModel):
+    tool_id: str
+    filename: str
+    markdown: str
 
 
 class CliCorpusReviewRequest(BaseModel):
@@ -104,6 +112,18 @@ def list_scenarios(tool_id: str) -> List[CliCorpusScenarioSummary]:
     if not rows and not corpus_service.tool_in_index(tool_id):
         raise HTTPException(status_code=404, detail=f"Unknown tool: {tool_id}")
     return [CliCorpusScenarioSummary(**row) for row in rows]
+
+
+@router.get("/tools/{tool_id}/graph-structure", response_model=CliCorpusMarkdownDocument)
+def get_tool_graph_structure(tool_id: str) -> CliCorpusMarkdownDocument:
+    """Tool-level nugget graph structure markdown."""
+    try:
+        doc = corpus_service.get_tool_graph_structure(tool_id)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    if doc is None:
+        raise HTTPException(status_code=404, detail=f"Graph structure not found: {tool_id}")
+    return CliCorpusMarkdownDocument(**doc)
 
 
 @router.get("/tools/{tool_id}/scenarios/{scenario_key}", response_model=CliCorpusScenarioDetail)
