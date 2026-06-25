@@ -1,0 +1,1 @@
+nmap -sT --traceroute -T3 -p 80 -oX - scanme.nmap.org

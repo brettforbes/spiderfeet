@@ -1,0 +1,1 @@
+nmap -sT -sC -T3 -p 22,80,443 scanme.nmap.org

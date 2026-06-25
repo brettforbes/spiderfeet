@@ -1,0 +1,6 @@
+# Nmap 7.80 scan initiated Tue Jun 23 18:24:56 2026 as: "C:\\Program Files (x86)\\Nmap\\nmap.exe" -sn -T3 -oX c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\07_local_discovery.xml -oN c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\07_local_discovery.txt 192.168.1.0/24
+Nmap scan report for 192.168.1.12
+Host is up.
+Nmap scan report for 192.168.1.16
+Host is up.
+# Nmap done at Tue Jun 23 18:25:08 2026 -- 256 IP addresses (2 hosts up) scanned in 11.88 seconds

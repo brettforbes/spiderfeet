@@ -63,7 +63,7 @@ Actual Nuggets are used in three main ways:
 3. **Instance Nuggets**: These are the instance nugget types meant to carry the `entity` and `descriptor` data, and are used in both the `spiderfeet-map` and the `spiderfeet-actual` databases in TypeDB. They must have a value for `nugget_data` and `nugget_instance_id` as defined below
 
 ```python
-namespace = "00abedb4-aa42-466c-9c01-fed23315a9b7" # This is a fixed namespace for the SpiderFeet ontology, and matches the Stix ontology namespace
+namespace = "nugget_instance_id" # This is a fixed namespace for the SpiderFeet ontology, and matches the Stix ontology namespace
 nugget_instance_id = f"{nugget_id}-{uuid5(namespace, nugget_data)}"
 ```
 
@@ -204,6 +204,10 @@ flowchart TD
   end
   subgraph hostTree["HOST"]
     n10["HOST"]
+    n10a["HOST_STATUS"]
+    n10 -->|had| n10a
+    n10b["HOST_STATUS_REASON"]
+    n10 -->|had| n10b
     subgraph networksCat["NETWORKS"]
       n11["NETWORKS"]
       n10 -->|contains| n11
@@ -437,6 +441,65 @@ flowchart TD
 
 As the above shows, by using transitivge relationships, we can create a consistent ontology between internal and external scans, even though the internal scan contains much more detail. The foundation shown above can serve as a basis for a consistent ontology between internal and external scans.
 
+## 2.6 Host reachability status
+
+Nmap reports host liveness separately from addresses and ports:
+
+```xml
+<status state="up" reason="echo-reply" reason_ttl="51"/>
+```
+
+Map this to the **HOST** entity (not to the IP address alone):
+
+- `HOST` `had` `HOST_STATUS` — canonical state (`up`, `down`, `unknown`, `skipped`, …)
+- `HOST` `had` `HOST_STATUS_REASON` — Nmap `reason` when present (for example `echo-reply`, `localhost-response`, `syn-ack`)
+
+`HOST_STATUS` is scan-time evidence about the system endpoint. The same host may appear in multiple scans with different status values; each value is a distinct descriptor instance keyed by `nugget_data`.
+
+## 2.7 Traceroute traces relate hosts, not bare IPs
+
+Nmap embeds path data under the scanned host:
+
+```xml
+<trace proto="icmp">
+  <hop ttl="2" ipaddr="203.134.80.60" rtt="7.00" host="lo0-33.bng71.alexeqn.nsw.vocus.network"/>
+  ...
+  <hop ttl="13" ipaddr="45.33.32.156" rtt="152.00" host="scanme.nmap.org"/>
+</trace>
+```
+
+Although each hop is keyed by an IP string in XML, the trace is a **semantic path between hosts** (routers, gateways, and the target). Do not model hops as disconnected `IP_ADDRESS` nodes.
+
+Model:
+
+- `SCAN_RECORD` `contains` `TRACE` when a trace block is present
+- `TRACE` `had` `TRACE_PROTOCOL` from `@proto` (`icmp`, `tcp`, `udp`, …)
+- For each hop in TTL order: `TRACE` `contains` `TRACE_HOP`
+- Each `TRACE_HOP` `had` `HOP_ORDER`, `HOP_TTL`, `HOP_RTT` (when present)
+- Each `TRACE_HOP` `contains` `HOST` — the system at that hop
+- Each hop `HOST` `contains` `NETWORKS` `contains` `IP_ADDRESS` for `@ipaddr`
+- When `@host` is present, `HOST` `had` `INTERNET_NAME`
+- When the hop `@ipaddr` matches the scanned target, **reuse** the same `HOST` instance already linked from `SCAN_RECORD` `contains`
+
+The ordered `TRACE` `contains` `TRACE_HOP` chain is the host-to-host path. IP addresses are contained facts under each host; they do not replace the host entity in the trace.
+
+```mermaid
+flowchart TD
+  scan["SCAN_RECORD"]
+  trace["TRACE"]
+  hop1["TRACE_HOP order=1"]
+  hop2["TRACE_HOP order=2"]
+  hostA["HOST router-a"]
+  hostB["HOST target"]
+  scan -->|contains| trace
+  trace -->|contains| hop1
+  trace -->|contains| hop2
+  hop1 -->|contains| hostA
+  hop2 -->|contains| hostB
+  hostA -->|had| stA["HOST_STATUS"]
+  hostB -->|had| stB["HOST_STATUS"]
+```
+
 ## 3. Core Model
 
 - Output is always a graph: `nodes[]` plus `edges[]`.
@@ -453,6 +516,8 @@ As the above shows, by using transitivge relationships, we can create a consiste
 
 - Prefer stable hierarchy before tool-specific convenience: `Scan -> Host/Device`, then domain containers such as `Networking` or `Applications`, then concrete entities and attributes.
 - Network facts belong under `Networking` where helpful: IP address, protocol, port, port state, trace/hop.
+- Host reachability belongs on `HOST`: `HOST_STATUS` and `HOST_STATUS_REASON` from discovery scans.
+- Traceroute paths belong on `TRACE` → ordered `TRACE_HOP` → `HOST` chains; hop IPs are contained under each hop host.
 - Application/service facts belong under `Applications` or a service entity: service name, product, version, CPE, web technology.
 - `TCP_PORT_OPEN` represents only an open TCP port. Filtered, closed, unknown, or UDP ports need distinct state/port semantics, not `TCP_PORT_OPEN`.
 - Use transitive edges where possible as they preserve truth and improve querying, e.g. host `contains` an IP and host/service `listens on` an open port.

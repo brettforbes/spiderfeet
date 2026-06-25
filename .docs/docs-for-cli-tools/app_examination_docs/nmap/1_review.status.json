@@ -1,0 +1,7 @@
+{
+  "status": "approved",
+  "scenario_key": "host_discovery_permissive",
+  "tool": "nmap",
+  "updated_at": "2026-06-25T04:13:26.538539+00:00",
+  "exam_id": 1
+}

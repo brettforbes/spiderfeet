@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-06-19T00:00:00Z",
+  "updated_at": "2026-06-23T09:10:00Z",
   "driving_doc": ".seed/04_Driving and Integrating_CLI_Apps.md",
   "excluded_tools": ["aircrack-ng"],
   "targets": {
     "permissive": ["scanme.nmap.org"],
     "corporate": ["bbc.co.uk", "sbs.com.au"],
-    "local_l2": ["172.18.0.0/28"]
+    "local_l2": ["192.168.1.0/24", "172.18.0.0/28"]
   },
   "phases": ["exploration", "formal_examination", "nugget_proposal", "operator_review", "ontology_update"],
   "tools": [
-    {"id": "nmap", "phase": "exploration", "priority": 1, "runtime": "windows", "exams": 0, "notes": "Reset 2026-06-19 — restart exploration and examination"},
+    {"id": "nmap", "phase": "nugget_proposal", "priority": 1, "runtime": "windows", "exams": 15, "notes": "Formal examination complete 2026-06-23 — 15 archetypes (30 bundles: XML+text pairs); draft nugget graphs next"},
     {"id": "netdiscover", "phase": "exploration", "priority": 2, "runtime": "wsl-root", "exams": 0, "notes": "Reset 2026-06-19 — restart exploration and examination"},
     {"id": "nerva", "phase": "exploration", "priority": 3, "runtime": "windows", "exams": 0, "notes": "Reset 2026-06-19 — restart exploration and examination"},
     {"id": "nuclei", "phase": "exploration", "priority": 4, "runtime": "windows", "exams": 0, "notes": "Reset 2026-06-19 — restart exploration and examination"},

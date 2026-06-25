@@ -1,0 +1,23 @@
+Starting Nmap 7.80 ( https://nmap.org ) at 2026-06-23 19:02 AUS Eastern Standard Time
+Nmap scan report for scanme.nmap.org (45.33.32.156)
+Host is up (0.15s latency).
+Other addresses for scanme.nmap.org (not scanned): 2600:3c01::f03c:91ff:fe18:bb2f
+
+PORT   STATE SERVICE
+80/tcp open  http
+
+TRACEROUTE (using proto 1/icmp)
+HOP RTT       ADDRESS
+1   ...
+2   7.00 ms   lo0-33.bng71.alexeqn.nsw.vocus.network (203.134.80.60)
+3   ...
+4   8.00 ms   ae10-100.edg01.alexeqn.nsw.vocus.network (203.134.80.236)
+5   10.00 ms  be106-99.bdr01.syd14.nsw.vocus.network (175.45.103.109)
+6   155.00 ms be158.cor01.syd11.nsw.vocus.network (114.31.192.64)
+7   157.00 ms be202.bdr04.sjc01.ca.us.vocus.network (114.31.199.41)
+8   154.00 ms be101.bdr01.sjc02.ca.us.vocus.network (114.31.199.249)
+9   155.00 ms eqix-sv1.linode.com (206.223.116.196)
+10  ... 12
+13  153.00 ms scanme.nmap.org (45.33.32.156)
+
+Nmap done: 1 IP address (1 host up) scanned in 4.70 seconds

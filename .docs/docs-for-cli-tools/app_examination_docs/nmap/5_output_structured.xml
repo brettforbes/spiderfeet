@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///C:/Program Files (x86)/Nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.80 scan initiated Tue Jun 23 19:00:44 2026 as: nmap -sT -sV -T3 -p 22,80,443,9929,31337 -oX - scanme.nmap.org -->
+<nmaprun scanner="nmap" args="nmap -sT -sV -T3 -p 22,80,443,9929,31337 -oX - scanme.nmap.org" start="1782205244" startstr="Tue Jun 23 19:00:44 2026" version="7.80" xmloutputversion="1.04">
+<scaninfo type="connect" protocol="tcp" numservices="5" services="22,80,443,9929,31337"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1782205245" endtime="1782205255"><status state="up" reason="echo-reply" reason_ttl="51"/>
+<address addr="45.33.32.156" addrtype="ipv4"/>
+<hostnames>
+<hostname name="scanme.nmap.org" type="user"/>
+<hostname name="scanme.nmap.org" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" product="OpenSSH" version="6.6.1p1 Ubuntu 2ubuntu2.13" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:6.6.1p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Apache httpd" version="2.4.7" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.7</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="9929"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="nping-echo" method="table" conf="3"/></port>
+<port protocol="tcp" portid="31337"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+</ports>
+<times srtt="152315" rttvar="64648" to="410907"/>
+</host>
+<runstats><finished time="1782205255" timestr="Tue Jun 23 19:00:55 2026" elapsed="11.20" summary="Nmap done at Tue Jun 23 19:00:55 2026; 1 IP address (1 host up) scanned in 11.20 seconds" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

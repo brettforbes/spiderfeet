@@ -1,0 +1,84 @@
+Starting Nmap 7.80 ( https://nmap.org ) at 2026-06-23 19:08 AUS Eastern Standard Time
+Skipping OS Scan against 192.168.1.12 because it doesn't work against your own machine (localhost)
+Nmap scan report for 192.168.1.12
+Host is up (0.00s latency).
+
+PORT     STATE SERVICE       VERSION
+135/tcp  open  msrpc         Microsoft Windows RPC
+445/tcp  open  microsoft-ds?
+8000/tcp open  http-alt
+| fingerprint-strings: 
+|   DNSVersionBindReqTCP, RPCCheck, RTSPRequest, Socks4, Socks5, X11Probe: 
+|     HTTP/1.1 400 Bad Request
+|     connection: close
+|     content-length: 0
+|     date: Tue, 23 Jun 2026 09:09:03 GMT
+|   FourOhFourRequest: 
+|     HTTP/1.0 404 Not Found
+|     vary: origin, access-control-request-method, access-control-request-headers
+|     access-control-allow-origin: *
+|     access-control-expose-headers: *
+|     content-length: 0
+|     date: Tue, 23 Jun 2026 09:09:03 GMT
+|   GetRequest: 
+|     HTTP/1.0 307 Temporary Redirect
+|     location: /v1/version
+|     vary: origin, access-control-request-method, access-control-request-headers
+|     access-control-allow-origin: *
+|     access-control-expose-headers: *
+|     content-length: 0
+|     date: Tue, 23 Jun 2026 09:09:03 GMT
+|   HTTPOptions: 
+|     HTTP/1.0 200 OK
+|     vary: origin, access-control-request-method, access-control-request-headers
+|     access-control-allow-methods: *
+|     access-control-allow-headers: *
+|     access-control-allow-origin: *
+|     allow: GET,HEAD
+|     content-length: 0
+|_    date: Tue, 23 Jun 2026 09:09:03 GMT
+| http-title: Site doesn't have a title (application/json).
+|_Requested resource was /v1/version
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port8000-TCP:V=7.80%I=7%D=6/23%Time=6A3A4D2F%P=i686-pc-windows-windows%
+SF:r(GetRequest,101,"HTTP/1\.0\x20307\x20Temporary\x20Redirect\r\nlocation
+SF::\x20/v1/version\r\nvary:\x20origin,\x20access-control-request-method,\
+SF:x20access-control-request-headers\r\naccess-control-allow-origin:\x20\*
+SF:\r\naccess-control-expose-headers:\x20\*\r\ncontent-length:\x200\r\ndat
+SF:e:\x20Tue,\x2023\x20Jun\x202026\x2009:09:03\x20GMT\r\n\r\n")%r(X11Probe
+SF:,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nconnection:\x20close\r\ncont
+SF:ent-length:\x200\r\ndate:\x20Tue,\x2023\x20Jun\x202026\x2009:09:03\x20G
+SF:MT\r\n\r\n")%r(FourOhFourRequest,E1,"HTTP/1\.0\x20404\x20Not\x20Found\r
+SF:\nvary:\x20origin,\x20access-control-request-method,\x20access-control-
+SF:request-headers\r\naccess-control-allow-origin:\x20\*\r\naccess-control
+SF:-expose-headers:\x20\*\r\ncontent-length:\x200\r\ndate:\x20Tue,\x2023\x
+SF:20Jun\x202026\x2009:09:03\x20GMT\r\n\r\n")%r(Socks5,67,"HTTP/1\.1\x2040
+SF:0\x20Bad\x20Request\r\nconnection:\x20close\r\ncontent-length:\x200\r\n
+SF:date:\x20Tue,\x2023\x20Jun\x202026\x2009:09:03\x20GMT\r\n\r\n")%r(Socks
+SF:4,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nconnection:\x20close\r\ncon
+SF:tent-length:\x200\r\ndate:\x20Tue,\x2023\x20Jun\x202026\x2009:09:03\x20
+SF:GMT\r\n\r\n")%r(HTTPOptions,10B,"HTTP/1\.0\x20200\x20OK\r\nvary:\x20ori
+SF:gin,\x20access-control-request-method,\x20access-control-request-header
+SF:s\r\naccess-control-allow-methods:\x20\*\r\naccess-control-allow-header
+SF:s:\x20\*\r\naccess-control-allow-origin:\x20\*\r\nallow:\x20GET,HEAD\r\
+SF:ncontent-length:\x200\r\ndate:\x20Tue,\x2023\x20Jun\x202026\x2009:09:03
+SF:\x20GMT\r\n\r\n")%r(RTSPRequest,67,"HTTP/1\.1\x20400\x20Bad\x20Request\
+SF:r\nconnection:\x20close\r\ncontent-length:\x200\r\ndate:\x20Tue,\x2023\
+SF:x20Jun\x202026\x2009:09:03\x20GMT\r\n\r\n")%r(RPCCheck,67,"HTTP/1\.1\x2
+SF:0400\x20Bad\x20Request\r\nconnection:\x20close\r\ncontent-length:\x200\
+SF:r\ndate:\x20Tue,\x2023\x20Jun\x202026\x2009:09:03\x20GMT\r\n\r\n")%r(DN
+SF:SVersionBindReqTCP,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nconnection
+SF::\x20close\r\ncontent-length:\x200\r\ndate:\x20Tue,\x2023\x20Jun\x20202
+SF:6\x2009:09:03\x20GMT\r\n\r\n");
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled and required
+| smb2-time: 
+|   date: 2026-06-23T09:09:07
+|_  start_date: N/A
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 27.90 seconds

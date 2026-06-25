@@ -1,0 +1,17 @@
+{
+  "tool": "nmap",
+  "exam_id": 42,
+  "scenario_id": "udp_top_permissive_text",
+  "scenario_name": "H \u2014 UDP top ports permissive (text)",
+  "target": "scanme.nmap.org",
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 6.875,
+  "captured_at": "2026-06-25T17:55:54.752336+00:00",
+  "structured_kind": null,
+  "structured_path": null,
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\42_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\42_command.txt",
+  "tool_manifest_version": 2,
+  "review_status": "pending"
+}
