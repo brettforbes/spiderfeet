@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///C:/Program Files (x86)/Nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.80 scan initiated Tue Jun 23 18:24:56 2026 as: &quot;C:\\Program Files (x86)\\Nmap\\nmap.exe&quot; -sn -T3 -oX c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\07_local_discovery.xml -oN c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\07_local_discovery.txt 192.168.1.0/24 -->
+<nmaprun scanner="nmap" args="&quot;C:\\Program Files (x86)\\Nmap\\nmap.exe&quot; -sn -T3 -oX c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\07_local_discovery.xml -oN c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\07_local_discovery.txt 192.168.1.0/24" start="1782203096" startstr="Tue Jun 23 18:24:56 2026" version="7.80" xmloutputversion="1.04">
+<verbose level="0"/>
+<debugging level="0"/>
+<host><status state="up" reason="localhost-response" reason_ttl="0"/>
+<address addr="192.168.1.12" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</host>
+<host><status state="up" reason="localhost-response" reason_ttl="0"/>
+<address addr="192.168.1.16" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</host>
+<runstats><finished time="1782203108" timestr="Tue Jun 23 18:25:08 2026" elapsed="11.88" summary="Nmap done at Tue Jun 23 18:25:08 2026; 256 IP addresses (2 hosts up) scanned in 11.88 seconds" exit="success"/><hosts up="2" down="254" total="256"/>
+</runstats>
+</nmaprun>

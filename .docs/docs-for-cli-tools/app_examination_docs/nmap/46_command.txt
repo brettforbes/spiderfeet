@@ -1,0 +1,1 @@
+nmap -sT -Pn -T3 -p 80 scanme.nmap.org

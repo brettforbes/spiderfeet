@@ -1,70 +1,243 @@
 tool: nmap
-version: 1
+version: 2
 default_runtime: windows
 default_timeout: 600
 binary_probe: nmap --version
 primary_parser: xml
-output_path_type: 1  # structured + text (separate runs per 2.2.1 rule 4
+output_path_type: 1  # structured + text via paired scenarios
 
 scenarios:
+  # --- Archetype A: host discovery (permissive) ---
   - id: host_discovery_permissive_xml
-    name: Host discovery (permissive target, XML)
+    name: "A — host discovery permissive (XML)"
+    archetype: A
     target: scanme.nmap.org
     command: nmap -sn -T3 -oX - scanme.nmap.org
     structured_kind: xml
     structured_ext: xml
 
   - id: host_discovery_permissive_text
-    name: Host discovery (permissive target, text)
+    name: "A — host discovery permissive (text)"
+    archetype: A
     target: scanme.nmap.org
     command: nmap -sn -T3 scanme.nmap.org
 
+  # --- Archetype C: TCP top ports (permissive) ---
   - id: tcp_top_ports_permissive_xml
-    name: TCP top ports (permissive, XML)
+    name: "C — TCP top ports permissive (XML)"
+    archetype: C
     target: scanme.nmap.org
-    command: nmap -sT -T3 --top-ports 20 -oX - scanme.nmap.org
+    timeout: 900
+    command: nmap -sT -T3 --top-ports 1000 --open -oX - scanme.nmap.org
     structured_kind: xml
     structured_ext: xml
 
   - id: tcp_top_ports_permissive_text
-    name: TCP top ports (permissive, text)
+    name: "C — TCP top ports permissive (text)"
+    archetype: C
     target: scanme.nmap.org
-    command: nmap -sT -T3 --top-ports 20 scanme.nmap.org
+    timeout: 900
+    command: nmap -sT -T3 --top-ports 1000 --open scanme.nmap.org
 
+  # --- Archetype E: service version (permissive) ---
   - id: service_version_permissive_xml
-    name: Service version (permissive, XML)
+    name: "E — service version permissive (XML)"
+    archetype: E
     target: scanme.nmap.org
-    command: nmap -sT -sV -T3 -p 22,80,443 -oX - scanme.nmap.org
+    command: nmap -sT -sV -T3 -p 22,80,443,9929,31337 -oX - scanme.nmap.org
     structured_kind: xml
     structured_ext: xml
 
   - id: service_version_permissive_text
-    name: Service version (permissive, text)
+    name: "E — service version permissive (text)"
+    archetype: E
     target: scanme.nmap.org
-    command: nmap -sT -sV -T3 -p 22,80,443 scanme.nmap.org
+    command: nmap -sT -sV -T3 -p 22,80,443,9929,31337 scanme.nmap.org
 
-  - id: nse_default_permissive_xml
-    name: NSE default scripts (permissive, XML)
+  # --- Archetype F: OS aggressive (permissive) ---
+  - id: os_aggressive_permissive_xml
+    name: "F — OS aggressive permissive (XML)"
+    archetype: F
     target: scanme.nmap.org
-    command: nmap -sT -T3 -p 80,443 --script "default,safe" -oX - scanme.nmap.org
+    timeout: 300
+    command: nmap -sT -A -T3 -p 22,80,443 -oX - scanme.nmap.org
     structured_kind: xml
     structured_ext: xml
 
+  - id: os_aggressive_permissive_text
+    name: "F — OS aggressive permissive (text)"
+    archetype: F
+    target: scanme.nmap.org
+    timeout: 300
+    command: nmap -sT -A -T3 -p 22,80,443 scanme.nmap.org
+
+  # --- Archetype G: NSE default (permissive) ---
+  - id: nse_default_permissive_xml
+    name: "G — NSE default permissive (XML)"
+    archetype: G
+    target: scanme.nmap.org
+    command: nmap -sT -sC -T3 -p 22,80,443 -oX - scanme.nmap.org
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: nse_default_permissive_text
+    name: "G — NSE default permissive (text)"
+    archetype: G
+    target: scanme.nmap.org
+    command: nmap -sT -sC -T3 -p 22,80,443 scanme.nmap.org
+
+  # --- Archetype H: UDP top ports (permissive) ---
+  - id: udp_top_permissive_xml
+    name: "H — UDP top ports permissive (XML)"
+    archetype: H
+    target: scanme.nmap.org
+    timeout: 300
+    command: nmap -sU -T3 --top-ports 20 -oX - scanme.nmap.org
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: udp_top_permissive_text
+    name: "H — UDP top ports permissive (text)"
+    archetype: H
+    target: scanme.nmap.org
+    timeout: 300
+    command: nmap -sU -T3 --top-ports 20 scanme.nmap.org
+
+  # --- Archetype I: traceroute (permissive) ---
+  - id: traceroute_permissive_xml
+    name: "I — traceroute permissive (XML)"
+    archetype: I
+    target: scanme.nmap.org
+    command: nmap -sT --traceroute -T3 -p 80 -oX - scanme.nmap.org
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: traceroute_permissive_text
+    name: "I — traceroute permissive (text)"
+    archetype: I
+    target: scanme.nmap.org
+    command: nmap -sT --traceroute -T3 -p 80 scanme.nmap.org
+
+  # --- Archetype J: skip ping (permissive) ---
+  - id: skip_ping_permissive_xml
+    name: "J — skip ping permissive (XML)"
+    archetype: J
+    target: scanme.nmap.org
+    command: nmap -sT -Pn -T3 -p 80 -oX - scanme.nmap.org
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: skip_ping_permissive_text
+    name: "J — skip ping permissive (text)"
+    archetype: J
+    target: scanme.nmap.org
+    command: nmap -sT -Pn -T3 -p 80 scanme.nmap.org
+
+  # --- Archetype K: capstone all-in-one (permissive) ---
+  - id: capstone_permissive_xml
+    name: "K — capstone permissive (XML)"
+    archetype: K
+    target: scanme.nmap.org
+    timeout: 1200
+    command: nmap -sT -A -T3 --top-ports 1000 --open -oX - scanme.nmap.org
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: capstone_permissive_text
+    name: "K — capstone permissive (text)"
+    archetype: K
+    target: scanme.nmap.org
+    timeout: 1200
+    command: nmap -sT -A -T3 --top-ports 1000 --open scanme.nmap.org
+
+  # --- Corporate ---
   - id: host_discovery_corporate_xml
-    name: Host discovery (corporate target, XML)
+    name: "A — host discovery corporate (XML)"
+    archetype: A
     target: bbc.co.uk
     command: nmap -sn -T3 -oX - bbc.co.uk
     structured_kind: xml
     structured_ext: xml
 
   - id: host_discovery_corporate_text
-    name: Host discovery (corporate target, text)
+    name: "A — host discovery corporate (text)"
+    archetype: A
     target: bbc.co.uk
     command: nmap -sn -T3 bbc.co.uk
 
   - id: tcp_top_ports_corporate_xml
-    name: TCP top ports (corporate, XML)
+    name: "D — TCP top ports corporate (XML)"
+    archetype: D
     target: bbc.co.uk
-    command: nmap -sT -T3 --top-ports 10 -oX - bbc.co.uk
+    command: nmap -sT -T3 --top-ports 20 -oX - bbc.co.uk
     structured_kind: xml
     structured_ext: xml
+
+  - id: tcp_top_ports_corporate_text
+    name: "D — TCP top ports corporate (text)"
+    archetype: D
+    target: bbc.co.uk
+    command: nmap -sT -T3 --top-ports 20 bbc.co.uk
+
+  - id: service_version_corporate_xml
+    name: "E — service version corporate (XML)"
+    archetype: E
+    target: bbc.co.uk
+    command: nmap -sT -sV -T3 -p 80,443 -oX - bbc.co.uk
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: service_version_corporate_text
+    name: "E — service version corporate (text)"
+    archetype: E
+    target: bbc.co.uk
+    command: nmap -sT -sV -T3 -p 80,443 bbc.co.uk
+
+  # --- Local LAN ---
+  - id: host_discovery_local_subnet_xml
+    name: "B — host discovery local subnet (XML)"
+    archetype: B
+    target: 192.168.1.0/24
+    timeout: 300
+    command: nmap -sn -T3 -oX - 192.168.1.0/24
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: host_discovery_local_subnet_text
+    name: "B — host discovery local subnet (text)"
+    archetype: B
+    target: 192.168.1.0/24
+    timeout: 300
+    command: nmap -sn -T3 192.168.1.0/24
+
+  - id: tcp_top_ports_local_xml
+    name: "C — TCP top ports local subnet (XML)"
+    archetype: C
+    target: 192.168.1.0/24
+    timeout: 600
+    command: nmap -sT -T3 --top-ports 100 --open -oX - 192.168.1.0/24
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: tcp_top_ports_local_text
+    name: "C — TCP top ports local subnet (text)"
+    archetype: C
+    target: 192.168.1.0/24
+    timeout: 600
+    command: nmap -sT -T3 --top-ports 100 --open 192.168.1.0/24
+
+  - id: windows_enrich_local_xml
+    name: "L — Windows enrich local host (XML)"
+    archetype: L
+    target: 192.168.1.12
+    timeout: 300
+    command: nmap -sT -sV -A -T3 -p 135,445,8000 -oX - 192.168.1.12
+    structured_kind: xml
+    structured_ext: xml
+
+  - id: windows_enrich_local_text
+    name: "L — Windows enrich local host (text)"
+    archetype: L
+    target: 192.168.1.12
+    timeout: 300
+    command: nmap -sT -sV -A -T3 -p 135,445,8000 192.168.1.12

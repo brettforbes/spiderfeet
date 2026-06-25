@@ -1,0 +1,22 @@
+# Nmap 7.80 scan initiated Tue Jun 23 18:25:08 2026 as: "C:\\Program Files (x86)\\Nmap\\nmap.exe" -sT -T3 --top-ports 100 --open -oX c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\08_local_ports.xml -oN c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\08_local_ports.txt 192.168.1.0/24
+Nmap scan report for 192.168.1.12
+Host is up (0.00089s latency).
+Not shown: 96 filtered ports
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT     STATE SERVICE
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+8000/tcp open  http-alt
+
+Nmap scan report for 192.168.1.16
+Host is up (0.0015s latency).
+Not shown: 96 filtered ports
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT     STATE SERVICE
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+8000/tcp open  http-alt
+
+# Nmap done at Tue Jun 23 18:25:34 2026 -- 256 IP addresses (2 hosts up) scanned in 26.16 seconds

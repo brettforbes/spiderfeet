@@ -1,0 +1,7 @@
+{
+  "status": "approved",
+  "scenario_key": "host_discovery_local_subnet",
+  "tool": "nmap",
+  "updated_at": "2026-06-25T04:07:48.122565+00:00",
+  "exam_id": 25
+}

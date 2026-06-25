@@ -1,0 +1,1 @@
+nmap -sT -T3 --top-ports 1000 --open scanme.nmap.org

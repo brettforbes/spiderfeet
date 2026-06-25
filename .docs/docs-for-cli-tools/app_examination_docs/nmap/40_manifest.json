@@ -1,0 +1,17 @@
+{
+  "tool": "nmap",
+  "exam_id": 40,
+  "scenario_id": "nse_default_permissive_text",
+  "scenario_name": "G \u2014 NSE default permissive (text)",
+  "target": "scanme.nmap.org",
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 10.109,
+  "captured_at": "2026-06-25T17:55:32.051709+00:00",
+  "structured_kind": null,
+  "structured_path": null,
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\40_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\40_command.txt",
+  "tool_manifest_version": 2,
+  "review_status": "pending"
+}

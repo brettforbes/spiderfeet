@@ -1,0 +1,17 @@
+{
+  "tool": "nmap",
+  "exam_id": 60,
+  "scenario_id": "windows_enrich_local_text",
+  "scenario_name": "L \u2014 Windows enrich local host (text)",
+  "target": "192.168.1.12",
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 2.75,
+  "captured_at": "2026-06-25T18:01:23.020689+00:00",
+  "structured_kind": null,
+  "structured_path": null,
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\60_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\60_command.txt",
+  "tool_manifest_version": 2,
+  "review_status": "pending"
+}

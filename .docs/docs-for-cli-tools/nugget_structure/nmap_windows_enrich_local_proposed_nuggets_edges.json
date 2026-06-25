@@ -1,0 +1,161 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--559afdad-a04a-50cb-97af-9e999f6f081c",
+      "nugget_instance_id": "SCAN_RECORD--559afdad-a04a-50cb-97af-9e999f6f081c",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_description": "Scan Record",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "SCAN_RECORD",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "nmap:192.168.1.12:Fri Jun 26 04:01:18 2026",
+      "nugget_source_data": "nmap:192.168.1.12:Fri Jun 26 04:01:18 2026",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "nmap:192.168.1.12:Fri Jun 26 04:01:18 2026"
+    },
+    {
+      "id": "SCAN_CLI--98625dda-2954-52ab-b699-cc8595969686",
+      "nugget_instance_id": "SCAN_CLI--98625dda-2954-52ab-b699-cc8595969686",
+      "nugget_id": "SCAN_CLI",
+      "nugget_description": "Scan CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_CLI",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "nmap -sT -sV -A -T3 -p 135,445,8000 -oX - 192.168.1.12",
+      "nugget_source_data": "nmap -sT -sV -A -T3 -p 135,445,8000 -oX - 192.168.1.12",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "nmap -sT -sV -A -T3 -p 135,445,8000 -oX - 192.168.1.12"
+    },
+    {
+      "id": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
+      "nugget_instance_id": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
+      "nugget_id": "SCAN_VERSION",
+      "nugget_description": "Scan Version",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_VERSION",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "7.80",
+      "nugget_source_data": "7.80",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "7.80"
+    },
+    {
+      "id": "SCAN_START--2ff994d2-872b-5bb8-aae1-d3e16e3f1695",
+      "nugget_instance_id": "SCAN_START--2ff994d2-872b-5bb8-aae1-d3e16e3f1695",
+      "nugget_id": "SCAN_START",
+      "nugget_description": "Scan Start",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_START",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "Fri Jun 26 04:01:18 2026",
+      "nugget_source_data": "Fri Jun 26 04:01:18 2026",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "Fri Jun 26 04:01:18 2026"
+    },
+    {
+      "id": "SCAN_TARGET--68d9adea-32af-5568-b352-d6f2bee6c18c",
+      "nugget_instance_id": "SCAN_TARGET--68d9adea-32af-5568-b352-d6f2bee6c18c",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_description": "Scan Target",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_TARGET",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "192.168.1.12",
+      "nugget_source_data": "192.168.1.12",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "192.168.1.12"
+    },
+    {
+      "id": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "nugget_instance_id": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_description": "Scan Tool",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_TOOL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "nmap",
+      "nugget_source_data": "nmap",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "nmap"
+    },
+    {
+      "id": "SCAN_SUMMARY--0f686c21-c5db-5c7e-ae52-f2b18454ed88",
+      "nugget_instance_id": "SCAN_SUMMARY--0f686c21-c5db-5c7e-ae52-f2b18454ed88",
+      "nugget_id": "SCAN_SUMMARY",
+      "nugget_description": "Scan Summary",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_SUMMARY",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "Nmap done at Fri Jun 26 04:01:20 2026; 1 IP address (0 hosts up) scanned in 2.49 seconds",
+      "nugget_source_data": "Nmap done at Fri Jun 26 04:01:20 2026; 1 IP address (0 hosts up) scanned in 2.49 seconds",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "Nmap done at Fri Jun 26 04:01:20 2026; 1 IP address (0 hosts up) scanned in 2.49 seconds"
+    },
+    {
+      "id": "SCAN_ELAPSED--2bc3b055-d33d-5f3e-ad5e-c01075077cde",
+      "nugget_instance_id": "SCAN_ELAPSED--2bc3b055-d33d-5f3e-ad5e-c01075077cde",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_ELAPSED",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "2.49",
+      "nugget_source_data": "2.49",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "2.49"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--559afdad-a04a-50cb-97af-9e999f6f081c",
+      "target": "SCAN_CLI--98625dda-2954-52ab-b699-cc8595969686",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--559afdad-a04a-50cb-97af-9e999f6f081c",
+      "target": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--559afdad-a04a-50cb-97af-9e999f6f081c",
+      "target": "SCAN_START--2ff994d2-872b-5bb8-aae1-d3e16e3f1695",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--559afdad-a04a-50cb-97af-9e999f6f081c",
+      "target": "SCAN_TARGET--68d9adea-32af-5568-b352-d6f2bee6c18c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--559afdad-a04a-50cb-97af-9e999f6f081c",
+      "target": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--559afdad-a04a-50cb-97af-9e999f6f081c",
+      "target": "SCAN_SUMMARY--0f686c21-c5db-5c7e-ae52-f2b18454ed88",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--559afdad-a04a-50cb-97af-9e999f6f081c",
+      "target": "SCAN_ELAPSED--2bc3b055-d33d-5f3e-ad5e-c01075077cde",
+      "relation": "had"
+    }
+  ]
+}

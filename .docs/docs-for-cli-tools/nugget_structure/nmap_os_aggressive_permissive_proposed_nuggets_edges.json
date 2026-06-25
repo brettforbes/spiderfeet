@@ -1,0 +1,2231 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--77b00846-1c23-5e2a-b622-98dd97cb7bc5",
+      "nugget_instance_id": "SCAN_RECORD--77b00846-1c23-5e2a-b622-98dd97cb7bc5",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_description": "Scan Record",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "SCAN_RECORD",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "nmap:scanme.nmap.org:Tue Jun 23 19:01:10 2026",
+      "nugget_source_data": "nmap:scanme.nmap.org:Tue Jun 23 19:01:10 2026",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "nmap:scanme.nmap.org:Tue Jun 23 19:01:10 2026"
+    },
+    {
+      "id": "SCAN_CLI--61ecafc3-a2a1-5859-93c0-965ca2dd3756",
+      "nugget_instance_id": "SCAN_CLI--61ecafc3-a2a1-5859-93c0-965ca2dd3756",
+      "nugget_id": "SCAN_CLI",
+      "nugget_description": "Scan CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_CLI",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "nmap -sT -A -T3 -p 22,80,443 -oX - scanme.nmap.org",
+      "nugget_source_data": "nmap -sT -A -T3 -p 22,80,443 -oX - scanme.nmap.org",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "nmap -sT -A -T3 -p 22,80,443 -oX - scanme.nmap.org"
+    },
+    {
+      "id": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
+      "nugget_instance_id": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
+      "nugget_id": "SCAN_VERSION",
+      "nugget_description": "Scan Version",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_VERSION",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "7.80",
+      "nugget_source_data": "7.80",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "7.80"
+    },
+    {
+      "id": "SCAN_START--342584dd-2160-5280-9055-dbec8c69691d",
+      "nugget_instance_id": "SCAN_START--342584dd-2160-5280-9055-dbec8c69691d",
+      "nugget_id": "SCAN_START",
+      "nugget_description": "Scan Start",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_START",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "Tue Jun 23 19:01:10 2026",
+      "nugget_source_data": "Tue Jun 23 19:01:10 2026",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "Tue Jun 23 19:01:10 2026"
+    },
+    {
+      "id": "SCAN_TARGET--37bd87e8-93cd-5da2-b029-a418d5902349",
+      "nugget_instance_id": "SCAN_TARGET--37bd87e8-93cd-5da2-b029-a418d5902349",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_description": "Scan Target",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_TARGET",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "scanme.nmap.org",
+      "nugget_source_data": "scanme.nmap.org",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "scanme.nmap.org"
+    },
+    {
+      "id": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "nugget_instance_id": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_description": "Scan Tool",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_TOOL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "nmap",
+      "nugget_source_data": "nmap",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "nmap"
+    },
+    {
+      "id": "SCAN_SUMMARY--1ef342f4-6276-55dc-bc69-547af55a2a99",
+      "nugget_instance_id": "SCAN_SUMMARY--1ef342f4-6276-55dc-bc69-547af55a2a99",
+      "nugget_id": "SCAN_SUMMARY",
+      "nugget_description": "Scan Summary",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_SUMMARY",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "Nmap done at Tue Jun 23 19:01:35 2026; 1 IP address (1 host up) scanned in 25.71 seconds",
+      "nugget_source_data": "Nmap done at Tue Jun 23 19:01:35 2026; 1 IP address (1 host up) scanned in 25.71 seconds",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "Nmap done at Tue Jun 23 19:01:35 2026; 1 IP address (1 host up) scanned in 25.71 seconds"
+    },
+    {
+      "id": "SCAN_ELAPSED--d2f3a574-4a6b-5c23-a98f-810f51526f39",
+      "nugget_instance_id": "SCAN_ELAPSED--d2f3a574-4a6b-5c23-a98f-810f51526f39",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_ELAPSED",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "25.71",
+      "nugget_source_data": "25.71",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "25.71"
+    },
+    {
+      "id": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "nugget_instance_id": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "nugget_id": "HOST",
+      "nugget_description": "Host",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "HOST",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "45.33.32.156",
+      "nugget_source_data": "45.33.32.156",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "45.33.32.156"
+    },
+    {
+      "id": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
+      "nugget_instance_id": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
+      "nugget_id": "HOST_STATUS",
+      "nugget_description": "Host Status",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOST_STATUS",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "up",
+      "nugget_source_data": "up",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "up"
+    },
+    {
+      "id": "HOST_STATUS_REASON--203297d0-2497-5f78-8a08-cb989c5d67b1",
+      "nugget_instance_id": "HOST_STATUS_REASON--203297d0-2497-5f78-8a08-cb989c5d67b1",
+      "nugget_id": "HOST_STATUS_REASON",
+      "nugget_description": "Host Status Reason",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOST_STATUS_REASON",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "echo-reply",
+      "nugget_source_data": "echo-reply",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "echo-reply"
+    },
+    {
+      "id": "NETWORKS--d145a77f-9f3b-5d54-a8e9-237ddca4c1cc",
+      "nugget_instance_id": "NETWORKS--d145a77f-9f3b-5d54-a8e9-237ddca4c1cc",
+      "nugget_id": "NETWORKS",
+      "nugget_description": "Networks Category",
+      "nugget_type": "CATEGORY",
+      "nugget_event_type": "NETWORKS",
+      "nugget_icon": "",
+      "nugget_colour": "#14B8A6",
+      "nugget_data": "networks:45.33.32.156",
+      "nugget_source_data": "networks:45.33.32.156",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "networks:45.33.32.156"
+    },
+    {
+      "id": "IP_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "nugget_instance_id": "IP_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_description": "IP Address",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "IP_ADDRESS",
+      "nugget_icon": "icon_ip_address.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "45.33.32.156",
+      "nugget_source_data": "45.33.32.156",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "45.33.32.156"
+    },
+    {
+      "id": "INTERNET_NAME--37bd87e8-93cd-5da2-b029-a418d5902349",
+      "nugget_instance_id": "INTERNET_NAME--37bd87e8-93cd-5da2-b029-a418d5902349",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_description": "Internet Name",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "INTERNET_NAME",
+      "nugget_icon": "icon_internet_name.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "scanme.nmap.org",
+      "nugget_source_data": "scanme.nmap.org",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "scanme.nmap.org"
+    },
+    {
+      "id": "APPLICATIONS--54c14b10-1d5b-5cbb-a4b8-d9d10f2a2a55",
+      "nugget_instance_id": "APPLICATIONS--54c14b10-1d5b-5cbb-a4b8-d9d10f2a2a55",
+      "nugget_id": "APPLICATIONS",
+      "nugget_description": "Applications Category",
+      "nugget_type": "CATEGORY",
+      "nugget_event_type": "APPLICATIONS",
+      "nugget_icon": "",
+      "nugget_colour": "#14B8A6",
+      "nugget_data": "applications:45.33.32.156",
+      "nugget_source_data": "applications:45.33.32.156",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "applications:45.33.32.156"
+    },
+    {
+      "id": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_instance_id": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_id": "TRANSPORT",
+      "nugget_description": "Transport Protocol",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "TRANSPORT",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "tcp",
+      "nugget_source_data": "tcp",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "tcp"
+    },
+    {
+      "id": "PORT--f9dd1978-95e7-5130-b2d5-6c3380633200",
+      "nugget_instance_id": "PORT--f9dd1978-95e7-5130-b2d5-6c3380633200",
+      "nugget_id": "PORT",
+      "nugget_description": "Network Port",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "PORT",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "22",
+      "nugget_source_data": "22",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "22"
+    },
+    {
+      "id": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "nugget_instance_id": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "nugget_id": "PORT_STATE",
+      "nugget_description": "Port State",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "PORT_STATE",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "open",
+      "nugget_source_data": "open",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "open"
+    },
+    {
+      "id": "PORT_STATE_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
+      "nugget_instance_id": "PORT_STATE_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
+      "nugget_id": "PORT_STATE_REASON",
+      "nugget_description": "Port State Reason",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "PORT_STATE_REASON",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "syn-ack",
+      "nugget_source_data": "syn-ack",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "syn-ack"
+    },
+    {
+      "id": "PORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_instance_id": "PORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_id": "PORT_PROTOCOL",
+      "nugget_description": "Port Protocol",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "PORT_PROTOCOL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "tcp",
+      "nugget_source_data": "tcp",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "tcp"
+    },
+    {
+      "id": "SERVICE--99c86ef7-6b46-5b20-8a3e-eb703a992aa9",
+      "nugget_instance_id": "SERVICE--99c86ef7-6b46-5b20-8a3e-eb703a992aa9",
+      "nugget_id": "SERVICE",
+      "nugget_description": "Network Service",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "SERVICE",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "tcpwrapped",
+      "nugget_source_data": "tcpwrapped",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "tcpwrapped"
+    },
+    {
+      "id": "DSA--2b29c4c5-92e6-543a-bc04-70efa40e113f",
+      "nugget_instance_id": "DSA--2b29c4c5-92e6-543a-bc04-70efa40e113f",
+      "nugget_id": "DSA",
+      "nugget_description": "SSH Key - DSA",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "DSA",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "ac00a01a82ffcc5599dc672b34976b75",
+      "nugget_source_data": "ac00a01a82ffcc5599dc672b34976b75",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "ac00a01a82ffcc5599dc672b34976b75"
+    },
+    {
+      "id": "SSH_KEY_BITS--d34327b4-4da9-59e2-9c75-8d6b6103fc3c",
+      "nugget_instance_id": "SSH_KEY_BITS--d34327b4-4da9-59e2-9c75-8d6b6103fc3c",
+      "nugget_id": "SSH_KEY_BITS",
+      "nugget_description": "SSH Key Bits",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SSH_KEY_BITS",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "1024",
+      "nugget_source_data": "1024",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "1024"
+    },
+    {
+      "id": "SSH_KEY_TYPE--16b0f5d6-a06e-55f9-9911-76ef9a328400",
+      "nugget_instance_id": "SSH_KEY_TYPE--16b0f5d6-a06e-55f9-9911-76ef9a328400",
+      "nugget_id": "SSH_KEY_TYPE",
+      "nugget_description": "SSH Key Type",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SSH_KEY_TYPE",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "ssh-dss",
+      "nugget_source_data": "ssh-dss",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "ssh-dss"
+    },
+    {
+      "id": "SSH_KEY_KEY--2c361041-56bb-5bf9-b739-0cebc89d8dde",
+      "nugget_instance_id": "SSH_KEY_KEY--2c361041-56bb-5bf9-b739-0cebc89d8dde",
+      "nugget_id": "SSH_KEY_KEY",
+      "nugget_description": "SSH Public Key",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SSH_KEY_KEY",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "AAAAB3NzaC1kc3MAAACBAOe8o59vFWZGaBmGPVeJBObEfi1AR8yEUYC/Ufkku3sKhGF7wM2m2ujIeZDK5vqeC0S5EN2xYo6FshCP4FQRYeTxD17nNO4PhwW65qAjDRRU0uHFfSAh5wk+vt4yQztOE++sTd1G9OBLzA8HO99qDmCAxb3zw+GQDEgPjzgyzGZ3AAAAFQCBmE1vROP8IaPkUmhM5xLFta/xHwAAAIEA3EwRfaeOPLL7TKDgGX67Lbkf9UtdlpCdC4doMjGgsznYMwWH6a7Lj3vi4/KmeZZdix6FMdFqq+2vrfT1DRqx0RS0XYdGxnkgS+2g333WYCrUkDCn6RPUWR/1TgGMPHCj7LWCa1ZwJwLWS2KX288Pa2gLOWuhZm2VYKSQx6NEDOIAAACBANxIfprSdBdbo4Ezrh6/X6HSvrhjtZ7MouStWaE714ByO5bS2coM9CyaCwYyrE5qzYiyIfb+1BG3O5nVdDuN95sQ/0bAdBKlkqLFvFqFjVbETF0ri3v97w6MpUawfF75ouDrQ4xdaUOLLEWTso6VFJcM6Jg9bDl0FA0uLZUSDEHL",
+      "nugget_source_data": "AAAAB3NzaC1kc3MAAACBAOe8o59vFWZGaBmGPVeJBObEfi1AR8yEUYC/Ufkku3sKhGF7wM2m2ujIeZDK5vqeC0S5EN2xYo6FshCP4FQRYeTxD17nNO4PhwW65qAjDRRU0uHFfSAh5wk+vt4yQztOE++sTd1G9OBLzA8HO99qDmCAxb3zw+GQDEgPjzgyzGZ3AAAAFQCBmE1vROP8IaPkUmhM5xLFta/xHwAAAIEA3EwRfaeOPLL7TKDgGX67Lbkf9UtdlpCdC4doMjGgsznYMwWH6a7Lj3vi4/KmeZZdix6FMdFqq+2vrfT1DRqx0RS0XYdGxnkgS+2g333WYCrUkDCn6RPUWR/1TgGMPHCj7LWCa1ZwJwLWS2KX288Pa2gLOWuhZm2VYKSQx6NEDOIAAACBANxIfprSdBdbo4Ezrh6/X6HSvrhjtZ7MouStWaE714ByO5bS2coM9CyaCwYyrE5qzYiyIfb+1BG3O5nVdDuN95sQ/0bAdBKlkqLFvFqFjVbETF0ri3v97w6MpUawfF75ouDrQ4xdaUOLLEWTso6VFJcM6Jg9bDl0FA0uLZUSDEHL",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "AAAAB3NzaC1kc3MAAACBAOe8o59vFWZGaBmGPVeJBObEfi1AR8yEUYC/Ufkku3sKhGF7wM2m2ujIeZDK5vqeC0S5EN2xYo6FshCP4FQRYeTxD17nNO4PhwW65qAjDRRU0uHFfSAh5wk+vt4yQztOE++sTd1G9OBLzA8HO99qDmCAxb3zw+GQDEgPjzgyzGZ3AAAAFQCBmE1vROP8IaPkUmhM5xLFta/xHwAAAIEA3EwRfaeOPLL7TKDgGX67Lbkf9UtdlpCdC4doMjGgsznYMwWH6a7Lj3vi4/KmeZZdix6FMdFqq+2vrfT1DRqx0RS0XYdGxnkgS+2g333WYCrUkDCn6RPUWR/1TgGMPHCj7LWCa1ZwJwLWS2KX288Pa2gLOWuhZm2VYKSQx6NEDOIAAACBANxIfprSdBdbo4Ezrh6/X6HSvrhjtZ7MouStWaE714ByO5bS2coM9CyaCwYyrE5qzYiyIfb+1BG3O5nVdDuN95sQ/0bAdBKlkqLFvFqFjVbETF0ri3v97w6MpUawfF75ouDrQ4xdaUOLLEWTso6VFJcM6Jg9bDl0FA0uLZUSDEHL"
+    },
+    {
+      "id": "RSA--018eda65-fa17-5c96-bae1-ce5c4c0145ed",
+      "nugget_instance_id": "RSA--018eda65-fa17-5c96-bae1-ce5c4c0145ed",
+      "nugget_id": "RSA",
+      "nugget_description": "SSH Key - RSA",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "RSA",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "203d2d44622ab05a9db5b30514c2a6b2",
+      "nugget_source_data": "203d2d44622ab05a9db5b30514c2a6b2",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "203d2d44622ab05a9db5b30514c2a6b2"
+    },
+    {
+      "id": "SSH_KEY_BITS--d81991e4-9fd1-5f29-892d-82d4984f5b4b",
+      "nugget_instance_id": "SSH_KEY_BITS--d81991e4-9fd1-5f29-892d-82d4984f5b4b",
+      "nugget_id": "SSH_KEY_BITS",
+      "nugget_description": "SSH Key Bits",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SSH_KEY_BITS",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "2048",
+      "nugget_source_data": "2048",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "2048"
+    },
+    {
+      "id": "SSH_KEY_TYPE--a9286fee-2f46-53ea-87ec-eb35d5bc378e",
+      "nugget_instance_id": "SSH_KEY_TYPE--a9286fee-2f46-53ea-87ec-eb35d5bc378e",
+      "nugget_id": "SSH_KEY_TYPE",
+      "nugget_description": "SSH Key Type",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SSH_KEY_TYPE",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "ssh-rsa",
+      "nugget_source_data": "ssh-rsa",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "ssh-rsa"
+    },
+    {
+      "id": "SSH_KEY_KEY--09a99213-5a54-5d23-9114-c3671a2a1269",
+      "nugget_instance_id": "SSH_KEY_KEY--09a99213-5a54-5d23-9114-c3671a2a1269",
+      "nugget_id": "SSH_KEY_KEY",
+      "nugget_description": "SSH Public Key",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SSH_KEY_KEY",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "AAAAB3NzaC1yc2EAAAADAQABAAABAQC6afooTZ9mVUGFNEhkMoRR1Btzu64XXwElhCsHw/zVlIx/HXylNbb9+11dm2VgJQ21pxkWDs+L6+EbYyDnvRURTrMTgHL0xseB0EkNqexs9hYZSiqtMx4jtGNtHvsMxZnbxvVUk2dasWvtBkn8J5JagSbzWTQo4hjKMOI1SUlXtiKxAs2F8wiq2EdSuKw/KNk8GfIp1TA+8ccGeAtnsVptTJ4D/8MhAWsROkQzOowQvnBBz2/8ecEvoMScaf+kDfNQowK3gENtSSOqYw9JLOza6YJBPL/aYuQQ0nJ74Rr5vL44aNIlrGI9jJc2x0bV7BeNA5kVuXsmhyfWbbkB8yGd",
+      "nugget_source_data": "AAAAB3NzaC1yc2EAAAADAQABAAABAQC6afooTZ9mVUGFNEhkMoRR1Btzu64XXwElhCsHw/zVlIx/HXylNbb9+11dm2VgJQ21pxkWDs+L6+EbYyDnvRURTrMTgHL0xseB0EkNqexs9hYZSiqtMx4jtGNtHvsMxZnbxvVUk2dasWvtBkn8J5JagSbzWTQo4hjKMOI1SUlXtiKxAs2F8wiq2EdSuKw/KNk8GfIp1TA+8ccGeAtnsVptTJ4D/8MhAWsROkQzOowQvnBBz2/8ecEvoMScaf+kDfNQowK3gENtSSOqYw9JLOza6YJBPL/aYuQQ0nJ74Rr5vL44aNIlrGI9jJc2x0bV7BeNA5kVuXsmhyfWbbkB8yGd",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "AAAAB3NzaC1yc2EAAAADAQABAAABAQC6afooTZ9mVUGFNEhkMoRR1Btzu64XXwElhCsHw/zVlIx/HXylNbb9+11dm2VgJQ21pxkWDs+L6+EbYyDnvRURTrMTgHL0xseB0EkNqexs9hYZSiqtMx4jtGNtHvsMxZnbxvVUk2dasWvtBkn8J5JagSbzWTQo4hjKMOI1SUlXtiKxAs2F8wiq2EdSuKw/KNk8GfIp1TA+8ccGeAtnsVptTJ4D/8MhAWsROkQzOowQvnBBz2/8ecEvoMScaf+kDfNQowK3gENtSSOqYw9JLOza6YJBPL/aYuQQ0nJ74Rr5vL44aNIlrGI9jJc2x0bV7BeNA5kVuXsmhyfWbbkB8yGd"
+    },
+    {
+      "id": "ECDSA--df725e85-33b0-5183-bd4b-56e02600aae1",
+      "nugget_instance_id": "ECDSA--df725e85-33b0-5183-bd4b-56e02600aae1",
+      "nugget_id": "ECDSA",
+      "nugget_description": "SSH Key - ECDSA",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "ECDSA",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "9602bb5e57541c4e452f564c4a24b257",
+      "nugget_source_data": "9602bb5e57541c4e452f564c4a24b257",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "9602bb5e57541c4e452f564c4a24b257"
+    },
+    {
+      "id": "SSH_KEY_BITS--594c78cc-a74c-5094-b638-932cc9a15fb1",
+      "nugget_instance_id": "SSH_KEY_BITS--594c78cc-a74c-5094-b638-932cc9a15fb1",
+      "nugget_id": "SSH_KEY_BITS",
+      "nugget_description": "SSH Key Bits",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SSH_KEY_BITS",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "256",
+      "nugget_source_data": "256",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "256"
+    },
+    {
+      "id": "SSH_KEY_TYPE--12bfbe59-9983-5523-9bf5-85133ba2ddb8",
+      "nugget_instance_id": "SSH_KEY_TYPE--12bfbe59-9983-5523-9bf5-85133ba2ddb8",
+      "nugget_id": "SSH_KEY_TYPE",
+      "nugget_description": "SSH Key Type",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SSH_KEY_TYPE",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "ecdsa-sha2-nistp256",
+      "nugget_source_data": "ecdsa-sha2-nistp256",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "ecdsa-sha2-nistp256"
+    },
+    {
+      "id": "SSH_KEY_KEY--f56a8f28-1ed7-5398-9957-df549be9c325",
+      "nugget_instance_id": "SSH_KEY_KEY--f56a8f28-1ed7-5398-9957-df549be9c325",
+      "nugget_id": "SSH_KEY_KEY",
+      "nugget_description": "SSH Public Key",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SSH_KEY_KEY",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMD46g67x6yWNjjQJnXhiz/TskHrqQ0uPcOspFrIYW382uOGzmWDZCFV8FbFwQyH90u+j0Qr1SGNAxBZMhOQ8pc=",
+      "nugget_source_data": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMD46g67x6yWNjjQJnXhiz/TskHrqQ0uPcOspFrIYW382uOGzmWDZCFV8FbFwQyH90u+j0Qr1SGNAxBZMhOQ8pc=",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMD46g67x6yWNjjQJnXhiz/TskHrqQ0uPcOspFrIYW382uOGzmWDZCFV8FbFwQyH90u+j0Qr1SGNAxBZMhOQ8pc="
+    },
+    {
+      "id": "EDDSA--c65429b4-b300-5fb1-a9f5-07e4d3539c75",
+      "nugget_instance_id": "EDDSA--c65429b4-b300-5fb1-a9f5-07e4d3539c75",
+      "nugget_id": "EDDSA",
+      "nugget_description": "SSH Key - EdDSA",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "EDDSA",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "33fa910fe0e17b1f6d05a2b0f1544156",
+      "nugget_source_data": "33fa910fe0e17b1f6d05a2b0f1544156",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "33fa910fe0e17b1f6d05a2b0f1544156"
+    },
+    {
+      "id": "SSH_KEY_TYPE--097d9076-37f4-528f-a1c4-6709affe5338",
+      "nugget_instance_id": "SSH_KEY_TYPE--097d9076-37f4-528f-a1c4-6709affe5338",
+      "nugget_id": "SSH_KEY_TYPE",
+      "nugget_description": "SSH Key Type",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SSH_KEY_TYPE",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "ssh-ed25519",
+      "nugget_source_data": "ssh-ed25519",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "ssh-ed25519"
+    },
+    {
+      "id": "SSH_KEY_KEY--47bfc8cd-4cbc-5ffe-821f-6c490da1d3da",
+      "nugget_instance_id": "SSH_KEY_KEY--47bfc8cd-4cbc-5ffe-821f-6c490da1d3da",
+      "nugget_id": "SSH_KEY_KEY",
+      "nugget_description": "SSH Public Key",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SSH_KEY_KEY",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "AAAAC3NzaC1lZDI1NTE5AAAAILzVjfIyIHfXyRd8jVBaVT8Yvk/UvHh5Afvho8sGciG7",
+      "nugget_source_data": "AAAAC3NzaC1lZDI1NTE5AAAAILzVjfIyIHfXyRd8jVBaVT8Yvk/UvHh5Afvho8sGciG7",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "AAAAC3NzaC1lZDI1NTE5AAAAILzVjfIyIHfXyRd8jVBaVT8Yvk/UvHh5Afvho8sGciG7"
+    },
+    {
+      "id": "PORT--b9b09fda-f4b6-5fd0-9d0e-81dbba012402",
+      "nugget_instance_id": "PORT--b9b09fda-f4b6-5fd0-9d0e-81dbba012402",
+      "nugget_id": "PORT",
+      "nugget_description": "Network Port",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "PORT",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "80",
+      "nugget_source_data": "80",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "80"
+    },
+    {
+      "id": "SERVICE--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "nugget_instance_id": "SERVICE--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "nugget_id": "SERVICE",
+      "nugget_description": "Network Service",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "SERVICE",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "http",
+      "nugget_source_data": "http",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "http"
+    },
+    {
+      "id": "SOFTWARE_USED--8ed02c29-4940-5dd8-ac69-4ae7052bc3c5",
+      "nugget_instance_id": "SOFTWARE_USED--8ed02c29-4940-5dd8-ac69-4ae7052bc3c5",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_description": "Software Used",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "SOFTWARE_USED",
+      "nugget_icon": "icon_software_used.svg",
+      "nugget_colour": "#F97316",
+      "nugget_data": "Apache httpd 2.4.7",
+      "nugget_source_data": "Apache httpd 2.4.7",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "Apache httpd 2.4.7"
+    },
+    {
+      "id": "SERVICE_EXTRAINFO--c50c9031-85d3-5cab-8b9d-e1f4882860d6",
+      "nugget_instance_id": "SERVICE_EXTRAINFO--c50c9031-85d3-5cab-8b9d-e1f4882860d6",
+      "nugget_id": "SERVICE_EXTRAINFO",
+      "nugget_description": "Service Extra Information",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SERVICE_EXTRAINFO",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "(Ubuntu)",
+      "nugget_source_data": "(Ubuntu)",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "(Ubuntu)"
+    },
+    {
+      "id": "CPE_URL--80e8165e-fef8-52b8-963a-772b03158fe8",
+      "nugget_instance_id": "CPE_URL--80e8165e-fef8-52b8-963a-772b03158fe8",
+      "nugget_id": "CPE_URL",
+      "nugget_description": "CPE URL",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "CPE_URL",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "cpe:/a:apache:http_server:2.4.7",
+      "nugget_source_data": "cpe:/a:apache:http_server:2.4.7",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "cpe:/a:apache:http_server:2.4.7"
+    },
+    {
+      "id": "HTTP_TITLE--3b9bbb29-c036-562b-b271-c850b39dc14d",
+      "nugget_instance_id": "HTTP_TITLE--3b9bbb29-c036-562b-b271-c850b39dc14d",
+      "nugget_id": "HTTP_TITLE",
+      "nugget_description": "HTTP Title",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HTTP_TITLE",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "Go ahead and ScanMe!",
+      "nugget_source_data": "Go ahead and ScanMe!",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "Go ahead and ScanMe!"
+    },
+    {
+      "id": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "nugget_instance_id": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "nugget_id": "PORT",
+      "nugget_description": "Network Port",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "PORT",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "443",
+      "nugget_source_data": "443",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "443"
+    },
+    {
+      "id": "PORT_STATE--35512351-d353-5285-b5b2-c67ae95b8074",
+      "nugget_instance_id": "PORT_STATE--35512351-d353-5285-b5b2-c67ae95b8074",
+      "nugget_id": "PORT_STATE",
+      "nugget_description": "Port State",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "PORT_STATE",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "filtered",
+      "nugget_source_data": "filtered",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "filtered"
+    },
+    {
+      "id": "PORT_STATE_REASON--2e47d433-bb59-5d8c-8b2d-8157e1a8b37f",
+      "nugget_instance_id": "PORT_STATE_REASON--2e47d433-bb59-5d8c-8b2d-8157e1a8b37f",
+      "nugget_id": "PORT_STATE_REASON",
+      "nugget_description": "Port State Reason",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "PORT_STATE_REASON",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "no-response",
+      "nugget_source_data": "no-response",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "no-response"
+    },
+    {
+      "id": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "nugget_instance_id": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "nugget_id": "SERVICE",
+      "nugget_description": "Network Service",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "SERVICE",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "https",
+      "nugget_source_data": "https",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "https"
+    },
+    {
+      "id": "ENVIRONMENT--db954966-ef3f-5b85-8ef7-82dd43ce9987",
+      "nugget_instance_id": "ENVIRONMENT--db954966-ef3f-5b85-8ef7-82dd43ce9987",
+      "nugget_id": "ENVIRONMENT",
+      "nugget_description": "Environment Category",
+      "nugget_type": "CATEGORY",
+      "nugget_event_type": "ENVIRONMENT",
+      "nugget_icon": "",
+      "nugget_colour": "#14B8A6",
+      "nugget_data": "environment:45.33.32.156",
+      "nugget_source_data": "environment:45.33.32.156",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "environment:45.33.32.156"
+    },
+    {
+      "id": "OPERATING_SYSTEM--71e11695-bf77-55bb-95f4-5b0954309f19",
+      "nugget_instance_id": "OPERATING_SYSTEM--71e11695-bf77-55bb-95f4-5b0954309f19",
+      "nugget_id": "OPERATING_SYSTEM",
+      "nugget_description": "Operating System",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "OPERATING_SYSTEM",
+      "nugget_icon": "icon_operating_system.svg",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "Linux 2.6.18 - 2.6.22",
+      "nugget_source_data": "Linux 2.6.18 - 2.6.22",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "Linux 2.6.18 - 2.6.22"
+    },
+    {
+      "id": "OS_MATCH_ACCURACY--9e4ae6c6-cf5d-5840-91a0-5aa84f054c44",
+      "nugget_instance_id": "OS_MATCH_ACCURACY--9e4ae6c6-cf5d-5840-91a0-5aa84f054c44",
+      "nugget_id": "OS_MATCH_ACCURACY",
+      "nugget_description": "OS Match Accuracy",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "OS_MATCH_ACCURACY",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "94",
+      "nugget_source_data": "94",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "94"
+    },
+    {
+      "id": "TRACE--3a9df444-c722-51a1-b885-21bfacce3ba5",
+      "nugget_instance_id": "TRACE--3a9df444-c722-51a1-b885-21bfacce3ba5",
+      "nugget_id": "TRACE",
+      "nugget_description": "Trace",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "TRACE",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "45.33.32.156:icmp",
+      "nugget_source_data": "45.33.32.156:icmp",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "45.33.32.156:icmp"
+    },
+    {
+      "id": "TRACE_PROTOCOL--97c67461-6bc1-5d3d-a479-9bb9c6a8cf72",
+      "nugget_instance_id": "TRACE_PROTOCOL--97c67461-6bc1-5d3d-a479-9bb9c6a8cf72",
+      "nugget_id": "TRACE_PROTOCOL",
+      "nugget_description": "Trace Protocol",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "TRACE_PROTOCOL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "icmp",
+      "nugget_source_data": "icmp",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "icmp"
+    },
+    {
+      "id": "TRACE_HOP--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "nugget_instance_id": "TRACE_HOP--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "nugget_id": "TRACE_HOP",
+      "nugget_description": "Trace Hop",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "TRACE_HOP",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "203.134.80.60",
+      "nugget_source_data": "203.134.80.60",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "203.134.80.60"
+    },
+    {
+      "id": "HOP_TTL--9779767f-44f2-5215-8820-bda646e3bbc1",
+      "nugget_instance_id": "HOP_TTL--9779767f-44f2-5215-8820-bda646e3bbc1",
+      "nugget_id": "HOP_TTL",
+      "nugget_description": "Trace Hop TTL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_TTL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "2",
+      "nugget_source_data": "2",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "2"
+    },
+    {
+      "id": "HOP_RTT--fd768d31-a755-5760-8a5e-f4869f2c7b8d",
+      "nugget_instance_id": "HOP_RTT--fd768d31-a755-5760-8a5e-f4869f2c7b8d",
+      "nugget_id": "HOP_RTT",
+      "nugget_description": "Trace Hop RTT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_RTT",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "8.00",
+      "nugget_source_data": "8.00",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "8.00"
+    },
+    {
+      "id": "HOP_ORDER--42c02c84-414b-580f-a978-6f633b2681eb",
+      "nugget_instance_id": "HOP_ORDER--42c02c84-414b-580f-a978-6f633b2681eb",
+      "nugget_id": "HOP_ORDER",
+      "nugget_description": "Trace Hop Order",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_ORDER",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "1",
+      "nugget_source_data": "1",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "1"
+    },
+    {
+      "id": "HOST--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "nugget_instance_id": "HOST--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "nugget_id": "HOST",
+      "nugget_description": "Host",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "HOST",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "203.134.80.60",
+      "nugget_source_data": "203.134.80.60",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "203.134.80.60"
+    },
+    {
+      "id": "NETWORKS--803d7842-82ae-5aa2-8f2b-fb8e15941e47",
+      "nugget_instance_id": "NETWORKS--803d7842-82ae-5aa2-8f2b-fb8e15941e47",
+      "nugget_id": "NETWORKS",
+      "nugget_description": "Networks Category",
+      "nugget_type": "CATEGORY",
+      "nugget_event_type": "NETWORKS",
+      "nugget_icon": "",
+      "nugget_colour": "#14B8A6",
+      "nugget_data": "networks:203.134.80.60",
+      "nugget_source_data": "networks:203.134.80.60",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "networks:203.134.80.60"
+    },
+    {
+      "id": "IP_ADDRESS--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "nugget_instance_id": "IP_ADDRESS--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_description": "IP Address",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "IP_ADDRESS",
+      "nugget_icon": "icon_ip_address.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "203.134.80.60",
+      "nugget_source_data": "203.134.80.60",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "203.134.80.60"
+    },
+    {
+      "id": "INTERNET_NAME--2274d60e-2a5c-59e8-bc63-56701d5e4275",
+      "nugget_instance_id": "INTERNET_NAME--2274d60e-2a5c-59e8-bc63-56701d5e4275",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_description": "Internet Name",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "INTERNET_NAME",
+      "nugget_icon": "icon_internet_name.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "lo0-33.bng71.alexeqn.nsw.vocus.network",
+      "nugget_source_data": "lo0-33.bng71.alexeqn.nsw.vocus.network",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "lo0-33.bng71.alexeqn.nsw.vocus.network"
+    },
+    {
+      "id": "TRACE_HOP--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "nugget_instance_id": "TRACE_HOP--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "nugget_id": "TRACE_HOP",
+      "nugget_description": "Trace Hop",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "TRACE_HOP",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "203.134.80.236",
+      "nugget_source_data": "203.134.80.236",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "203.134.80.236"
+    },
+    {
+      "id": "HOP_TTL--f815043d-936e-551e-b6ba-64198a3cebc3",
+      "nugget_instance_id": "HOP_TTL--f815043d-936e-551e-b6ba-64198a3cebc3",
+      "nugget_id": "HOP_TTL",
+      "nugget_description": "Trace Hop TTL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_TTL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "4",
+      "nugget_source_data": "4",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "4"
+    },
+    {
+      "id": "HOP_RTT--b409a023-8080-587e-9efb-51be380d659c",
+      "nugget_instance_id": "HOP_RTT--b409a023-8080-587e-9efb-51be380d659c",
+      "nugget_id": "HOP_RTT",
+      "nugget_description": "Trace Hop RTT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_RTT",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "9.00",
+      "nugget_source_data": "9.00",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "9.00"
+    },
+    {
+      "id": "HOP_ORDER--9779767f-44f2-5215-8820-bda646e3bbc1",
+      "nugget_instance_id": "HOP_ORDER--9779767f-44f2-5215-8820-bda646e3bbc1",
+      "nugget_id": "HOP_ORDER",
+      "nugget_description": "Trace Hop Order",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_ORDER",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "2",
+      "nugget_source_data": "2",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "2"
+    },
+    {
+      "id": "HOST--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "nugget_instance_id": "HOST--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "nugget_id": "HOST",
+      "nugget_description": "Host",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "HOST",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "203.134.80.236",
+      "nugget_source_data": "203.134.80.236",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "203.134.80.236"
+    },
+    {
+      "id": "NETWORKS--8e070a21-75e5-5176-b332-a3079cac3362",
+      "nugget_instance_id": "NETWORKS--8e070a21-75e5-5176-b332-a3079cac3362",
+      "nugget_id": "NETWORKS",
+      "nugget_description": "Networks Category",
+      "nugget_type": "CATEGORY",
+      "nugget_event_type": "NETWORKS",
+      "nugget_icon": "",
+      "nugget_colour": "#14B8A6",
+      "nugget_data": "networks:203.134.80.236",
+      "nugget_source_data": "networks:203.134.80.236",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "networks:203.134.80.236"
+    },
+    {
+      "id": "IP_ADDRESS--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "nugget_instance_id": "IP_ADDRESS--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_description": "IP Address",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "IP_ADDRESS",
+      "nugget_icon": "icon_ip_address.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "203.134.80.236",
+      "nugget_source_data": "203.134.80.236",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "203.134.80.236"
+    },
+    {
+      "id": "INTERNET_NAME--6f877732-4eef-5c9c-9575-cb12d83d3f2e",
+      "nugget_instance_id": "INTERNET_NAME--6f877732-4eef-5c9c-9575-cb12d83d3f2e",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_description": "Internet Name",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "INTERNET_NAME",
+      "nugget_icon": "icon_internet_name.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "ae10-100.edg01.alexeqn.nsw.vocus.network",
+      "nugget_source_data": "ae10-100.edg01.alexeqn.nsw.vocus.network",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "ae10-100.edg01.alexeqn.nsw.vocus.network"
+    },
+    {
+      "id": "TRACE_HOP--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "nugget_instance_id": "TRACE_HOP--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "nugget_id": "TRACE_HOP",
+      "nugget_description": "Trace Hop",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "TRACE_HOP",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "175.45.103.109",
+      "nugget_source_data": "175.45.103.109",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "175.45.103.109"
+    },
+    {
+      "id": "HOP_TTL--ec624911-7de1-5b62-8bd3-99f2b11cdfa7",
+      "nugget_instance_id": "HOP_TTL--ec624911-7de1-5b62-8bd3-99f2b11cdfa7",
+      "nugget_id": "HOP_TTL",
+      "nugget_description": "Trace Hop TTL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_TTL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "5",
+      "nugget_source_data": "5",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "5"
+    },
+    {
+      "id": "HOP_ORDER--b2e94981-b9bb-5a70-9eed-dbb3f218a615",
+      "nugget_instance_id": "HOP_ORDER--b2e94981-b9bb-5a70-9eed-dbb3f218a615",
+      "nugget_id": "HOP_ORDER",
+      "nugget_description": "Trace Hop Order",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_ORDER",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "3",
+      "nugget_source_data": "3",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "3"
+    },
+    {
+      "id": "HOST--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "nugget_instance_id": "HOST--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "nugget_id": "HOST",
+      "nugget_description": "Host",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "HOST",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "175.45.103.109",
+      "nugget_source_data": "175.45.103.109",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "175.45.103.109"
+    },
+    {
+      "id": "NETWORKS--5e73120b-a869-55eb-949c-8b39e4afb1fa",
+      "nugget_instance_id": "NETWORKS--5e73120b-a869-55eb-949c-8b39e4afb1fa",
+      "nugget_id": "NETWORKS",
+      "nugget_description": "Networks Category",
+      "nugget_type": "CATEGORY",
+      "nugget_event_type": "NETWORKS",
+      "nugget_icon": "",
+      "nugget_colour": "#14B8A6",
+      "nugget_data": "networks:175.45.103.109",
+      "nugget_source_data": "networks:175.45.103.109",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "networks:175.45.103.109"
+    },
+    {
+      "id": "IP_ADDRESS--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "nugget_instance_id": "IP_ADDRESS--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_description": "IP Address",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "IP_ADDRESS",
+      "nugget_icon": "icon_ip_address.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "175.45.103.109",
+      "nugget_source_data": "175.45.103.109",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "175.45.103.109"
+    },
+    {
+      "id": "INTERNET_NAME--38209c26-6ea4-5f2e-b626-a1ce2a17e9fe",
+      "nugget_instance_id": "INTERNET_NAME--38209c26-6ea4-5f2e-b626-a1ce2a17e9fe",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_description": "Internet Name",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "INTERNET_NAME",
+      "nugget_icon": "icon_internet_name.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "be106-99.bdr01.syd14.nsw.vocus.network",
+      "nugget_source_data": "be106-99.bdr01.syd14.nsw.vocus.network",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "be106-99.bdr01.syd14.nsw.vocus.network"
+    },
+    {
+      "id": "TRACE_HOP--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "nugget_instance_id": "TRACE_HOP--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "nugget_id": "TRACE_HOP",
+      "nugget_description": "Trace Hop",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "TRACE_HOP",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "114.31.192.64",
+      "nugget_source_data": "114.31.192.64",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "114.31.192.64"
+    },
+    {
+      "id": "HOP_TTL--b917efbf-1402-5943-9573-47021bcdce03",
+      "nugget_instance_id": "HOP_TTL--b917efbf-1402-5943-9573-47021bcdce03",
+      "nugget_id": "HOP_TTL",
+      "nugget_description": "Trace Hop TTL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_TTL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "6",
+      "nugget_source_data": "6",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "6"
+    },
+    {
+      "id": "HOP_RTT--42f9fe32-d923-5724-af72-212eaf55ba3c",
+      "nugget_instance_id": "HOP_RTT--42f9fe32-d923-5724-af72-212eaf55ba3c",
+      "nugget_id": "HOP_RTT",
+      "nugget_description": "Trace Hop RTT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_RTT",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "155.00",
+      "nugget_source_data": "155.00",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "155.00"
+    },
+    {
+      "id": "HOP_ORDER--f815043d-936e-551e-b6ba-64198a3cebc3",
+      "nugget_instance_id": "HOP_ORDER--f815043d-936e-551e-b6ba-64198a3cebc3",
+      "nugget_id": "HOP_ORDER",
+      "nugget_description": "Trace Hop Order",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_ORDER",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "4",
+      "nugget_source_data": "4",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "4"
+    },
+    {
+      "id": "HOST--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "nugget_instance_id": "HOST--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "nugget_id": "HOST",
+      "nugget_description": "Host",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "HOST",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "114.31.192.64",
+      "nugget_source_data": "114.31.192.64",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "114.31.192.64"
+    },
+    {
+      "id": "NETWORKS--55eb7768-98d4-5bd0-9109-22a40eb1d6e3",
+      "nugget_instance_id": "NETWORKS--55eb7768-98d4-5bd0-9109-22a40eb1d6e3",
+      "nugget_id": "NETWORKS",
+      "nugget_description": "Networks Category",
+      "nugget_type": "CATEGORY",
+      "nugget_event_type": "NETWORKS",
+      "nugget_icon": "",
+      "nugget_colour": "#14B8A6",
+      "nugget_data": "networks:114.31.192.64",
+      "nugget_source_data": "networks:114.31.192.64",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "networks:114.31.192.64"
+    },
+    {
+      "id": "IP_ADDRESS--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "nugget_instance_id": "IP_ADDRESS--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_description": "IP Address",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "IP_ADDRESS",
+      "nugget_icon": "icon_ip_address.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "114.31.192.64",
+      "nugget_source_data": "114.31.192.64",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "114.31.192.64"
+    },
+    {
+      "id": "INTERNET_NAME--160ab95b-bf81-5259-bf8a-4a725c843838",
+      "nugget_instance_id": "INTERNET_NAME--160ab95b-bf81-5259-bf8a-4a725c843838",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_description": "Internet Name",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "INTERNET_NAME",
+      "nugget_icon": "icon_internet_name.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "be158.cor01.syd11.nsw.vocus.network",
+      "nugget_source_data": "be158.cor01.syd11.nsw.vocus.network",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "be158.cor01.syd11.nsw.vocus.network"
+    },
+    {
+      "id": "TRACE_HOP--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "nugget_instance_id": "TRACE_HOP--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "nugget_id": "TRACE_HOP",
+      "nugget_description": "Trace Hop",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "TRACE_HOP",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "114.31.199.41",
+      "nugget_source_data": "114.31.199.41",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "114.31.199.41"
+    },
+    {
+      "id": "HOP_TTL--aa137456-6009-5e12-9c7a-92289321d974",
+      "nugget_instance_id": "HOP_TTL--aa137456-6009-5e12-9c7a-92289321d974",
+      "nugget_id": "HOP_TTL",
+      "nugget_description": "Trace Hop TTL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_TTL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "7",
+      "nugget_source_data": "7",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "7"
+    },
+    {
+      "id": "HOP_RTT--4e4ce94c-bc55-517f-a3ba-657b29b6d488",
+      "nugget_instance_id": "HOP_RTT--4e4ce94c-bc55-517f-a3ba-657b29b6d488",
+      "nugget_id": "HOP_RTT",
+      "nugget_description": "Trace Hop RTT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_RTT",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "153.00",
+      "nugget_source_data": "153.00",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "153.00"
+    },
+    {
+      "id": "HOP_ORDER--ec624911-7de1-5b62-8bd3-99f2b11cdfa7",
+      "nugget_instance_id": "HOP_ORDER--ec624911-7de1-5b62-8bd3-99f2b11cdfa7",
+      "nugget_id": "HOP_ORDER",
+      "nugget_description": "Trace Hop Order",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_ORDER",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "5",
+      "nugget_source_data": "5",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "5"
+    },
+    {
+      "id": "HOST--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "nugget_instance_id": "HOST--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "nugget_id": "HOST",
+      "nugget_description": "Host",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "HOST",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "114.31.199.41",
+      "nugget_source_data": "114.31.199.41",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "114.31.199.41"
+    },
+    {
+      "id": "NETWORKS--4e6a868d-bfb1-5f7b-9e71-4ba3badeecd6",
+      "nugget_instance_id": "NETWORKS--4e6a868d-bfb1-5f7b-9e71-4ba3badeecd6",
+      "nugget_id": "NETWORKS",
+      "nugget_description": "Networks Category",
+      "nugget_type": "CATEGORY",
+      "nugget_event_type": "NETWORKS",
+      "nugget_icon": "",
+      "nugget_colour": "#14B8A6",
+      "nugget_data": "networks:114.31.199.41",
+      "nugget_source_data": "networks:114.31.199.41",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "networks:114.31.199.41"
+    },
+    {
+      "id": "IP_ADDRESS--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "nugget_instance_id": "IP_ADDRESS--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_description": "IP Address",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "IP_ADDRESS",
+      "nugget_icon": "icon_ip_address.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "114.31.199.41",
+      "nugget_source_data": "114.31.199.41",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "114.31.199.41"
+    },
+    {
+      "id": "INTERNET_NAME--a980f2aa-3851-55ce-81a6-0b9c6796f3d2",
+      "nugget_instance_id": "INTERNET_NAME--a980f2aa-3851-55ce-81a6-0b9c6796f3d2",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_description": "Internet Name",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "INTERNET_NAME",
+      "nugget_icon": "icon_internet_name.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "be202.bdr04.sjc01.ca.us.vocus.network",
+      "nugget_source_data": "be202.bdr04.sjc01.ca.us.vocus.network",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "be202.bdr04.sjc01.ca.us.vocus.network"
+    },
+    {
+      "id": "TRACE_HOP--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "nugget_instance_id": "TRACE_HOP--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "nugget_id": "TRACE_HOP",
+      "nugget_description": "Trace Hop",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "TRACE_HOP",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "114.31.199.249",
+      "nugget_source_data": "114.31.199.249",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "114.31.199.249"
+    },
+    {
+      "id": "HOP_TTL--f2c746de-9f47-59f9-89ed-352d73ab6247",
+      "nugget_instance_id": "HOP_TTL--f2c746de-9f47-59f9-89ed-352d73ab6247",
+      "nugget_id": "HOP_TTL",
+      "nugget_description": "Trace Hop TTL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_TTL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "8",
+      "nugget_source_data": "8",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "8"
+    },
+    {
+      "id": "HOP_ORDER--b917efbf-1402-5943-9573-47021bcdce03",
+      "nugget_instance_id": "HOP_ORDER--b917efbf-1402-5943-9573-47021bcdce03",
+      "nugget_id": "HOP_ORDER",
+      "nugget_description": "Trace Hop Order",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_ORDER",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "6",
+      "nugget_source_data": "6",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "6"
+    },
+    {
+      "id": "HOST--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "nugget_instance_id": "HOST--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "nugget_id": "HOST",
+      "nugget_description": "Host",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "HOST",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "114.31.199.249",
+      "nugget_source_data": "114.31.199.249",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "114.31.199.249"
+    },
+    {
+      "id": "NETWORKS--b9dbcdb7-bfc1-5051-b34f-695d0c3651c7",
+      "nugget_instance_id": "NETWORKS--b9dbcdb7-bfc1-5051-b34f-695d0c3651c7",
+      "nugget_id": "NETWORKS",
+      "nugget_description": "Networks Category",
+      "nugget_type": "CATEGORY",
+      "nugget_event_type": "NETWORKS",
+      "nugget_icon": "",
+      "nugget_colour": "#14B8A6",
+      "nugget_data": "networks:114.31.199.249",
+      "nugget_source_data": "networks:114.31.199.249",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "networks:114.31.199.249"
+    },
+    {
+      "id": "IP_ADDRESS--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "nugget_instance_id": "IP_ADDRESS--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_description": "IP Address",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "IP_ADDRESS",
+      "nugget_icon": "icon_ip_address.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "114.31.199.249",
+      "nugget_source_data": "114.31.199.249",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "114.31.199.249"
+    },
+    {
+      "id": "INTERNET_NAME--2bc12fe5-83b2-53c2-97cd-d3ad0ef5530a",
+      "nugget_instance_id": "INTERNET_NAME--2bc12fe5-83b2-53c2-97cd-d3ad0ef5530a",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_description": "Internet Name",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "INTERNET_NAME",
+      "nugget_icon": "icon_internet_name.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "be101.bdr01.sjc02.ca.us.vocus.network",
+      "nugget_source_data": "be101.bdr01.sjc02.ca.us.vocus.network",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "be101.bdr01.sjc02.ca.us.vocus.network"
+    },
+    {
+      "id": "TRACE_HOP--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "nugget_instance_id": "TRACE_HOP--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "nugget_id": "TRACE_HOP",
+      "nugget_description": "Trace Hop",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "TRACE_HOP",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "206.223.116.196",
+      "nugget_source_data": "206.223.116.196",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "206.223.116.196"
+    },
+    {
+      "id": "HOP_TTL--f7ec763a-4d08-5e49-aca6-c35d8eac3f30",
+      "nugget_instance_id": "HOP_TTL--f7ec763a-4d08-5e49-aca6-c35d8eac3f30",
+      "nugget_id": "HOP_TTL",
+      "nugget_description": "Trace Hop TTL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_TTL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "9",
+      "nugget_source_data": "9",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "9"
+    },
+    {
+      "id": "HOP_RTT--2baf6a6b-f1a1-5a28-9649-72f26145b074",
+      "nugget_instance_id": "HOP_RTT--2baf6a6b-f1a1-5a28-9649-72f26145b074",
+      "nugget_id": "HOP_RTT",
+      "nugget_description": "Trace Hop RTT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_RTT",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "154.00",
+      "nugget_source_data": "154.00",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "154.00"
+    },
+    {
+      "id": "HOP_ORDER--aa137456-6009-5e12-9c7a-92289321d974",
+      "nugget_instance_id": "HOP_ORDER--aa137456-6009-5e12-9c7a-92289321d974",
+      "nugget_id": "HOP_ORDER",
+      "nugget_description": "Trace Hop Order",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_ORDER",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "7",
+      "nugget_source_data": "7",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "7"
+    },
+    {
+      "id": "HOST--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "nugget_instance_id": "HOST--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "nugget_id": "HOST",
+      "nugget_description": "Host",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "HOST",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "206.223.116.196",
+      "nugget_source_data": "206.223.116.196",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "206.223.116.196"
+    },
+    {
+      "id": "NETWORKS--20f26133-be0f-5bb4-bf76-9133a35f3959",
+      "nugget_instance_id": "NETWORKS--20f26133-be0f-5bb4-bf76-9133a35f3959",
+      "nugget_id": "NETWORKS",
+      "nugget_description": "Networks Category",
+      "nugget_type": "CATEGORY",
+      "nugget_event_type": "NETWORKS",
+      "nugget_icon": "",
+      "nugget_colour": "#14B8A6",
+      "nugget_data": "networks:206.223.116.196",
+      "nugget_source_data": "networks:206.223.116.196",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "networks:206.223.116.196"
+    },
+    {
+      "id": "IP_ADDRESS--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "nugget_instance_id": "IP_ADDRESS--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_description": "IP Address",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "IP_ADDRESS",
+      "nugget_icon": "icon_ip_address.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "206.223.116.196",
+      "nugget_source_data": "206.223.116.196",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "206.223.116.196"
+    },
+    {
+      "id": "INTERNET_NAME--facb9d9b-7bc6-5474-832f-44b49aa58cb5",
+      "nugget_instance_id": "INTERNET_NAME--facb9d9b-7bc6-5474-832f-44b49aa58cb5",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_description": "Internet Name",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "INTERNET_NAME",
+      "nugget_icon": "icon_internet_name.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "eqix-sv1.linode.com",
+      "nugget_source_data": "eqix-sv1.linode.com",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "eqix-sv1.linode.com"
+    },
+    {
+      "id": "TRACE_HOP--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "nugget_instance_id": "TRACE_HOP--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "nugget_id": "TRACE_HOP",
+      "nugget_description": "Trace Hop",
+      "nugget_type": "SUBENTITY",
+      "nugget_event_type": "TRACE_HOP",
+      "nugget_icon": "",
+      "nugget_colour": "#F97316",
+      "nugget_data": "45.33.32.156",
+      "nugget_source_data": "45.33.32.156",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "45.33.32.156"
+    },
+    {
+      "id": "HOP_TTL--5b690ead-36e1-56a4-9714-98fdda904658",
+      "nugget_instance_id": "HOP_TTL--5b690ead-36e1-56a4-9714-98fdda904658",
+      "nugget_id": "HOP_TTL",
+      "nugget_description": "Trace Hop TTL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_TTL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "13",
+      "nugget_source_data": "13",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "13"
+    },
+    {
+      "id": "HOP_RTT--d842f8fd-593e-56fa-a7ba-99d94232f6e4",
+      "nugget_instance_id": "HOP_RTT--d842f8fd-593e-56fa-a7ba-99d94232f6e4",
+      "nugget_id": "HOP_RTT",
+      "nugget_description": "Trace Hop RTT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_RTT",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "152.00",
+      "nugget_source_data": "152.00",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "152.00"
+    },
+    {
+      "id": "HOP_ORDER--f2c746de-9f47-59f9-89ed-352d73ab6247",
+      "nugget_instance_id": "HOP_ORDER--f2c746de-9f47-59f9-89ed-352d73ab6247",
+      "nugget_id": "HOP_ORDER",
+      "nugget_description": "Trace Hop Order",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOP_ORDER",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "8",
+      "nugget_source_data": "8",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "8"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--77b00846-1c23-5e2a-b622-98dd97cb7bc5",
+      "target": "SCAN_CLI--61ecafc3-a2a1-5859-93c0-965ca2dd3756",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--77b00846-1c23-5e2a-b622-98dd97cb7bc5",
+      "target": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--77b00846-1c23-5e2a-b622-98dd97cb7bc5",
+      "target": "SCAN_START--342584dd-2160-5280-9055-dbec8c69691d",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--77b00846-1c23-5e2a-b622-98dd97cb7bc5",
+      "target": "SCAN_TARGET--37bd87e8-93cd-5da2-b029-a418d5902349",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--77b00846-1c23-5e2a-b622-98dd97cb7bc5",
+      "target": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--77b00846-1c23-5e2a-b622-98dd97cb7bc5",
+      "target": "SCAN_SUMMARY--1ef342f4-6276-55dc-bc69-547af55a2a99",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--77b00846-1c23-5e2a-b622-98dd97cb7bc5",
+      "target": "SCAN_ELAPSED--d2f3a574-4a6b-5c23-a98f-810f51526f39",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "HOST_STATUS_REASON--203297d0-2497-5f78-8a08-cb989c5d67b1",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "NETWORKS--d145a77f-9f3b-5d54-a8e9-237ddca4c1cc",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--d145a77f-9f3b-5d54-a8e9-237ddca4c1cc",
+      "target": "IP_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "INTERNET_NAME--37bd87e8-93cd-5da2-b029-a418d5902349",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--77b00846-1c23-5e2a-b622-98dd97cb7bc5",
+      "target": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "APPLICATIONS--54c14b10-1d5b-5cbb-a4b8-d9d10f2a2a55",
+      "relation": "contains"
+    },
+    {
+      "source": "IP_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "contains"
+    },
+    {
+      "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "target": "PORT--f9dd1978-95e7-5130-b2d5-6c3380633200",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--f9dd1978-95e7-5130-b2d5-6c3380633200",
+      "target": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--f9dd1978-95e7-5130-b2d5-6c3380633200",
+      "target": "PORT_STATE_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--f9dd1978-95e7-5130-b2d5-6c3380633200",
+      "target": "PORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "APPLICATIONS--54c14b10-1d5b-5cbb-a4b8-d9d10f2a2a55",
+      "target": "SERVICE--99c86ef7-6b46-5b20-8a3e-eb703a992aa9",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--99c86ef7-6b46-5b20-8a3e-eb703a992aa9",
+      "target": "PORT--f9dd1978-95e7-5130-b2d5-6c3380633200",
+      "relation": "listens-to"
+    },
+    {
+      "source": "SERVICE--99c86ef7-6b46-5b20-8a3e-eb703a992aa9",
+      "target": "DSA--2b29c4c5-92e6-543a-bc04-70efa40e113f",
+      "relation": "contains"
+    },
+    {
+      "source": "DSA--2b29c4c5-92e6-543a-bc04-70efa40e113f",
+      "target": "SSH_KEY_BITS--d34327b4-4da9-59e2-9c75-8d6b6103fc3c",
+      "relation": "had"
+    },
+    {
+      "source": "DSA--2b29c4c5-92e6-543a-bc04-70efa40e113f",
+      "target": "SSH_KEY_TYPE--16b0f5d6-a06e-55f9-9911-76ef9a328400",
+      "relation": "had"
+    },
+    {
+      "source": "DSA--2b29c4c5-92e6-543a-bc04-70efa40e113f",
+      "target": "SSH_KEY_KEY--2c361041-56bb-5bf9-b739-0cebc89d8dde",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--99c86ef7-6b46-5b20-8a3e-eb703a992aa9",
+      "target": "RSA--018eda65-fa17-5c96-bae1-ce5c4c0145ed",
+      "relation": "contains"
+    },
+    {
+      "source": "RSA--018eda65-fa17-5c96-bae1-ce5c4c0145ed",
+      "target": "SSH_KEY_BITS--d81991e4-9fd1-5f29-892d-82d4984f5b4b",
+      "relation": "had"
+    },
+    {
+      "source": "RSA--018eda65-fa17-5c96-bae1-ce5c4c0145ed",
+      "target": "SSH_KEY_TYPE--a9286fee-2f46-53ea-87ec-eb35d5bc378e",
+      "relation": "had"
+    },
+    {
+      "source": "RSA--018eda65-fa17-5c96-bae1-ce5c4c0145ed",
+      "target": "SSH_KEY_KEY--09a99213-5a54-5d23-9114-c3671a2a1269",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--99c86ef7-6b46-5b20-8a3e-eb703a992aa9",
+      "target": "ECDSA--df725e85-33b0-5183-bd4b-56e02600aae1",
+      "relation": "contains"
+    },
+    {
+      "source": "ECDSA--df725e85-33b0-5183-bd4b-56e02600aae1",
+      "target": "SSH_KEY_BITS--594c78cc-a74c-5094-b638-932cc9a15fb1",
+      "relation": "had"
+    },
+    {
+      "source": "ECDSA--df725e85-33b0-5183-bd4b-56e02600aae1",
+      "target": "SSH_KEY_TYPE--12bfbe59-9983-5523-9bf5-85133ba2ddb8",
+      "relation": "had"
+    },
+    {
+      "source": "ECDSA--df725e85-33b0-5183-bd4b-56e02600aae1",
+      "target": "SSH_KEY_KEY--f56a8f28-1ed7-5398-9957-df549be9c325",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--99c86ef7-6b46-5b20-8a3e-eb703a992aa9",
+      "target": "EDDSA--c65429b4-b300-5fb1-a9f5-07e4d3539c75",
+      "relation": "contains"
+    },
+    {
+      "source": "EDDSA--c65429b4-b300-5fb1-a9f5-07e4d3539c75",
+      "target": "SSH_KEY_BITS--594c78cc-a74c-5094-b638-932cc9a15fb1",
+      "relation": "had"
+    },
+    {
+      "source": "EDDSA--c65429b4-b300-5fb1-a9f5-07e4d3539c75",
+      "target": "SSH_KEY_TYPE--097d9076-37f4-528f-a1c4-6709affe5338",
+      "relation": "had"
+    },
+    {
+      "source": "EDDSA--c65429b4-b300-5fb1-a9f5-07e4d3539c75",
+      "target": "SSH_KEY_KEY--47bfc8cd-4cbc-5ffe-821f-6c490da1d3da",
+      "relation": "had"
+    },
+    {
+      "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "target": "PORT--b9b09fda-f4b6-5fd0-9d0e-81dbba012402",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--b9b09fda-f4b6-5fd0-9d0e-81dbba012402",
+      "target": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--b9b09fda-f4b6-5fd0-9d0e-81dbba012402",
+      "target": "PORT_STATE_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--b9b09fda-f4b6-5fd0-9d0e-81dbba012402",
+      "target": "PORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "APPLICATIONS--54c14b10-1d5b-5cbb-a4b8-d9d10f2a2a55",
+      "target": "SERVICE--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "target": "PORT--b9b09fda-f4b6-5fd0-9d0e-81dbba012402",
+      "relation": "listens-to"
+    },
+    {
+      "source": "SERVICE--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "target": "SOFTWARE_USED--8ed02c29-4940-5dd8-ac69-4ae7052bc3c5",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "target": "SERVICE_EXTRAINFO--c50c9031-85d3-5cab-8b9d-e1f4882860d6",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "target": "CPE_URL--80e8165e-fef8-52b8-963a-772b03158fe8",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "target": "HTTP_TITLE--3b9bbb29-c036-562b-b271-c850b39dc14d",
+      "relation": "had"
+    },
+    {
+      "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "target": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "target": "PORT_STATE--35512351-d353-5285-b5b2-c67ae95b8074",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "target": "PORT_STATE_REASON--2e47d433-bb59-5d8c-8b2d-8157e1a8b37f",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "target": "PORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "APPLICATIONS--54c14b10-1d5b-5cbb-a4b8-d9d10f2a2a55",
+      "target": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "ENVIRONMENT--db954966-ef3f-5b85-8ef7-82dd43ce9987",
+      "relation": "contains"
+    },
+    {
+      "source": "ENVIRONMENT--db954966-ef3f-5b85-8ef7-82dd43ce9987",
+      "target": "OPERATING_SYSTEM--71e11695-bf77-55bb-95f4-5b0954309f19",
+      "relation": "contains"
+    },
+    {
+      "source": "OPERATING_SYSTEM--71e11695-bf77-55bb-95f4-5b0954309f19",
+      "target": "OS_MATCH_ACCURACY--9e4ae6c6-cf5d-5840-91a0-5aa84f054c44",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--77b00846-1c23-5e2a-b622-98dd97cb7bc5",
+      "target": "TRACE--3a9df444-c722-51a1-b885-21bfacce3ba5",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE--3a9df444-c722-51a1-b885-21bfacce3ba5",
+      "target": "TRACE_PROTOCOL--97c67461-6bc1-5d3d-a479-9bb9c6a8cf72",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE--3a9df444-c722-51a1-b885-21bfacce3ba5",
+      "target": "TRACE_HOP--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE_HOP--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "target": "HOP_TTL--9779767f-44f2-5215-8820-bda646e3bbc1",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "target": "HOP_RTT--fd768d31-a755-5760-8a5e-f4869f2c7b8d",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "target": "HOP_ORDER--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "target": "NETWORKS--803d7842-82ae-5aa2-8f2b-fb8e15941e47",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--803d7842-82ae-5aa2-8f2b-fb8e15941e47",
+      "target": "IP_ADDRESS--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "target": "INTERNET_NAME--2274d60e-2a5c-59e8-bc63-56701d5e4275",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "target": "HOST--73ca4312-41ea-5fd5-913c-513cd2ac41ad",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE--3a9df444-c722-51a1-b885-21bfacce3ba5",
+      "target": "TRACE_HOP--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE_HOP--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "target": "HOP_TTL--f815043d-936e-551e-b6ba-64198a3cebc3",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "target": "HOP_RTT--b409a023-8080-587e-9efb-51be380d659c",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "target": "HOP_ORDER--9779767f-44f2-5215-8820-bda646e3bbc1",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "target": "NETWORKS--8e070a21-75e5-5176-b332-a3079cac3362",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--8e070a21-75e5-5176-b332-a3079cac3362",
+      "target": "IP_ADDRESS--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "target": "INTERNET_NAME--6f877732-4eef-5c9c-9575-cb12d83d3f2e",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "target": "HOST--220e3bde-a4ad-5146-af32-368e44fce6df",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE--3a9df444-c722-51a1-b885-21bfacce3ba5",
+      "target": "TRACE_HOP--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE_HOP--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "target": "HOP_TTL--ec624911-7de1-5b62-8bd3-99f2b11cdfa7",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "target": "HOP_RTT--b409a023-8080-587e-9efb-51be380d659c",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "target": "HOP_ORDER--b2e94981-b9bb-5a70-9eed-dbb3f218a615",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "target": "NETWORKS--5e73120b-a869-55eb-949c-8b39e4afb1fa",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--5e73120b-a869-55eb-949c-8b39e4afb1fa",
+      "target": "IP_ADDRESS--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "target": "INTERNET_NAME--38209c26-6ea4-5f2e-b626-a1ce2a17e9fe",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "target": "HOST--5f7fddcc-9650-539b-a5c9-1b0f9e13f01c",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE--3a9df444-c722-51a1-b885-21bfacce3ba5",
+      "target": "TRACE_HOP--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE_HOP--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "target": "HOP_TTL--b917efbf-1402-5943-9573-47021bcdce03",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "target": "HOP_RTT--42f9fe32-d923-5724-af72-212eaf55ba3c",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "target": "HOP_ORDER--f815043d-936e-551e-b6ba-64198a3cebc3",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "target": "NETWORKS--55eb7768-98d4-5bd0-9109-22a40eb1d6e3",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--55eb7768-98d4-5bd0-9109-22a40eb1d6e3",
+      "target": "IP_ADDRESS--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "target": "INTERNET_NAME--160ab95b-bf81-5259-bf8a-4a725c843838",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "target": "HOST--a9947fb7-1363-5000-ab0d-8a3a06d18f7c",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE--3a9df444-c722-51a1-b885-21bfacce3ba5",
+      "target": "TRACE_HOP--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE_HOP--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "target": "HOP_TTL--aa137456-6009-5e12-9c7a-92289321d974",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "target": "HOP_RTT--4e4ce94c-bc55-517f-a3ba-657b29b6d488",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "target": "HOP_ORDER--ec624911-7de1-5b62-8bd3-99f2b11cdfa7",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "target": "NETWORKS--4e6a868d-bfb1-5f7b-9e71-4ba3badeecd6",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--4e6a868d-bfb1-5f7b-9e71-4ba3badeecd6",
+      "target": "IP_ADDRESS--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "target": "INTERNET_NAME--a980f2aa-3851-55ce-81a6-0b9c6796f3d2",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "target": "HOST--566217b8-572c-534d-9bf0-55475f2d0de0",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE--3a9df444-c722-51a1-b885-21bfacce3ba5",
+      "target": "TRACE_HOP--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE_HOP--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "target": "HOP_TTL--f2c746de-9f47-59f9-89ed-352d73ab6247",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "target": "HOP_RTT--4e4ce94c-bc55-517f-a3ba-657b29b6d488",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "target": "HOP_ORDER--b917efbf-1402-5943-9573-47021bcdce03",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "target": "NETWORKS--b9dbcdb7-bfc1-5051-b34f-695d0c3651c7",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--b9dbcdb7-bfc1-5051-b34f-695d0c3651c7",
+      "target": "IP_ADDRESS--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "target": "INTERNET_NAME--2bc12fe5-83b2-53c2-97cd-d3ad0ef5530a",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "target": "HOST--f7cc5a38-7cf1-58bc-bdad-54e3f10c70fb",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE--3a9df444-c722-51a1-b885-21bfacce3ba5",
+      "target": "TRACE_HOP--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE_HOP--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "target": "HOP_TTL--f7ec763a-4d08-5e49-aca6-c35d8eac3f30",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "target": "HOP_RTT--2baf6a6b-f1a1-5a28-9649-72f26145b074",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "target": "HOP_ORDER--aa137456-6009-5e12-9c7a-92289321d974",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "target": "NETWORKS--20f26133-be0f-5bb4-bf76-9133a35f3959",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--20f26133-be0f-5bb4-bf76-9133a35f3959",
+      "target": "IP_ADDRESS--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "target": "INTERNET_NAME--facb9d9b-7bc6-5474-832f-44b49aa58cb5",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "target": "HOST--63f54184-2e26-5ebd-90a2-77adb238c6b1",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE--3a9df444-c722-51a1-b885-21bfacce3ba5",
+      "target": "TRACE_HOP--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "relation": "contains"
+    },
+    {
+      "source": "TRACE_HOP--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "HOP_TTL--5b690ead-36e1-56a4-9714-98fdda904658",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "HOP_RTT--d842f8fd-593e-56fa-a7ba-99d94232f6e4",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "HOP_ORDER--f2c746de-9f47-59f9-89ed-352d73ab6247",
+      "relation": "had"
+    },
+    {
+      "source": "TRACE_HOP--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "relation": "contains"
+    }
+  ]
+}

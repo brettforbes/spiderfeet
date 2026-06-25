@@ -1,0 +1,18 @@
+# Nmap 7.80 scan initiated Tue Jun 23 18:29:33 2026 as: "C:\\Program Files (x86)\\Nmap\\nmap.exe" -sT -T3 --top-ports 10 -oN c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\14_corporate_ports.txt bbc.co.uk
+Nmap scan report for bbc.co.uk (151.101.128.81)
+Host is up (0.0076s latency).
+Other addresses for bbc.co.uk (not scanned): 2a04:4e42:400::81 2a04:4e42::81 2a04:4e42:200::81 2a04:4e42:600::81 151.101.0.81 151.101.64.81 151.101.192.81
+
+PORT     STATE    SERVICE
+21/tcp   filtered ftp
+22/tcp   filtered ssh
+23/tcp   filtered telnet
+25/tcp   filtered smtp
+80/tcp   open     http
+110/tcp  filtered pop3
+139/tcp  filtered netbios-ssn
+443/tcp  open     https
+445/tcp  filtered microsoft-ds
+3389/tcp filtered ms-wbt-server
+
+# Nmap done at Tue Jun 23 18:29:35 2026 -- 1 IP address (1 host up) scanned in 2.13 seconds
