@@ -168,7 +168,7 @@ define
 	entity hop-order, sub descriptor_nugget; # Trace Hop Order
 	entity ssh-key-bits, sub descriptor_nugget; # SSH Key Bits
 	entity ssh-key-type, sub descriptor_nugget; # SSH Key Type
-	entity ssh-key-key, sub descriptor_nugget; # SSH Key Fingerprint
+	entity ssh-key-key, sub descriptor_nugget; # SSH Public Key
 	entity http-title, sub descriptor_nugget; # HTTP Title
 
 	entity account-external-owned-compromised, sub nugget;  # Hacked Account on External Site
