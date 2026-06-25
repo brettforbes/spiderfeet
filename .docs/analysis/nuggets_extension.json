@@ -1,0 +1,261 @@
+[
+  {
+    "nugget_id": "SCAN_RECORD",
+    "nugget_description": "Scan Record",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "HOST",
+    "nugget_description": "Host",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "SERVICE",
+    "nugget_description": "Network Service",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "TRANSPORT",
+    "nugget_description": "Transport Protocol",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "TRACE",
+    "nugget_description": "Trace",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "NETWORKS",
+    "nugget_description": "Networks Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "ENVIRONMENT",
+    "nugget_description": "Environment Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "APPLICATIONS",
+    "nugget_description": "Applications Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "PORT",
+    "nugget_description": "Network Port",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "TRACE_HOP",
+    "nugget_description": "Trace Hop",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "CPE_URL",
+    "nugget_description": "CPE URL",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "DSA",
+    "nugget_description": "SSH Key - DSA",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "RSA",
+    "nugget_description": "SSH Key - RSA",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "ECDSA",
+    "nugget_description": "SSH Key - ECDSA",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "EDDSA",
+    "nugget_description": "SSH Key - EdDSA",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "SCAN_CLI",
+    "nugget_description": "Scan CLI",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_VERSION",
+    "nugget_description": "Scan Version",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_START",
+    "nugget_description": "Scan Start",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_TARGET",
+    "nugget_description": "Scan Target",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_TOOL",
+    "nugget_description": "Scan Tool",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_SUMMARY",
+    "nugget_description": "Scan Summary",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_ELAPSED",
+    "nugget_description": "Scan Elapsed Time",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HOST_STATUS",
+    "nugget_description": "Host Status",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HOST_STATUS_REASON",
+    "nugget_description": "Host Status Reason",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PORT_STATE",
+    "nugget_description": "Port State",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PORT_STATE_REASON",
+    "nugget_description": "Port State Reason",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PORT_PROTOCOL",
+    "nugget_description": "Port Protocol",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SERVICE_EXTRAINFO",
+    "nugget_description": "Service Extra Information",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "OS_MATCH_ACCURACY",
+    "nugget_description": "OS Match Accuracy",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "TRACE_PROTOCOL",
+    "nugget_description": "Trace Protocol",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HOP_TTL",
+    "nugget_description": "Trace Hop TTL",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HOP_RTT",
+    "nugget_description": "Trace Hop RTT",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HOP_ORDER",
+    "nugget_description": "Trace Hop Order",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SSH_KEY_BITS",
+    "nugget_description": "SSH Key Bits",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SSH_KEY_TYPE",
+    "nugget_description": "SSH Key Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SSH_KEY_KEY",
+    "nugget_description": "SSH Key Fingerprint",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HTTP_TITLE",
+    "nugget_description": "HTTP Title",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  }
+]
