@@ -9,7 +9,7 @@ define
 	# SpiderFeet Nugget Definitions
 	#
 	# Archetype nuggets (from nuggets.json): nugget_id, nugget_description,
-	# nugget_type (ENTITY/DATA/DESCRIPTOR/INTERNAL), nugget_icon, nugget_colour.
+	# nugget_type (ENTITY/DESCRIPTOR/DATA/SUBENTITY/INTERNAL), nugget_icon, nugget_colour.
 	#
 	# Live / scan-instance nuggets (from SpiderFeet scan results) also populate:
 	#   nugget_instance_id @key, nugget_data, nugget_source_data, nugget_module,
@@ -18,22 +18,19 @@ define
 	#   nugget_description holds event_description when present (e.g. "Internet Name").
 	####################################
 
+
 	entity nugget @abstract,
-		owns nugget_id,
-		owns nugget_instance_id @unique  @card(0..1),
-		owns nugget_description,
-		owns nugget_type,
-		owns nugget_event_type,
-		owns nugget_icon,
-		owns nugget_colour,
-		owns nugget_data,
+		owns nugget_id, # nugget_id from the template in the .docs/analysis/nuggets.json
+		owns nugget_instance_id @unique  @card(0..1), # (`nugget_instance_id` = `<nugget_id>--<UUI5(namespace, nugget_data)>`)
+		owns nugget_description, # nugget_description from the template in the .docs/analysis/nuggets.json
+		owns nugget_type, # nugget_type from the template in the .docs/analysis/nuggets.json
+		owns nugget_event_type, # old event_type from the old scanning instance code, will be deprecated
+		owns nugget_icon, # nugget_icon from the template in the .docs/analysis/nuggets.json
+		owns nugget_colour, # nugget_colour from the template in the .docs/analysis/nuggets.json
+		owns nugget_data, # nugget_data from the scanning instance
 		owns nugget_source_data,
-		owns nugget_module,
-		owns nugget_generated,
-		owns nugget_confidence,
-		owns nugget_visibility,
-		owns nugget_risk,
-		owns nugget_false_positive,
+		owns nugget_module, # name of osint-service relation used to produce this nugget
+		owns nugget_confidence, # confidence level of the nugget from the scanning instance
 		plays osint-service:consumed,
 		plays osint-service:produced,
 		plays route:consumed,
@@ -41,178 +38,269 @@ define
 		plays scan-record:consumed,
 		plays scan-record:produced;
 
-	entity root, sub nugget;
-	entity account-external-owned, sub nugget;
-	entity account-external-owned-compromised, sub nugget;
-	entity account-external-user-shared-compromised, sub nugget;
-	entity affiliate-emailaddr, sub nugget;
-	entity affiliate-internet-name, sub nugget;
-	entity affiliate-internet-name-hijackable, sub nugget;
-	entity affiliate-internet-name-unresolved, sub nugget;
-	entity affiliate-ipaddr, sub nugget;
-	entity affiliate-ipv6-address, sub nugget;
-	entity affiliate-web-content, sub nugget;
-	entity affiliate-domain-name, sub nugget;
-	entity affiliate-domain-unregistered, sub nugget;
-	entity affiliate-company-name, sub nugget;
-	entity affiliate-domain-whois, sub nugget;
-	entity affiliate-description-category, sub nugget;
-	entity affiliate-description-abstract, sub nugget;
-	entity appstore-entry, sub nugget;
-	entity cloud-storage-bucket, sub nugget;
-	entity cloud-storage-bucket-open, sub nugget;
-	entity company-name, sub nugget;
-	entity credit-card-number, sub nugget;
-	entity base64-data, sub nugget;
-	entity bitcoin-address, sub nugget;
-	entity bitcoin-balance, sub nugget;
-	entity bgp-as-owner, sub nugget;
-	entity bgp-as-member, sub nugget;
-	entity blacklisted-cohost, sub nugget;
-	entity blacklisted-internet-name, sub nugget;
-	entity blacklisted-affiliate-internet-name, sub nugget;
-	entity blacklisted-ipaddr, sub nugget;
-	entity blacklisted-affiliate-ipaddr, sub nugget;
-	entity blacklisted-subnet, sub nugget;
-	entity blacklisted-netblock, sub nugget;
-	entity country-name, sub nugget;
-	entity co-hosted-site, sub nugget;
-	entity co-hosted-site-domain, sub nugget;
-	entity co-hosted-site-domain-whois, sub nugget;
-	entity darknet-mention-url, sub nugget;
-	entity darknet-mention-content, sub nugget;
-	entity date-human-dob, sub nugget;
-	entity defaced-internet-name, sub nugget;
-	entity defaced-ipaddr, sub nugget;
-	entity defaced-affiliate-internet-name, sub nugget;
-	entity defaced-cohost, sub nugget;
-	entity defaced-affiliate-ipaddr, sub nugget;
-	entity description-category, sub nugget;
-	entity description-abstract, sub nugget;
-	entity device-type, sub nugget;
-	entity dns-text, sub nugget;
-	entity dns-srv, sub nugget;
-	entity dns-spf, sub nugget;
-	entity domain-name, sub nugget;
-	entity domain-name-parent, sub nugget;
-	entity domain-registrar, sub nugget;
-	entity domain-whois, sub nugget;
-	entity emailaddr, sub nugget;
-	entity emailaddr-compromised, sub nugget;
-	entity emailaddr-deliverable, sub nugget;
-	entity emailaddr-disposable, sub nugget;
-	entity emailaddr-generic, sub nugget;
-	entity emailaddr-undeliverable, sub nugget;
-	entity error-message, sub nugget;
-	entity ethereum-address, sub nugget;
-	entity ethereum-balance, sub nugget;
-	entity geoinfo, sub nugget;
-	entity hash, sub nugget;
-	entity hash-compromised, sub nugget;
-	entity http-code, sub nugget;
-	entity human-name, sub nugget;
-	entity iban-number, sub nugget;
-	entity interesting-file, sub nugget;
-	entity interesting-file-historic, sub nugget;
-	entity junk-file, sub nugget;
-	entity internal-ip-address, sub nugget;
-	entity internet-name, sub nugget;
-	entity internet-name-unresolved, sub nugget;
-	entity ip-address, sub nugget;
-	entity ipv6-address, sub nugget;
-	entity lei, sub nugget;
-	entity job-title, sub nugget;
-	entity linked-url-internal, sub nugget;
-	entity linked-url-external, sub nugget;
-	entity malicious-asn, sub nugget;
-	entity malicious-bitcoin-address, sub nugget;
-	entity malicious-ipaddr, sub nugget;
-	entity malicious-cohost, sub nugget;
-	entity malicious-emailaddr, sub nugget;
-	entity malicious-internet-name, sub nugget;
-	entity malicious-affiliate-internet-name, sub nugget;
-	entity malicious-affiliate-ipaddr, sub nugget;
-	entity malicious-netblock, sub nugget;
-	entity malicious-phone-number, sub nugget;
-	entity malicious-subnet, sub nugget;
-	entity netblock-owner, sub nugget;
-	entity netblockv6-owner, sub nugget;
-	entity netblock-member, sub nugget;
-	entity netblockv6-member, sub nugget;
-	entity netblock-whois, sub nugget;
-	entity operating-system, sub nugget;
-	entity leaksite-url, sub nugget;
-	entity leaksite-content, sub nugget;
-	entity password-compromised, sub nugget;
-	entity phone-number, sub nugget;
-	entity phone-number-compromised, sub nugget;
-	entity phone-number-type, sub nugget;
-	entity physical-address, sub nugget;
-	entity physical-coordinates, sub nugget;
-	entity pgp-key, sub nugget;
-	entity proxy-host, sub nugget;
-	entity provider-dns, sub nugget;
-	entity provider-javascript, sub nugget;
-	entity provider-mail, sub nugget;
-	entity provider-hosting, sub nugget;
-	entity provider-telco, sub nugget;
-	entity public-code-repo, sub nugget;
-	entity raw-rir-data, sub nugget;
-	entity raw-dns-records, sub nugget;
-	entity raw-file-meta-data, sub nugget;
-	entity search-engine-web-content, sub nugget;
-	entity social-media, sub nugget;
-	entity similar-account-external, sub nugget;
-	entity similardomain, sub nugget;
-	entity similardomain-whois, sub nugget;
-	entity software-used, sub nugget;
-	entity ssl-certificate-raw, sub nugget;
-	entity ssl-certificate-issued, sub nugget;
-	entity ssl-certificate-issuer, sub nugget;
-	entity ssl-certificate-mismatch, sub nugget;
-	entity ssl-certificate-expired, sub nugget;
-	entity ssl-certificate-expiring, sub nugget;
-	entity target-web-content, sub nugget;
-	entity target-web-content-type, sub nugget;
-	entity target-web-cookie, sub nugget;
-	entity tcp-port-open, sub nugget;
-	entity tcp-port-open-banner, sub nugget;
-	entity tor-exit-node, sub nugget;
-	entity udp-port-open, sub nugget;
-	entity udp-port-open-info, sub nugget;
-	entity url-adblocked-external, sub nugget;
-	entity url-adblocked-internal, sub nugget;
-	entity url-form, sub nugget;
-	entity url-flash, sub nugget;
-	entity url-javascript, sub nugget;
-	entity url-web-framework, sub nugget;
-	entity url-java-applet, sub nugget;
-	entity url-static, sub nugget;
-	entity url-password, sub nugget;
-	entity url-upload, sub nugget;
-	entity url-form-historic, sub nugget;
-	entity url-flash-historic, sub nugget;
-	entity url-javascript-historic, sub nugget;
-	entity url-web-framework-historic, sub nugget;
-	entity url-java-applet-historic, sub nugget;
-	entity url-static-historic, sub nugget;
-	entity url-password-historic, sub nugget;
-	entity url-upload-historic, sub nugget;
-	entity username, sub nugget;
-	entity vpn-host, sub nugget;
-	entity vulnerability-disclosure, sub nugget;
-	entity vulnerability-cve-critical, sub nugget;
-	entity vulnerability-cve-high, sub nugget;
-	entity vulnerability-cve-medium, sub nugget;
-	entity vulnerability-cve-low, sub nugget;
-	entity vulnerability-general, sub nugget;
-	entity web-analytics-id, sub nugget;
-	entity webserver-banner, sub nugget;
-	entity webserver-httpheaders, sub nugget;
-	entity webserver-strangeheader, sub nugget;
-	entity webserver-technology, sub nugget;
-	entity wifi-access-point, sub nugget;
-	entity wikipedia-page-edit, sub nugget;
+	#
+	# Semantic Relations
+	relation semantic_link @abstract,
+		relates source,
+		relates target;
+
+	relation has_this, sub semantic_link;
+	relation contains_this, sub semantic_link;
+	relation listens_to_this, sub semantic_link;
+
+	#
+	# Nugget Types
+	entity category, sub nugget;
+	entity entity_nugget, sub nugget,
+		plays has_this:source,
+		plays contains_this:source,
+		plays contains_this:target,
+		plays listens_to_this:source,
+		plays listens_to_this:target;
+	entity descriptor_nugget, sub nugget,
+		plays has_this:target;
+	entity data_nugget, sub nugget,
+		plays has_this:target;
+	entity subentity_nugget, sub nugget,
+		plays has_this:source,
+		plays contains_this:source,
+		plays contains_this:target,
+		plays listens_to_this:source;
+	entity root_nugget, sub nugget;
+	entity null_value_nugget, sub nugget; # Signifies no result is expected or positive result from a negative fixture
+	#
+	# Actual Nugget Types (grouped by nugget_type from .docs/analysis/nuggets.json)
+	#
+	# Null Value Nuggets
+	entity clean_miss, sub null_value_nugget; # Signfices positive result from a negative fixture
+	entity no_input, sub null_value_nugget; # Signifies no input was provided
+	#
+	# Category Nuggets
+	entity networks sub category;
+	entity environment sub category;
+	entity applications sub category;
+
+	# Entity Nuggets
+	# ENTITY - first-class investigation objects (hosts, domains, identities, etc.)
+	entity scan-record, sub entity_nugget; # Scan Record
+	entity host, sub entity_nugget; # Host
+	entity service, sub entity_nugget; # Network Service
+	entity transport, sub entity_nugget; # Transport Protocol
+	entity trace, sub entity_nugget; # Trace
+
+	entity account-external-owned, sub nugget;  # Account on External Site
+	entity affiliate-company-name, sub nugget;  # Affiliate - Company Name
+	entity affiliate-domain-name, sub nugget;  # Affiliate - Domain Name
+	entity affiliate-domain-unregistered, sub nugget;  # Affiliate - Domain Name Unregistered
+	entity affiliate-emailaddr, sub nugget;  # Affiliate - Email Address
+	entity affiliate-internet-name, sub nugget;  # Affiliate - Internet Name
+	entity affiliate-internet-name-hijackable, sub nugget;  # Affiliate - Internet Name Hijackable
+	entity affiliate-internet-name-unresolved, sub nugget;  # Affiliate - Internet Name - Unresolved
+	entity affiliate-ipaddr, sub nugget;  # Affiliate - IP Address
+	entity affiliate-ipv6-address, sub nugget;  # Affiliate - IPv6 Address
+	entity appstore-entry, sub nugget;  # App Store Entry
+	entity bgp-as-member, sub nugget;  # BGP AS Membership
+	entity bgp-as-owner, sub nugget;  # BGP AS Ownership
+	entity bitcoin-address, sub nugget;  # Bitcoin Address
+	entity cloud-storage-bucket, sub nugget;  # Cloud Storage Bucket
+	entity co-hosted-site, sub nugget;  # Co-Hosted Site
+	entity co-hosted-site-domain, sub nugget;  # Co-Hosted Site - Domain Name
+	entity company-name, sub nugget;  # Company Name
+	entity country-name, sub nugget;  # Country Name
+	entity credit-card-number, sub nugget;  # Credit Card Number
+	entity date-human-dob, sub nugget;  # Date of Birth
+	entity domain-name, sub nugget;  # Domain Name
+	entity domain-name-parent, sub nugget;  # Domain Name (Parent)
+	entity domain-registrar, sub nugget;  # Domain Registrar
+	entity emailaddr, sub nugget;  # Email Address
+	entity emailaddr-generic, sub nugget;  # Email Address - Generic
+	entity ethereum-address, sub nugget;  # Ethereum Address
+	entity human-name, sub nugget;  # Human Name
+	entity iban-number, sub nugget;  # IBAN Number
+	entity internal-ip-address, sub nugget;  # IP Address - Internal Network
+	entity internet-name, sub nugget;  # Internet Name
+	entity internet-name-unresolved, sub nugget;  # Internet Name - Unresolved
+	entity ip-address, sub nugget;  # IP Address
+	entity ipv6-address, sub nugget;  # IPv6 Address
+	entity leaksite-url, sub nugget;  # Leak Site URL
+	entity lei, sub nugget;  # Legal Entity Identifier
+	entity netblock-member, sub nugget;  # Netblock Membership
+	entity netblock-owner, sub nugget;  # Netblock Ownership
+	entity netblockv6-member, sub nugget;  # Netblock IPv6 Membership
+	entity netblockv6-owner, sub nugget;  # Netblock IPv6 Ownership
+	entity phone-number, sub nugget;  # Phone Number
+	entity physical-address, sub nugget;  # Physical Address
+	entity physical-coordinates, sub nugget;  # Physical Coordinates
+	entity provider-dns, sub nugget;  # Name Server (DNS NS Records)
+	entity provider-hosting, sub nugget;  # Hosting Provider
+	entity provider-javascript, sub nugget;  # Externally Hosted Javascript
+	entity provider-mail, sub nugget;  # Email Gateway (DNS MX Records)
+	entity provider-telco, sub nugget;  # Telecommunications Provider
+	entity public-code-repo, sub nugget;  # Public Code Repository
+	entity similar-account-external, sub nugget;  # Similar Account on External Site
+	entity similardomain, sub nugget;  # Similar Domain
+	entity social-media, sub nugget;  # Social Media Presence
+	entity ssl-certificate-issued, sub nugget;  # SSL Certificate - Issued to
+	entity ssl-certificate-issuer, sub nugget;  # SSL Certificate - Issued by
+	entity username, sub nugget;  # Username
+	entity web-analytics-id, sub nugget;  # Web Analytics
+	entity wifi-access-point, sub nugget;  # WiFi Access Point Nearby
+
+	# Descriptor Nuggets
+	# DESCRIPTOR - attributes and classifications of entities
+	entity scan-cli, sub descriptor_nugget; # Scan CLI
+	entity scan-version, sub descriptor_nugget; # Scan Version
+	entity scan-start, sub descriptor_nugget; # Scan Start
+	entity scan-target, sub descriptor_nugget; # Scan Target
+	entity scan-tool, sub descriptor_nugget; # Scan Tool
+	entity scan-summary, sub descriptor_nugget; # Scan Summary
+	entity scan-elapsed, sub descriptor_nugget; # Scan Elapsed Time
+	entity host-status, sub descriptor_nugget; # Host Status
+	entity host-status-reason, sub descriptor_nugget; # Host Status Reason
+	entity port-state, sub descriptor_nugget; # Port State
+	entity port-state-reason, sub descriptor_nugget; # Port State Reason
+	entity port-protocol, sub descriptor_nugget; # Port Protocol
+	entity service-extrainfo, sub descriptor_nugget; # Service Extra Information
+	entity os-match-accuracy, sub descriptor_nugget; # OS Match Accuracy
+	entity trace-protocol, sub descriptor_nugget; # Trace Protocol
+	entity hop-ttl, sub descriptor_nugget; # Trace Hop TTL
+	entity hop-rtt, sub descriptor_nugget; # Trace Hop RTT
+	entity hop-order, sub descriptor_nugget; # Trace Hop Order
+	entity ssh-key-bits, sub descriptor_nugget; # SSH Key Bits
+	entity ssh-key-type, sub descriptor_nugget; # SSH Key Type
+	entity ssh-key-key, sub descriptor_nugget; # SSH Key Fingerprint
+	entity http-title, sub descriptor_nugget; # HTTP Title
+
+	entity account-external-owned-compromised, sub nugget;  # Hacked Account on External Site
+	entity account-external-user-shared-compromised, sub nugget;  # Hacked User Account on External Site
+	entity affiliate-description-abstract, sub nugget;  # Affiliate Description - Abstract
+	entity affiliate-description-category, sub nugget;  # Affiliate Description - Category
+	entity bitcoin-balance, sub nugget;  # Bitcoin Balance
+	entity blacklisted-affiliate-internet-name, sub nugget;  # Blacklisted Affiliate Internet Name
+	entity blacklisted-affiliate-ipaddr, sub nugget;  # Blacklisted Affiliate IP Address
+	entity blacklisted-cohost, sub nugget;  # Blacklisted Co-Hosted Site
+	entity blacklisted-internet-name, sub nugget;  # Blacklisted Internet Name
+	entity blacklisted-ipaddr, sub nugget;  # Blacklisted IP Address
+	entity blacklisted-netblock, sub nugget;  # Blacklisted IP on Owned Netblock
+	entity blacklisted-subnet, sub nugget;  # Blacklisted IP on Same Subnet
+	entity cloud-storage-bucket-open, sub nugget;  # Cloud Storage Bucket Open
+	entity darknet-mention-url, sub nugget;  # Darknet Mention URL
+	entity defaced-affiliate-internet-name, sub nugget;  # Defaced Affiliate
+	entity defaced-affiliate-ipaddr, sub nugget;  # Defaced Affiliate IP Address
+	entity defaced-cohost, sub nugget;  # Defaced Co-Hosted Site
+	entity defaced-internet-name, sub nugget;  # Defaced
+	entity defaced-ipaddr, sub nugget;  # Defaced IP Address
+	entity description-abstract, sub nugget;  # Description - Abstract
+	entity description-category, sub nugget;  # Description - Category
+	entity device-type, sub nugget;  # Device Type
+	entity emailaddr-compromised, sub nugget;  # Hacked Email Address
+	entity emailaddr-deliverable, sub nugget;  # Deliverable Email Address
+	entity emailaddr-disposable, sub nugget;  # Disposable Email Address
+	entity emailaddr-undeliverable, sub nugget;  # Undeliverable Email Address
+	entity ethereum-balance, sub nugget;  # Ethereum Balance
+	entity geoinfo, sub nugget;  # Physical Location
+	entity interesting-file, sub nugget;  # Interesting File
+	entity interesting-file-historic, sub nugget;  # Historic Interesting File
+	entity job-title, sub nugget;  # Job Title
+	entity junk-file, sub nugget;  # Junk File
+	entity malicious-affiliate-internet-name, sub nugget;  # Malicious Affiliate
+	entity malicious-affiliate-ipaddr, sub nugget;  # Malicious Affiliate IP Address
+	entity malicious-asn, sub nugget;  # Malicious AS
+	entity malicious-bitcoin-address, sub nugget;  # Malicious Bitcoin Address
+	entity malicious-cohost, sub nugget;  # Malicious Co-Hosted Site
+	entity malicious-emailaddr, sub nugget;  # Malicious E-mail Address
+	entity malicious-internet-name, sub nugget;  # Malicious Internet Name
+	entity malicious-ipaddr, sub nugget;  # Malicious IP Address
+	entity malicious-netblock, sub nugget;  # Malicious IP on Owned Netblock
+	entity malicious-phone-number, sub nugget;  # Malicious Phone Number
+	entity malicious-subnet, sub nugget;  # Malicious IP on Same Subnet
+	entity operating-system, sub nugget;  # Operating System
+	entity phone-number-compromised, sub nugget;  # Phone Number Compromised
+	entity phone-number-type, sub nugget;  # Phone Number Type
+	entity proxy-host, sub nugget;  # Proxy Host
+	entity ssl-certificate-expired, sub nugget;  # SSL Certificate Expired
+	entity ssl-certificate-expiring, sub nugget;  # SSL Certificate Expiring
+	entity ssl-certificate-mismatch, sub nugget;  # SSL Certificate Host Mismatch
+	entity target-web-content-type, sub nugget;  # Web Content Type
+	entity tor-exit-node, sub nugget;  # TOR Exit Node
+	entity url-adblocked-external, sub nugget;  # URL (AdBlocked External)
+	entity url-adblocked-internal, sub nugget;  # URL (AdBlocked Internal)
+	entity url-flash, sub nugget;  # URL (Uses Flash)
+	entity url-flash-historic, sub nugget;  # Historic URL (Uses Flash)
+	entity url-form, sub nugget;  # URL (Form)
+	entity url-form-historic, sub nugget;  # Historic URL (Form)
+	entity url-java-applet, sub nugget;  # URL (Uses Java Applet)
+	entity url-java-applet-historic, sub nugget;  # Historic URL (Uses Java Applet)
+	entity url-javascript, sub nugget;  # URL (Uses Javascript)
+	entity url-javascript-historic, sub nugget;  # Historic URL (Uses Javascript)
+	entity url-password, sub nugget;  # URL (Accepts Passwords)
+	entity url-password-historic, sub nugget;  # Historic URL (Accepts Passwords)
+	entity url-static, sub nugget;  # URL (Purely Static)
+	entity url-static-historic, sub nugget;  # Historic URL (Purely Static)
+	entity url-upload, sub nugget;  # URL (Accepts Uploads)
+	entity url-upload-historic, sub nugget;  # Historic URL (Accepts Uploads)
+	entity url-web-framework, sub nugget;  # URL (Uses a Web Framework)
+	entity url-web-framework-historic, sub nugget;  # Historic URL (Uses a Web Framework)
+	entity vpn-host, sub nugget;  # VPN Host
+	entity vulnerability-cve-critical, sub nugget;  # Vulnerability - CVE Critical
+	entity vulnerability-cve-high, sub nugget;  # Vulnerability - CVE High
+	entity vulnerability-cve-low, sub nugget;  # Vulnerability - CVE Low
+	entity vulnerability-cve-medium, sub nugget;  # Vulnerability - CVE Medium
+	entity vulnerability-disclosure, sub nugget;  # Vulnerability - Third Party Disclosure
+	entity vulnerability-general, sub nugget;  # Vulnerability - General
+	entity webserver-technology, sub nugget;  # Web Technology
+	entity wikipedia-page-edit, sub nugget;  # Wikipedia Page Edit
+
+	# Data Nuggets
+	# DATA - raw or structured payload blobs (WHOIS, banners, headers, etc.)
+
+	entity affiliate-domain-whois, sub nugget;  # Affiliate - Domain Whois
+	entity affiliate-web-content, sub nugget;  # Affiliate - Web Content
+	entity base64-data, sub nugget;  # Base64-encoded Data
+	entity co-hosted-site-domain-whois, sub nugget;  # Co-Hosted Site - Domain Whois
+	entity darknet-mention-content, sub nugget;  # Darknet Mention Web Content
+	entity dns-spf, sub nugget;  # DNS SPF Record
+	entity dns-srv, sub nugget;  # DNS SRV Record
+	entity dns-text, sub nugget;  # DNS TXT Record
+	entity domain-whois, sub nugget;  # Domain Whois
+	entity error-message, sub nugget;  # Error Message
+	entity hash, sub nugget;  # Hash
+	entity hash-compromised, sub nugget;  # Compromised Password Hash
+	entity http-code, sub nugget;  # HTTP Status Code
+	entity leaksite-content, sub nugget;  # Leak Site Content
+	entity netblock-whois, sub nugget;  # Netblock Whois
+	entity password-compromised, sub nugget;  # Compromised Password
+	entity pgp-key, sub nugget;  # PGP Public Key
+	entity raw-dns-records, sub nugget;  # Raw DNS Records
+	entity raw-file-meta-data, sub nugget;  # Raw File Meta Data
+	entity raw-rir-data, sub nugget;  # Raw Data from RIRs/APIs
+	entity search-engine-web-content, sub nugget;  # Search Engine Web Content
+	entity similardomain-whois, sub nugget;  # Similar Domain - Whois
+	entity ssl-certificate-raw, sub nugget;  # SSL Certificate - Raw Data
+	entity target-web-content, sub nugget;  # Web Content
+	entity target-web-cookie, sub nugget;  # Cookies
+	entity tcp-port-open-banner, sub nugget;  # Open TCP Port Banner
+	entity udp-port-open-info, sub nugget;  # Open UDP Port Information
+	entity webserver-banner, sub nugget;  # Web Server
+	entity webserver-httpheaders, sub nugget;  # HTTP Headers
+	entity webserver-strangeheader, sub nugget;  # Non-Standard HTTP Header
+
+	# Subentity Nuggets
+	# SUBENTITY - child objects owned by a parent entity (ports, URLs, software)
+
+	entity port, sub subentity_nugget; # Network Port
+	entity trace-hop, sub subentity_nugget; # Trace Hop
+	entity cpe-url, sub subentity_nugget; # CPE URL
+	entity ssh-key, sub subentity_nugget @abstract; # SSH Key
+	entity dsa, sub ssh-key; # SSH Key - DSA
+	entity rsa, sub ssh-key; # SSH Key - RSA
+	entity ecdsa, sub ssh-key; # SSH Key - ECDSA
+	entity eddsa, sub ssh-key; # SSH Key - EdDSA
+	entity linked-url-external, sub nugget;  # Linked URL - External
+	entity linked-url-internal, sub nugget;  # Linked URL - Internal
+	entity software-used, sub nugget;  # Software Used
+	entity tcp-port-open, sub nugget;  # Open TCP Port
+	entity udp-port-open, sub nugget;  # Open UDP Port
 
 	#####################################
 	# SpiderFeet OSINT Service Definitions
