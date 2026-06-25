@@ -135,6 +135,7 @@ def list_tools() -> List[Dict[str, Any]]:
                 "priority": entry.get("priority"),
                 "runtime": entry.get("runtime"),
                 "exam_count": exam_count,
+                "has_graph_structure": _tool_graph_structure_path(tool_id).is_file(),
                 "notes": entry.get("notes"),
             }
         )
@@ -149,7 +150,7 @@ def _artifact_flags(bundle_dir: Path) -> Dict[str, bool]:
         "has_text": (bundle_dir / "output_text.txt").is_file(),
         "has_structured": structured,
         "has_graph": (bundle_dir / "proposed_nuggets_edges.json").is_file(),
-        "has_markdown": (bundle_dir / "nugget_graph_structure.md").is_file(),
+        "has_markdown": (bundle_dir / "proposed_nuggets_edges_description.md").is_file(),
     }
 
 
@@ -228,11 +229,9 @@ def list_scenarios(tool_id: str) -> List[Dict[str, Any]]:
         )
         has_text = any((tool_dir / f"{eid}_output_text.txt").is_file() for eid, _ in members)
         graph_path = _NUGGET_ROOT / f"{tool_id}_{key}_proposed_nuggets_edges.json"
-        md_path = _NUGGET_ROOT / f"{tool_id}_{key}_nugget_graph_structure.md"
+        md_path = _NUGGET_ROOT / f"{tool_id}_{key}_proposed_nuggets_edges_description.md"
         if not graph_path.is_file():
             graph_path = _NUGGET_ROOT / f"{tool_id}_proposed_nuggets_edges.json"
-        if not md_path.is_file():
-            md_path = _NUGGET_ROOT / f"{tool_id}_nugget_graph_structure.md"
         rows.append(
             {
                 "scenario_key": key,
@@ -275,13 +274,28 @@ def _graph_for_scenario(tool_id: str, scenario_key: str, bundle_dir: Path) -> Op
     return None
 
 
-def _markdown_for_scenario(tool_id: str, scenario_key: str, bundle_dir: Path) -> Optional[str]:
-    bundle_md = bundle_dir / "nugget_graph_structure.md"
+def _tool_graph_structure_path(tool_id: str) -> Path:
+    return _NUGGET_ROOT / f"{tool_id}_nugget_graph_structure.md"
+
+
+def get_tool_graph_structure(tool_id: str) -> Optional[Dict[str, str]]:
+    _safe_tool_dir(tool_id)
+    md_path = _tool_graph_structure_path(tool_id)
+    if not md_path.is_file():
+        return None
+    return {
+        "tool_id": tool_id,
+        "filename": md_path.name,
+        "markdown": _read_text(md_path),
+    }
+
+
+def _scenario_graph_description(tool_id: str, scenario_key: str, bundle_dir: Path) -> Optional[str]:
+    bundle_md = bundle_dir / "proposed_nuggets_edges_description.md"
     if bundle_md.is_file():
         return _read_text(bundle_md)
     for candidate in (
-        _NUGGET_ROOT / f"{tool_id}_{scenario_key}_nugget_graph_structure.md",
-        _NUGGET_ROOT / f"{tool_id}_nugget_graph_structure.md",
+        _NUGGET_ROOT / f"{tool_id}_{scenario_key}_proposed_nuggets_edges_description.md",
     ):
         if candidate.is_file():
             return _read_text(candidate)
@@ -319,6 +333,8 @@ def _get_scenario_from_bundle(tool_id: str, scenario_key: str, bundle_dir: Path)
         }
 
     flags = _artifact_flags(bundle_dir)
+    markdown = _scenario_graph_description(tool_id, scenario_key, bundle_dir)
+    flags["has_markdown"] = markdown is not None
     return {
         "tool_id": tool_id,
         "scenario_key": scenario_key,
@@ -329,7 +345,8 @@ def _get_scenario_from_bundle(tool_id: str, scenario_key: str, bundle_dir: Path)
         "output_text": _read_text(text_path) if text_path.is_file() else "",
         "structured": structured,
         "graph_proposal": _graph_for_scenario(tool_id, scenario_key, bundle_dir),
-        "markdown": _markdown_for_scenario(tool_id, scenario_key, bundle_dir),
+        "graph_description_markdown": markdown,
+        "markdown": markdown,
         "artifacts": flags,
         "complete": all(flags.values()),
     }
@@ -396,7 +413,7 @@ def _merge_legacy_scenario(
 
     bundle_dir = tool_dir / "scenarios" / scenario_key
     graph = _graph_for_scenario(tool_id, scenario_key, bundle_dir)
-    markdown = _markdown_for_scenario(tool_id, scenario_key, bundle_dir)
+    markdown = _scenario_graph_description(tool_id, scenario_key, bundle_dir)
     flags = {
         "has_text": bool(text_content),
         "has_structured": structured is not None,
@@ -414,6 +431,7 @@ def _merge_legacy_scenario(
         "output_text": text_content,
         "structured": structured,
         "graph_proposal": graph,
+        "graph_description_markdown": markdown,
         "markdown": markdown,
         "artifacts": flags,
         "complete": all(flags.values()),
