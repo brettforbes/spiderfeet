@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///C:/Program Files (x86)/Nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.80 scan initiated Tue Jun 23 18:24:52 2026 as: &quot;C:\\Program Files (x86)\\Nmap\\nmap.exe&quot; -sn -T3 -oX c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\01_host_discovery.xml -oN c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\01_host_discovery.txt scanme.nmap.org -->
+<nmaprun scanner="nmap" args="&quot;C:\\Program Files (x86)\\Nmap\\nmap.exe&quot; -sn -T3 -oX c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\01_host_discovery.xml -oN c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\01_host_discovery.txt scanme.nmap.org" start="1782203092" startstr="Tue Jun 23 18:24:52 2026" version="7.80" xmloutputversion="1.04">
+<verbose level="0"/>
+<debugging level="0"/>
+<host><status state="up" reason="reset" reason_ttl="49"/>
+<address addr="45.33.32.156" addrtype="ipv4"/>
+<hostnames>
+<hostname name="scanme.nmap.org" type="user"/>
+<hostname name="scanme.nmap.org" type="PTR"/>
+</hostnames>
+<times srtt="149000" rttvar="149000" to="745000"/>
+</host>
+<runstats><finished time="1782203093" timestr="Tue Jun 23 18:24:53 2026" elapsed="0.83" summary="Nmap done at Tue Jun 23 18:24:53 2026; 1 IP address (1 host up) scanned in 0.83 seconds" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

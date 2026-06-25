@@ -1,0 +1,17 @@
+{
+  "tool": "nmap",
+  "exam_id": 24,
+  "scenario_id": "service_version_corporate_text",
+  "scenario_name": "E \u2014 service version corporate (text)",
+  "target": "bbc.co.uk",
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 17.265,
+  "captured_at": "2026-06-23T09:07:07.010351+00:00",
+  "structured_kind": null,
+  "structured_path": null,
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\24_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\24_command.txt",
+  "tool_manifest_version": 2,
+  "review_status": "pending"
+}

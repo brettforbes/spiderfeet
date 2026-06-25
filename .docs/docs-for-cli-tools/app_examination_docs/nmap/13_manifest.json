@@ -1,0 +1,17 @@
+{
+  "tool": "nmap",
+  "exam_id": 13,
+  "scenario_id": "traceroute_permissive_xml",
+  "scenario_name": "I \u2014 traceroute permissive (XML)",
+  "target": "scanme.nmap.org",
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 4.0,
+  "captured_at": "2026-06-23T09:02:57.171137+00:00",
+  "structured_kind": "xml",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\13_output_structured.xml",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\13_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\13_command.txt",
+  "tool_manifest_version": 2,
+  "review_status": "pending"
+}

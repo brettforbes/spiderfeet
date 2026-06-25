@@ -1,0 +1,17 @@
+{
+  "tool": "nmap",
+  "exam_id": 18,
+  "scenario_id": "capstone_permissive_text",
+  "scenario_name": "K \u2014 capstone permissive (text)",
+  "target": "scanme.nmap.org",
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 102.078,
+  "captured_at": "2026-06-23T09:06:27.531651+00:00",
+  "structured_kind": null,
+  "structured_path": null,
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\18_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\18_command.txt",
+  "tool_manifest_version": 2,
+  "review_status": "pending"
+}

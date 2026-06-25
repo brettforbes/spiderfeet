@@ -1,0 +1,17 @@
+{
+  "tool": "nmap",
+  "exam_id": 26,
+  "scenario_id": "host_discovery_local_subnet_text",
+  "scenario_name": "B \u2014 host discovery local subnet (text)",
+  "target": "192.168.1.0/24",
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 12.047,
+  "captured_at": "2026-06-23T09:07:30.741809+00:00",
+  "structured_kind": null,
+  "structured_path": null,
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\26_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\26_command.txt",
+  "tool_manifest_version": 2,
+  "review_status": "approved"
+}

@@ -1,0 +1,82 @@
+---
+name: nmap_strategy
+description: SpiderFeet operator strategy for Nmap profiling — phase ordering, Windows vs privileged scans, target classes, and semantic archetypes. Use with .cursor/skills/nmap/SKILL.md during exploration and formal examination.
+---
+
+# Nmap Strategy (SpiderFeet CLI Profiling)
+
+**Skill (commands/parser):** `.cursor/skills/nmap/SKILL.md`  
+**Formal plan:** `.docs/docs-for-cli-tools/examination_plans/nmap_formal_examination_plan.md`  
+**Exploration evidence:** `.docs/docs-for-cli-tools/examination_plans/nmap_exploration_report.md`
+
+## Runtime on this project
+
+| Environment | Scan type | Notes |
+|-------------|-----------|-------|
+| Windows (default) | `-sT` TCP connect | Works without admin; use for harvest manifest |
+| Windows + admin / Linux / WSL | `-sS` SYN | Faster; preferred for production module when privileged |
+| Windows | `-O` alone | Often **no** `osmatch` in XML on connect scans |
+| Windows | `-A` | Reliable OS + version + NSE bundle for permissive targets |
+
+Always capture **XML to stdout** (`-oX -`) for structured parsing; run a **paired text run** without `-oX` for the Text tab.
+
+## Target classes
+
+| Class | Target | Purpose |
+|-------|--------|---------|
+| Permissive | `scanme.nmap.org` | Maximum semantic breadth (open/filtered TCP, UDP, versions, OS, NSE, traceroute) |
+| Corporate | `bbc.co.uk` | Filtered-heavy ports; sparse open set |
+| Local L2 | `192.168.1.0/24`, enrich `192.168.1.12` | Multi-host discovery; Windows SMB/RPC/http-alt |
+
+## Phase order (do not skip)
+
+1. **Host discovery** — `-sn` on single host and CIDR before port scans.
+2. **TCP port scan** — `--top-ports` with `--open` on permissive; note `filtered` on corporate.
+3. **Service version** — `-sV` on known open ports from step 2.
+4. **OS fingerprint** — `-A` on open ports (not standalone `-O` on Windows connect scans).
+5. **NSE** — `-sC` on web/SSH ports for script tables distinct from `-sV`.
+6. **UDP** — `-sU --top-ports N` for `open`, `closed`, `open|filtered` semantics.
+7. **Traceroute** — `--traceroute` on one open port for hop chain.
+8. **Skip ping** — `-Pn` when discovery would miss a host behind no-ICMP firewall.
+9. **Capstone** — `-A --top-ports 1000 --open` all-in-one on permissive target.
+
+## Semantic archetypes → nugget focus
+
+| Archetype | Command signature | Primary nuggets |
+|-----------|-------------------|-----------------|
+| A | `-sn` | Scan head, `IP_ADDRESS`, hostname, host up/down |
+| B | `-sn <cidr>` | Multiple hosts; scan `contains` each live IP |
+| C | `-sT --top-ports --open` | `TCP_PORT_OPEN`, service name |
+| D | corporate top ports | Mostly filtered (descriptor, not open port) |
+| E | `-sV` | `SOFTWARE_USED`, product/version/CPE |
+| F | `-A` | `OPERATING_SYSTEM` (`osmatch`), versions, NSE |
+| G | `-sC` | `script` output → banners, keys, titles |
+| H | `-sU` | `UDP_PORT_OPEN`; policy for `open\|filtered` |
+| I | `--traceroute` | Trace hops → IP + hostname chain |
+| J | `-Pn` | Host up without ICMP discovery phase |
+| K | capstone `-A` | Combined E+F+G on many ports |
+| L | local `-A` | Windows SMB scripts, Service Info OS |
+
+Use only ontology relations: `contains`, `has`, `listens on`. Scan head `contains` discoveries.
+
+## When to escalate
+
+| Observation | Next command |
+|-------------|--------------|
+| 0 hosts from `-sn` | `-Pn` then TCP ping ports `-PS80,443 -sn` |
+| All ports filtered | Corporate target or `-sT -T2`; document filtered semantics |
+| No `osmatch` after `-O` | Retry with `-A` or NSE `smb-os-discovery` on 445 |
+| `open\|filtered` UDP | Do not emit `UDP_PORT_OPEN` without policy; record ambiguity |
+
+## Harvest
+
+```bash
+python .seed/scripts/cli_corpus/harvest.py --tool nmap --dry-run
+python .seed/scripts/cli_corpus/harvest.py --tool nmap
+```
+
+Evidence: `.docs/docs-for-cli-tools/app_examination_docs/nmap/<n>_*.`
+
+## Deferred (out of initial corpus)
+
+SYN-only (`-sS`), IPv6-only, full `-p-`, `vuln` NSE, idle scan, ARP `-PR` separate from `-sn` on LAN.

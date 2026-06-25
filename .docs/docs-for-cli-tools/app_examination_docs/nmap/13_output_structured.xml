@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///C:/Program Files (x86)/Nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.80 scan initiated Tue Jun 23 19:02:53 2026 as: nmap -sT -&#45;traceroute -T3 -p 80 -oX - scanme.nmap.org -->
+<nmaprun scanner="nmap" args="nmap -sT -&#45;traceroute -T3 -p 80 -oX - scanme.nmap.org" start="1782205373" startstr="Tue Jun 23 19:02:53 2026" version="7.80" xmloutputversion="1.04">
+<scaninfo type="connect" protocol="tcp" numservices="1" services="80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1782205373" endtime="1782205374"><status state="up" reason="reset" reason_ttl="50"/>
+<address addr="45.33.32.156" addrtype="ipv4"/>
+<hostnames>
+<hostname name="scanme.nmap.org" type="user"/>
+<hostname name="scanme.nmap.org" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+</ports>
+<trace proto="icmp">
+<hop ttl="2" ipaddr="203.134.80.60" rtt="7.00" host="lo0-33.bng71.alexeqn.nsw.vocus.network"/>
+<hop ttl="4" ipaddr="203.134.80.236" rtt="6.00" host="ae10-100.edg01.alexeqn.nsw.vocus.network"/>
+<hop ttl="5" ipaddr="175.45.103.109" rtt="6.00" host="be106-99.bdr01.syd14.nsw.vocus.network"/>
+<hop ttl="6" ipaddr="114.31.192.64" rtt="156.00" host="be158.cor01.syd11.nsw.vocus.network"/>
+<hop ttl="7" ipaddr="114.31.199.41" rtt="154.00" host="be202.bdr04.sjc01.ca.us.vocus.network"/>
+<hop ttl="8" ipaddr="114.31.199.249" rtt="154.00" host="be101.bdr01.sjc02.ca.us.vocus.network"/>
+<hop ttl="9" ipaddr="206.223.116.196" rtt="154.00" host="eqix-sv1.linode.com"/>
+<hop ttl="13" ipaddr="45.33.32.156" rtt="152.00" host="scanme.nmap.org"/>
+</trace>
+<times srtt="151125" rttvar="85187" to="491873"/>
+</host>
+<runstats><finished time="1782205377" timestr="Tue Jun 23 19:02:57 2026" elapsed="3.84" summary="Nmap done at Tue Jun 23 19:02:57 2026; 1 IP address (1 host up) scanned in 3.84 seconds" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

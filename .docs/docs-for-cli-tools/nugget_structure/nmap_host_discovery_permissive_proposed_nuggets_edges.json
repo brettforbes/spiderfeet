@@ -1,0 +1,281 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--ea7ae044-caa1-51f3-8fc2-f0e0b88bb2de",
+      "nugget_instance_id": "SCAN_RECORD--ea7ae044-caa1-51f3-8fc2-f0e0b88bb2de",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_description": "Scan Record",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "SCAN_RECORD",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "nmap:scanme.nmap.org:Fri Jun 26 03:51:03 2026",
+      "nugget_source_data": "nmap:scanme.nmap.org:Fri Jun 26 03:51:03 2026",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "nmap:scanme.nmap.org:Fri Jun 26 03:51:03 2026"
+    },
+    {
+      "id": "SCAN_CLI--a978793d-ad71-5e21-b2da-88afab99dcb7",
+      "nugget_instance_id": "SCAN_CLI--a978793d-ad71-5e21-b2da-88afab99dcb7",
+      "nugget_id": "SCAN_CLI",
+      "nugget_description": "Scan CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_CLI",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "nmap -sn -T3 -oX - scanme.nmap.org",
+      "nugget_source_data": "nmap -sn -T3 -oX - scanme.nmap.org",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "nmap -sn -T3 -oX - scanme.nmap.org"
+    },
+    {
+      "id": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
+      "nugget_instance_id": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
+      "nugget_id": "SCAN_VERSION",
+      "nugget_description": "Scan Version",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_VERSION",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "7.80",
+      "nugget_source_data": "7.80",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "7.80"
+    },
+    {
+      "id": "SCAN_START--3083b3b3-d934-5e61-971b-ec517e7f7ea2",
+      "nugget_instance_id": "SCAN_START--3083b3b3-d934-5e61-971b-ec517e7f7ea2",
+      "nugget_id": "SCAN_START",
+      "nugget_description": "Scan Start",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_START",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "Fri Jun 26 03:51:03 2026",
+      "nugget_source_data": "Fri Jun 26 03:51:03 2026",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "Fri Jun 26 03:51:03 2026"
+    },
+    {
+      "id": "SCAN_TARGET--37bd87e8-93cd-5da2-b029-a418d5902349",
+      "nugget_instance_id": "SCAN_TARGET--37bd87e8-93cd-5da2-b029-a418d5902349",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_description": "Scan Target",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_TARGET",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "scanme.nmap.org",
+      "nugget_source_data": "scanme.nmap.org",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "scanme.nmap.org"
+    },
+    {
+      "id": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "nugget_instance_id": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_description": "Scan Tool",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_TOOL",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "nmap",
+      "nugget_source_data": "nmap",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "nmap"
+    },
+    {
+      "id": "SCAN_SUMMARY--dc0e6fbd-def3-5aea-9fce-835043635f1f",
+      "nugget_instance_id": "SCAN_SUMMARY--dc0e6fbd-def3-5aea-9fce-835043635f1f",
+      "nugget_id": "SCAN_SUMMARY",
+      "nugget_description": "Scan Summary",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_SUMMARY",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "Nmap done at Fri Jun 26 03:51:04 2026; 1 IP address (1 host up) scanned in 0.94 seconds",
+      "nugget_source_data": "Nmap done at Fri Jun 26 03:51:04 2026; 1 IP address (1 host up) scanned in 0.94 seconds",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "Nmap done at Fri Jun 26 03:51:04 2026; 1 IP address (1 host up) scanned in 0.94 seconds"
+    },
+    {
+      "id": "SCAN_ELAPSED--b497e7ff-b241-547f-95e1-22fbc44cd6ff",
+      "nugget_instance_id": "SCAN_ELAPSED--b497e7ff-b241-547f-95e1-22fbc44cd6ff",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SCAN_ELAPSED",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "0.94",
+      "nugget_source_data": "0.94",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "0.94"
+    },
+    {
+      "id": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "nugget_instance_id": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "nugget_id": "HOST",
+      "nugget_description": "Host",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "HOST",
+      "nugget_icon": "",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "45.33.32.156",
+      "nugget_source_data": "45.33.32.156",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "45.33.32.156"
+    },
+    {
+      "id": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
+      "nugget_instance_id": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
+      "nugget_id": "HOST_STATUS",
+      "nugget_description": "Host Status",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOST_STATUS",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "up",
+      "nugget_source_data": "up",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "up"
+    },
+    {
+      "id": "HOST_STATUS_REASON--203297d0-2497-5f78-8a08-cb989c5d67b1",
+      "nugget_instance_id": "HOST_STATUS_REASON--203297d0-2497-5f78-8a08-cb989c5d67b1",
+      "nugget_id": "HOST_STATUS_REASON",
+      "nugget_description": "Host Status Reason",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "HOST_STATUS_REASON",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
+      "nugget_data": "echo-reply",
+      "nugget_source_data": "echo-reply",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "echo-reply"
+    },
+    {
+      "id": "NETWORKS--d145a77f-9f3b-5d54-a8e9-237ddca4c1cc",
+      "nugget_instance_id": "NETWORKS--d145a77f-9f3b-5d54-a8e9-237ddca4c1cc",
+      "nugget_id": "NETWORKS",
+      "nugget_description": "Networks Category",
+      "nugget_type": "CATEGORY",
+      "nugget_event_type": "NETWORKS",
+      "nugget_icon": "",
+      "nugget_colour": "#14B8A6",
+      "nugget_data": "networks:45.33.32.156",
+      "nugget_source_data": "networks:45.33.32.156",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "networks:45.33.32.156"
+    },
+    {
+      "id": "IP_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "nugget_instance_id": "IP_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_description": "IP Address",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "IP_ADDRESS",
+      "nugget_icon": "icon_ip_address.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "45.33.32.156",
+      "nugget_source_data": "45.33.32.156",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "45.33.32.156"
+    },
+    {
+      "id": "INTERNET_NAME--37bd87e8-93cd-5da2-b029-a418d5902349",
+      "nugget_instance_id": "INTERNET_NAME--37bd87e8-93cd-5da2-b029-a418d5902349",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_description": "Internet Name",
+      "nugget_type": "ENTITY",
+      "nugget_event_type": "INTERNET_NAME",
+      "nugget_icon": "icon_internet_name.svg",
+      "nugget_colour": "#3B82F6",
+      "nugget_data": "scanme.nmap.org",
+      "nugget_source_data": "scanme.nmap.org",
+      "nugget_module": "nmap",
+      "nugget_confidence": 100,
+      "data": "scanme.nmap.org"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--ea7ae044-caa1-51f3-8fc2-f0e0b88bb2de",
+      "target": "SCAN_CLI--a978793d-ad71-5e21-b2da-88afab99dcb7",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--ea7ae044-caa1-51f3-8fc2-f0e0b88bb2de",
+      "target": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--ea7ae044-caa1-51f3-8fc2-f0e0b88bb2de",
+      "target": "SCAN_START--3083b3b3-d934-5e61-971b-ec517e7f7ea2",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--ea7ae044-caa1-51f3-8fc2-f0e0b88bb2de",
+      "target": "SCAN_TARGET--37bd87e8-93cd-5da2-b029-a418d5902349",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--ea7ae044-caa1-51f3-8fc2-f0e0b88bb2de",
+      "target": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--ea7ae044-caa1-51f3-8fc2-f0e0b88bb2de",
+      "target": "SCAN_SUMMARY--dc0e6fbd-def3-5aea-9fce-835043635f1f",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--ea7ae044-caa1-51f3-8fc2-f0e0b88bb2de",
+      "target": "SCAN_ELAPSED--b497e7ff-b241-547f-95e1-22fbc44cd6ff",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "HOST_STATUS_REASON--203297d0-2497-5f78-8a08-cb989c5d67b1",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "NETWORKS--d145a77f-9f3b-5d54-a8e9-237ddca4c1cc",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--d145a77f-9f3b-5d54-a8e9-237ddca4c1cc",
+      "target": "IP_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "INTERNET_NAME--37bd87e8-93cd-5da2-b029-a418d5902349",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--ea7ae044-caa1-51f3-8fc2-f0e0b88bb2de",
+      "target": "HOST--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "relation": "contains"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "tool": "nmap",
+  "exam_id": 8,
+  "scenario_id": "os_aggressive_permissive_text",
+  "scenario_name": "F \u2014 OS aggressive permissive (text)",
+  "target": "scanme.nmap.org",
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 29.344,
+  "captured_at": "2026-06-23T09:02:05.238134+00:00",
+  "structured_kind": null,
+  "structured_path": null,
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\8_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\8_command.txt",
+  "tool_manifest_version": 2,
+  "review_status": "pending"
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///C:/Program Files (x86)/Nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.80 scan initiated Tue Jun 23 18:28:25 2026 as: &quot;C:\\Program Files (x86)\\Nmap\\nmap.exe&quot; -sT -Pn -p 80 -oX c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\10_skip_ping.xml -oN c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\10_skip_ping.txt scanme.nmap.org -->
+<nmaprun scanner="nmap" args="&quot;C:\\Program Files (x86)\\Nmap\\nmap.exe&quot; -sT -Pn -p 80 -oX c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\10_skip_ping.xml -oN c:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nmap\\10_skip_ping.txt scanme.nmap.org" start="1782203305" startstr="Tue Jun 23 18:28:25 2026" version="7.80" xmloutputversion="1.04">
+<scaninfo type="connect" protocol="tcp" numservices="1" services="80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1782203305" endtime="1782203305"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="45.33.32.156" addrtype="ipv4"/>
+<hostnames>
+<hostname name="scanme.nmap.org" type="user"/>
+<hostname name="scanme.nmap.org" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+</ports>
+<times srtt="154000" rttvar="154000" to="770000"/>
+</host>
+<runstats><finished time="1782203305" timestr="Tue Jun 23 18:28:25 2026" elapsed="0.44" summary="Nmap done at Tue Jun 23 18:28:25 2026; 1 IP address (1 host up) scanned in 0.44 seconds" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

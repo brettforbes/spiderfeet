@@ -1,0 +1,17 @@
+{
+  "tool": "nmap",
+  "exam_id": 32,
+  "scenario_id": "host_discovery_permissive_text",
+  "scenario_name": "A \u2014 host discovery permissive (text)",
+  "target": "scanme.nmap.org",
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 0.921,
+  "captured_at": "2026-06-25T17:51:05.797294+00:00",
+  "structured_kind": null,
+  "structured_path": null,
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\32_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\32_command.txt",
+  "tool_manifest_version": 2,
+  "review_status": "pending"
+}

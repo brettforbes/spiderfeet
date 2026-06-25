@@ -542,7 +542,7 @@ def nmap_xml_to_graph(xml_path: Path) -> Dict[str, Any]:
 
 
 def _legacy_xml_exams() -> List[Tuple[str, Path]]:
-    rows: List[Tuple[str, Path]] = []
+    latest_by_key: Dict[str, Tuple[int, Path]] = {}
     for manifest_path in sorted(EXAM_ROOT.glob("*_manifest.json")):
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         if manifest.get("structured_kind") != "xml":
@@ -552,8 +552,11 @@ def _legacy_xml_exams() -> List[Tuple[str, Path]]:
         exam_id = manifest_path.name.split("_", 1)[0]
         xml_path = EXAM_ROOT / f"{exam_id}_output_structured.xml"
         if xml_path.is_file():
-            rows.append((key, xml_path))
-    return rows
+            latest_by_key[key] = (int(exam_id), xml_path)
+    return [
+        (key, xml_path)
+        for key, (_exam_id, xml_path) in sorted(latest_by_key.items())
+    ]
 
 
 def main(argv: Optional[List[str]] = None) -> int:
