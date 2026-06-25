@@ -246,7 +246,7 @@
   },
   {
     "nugget_id": "SSH_KEY_KEY",
-    "nugget_description": "SSH Key Fingerprint",
+    "nugget_description": "SSH Public Key",
     "nugget_type": "DESCRIPTOR",
     "nugget_icon": "",
     "nugget_colour": "#F59E0B"

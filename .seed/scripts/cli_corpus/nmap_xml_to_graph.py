@@ -117,6 +117,85 @@ class GraphBuilder:
         return {"nodes": list(self.nodes.values()), "edges": self.edges}
 
 
+def _sorted_nodes(graph: Dict[str, Any]) -> List[Dict[str, Any]]:
+    return sorted(
+        graph.get("nodes", []),
+        key=lambda n: (n.get("nugget_type", ""), n.get("nugget_id", ""), n.get("nugget_data", "")),
+    )
+
+
+def _sorted_edges(graph: Dict[str, Any]) -> List[Dict[str, str]]:
+    return sorted(
+        graph.get("edges", []),
+        key=lambda e: (e.get("relation", ""), e.get("source", ""), e.get("target", "")),
+    )
+
+
+def _count_by(rows: List[Dict[str, Any]], key: str, default: str = "UNKNOWN") -> Dict[str, int]:
+    counts: Dict[str, int] = {}
+    for row in rows:
+        value = str(row.get(key, default))
+        counts[value] = counts.get(value, 0) + 1
+    return counts
+
+
+def _append_counts(lines: List[str], title: str, counts: Dict[str, int]) -> None:
+    lines.extend(["", title])
+    for value, count in sorted(counts.items()):
+        lines.append(f"- `{value}`: {count}")
+
+
+def _append_script_data(lines: List[str], nodes: List[Dict[str, Any]]) -> None:
+    ssh_nodes = [node for node in nodes if node.get("nugget_id") in {"DSA", "RSA", "ECDSA", "EDDSA"}]
+    http_titles = [node for node in nodes if node.get("nugget_id") == "HTTP_TITLE"]
+    if not ssh_nodes and not http_titles:
+        return
+
+    lines.extend(["", "## Notable Extracted Script Data"])
+    if ssh_nodes:
+        lines.append(f"- SSH host keys represented: {len(ssh_nodes)}")
+        for node in ssh_nodes[:8]:
+            lines.append(f"  - `{node['nugget_id']}` fingerprint `{node.get('nugget_data', '')}`")
+    if http_titles:
+        lines.append(f"- HTTP titles represented: {len(http_titles)}")
+        for node in http_titles[:8]:
+            lines.append(f"  - `{node.get('nugget_data', '')}`")
+
+
+def _append_edge_examples(
+    lines: List[str],
+    nodes: List[Dict[str, Any]],
+    edges: List[Dict[str, str]],
+) -> None:
+    by_id = {node["id"]: node for node in nodes if node.get("id")}
+    lines.extend(["", "## Edge Examples"])
+    for edge in edges[:12]:
+        source = by_id.get(edge.get("source"), {})
+        target = by_id.get(edge.get("target"), {})
+        source_label = source.get("nugget_id", edge.get("source"))
+        target_label = target.get("nugget_id", edge.get("target"))
+        lines.append(f"- `{source_label}` `{edge.get('relation')}` `{target_label}`")
+
+
+def describe_graph(graph: Dict[str, Any], scenario_key: str) -> str:
+    nodes = _sorted_nodes(graph)
+    edges = _sorted_edges(graph)
+    lines = [
+        f"# Nmap Scenario Graph Description: {scenario_key}",
+        "",
+        "## Summary",
+        f"- Nodes: {len(nodes)}",
+        f"- Edges: {len(edges)}",
+    ]
+    _append_counts(lines, "## Node Types", _count_by(nodes, "nugget_type"))
+    _append_counts(lines, "## Nugget Archetypes", _count_by(nodes, "nugget_id"))
+    _append_counts(lines, "## Relations", _count_by(edges, "relation", "unknown"))
+    _append_script_data(lines, nodes)
+    _append_edge_examples(lines, nodes, edges)
+    lines.append("")
+    return "\n".join(lines)
+
+
 def _host_key(addresses: List[Tuple[str, str]]) -> str:
     for addr, _ in addresses:
         if "." in addr:
@@ -140,6 +219,78 @@ def _add_descriptor(
 ) -> None:
     desc_id = g.add_node(nugget_id, data, "DESCRIPTOR")
     g.add_edge(parent_id, desc_id, "had")
+
+
+def _script_by_id(port_el: ET.Element, script_id: str) -> Optional[ET.Element]:
+    for script_el in port_el.findall("script"):
+        if script_el.get("id") == script_id:
+            return script_el
+    return None
+
+
+def _table_values(table_el: ET.Element) -> Dict[str, str]:
+    values: Dict[str, str] = {}
+    for elem in table_el.findall("elem"):
+        key = elem.get("key")
+        if key:
+            values[key] = (elem.text or "").strip()
+    return values
+
+
+def _ssh_key_nugget_id(key_type: str) -> Optional[str]:
+    key_type = key_type.lower()
+    if "ed25519" in key_type or "eddsa" in key_type:
+        return "EDDSA"
+    if "ecdsa" in key_type:
+        return "ECDSA"
+    if "rsa" in key_type:
+        return "RSA"
+    if "dss" in key_type or "dsa" in key_type:
+        return "DSA"
+    return None
+
+
+def _parse_ssh_hostkeys(g: GraphBuilder, service_id: str, port_el: ET.Element) -> None:
+    script_el = _script_by_id(port_el, "ssh-hostkey")
+    if script_el is None:
+        return
+
+    for table_el in script_el.findall("table"):
+        values = _table_values(table_el)
+        key_type = values.get("type", "")
+        nugget_id = _ssh_key_nugget_id(key_type)
+        fingerprint = values.get("fingerprint", "")
+        if not nugget_id or not fingerprint:
+            continue
+
+        key_id = g.add_node(nugget_id, fingerprint, "SUBENTITY")
+        g.add_edge(service_id, key_id, "contains")
+
+        bits = values.get("bits")
+        if bits:
+            _add_descriptor(g, key_id, "SSH_KEY_BITS", bits)
+        if key_type:
+            _add_descriptor(g, key_id, "SSH_KEY_TYPE", key_type)
+        public_key = values.get("key")
+        if public_key:
+            _add_descriptor(g, key_id, "SSH_KEY_KEY", public_key)
+
+
+def _parse_http_title(g: GraphBuilder, service_id: str, port_el: ET.Element) -> None:
+    script_el = _script_by_id(port_el, "http-title")
+    if script_el is None:
+        return
+
+    title = ""
+    for elem in script_el.findall("elem"):
+        if elem.get("key") == "title":
+            title = (elem.text or "").strip()
+            break
+    if not title:
+        output = (script_el.get("output") or "").strip()
+        title = next((line.strip() for line in output.splitlines() if line.strip()), "")
+    if title:
+        _add_descriptor(g, service_id, "HTTP_TITLE", title)
 
 
 def _ensure_host(
@@ -171,6 +322,61 @@ def _ensure_host(
     return host_id
 
 
+def _add_port_state(g: GraphBuilder, port_node_id: str, port_el: ET.Element) -> Optional[ET.Element]:
+    state_el = port_el.find("state")
+    if state_el is None:
+        return None
+
+    state = state_el.get("state")
+    if state:
+        _add_descriptor(g, port_node_id, "PORT_STATE", state)
+    reason = state_el.get("reason")
+    if reason:
+        _add_descriptor(g, port_node_id, "PORT_STATE_REASON", reason)
+    return state_el
+
+
+def _add_service_metadata(g: GraphBuilder, service_id: str, service_el: ET.Element) -> None:
+    product = service_el.get("product")
+    version = service_el.get("version")
+    if product or version:
+        version_str = " ".join(x for x in (product, version) if x)
+        _add_descriptor(g, service_id, "SOFTWARE_USED", version_str)
+
+    extrainfo = service_el.get("extrainfo")
+    if extrainfo:
+        _add_descriptor(g, service_id, "SERVICE_EXTRAINFO", extrainfo)
+
+    for cpe_el in service_el.findall("cpe"):
+        cpe_text = (cpe_el.text or "").strip()
+        if cpe_text:
+            cpe_id = g.add_node("CPE_URL", cpe_text, "ENTITY")
+            g.add_edge(service_id, cpe_id, "contains")
+
+
+def _add_port_service(
+    g: GraphBuilder,
+    apps_id: str,
+    port_node_id: str,
+    port_el: ET.Element,
+    state_el: Optional[ET.Element],
+) -> None:
+    service_el = port_el.find("service")
+    if service_el is None:
+        return
+
+    svc_name = service_el.get("name") or "unknown"
+    service_id = g.add_node("SERVICE", svc_name, "ENTITY")
+    g.add_edge(apps_id, service_id, "contains")
+
+    if state_el is not None and state_el.get("state") == "open":
+        g.add_edge(service_id, port_node_id, "listens-to")
+
+    _add_service_metadata(g, service_id, service_el)
+    _parse_ssh_hostkeys(g, service_id, port_el)
+    _parse_http_title(g, service_id, port_el)
+
+
 def _parse_ports(g: GraphBuilder, host_id: str, host_key: str, host_el: ET.Element) -> None:
     ports_el = host_el.find("ports")
     if ports_el is None:
@@ -179,7 +385,6 @@ def _parse_ports(g: GraphBuilder, host_id: str, host_key: str, host_el: ET.Eleme
     apps_id = g.add_node("APPLICATIONS", f"applications:{host_key}", "CATEGORY")
     g.add_edge(host_id, apps_id, "contains")
 
-    networks_id = instance_id("NETWORKS", f"networks:{host_key}")
     ip_id = instance_id("IP_ADDRESS", host_key)
 
     for port_el in ports_el.findall("port"):
@@ -191,48 +396,13 @@ def _parse_ports(g: GraphBuilder, host_id: str, host_key: str, host_el: ET.Eleme
         transport_id = g.add_node("TRANSPORT", proto, "ENTITY")
         g.add_edge(ip_id, transport_id, "contains")
 
-        port_data = f"{proto}/{portid}"
+        port_data = portid
         port_node_id = g.add_node("PORT", port_data, "ENTITY")
         g.add_edge(transport_id, port_node_id, "contains")
 
-        state_el = port_el.find("state")
-        if state_el is not None:
-            state = state_el.get("state")
-            if state:
-                _add_descriptor(g, port_node_id, "PORT_STATE", state)
-            reason = state_el.get("reason")
-            if reason:
-                _add_descriptor(g, port_node_id, "PORT_STATE_REASON", reason)
-
+        state_el = _add_port_state(g, port_node_id, port_el)
         _add_descriptor(g, port_node_id, "PORT_PROTOCOL", proto)
-
-        service_el = port_el.find("service")
-        if service_el is None:
-            continue
-
-        svc_name = service_el.get("name") or "unknown"
-        svc_data = f"{host_key}:{port_data}:{svc_name}"
-        svc_id = g.add_node("SERVICE", svc_data, "ENTITY")
-        g.add_edge(apps_id, svc_id, "contains")
-
-        if state_el is not None and state_el.get("state") == "open":
-            g.add_edge(svc_id, port_node_id, "listens-to")
-
-        product = service_el.get("product")
-        version = service_el.get("version")
-        if product or version:
-            version_str = " ".join(x for x in (product, version) if x)
-            _add_descriptor(g, svc_id, "SOFTWARE_USED", version_str)
-
-        extrainfo = service_el.get("extrainfo")
-        if extrainfo:
-            _add_descriptor(g, svc_id, "SERVICE_EXTRAINFO", extrainfo)
-
-        for cpe_el in service_el.findall("cpe"):
-            cpe_text = (cpe_el.text or "").strip()
-            if cpe_text:
-                cpe_id = g.add_node("CPE_URL", cpe_text, "ENTITY")
-                g.add_edge(svc_id, cpe_id, "contains")
+        _add_port_service(g, apps_id, port_node_id, port_el, state_el)
 
 
 def _parse_os(g: GraphBuilder, host_id: str, host_key: str, host_el: ET.Element) -> None:
@@ -288,7 +458,7 @@ def _parse_trace(
 
         hop_entity_id = g.add_node(
             "TRACE_HOP",
-            f"{target_host_key}:{proto}:{order}:{ipaddr}",
+            ipaddr,
             "ENTITY",
         )
         g.add_edge(trace_id, hop_entity_id, "contains")
@@ -422,10 +592,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     for scenario_key, xml_path in pairs:
         graph = nmap_xml_to_graph(xml_path)
         out_path = args.out_dir / f"nmap_{scenario_key}_proposed_nuggets_edges.json"
+        desc_path = args.out_dir / f"nmap_{scenario_key}_proposed_nuggets_edges_description.md"
         out_path.write_text(
             json.dumps(graph, indent=2) + "\n",
             encoding="utf-8",
         )
+        desc_path.write_text(describe_graph(graph, scenario_key), encoding="utf-8")
         print(
             f"{scenario_key}: {len(graph['nodes'])} nodes, "
             f"{len(graph['edges'])} edges -> {out_path.relative_to(REPO_ROOT)}"
