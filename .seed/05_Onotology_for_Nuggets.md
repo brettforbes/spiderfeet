@@ -512,7 +512,7 @@ flowchart TD
 - Do not invent relation names such as `relates`, `detects`, `uses`, or `produces` in proposed graphs.
 - Sometimes when a scan happens, a nugget can be known with some likelihood or confidence, but not with certainty. In this case, the entity nugget should have a **descriptor** with a `confidence` attribute.
 
-## Hierarchy Discipline
+### 3.1 Hierarchy Discipline
 
 - Prefer stable hierarchy before tool-specific convenience: `Scan -> Host/Device`, then domain containers such as `Networking` or `Applications`, then concrete entities and attributes.
 - Network facts belong under `Networking` where helpful: IP address, protocol, port, port state, trace/hop.
@@ -522,7 +522,7 @@ flowchart TD
 - `TCP_PORT_OPEN` represents only an open TCP port. Filtered, closed, unknown, or UDP ports need distinct state/port semantics, not `TCP_PORT_OPEN`.
 - Use transitive edges where possible as they preserve truth and improve querying, e.g. host `contains` an IP and host/service `listens on` an open port.
 
-## Mapping Rules
+### 3.2 Mapping Rules
 
 - Map source fields to existing ontology terms first. Propose a new nugget only when no existing entity or attribute can faithfully represent the fact.
 - If a new nugget is required, state whether it is entity or attribute, its parent, and why existing nuggets are insufficient.
@@ -530,6 +530,61 @@ flowchart TD
 - `clean_miss` is scan-level evidence that the run completed but produced no qualifying target intelligence; it is not a replacement for error modelling.
 - Nugget identity must be deterministic from `nugget_id` plus canonical `nugget_data`; do not create duplicate nodes for the same fact.
 
-## Review Gate
+### 3.3 Review Gate
 
 Before accepting a proposed graph, check: no relation drift, scan ownership exists, each node has a clear entity/attribute role, each source field is accounted for or explicitly ignored, and every ontology extension is justified.
+
+## 4. Document Generation - Using the Ontology to Tell A Story
+
+Once the semantic map of a scan has been derived from a CLI app or API's native output, it is easy to generate a markdown report using the ontology to tell the story revealed by the scan. For any given CLI App, its best to wait till you have finalised the semantic graph before you start generating the report. Once the ontology is complete, for all varitions of the same CLI App, the report should be the same, and easy to generate.
+
+The reason it is so easy is because the ontology is a semantic map, or graph (i.e. nodes connected by edges), where the natural nesting and hierarchies of concepts and values is well described. 
+
+1. **Has** Any entity can have its own set of descriptors connected by the relation (`had-this`), and in the cas eit makes sense to talk about the entity, its value and it's descriptors. 
+2. **Contains**  Any entity can be nested within other entities and there are lots of its own nesting levels all using the same relation (`contains-this`), so a system- can contain one or more sub-systems
+
+### 4.1 Key Meta concepts
+
+Meta concepts are the key enckosing system of a series of nested components and properties that describe a significant overarching concept, that coalesces a semantic real-scale object from all of the nuggets that it has or contains.
+
+Three meta concepts are currently defined:
+
+1. **Scan** - This meta concept contains the scan itself, the scan's attributes and its contained concepts.
+2. **Host** - This meta concept contains the host itself, and the host's attributes and its contained concepts.
+3. **Trace** - This meta concept contains the trace itself, and the trace's attributes and its contained concepts. Except that although a trace hop directs to a host with an ip address, the point of the trace objects is interconnection, not detailed descriptions of hosts. Thus it is generally last in the narrative, after the story of the scan, and the story of any hosts that were scanned. 
+
+### 4.2 The Power of Categories at Organising Sub-Systems within a Meta concept
+
+Meta concepts can contain categories, which are key containers for grouping underlying nodes and properties that describe various sub systems, and sub-systems that contain sub-sub-systems, and so on.
+
+For a Host, four Categories are Currently Defined as being within the Host meta concept, but only 3 implemented currently:
+
+1. **Networks** - This category contains the networks that the host is connected to, and the network addresses that are assigned to the host.
+2. **Applications** - This category contains the applications that are installed on the host.
+3. **Environment** - This category contains the environment that the host is running in, such as the operating system, the hardware, and the software.
+4. **Vulnerabilities** - This category contains the vulnerabilities that are found on the host.
+
+### 4.3 Agent Prompt for Generating a Narrative
+
+You have a lot of skill at taking a template, and fitting a few words around data (nugget names and data values) to create a narrative report.
+Given the above discussion, can you reengineer the production of each markdown documents so it uses every nugget and value in the story. Plot out the maximum story (i.e. a report if all data is there), then all other stories are some subset of the maximum story. Write code to take the nodes and edges array, and apply it to a template to create the story.
+
+Try to create a generic process, as this template-driven narrative generation from semantic map will be used for all CLI Apps, as it is a powerful benefit of the ontology.
+
+Each narrative story starts first with a description of the scan
+
+Then a stroy is devised for each of the hosts that were found, in the order of (if available):
+
+- host data and descriptors first
+- Environment category with oeprating system
+- Networks category with network addresses, protocols and ports
+- Applications category with services names, versions and CPEs
+- Vulnerabilities category with vulnerabilities found on the host
+
+Finally, a story is devised for the trace, if it was found. since the hosts are already described in the report, the trace is solely concerned on describing hope betwween hosts, previously described, which it can achieve very effectively visually (e.g. mermaid diagrams). It would include:
+
+- trace data and descriptors first
+- each trace hops with hosts and ip addresses
+- a mermaid diagram of the trace, with the hosts and ip addresses
+
+The story is then completed with a summary of the scan, and detailed appendix including all of the nuggets that were found. Assume there is a title, and an introduction, and a conclusion. A Footer of "OS-Intel Scan" with the date of the scan, and page number.

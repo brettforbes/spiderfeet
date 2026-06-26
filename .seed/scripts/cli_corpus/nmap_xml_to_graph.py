@@ -13,6 +13,11 @@ from typing import Any, Dict, List, Optional, Tuple
 from uuid import NAMESPACE_DNS, uuid5
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
+_CLI_CORPUS = Path(__file__).resolve().parent
+if str(_CLI_CORPUS) not in sys.path:
+    sys.path.insert(0, str(_CLI_CORPUS))
+
+from narrative_report import build_nmap_narrative_report
 EXAM_ROOT = REPO_ROOT / ".docs/docs-for-cli-tools/app_examination_docs/nmap"
 NUGGET_ROOT = REPO_ROOT / ".docs/docs-for-cli-tools/nugget_structure"
 NUGGETS_PATH = REPO_ROOT / ".docs/analysis/nuggets.json"
@@ -178,22 +183,8 @@ def _append_edge_examples(
 
 
 def describe_graph(graph: Dict[str, Any], scenario_key: str) -> str:
-    nodes = _sorted_nodes(graph)
-    edges = _sorted_edges(graph)
-    lines = [
-        f"# Nmap Scenario Graph Description: {scenario_key}",
-        "",
-        "## Summary",
-        f"- Nodes: {len(nodes)}",
-        f"- Edges: {len(edges)}",
-    ]
-    _append_counts(lines, "## Node Types", _count_by(nodes, "nugget_type"))
-    _append_counts(lines, "## Nugget Archetypes", _count_by(nodes, "nugget_id"))
-    _append_counts(lines, "## Relations", _count_by(edges, "relation", "unknown"))
-    _append_script_data(lines, nodes)
-    _append_edge_examples(lines, nodes, edges)
-    lines.append("")
-    return "\n".join(lines)
+    """Generate a §4.3 narrative Markdown report from a proposed nugget graph."""
+    return build_nmap_narrative_report(graph, scenario_key)
 
 
 def _host_key(addresses: List[Tuple[str, str]]) -> str:
