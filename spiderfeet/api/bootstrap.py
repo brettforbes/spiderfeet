@@ -13,6 +13,7 @@ from typing import Optional
 from sflib import SpiderFeet
 
 from spiderfeet import SpiderFeetCorrelator, SpiderFeetDb, SpiderFeetHelpers
+from spiderfeet.credentials.vault import decrypt_config_map
 from spiderfeet.logger import logListenerSetup, logWorkerSetup
 
 # Repo root: spiderfeet/api/bootstrap.py -> parents[2]
@@ -86,7 +87,7 @@ def init_runtime() -> Runtime:
 
     dbh = SpiderFeetDb(sf_config, init=True)
     sf = SpiderFeet(sf_config)
-    sf_config = sf.configUnserialize(dbh.configGet(), sf_config)
+    sf_config = sf.configUnserialize(decrypt_config_map(dbh.configGet()), sf_config)
     sf_config["__modules__"] = sf_modules
     correlation_rules = []
     if correlation_rules_raw:

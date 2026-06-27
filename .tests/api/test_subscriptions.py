@@ -11,6 +11,20 @@ def test_subscriptions_modules_list(api_client):
     assert "subscription_tier" in rows[0]
     assert "signup_url" in rows[0]
     assert "signup_bucket" in rows[0]
+    assert "provider_kind" in rows[0]
+    assert "service_labels" in rows[0]
+    assert "group" in rows[0]
+
+
+def test_subscriptions_filter_cli_pius(api_client):
+    r = api_client.get(
+        "/api/v1/subscriptions/modules",
+        params={"cli_app": "pius", "limit": 500},
+    )
+    assert r.status_code == 200
+    rows = r.json()
+    assert rows
+    assert all("pius" in (row.get("cli_apps") or []) for row in rows)
 
 
 def test_subscriptions_modules_search(api_client):
@@ -96,3 +110,73 @@ def test_subscriptions_clear_key(api_client):
     assert cleared.status_code == 200
     assert cleared.json()["has_api_key"] is False
     assert cleared.json()["secret_opts"][0]["configured"] is False
+
+
+def test_subscriptions_never_leaks_plaintext_secret(api_client):
+    import json
+
+    module_id = "sfp_emailrep"
+    secret = "redteam-emailrep-secret-xyzzy"
+    try:
+        put = api_client.put(
+            f"/api/v1/subscriptions/modules/{module_id}",
+            json={"secrets": {"api_key": secret}},
+        )
+        assert put.status_code == 200
+        assert secret not in json.dumps(put.json())
+    finally:
+        api_client.put(
+            f"/api/v1/subscriptions/modules/{module_id}",
+            json={"secrets": {"api_key": ""}},
+        )
+
+
+def test_subscriptions_db_encrypts_module_secret(api_client):
+    from spiderfeet import SpiderFeetDb
+    from spiderfeet.api.bootstrap import get_runtime
+    from spiderfeet.credentials.vault import is_encrypted
+
+    module_id = "sfp_emailrep"
+    secret = "redteam-db-encryption-check"
+    runtime = get_runtime()
+    try:
+        api_client.put(
+            f"/api/v1/subscriptions/modules/{module_id}",
+            json={"secrets": {"api_key": secret}},
+        )
+        raw = SpiderFeetDb(runtime.config).configGet().get(f"{module_id}:api_key", "")
+        assert secret not in str(raw)
+        assert is_encrypted(str(raw))
+    finally:
+        api_client.put(
+            f"/api/v1/subscriptions/modules/{module_id}",
+            json={"secrets": {"api_key": ""}},
+        )
+
+
+def test_subscriptions_cli_only_providers(api_client):
+    r = api_client.get("/api/v1/subscriptions/modules", params={"group": "cli", "limit": 500})
+    assert r.status_code == 200
+    ids = {row["module_id"] for row in r.json()}
+    for expected in ("cli_pius_apollo", "cli_pius_viewdns", "cli_pius_fofa", "cli_pius_github"):
+        assert expected in ids
+
+
+def test_subscriptions_save_syncs_pius_env(api_client):
+    from spiderfeet.credentials.registry import REPO_ROOT
+
+    secret = "redteam-shodan-for-pius-sync"
+    try:
+        put = api_client.put(
+            "/api/v1/subscriptions/modules/sfp_shodan",
+            json={"secrets": {"api_key": secret}},
+        )
+        assert put.status_code == 200
+        env_path = REPO_ROOT / ".tools" / "pius.env"
+        assert env_path.is_file()
+        assert secret in env_path.read_text(encoding="utf-8")
+    finally:
+        api_client.put(
+            "/api/v1/subscriptions/modules/sfp_shodan",
+            json={"secrets": {"api_key": ""}},
+        )
