@@ -1,0 +1,1 @@
+netdiscover -P -N -i eth0 -r 10.253.0.0/24 -c 1 -s 20

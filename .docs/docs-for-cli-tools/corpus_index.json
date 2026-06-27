@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-06-26T16:00:00Z",
+  "updated_at": "2026-06-27T06:30:00Z",
   "driving_doc": ".seed/04_Driving and Integrating_CLI_Apps.md",
   "excluded_tools": ["aircrack-ng"],
   "targets": {
@@ -11,12 +11,12 @@
   "phases": ["exploration", "formal_examination", "nugget_proposal", "operator_review", "ontology_update", "complete"],
   "tools": [
     {"id": "nmap", "phase": "complete", "priority": 1, "runtime": "windows", "exams": 15, "notes": "Pilot complete 2026-06-26 — 15 scenarios operator-approved; narrative reports; graph structure + 15 JSON/MD artifacts; template for next CLI tools"},
-    {"id": "netdiscover", "phase": "exploration", "priority": 2, "runtime": "wsl-root", "exams": 0, "notes": "Reset 2026-06-19 — restart exploration and examination"},
-    {"id": "nerva", "phase": "exploration", "priority": 3, "runtime": "windows", "exams": 0, "notes": "Reset 2026-06-19 — restart exploration and examination"},
+    {"id": "netdiscover", "phase": "operator_review", "priority": 2, "runtime": "wsl-root", "exams": 4, "notes": "Examined 2026-06-27 — 5 harvest bundles / 4 scenario keys; TextFSM parseable ARP"},
+    {"id": "nerva", "phase": "operator_review", "priority": 3, "runtime": "windows", "exams": 6, "notes": "Examined 2026-06-27 — 6 scenarios; JSONL fingerprint; binary .tools/bin/nerva.exe"},
     {"id": "nuclei", "phase": "exploration", "priority": 4, "runtime": "windows", "exams": 0, "notes": "Reset 2026-06-19 — restart exploration and examination"},
     {"id": "cmseek", "phase": "exploration", "priority": 5, "runtime": "windows", "exams": 0, "notes": "Reset 2026-06-19 — restart exploration and examination"},
     {"id": "wafwoof", "phase": "pending", "priority": 6, "runtime": "windows"},
-    {"id": "pius", "phase": "pending", "priority": 7, "runtime": "wsl"},
+    {"id": "pius", "phase": "operator_review", "priority": 7, "runtime": "wsl", "exams": 6, "notes": "Examined 2026-06-27 — 6 NDJSON scenarios; .tools/pius + sync_pius_env from Subscriptions"},
     {"id": "nosey_parker", "phase": "pending", "priority": 8, "runtime": "wsl"},
     {"id": "NTLMRecon", "phase": "pending", "priority": 9, "runtime": "wsl"},
     {"id": "Titus", "phase": "pending", "priority": 10, "runtime": "wsl"},

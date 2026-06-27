@@ -1,0 +1,1 @@
+nerva -t scanme.nmap.org:1 --json -w 2000

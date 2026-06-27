@@ -1,0 +1,40 @@
+[H[2J[3J[1;1H[J Currently scanning: Starting.   |   Screen View: Unique Hosts                 
+                                                                               
+ 0 Captured ARP Req/Rep packets, from 0 hosts.   Total size: 0                 
+ _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+[1;1H[J Currently scanning: Starting.   |   Screen View: Unique Hosts                 
+                                                                               
+ 0 Captured ARP Req/Rep packets, from 0 hosts.   Total size: 0                 
+ _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+[1;1H[J Currently scanning: 172.18.0.0/24   |   Screen View: Unique Hosts             
+                                                                               
+ 0 Captured ARP Req/Rep packets, from 0 hosts.   Total size: 0                 
+ _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+[1;1H[J Currently scanning: 172.18.0.0/24   |   Screen View: Unique Hosts             
+                                                                               
+ 1 Captured ARP Req/Rep packets, from 1 hosts.   Total size: 42                
+ _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+ 172.18.0.1      00:15:5d:c1:a8:4a      1      42  Microsoft Corporation       
+[1;1H[J Currently scanning: 172.18.0.0/24   |   Screen View: Unique Hosts             
+                                                                               
+ 1 Captured ARP Req/Rep packets, from 1 hosts.   Total size: 42                
+ _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+ 172.18.0.1      00:15:5d:c1:a8:4a      1      42  Microsoft Corporation       
+[1;1H[J Currently scanning: 172.18.0.0/24   |   Screen View: Unique Hosts             
+                                                                               
+ 1 Captured ARP Req/Rep packets, from 1 hosts.   Total size: 42                
+ _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+ 172.18.0.1      00:15:5d:c1:a8:4a      1      42  Microsoft Corporation       
+[1;1H[J Currently scanning: 172.18.0.0/24   |   Screen View: Unique Hosts             

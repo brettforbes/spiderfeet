@@ -1,0 +1,92 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--64a1aa84-0bd6-5bf4-ade7-458bb0c2e964",
+      "nugget_instance_id": "SCAN_RECORD--64a1aa84-0bd6-5bf4-ade7-458bb0c2e964",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Scan Record",
+      "nugget_data": "netdiscover -P -N -i eth0 -r 172.18.0.0/24 -c 1 -s 50"
+    },
+    {
+      "id": "SCAN_CLI--52809e44-b9d0-598a-922e-719fa1627189",
+      "nugget_instance_id": "SCAN_CLI--52809e44-b9d0-598a-922e-719fa1627189",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "netdiscover -P -N -i eth0 -r 172.18.0.0/24 -c 1 -s 50"
+    },
+    {
+      "id": "SCAN_TARGET--593bb8a6-8ae6-5518-bb57-ef754d5f0483",
+      "nugget_instance_id": "SCAN_TARGET--593bb8a6-8ae6-5518-bb57-ef754d5f0483",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "local_subnet_active_parsable"
+    },
+    {
+      "id": "HOST--d2c6b07a-d077-572c-813e-15fb8ad498f3",
+      "nugget_instance_id": "HOST--d2c6b07a-d077-572c-813e-15fb8ad498f3",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
+      "nugget_data": "172.18.0.1"
+    },
+    {
+      "id": "IP_ADDRESS--feac807b-9b7b-5797-8c86-957c15809d7f",
+      "nugget_instance_id": "IP_ADDRESS--feac807b-9b7b-5797-8c86-957c15809d7f",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "172.18.0.1"
+    },
+    {
+      "id": "MAC_ADDRESS--383c78f7-53d4-54ed-bf5c-e7dc776521f3",
+      "nugget_instance_id": "MAC_ADDRESS--383c78f7-53d4-54ed-bf5c-e7dc776521f3",
+      "nugget_id": "MAC_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "MAC Address",
+      "nugget_data": "00:15:5d:c1:a8:4a"
+    },
+    {
+      "id": "RAW_RIR_DATA--47978abb-2062-57a3-b36f-92271beb66c7",
+      "nugget_instance_id": "RAW_RIR_DATA--47978abb-2062-57a3-b36f-92271beb66c7",
+      "nugget_id": "RAW_RIR_DATA",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Vendor",
+      "nugget_data": "Microsoft Corporation"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--64a1aa84-0bd6-5bf4-ade7-458bb0c2e964",
+      "target": "SCAN_CLI--52809e44-b9d0-598a-922e-719fa1627189",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--64a1aa84-0bd6-5bf4-ade7-458bb0c2e964",
+      "target": "SCAN_TARGET--593bb8a6-8ae6-5518-bb57-ef754d5f0483",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--64a1aa84-0bd6-5bf4-ade7-458bb0c2e964",
+      "target": "HOST--d2c6b07a-d077-572c-813e-15fb8ad498f3",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--d2c6b07a-d077-572c-813e-15fb8ad498f3",
+      "target": "IP_ADDRESS--feac807b-9b7b-5797-8c86-957c15809d7f",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--d2c6b07a-d077-572c-813e-15fb8ad498f3",
+      "target": "MAC_ADDRESS--383c78f7-53d4-54ed-bf5c-e7dc776521f3",
+      "relation": "had"
+    },
+    {
+      "source": "MAC_ADDRESS--383c78f7-53d4-54ed-bf5c-e7dc776521f3",
+      "target": "RAW_RIR_DATA--47978abb-2062-57a3-b36f-92271beb66c7",
+      "relation": "had"
+    }
+  ]
+}

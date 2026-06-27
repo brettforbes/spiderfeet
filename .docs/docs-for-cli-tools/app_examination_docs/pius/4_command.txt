@@ -1,0 +1,1 @@
+/mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins whois,edgar,arin,ripe --output ndjson

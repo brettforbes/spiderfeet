@@ -1,0 +1,1 @@
+nerva -t scanme.nmap.org:443 --fast --json -w 5000

@@ -1,0 +1,1 @@
+/mnt/c/projects/spiderfeet/.tools/pius run --org "Nmap Scanme" --domain scanme.nmap.org --plugins crt-sh,gleif,whois --output ndjson
