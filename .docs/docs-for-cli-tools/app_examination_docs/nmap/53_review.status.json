@@ -1,5 +1,7 @@
 {
-  "status": "pending",
-  "exam_id": 53,
-  "scenario_id": "service_version_corporate_xml"
+  "status": "approved",
+  "scenario_key": "service_version_corporate",
+  "tool": "nmap",
+  "updated_at": "2026-06-27T04:24:14.374639+00:00",
+  "exam_id": 53
 }

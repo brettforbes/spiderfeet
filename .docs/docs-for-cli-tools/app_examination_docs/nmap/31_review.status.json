@@ -1,5 +1,7 @@
 {
-  "status": "pending",
-  "exam_id": 31,
-  "scenario_id": "host_discovery_permissive_xml"
+  "status": "approved",
+  "scenario_key": "host_discovery_permissive",
+  "tool": "nmap",
+  "updated_at": "2026-06-27T04:24:14.374639+00:00",
+  "exam_id": 31
 }
