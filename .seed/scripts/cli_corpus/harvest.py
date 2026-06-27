@@ -56,22 +56,54 @@ def ensure_dev_paths() -> None:
         os.environ["PATH"] = merged + os.pathsep + current
 
 
-def run_command(command: str, runtime: str, cwd: Path | None, timeout: int) -> RunResult:
+def load_env_file(path: Path) -> dict[str, str]:
+    env: dict[str, str] = {}
+    if not path.is_file():
+        return env
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        env[key.strip()] = value.strip().strip('"').strip("'")
+    return env
+
+
+def _bash_env_prefix(env: dict[str, str]) -> str:
+    if not env:
+        return ""
+    parts = [f'export {k}="{v.replace(chr(34), chr(92)+chr(34))}"' for k, v in env.items()]
+    return " && ".join(parts) + " && "
+
+
+def run_command(
+    command: str,
+    runtime: str,
+    cwd: Path | None,
+    timeout: int,
+    env: dict[str, str] | None = None,
+) -> RunResult:
     started = time.monotonic()
+    env = env or {}
     if runtime in ("wsl", "wsl-root"):
         inner = command
         if cwd:
             inner = f"cd {cwd} && {command}"
+        inner = _bash_env_prefix(env) + inner
         wsl_args = ["wsl", "-e", "bash", "-lc", inner]
         if runtime == "wsl-root":
             wsl_args = ["wsl", "-u", "root", "bash", "-lc", inner]
         shell_cmd = wsl_args
         use_shell = False
         run_cwd = None
+        proc_env = None
     else:
         shell_cmd = command if sys.platform == "win32" else command
         use_shell = sys.platform == "win32"
         run_cwd = str(cwd) if cwd else None
+        proc_env = {**os.environ, **env} if env else None
     proc = subprocess.run(
         shell_cmd,
         capture_output=True,
@@ -79,6 +111,7 @@ def run_command(command: str, runtime: str, cwd: Path | None, timeout: int) -> R
         cwd=run_cwd,
         timeout=timeout,
         shell=use_shell,
+        env=proc_env,
     )
     duration = time.monotonic() - started
     return RunResult(
@@ -185,12 +218,21 @@ def run_scenario(tool: str, scenario_id: str, dry_run: bool = False) -> None:
     cwd = scenario.get("cwd")
     cwd_path = Path(cwd) if cwd else None
 
+    env: dict[str, str] = {}
+    default_env_file = manifest.get("env_file")
+    if default_env_file:
+        env.update(load_env_file(REPO_ROOT / default_env_file))
+    scenario_env_file = scenario.get("env_file")
+    if scenario_env_file:
+        env.update(load_env_file(REPO_ROOT / scenario_env_file))
+    env.update(scenario.get("env") or {})
+
     if dry_run:
         print(json.dumps({"tool": tool, "scenario": scenario_id, "command": command, "runtime": runtime}, indent=2))
         return
 
     print(f"[harvest] {tool}/{scenario_id} ({runtime}) …")
-    result = run_command(command, runtime, cwd_path, timeout)
+    result = run_command(command, runtime, cwd_path, timeout, env=env)
     # Post-run structured file pickup (e.g. CMSeeK cms.json)
     src = scenario.get("structured_source_path")
     if src:

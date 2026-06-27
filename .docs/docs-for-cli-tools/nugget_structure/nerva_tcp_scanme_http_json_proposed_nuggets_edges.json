@@ -1,0 +1,157 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--90609df3-a6b9-5213-b6b3-636f79029ca0",
+      "nugget_instance_id": "SCAN_RECORD--90609df3-a6b9-5213-b6b3-636f79029ca0",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Scan Record",
+      "nugget_data": "nerva -t scanme.nmap.org:80 --json -w 5000"
+    },
+    {
+      "id": "SCAN_CLI--ef6b0478-a77d-5c65-8a13-86535f7c735b",
+      "nugget_instance_id": "SCAN_CLI--ef6b0478-a77d-5c65-8a13-86535f7c735b",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "nerva -t scanme.nmap.org:80 --json -w 5000"
+    },
+    {
+      "id": "HOST--3452fb7f-bac7-5192-b9d7-5e72ddfc78aa",
+      "nugget_instance_id": "HOST--3452fb7f-bac7-5192-b9d7-5e72ddfc78aa",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
+      "nugget_data": "2600:3c01::f03c:91ff:fe18:bb2f"
+    },
+    {
+      "id": "PORT--0ac11be2-62e8-57a8-91ad-4156e51da14c",
+      "nugget_instance_id": "PORT--0ac11be2-62e8-57a8-91ad-4156e51da14c",
+      "nugget_id": "PORT",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Port",
+      "nugget_data": "80"
+    },
+    {
+      "id": "PORT_PROTOCOL--38c78ce7-742e-5410-90d5-33c28f39bafb",
+      "nugget_instance_id": "PORT_PROTOCOL--38c78ce7-742e-5410-90d5-33c28f39bafb",
+      "nugget_id": "PORT_PROTOCOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Port Protocol",
+      "nugget_data": "tcp"
+    },
+    {
+      "id": "SERVICE--45f6354e-ea05-5aac-abd0-bde9045168f9",
+      "nugget_instance_id": "SERVICE--45f6354e-ea05-5aac-abd0-bde9045168f9",
+      "nugget_id": "SERVICE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Service",
+      "nugget_data": "http"
+    },
+    {
+      "id": "SERVICE_VERSION--368315c6-4f44-52bf-a76c-be5ea85d14a9",
+      "nugget_instance_id": "SERVICE_VERSION--368315c6-4f44-52bf-a76c-be5ea85d14a9",
+      "nugget_id": "SERVICE_VERSION",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Service Version",
+      "nugget_data": "Apache/2.4.7 (Ubuntu)"
+    },
+    {
+      "id": "HOST--8922aede-34fe-594b-ab7a-b7cf742979a1",
+      "nugget_instance_id": "HOST--8922aede-34fe-594b-ab7a-b7cf742979a1",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
+      "nugget_data": "45.33.32.156"
+    },
+    {
+      "id": "PORT--0ac11be2-62e8-57a8-91ad-4156e51da14c",
+      "nugget_instance_id": "PORT--0ac11be2-62e8-57a8-91ad-4156e51da14c",
+      "nugget_id": "PORT",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Port",
+      "nugget_data": "80"
+    },
+    {
+      "id": "PORT_PROTOCOL--38c78ce7-742e-5410-90d5-33c28f39bafb",
+      "nugget_instance_id": "PORT_PROTOCOL--38c78ce7-742e-5410-90d5-33c28f39bafb",
+      "nugget_id": "PORT_PROTOCOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Port Protocol",
+      "nugget_data": "tcp"
+    },
+    {
+      "id": "SERVICE--45f6354e-ea05-5aac-abd0-bde9045168f9",
+      "nugget_instance_id": "SERVICE--45f6354e-ea05-5aac-abd0-bde9045168f9",
+      "nugget_id": "SERVICE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Service",
+      "nugget_data": "http"
+    },
+    {
+      "id": "SERVICE_VERSION--368315c6-4f44-52bf-a76c-be5ea85d14a9",
+      "nugget_instance_id": "SERVICE_VERSION--368315c6-4f44-52bf-a76c-be5ea85d14a9",
+      "nugget_id": "SERVICE_VERSION",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Service Version",
+      "nugget_data": "Apache/2.4.7 (Ubuntu)"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--90609df3-a6b9-5213-b6b3-636f79029ca0",
+      "target": "SCAN_CLI--ef6b0478-a77d-5c65-8a13-86535f7c735b",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--90609df3-a6b9-5213-b6b3-636f79029ca0",
+      "target": "HOST--3452fb7f-bac7-5192-b9d7-5e72ddfc78aa",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--3452fb7f-bac7-5192-b9d7-5e72ddfc78aa",
+      "target": "PORT--0ac11be2-62e8-57a8-91ad-4156e51da14c",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--0ac11be2-62e8-57a8-91ad-4156e51da14c",
+      "target": "PORT_PROTOCOL--38c78ce7-742e-5410-90d5-33c28f39bafb",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--0ac11be2-62e8-57a8-91ad-4156e51da14c",
+      "target": "SERVICE--45f6354e-ea05-5aac-abd0-bde9045168f9",
+      "relation": "listens-to"
+    },
+    {
+      "source": "SERVICE--45f6354e-ea05-5aac-abd0-bde9045168f9",
+      "target": "SERVICE_VERSION--368315c6-4f44-52bf-a76c-be5ea85d14a9",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--90609df3-a6b9-5213-b6b3-636f79029ca0",
+      "target": "HOST--8922aede-34fe-594b-ab7a-b7cf742979a1",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--8922aede-34fe-594b-ab7a-b7cf742979a1",
+      "target": "PORT--0ac11be2-62e8-57a8-91ad-4156e51da14c",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--0ac11be2-62e8-57a8-91ad-4156e51da14c",
+      "target": "PORT_PROTOCOL--38c78ce7-742e-5410-90d5-33c28f39bafb",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--0ac11be2-62e8-57a8-91ad-4156e51da14c",
+      "target": "SERVICE--45f6354e-ea05-5aac-abd0-bde9045168f9",
+      "relation": "listens-to"
+    },
+    {
+      "source": "SERVICE--45f6354e-ea05-5aac-abd0-bde9045168f9",
+      "target": "SERVICE_VERSION--368315c6-4f44-52bf-a76c-be5ea85d14a9",
+      "relation": "had"
+    }
+  ]
+}

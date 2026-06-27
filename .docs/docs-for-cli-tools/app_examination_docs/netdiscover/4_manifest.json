@@ -1,0 +1,17 @@
+{
+  "tool": "netdiscover",
+  "exam_id": 4,
+  "scenario_id": "passive_snippet_text",
+  "scenario_name": "C \u2014 passive ARP snippet (bounded)",
+  "target": "172.18.0.0/20",
+  "runtime": "wsl-root",
+  "exit_code": 0,
+  "duration_s": 5.234,
+  "captured_at": "2026-06-27T06:31:35.664863+00:00",
+  "structured_kind": null,
+  "structured_path": null,
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\netdiscover\\4_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\netdiscover\\4_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending"
+}

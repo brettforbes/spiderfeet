@@ -1,0 +1,17 @@
+{
+  "tool": "pius",
+  "exam_id": 1,
+  "scenario_id": "passive_bbc_corporate_ndjson",
+  "scenario_name": "A \u2014 passive BBC corporate (NDJSON)",
+  "target": "bbc.co.uk",
+  "runtime": "wsl",
+  "exit_code": 0,
+  "duration_s": 36.812,
+  "captured_at": "2026-06-27T06:33:51.758794+00:00",
+  "structured_kind": "ndjson",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\1_output_structured.jsonl",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\1_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\1_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending"
+}

@@ -1,0 +1,1 @@
+timeout 12 netdiscover -p -i eth0 2>&1 | head -25

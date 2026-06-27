@@ -18,10 +18,16 @@ def test_cli_corpus_tools_lists_indexed_tools(api_client: TestClient):
     tools = response.json()
     ids = {t["id"] for t in tools}
     assert "nmap" in ids
+    assert "netdiscover" in ids
+    assert "nerva" in ids
+    assert "pius" in ids
     nmap = next(t for t in tools if t["id"] == "nmap")
     assert nmap["phase"] == "complete"
     assert nmap["exam_count"] >= 15
     assert nmap["has_graph_structure"] is True
+    netdiscover = next(t for t in tools if t["id"] == "netdiscover")
+    assert netdiscover["exam_count"] >= 4
+    assert netdiscover["has_graph_structure"] is True
 
 
 def test_cli_corpus_scenarios_lists_nmap_archetypes(api_client: TestClient):

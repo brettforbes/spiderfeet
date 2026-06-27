@@ -1,0 +1,55 @@
+tool: netdiscover
+version: 1
+default_runtime: wsl-root
+default_timeout: 120
+binary_probe: wsl -u root bash -lc "netdiscover -h 2>&1 | head -1"
+primary_parser: textfsm
+output_path_type: 3  # text-only parseable; structured via TextFSM post-process
+
+scenarios:
+  - id: local_subnet_active_parsable
+    name: "A — active ARP scan local /24 (parseable)"
+    archetype: A
+    target: "172.18.0.0/24"
+    runtime: wsl-root
+    command: netdiscover -P -N -i eth0 -r 172.18.0.0/24 -c 1 -s 50
+    structured_kind: textfsm
+    structured_ext: txt
+    text_from: stdout
+
+  - id: local_subnet_active_text
+    name: "A — active ARP scan local /24 (interactive text)"
+    archetype: A
+    target: "172.18.0.0/24"
+    runtime: wsl-root
+    command: netdiscover -i eth0 -r 172.18.0.0/24 -c 1 -s 50 2>&1 | head -40
+    text_from: stdout
+
+  - id: local_subnet_fast_parsable
+    name: "B — fast mode gateway probe (parseable)"
+    archetype: B
+    target: "172.18.0.0/24"
+    runtime: wsl-root
+    command: netdiscover -P -N -i eth0 -f -r 172.18.0.0/24 -c 1
+    structured_kind: textfsm
+    structured_ext: txt
+    text_from: stdout
+
+  - id: passive_snippet_text
+    name: "C — passive ARP snippet (bounded)"
+    archetype: C
+    target: "172.18.0.0/20"
+    runtime: wsl-root
+    timeout: 30
+    command: timeout 12 netdiscover -p -i eth0 2>&1 | head -25
+    text_from: stdout
+
+  - id: sparse_subnet_parsable
+    name: "D — sparse /24 clean miss (parseable)"
+    archetype: D
+    target: "10.253.0.0/24"
+    runtime: wsl-root
+    command: netdiscover -P -N -i eth0 -r 10.253.0.0/24 -c 1 -s 20
+    structured_kind: textfsm
+    structured_ext: txt
+    text_from: stdout

@@ -1,0 +1,15 @@
+NAME                 CATEGORY   PHASE      MODE       DESCRIPTION
+----                 --------   -----      ----       -----------
+afrinic              cidr       phase-2    passive    AFRINIC RPSL: resolves org handles to CIDR blocks
+apnic                cidr       phase-2    passive    APNIC RPSL: resolves org handles to CIDR blocks
+apollo               domain     independent passive    Apollo.io: discovers org domains via organization enrichment API (requires APOLLO_API_KEY)
+arin                 cidr       phase-2    passive    ARIN RDAP: resolves org handles to CIDR blocks
+asn-bgp              cidr       independent passive    BGP routing tables: discovers CIDRs announced by an ASN
+builtwith            domain     phase-3    passive    BuiltWith technology correlation ÔÇö discovers related domains via shared analytics tracking codes (paid, requires BUILTWITH_API_KEY)
+censys-org           domain     independent active     Censys: discovers domains from host/certificate data via organization search (requires CENSYS_API_TOKEN, Starter+ plan)
+crt-sh               domain     independent passive    crt.sh: discovers domains via Certificate Transparency logs
+dns-brute            domain     independent active     Active subdomain brute-force via DNS resolution
+dns-permutation      domain     phase-3    active     Active subdomain permutation via DNS resolution (altdns-style)
+dns-zone-transfer    domain     independent active     Active AXFR zone transfer attempt against authoritative nameservers
+doh-enum             domain     independent active     Subdomain enumeration via DNS-over-HTTPS (DoH)
+edgar                cidr       phase-1    passive    SEC EDGAR: discovers org handles from company filings

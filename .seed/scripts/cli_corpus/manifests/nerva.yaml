@@ -1,0 +1,60 @@
+tool: nerva
+version: 1
+default_runtime: windows
+default_timeout: 120
+binary_probe: nerva -h
+primary_parser: jsonl
+output_path_type: 2  # structured JSON lines + optional text stderr
+
+scenarios:
+  - id: tcp_scanme_http_json
+    name: "A — TCP scanme.nmap.org:80 (JSON)"
+    archetype: A
+    target: scanme.nmap.org:80
+    command: nerva -t scanme.nmap.org:80 --json -w 5000
+    structured_kind: jsonl
+    structured_ext: jsonl
+    text_from: stderr
+
+  - id: tcp_scanme_ssh_json
+    name: "B — TCP scanme.nmap.org:22 (JSON)"
+    archetype: B
+    target: scanme.nmap.org:22
+    command: nerva -t scanme.nmap.org:22 --json -w 5000
+    structured_kind: jsonl
+    structured_ext: jsonl
+    text_from: stderr
+
+  - id: tcp_multi_target_json
+    name: "C — multi-target list (JSON)"
+    archetype: C
+    target: scanme.nmap.org
+    command: nerva -t scanme.nmap.org:80,scanme.nmap.org:22 --json -w 5000
+    structured_kind: jsonl
+    structured_ext: jsonl
+    text_from: stderr
+
+  - id: tcp_fast_scanme_json
+    name: "D — fast mode scanme:443 (JSON)"
+    archetype: D
+    target: scanme.nmap.org:443
+    command: nerva -t scanme.nmap.org:443 --fast --json -w 5000
+    structured_kind: jsonl
+    structured_ext: jsonl
+    text_from: stderr
+
+  - id: tcp_closed_port_clean_miss
+    name: "E — closed port clean miss (JSON)"
+    archetype: E
+    target: scanme.nmap.org:1
+    command: nerva -t scanme.nmap.org:1 --json -w 2000
+    structured_kind: jsonl
+    structured_ext: jsonl
+    text_from: stderr
+
+  - id: tcp_scanme_human_text
+    name: "F — human-readable scanme:80"
+    archetype: F
+    target: scanme.nmap.org:80
+    command: nerva -t scanme.nmap.org:80 -w 5000
+    text_from: stdout

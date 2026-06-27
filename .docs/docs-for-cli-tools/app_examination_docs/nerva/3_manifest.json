@@ -1,0 +1,17 @@
+{
+  "tool": "nerva",
+  "exam_id": 3,
+  "scenario_id": "tcp_multi_target_json",
+  "scenario_name": "C \u2014 multi-target list (JSON)",
+  "target": "scanme.nmap.org",
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 15.61,
+  "captured_at": "2026-06-27T06:32:38.357912+00:00",
+  "structured_kind": "jsonl",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nerva\\3_output_structured.jsonl",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nerva\\3_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nerva\\3_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending"
+}
