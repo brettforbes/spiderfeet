@@ -90,7 +90,9 @@ Emit `nodes[]` and `edges[]`; scan owns discoveries via `contains`. See [v2-grap
 
 ## Tool order
 
-Start with **Nmap** (pilot), then follow `corpus_index.json` priority. Do not skip exploration before formal examination.
+**Nmap pilot:** complete (2026-06-26) — see `.docs/docs-for-cli-tools/nmap_pilot_signoff.md`.
+
+Next: **netdiscover** (priority 2 in `corpus_index.json`). Do not skip exploration before formal examination.
 
 ## References
 

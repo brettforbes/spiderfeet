@@ -20,8 +20,10 @@
 
 ## Operator gate
 
-- [ ] Operator reviews text, data, graph proposal
-- [ ] Operator sets review status `approved` or `rejected`
+- [ ] Operator reviews text, data, graph proposal, narrative report
+- [ ] Operator sets review status `approved` or `rejected` (all legacy bundles for a scenario key update together)
+- [ ] On approval: record sign-off doc under `.docs/docs-for-cli-tools/<tool>_pilot_signoff.md`
+- [ ] On approval: set `corpus_index.json` tool phase to `complete` when pilot criteria met
 - [ ] On approval: update ontology / `nuggets.json` extensions as needed
 
 ## Do not
