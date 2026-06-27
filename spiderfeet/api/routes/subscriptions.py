@@ -24,13 +24,21 @@ def runtime_dep() -> Runtime:
 @router.get("/modules", response_model=List[SubscriptionModuleSummary])
 def list_subscription_modules(
     search: Optional[str] = Query(None, description="Filter by module_id or display name"),
-    limit: int = Query(200, ge=1, le=200),
+    provider_kind: Optional[str] = Query(
+        None, description="Filter: spiderfeet | cli | cli_only | shared | all"
+    ),
+    cli_app: Optional[str] = Query(None, description="Filter providers consumed by CLI app id"),
+    group: Optional[str] = Query(None, description="Filter accordion group: spiderfeet | cli | shared"),
+    limit: int = Query(200, ge=1, le=500),
     offset: int = Query(0, ge=0),
     runtime: Runtime = Depends(runtime_dep),
 ) -> List[SubscriptionModuleSummary]:
-    """List OSINT modules that require API credentials, with masked key status."""
+    """List credential providers (SpiderFeet modules + CLI-only keys)."""
     return subscriptions_service.list_subscription_modules(
         search=search,
+        provider_kind=provider_kind,
+        cli_app=cli_app,
+        group=group,
         limit=limit,
         offset=offset,
         runtime_config=runtime.config,

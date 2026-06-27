@@ -34,4 +34,4 @@
 
 ---
 
-_Sourced from operator prompt `.seed/06_Updates_to_Cli_App_Profiling.md` (2026-06); promoted to durable analysis doc at pilot sign-off._
+_Sourced from operator prompt `.seed/06_Updates_to_Cli_App_Profiling.md` (2026-06); promoted to this durable analysis doc at pilot sign-off. The original seed prompt was restored 2026-06-27 after accidental deletion during sign-off — use the seed file as canonical operator intent; this doc tracks remaining phase-2 gaps only._
