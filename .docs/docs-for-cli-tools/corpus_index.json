@@ -11,7 +11,7 @@
   "phases": ["exploration", "formal_examination", "nugget_proposal", "operator_review", "ontology_update", "complete"],
   "tools": [
     {"id": "nmap", "phase": "complete", "priority": 1, "runtime": "windows", "exams": 15, "notes": "Pilot complete 2026-06-26 — 15 scenarios operator-approved; narrative reports; graph structure + 15 JSON/MD artifacts; template for next CLI tools"},
-    {"id": "netdiscover", "phase": "operator_review", "priority": 2, "runtime": "wsl-root", "exams": 4, "notes": "Examined 2026-06-27 — 5 harvest bundles / 4 scenario keys; TextFSM parseable ARP"},
+    {"id": "netdiscover", "phase": "operator_review", "priority": 2, "runtime": "wsl-root", "exams": 5, "notes": "Re-examined 2026-06-28 — WSL mirrored eth1; 192.168.1.0/24; 10 hosts active; real netdiscover"},
     {"id": "nerva", "phase": "operator_review", "priority": 3, "runtime": "windows", "exams": 6, "notes": "Examined 2026-06-27 — 6 scenarios; JSONL fingerprint; binary .tools/bin/nerva.exe"},
     {"id": "nuclei", "phase": "exploration", "priority": 4, "runtime": "windows", "exams": 0, "notes": "Reset 2026-06-19 — restart exploration and examination"},
     {"id": "cmseek", "phase": "exploration", "priority": 5, "runtime": "windows", "exams": 0, "notes": "Reset 2026-06-19 — restart exploration and examination"},

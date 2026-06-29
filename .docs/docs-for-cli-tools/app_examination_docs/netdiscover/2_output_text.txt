@@ -10,31 +10,31 @@
  _____________________________________________________________________________
    IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
  -----------------------------------------------------------------------------
-[1;1H[J Currently scanning: 172.18.0.0/24   |   Screen View: Unique Hosts             
+[1;1H[J Currently scanning: 192.168.1.0/24   |   Screen View: Unique Hosts            
                                                                                
  0 Captured ARP Req/Rep packets, from 0 hosts.   Total size: 0                 
  _____________________________________________________________________________
    IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
  -----------------------------------------------------------------------------
-[1;1H[J Currently scanning: 172.18.0.0/24   |   Screen View: Unique Hosts             
+[1;1H[J Currently scanning: 192.168.1.0/24   |   Screen View: Unique Hosts            
                                                                                
- 1 Captured ARP Req/Rep packets, from 1 hosts.   Total size: 42                
+ 12 Captured ARP Req/Rep packets, from 8 hosts.   Total size: 504              
  _____________________________________________________________________________
    IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
  -----------------------------------------------------------------------------
- 172.18.0.1      00:15:5d:c1:a8:4a      1      42  Microsoft Corporation       
-[1;1H[J Currently scanning: 172.18.0.0/24   |   Screen View: Unique Hosts             
+ 192.168.1.16    88:f4:da:1a:b7:65      5     210  Unknown vendor              
+ 192.168.1.1     14:5f:94:d8:7a:5f      1      42  HUAWEI TECHNOLOGIES CO.,LTD 
+ 192.168.1.3     3c:a3:08:a4:d1:8d      1      42  Texas Instruments           
+ 192.168.1.2     a8:51:ab:23:c6:49      1      42  Apple, Inc.                 
+ 192.168.1.4     f8:b9:5a:0a:e3:6c      1      42  LG Innotek                  
+ 192.168.1.7     cc:c7:60:67:89:48      1      42  Apple, Inc.                 
+ 192.168.1.8     26:e8:35:b0:a8:79      1      42  Unknown vendor              
+ 192.168.1.11    00:c0:ca:b9:ae:40      1      42  ALFA, INC.                  
+[1;1H[J Currently scanning: 192.168.1.0/24   |   Screen View: Unique Hosts            
                                                                                
- 1 Captured ARP Req/Rep packets, from 1 hosts.   Total size: 42                
+ 18 Captured ARP Req/Rep packets, from 9 hosts.   Total size: 756              
  _____________________________________________________________________________
    IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
  -----------------------------------------------------------------------------
- 172.18.0.1      00:15:5d:c1:a8:4a      1      42  Microsoft Corporation       
-[1;1H[J Currently scanning: 172.18.0.0/24   |   Screen View: Unique Hosts             
-                                                                               
- 1 Captured ARP Req/Rep packets, from 1 hosts.   Total size: 42                
- _____________________________________________________________________________
-   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
- -----------------------------------------------------------------------------
- 172.18.0.1      00:15:5d:c1:a8:4a      1      42  Microsoft Corporation       
-[1;1H[J Currently scanning: 172.18.0.0/24   |   Screen View: Unique Hosts             
+ 192.168.1.16    88:f4:da:1a:b7:65     10     420  Unknown vendor              
+ 192.168.1.1     14:5f:94:d8:7a:5f      1      42  HUAWEI TECHNOLOGIES CO.,LTD 

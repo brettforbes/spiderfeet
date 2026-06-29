@@ -14,6 +14,8 @@
 
 - [ ] Add/update `.seed/scripts/cli_corpus/manifests/<tool>.yaml`
 - [ ] Run `harvest.py` for each scenario (structured + text per rules)
+- [ ] Verify structured JSON includes command, timestamp, and scan metadata (text-only tools)
+- [ ] Confirm no `head`/`tail` truncation in manifest commands or captured text
 - [ ] Verify `*_manifest.json` and outputs exist
 - [ ] Draft `nugget_structure/<tool>_nugget_graph_structure.md`
 - [ ] Set `*_review.status.json` to `pending`
