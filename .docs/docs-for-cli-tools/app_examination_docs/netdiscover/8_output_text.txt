@@ -1,6 +1,0 @@
-# SpiderFeet CLI examination capture
-# command: netdiscover -P -N -i eth1 -f -r 192.168.1.0/24 -c 1
-# scenario: B — fast mode gateway probe 192.168.1.0/24 (parseable)
-# captured_at: 2026-06-29T09:27:52.160250+00:00
-
-pcap_open_live(): eth1: No such device exists (SIOCGIFHWADDR: No such device)

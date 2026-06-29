@@ -1,1 +1,1 @@
-netdiscover -i eth1 -r 192.168.1.0/24 -c 1 -s 50 2>&1 | head -40
+& '.seed/scripts/cli_corpus/run_netdiscover_lan.ps1' -Mode text -Range '192.168.1.0/24'

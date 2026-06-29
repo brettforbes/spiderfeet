@@ -2,19 +2,119 @@
     "netdiscover_scan": {
         "scanner": "netdiscover",
         "args": "netdiscover \u2014 C \u2014 passive ARP snippet (bounded)",
-        "start_time": "Sun Jun 28 06:01:35 2026",
-        "systems": [],
+        "start_time": "Mon Jun 29 11:27:43 2026",
+        "exit_status": "success",
+        "systems": [
+            {
+                "ipv4": "192.168.1.20",
+                "mac": "78:bd:bc:74:3b:0e",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.16",
+                "mac": "16:0c:6b:46:32:90",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.15",
+                "mac": "16:0c:6b:46:32:90",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.13",
+                "mac": "38:c8:04:18:d6:9c",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.10",
+                "mac": "26:87:b6:2f:b0:73",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.8",
+                "mac": "26:e8:35:b0:a8:79",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.7",
+                "mac": "cc:c7:60:67:89:48",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.6",
+                "mac": "88:f4:da:1a:b7:65",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.1",
+                "mac": "14:5f:94:d8:7a:5f",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.250",
+                "mac": "12:0c:6b:46:32:8f",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.14",
+                "mac": "1e:fe:ee:b7:bd:29",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.4",
+                "mac": "f8:b9:5a:0a:e3:6c",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.3",
+                "mac": "3c:a3:08:a4:d1:8d",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.2",
+                "mac": "a8:51:ab:23:c6:49",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            }
+        ],
         "runstats": {
             "finished_time": {
-                "end_time": "Sun Jun 28 06:01:40 2026",
-                "elapsed": 5.44,
-                "summary": "NetDiscover done at Sun Jun 28 06:01:40 2026; 0 Systems Discovered, 5 Scan Tries, 5 Empty Scans, scanned in 5.44 seconds",
+                "end_time": "Mon Jun 29 11:27:58 2026",
+                "elapsed": 14.61,
+                "summary": "NetDiscover done at Mon Jun 29 11:27:58 2026; 14 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 14.61 seconds",
                 "exit_status": "success"
             },
             "systems": {
-                "discovered": 0,
-                "scan_tries": 5,
-                "empty_scans": 5
+                "discovered": 14,
+                "scan_tries": 4,
+                "empty_scans": 3
             }
         }
     }

@@ -46,6 +46,26 @@ def assert_no_truncation(command: str, scenario_id: str = "") -> None:
             )
 
 
+def detect_output_mode_from_text(raw: str) -> OutputMode | None:
+    """Infer interactive TUI vs flat parsable output from captured text."""
+    cleaned = strip_ansi(strip_capture_header(raw))
+    if "Currently scanning:" in cleaned:
+        return "interactive"
+    if FOOTER_ACTIVE_RE.search(cleaned) or FOOTER_PASSIVE_RE.search(cleaned):
+        return "parsable"
+    if HOST_ROW_RE.search(cleaned, re.MULTILINE):
+        return "parsable"
+    return None
+
+
+def resolve_output_mode(raw: str, declared: OutputMode) -> OutputMode:
+    """Prefer text-shape detection over manifest declaration when they disagree."""
+    detected = detect_output_mode_from_text(raw)
+    if detected is not None:
+        return detected
+    return declared
+
+
 def strip_ansi(text: str) -> str:
     return ANSI_RE.sub("", text)
 
@@ -164,13 +184,13 @@ def parse_interactive_body(raw: str) -> tuple[list[dict[str, Any]], int, int, in
     discovered = 0
 
     for frame in frames:
-        host_count = frame_host_count(frame)
         rows = parse_host_rows_ntc(frame, command=COMMAND_INTERACTIVE)
-        if host_count == 0 and not rows:
+        if rows:
+            if not systems:
+                systems = rows_to_systems(rows)
+                discovered = len(systems)
+        else:
             empty_scans += 1
-        elif rows and not systems:
-            systems = rows_to_systems(rows)
-            discovered = len(systems)
 
     if not systems and frames:
         footer = FOOTER_ACTIVE_RE.search(raw) or FOOTER_PASSIVE_RE.search(raw)
@@ -178,6 +198,49 @@ def parse_interactive_body(raw: str) -> tuple[list[dict[str, Any]], int, int, in
             discovered = int(footer.group(1))
 
     return systems, scan_tries, empty_scans, discovered
+
+
+def stats_from_text(raw_text: str, *, output_mode: OutputMode) -> tuple[int, int, int, int]:
+    """Return (discovered, scan_tries, empty_scans, system_count) derived from text only."""
+    effective_mode = resolve_output_mode(raw_text, output_mode)
+    if effective_mode == "parsable":
+        systems, scan_tries, empty_scans, discovered = parse_parsable_body(raw_text)
+    else:
+        systems, scan_tries, empty_scans, discovered = parse_interactive_body(raw_text)
+    return discovered, scan_tries, empty_scans, len(systems)
+
+
+def verify_text_structured_alignment(
+    raw_text: str,
+    doc: dict[str, Any],
+    *,
+    output_mode: OutputMode,
+) -> list[str]:
+    """Ensure structured runstats match what the captured text actually contains."""
+    errors: list[str] = []
+    scan = doc.get("netdiscover_scan", {})
+    stats = (scan.get("runstats") or {}).get("systems") or {}
+    discovered, scan_tries, empty_scans, system_count = stats_from_text(
+        raw_text, output_mode=output_mode
+    )
+
+    for field, expected in (
+        ("discovered", discovered),
+        ("scan_tries", scan_tries),
+        ("empty_scans", empty_scans),
+    ):
+        actual = stats.get(field)
+        if actual != expected:
+            errors.append(
+                f"runstats.systems.{field}={actual!r} but text implies {expected!r}"
+            )
+
+    systems = scan.get("systems") or []
+    if len(systems) != system_count:
+        errors.append(
+            f"netdiscover_scan.systems has {len(systems)} rows but text implies {system_count}"
+        )
+    return errors
 
 
 def build_args_label(scenario_name: str) -> str:
@@ -197,7 +260,8 @@ def convert_text_to_netdiscover_scan(
     exit_code: int,
 ) -> dict[str, Any]:
     """Return ``{"netdiscover_scan": {...}}`` matching the approved prompt schema."""
-    if output_mode == "parsable":
+    effective_mode = resolve_output_mode(raw_text, output_mode)
+    if effective_mode == "parsable":
         systems, scan_tries, empty_scans, discovered = parse_parsable_body(raw_text)
     else:
         systems, scan_tries, empty_scans, discovered = parse_interactive_body(raw_text)
@@ -220,6 +284,7 @@ def convert_text_to_netdiscover_scan(
             "scanner": "netdiscover",
             "args": build_args_label(scenario_name),
             "start_time": format_timestamp(start_time),
+            "exit_status": exit_status,
             "systems": systems,
             "runstats": {
                 "finished_time": {
@@ -244,7 +309,7 @@ def validate_netdiscover_scan(doc: dict[str, Any]) -> list[str]:
     if not isinstance(scan, dict):
         return ["missing netdiscover_scan root object"]
 
-    for field in ("scanner", "args", "start_time"):
+    for field in ("scanner", "args", "start_time", "exit_status"):
         if not scan.get(field):
             errors.append(f"missing netdiscover_scan.{field}")
 

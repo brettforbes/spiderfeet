@@ -1,6 +1,0 @@
-# SpiderFeet CLI examination capture
-# command: netdiscover -P -N -i eth1 -r 192.168.1.0/24 -c 1 -s 20
-# scenario: D — full /24 active rescan (parseable)
-# captured_at: 2026-06-29T09:27:52.880483+00:00
-
-pcap_open_live(): eth1: No such device exists (SIOCGIFHWADDR: No such device)

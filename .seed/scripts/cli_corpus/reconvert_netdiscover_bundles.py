@@ -20,6 +20,7 @@ from netdiscover_text_to_json import (
     output_mode_for_scenario,
     strip_capture_header,
     validate_netdiscover_scan,
+    verify_text_structured_alignment,
 )
 
 REPO_ROOT = CORPUS_DIR.parents[2]
@@ -64,6 +65,13 @@ def reconvert_exam(exam_id: int, scenarios: dict[str, dict], write_graph: bool) 
     errors = validate_netdiscover_scan(doc)
     if errors:
         raise SystemExit(f"exam {exam_id} validation failed: {errors}")
+    alignment = verify_text_structured_alignment(
+        raw,
+        doc,
+        output_mode=output_mode_for_scenario(scenario, command),
+    )
+    if alignment:
+        raise SystemExit(f"exam {exam_id} structured/text mismatch: {alignment}")
 
     json_path.write_text(dumps_netdiscover_scan(doc), encoding="utf-8")
     manifest["structured_kind"] = "json"

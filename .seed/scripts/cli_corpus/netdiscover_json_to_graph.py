@@ -47,6 +47,7 @@ def netdiscover_scan_to_graph(doc: dict[str, Any]) -> dict[str, Any]:
     runstats = scan_data.get("runstats", {})
     finished = runstats.get("finished_time", {})
     systems_stats = runstats.get("systems", {})
+    exit_status = scan_data.get("exit_status") or finished.get("exit_status", "")
 
     scan = _node("SCAN_RECORD", "ENTITY", args_label, "Scan Record")
     scan_args = _node("SCAN_ARGS", "DESCRIPTOR", args_label, "Scan Args")
@@ -70,7 +71,7 @@ def netdiscover_scan_to_graph(doc: dict[str, Any]) -> dict[str, Any]:
         nodes.append(summary_node)
         edges.append(_edge(scan["id"], summary_node["id"], "had"))
 
-    exit_status = finished.get("exit_status")
+    exit_status = scan_data.get("exit_status") or finished.get("exit_status")
     if exit_status:
         status_node = _node("SCAN_EXIT_STATUS", "DESCRIPTOR", exit_status, "Scan Exit Status")
         nodes.append(status_node)

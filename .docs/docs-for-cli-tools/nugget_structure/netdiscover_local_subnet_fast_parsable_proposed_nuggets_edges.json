@@ -17,28 +17,28 @@
       "nugget_data": "netdiscover \u2014 B \u2014 fast mode gateway probe 192.168.1.0/24 (parseable)"
     },
     {
-      "id": "SCAN_TIMESTAMP--41c67d87-740c-536b-b5cd-a49bb5944ee5",
-      "nugget_instance_id": "SCAN_TIMESTAMP--41c67d87-740c-536b-b5cd-a49bb5944ee5",
+      "id": "SCAN_TIMESTAMP--8054d2de-1143-5b02-bd07-09ff02014a3c",
+      "nugget_instance_id": "SCAN_TIMESTAMP--8054d2de-1143-5b02-bd07-09ff02014a3c",
       "nugget_id": "SCAN_TIMESTAMP",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Start Time",
-      "nugget_data": "Mon Jun 29 10:30:56 2026"
+      "nugget_data": "Mon Jun 29 11:27:51 2026"
     },
     {
-      "id": "SCAN_END_TIME--5e754526-8d82-5bac-8c24-81a642929eb6",
-      "nugget_instance_id": "SCAN_END_TIME--5e754526-8d82-5bac-8c24-81a642929eb6",
+      "id": "SCAN_END_TIME--e8b2bffc-09e7-5d09-932c-77c4f140db2f",
+      "nugget_instance_id": "SCAN_END_TIME--e8b2bffc-09e7-5d09-932c-77c4f140db2f",
       "nugget_id": "SCAN_END_TIME",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan End Time",
-      "nugget_data": "Mon Jun 29 10:30:59 2026"
+      "nugget_data": "Mon Jun 29 11:27:55 2026"
     },
     {
-      "id": "SCAN_SUMMARY--c1d2c47c-8ec6-5c6f-953a-69eb0c48339a",
-      "nugget_instance_id": "SCAN_SUMMARY--c1d2c47c-8ec6-5c6f-953a-69eb0c48339a",
+      "id": "SCAN_SUMMARY--f8d45fe7-0797-58a1-b879-11ee976005f0",
+      "nugget_instance_id": "SCAN_SUMMARY--f8d45fe7-0797-58a1-b879-11ee976005f0",
       "nugget_id": "SCAN_SUMMARY",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Summary",
-      "nugget_data": "NetDiscover done at Mon Jun 29 10:30:59 2026; 1 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 2.50 seconds"
+      "nugget_data": "NetDiscover done at Mon Jun 29 11:27:55 2026; 1 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 3.34 seconds"
     },
     {
       "id": "SCAN_EXIT_STATUS--62e51eee-51d9-53ee-bd4e-80fcafe86841",
@@ -121,17 +121,17 @@
     },
     {
       "source": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "target": "SCAN_TIMESTAMP--41c67d87-740c-536b-b5cd-a49bb5944ee5",
+      "target": "SCAN_TIMESTAMP--8054d2de-1143-5b02-bd07-09ff02014a3c",
       "relation": "had"
     },
     {
       "source": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "target": "SCAN_END_TIME--5e754526-8d82-5bac-8c24-81a642929eb6",
+      "target": "SCAN_END_TIME--e8b2bffc-09e7-5d09-932c-77c4f140db2f",
       "relation": "had"
     },
     {
       "source": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "target": "SCAN_SUMMARY--c1d2c47c-8ec6-5c6f-953a-69eb0c48339a",
+      "target": "SCAN_SUMMARY--f8d45fe7-0797-58a1-b879-11ee976005f0",
       "relation": "had"
     },
     {

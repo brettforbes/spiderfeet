@@ -1,1 +1,1 @@
-timeout 12 netdiscover -p -i eth1 2>&1 | head -25
+& '.seed/scripts/cli_corpus/run_netdiscover_lan.ps1' -Mode passive -Range '192.168.1.0/24' -PassiveSeconds 12
