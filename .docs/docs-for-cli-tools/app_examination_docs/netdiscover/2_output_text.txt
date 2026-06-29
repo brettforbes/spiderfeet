@@ -1,7 +1,7 @@
 # SpiderFeet CLI examination capture
 # command: & '.seed/scripts/cli_corpus/run_netdiscover_lan.ps1' -Mode text -Range '192.168.1.0/24'
 # scenario: A — active ARP scan 192.168.1.0/24 (interactive text)
-# captured_at: 2026-06-29T11:27:45.776934+00:00
+# captured_at: 2026-06-29T14:34:54.870049+00:00
 
 [H[2J[3J[1;1H[J Currently scanning: Starting.   |   Screen View: Unique Hosts
 
@@ -23,29 +23,27 @@
  -----------------------------------------------------------------------------
 [H[2J[3J[1;1H[J Currently scanning: 192.168.1.0/24   |   Screen View: Unique Hosts
 
- 42 Captured ARP Req/Rep packets, from 14 hosts.   Total size: 1764
+ 36 Captured ARP Req/Rep packets, from 12 hosts.   Total size: 1512
  _____________________________________________________________________________
    IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
  -----------------------------------------------------------------------------
  192.168.1.1     14:5f:94:d8:7a:5f     1    42  Unknown
- 192.168.1.10    26:87:b6:2f:b0:73     1    42  Unknown
- 192.168.1.13    38:c8:04:18:d6:9c     1    42  Unknown
- 192.168.1.14    1e:fe:ee:b7:bd:29     1    42  Unknown
- 192.168.1.15    16:0c:6b:46:32:90     1    42  Unknown
- 192.168.1.16    16:0c:6b:46:32:90     1    42  Unknown
- 192.168.1.2     a8:51:ab:23:c6:49     1    42  Unknown
- 192.168.1.20    78:bd:bc:74:3b:0e     1    42  Unknown
- 192.168.1.250   12:0c:6b:46:32:8f     1    42  Unknown
+ 192.168.1.10    02:0f:b5:2f:b0:73     1    42  Unknown
+ 192.168.1.14    02:0f:b5:b7:bd:29     1    42  Unknown
+ 192.168.1.15    5a:ba:45:91:e3:41     1    42  Unknown
+ 192.168.1.16    3e:48:b2:24:45:34     1    42  Unknown
+ 192.168.1.2     02:0f:b5:23:c6:49     1    42  Unknown
+ 192.168.1.250   02:0f:b5:46:32:8f     1    42  Unknown
  192.168.1.3     3c:a3:08:a4:d1:8d     1    42  Unknown
- 192.168.1.4     f8:b9:5a:0a:e3:6c     1    42  Unknown
- 192.168.1.6     88:f4:da:1a:b7:65     1    42  Unknown
+ 192.168.1.4     02:0f:b5:0a:e3:6c     1    42  Unknown
+ 192.168.1.6     88:d8:2e:c2:2c:0c     1    42  Unknown
  192.168.1.7     cc:c7:60:67:89:48     1    42  Unknown
- 192.168.1.8     26:e8:35:b0:a8:79     1    42  Unknown
+ 192.168.1.8     02:0f:b5:b0:a8:79     1    42  Unknown
 [H[2J[3J[1;1H[J Currently scanning: 192.168.1.0/24   |   Screen View: Unique Hosts
 
- 48 Captured ARP Req/Rep packets, from 14 hosts.   Total size: 2016
+ 42 Captured ARP Req/Rep packets, from 12 hosts.   Total size: 1764
  _____________________________________________________________________________
    IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
  -----------------------------------------------------------------------------
  192.168.1.1     14:5f:94:d8:7a:5f     1    42  Unknown
- 192.168.1.10    26:87:b6:2f:b0:73     1    42  Unknown
+ 192.168.1.10    02:0f:b5:2f:b0:73     1    42  Unknown

@@ -69,6 +69,11 @@ function Get-ArpHosts {
     $rows | Sort-Object IP -Unique
 }
 
+function Write-ParsableHeader {
+    Write-Output '   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      '
+    Write-Output ' -----------------------------------------------------------------------------'
+}
+
 function Format-ParsableLine {
     param($Row)
     $vendor = 'Unknown'
@@ -169,6 +174,7 @@ if ($Mode -eq 'fast') {
     $hosts = $hosts | Where-Object { $allowed -contains $_.IP }
 }
 
+Write-ParsableHeader
 foreach ($row in $hosts) {
     Format-ParsableLine $row
 }
