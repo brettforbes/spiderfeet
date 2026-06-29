@@ -1,0 +1,92 @@
+{
+    "netdiscover_scan": {
+        "scanner": "netdiscover",
+        "args": "netdiscover \u2014 A \u2014 active ARP scan 192.168.1.0/24 (parseable)",
+        "start_time": "Sun Jun 28 06:00:54 2026",
+        "systems": [
+            {
+                "ipv4": "169.254.32.183",
+                "mac": "00:15:5d:ad:9c:75",
+                "mac_vendor": "Microsoft Corporation",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.1",
+                "mac": "14:5f:94:d8:7a:5f",
+                "mac_vendor": "HUAWEI TECHNOLOGIES CO.,LTD",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.16",
+                "mac": "88:f4:da:1a:b7:65",
+                "mac_vendor": "Unknown vendor",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.2",
+                "mac": "a8:51:ab:23:c6:49",
+                "mac_vendor": "Apple, Inc.",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.3",
+                "mac": "3c:a3:08:a4:d1:8d",
+                "mac_vendor": "Texas Instruments",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.4",
+                "mac": "f8:b9:5a:0a:e3:6c",
+                "mac_vendor": "LG Innotek",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.8",
+                "mac": "26:e8:35:b0:a8:79",
+                "mac_vendor": "Unknown vendor",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.11",
+                "mac": "00:c0:ca:b9:ae:40",
+                "mac_vendor": "ALFA, INC.",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.20",
+                "mac": "78:bd:bc:74:3b:0e",
+                "mac_vendor": "Samsung Electronics Co.,Ltd",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.250",
+                "mac": "12:0c:6b:46:32:8f",
+                "mac_vendor": "Unknown vendor",
+                "count": 1,
+                "len": 42
+            }
+        ],
+        "runstats": {
+            "finished_time": {
+                "end_time": "Sun Jun 28 06:01:24 2026",
+                "elapsed": 29.73,
+                "summary": "NetDiscover done at Sun Jun 28 06:01:24 2026; 10 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 29.73 seconds",
+                "exit_status": "success"
+            },
+            "systems": {
+                "discovered": 10,
+                "scan_tries": 1,
+                "empty_scans": 0
+            }
+        }
+    }
+}

@@ -2,7 +2,7 @@
     "netdiscover_scan": {
         "scanner": "netdiscover",
         "args": "netdiscover \u2014 B \u2014 fast mode gateway probe 192.168.1.0/24 (parseable)",
-        "start_time": "Mon Jun 29 09:30:42 2026",
+        "start_time": "Mon Jun 29 10:30:56 2026",
         "systems": [
             {
                 "ipv4": "192.168.1.1",
@@ -14,9 +14,9 @@
         ],
         "runstats": {
             "finished_time": {
-                "end_time": "Mon Jun 29 09:30:46 2026",
-                "elapsed": 3.98,
-                "summary": "NetDiscover done at Mon Jun 29 09:30:46 2026; 1 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 3.98 seconds",
+                "end_time": "Mon Jun 29 10:30:59 2026",
+                "elapsed": 2.5,
+                "summary": "NetDiscover done at Mon Jun 29 10:30:59 2026; 1 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 2.50 seconds",
                 "exit_status": "success"
             },
             "systems": {

@@ -1,0 +1,21 @@
+{
+    "netdiscover_scan": {
+        "scanner": "netdiscover",
+        "args": "netdiscover \u2014 C \u2014 passive ARP snippet (bounded)",
+        "start_time": "Sun Jun 28 06:01:35 2026",
+        "systems": [],
+        "runstats": {
+            "finished_time": {
+                "end_time": "Sun Jun 28 06:01:40 2026",
+                "elapsed": 5.44,
+                "summary": "NetDiscover done at Sun Jun 28 06:01:40 2026; 0 Systems Discovered, 5 Scan Tries, 5 Empty Scans, scanned in 5.44 seconds",
+                "exit_status": "success"
+            },
+            "systems": {
+                "discovered": 0,
+                "scan_tries": 5,
+                "empty_scans": 5
+            }
+        }
+    }
+}

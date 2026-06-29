@@ -12,9 +12,13 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
+CORPUS_DIR = Path(__file__).resolve().parent
+if str(CORPUS_DIR) not in sys.path:
+    sys.path.insert(0, str(CORPUS_DIR))
 EXAM_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "app_examination_docs"
 NUGGET_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "nugget_structure"
-TEMPLATE = REPO_ROOT / ".seed" / "scripts" / "cli_corpus" / "templates" / "netdiscover_parsable.textfsm"
+
+from netdiscover_json_to_graph import graph_from_json_text, netdiscover_scan_to_graph
 
 
 def _uid(nugget_id: str, data: str) -> str:
@@ -37,101 +41,14 @@ def _edge(source: str, target: str, relation: str) -> Dict[str, str]:
     return {"source": source, "target": target, "relation": relation}
 
 
-def parse_netdiscover_p(raw: str) -> List[Dict[str, str]]:
-    try:
-        import textfsm
-    except ImportError:
-        rows: List[Dict[str, str]] = []
-        for line in raw.splitlines():
-            m = re.match(
-                r"^(\d+\.\d+\.\d+\.\d+)\s+([0-9a-fA-F:]{17})\s+(\d+)\s+(\d+)\s+(.+)$",
-                line.strip(),
-            )
-            if m:
-                rows.append(
-                    {
-                        "IP": m.group(1),
-                        "MAC": m.group(2),
-                        "COUNT": m.group(3),
-                        "LEN": m.group(4),
-                        "VENDOR": m.group(5).strip(),
-                    }
-                )
-        return rows
-    with TEMPLATE.open(encoding="utf-8") as fh:
-        fsm = textfsm.TextFSM(fh)
-    return fsm.ParseTextToDicts(raw)
-
-
 def netdiscover_to_graph(raw: str, target: str, command: str) -> Dict[str, Any]:
-    """Build nugget graph from netdiscover_scan JSON or legacy -P text."""
-    if raw.lstrip().startswith("{"):
-        doc = json.loads(raw)
-        scan_data = doc.get("netdiscover_scan", {})
-        command = scan_data.get("command") or command
-        target = scan_data.get("target") or target
-        scenario_label = scan_data.get("args", command)
-        start_time = scan_data.get("start_time", "")
-        systems = scan_data.get("systems", [])
-        runstats = scan_data.get("runstats", {}).get("systems", {})
-        scan_tries = runstats.get("scan_tries", 1)
-    else:
-        from netdiscover_structured import build_netdiscover_scan, dumps_structured
-        from datetime import datetime, timezone
-
-        doc = build_netdiscover_scan(
-            command=command,
-            scenario_name=command,
-            target=target,
-            raw_text=raw,
-            output_mode="parsable",
-            start_time=datetime.now(timezone.utc),
-            duration_s=0.0,
-            exit_code=0,
+    """Build nugget graph from approved netdiscover_scan JSON only."""
+    del target, command
+    if not raw.lstrip().startswith("{"):
+        raise ValueError(
+            "netdiscover structured artifact must be netdiscover_scan JSON, not raw CLI text"
         )
-        scan_data = doc["netdiscover_scan"]
-        scenario_label = scan_data.get("args", command)
-        start_time = scan_data.get("start_time", "")
-        systems = scan_data.get("systems", [])
-        scan_tries = scan_data.get("runstats", {}).get("systems", {}).get("scan_tries", 1)
-
-    scan = _node("SCAN_RECORD", "ENTITY", scenario_label, "Scan Record")
-    scan_cli = _node("SCAN_CLI", "DESCRIPTOR", command, "Scan CLI")
-    scan_target = _node("SCAN_TARGET", "DESCRIPTOR", target, "Scan Target")
-    nodes = [scan, scan_cli, scan_target]
-    edges = [
-        _edge(scan["id"], scan_cli["id"], "had"),
-        _edge(scan["id"], scan_target["id"], "had"),
-    ]
-    if start_time:
-        ts = _node("SCAN_TIMESTAMP", "DESCRIPTOR", start_time, "Scan Start Time")
-        nodes.append(ts)
-        edges.append(_edge(scan["id"], ts["id"], "had"))
-    if scan_tries:
-        tries = _node("SCAN_TRIES", "DESCRIPTOR", str(scan_tries), "Scan Tries")
-        nodes.append(tries)
-        edges.append(_edge(scan["id"], tries["id"], "had"))
-
-    for system in systems:
-        ip = system["ipv4"]
-        mac = system["mac"].lower()
-        vendor = system.get("mac_vendor", "").strip()
-        system_n = _node("SYSTEM", "ENTITY", ip, "System")
-        ip_n = _node("IP_ADDRESS", "ENTITY", ip, "IP Address")
-        mac_n = _node("MAC_ADDRESS", "ENTITY", mac, "MAC Address")
-        nodes.extend([system_n, ip_n, mac_n])
-        edges.extend(
-            [
-                _edge(scan["id"], system_n["id"], "contains"),
-                _edge(system_n["id"], ip_n["id"], "contains"),
-                _edge(system_n["id"], mac_n["id"], "had"),
-            ]
-        )
-        if vendor:
-            vend = _node("MAC_VENDOR", "DESCRIPTOR", vendor, "MAC Vendor")
-            nodes.append(vend)
-            edges.append(_edge(mac_n["id"], vend["id"], "had"))
-    return {"nodes": nodes, "edges": edges}
+    return graph_from_json_text(raw)
 
 
 def parse_nerva_jsonl(raw: str) -> List[Dict[str, Any]]:

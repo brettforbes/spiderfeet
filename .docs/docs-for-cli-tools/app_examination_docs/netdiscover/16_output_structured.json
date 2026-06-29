@@ -1,8 +1,8 @@
 {
     "netdiscover_scan": {
         "scanner": "netdiscover",
-        "args": "netdiscover \u2014 D \u2014 full /24 active rescan (parseable)",
-        "start_time": "Mon Jun 29 09:30:52 2026",
+        "args": "netdiscover \u2014 A \u2014 active ARP scan 192.168.1.0/24 (parseable)",
+        "start_time": "Mon Jun 29 10:30:31 2026",
         "systems": [
             {
                 "ipv4": "192.168.1.1",
@@ -12,36 +12,8 @@
                 "len": 42
             },
             {
-                "ipv4": "192.168.1.10",
-                "mac": "26:87:b6:2f:b0:73",
-                "mac_vendor": "Unknown",
-                "count": 1,
-                "len": 42
-            },
-            {
                 "ipv4": "192.168.1.13",
                 "mac": "38:c8:04:18:d6:9c",
-                "mac_vendor": "Unknown",
-                "count": 1,
-                "len": 42
-            },
-            {
-                "ipv4": "192.168.1.14",
-                "mac": "1e:fe:ee:b7:bd:29",
-                "mac_vendor": "Unknown",
-                "count": 1,
-                "len": 42
-            },
-            {
-                "ipv4": "192.168.1.15",
-                "mac": "5a:ba:45:91:e3:41",
-                "mac_vendor": "Unknown",
-                "count": 1,
-                "len": 42
-            },
-            {
-                "ipv4": "192.168.1.16",
-                "mac": "3e:48:b2:24:45:34",
                 "mac_vendor": "Unknown",
                 "count": 1,
                 "len": 42
@@ -91,13 +63,13 @@
         ],
         "runstats": {
             "finished_time": {
-                "end_time": "Mon Jun 29 09:31:07 2026",
-                "elapsed": 14.83,
-                "summary": "NetDiscover done at Mon Jun 29 09:31:07 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 14.83 seconds",
+                "end_time": "Mon Jun 29 10:30:41 2026",
+                "elapsed": 9.84,
+                "summary": "NetDiscover done at Mon Jun 29 10:30:41 2026; 8 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 9.84 seconds",
                 "exit_status": "success"
             },
             "systems": {
-                "discovered": 12,
+                "discovered": 8,
                 "scan_tries": 1,
                 "empty_scans": 0
             }

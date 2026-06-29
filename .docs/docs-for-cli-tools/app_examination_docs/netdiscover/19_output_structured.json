@@ -2,7 +2,7 @@
     "netdiscover_scan": {
         "scanner": "netdiscover",
         "args": "netdiscover \u2014 C \u2014 passive ARP snippet (bounded)",
-        "start_time": "Mon Jun 29 09:30:33 2026",
+        "start_time": "Mon Jun 29 10:30:48 2026",
         "systems": [
             {
                 "ipv4": "192.168.1.20",
@@ -12,8 +12,8 @@
                 "len": 42
             },
             {
-                "ipv4": "192.168.1.16",
-                "mac": "3e:48:b2:24:45:34",
+                "ipv4": "192.168.1.15",
+                "mac": "5a:ba:45:91:e3:41",
                 "mac_vendor": "Unknown",
                 "count": 1,
                 "len": 42
@@ -26,8 +26,15 @@
                 "len": 42
             },
             {
-                "ipv4": "192.168.1.8",
-                "mac": "26:e8:35:b0:a8:79",
+                "ipv4": "192.168.1.10",
+                "mac": "26:87:b6:2f:b0:73",
+                "mac_vendor": "Unknown",
+                "count": 1,
+                "len": 42
+            },
+            {
+                "ipv4": "192.168.1.7",
+                "mac": "cc:c7:60:67:89:48",
                 "mac_vendor": "Unknown",
                 "count": 1,
                 "len": 42
@@ -47,22 +54,8 @@
                 "len": 42
             },
             {
-                "ipv4": "192.168.1.15",
-                "mac": "5a:ba:45:91:e3:41",
-                "mac_vendor": "Unknown",
-                "count": 1,
-                "len": 42
-            },
-            {
-                "ipv4": "192.168.1.14",
-                "mac": "1e:fe:ee:b7:bd:29",
-                "mac_vendor": "Unknown",
-                "count": 1,
-                "len": 42
-            },
-            {
-                "ipv4": "192.168.1.10",
-                "mac": "26:87:b6:2f:b0:73",
+                "ipv4": "192.168.1.8",
+                "mac": "26:e8:35:b0:a8:79",
                 "mac_vendor": "Unknown",
                 "count": 1,
                 "len": 42
@@ -91,13 +84,13 @@
         ],
         "runstats": {
             "finished_time": {
-                "end_time": "Mon Jun 29 09:30:50 2026",
-                "elapsed": 17.17,
-                "summary": "NetDiscover done at Mon Jun 29 09:30:50 2026; 12 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 17.17 seconds",
+                "end_time": "Mon Jun 29 10:31:01 2026",
+                "elapsed": 13.38,
+                "summary": "NetDiscover done at Mon Jun 29 10:31:01 2026; 11 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 13.38 seconds",
                 "exit_status": "success"
             },
             "systems": {
-                "discovered": 12,
+                "discovered": 11,
                 "scan_tries": 4,
                 "empty_scans": 3
             }

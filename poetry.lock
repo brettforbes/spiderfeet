@@ -1070,6 +1070,20 @@ extra = ["lxml (>=4.5)", "pydot (>=1.4.1)", "pygraphviz (>=1.7)"]
 test = ["codecov (>=2.1)", "pytest (>=6.2)", "pytest-cov (>=2.12)"]
 
 [[package]]
+name = "ntc-templates"
+version = "7.9.0"
+description = "TextFSM Templates for Network Devices, and Python wrapper for TextFSM's CliTable."
+optional = false
+python-versions = "<4.0,>=3.8"
+files = [
+    {file = "ntc_templates-7.9.0-py3-none-any.whl", hash = "sha256:44ae2651719592bb70e98886f363b15bab12892b37f8338f0a2255aa5c7b6ee3"},
+    {file = "ntc_templates-7.9.0.tar.gz", hash = "sha256:df4b4520c3dd41b33ad0746ea7742c63b13eb2860579c7648c348167af5432e2"},
+]
+
+[package.dependencies]
+textfsm = ">=1.1.0,<2.0.0"
+
+[[package]]
 name = "openpyxl"
 version = "3.1.5"
 description = "A Python library to read/write Excel 2010 xlsx/xlsm files"
@@ -1788,6 +1802,21 @@ test = ["backports.zoneinfo", "pytest (>=6,!=8.1.*)", "pytest-freezer", "tzdata"
 type = ["pytest-mypy", "types-python-dateutil"]
 
 [[package]]
+name = "textfsm"
+version = "1.1.3"
+description = "Python module for parsing semi-structured text into python tables."
+optional = false
+python-versions = "*"
+files = [
+    {file = "textfsm-1.1.3-py2.py3-none-any.whl", hash = "sha256:dcbeebc6a6137bed561c71a56344d752e6dbc04ae5ea309252cb70fb97ccc9cd"},
+    {file = "textfsm-1.1.3.tar.gz", hash = "sha256:577ef278a9237f5341ae9b682947cefa4a2c1b24dbe486f94f2c95addc6504b5"},
+]
+
+[package.dependencies]
+future = "*"
+six = "*"
+
+[[package]]
 name = "tomli"
 version = "2.4.1"
 description = "A lil' TOML parser"
@@ -2225,4 +2254,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<4.0"
-content-hash = "cb9d1a4ed4b60338278a76d9e737a5774b27bf6452fc8146bdc48b84c4941677"
+content-hash = "8b9488352f82a15876ecc7dfb69a930e19af386b9d44bc80d59bacd68e43115b"
