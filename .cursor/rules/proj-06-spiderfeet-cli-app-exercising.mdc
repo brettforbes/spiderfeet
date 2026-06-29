@@ -9,7 +9,7 @@ Use these rules when onboarding, profiling, or regenerating evidence for a CLI a
 
 ## Goal
 
-The goal is not to run a few successful commands. The goal is to capture the full range of semantically distinct outputs the tool can produce, including sparse output, rich output, alternate object types, clean misses, and errors.
+The goal is not to run a few successful commands. The goal is to capture the full range of semantically distinct outputs the tool can produce, including sparse output, rich output, alternate object types, clean misses, and errors. Then we can add this semantic map to our ontology, and use it to generate a graph and a narrative report for the scan. You will need to explore and refine inputs, to uncover the full extent of the semantic output space, and then subject each scenario to a formal examination to achieve this properly.
 
 ## Exploration Before Formal Runs
 
@@ -34,8 +34,12 @@ First read the appropriate skillset documentation, then use the tool to explore 
 - Prefer structured formats in this order: JSON, XML, YAML, CSV. Use full verbosity where available.
 - If the tool can emit text and structured output in one run, capture both.
 - If the tool can emit only one format per run, execute paired runs for the same scenario: native text and best structured format.
-- If the tool is text-only, parse text into structured form with TextFSM or an equivalent deterministic parser.
+- If the tool is text-only, then all text must be captured, do not truncate it. Then parse text into structured form with TextFSM Template parser.
 - Capture errors and empty/clean-miss behavior as first-class scenarios with text and structured representations.
+- No matter what format is output, you must ensure the input command and all options used to produce the output, and the timestamp of the scan are captured if it is not in the output.
+- **Never truncate examination output.** Do not pipe through `head`, `tail`, or similar limits in harvest manifest commands. Use `timeout` for bounded runs only; capture full stdout/stderr.
+- **Text-only CLI isolation:** Before each examination command for a text-only CLI app, clear the screen (`cls` on Windows, `clear` on Unix/WSL). Capture only that command's output — never concatenate multiple scans or scenarios into one text artifact. The structured JSON derived from the text must match the text capture exactly (`scan_tries`, `empty_scans`, `discovered`, and the first results table where applicable).
+- Structured artifacts for text-only tools must include scan metadata: command, timestamp, attempt counts (`scan_tries`), and parsed result tables/objects. Validate these fields before marking an examination complete.
 
 ## Scenario Coverage
 

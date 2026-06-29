@@ -1,0 +1,17 @@
+{
+  "tool": "pius",
+  "exam_id": 2,
+  "scenario_id": "passive_scanme_permissive_ndjson",
+  "scenario_name": "B \u2014 passive scanme permissive (NDJSON)",
+  "target": "scanme.nmap.org",
+  "runtime": "wsl",
+  "exit_code": 0,
+  "duration_s": 8.312,
+  "captured_at": "2026-06-27T06:34:00.080555+00:00",
+  "structured_kind": "ndjson",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\2_output_structured.jsonl",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\2_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\2_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending"
+}

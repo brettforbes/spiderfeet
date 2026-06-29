@@ -1,0 +1,61 @@
+tool: pius
+version: 1
+default_runtime: wsl
+default_timeout: 600
+env_file: .tools/pius.env
+binary_probe: wsl bash -lc "/mnt/c/projects/spiderfeet/.tools/pius list 2>&1 | head -3"
+primary_parser: ndjson
+output_path_type: 2
+
+scenarios:
+  - id: passive_bbc_corporate_ndjson
+    name: "A — passive BBC corporate (NDJSON)"
+    archetype: A
+    target: bbc.co.uk
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins crt-sh,gleif,whois,edgar,wikidata,google-dorks --output ndjson
+    structured_kind: ndjson
+    structured_ext: jsonl
+    text_from: stderr
+
+  - id: passive_scanme_permissive_ndjson
+    name: "B — passive scanme permissive (NDJSON)"
+    archetype: B
+    target: scanme.nmap.org
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Nmap Scanme" --domain scanme.nmap.org --plugins crt-sh,gleif,whois --output ndjson
+    structured_kind: ndjson
+    structured_ext: jsonl
+    text_from: stderr
+
+  - id: passive_shodan_plugin_ndjson
+    name: "C — Shodan plugin when key present (NDJSON)"
+    archetype: C
+    target: scanme.nmap.org
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Nmap Scanme" --domain scanme.nmap.org --plugins shodan --output ndjson
+    structured_kind: ndjson
+    structured_ext: jsonl
+    text_from: stderr
+
+  - id: cidr_whois_arin_ndjson
+    name: "D — RIR whois CIDR phase (NDJSON)"
+    archetype: D
+    target: "British Broadcasting Corporation"
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins whois,edgar,arin,ripe --output ndjson
+    structured_kind: ndjson
+    structured_ext: jsonl
+    text_from: stderr
+
+  - id: passive_obscure_clean_miss_ndjson
+    name: "E — obscure org clean miss (NDJSON)"
+    archetype: E
+    target: "ZZZZ Nonexistent Org 000000"
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "ZZZZ Nonexistent Org 000000" --plugins gleif,whois --output ndjson
+    structured_kind: ndjson
+    structured_ext: jsonl
+    text_from: stderr
+
+  - id: passive_bbc_terminal_text
+    name: "F — passive BBC terminal review"
+    archetype: F
+    target: bbc.co.uk
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins crt-sh,gleif --output terminal 2>&1 | head -60
+    text_from: stdout

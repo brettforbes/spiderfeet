@@ -14,14 +14,18 @@
 
 - [ ] Add/update `.seed/scripts/cli_corpus/manifests/<tool>.yaml`
 - [ ] Run `harvest.py` for each scenario (structured + text per rules)
+- [ ] Verify structured JSON includes command, timestamp, and scan metadata (text-only tools)
+- [ ] Confirm no `head`/`tail` truncation in manifest commands or captured text
 - [ ] Verify `*_manifest.json` and outputs exist
 - [ ] Draft `nugget_structure/<tool>_nugget_graph_structure.md`
 - [ ] Set `*_review.status.json` to `pending`
 
 ## Operator gate
 
-- [ ] Operator reviews text, data, graph proposal
-- [ ] Operator sets review status `approved` or `rejected`
+- [ ] Operator reviews text, data, graph proposal, narrative report
+- [ ] Operator sets review status `approved` or `rejected` (all legacy bundles for a scenario key update together)
+- [ ] On approval: record sign-off doc under `.docs/docs-for-cli-tools/<tool>_pilot_signoff.md`
+- [ ] On approval: set `corpus_index.json` tool phase to `complete` when pilot criteria met
 - [ ] On approval: update ontology / `nuggets.json` extensions as needed
 
 ## Do not

@@ -13,5 +13,5 @@
   "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\37_output_text.txt",
   "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nmap\\37_command.txt",
   "tool_manifest_version": 2,
-  "review_status": "pending"
+  "review_status": "approved"
 }

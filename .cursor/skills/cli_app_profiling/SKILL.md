@@ -31,6 +31,7 @@ description: Explore, formally examine, and profile CLI OSINT tools for SpiderFe
 3. If tool supports both structured + text simultaneously → capture both in one run.
 4. If only one format at a time → run twice (structured run + text run).
 5. Text-only tools → TextFSM to structured before graph derivation.
+6. **Text-only isolation:** run `cls` / `Clear-Host` / `clear` before each examination command; one scenario → one capture; structured JSON must match the text (`scan_tries` = TUI frames or single parsable dump; `empty_scans` = frames with no host table rows).
 
 ## Targets
 
@@ -90,7 +91,9 @@ Emit `nodes[]` and `edges[]`; scan owns discoveries via `contains`. See [v2-grap
 
 ## Tool order
 
-Start with **Nmap** (pilot), then follow `corpus_index.json` priority. Do not skip exploration before formal examination.
+**Nmap pilot:** complete (2026-06-26) — see `.docs/docs-for-cli-tools/nmap_pilot_signoff.md`.
+
+Next: **netdiscover** (priority 2 in `corpus_index.json`). Do not skip exploration before formal examination.
 
 ## References
 

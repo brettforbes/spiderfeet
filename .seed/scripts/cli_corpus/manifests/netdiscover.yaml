@@ -1,0 +1,69 @@
+tool: netdiscover
+version: 7
+default_runtime: windows-lan
+default_timeout: 180
+binary_probe: powershell -NoProfile -Command "if (Test-Path '.seed/scripts/cli_corpus/run_netdiscover_lan.ps1') { 'ok' }"
+primary_parser: textfsm
+output_path_type: 3
+
+# Windows-native LAN fallback when WSL mirrored networking is unavailable (ConfigureNetworking/0x8007054f).
+# Uses ping sweep + ARP table to emit netdiscover-compatible output on 192.168.1.0/24.
+# Never use head/tail truncation in examination commands — harvest rejects it.
+
+scenarios:
+  - id: local_subnet_active_parsable
+    name: "A — active ARP scan 192.168.1.0/24 (parseable)"
+    archetype: A
+    target: "192.168.1.0/24"
+    runtime: windows-lan
+    command: "& '.seed/scripts/cli_corpus/run_netdiscover_lan.ps1' -Mode parsable -Range '192.168.1.0/24'"
+    structured_kind: json
+    structured_ext: json
+    output_mode: parsable
+    text_from: stdout
+
+  - id: local_subnet_active_text
+    name: "A — active ARP scan 192.168.1.0/24 (interactive text)"
+    archetype: A
+    target: "192.168.1.0/24"
+    runtime: windows-lan
+    timeout: 120
+    command: "& '.seed/scripts/cli_corpus/run_netdiscover_lan.ps1' -Mode text -Range '192.168.1.0/24'"
+    structured_kind: json
+    structured_ext: json
+    output_mode: interactive
+    text_from: stdout
+
+  - id: local_subnet_fast_parsable
+    name: "B — fast mode gateway probe 192.168.1.0/24 (parseable)"
+    archetype: B
+    target: "192.168.1.0/24"
+    runtime: windows-lan
+    command: "& '.seed/scripts/cli_corpus/run_netdiscover_lan.ps1' -Mode fast -Range '192.168.1.0/24'"
+    structured_kind: json
+    structured_ext: json
+    output_mode: parsable
+    text_from: stdout
+
+  - id: passive_snippet_text
+    name: "C — passive ARP snippet (bounded)"
+    archetype: C
+    target: "192.168.1.0/24"
+    runtime: windows-lan
+    timeout: 30
+    command: "& '.seed/scripts/cli_corpus/run_netdiscover_lan.ps1' -Mode passive -Range '192.168.1.0/24' -PassiveSeconds 12"
+    structured_kind: json
+    structured_ext: json
+    output_mode: interactive
+    text_from: stdout
+
+  - id: sparse_subnet_parsable
+    name: "D — full /24 active rescan (parseable)"
+    archetype: D
+    target: "192.168.1.0/24"
+    runtime: windows-lan
+    command: "& '.seed/scripts/cli_corpus/run_netdiscover_lan.ps1' -Mode parsable -Range '192.168.1.0/24'"
+    structured_kind: json
+    structured_ext: json
+    output_mode: parsable
+    text_from: stdout

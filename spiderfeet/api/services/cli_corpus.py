@@ -207,6 +207,35 @@ def _legacy_scenario_groups(tool_dir: Path) -> Dict[str, List[tuple[int, Dict[st
     return groups
 
 
+def _legacy_exam_review_status(
+    tool_dir: Path, exam_id: int, manifest: Dict[str, Any]
+) -> str:
+    review_path = tool_dir / f"{exam_id}_review.status.json"
+    if review_path.is_file():
+        try:
+            body = _read_json(review_path)
+            return body.get("status") or manifest.get("review_status") or "pending"
+        except (json.JSONDecodeError, OSError):
+            pass
+    return manifest.get("review_status") or "pending"
+
+
+def _legacy_scenario_review_status(
+    tool_dir: Path, members: List[tuple[int, Dict[str, Any]]]
+) -> str:
+    statuses = [
+        _legacy_exam_review_status(tool_dir, exam_id, manifest)
+        for exam_id, manifest in members
+    ]
+    if not statuses:
+        return "pending"
+    if all(status == "approved" for status in statuses):
+        return "approved"
+    if any(status == "rejected" for status in statuses):
+        return "rejected"
+    return "pending"
+
+
 def list_scenarios(tool_id: str) -> List[Dict[str, Any]]:
     tool_dir = _safe_tool_dir(tool_id)
     if not tool_dir.is_dir():
@@ -239,7 +268,7 @@ def list_scenarios(tool_id: str) -> List[Dict[str, Any]]:
                 "target": primary.get("target"),
                 "runtime": primary.get("runtime"),
                 "structured_kind": primary.get("structured_kind"),
-                "review_status": "pending",
+                "review_status": _legacy_scenario_review_status(tool_dir, members),
                 "legacy_exam_ids": [eid for eid, _ in members],
                 "has_text": has_text,
                 "has_structured": has_structured,

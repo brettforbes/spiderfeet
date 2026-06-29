@@ -1,5 +1,7 @@
 {
-  "status": "pending",
-  "exam_id": 56,
-  "scenario_id": "host_discovery_local_subnet_text"
+  "status": "approved",
+  "scenario_key": "host_discovery_local_subnet",
+  "tool": "nmap",
+  "updated_at": "2026-06-27T04:24:14.374639+00:00",
+  "exam_id": 56
 }

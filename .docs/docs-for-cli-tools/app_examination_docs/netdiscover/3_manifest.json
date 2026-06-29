@@ -1,0 +1,17 @@
+{
+  "tool": "netdiscover",
+  "exam_id": 3,
+  "scenario_id": "local_subnet_fast_parsable",
+  "scenario_name": "B \u2014 fast mode gateway probe 192.168.1.0/24 (parseable)",
+  "target": "192.168.1.0/24",
+  "runtime": "windows-lan",
+  "exit_code": 0,
+  "duration_s": 3.344,
+  "captured_at": "2026-06-29T11:27:55.149329+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\netdiscover\\3_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\netdiscover\\3_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\netdiscover\\3_command.txt",
+  "tool_manifest_version": 7,
+  "review_status": "pending"
+}

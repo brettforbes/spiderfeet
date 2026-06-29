@@ -1,0 +1,1 @@
+/mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins crt-sh,gleif --output terminal 2>&1 | head -60

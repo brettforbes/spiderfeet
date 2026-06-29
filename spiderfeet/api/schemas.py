@@ -620,6 +620,22 @@ class SubscriptionModuleSummary(BaseModel):
         description="Heuristic guidance for operator signup (confirm free tier on site)",
     )
     secret_opts: List[SecretOptMasked] = Field(default_factory=list)
+    provider_kind: str = Field(
+        "spiderfeet",
+        description="spiderfeet | cli_only | shared",
+    )
+    service_labels: List[str] = Field(
+        default_factory=list,
+        description="Human-readable consumer labels (SpiderFeet module, CLI apps)",
+    )
+    cli_apps: List[str] = Field(
+        default_factory=list,
+        description="Registered CLI applications that consume this credential",
+    )
+    group: str = Field(
+        "spiderfeet",
+        description="Accordion grouping: spiderfeet | cli | shared",
+    )
 
 
 class SubscriptionModuleDetail(BaseModel):
@@ -638,6 +654,10 @@ class SubscriptionModuleDetail(BaseModel):
     consumed_nuggets: List[str] = Field(default_factory=list)
     produced_nuggets: List[str] = Field(default_factory=list)
     secret_opts: List[SecretOptMasked] = Field(default_factory=list)
+    provider_kind: str = Field("spiderfeet", description="spiderfeet | cli_only | shared")
+    service_labels: List[str] = Field(default_factory=list)
+    cli_apps: List[str] = Field(default_factory=list)
+    group: str = Field("spiderfeet", description="spiderfeet | cli | shared")
 
 
 class SubscriptionModuleUpdate(BaseModel):

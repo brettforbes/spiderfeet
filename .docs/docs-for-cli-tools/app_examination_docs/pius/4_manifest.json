@@ -1,0 +1,17 @@
+{
+  "tool": "pius",
+  "exam_id": 4,
+  "scenario_id": "cidr_whois_arin_ndjson",
+  "scenario_name": "D \u2014 RIR whois CIDR phase (NDJSON)",
+  "target": "British Broadcasting Corporation",
+  "runtime": "wsl",
+  "exit_code": 0,
+  "duration_s": 1.875,
+  "captured_at": "2026-06-27T06:34:02.652614+00:00",
+  "structured_kind": "ndjson",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\4_output_structured.jsonl",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\4_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\4_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending"
+}

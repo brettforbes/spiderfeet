@@ -17,6 +17,7 @@ from spiderfeet.api.routes import (
     map,
     scan_ui,
     scans,
+    settings as settings_routes,
     subscriptions,
     tests,
 )
@@ -67,6 +68,7 @@ def create_app() -> FastAPI:
     app.include_router(map.router, prefix=prefix)
     app.include_router(tests.router, prefix=prefix)
     app.include_router(subscriptions.router, prefix=prefix)
+    app.include_router(settings_routes.router, prefix=prefix)
     app.include_router(cli_corpus.router, prefix=prefix)
 
     def custom_openapi():

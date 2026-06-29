@@ -12,9 +12,12 @@ NMAP_XML = REPO_ROOT / ".docs/docs-for-cli-tools/app_examination_docs/nmap/17_ou
 
 
 def _load_generator():
+    import sys
+
     spec = importlib.util.spec_from_file_location("nmap_xml_to_graph", GENERATOR_PATH)
     module = importlib.util.module_from_spec(spec)
     assert spec.loader is not None
+    sys.modules["nmap_xml_to_graph"] = module
     spec.loader.exec_module(module)
     return module
 

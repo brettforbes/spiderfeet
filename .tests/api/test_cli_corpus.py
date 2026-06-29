@@ -18,10 +18,16 @@ def test_cli_corpus_tools_lists_indexed_tools(api_client: TestClient):
     tools = response.json()
     ids = {t["id"] for t in tools}
     assert "nmap" in ids
+    assert "netdiscover" in ids
+    assert "nerva" in ids
+    assert "pius" in ids
     nmap = next(t for t in tools if t["id"] == "nmap")
-    assert nmap["phase"] == "nugget_proposal"
+    assert nmap["phase"] == "complete"
     assert nmap["exam_count"] >= 15
     assert nmap["has_graph_structure"] is True
+    netdiscover = next(t for t in tools if t["id"] == "netdiscover")
+    assert netdiscover["exam_count"] >= 4
+    assert netdiscover["has_graph_structure"] is True
 
 
 def test_cli_corpus_scenarios_lists_nmap_archetypes(api_client: TestClient):
@@ -34,6 +40,15 @@ def test_cli_corpus_scenarios_lists_nmap_archetypes(api_client: TestClient):
     assert "capstone_permissive" in keys
     for row in scenarios:
         assert row.get("has_text") or row.get("has_structured")
+
+
+def test_cli_corpus_nmap_scenarios_operator_approved(api_client: TestClient):
+    response = api_client.get("/api/v1/cli-corpus/tools/nmap/scenarios")
+    assert response.status_code == 200
+    scenarios = response.json()
+    assert len(scenarios) >= 15
+    assert all(row["review_status"] == "approved" for row in scenarios)
+    assert all(row["complete"] for row in scenarios)
 
 
 def test_cli_corpus_scenario_detail_missing_returns_404(api_client: TestClient):
