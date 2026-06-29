@@ -26,8 +26,35 @@ def test_cli_corpus_tools_lists_indexed_tools(api_client: TestClient):
     assert nmap["exam_count"] >= 15
     assert nmap["has_graph_structure"] is True
     netdiscover = next(t for t in tools if t["id"] == "netdiscover")
-    assert netdiscover["exam_count"] >= 4
+    assert netdiscover["exam_count"] >= 5
     assert netdiscover["has_graph_structure"] is True
+
+
+def test_cli_corpus_netdiscover_scenarios_not_merged(api_client: TestClient):
+    """Parsable and interactive text must remain separate scenario rows."""
+    response = api_client.get("/api/v1/cli-corpus/tools/netdiscover/scenarios")
+    assert response.status_code == 200
+    scenarios = response.json()
+    keys = {s["scenario_key"] for s in scenarios}
+    assert "local_subnet_active_parsable" in keys
+    assert "local_subnet_active" in keys
+    assert len(scenarios) >= 5
+
+    parsable = api_client.get(
+        "/api/v1/cli-corpus/tools/netdiscover/scenarios/local_subnet_active_parsable"
+    )
+    assert parsable.status_code == 200
+    body = parsable.json()
+    assert "Currently scanning:" not in body["output_text"]
+    assert '"scan_tries": 1' in (body.get("structured") or {}).get("content", "")
+
+    interactive = api_client.get(
+        "/api/v1/cli-corpus/tools/netdiscover/scenarios/local_subnet_active"
+    )
+    assert interactive.status_code == 200
+    ibody = interactive.json()
+    assert "Currently scanning:" in ibody["output_text"]
+    assert '"scan_tries": 5' in (ibody.get("structured") or {}).get("content", "")
 
 
 def test_cli_corpus_scenarios_lists_nmap_archetypes(api_client: TestClient):

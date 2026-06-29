@@ -20,14 +20,16 @@ _TOOL_ID_RE = re.compile(r"^[a-zA-Z0-9_-]+$")
 _SCENARIO_KEY_RE = re.compile(r"^[a-zA-Z0-9_-]+$")
 _EXAM_ID_RE = re.compile(r"^\d+$")
 
+# Suffixes stripped to merge format-variant pairs (e.g. nmap foo_xml + foo_text → foo).
+# Do not include mode suffixes such as _parsable — those are distinct scenarios.
 _SCENARIO_SUFFIXES = (
     "_text",
     "_jsonl",
     "_json",
     "_xml",
     "_yaml",
+    "_yml",
     "_csv",
-    "_parsable",
 )
 
 _STRUCTURED_EXTS = {
@@ -250,6 +252,7 @@ def list_scenarios(tool_id: str) -> List[Dict[str, Any]]:
     rows: List[Dict[str, Any]] = []
     for key, members in sorted(_legacy_scenario_groups(tool_dir).items()):
         primary = members[0][1]
+        sid = primary.get("scenario_id") or key
         has_structured = any(
             (tool_dir / f"{eid}_output_structured.json").is_file()
             or (tool_dir / f"{eid}_output_structured.xml").is_file()
@@ -257,10 +260,10 @@ def list_scenarios(tool_id: str) -> List[Dict[str, Any]]:
             for eid, _ in members
         )
         has_text = any((tool_dir / f"{eid}_output_text.txt").is_file() for eid, _ in members)
-        graph_path = _NUGGET_ROOT / f"{tool_id}_{key}_proposed_nuggets_edges.json"
-        md_path = _NUGGET_ROOT / f"{tool_id}_{key}_proposed_nuggets_edges_description.md"
-        if not graph_path.is_file():
-            graph_path = _NUGGET_ROOT / f"{tool_id}_proposed_nuggets_edges.json"
+        graph_path = _resolve_graph_path(tool_id, key, sid)
+        md_path = _NUGGET_ROOT / f"{tool_id}_{sid}_proposed_nuggets_edges_description.md"
+        if not md_path.is_file():
+            md_path = _NUGGET_ROOT / f"{tool_id}_{key}_proposed_nuggets_edges_description.md"
         rows.append(
             {
                 "scenario_key": key,
@@ -290,16 +293,32 @@ def list_examinations(tool_id: str) -> List[Dict[str, Any]]:
     return rows
 
 
-def _graph_for_scenario(tool_id: str, scenario_key: str, bundle_dir: Path) -> Optional[Dict[str, Any]]:
+def _resolve_graph_path(
+    tool_id: str, scenario_key: str, scenario_id: str | None = None
+) -> Path:
+    candidates = []
+    if scenario_id:
+        candidates.append(_NUGGET_ROOT / f"{tool_id}_{scenario_id}_proposed_nuggets_edges.json")
+    candidates.append(_NUGGET_ROOT / f"{tool_id}_{scenario_key}_proposed_nuggets_edges.json")
+    candidates.append(_NUGGET_ROOT / f"{tool_id}_proposed_nuggets_edges.json")
+    for path in candidates:
+        if path.is_file():
+            return path
+    return candidates[0]
+
+
+def _graph_for_scenario(
+    tool_id: str,
+    scenario_key: str,
+    bundle_dir: Path,
+    scenario_id: str | None = None,
+) -> Optional[Dict[str, Any]]:
     bundle_graph = bundle_dir / "proposed_nuggets_edges.json"
     if bundle_graph.is_file():
         return _read_json(bundle_graph)
-    for candidate in (
-        _NUGGET_ROOT / f"{tool_id}_{scenario_key}_proposed_nuggets_edges.json",
-        _NUGGET_ROOT / f"{tool_id}_proposed_nuggets_edges.json",
-    ):
-        if candidate.is_file():
-            return _read_json(candidate)
+    graph_path = _resolve_graph_path(tool_id, scenario_key, scenario_id)
+    if graph_path.is_file():
+        return _read_json(graph_path)
     return None
 
 
@@ -406,29 +425,40 @@ def _merge_legacy_scenario(
     command = ""
     primary_manifest = members[0][1]
 
-    for exam_id, manifest in sorted(members, key=lambda m: m[0]):
-        sid = manifest.get("scenario_id", "")
-        struct = _structured_file_legacy(tool_dir, exam_id, manifest)
+    if len(members) == 1:
+        exam_id, manifest = members[0]
+        structured_path = _structured_file_legacy(tool_dir, exam_id, manifest)
+        structured_manifest = manifest if structured_path else None
         text_path = tool_dir / f"{exam_id}_output_text.txt"
         cmd_path = tool_dir / f"{exam_id}_command.txt"
-
-        if struct and not structured_path:
-            structured_path = struct
-            structured_manifest = manifest
-            if cmd_path.is_file():
-                command = _read_text(cmd_path).strip()
-
-        if text_path.is_file() and (sid.endswith("_text") or not struct):
+        if text_path.is_file():
             text_content = _read_text(text_path)
-            if not command and cmd_path.is_file():
-                command = _read_text(cmd_path).strip()
-
-    if not text_content:
-        for exam_id, _ in members:
+        if cmd_path.is_file():
+            command = _read_text(cmd_path).strip()
+    else:
+        for exam_id, manifest in sorted(members, key=lambda m: m[0]):
+            sid = manifest.get("scenario_id", "")
+            struct = _structured_file_legacy(tool_dir, exam_id, manifest)
             text_path = tool_dir / f"{exam_id}_output_text.txt"
-            if text_path.is_file():
+            cmd_path = tool_dir / f"{exam_id}_command.txt"
+
+            if struct and not structured_path:
+                structured_path = struct
+                structured_manifest = manifest
+                if cmd_path.is_file():
+                    command = _read_text(cmd_path).strip()
+
+            if text_path.is_file() and (sid.endswith("_text") or not struct):
                 text_content = _read_text(text_path)
-                break
+                if not command and cmd_path.is_file():
+                    command = _read_text(cmd_path).strip()
+
+        if not text_content:
+            for exam_id, _ in members:
+                text_path = tool_dir / f"{exam_id}_output_text.txt"
+                if text_path.is_file():
+                    text_content = _read_text(text_path)
+                    break
 
     structured: Optional[Dict[str, Any]] = None
     if structured_path:
@@ -441,7 +471,9 @@ def _merge_legacy_scenario(
         }
 
     bundle_dir = tool_dir / "scenarios" / scenario_key
-    graph = _graph_for_scenario(tool_id, scenario_key, bundle_dir)
+    graph = _graph_for_scenario(
+        tool_id, scenario_key, bundle_dir, primary_manifest.get("scenario_id")
+    )
     markdown = _scenario_graph_description(tool_id, scenario_key, bundle_dir)
     flags = {
         "has_text": bool(text_content),
