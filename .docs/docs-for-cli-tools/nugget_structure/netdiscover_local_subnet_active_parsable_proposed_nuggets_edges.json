@@ -17,28 +17,28 @@
       "nugget_data": "netdiscover \u2014 A \u2014 active ARP scan 192.168.1.0/24 (parseable)"
     },
     {
-      "id": "SCAN_TIMESTAMP--f0fc3c52-315e-532e-b075-85905f00089c",
-      "nugget_instance_id": "SCAN_TIMESTAMP--f0fc3c52-315e-532e-b075-85905f00089c",
+      "id": "SCAN_TIMESTAMP--7115286d-13a9-53b3-8dfe-50e68f75fde6",
+      "nugget_instance_id": "SCAN_TIMESTAMP--7115286d-13a9-53b3-8dfe-50e68f75fde6",
       "nugget_id": "SCAN_TIMESTAMP",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Start Time",
-      "nugget_data": "Mon Jun 29 11:27:24 2026"
+      "nugget_data": "Mon Jun 29 14:34:20 2026"
     },
     {
-      "id": "SCAN_END_TIME--b1882daf-a68b-5986-85ad-851cf769d56e",
-      "nugget_instance_id": "SCAN_END_TIME--b1882daf-a68b-5986-85ad-851cf769d56e",
+      "id": "SCAN_END_TIME--4b55d9c5-1bc5-52eb-ac39-5cf36057731f",
+      "nugget_instance_id": "SCAN_END_TIME--4b55d9c5-1bc5-52eb-ac39-5cf36057731f",
       "nugget_id": "SCAN_END_TIME",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan End Time",
-      "nugget_data": "Mon Jun 29 11:27:34 2026"
+      "nugget_data": "Mon Jun 29 14:34:37 2026"
     },
     {
-      "id": "SCAN_SUMMARY--91bb1f98-acf1-5c06-a5d3-a2089c17c5c9",
-      "nugget_instance_id": "SCAN_SUMMARY--91bb1f98-acf1-5c06-a5d3-a2089c17c5c9",
+      "id": "SCAN_SUMMARY--18c7528e-7fd3-5261-b18a-1331b5dc544c",
+      "nugget_instance_id": "SCAN_SUMMARY--18c7528e-7fd3-5261-b18a-1331b5dc544c",
       "nugget_id": "SCAN_SUMMARY",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Summary",
-      "nugget_data": "NetDiscover done at Mon Jun 29 11:27:34 2026; 14 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 10.70 seconds"
+      "nugget_data": "NetDiscover done at Mon Jun 29 14:34:37 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 17.20 seconds"
     },
     {
       "id": "SCAN_EXIT_STATUS--62e51eee-51d9-53ee-bd4e-80fcafe86841",
@@ -65,12 +65,12 @@
       "nugget_data": "0"
     },
     {
-      "id": "SCAN_DISCOVERED--aba1abdb-cf69-528f-b544-18faf8f4e7ab",
-      "nugget_instance_id": "SCAN_DISCOVERED--aba1abdb-cf69-528f-b544-18faf8f4e7ab",
+      "id": "SCAN_DISCOVERED--bbb59e2d-dbe8-56f9-8b79-621b1637dcb2",
+      "nugget_instance_id": "SCAN_DISCOVERED--bbb59e2d-dbe8-56f9-8b79-621b1637dcb2",
       "nugget_id": "SCAN_DISCOVERED",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Systems Discovered",
-      "nugget_data": "14"
+      "nugget_data": "12"
     },
     {
       "id": "SYSTEM--b4bb2907-6ce2-50cd-955e-2fb1be2f2ff8",
@@ -137,52 +137,12 @@
       "nugget_data": "192.168.1.10"
     },
     {
-      "id": "MAC_ADDRESS--679cf225-c311-5118-84f3-b616d95a68a7",
-      "nugget_instance_id": "MAC_ADDRESS--679cf225-c311-5118-84f3-b616d95a68a7",
+      "id": "MAC_ADDRESS--596c252b-f644-5e82-866d-fbf46651d733",
+      "nugget_instance_id": "MAC_ADDRESS--596c252b-f644-5e82-866d-fbf46651d733",
       "nugget_id": "MAC_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "MAC Address",
-      "nugget_data": "26:87:b6:2f:b0:73"
-    },
-    {
-      "id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
-      "nugget_instance_id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
-      "nugget_id": "MAC_VENDOR",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "MAC Vendor",
-      "nugget_data": "Unknown"
-    },
-    {
-      "id": "SYSTEM--37ff4d6b-fce9-5d85-8076-f7eec7be9670",
-      "nugget_instance_id": "SYSTEM--37ff4d6b-fce9-5d85-8076-f7eec7be9670",
-      "nugget_id": "SYSTEM",
-      "nugget_type": "ENTITY",
-      "nugget_description": "System",
-      "nugget_data": "192.168.1.13"
-    },
-    {
-      "id": "NETWORKS--c89bb6d6-0007-5489-aa1f-11e47dcd8360",
-      "nugget_instance_id": "NETWORKS--c89bb6d6-0007-5489-aa1f-11e47dcd8360",
-      "nugget_id": "NETWORKS",
-      "nugget_type": "ENTITY",
-      "nugget_description": "Networks",
-      "nugget_data": "networks:192.168.1.13"
-    },
-    {
-      "id": "IP_ADDRESS--89103b5b-2454-5e7f-b06e-e734359d6b52",
-      "nugget_instance_id": "IP_ADDRESS--89103b5b-2454-5e7f-b06e-e734359d6b52",
-      "nugget_id": "IP_ADDRESS",
-      "nugget_type": "ENTITY",
-      "nugget_description": "IP Address",
-      "nugget_data": "192.168.1.13"
-    },
-    {
-      "id": "MAC_ADDRESS--ee072d70-adf3-5f57-b1f9-7ce1f61fe0c7",
-      "nugget_instance_id": "MAC_ADDRESS--ee072d70-adf3-5f57-b1f9-7ce1f61fe0c7",
-      "nugget_id": "MAC_ADDRESS",
-      "nugget_type": "ENTITY",
-      "nugget_description": "MAC Address",
-      "nugget_data": "38:c8:04:18:d6:9c"
+      "nugget_data": "02:0f:b5:2f:b0:73"
     },
     {
       "id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
@@ -217,12 +177,12 @@
       "nugget_data": "192.168.1.14"
     },
     {
-      "id": "MAC_ADDRESS--bf479b1c-f1f4-5375-a247-4034224abbe9",
-      "nugget_instance_id": "MAC_ADDRESS--bf479b1c-f1f4-5375-a247-4034224abbe9",
+      "id": "MAC_ADDRESS--59bde4dc-9738-529c-b06a-e00566973f7f",
+      "nugget_instance_id": "MAC_ADDRESS--59bde4dc-9738-529c-b06a-e00566973f7f",
       "nugget_id": "MAC_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "MAC Address",
-      "nugget_data": "1e:fe:ee:b7:bd:29"
+      "nugget_data": "02:0f:b5:b7:bd:29"
     },
     {
       "id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
@@ -257,12 +217,12 @@
       "nugget_data": "192.168.1.15"
     },
     {
-      "id": "MAC_ADDRESS--ac63edf9-7c1b-5522-ae04-77c77fccfac4",
-      "nugget_instance_id": "MAC_ADDRESS--ac63edf9-7c1b-5522-ae04-77c77fccfac4",
+      "id": "MAC_ADDRESS--609a67ca-64d0-5f1d-a811-55203babff5a",
+      "nugget_instance_id": "MAC_ADDRESS--609a67ca-64d0-5f1d-a811-55203babff5a",
       "nugget_id": "MAC_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "MAC Address",
-      "nugget_data": "16:0c:6b:46:32:90"
+      "nugget_data": "5a:ba:45:91:e3:41"
     },
     {
       "id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
@@ -297,12 +257,12 @@
       "nugget_data": "192.168.1.16"
     },
     {
-      "id": "MAC_ADDRESS--ac63edf9-7c1b-5522-ae04-77c77fccfac4",
-      "nugget_instance_id": "MAC_ADDRESS--ac63edf9-7c1b-5522-ae04-77c77fccfac4",
+      "id": "MAC_ADDRESS--3febfcf1-727d-5bee-9494-73e6261cc5e9",
+      "nugget_instance_id": "MAC_ADDRESS--3febfcf1-727d-5bee-9494-73e6261cc5e9",
       "nugget_id": "MAC_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "MAC Address",
-      "nugget_data": "16:0c:6b:46:32:90"
+      "nugget_data": "3e:48:b2:24:45:34"
     },
     {
       "id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
@@ -337,52 +297,12 @@
       "nugget_data": "192.168.1.2"
     },
     {
-      "id": "MAC_ADDRESS--fab62ac3-e4dc-5017-82b2-15e39651a22b",
-      "nugget_instance_id": "MAC_ADDRESS--fab62ac3-e4dc-5017-82b2-15e39651a22b",
+      "id": "MAC_ADDRESS--80ab50a8-6703-5065-8b3a-6a652c67f0b5",
+      "nugget_instance_id": "MAC_ADDRESS--80ab50a8-6703-5065-8b3a-6a652c67f0b5",
       "nugget_id": "MAC_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "MAC Address",
-      "nugget_data": "a8:51:ab:23:c6:49"
-    },
-    {
-      "id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
-      "nugget_instance_id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
-      "nugget_id": "MAC_VENDOR",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "MAC Vendor",
-      "nugget_data": "Unknown"
-    },
-    {
-      "id": "SYSTEM--c2980088-8744-5fff-8377-6d83785307de",
-      "nugget_instance_id": "SYSTEM--c2980088-8744-5fff-8377-6d83785307de",
-      "nugget_id": "SYSTEM",
-      "nugget_type": "ENTITY",
-      "nugget_description": "System",
-      "nugget_data": "192.168.1.20"
-    },
-    {
-      "id": "NETWORKS--39582135-e8a0-5461-89b7-65cf8d6d221a",
-      "nugget_instance_id": "NETWORKS--39582135-e8a0-5461-89b7-65cf8d6d221a",
-      "nugget_id": "NETWORKS",
-      "nugget_type": "ENTITY",
-      "nugget_description": "Networks",
-      "nugget_data": "networks:192.168.1.20"
-    },
-    {
-      "id": "IP_ADDRESS--b351fe8a-65f9-532f-bc2f-955c1284b4ba",
-      "nugget_instance_id": "IP_ADDRESS--b351fe8a-65f9-532f-bc2f-955c1284b4ba",
-      "nugget_id": "IP_ADDRESS",
-      "nugget_type": "ENTITY",
-      "nugget_description": "IP Address",
-      "nugget_data": "192.168.1.20"
-    },
-    {
-      "id": "MAC_ADDRESS--35814d68-8f29-5100-a198-2a7660cfdd91",
-      "nugget_instance_id": "MAC_ADDRESS--35814d68-8f29-5100-a198-2a7660cfdd91",
-      "nugget_id": "MAC_ADDRESS",
-      "nugget_type": "ENTITY",
-      "nugget_description": "MAC Address",
-      "nugget_data": "78:bd:bc:74:3b:0e"
+      "nugget_data": "02:0f:b5:23:c6:49"
     },
     {
       "id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
@@ -417,12 +337,12 @@
       "nugget_data": "192.168.1.250"
     },
     {
-      "id": "MAC_ADDRESS--666d35a4-d69a-511b-9c05-ff7c3dbef64e",
-      "nugget_instance_id": "MAC_ADDRESS--666d35a4-d69a-511b-9c05-ff7c3dbef64e",
+      "id": "MAC_ADDRESS--a3846de8-bb39-5fee-8884-9743a9f7fe3f",
+      "nugget_instance_id": "MAC_ADDRESS--a3846de8-bb39-5fee-8884-9743a9f7fe3f",
       "nugget_id": "MAC_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "MAC Address",
-      "nugget_data": "12:0c:6b:46:32:8f"
+      "nugget_data": "02:0f:b5:46:32:8f"
     },
     {
       "id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
@@ -497,12 +417,12 @@
       "nugget_data": "192.168.1.4"
     },
     {
-      "id": "MAC_ADDRESS--8751ac39-b71a-571b-b95e-369101852e79",
-      "nugget_instance_id": "MAC_ADDRESS--8751ac39-b71a-571b-b95e-369101852e79",
+      "id": "MAC_ADDRESS--e95df1f0-ee39-51dc-8647-ebc77f076d6c",
+      "nugget_instance_id": "MAC_ADDRESS--e95df1f0-ee39-51dc-8647-ebc77f076d6c",
       "nugget_id": "MAC_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "MAC Address",
-      "nugget_data": "f8:b9:5a:0a:e3:6c"
+      "nugget_data": "02:0f:b5:0a:e3:6c"
     },
     {
       "id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
@@ -537,12 +457,12 @@
       "nugget_data": "192.168.1.6"
     },
     {
-      "id": "MAC_ADDRESS--311da5f9-d3f8-5b53-be44-b2044342fd06",
-      "nugget_instance_id": "MAC_ADDRESS--311da5f9-d3f8-5b53-be44-b2044342fd06",
+      "id": "MAC_ADDRESS--52ee9885-6501-531a-a502-4f8c298cd512",
+      "nugget_instance_id": "MAC_ADDRESS--52ee9885-6501-531a-a502-4f8c298cd512",
       "nugget_id": "MAC_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "MAC Address",
-      "nugget_data": "88:f4:da:1a:b7:65"
+      "nugget_data": "88:d8:2e:c2:2c:0c"
     },
     {
       "id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
@@ -617,12 +537,12 @@
       "nugget_data": "192.168.1.8"
     },
     {
-      "id": "MAC_ADDRESS--a7112de8-be93-5cbc-8aa6-5766a8440dde",
-      "nugget_instance_id": "MAC_ADDRESS--a7112de8-be93-5cbc-8aa6-5766a8440dde",
+      "id": "MAC_ADDRESS--2a2fc58a-fb47-50ff-a3c3-1446ecc615eb",
+      "nugget_instance_id": "MAC_ADDRESS--2a2fc58a-fb47-50ff-a3c3-1446ecc615eb",
       "nugget_id": "MAC_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "MAC Address",
-      "nugget_data": "26:e8:35:b0:a8:79"
+      "nugget_data": "02:0f:b5:b0:a8:79"
     },
     {
       "id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
@@ -641,17 +561,17 @@
     },
     {
       "source": "SCAN_RECORD--d0030e0f-7622-581d-9195-3ebe2351dca0",
-      "target": "SCAN_TIMESTAMP--f0fc3c52-315e-532e-b075-85905f00089c",
+      "target": "SCAN_TIMESTAMP--7115286d-13a9-53b3-8dfe-50e68f75fde6",
       "relation": "had"
     },
     {
       "source": "SCAN_RECORD--d0030e0f-7622-581d-9195-3ebe2351dca0",
-      "target": "SCAN_END_TIME--b1882daf-a68b-5986-85ad-851cf769d56e",
+      "target": "SCAN_END_TIME--4b55d9c5-1bc5-52eb-ac39-5cf36057731f",
       "relation": "had"
     },
     {
       "source": "SCAN_RECORD--d0030e0f-7622-581d-9195-3ebe2351dca0",
-      "target": "SCAN_SUMMARY--91bb1f98-acf1-5c06-a5d3-a2089c17c5c9",
+      "target": "SCAN_SUMMARY--18c7528e-7fd3-5261-b18a-1331b5dc544c",
       "relation": "had"
     },
     {
@@ -671,7 +591,7 @@
     },
     {
       "source": "SCAN_RECORD--d0030e0f-7622-581d-9195-3ebe2351dca0",
-      "target": "SCAN_DISCOVERED--aba1abdb-cf69-528f-b544-18faf8f4e7ab",
+      "target": "SCAN_DISCOVERED--bbb59e2d-dbe8-56f9-8b79-621b1637dcb2",
       "relation": "had"
     },
     {
@@ -716,36 +636,11 @@
     },
     {
       "source": "NETWORKS--cd1cdbe2-396d-55e0-a055-747c05661374",
-      "target": "MAC_ADDRESS--679cf225-c311-5118-84f3-b616d95a68a7",
+      "target": "MAC_ADDRESS--596c252b-f644-5e82-866d-fbf46651d733",
       "relation": "contains"
     },
     {
-      "source": "MAC_ADDRESS--679cf225-c311-5118-84f3-b616d95a68a7",
-      "target": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
-      "relation": "had"
-    },
-    {
-      "source": "SCAN_RECORD--d0030e0f-7622-581d-9195-3ebe2351dca0",
-      "target": "SYSTEM--37ff4d6b-fce9-5d85-8076-f7eec7be9670",
-      "relation": "contains"
-    },
-    {
-      "source": "SYSTEM--37ff4d6b-fce9-5d85-8076-f7eec7be9670",
-      "target": "NETWORKS--c89bb6d6-0007-5489-aa1f-11e47dcd8360",
-      "relation": "contains"
-    },
-    {
-      "source": "NETWORKS--c89bb6d6-0007-5489-aa1f-11e47dcd8360",
-      "target": "IP_ADDRESS--89103b5b-2454-5e7f-b06e-e734359d6b52",
-      "relation": "contains"
-    },
-    {
-      "source": "NETWORKS--c89bb6d6-0007-5489-aa1f-11e47dcd8360",
-      "target": "MAC_ADDRESS--ee072d70-adf3-5f57-b1f9-7ce1f61fe0c7",
-      "relation": "contains"
-    },
-    {
-      "source": "MAC_ADDRESS--ee072d70-adf3-5f57-b1f9-7ce1f61fe0c7",
+      "source": "MAC_ADDRESS--596c252b-f644-5e82-866d-fbf46651d733",
       "target": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
       "relation": "had"
     },
@@ -766,11 +661,11 @@
     },
     {
       "source": "NETWORKS--c8fd12d6-dbc4-532a-a77b-4b166fca1f6c",
-      "target": "MAC_ADDRESS--bf479b1c-f1f4-5375-a247-4034224abbe9",
+      "target": "MAC_ADDRESS--59bde4dc-9738-529c-b06a-e00566973f7f",
       "relation": "contains"
     },
     {
-      "source": "MAC_ADDRESS--bf479b1c-f1f4-5375-a247-4034224abbe9",
+      "source": "MAC_ADDRESS--59bde4dc-9738-529c-b06a-e00566973f7f",
       "target": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
       "relation": "had"
     },
@@ -791,11 +686,11 @@
     },
     {
       "source": "NETWORKS--e8a286fc-99e9-5efe-8dce-949116b0a2db",
-      "target": "MAC_ADDRESS--ac63edf9-7c1b-5522-ae04-77c77fccfac4",
+      "target": "MAC_ADDRESS--609a67ca-64d0-5f1d-a811-55203babff5a",
       "relation": "contains"
     },
     {
-      "source": "MAC_ADDRESS--ac63edf9-7c1b-5522-ae04-77c77fccfac4",
+      "source": "MAC_ADDRESS--609a67ca-64d0-5f1d-a811-55203babff5a",
       "target": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
       "relation": "had"
     },
@@ -816,11 +711,11 @@
     },
     {
       "source": "NETWORKS--0d1535f9-fb26-5355-a04c-5bc7e9ad38af",
-      "target": "MAC_ADDRESS--ac63edf9-7c1b-5522-ae04-77c77fccfac4",
+      "target": "MAC_ADDRESS--3febfcf1-727d-5bee-9494-73e6261cc5e9",
       "relation": "contains"
     },
     {
-      "source": "MAC_ADDRESS--ac63edf9-7c1b-5522-ae04-77c77fccfac4",
+      "source": "MAC_ADDRESS--3febfcf1-727d-5bee-9494-73e6261cc5e9",
       "target": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
       "relation": "had"
     },
@@ -841,36 +736,11 @@
     },
     {
       "source": "NETWORKS--08394291-5941-5fce-a041-3f64bf4b0f05",
-      "target": "MAC_ADDRESS--fab62ac3-e4dc-5017-82b2-15e39651a22b",
+      "target": "MAC_ADDRESS--80ab50a8-6703-5065-8b3a-6a652c67f0b5",
       "relation": "contains"
     },
     {
-      "source": "MAC_ADDRESS--fab62ac3-e4dc-5017-82b2-15e39651a22b",
-      "target": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
-      "relation": "had"
-    },
-    {
-      "source": "SCAN_RECORD--d0030e0f-7622-581d-9195-3ebe2351dca0",
-      "target": "SYSTEM--c2980088-8744-5fff-8377-6d83785307de",
-      "relation": "contains"
-    },
-    {
-      "source": "SYSTEM--c2980088-8744-5fff-8377-6d83785307de",
-      "target": "NETWORKS--39582135-e8a0-5461-89b7-65cf8d6d221a",
-      "relation": "contains"
-    },
-    {
-      "source": "NETWORKS--39582135-e8a0-5461-89b7-65cf8d6d221a",
-      "target": "IP_ADDRESS--b351fe8a-65f9-532f-bc2f-955c1284b4ba",
-      "relation": "contains"
-    },
-    {
-      "source": "NETWORKS--39582135-e8a0-5461-89b7-65cf8d6d221a",
-      "target": "MAC_ADDRESS--35814d68-8f29-5100-a198-2a7660cfdd91",
-      "relation": "contains"
-    },
-    {
-      "source": "MAC_ADDRESS--35814d68-8f29-5100-a198-2a7660cfdd91",
+      "source": "MAC_ADDRESS--80ab50a8-6703-5065-8b3a-6a652c67f0b5",
       "target": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
       "relation": "had"
     },
@@ -891,11 +761,11 @@
     },
     {
       "source": "NETWORKS--b94027d9-f852-55b2-9a89-1d97780036fe",
-      "target": "MAC_ADDRESS--666d35a4-d69a-511b-9c05-ff7c3dbef64e",
+      "target": "MAC_ADDRESS--a3846de8-bb39-5fee-8884-9743a9f7fe3f",
       "relation": "contains"
     },
     {
-      "source": "MAC_ADDRESS--666d35a4-d69a-511b-9c05-ff7c3dbef64e",
+      "source": "MAC_ADDRESS--a3846de8-bb39-5fee-8884-9743a9f7fe3f",
       "target": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
       "relation": "had"
     },
@@ -941,11 +811,11 @@
     },
     {
       "source": "NETWORKS--2351c8b4-92ba-5156-9b10-cfeb8fc35fd3",
-      "target": "MAC_ADDRESS--8751ac39-b71a-571b-b95e-369101852e79",
+      "target": "MAC_ADDRESS--e95df1f0-ee39-51dc-8647-ebc77f076d6c",
       "relation": "contains"
     },
     {
-      "source": "MAC_ADDRESS--8751ac39-b71a-571b-b95e-369101852e79",
+      "source": "MAC_ADDRESS--e95df1f0-ee39-51dc-8647-ebc77f076d6c",
       "target": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
       "relation": "had"
     },
@@ -966,11 +836,11 @@
     },
     {
       "source": "NETWORKS--09b744a8-1a6f-51e0-927c-ccec369e161c",
-      "target": "MAC_ADDRESS--311da5f9-d3f8-5b53-be44-b2044342fd06",
+      "target": "MAC_ADDRESS--52ee9885-6501-531a-a502-4f8c298cd512",
       "relation": "contains"
     },
     {
-      "source": "MAC_ADDRESS--311da5f9-d3f8-5b53-be44-b2044342fd06",
+      "source": "MAC_ADDRESS--52ee9885-6501-531a-a502-4f8c298cd512",
       "target": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
       "relation": "had"
     },
@@ -1016,11 +886,11 @@
     },
     {
       "source": "NETWORKS--61bf4bf2-dba4-542b-8619-325e2060cdb7",
-      "target": "MAC_ADDRESS--a7112de8-be93-5cbc-8aa6-5766a8440dde",
+      "target": "MAC_ADDRESS--2a2fc58a-fb47-50ff-a3c3-1446ecc615eb",
       "relation": "contains"
     },
     {
-      "source": "MAC_ADDRESS--a7112de8-be93-5cbc-8aa6-5766a8440dde",
+      "source": "MAC_ADDRESS--2a2fc58a-fb47-50ff-a3c3-1446ecc615eb",
       "target": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
       "relation": "had"
     }
