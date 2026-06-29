@@ -38,6 +38,7 @@ First read the appropriate skillset documentation, then use the tool to explore 
 - Capture errors and empty/clean-miss behavior as first-class scenarios with text and structured representations.
 - No matter what format is output, you must ensure the input command and all options used to produce the output, and the timestamp of the scan are captured if it is not in the output.
 - **Never truncate examination output.** Do not pipe through `head`, `tail`, or similar limits in harvest manifest commands. Use `timeout` for bounded runs only; capture full stdout/stderr.
+- **Text-only CLI isolation:** Before each examination command for a text-only CLI app, clear the screen (`cls` on Windows, `clear` on Unix/WSL). Capture only that command's output — never concatenate multiple scans or scenarios into one text artifact. The structured JSON derived from the text must match the text capture exactly (`scan_tries`, `empty_scans`, `discovered`, and the first results table where applicable).
 - Structured artifacts for text-only tools must include scan metadata: command, timestamp, attempt counts (`scan_tries`), and parsed result tables/objects. Validate these fields before marking an examination complete.
 
 ## Scenario Coverage

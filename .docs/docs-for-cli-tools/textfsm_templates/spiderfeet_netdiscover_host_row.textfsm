@@ -9,6 +9,7 @@ Start
   ^\s*$$
   ^Currently scanning: -> Next
   ^-- Active scan completed -> Next
+  ^-- Passive capture ended -> Next
   ^-- Ending netdiscover -> Next
   ^ERROR: -> Next
   ^.* -> Next

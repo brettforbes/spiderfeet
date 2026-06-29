@@ -1,6 +1,0 @@
-# SpiderFeet CLI examination capture
-# command: timeout 12 netdiscover -p -i eth1 2>&1
-# scenario: C — passive ARP snippet (bounded)
-# captured_at: 2026-06-29T09:27:52.533269+00:00
-
-pcap_open_live(): eth1: No such device exists (SIOCGIFHWADDR: No such device)

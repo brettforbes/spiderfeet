@@ -31,6 +31,7 @@ description: Explore, formally examine, and profile CLI OSINT tools for SpiderFe
 3. If tool supports both structured + text simultaneously → capture both in one run.
 4. If only one format at a time → run twice (structured run + text run).
 5. Text-only tools → TextFSM to structured before graph derivation.
+6. **Text-only isolation:** run `cls` / `Clear-Host` / `clear` before each examination command; one scenario → one capture; structured JSON must match the text (`scan_tries` = TUI frames or single parsable dump; `empty_scans` = frames with no host table rows).
 
 ## Targets
 

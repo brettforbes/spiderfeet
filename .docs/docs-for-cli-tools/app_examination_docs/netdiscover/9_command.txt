@@ -1,1 +1,0 @@
-timeout 12 netdiscover -p -i eth1 2>&1

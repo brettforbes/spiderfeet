@@ -1,5 +1,5 @@
 tool: netdiscover
-version: 6
+version: 7
 default_runtime: windows-lan
 default_timeout: 180
 binary_probe: powershell -NoProfile -Command "if (Test-Path '.seed/scripts/cli_corpus/run_netdiscover_lan.ps1') { 'ok' }"

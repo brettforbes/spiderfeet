@@ -19,13 +19,14 @@ from typing import Any
 
 import yaml
 
-from netdiscover_structured import (
+from netdiscover_text_to_json import (
     assert_no_truncation,
-    build_netdiscover_scan,
-    dumps_structured,
-    output_mode_for_command,
+    convert_text_to_netdiscover_scan,
+    dumps_netdiscover_scan,
+    output_mode_for_scenario,
     text_capture_header,
-    validate_structured,
+    validate_netdiscover_scan,
+    verify_text_structured_alignment,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -88,6 +89,19 @@ def _bash_env_prefix(env: dict[str, str]) -> str:
         return ""
     parts = [f'export {k}="{v.replace(chr(34), chr(92)+chr(34))}"' for k, v in env.items()]
     return " && ".join(parts) + " && "
+
+
+def isolate_text_capture_command(command: str, runtime: str, tool: str) -> str:
+    """Clear the terminal before text-only CLI captures so output is never mixed."""
+    if tool != "netdiscover":
+        return command
+    if runtime == "windows-lan":
+        return f"Clear-Host; {command}"
+    if runtime in ("wsl", "wsl-root"):
+        return f"clear; {command}"
+    if sys.platform == "win32":
+        return f"cls; {command}"
+    return f"clear; {command}"
 
 
 def run_command(
@@ -171,21 +185,28 @@ def _netdiscover_structured_payload(
     captured_at: datetime,
     raw_text: str,
 ) -> dict[str, Any]:
-    mode = output_mode_for_command(result.command, scenario)
+    mode = output_mode_for_scenario(scenario, result.command)
     start_time = captured_at - timedelta(seconds=result.duration_s)
-    doc = build_netdiscover_scan(
-        command=result.command,
+    doc = convert_text_to_netdiscover_scan(
+        raw_text,
         scenario_name=scenario.get("name", scenario["id"]),
-        target=str(scenario.get("target", "")),
-        raw_text=raw_text,
         output_mode=mode,
         start_time=start_time,
         duration_s=result.duration_s,
         exit_code=result.exit_code,
     )
-    errors = validate_structured(doc)
+    errors = validate_netdiscover_scan(doc)
     if errors:
         raise SystemExit(f"netdiscover structured validation failed for {scenario['id']}: {errors}")
+    alignment = verify_text_structured_alignment(
+        raw_text,
+        doc,
+        output_mode=mode,
+    )
+    if alignment:
+        raise SystemExit(
+            f"netdiscover structured/text mismatch for {scenario['id']}: {alignment}"
+        )
     return doc
 
 
@@ -213,11 +234,16 @@ def write_bundle(
     if tool == "netdiscover" and structured_ext:
         doc = _netdiscover_structured_payload(scenario, result, captured_at, text_content)
         structured_path = tool_dir / f"{prefix}_output_structured.json"
-        structured_path.write_text(dumps_structured(doc), encoding="utf-8")
+        structured_path.write_text(dumps_netdiscover_scan(doc), encoding="utf-8")
         result.structured_path = str(structured_path.relative_to(REPO_ROOT))
         result.structured_kind = structured_kind or "json"
         structured_kind = result.structured_kind
         structured_ext = "json"
+        from netdiscover_json_to_graph import write_graph_file
+
+        graph_path = NUGGET_ROOT / f"netdiscover_{scenario['id']}_proposed_nuggets_edges.json"
+        graph_path.parent.mkdir(parents=True, exist_ok=True)
+        write_graph_file(structured_path, graph_path)
     elif structured_ext:
         structured_path = tool_dir / f"{prefix}_output_structured.{structured_ext}"
         out_file = scenario.get("structured_output_file")
@@ -301,7 +327,9 @@ def run_scenario(tool: str, scenario_id: str, dry_run: bool = False) -> None:
 
     print(f"[harvest] {tool}/{scenario_id} ({runtime}) …")
     captured_at = datetime.now(timezone.utc)
-    result = run_command(command, runtime, cwd_path, timeout, env=env)
+    isolated_command = isolate_text_capture_command(command, runtime, tool)
+    result = run_command(isolated_command, runtime, cwd_path, timeout, env=env)
+    result.command = command
     # Post-run structured file pickup (e.g. CMSeeK cms.json)
     src = scenario.get("structured_source_path")
     if src:

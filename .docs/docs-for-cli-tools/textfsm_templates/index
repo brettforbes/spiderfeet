@@ -1,0 +1,3 @@
+Template, Platform, Command
+spiderfeet_netdiscover_host_row.textfsm, spiderfeet_netdiscover, netdiscover -P
+spiderfeet_netdiscover_host_row.textfsm, spiderfeet_netdiscover, netdiscover interactive

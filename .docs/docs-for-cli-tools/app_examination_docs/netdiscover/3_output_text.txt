@@ -1,5 +1,8 @@
- 192.168.1.1     14:5f:94:d8:7a:5f      1      42  HUAWEI TECHNOLOGIES CO.,LTD
- 192.168.1.16    88:f4:da:1a:b7:65      1      42  Unknown vendor
- 192.168.1.2     a8:51:ab:23:c6:49      1      42  Apple, Inc.
+# SpiderFeet CLI examination capture
+# command: & '.seed/scripts/cli_corpus/run_netdiscover_lan.ps1' -Mode fast -Range '192.168.1.0/24'
+# scenario: B — fast mode gateway probe 192.168.1.0/24 (parseable)
+# captured_at: 2026-06-29T11:27:55.149329+00:00
 
--- Active scan completed, 3 Hosts found.
+ 192.168.1.1     14:5f:94:d8:7a:5f     1    42  Unknown
+
+-- Active scan completed, 1 Hosts found.

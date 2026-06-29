@@ -1,8 +1,0 @@
-# SpiderFeet CLI examination capture
-# command: & '.seed/scripts/cli_corpus/run_netdiscover_lan.ps1' -Mode fast -Range '192.168.1.0/24'
-# scenario: B — fast mode gateway probe 192.168.1.0/24 (parseable)
-# captured_at: 2026-06-29T09:30:46.192553+00:00
-
- 192.168.1.1     14:5f:94:d8:7a:5f     1    42  Unknown
-
--- Active scan completed, 1 Hosts found.
