@@ -12,15 +12,27 @@ import os
 import subprocess
 import sys
 import time
-from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
 import yaml
 
+from netdiscover_structured import (
+    assert_no_truncation,
+    build_netdiscover_scan,
+    dumps_structured,
+    output_mode_for_command,
+    text_capture_header,
+    validate_structured,
+)
+
 REPO_ROOT = Path(__file__).resolve().parents[3]
-MANIFESTS_DIR = Path(__file__).resolve().parent / "manifests"
+CORPUS_DIR = Path(__file__).resolve().parent
+if str(CORPUS_DIR) not in sys.path:
+    sys.path.insert(0, str(CORPUS_DIR))
+MANIFESTS_DIR = CORPUS_DIR / "manifests"
 EXAM_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "app_examination_docs"
 NUGGET_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "nugget_structure"
 
@@ -99,6 +111,18 @@ def run_command(
         use_shell = False
         run_cwd = None
         proc_env = None
+    elif runtime == "windows-lan":
+        shell_cmd = [
+            "powershell",
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-Command",
+            command,
+        ]
+        use_shell = False
+        run_cwd = str(cwd) if cwd else str(REPO_ROOT)
+        proc_env = {**os.environ, **env} if env else None
     else:
         shell_cmd = command if sys.platform == "win32" else command
         use_shell = sys.platform == "win32"
@@ -141,23 +165,61 @@ def next_exam_id(tool_dir: Path) -> int:
     return max(existing, default=0) + 1
 
 
+def _netdiscover_structured_payload(
+    scenario: dict[str, Any],
+    result: RunResult,
+    captured_at: datetime,
+    raw_text: str,
+) -> dict[str, Any]:
+    mode = output_mode_for_command(result.command, scenario)
+    start_time = captured_at - timedelta(seconds=result.duration_s)
+    doc = build_netdiscover_scan(
+        command=result.command,
+        scenario_name=scenario.get("name", scenario["id"]),
+        target=str(scenario.get("target", "")),
+        raw_text=raw_text,
+        output_mode=mode,
+        start_time=start_time,
+        duration_s=result.duration_s,
+        exit_code=result.exit_code,
+    )
+    errors = validate_structured(doc)
+    if errors:
+        raise SystemExit(f"netdiscover structured validation failed for {scenario['id']}: {errors}")
+    return doc
+
+
 def write_bundle(
     tool: str,
     scenario: dict[str, Any],
     result: RunResult,
     manifest_meta: dict[str, Any],
+    captured_at: datetime | None = None,
 ) -> Path:
     tool_dir = EXAM_ROOT / tool
     tool_dir.mkdir(parents=True, exist_ok=True)
     exam_id = next_exam_id(tool_dir)
     prefix = f"{exam_id}"
+    captured_at = captured_at or datetime.now(timezone.utc)
 
     structured_kind = scenario.get("structured_kind")
     structured_ext = scenario.get("structured_ext")
     structured_path: Path | None = None
-    if structured_ext:
+
+    text_content = result.stderr if scenario.get("text_from") == "stderr" else result.stdout
+    if scenario.get("text_output_file") and Path(scenario["text_output_file"]).is_file():
+        text_content = Path(scenario["text_output_file"]).read_text(encoding="utf-8", errors="replace")
+
+    if tool == "netdiscover" and structured_ext:
+        doc = _netdiscover_structured_payload(scenario, result, captured_at, text_content)
+        structured_path = tool_dir / f"{prefix}_output_structured.json"
+        structured_path.write_text(dumps_structured(doc), encoding="utf-8")
+        result.structured_path = str(structured_path.relative_to(REPO_ROOT))
+        result.structured_kind = structured_kind or "json"
+        structured_kind = result.structured_kind
+        structured_ext = "json"
+    elif structured_ext:
         structured_path = tool_dir / f"{prefix}_output_structured.{structured_ext}"
-        # Structured output may be in stdout or a file path from scenario
         out_file = scenario.get("structured_output_file")
         if out_file and Path(out_file).is_file():
             structured_path.write_text(Path(out_file).read_text(encoding="utf-8", errors="replace"), encoding="utf-8")
@@ -169,10 +231,14 @@ def write_bundle(
             result.structured_kind = structured_kind
 
     text_path = tool_dir / f"{prefix}_output_text.txt"
-    text_content = result.stderr if scenario.get("text_from") == "stderr" else result.stdout
-    if scenario.get("text_output_file") and Path(scenario["text_output_file"]).is_file():
-        text_content = Path(scenario["text_output_file"]).read_text(encoding="utf-8", errors="replace")
-    text_path.write_text(text_content, encoding="utf-8")
+    header = ""
+    if tool == "netdiscover":
+        header = text_capture_header(
+            command=result.command,
+            scenario_name=scenario.get("name", scenario["id"]),
+            captured_at=captured_at,
+        )
+    text_path.write_text(header + text_content, encoding="utf-8")
 
     command_path = tool_dir / f"{prefix}_command.txt"
     command_path.write_text(result.command + "\n", encoding="utf-8")
@@ -186,7 +252,7 @@ def write_bundle(
         "runtime": result.runtime,
         "exit_code": result.exit_code,
         "duration_s": result.duration_s,
-        "captured_at": datetime.now(timezone.utc).isoformat(),
+        "captured_at": captured_at.isoformat(),
         "structured_kind": structured_kind,
         "structured_path": result.structured_path,
         "text_path": str(text_path.relative_to(REPO_ROOT)),
@@ -214,6 +280,8 @@ def run_scenario(tool: str, scenario_id: str, dry_run: bool = False) -> None:
     scenario = scenarios[scenario_id]
     runtime = scenario.get("runtime", manifest.get("default_runtime", "windows"))
     command = scenario["command"]
+    if tool == "netdiscover":
+        assert_no_truncation(command, scenario_id)
     timeout = int(scenario.get("timeout", manifest.get("default_timeout", 300)))
     cwd = scenario.get("cwd")
     cwd_path = Path(cwd) if cwd else None
@@ -232,6 +300,7 @@ def run_scenario(tool: str, scenario_id: str, dry_run: bool = False) -> None:
         return
 
     print(f"[harvest] {tool}/{scenario_id} ({runtime}) …")
+    captured_at = datetime.now(timezone.utc)
     result = run_command(command, runtime, cwd_path, timeout, env=env)
     # Post-run structured file pickup (e.g. CMSeeK cms.json)
     src = scenario.get("structured_source_path")
@@ -252,7 +321,7 @@ def run_scenario(tool: str, scenario_id: str, dry_run: bool = False) -> None:
                 scenario = {**scenario, "structured_output_file": str(tmp)}
         elif src_path.is_file():
             scenario = {**scenario, "structured_output_file": str(src_path.resolve())}
-    write_bundle(tool, scenario, result, manifest)
+    write_bundle(tool, scenario, result, manifest, captured_at=captured_at)
     print(f"[harvest] exit={result.exit_code} duration={result.duration_s}s")
 
 

@@ -1,3 +1,5 @@
- 172.18.0.1      00:15:5d:c1:a8:4a      1      42  Microsoft Corporation
+ 192.168.1.1     14:5f:94:d8:7a:5f      1      42  HUAWEI TECHNOLOGIES CO.,LTD
+ 192.168.1.16    88:f4:da:1a:b7:65      1      42  Unknown vendor
+ 192.168.1.2     a8:51:ab:23:c6:49      1      42  Apple, Inc.
 
--- Active scan completed, 1 Hosts found.
+-- Active scan completed, 3 Hosts found.

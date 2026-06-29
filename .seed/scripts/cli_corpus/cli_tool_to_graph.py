@@ -64,7 +64,38 @@ def parse_netdiscover_p(raw: str) -> List[Dict[str, str]]:
 
 
 def netdiscover_to_graph(raw: str, target: str, command: str) -> Dict[str, Any]:
-    scan = _node("SCAN_RECORD", "ENTITY", command, "Scan Record")
+    """Build nugget graph from netdiscover_scan JSON or legacy -P text."""
+    if raw.lstrip().startswith("{"):
+        doc = json.loads(raw)
+        scan_data = doc.get("netdiscover_scan", {})
+        command = scan_data.get("command") or command
+        target = scan_data.get("target") or target
+        scenario_label = scan_data.get("args", command)
+        start_time = scan_data.get("start_time", "")
+        systems = scan_data.get("systems", [])
+        runstats = scan_data.get("runstats", {}).get("systems", {})
+        scan_tries = runstats.get("scan_tries", 1)
+    else:
+        from netdiscover_structured import build_netdiscover_scan, dumps_structured
+        from datetime import datetime, timezone
+
+        doc = build_netdiscover_scan(
+            command=command,
+            scenario_name=command,
+            target=target,
+            raw_text=raw,
+            output_mode="parsable",
+            start_time=datetime.now(timezone.utc),
+            duration_s=0.0,
+            exit_code=0,
+        )
+        scan_data = doc["netdiscover_scan"]
+        scenario_label = scan_data.get("args", command)
+        start_time = scan_data.get("start_time", "")
+        systems = scan_data.get("systems", [])
+        scan_tries = scan_data.get("runstats", {}).get("systems", {}).get("scan_tries", 1)
+
+    scan = _node("SCAN_RECORD", "ENTITY", scenario_label, "Scan Record")
     scan_cli = _node("SCAN_CLI", "DESCRIPTOR", command, "Scan CLI")
     scan_target = _node("SCAN_TARGET", "DESCRIPTOR", target, "Scan Target")
     nodes = [scan, scan_cli, scan_target]
@@ -72,23 +103,32 @@ def netdiscover_to_graph(raw: str, target: str, command: str) -> Dict[str, Any]:
         _edge(scan["id"], scan_cli["id"], "had"),
         _edge(scan["id"], scan_target["id"], "had"),
     ]
-    for row in parse_netdiscover_p(raw):
-        ip = row["IP"]
-        mac = row["MAC"].lower()
-        vendor = row.get("VENDOR", "").strip()
-        host = _node("HOST", "ENTITY", ip, "Host")
+    if start_time:
+        ts = _node("SCAN_TIMESTAMP", "DESCRIPTOR", start_time, "Scan Start Time")
+        nodes.append(ts)
+        edges.append(_edge(scan["id"], ts["id"], "had"))
+    if scan_tries:
+        tries = _node("SCAN_TRIES", "DESCRIPTOR", str(scan_tries), "Scan Tries")
+        nodes.append(tries)
+        edges.append(_edge(scan["id"], tries["id"], "had"))
+
+    for system in systems:
+        ip = system["ipv4"]
+        mac = system["mac"].lower()
+        vendor = system.get("mac_vendor", "").strip()
+        system_n = _node("SYSTEM", "ENTITY", ip, "System")
         ip_n = _node("IP_ADDRESS", "ENTITY", ip, "IP Address")
         mac_n = _node("MAC_ADDRESS", "ENTITY", mac, "MAC Address")
-        nodes.extend([host, ip_n, mac_n])
+        nodes.extend([system_n, ip_n, mac_n])
         edges.extend(
             [
-                _edge(scan["id"], host["id"], "contains"),
-                _edge(host["id"], ip_n["id"], "contains"),
-                _edge(host["id"], mac_n["id"], "had"),
+                _edge(scan["id"], system_n["id"], "contains"),
+                _edge(system_n["id"], ip_n["id"], "contains"),
+                _edge(system_n["id"], mac_n["id"], "had"),
             ]
         )
-        if vendor and vendor.lower() != "unknown vendor":
-            vend = _node("RAW_RIR_DATA", "DESCRIPTOR", vendor, "Vendor")
+        if vendor:
+            vend = _node("MAC_VENDOR", "DESCRIPTOR", vendor, "MAC Vendor")
             nodes.append(vend)
             edges.append(_edge(mac_n["id"], vend["id"], "had"))
     return {"nodes": nodes, "edges": edges}
@@ -172,9 +212,9 @@ def pius_to_graph(raw: str, org: str, command: str) -> Dict[str, Any]:
     return {"nodes": nodes, "edges": edges}
 
 
-def latest_exam_for_scenario(tool: str, scenario_key: str) -> Optional[Tuple[int, Path, Path]]:
+def latest_exam_for_scenario(tool: str, scenario_key: str) -> Optional[Tuple[int, Path, Path, Dict[str, Any]]]:
     tool_dir = EXAM_ROOT / tool
-    best: Optional[Tuple[int, Path, Path, Path]] = None
+    best: Optional[Tuple[int, Path, Path, Dict[str, Any]]] = None
     for manifest_path in tool_dir.glob("*_manifest.json"):
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         sid = manifest.get("scenario_id", "")
@@ -191,28 +231,39 @@ def latest_exam_for_scenario(tool: str, scenario_key: str) -> Optional[Tuple[int
                 break
     if not best:
         return None
-    return best[0], best[1], best[2]
+    return best[0], best[1], best[2], best[3]
 
 
 def generate_tool_graphs(tool: str, scenario_keys: List[str]) -> None:
     generators = {
-        "netdiscover": ("local_subnet_active_parsable", netdiscover_to_graph),
-        "nerva": ("tcp_scanme_http_json", nerva_to_graph),
-        "pius": ("passive_bbc_corporate_ndjson", pius_to_graph),
+        "netdiscover": netdiscover_to_graph,
+        "nerva": nerva_to_graph,
+        "pius": pius_to_graph,
+    }
+    default_keys = {
+        "netdiscover": [
+            "local_subnet_active_parsable",
+            "local_subnet_active_text",
+            "local_subnet_fast_parsable",
+            "passive_snippet_text",
+            "sparse_subnet_parsable",
+        ],
+        "nerva": ["tcp_scanme_http_json"],
+        "pius": ["passive_bbc_corporate_ndjson"],
     }
     if tool not in generators:
         raise SystemExit(f"Unsupported tool: {tool}")
-    default_key, fn = generators[tool]
-    keys = scenario_keys or [default_key]
+    fn = generators[tool]
+    keys = scenario_keys or default_keys[tool]
     for key in keys:
         found = latest_exam_for_scenario(tool, key)
         if not found:
             print(f"skip {key}: no structured output", file=sys.stderr)
             continue
-        _exam_id, struct_path, cmd_path = found
+        _exam_id, struct_path, cmd_path, manifest = found
         raw = struct_path.read_text(encoding="utf-8", errors="replace")
         command = cmd_path.read_text(encoding="utf-8").strip() if cmd_path.is_file() else key
-        target = key
+        target = manifest.get("target") or key
         if tool == "pius":
             graph = fn(raw, "British Broadcasting Corporation", command)
         else:
