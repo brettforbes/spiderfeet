@@ -36,6 +36,34 @@ All discovered top-level entities link to the scan with `contains` from scan →
 - Host `listens on` Port when PortState is `open`, even when Service is the direct listener.
 - Traces link hosts via IP containment, not raw IP strings alone.
 
+## Do not
+
+- Brute-force every flag permutation
+- Skip corporate-target scenarios
+- Promote nugget types without evidence bundle
+- Run Aircrack-ng until hardware available
+- Start formal examination without a completed semantic outcome matrix
+- Hard-code `nugget_type` or colours when catalogue entries exist
+- Emit duplicate nodes for the same `(nugget_id, nugget_data)`
+- Truncate examination output or omit errors from structured artifacts
+
+## Nugget catalogue (mandatory)
+
+Load both files in every graph builder:
+
+| File | Role |
+|------|------|
+| `.docs/analysis/nuggets.json` | Canonical archetypes (read-only for tool work) |
+| `.docs/analysis/nuggets_extension.json` | New tool-specific archetypes |
+
+```python
+from graph_builder import load_nugget_templates, nugget_node, GraphBuilder, validate_graph
+```
+
+- Resolve `nugget_type`, `nugget_description`, `nugget_colour` from templates.
+- New types: add to `nuggets_extension.json` + TypeQL; leave `nugget_icon` empty until icons exist.
+- Prefer existing `nugget_id` mappings; justify any unmapped source field in the structure doc.
+
 ## Node identity
 
 ```python
@@ -67,7 +95,8 @@ Graph builders must:
 
 ## Proposal artifacts
 
-- Markdown: `nugget_structure/<tool>_nugget_graph_structure.md` (mermaid + narrative)
-- JSON draft: `nugget_structure/<tool>_<exam_id>_proposed_nuggets_edges.json`
+- Tool structure: `nugget_structure/<tool>_nugget_graph_structure.md` (mermaid + field mapping; Profiling **Structure** button)
+- Per scenario JSON: `nugget_structure/<tool>_<scenario>_proposed_nuggets_edges.json`
+- Per scenario narrative: `nugget_structure/<tool>_<scenario>_proposed_nuggets_edges_description.md` (§4.3 in `.seed/05_Onotology_for_Nuggets.md`)
 
 Operator approves before ontology promotion.

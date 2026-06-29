@@ -14,15 +14,31 @@ description: Explore, formally examine, and profile CLI OSINT tools for SpiderFe
 
 ## Phases (per tool)
 
-1. **Exploration** — map semantic output types; no evidence files yet (1h+ allowed).
-2. **Formal examination plan** — named scenarios, targets, expected data types.
+1. **Exploration** — map semantic output types; build a **semantic outcome matrix** (mandatory); no evidence files yet (1h+ allowed).
+2. **Formal examination plan** — named scenarios, targets, expected data types; every matrix row mapped to a scenario or documented limitation.
 3. **Strategy skill** — `.strategy/<tool>_strategy.skill` (complements `.cursor/skills/<tool>/`).
 4. **CLI help capture** — `.docs/docs-for-cli-tools/cli_help_text/<tool>_cli_help_text.md`.
 5. **Formal examination** — run `harvest.py`; outputs under `app_examination_docs/<tool>/`.
-6. **Nugget proposal** — `nugget_structure/<tool>_nugget_graph_structure.md` + JSON draft.
-7. **Operator review** — `*_review.status.json` → `approved` | `rejected`.
+6. **Nugget proposal** — `nugget_structure/<tool>_nugget_graph_structure.md` + per-scenario `*_proposed_nuggets_edges.json` + `*_description.md` narratives.
+7. **Operator review** — `*_review.status.json` → `approved` | `rejected`; `corpus_index.json` → `complete` on sign-off.
 
 **Excluded:** Aircrack-ng (hardware pending).
+
+## Ontology catalogue (all converters and graph builders)
+
+- Load **both** `.docs/analysis/nuggets.json` and `.docs/analysis/nuggets_extension.json` via `graph_builder.load_nugget_templates()`.
+- New archetypes go in `nuggets_extension.json` only; match TypeQL when promoting.
+- Resolve `nugget_type` / colour / description from catalogue — do not guess (e.g. `NETWORKS` → `CATEGORY`).
+- Instance ids: `uuid5(ONTOLOGY_NAMESPACE, nugget_data)`; one node per `(nugget_id, nugget_data)`.
+
+## Exploration discipline (weakness remediated)
+
+Default commands and single targets are **insufficient**. Before formal runs:
+
+1. List every semantic outcome class the tool can produce (rich, sparse, empty scan, passive vs active, text vs structured, error, clean miss, invalid input).
+2. Tune targets and flags until each class is demonstrated or proven impossible.
+3. Search the web for practitioner example commands when local trials under-deliver.
+4. Do not run `harvest.py` until the outcome matrix is complete on paper.
 
 ## Output rules (fixed)
 
@@ -32,6 +48,8 @@ description: Explore, formally examine, and profile CLI OSINT tools for SpiderFe
 4. If only one format at a time → run twice (structured run + text run).
 5. Text-only tools → TextFSM to structured before graph derivation.
 6. **Text-only isolation:** run `cls` / `Clear-Host` / `clear` before each examination command; one scenario → one capture; structured JSON must match the text (`scan_tries` = TUI frames or single parsable dump; `empty_scans` = frames with no host table rows).
+7. **Never truncate** stdout/stderr in capture commands; include `exit_status` and stderr in structured artifacts when present.
+8. **Errors are scenarios:** auth, dependency, invalid target, and network failures get full text + structured captures, not log-only notes.
 
 ## Targets
 
@@ -86,14 +104,17 @@ Every examination produces a **scan head** node plus discovered entities linked 
 - `has` — entity → attribute
 - `contains` — entity → entity (transitive modelling allowed)
 - `listens on` — service → port
+- `had` — entity → descriptor (e.g. MAC → vendor)
 
-Emit `nodes[]` and `edges[]`; scan owns discoveries via `contains`. See [v2-graph-rules.md](references/v2-graph-rules.md).
+Emit `nodes[]` and `edges[]`; scan owns discoveries via `contains`. Use `graph_builder.py` for catalogue lookup, uuid5 ids, deduplication, and `validate_graph()`. See [v2-graph-rules.md](references/v2-graph-rules.md).
 
 ## Tool order
 
 **Nmap pilot:** complete (2026-06-26) — see `.docs/docs-for-cli-tools/nmap_pilot_signoff.md`.
 
-Next: **netdiscover** (priority 2 in `corpus_index.json`). Do not skip exploration before formal examination.
+**Netdiscover:** complete (2026-06-29) — five windows-lan scenarios; reference implementation for text-only + `graph_builder` pattern.
+
+Next tools: follow `corpus_index.json` priority after exploration gate passes.
 
 ## References
 
