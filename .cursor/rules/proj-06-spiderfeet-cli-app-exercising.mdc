@@ -16,11 +16,20 @@ The goal is not to run a few successful commands. The goal is to capture the ful
 First read the appropriate skillset documentation, then use the tool to explore the output.
 
 - Exploration is required before formal examination. Spend enough time to understand how the tool exposes different information classes; do not assume default options are representative.
+- **Semantic outcome matrix (mandatory gate):** Before any formal examination, draft a table of every distinct output shape the tool can emit (rich host rows, sparse/empty scans, passive vs active modes, parseable vs TUI text, auth failures, invalid targets, rate limits, dependency errors, clean misses). Do not start `harvest.py` until each row has a planned scenario id, target, and command family. If a row cannot be demonstrated after tuning inputs, record it as a proven limitation with evidence — not as a silent gap.
 - Explore by semantic output variation, and by every flag permutation, as well as the different input types and formats. Add a scenario whenever options, target class, mode, template/module, protocol, privilege, or failure condition changes the shape of returned data.
 - Use permissive targets to maximize rich output and protected/corporate targets to capture filtered, sparse, blocked, or error output.
-- If a run returns too little information, treat the input or option choice as suspect until richer alternatives have been tried or the limitation is proven.
-- Search the web for information of example inputs used by the tool to generate good reports.
+- If a run returns too little information, treat the input or option choice as suspect until richer alternatives have been tried or the limitation is proven. **Change targets, subnets, modes, and flags until the outcome class is demonstrated** — one default command is never sufficient evidence.
+- Search the web for example commands, targets, and report samples used by practitioners when help text and local trials are insufficient.
 - Keep tuning the inputs until you have a collection of input scenarios that cover every conceivable semantic variation of output. Do not be afraid to use the tool's help text to guide your exploration.
+
+## Ontology and nugget catalogue (mandatory)
+
+- **Canonical catalogue:** Load the full archetype tables from `.docs/analysis/nuggets.json` and `.docs/analysis/nuggets_extension.json` in every graph builder and converter. Resolve `nugget_type`, `nugget_description`, `nugget_colour`, and `nugget_icon` from these files — never hard-code colours or ENTITY/DESCRIPTOR/CATEGORY guesses when a catalogue entry exists.
+- **New nugget types:** Add definitions only to `.docs/analysis/nuggets_extension.json` (plus matching TypeQL in `.seed/spiderfeet_map.tql` when promoting). Do not patch `nuggets.json` for tool-specific additions.
+- **Reuse before invent:** Map tool fields to existing `nugget_id` values first (e.g. `MAC_VENDOR`, not `RAW_RIR_DATA` for vendor strings). Document any intentionally unmapped field in the graph structure doc.
+- **Instance identity:** `nugget_instance_id = f"{nugget_id}--{uuid5(ONTOLOGY_NAMESPACE, nugget_data)}"` using the shared seed in `graph_builder.py`. Exactly one node per `(nugget_id, nugget_data)`; shared values link via edges (`had`, `contains`, etc.).
+- **Categories:** Respect meta-concept rules in `.seed/05_Onotology_for_Nuggets.md` (e.g. `NETWORKS` is `CATEGORY`, not `ENTITY`).
 
 ## Formal Examination
 
@@ -36,6 +45,7 @@ First read the appropriate skillset documentation, then use the tool to explore 
 - If the tool can emit only one format per run, execute paired runs for the same scenario: native text and best structured format.
 - If the tool is text-only, then all text must be captured, do not truncate it. Then parse text into structured form with TextFSM Template parser.
 - Capture errors and empty/clean-miss behavior as first-class scenarios with text and structured representations.
+- **Errors in structured artifacts:** Include `exit_status`, stderr (when non-empty), and scan-level error fields in structured JSON/XML — not only in text. Error scenarios are incomplete if structured output omits the failure shape.
 - No matter what format is output, you must ensure the input command and all options used to produce the output, and the timestamp of the scan are captured if it is not in the output.
 - **Never truncate examination output.** Do not pipe through `head`, `tail`, or similar limits in harvest manifest commands. Use `timeout` for bounded runs only; capture full stdout/stderr.
 - **Text-only CLI isolation:** Before each examination command for a text-only CLI app, clear the screen (`cls` on Windows, `clear` on Unix/WSL). Capture only that command's output — never concatenate multiple scans or scenarios into one text artifact. The structured JSON derived from the text must match the text capture exactly (`scan_tries`, `empty_scans`, `discovered`, and the first results table where applicable).
@@ -52,8 +62,10 @@ First read the appropriate skillset documentation, then use the tool to explore 
 Review the foundation described here to convert the structured artifact to nugget graph JSON (nodes and edges arrays).
 
 - Derive the nugget graph from the structured artifact, even when the structured artifact was parsed from text. The nugget graph is the primary ontology input for the SpiderFeet tool.
+- Use shared `.seed/scripts/cli_corpus/graph_builder.py` (`load_nugget_templates`, `nugget_node`, `GraphBuilder`, `validate_graph`) for all new tool graph generators; align with `nmap_xml_to_graph.py` / `netdiscover_json_to_graph.py` patterns.
 - Keep raw text as review evidence and as a template source for derived text, not as the primary ontology input.
-- Create a markdown document to describe each graph JSON, including the nodes and edges arrays, and the derived nugget graph.
+- Create a tool-level markdown document: `nugget_structure/<tool>_nugget_graph_structure.md` (scenario table, field mapping, Mermaid patterns) for the Profiling **Structure** button.
+- Create a per-scenario narrative markdown: `nugget_structure/<tool>_<scenario>_proposed_nuggets_edges_description.md` per `.seed/05_Onotology_for_Nuggets.md` §4.3 (scan → hosts → trace → appendix).
 - Do not mark a tool's output model complete while any observed field, object type, error shape, or output mode is unmapped, intentionally ignored, or captured as a follow-up gap.
 
 ## Graph connectivity
@@ -66,4 +78,4 @@ Review the foundation described here to convert the structured artifact to nugge
 
 ## Handoff
 
-For each tool, leave a concise strategy describing how to produce rich, sparse, and error outputs; where the help text is captured; and which scenario set proves the output surface is covered.
+For each tool, leave a concise strategy describing how to produce rich, sparse, and error outputs; where the help text is captured; which scenario set proves the output surface is covered; and a completed semantic outcome matrix. On operator approval: set all `review_status` / `*_review.status.json` to `approved`, update `corpus_index.json` phase to `complete`, and add `<tool>_pilot_signoff.md` when pilot criteria are met.
