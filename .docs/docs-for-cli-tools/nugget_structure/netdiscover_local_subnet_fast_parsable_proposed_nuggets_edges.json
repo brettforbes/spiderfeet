@@ -1,182 +1,196 @@
 {
   "nodes": [
     {
-      "id": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "nugget_instance_id": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
+      "id": "SCAN_RECORD--7d9f2316-38a6-5aa4-9602-553879f3560a",
+      "nugget_instance_id": "SCAN_RECORD--7d9f2316-38a6-5aa4-9602-553879f3560a",
       "nugget_id": "SCAN_RECORD",
       "nugget_type": "ENTITY",
       "nugget_description": "Scan Record",
-      "nugget_data": "netdiscover \u2014 B \u2014 fast mode gateway probe 192.168.1.0/24 (parseable)"
+      "nugget_data": "netdiscover \u2014 B \u2014 fast mode gateway probe 192.168.1.0/24 (parseable)",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "SCAN_ARGS--ed5756d8-1863-5502-a73f-5a93abe28a6a",
-      "nugget_instance_id": "SCAN_ARGS--ed5756d8-1863-5502-a73f-5a93abe28a6a",
+      "id": "SCAN_ARGS--7d9f2316-38a6-5aa4-9602-553879f3560a",
+      "nugget_instance_id": "SCAN_ARGS--7d9f2316-38a6-5aa4-9602-553879f3560a",
       "nugget_id": "SCAN_ARGS",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Args",
-      "nugget_data": "netdiscover \u2014 B \u2014 fast mode gateway probe 192.168.1.0/24 (parseable)"
+      "nugget_data": "netdiscover \u2014 B \u2014 fast mode gateway probe 192.168.1.0/24 (parseable)",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_TIMESTAMP--851736a3-181a-5aca-9a74-7f4fa280aedb",
-      "nugget_instance_id": "SCAN_TIMESTAMP--851736a3-181a-5aca-9a74-7f4fa280aedb",
+      "id": "SCAN_TIMESTAMP--4e4a2256-778b-5a4f-9a86-5e3705d3906a",
+      "nugget_instance_id": "SCAN_TIMESTAMP--4e4a2256-778b-5a4f-9a86-5e3705d3906a",
       "nugget_id": "SCAN_TIMESTAMP",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Start Time",
-      "nugget_data": "Mon Jun 29 14:35:06 2026"
+      "nugget_data": "Mon Jun 29 14:35:06 2026",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_END_TIME--5454e478-342d-50ed-ab8e-372e31990aa5",
-      "nugget_instance_id": "SCAN_END_TIME--5454e478-342d-50ed-ab8e-372e31990aa5",
+      "id": "SCAN_END_TIME--3e92109c-5a54-5dc7-b37d-8e8b913ac372",
+      "nugget_instance_id": "SCAN_END_TIME--3e92109c-5a54-5dc7-b37d-8e8b913ac372",
       "nugget_id": "SCAN_END_TIME",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan End Time",
-      "nugget_data": "Mon Jun 29 14:35:10 2026"
+      "nugget_data": "Mon Jun 29 14:35:10 2026",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_SUMMARY--a8ea0a92-0cf8-51e9-8fd8-64c4c88c7c16",
-      "nugget_instance_id": "SCAN_SUMMARY--a8ea0a92-0cf8-51e9-8fd8-64c4c88c7c16",
+      "id": "SCAN_SUMMARY--c59b2214-a830-509d-aad7-35620a92b64f",
+      "nugget_instance_id": "SCAN_SUMMARY--c59b2214-a830-509d-aad7-35620a92b64f",
       "nugget_id": "SCAN_SUMMARY",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Summary",
-      "nugget_data": "NetDiscover done at Mon Jun 29 14:35:10 2026; 1 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 3.84 seconds"
+      "nugget_data": "NetDiscover done at Mon Jun 29 14:35:10 2026; 1 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 3.84 seconds",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_EXIT_STATUS--62e51eee-51d9-53ee-bd4e-80fcafe86841",
-      "nugget_instance_id": "SCAN_EXIT_STATUS--62e51eee-51d9-53ee-bd4e-80fcafe86841",
+      "id": "SCAN_EXIT_STATUS--6a00bddf-b6c7-5883-9709-3fbe5f992cce",
+      "nugget_instance_id": "SCAN_EXIT_STATUS--6a00bddf-b6c7-5883-9709-3fbe5f992cce",
       "nugget_id": "SCAN_EXIT_STATUS",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Exit Status",
-      "nugget_data": "success"
+      "nugget_data": "success",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_TRIES--5ff450ec-601a-5bb1-b04d-996d742ef6bd",
-      "nugget_instance_id": "SCAN_TRIES--5ff450ec-601a-5bb1-b04d-996d742ef6bd",
+      "id": "SCAN_TRIES--42c02c84-414b-580f-a978-6f633b2681eb",
+      "nugget_instance_id": "SCAN_TRIES--42c02c84-414b-580f-a978-6f633b2681eb",
       "nugget_id": "SCAN_TRIES",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Tries",
-      "nugget_data": "1"
+      "nugget_data": "1",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_EMPTY_SCANS--2d57e09c-4eb6-5c04-90d1-83bcf8510e37",
-      "nugget_instance_id": "SCAN_EMPTY_SCANS--2d57e09c-4eb6-5c04-90d1-83bcf8510e37",
+      "id": "SCAN_EMPTY_SCANS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_instance_id": "SCAN_EMPTY_SCANS--13669c97-c35a-5ccc-831e-f997fcff484c",
       "nugget_id": "SCAN_EMPTY_SCANS",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Empty Scans",
-      "nugget_data": "0"
+      "nugget_data": "0",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_DISCOVERED--ad201584-db7d-5b58-8092-387f4859efdf",
-      "nugget_instance_id": "SCAN_DISCOVERED--ad201584-db7d-5b58-8092-387f4859efdf",
+      "id": "SCAN_DISCOVERED--42c02c84-414b-580f-a978-6f633b2681eb",
+      "nugget_instance_id": "SCAN_DISCOVERED--42c02c84-414b-580f-a978-6f633b2681eb",
       "nugget_id": "SCAN_DISCOVERED",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Systems Discovered",
-      "nugget_data": "1"
+      "nugget_data": "1",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SYSTEM--b4bb2907-6ce2-50cd-955e-2fb1be2f2ff8",
-      "nugget_instance_id": "SYSTEM--b4bb2907-6ce2-50cd-955e-2fb1be2f2ff8",
+      "id": "SYSTEM--1f4a6c7e-e09f-5ea8-9ed8-267561f10e9e",
+      "nugget_instance_id": "SYSTEM--1f4a6c7e-e09f-5ea8-9ed8-267561f10e9e",
       "nugget_id": "SYSTEM",
       "nugget_type": "ENTITY",
       "nugget_description": "System",
-      "nugget_data": "192.168.1.1"
+      "nugget_data": "192.168.1.1",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "NETWORKS--d43adc09-6d2a-5c56-8026-70d1abb54f73",
-      "nugget_instance_id": "NETWORKS--d43adc09-6d2a-5c56-8026-70d1abb54f73",
+      "id": "NETWORKS--3a27c6b0-ee74-52c9-88e6-588dbf01c7d7",
+      "nugget_instance_id": "NETWORKS--3a27c6b0-ee74-52c9-88e6-588dbf01c7d7",
       "nugget_id": "NETWORKS",
-      "nugget_type": "ENTITY",
-      "nugget_description": "Networks",
-      "nugget_data": "networks:192.168.1.1"
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Networks Category",
+      "nugget_data": "networks:192.168.1.1",
+      "nugget_colour": "#14B8A6"
     },
     {
-      "id": "IP_ADDRESS--8043e9bf-fb73-5eea-925a-7178d452dfa1",
-      "nugget_instance_id": "IP_ADDRESS--8043e9bf-fb73-5eea-925a-7178d452dfa1",
+      "id": "IP_ADDRESS--1f4a6c7e-e09f-5ea8-9ed8-267561f10e9e",
+      "nugget_instance_id": "IP_ADDRESS--1f4a6c7e-e09f-5ea8-9ed8-267561f10e9e",
       "nugget_id": "IP_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "IP Address",
-      "nugget_data": "192.168.1.1"
+      "nugget_data": "192.168.1.1",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "MAC_ADDRESS--8d674c4a-26b2-5c40-be20-ae1a1eff4c76",
-      "nugget_instance_id": "MAC_ADDRESS--8d674c4a-26b2-5c40-be20-ae1a1eff4c76",
+      "id": "MAC_ADDRESS--d2e75a97-74e1-5414-8664-baa4a88a5728",
+      "nugget_instance_id": "MAC_ADDRESS--d2e75a97-74e1-5414-8664-baa4a88a5728",
       "nugget_id": "MAC_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "MAC Address",
-      "nugget_data": "14:5f:94:d8:7a:5f"
+      "nugget_data": "14:5f:94:d8:7a:5f",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
-      "nugget_instance_id": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
+      "id": "MAC_VENDOR--7ae88de3-44ff-5760-b1b3-9cf128f2fa18",
+      "nugget_instance_id": "MAC_VENDOR--7ae88de3-44ff-5760-b1b3-9cf128f2fa18",
       "nugget_id": "MAC_VENDOR",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "MAC Vendor",
-      "nugget_data": "Unknown"
+      "nugget_data": "Unknown",
+      "nugget_colour": "#F59E0B"
     }
   ],
   "edges": [
     {
-      "source": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "target": "SCAN_ARGS--ed5756d8-1863-5502-a73f-5a93abe28a6a",
+      "source": "SCAN_RECORD--7d9f2316-38a6-5aa4-9602-553879f3560a",
+      "target": "SCAN_ARGS--7d9f2316-38a6-5aa4-9602-553879f3560a",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "target": "SCAN_TIMESTAMP--851736a3-181a-5aca-9a74-7f4fa280aedb",
+      "source": "SCAN_RECORD--7d9f2316-38a6-5aa4-9602-553879f3560a",
+      "target": "SCAN_TIMESTAMP--4e4a2256-778b-5a4f-9a86-5e3705d3906a",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "target": "SCAN_END_TIME--5454e478-342d-50ed-ab8e-372e31990aa5",
+      "source": "SCAN_RECORD--7d9f2316-38a6-5aa4-9602-553879f3560a",
+      "target": "SCAN_END_TIME--3e92109c-5a54-5dc7-b37d-8e8b913ac372",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "target": "SCAN_SUMMARY--a8ea0a92-0cf8-51e9-8fd8-64c4c88c7c16",
+      "source": "SCAN_RECORD--7d9f2316-38a6-5aa4-9602-553879f3560a",
+      "target": "SCAN_SUMMARY--c59b2214-a830-509d-aad7-35620a92b64f",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "target": "SCAN_EXIT_STATUS--62e51eee-51d9-53ee-bd4e-80fcafe86841",
+      "source": "SCAN_RECORD--7d9f2316-38a6-5aa4-9602-553879f3560a",
+      "target": "SCAN_EXIT_STATUS--6a00bddf-b6c7-5883-9709-3fbe5f992cce",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "target": "SCAN_TRIES--5ff450ec-601a-5bb1-b04d-996d742ef6bd",
+      "source": "SCAN_RECORD--7d9f2316-38a6-5aa4-9602-553879f3560a",
+      "target": "SCAN_TRIES--42c02c84-414b-580f-a978-6f633b2681eb",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "target": "SCAN_EMPTY_SCANS--2d57e09c-4eb6-5c04-90d1-83bcf8510e37",
+      "source": "SCAN_RECORD--7d9f2316-38a6-5aa4-9602-553879f3560a",
+      "target": "SCAN_EMPTY_SCANS--13669c97-c35a-5ccc-831e-f997fcff484c",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "target": "SCAN_DISCOVERED--ad201584-db7d-5b58-8092-387f4859efdf",
+      "source": "SCAN_RECORD--7d9f2316-38a6-5aa4-9602-553879f3560a",
+      "target": "SCAN_DISCOVERED--42c02c84-414b-580f-a978-6f633b2681eb",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--35b9ea88-988a-5df9-a27a-26b5f2b1e049",
-      "target": "SYSTEM--b4bb2907-6ce2-50cd-955e-2fb1be2f2ff8",
+      "source": "SCAN_RECORD--7d9f2316-38a6-5aa4-9602-553879f3560a",
+      "target": "SYSTEM--1f4a6c7e-e09f-5ea8-9ed8-267561f10e9e",
       "relation": "contains"
     },
     {
-      "source": "SYSTEM--b4bb2907-6ce2-50cd-955e-2fb1be2f2ff8",
-      "target": "NETWORKS--d43adc09-6d2a-5c56-8026-70d1abb54f73",
+      "source": "SYSTEM--1f4a6c7e-e09f-5ea8-9ed8-267561f10e9e",
+      "target": "NETWORKS--3a27c6b0-ee74-52c9-88e6-588dbf01c7d7",
       "relation": "contains"
     },
     {
-      "source": "NETWORKS--d43adc09-6d2a-5c56-8026-70d1abb54f73",
-      "target": "IP_ADDRESS--8043e9bf-fb73-5eea-925a-7178d452dfa1",
+      "source": "NETWORKS--3a27c6b0-ee74-52c9-88e6-588dbf01c7d7",
+      "target": "IP_ADDRESS--1f4a6c7e-e09f-5ea8-9ed8-267561f10e9e",
       "relation": "contains"
     },
     {
-      "source": "NETWORKS--d43adc09-6d2a-5c56-8026-70d1abb54f73",
-      "target": "MAC_ADDRESS--8d674c4a-26b2-5c40-be20-ae1a1eff4c76",
+      "source": "NETWORKS--3a27c6b0-ee74-52c9-88e6-588dbf01c7d7",
+      "target": "MAC_ADDRESS--d2e75a97-74e1-5414-8664-baa4a88a5728",
       "relation": "contains"
     },
     {
-      "source": "MAC_ADDRESS--8d674c4a-26b2-5c40-be20-ae1a1eff4c76",
-      "target": "MAC_VENDOR--1041f804-ad7a-5e80-97da-b7e5fe24aa7a",
+      "source": "MAC_ADDRESS--d2e75a97-74e1-5414-8664-baa4a88a5728",
+      "target": "MAC_VENDOR--7ae88de3-44ff-5760-b1b3-9cf128f2fa18",
       "relation": "had"
     }
   ]

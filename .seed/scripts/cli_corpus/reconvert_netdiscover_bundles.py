@@ -13,7 +13,7 @@ CORPUS_DIR = Path(__file__).resolve().parent
 if str(CORPUS_DIR) not in sys.path:
     sys.path.insert(0, str(CORPUS_DIR))
 
-from netdiscover_json_to_graph import write_graph_file
+from netdiscover_json_to_graph import write_graph_artifacts
 from netdiscover_text_to_json import (
     convert_text_to_netdiscover_scan,
     dumps_netdiscover_scan,
@@ -80,7 +80,7 @@ def reconvert_exam(exam_id: int, scenarios: dict[str, dict], write_graph: bool) 
 
     if write_graph:
         graph_path = NUGGET_ROOT / f"netdiscover_{scenario_id}_proposed_nuggets_edges.json"
-        write_graph_file(json_path, graph_path)
+        write_graph_artifacts(json_path, graph_path, scenario_id)
 
     print(f"exam {exam_id} ({scenario_id}) -> {json_path.name}")
 

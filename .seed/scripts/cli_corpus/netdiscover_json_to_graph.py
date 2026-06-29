@@ -8,31 +8,38 @@ Graph contract: provisional ``SYSTEM`` nuggets with ``NETWORKS`` / ``MAC_VENDOR`
 from __future__ import annotations
 
 import json
-import uuid
 from pathlib import Path
 from typing import Any
+
+from graph_builder import GraphBuilder, nugget_node, validate_graph
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
-def _uid(nugget_id: str, data: str) -> str:
-    return f"{nugget_id}--{uuid.uuid5(uuid.NAMESPACE_DNS, f'{nugget_id}:{data}')}"
+def describe_graph(graph: dict[str, Any], scenario_key: str) -> str:
+    from narrative_report import build_netdiscover_narrative_report
+
+    return build_netdiscover_narrative_report(graph, scenario_key)
 
 
-def _node(nugget_id: str, nugget_type: str, data: str, description: str) -> dict[str, Any]:
-    iid = _uid(nugget_id, data)
-    return {
-        "id": iid,
-        "nugget_instance_id": iid,
-        "nugget_id": nugget_id,
-        "nugget_type": nugget_type,
-        "nugget_description": description,
-        "nugget_data": data,
-    }
+def description_path_for(graph_path: Path) -> Path:
+    return graph_path.with_name(
+        graph_path.name.replace(
+            "_proposed_nuggets_edges.json", "_proposed_nuggets_edges_description.md"
+        )
+    )
 
 
-def _edge(source: str, target: str, relation: str) -> dict[str, str]:
-    return {"source": source, "target": target, "relation": relation}
+def write_graph_artifacts(
+    json_path: Path, graph_path: Path, scenario_key: str
+) -> dict[str, Any]:
+    graph = graph_from_json_file(json_path)
+    validate_graph(graph)
+    graph_path.write_text(json.dumps(graph, indent=2) + "\n", encoding="utf-8")
+    description_path_for(graph_path).write_text(
+        describe_graph(graph, scenario_key), encoding="utf-8"
+    )
+    return graph
 
 
 def netdiscover_scan_to_graph(doc: dict[str, Any]) -> dict[str, Any]:
@@ -47,83 +54,82 @@ def netdiscover_scan_to_graph(doc: dict[str, Any]) -> dict[str, Any]:
     runstats = scan_data.get("runstats", {})
     finished = runstats.get("finished_time", {})
     systems_stats = runstats.get("systems", {})
-    exit_status = scan_data.get("exit_status") or finished.get("exit_status", "")
 
-    scan = _node("SCAN_RECORD", "ENTITY", args_label, "Scan Record")
-    scan_args = _node("SCAN_ARGS", "DESCRIPTOR", args_label, "Scan Args")
-    nodes: list[dict[str, Any]] = [scan, scan_args]
-    edges: list[dict[str, str]] = [_edge(scan["id"], scan_args["id"], "had")]
+    builder = GraphBuilder()
+
+    scan = builder.add_node(nugget_node("SCAN_RECORD", args_label))
+    scan_args = builder.add_node(nugget_node("SCAN_ARGS", args_label, nugget_type="DESCRIPTOR"))
+    builder.add_edge(scan["id"], scan_args["id"], "had")
 
     if start_time:
-        ts = _node("SCAN_TIMESTAMP", "DESCRIPTOR", start_time, "Scan Start Time")
-        nodes.append(ts)
-        edges.append(_edge(scan["id"], ts["id"], "had"))
+        ts = builder.add_node(
+            nugget_node("SCAN_TIMESTAMP", start_time, nugget_type="DESCRIPTOR", description="Scan Start Time")
+        )
+        builder.add_edge(scan["id"], ts["id"], "had")
 
     end_time = finished.get("end_time")
     if end_time:
-        end_node = _node("SCAN_END_TIME", "DESCRIPTOR", end_time, "Scan End Time")
-        nodes.append(end_node)
-        edges.append(_edge(scan["id"], end_node["id"], "had"))
+        end_node = builder.add_node(
+            nugget_node("SCAN_END_TIME", end_time, nugget_type="DESCRIPTOR", description="Scan End Time")
+        )
+        builder.add_edge(scan["id"], end_node["id"], "had")
 
     summary = finished.get("summary")
     if summary:
-        summary_node = _node("SCAN_SUMMARY", "DESCRIPTOR", summary, "Scan Summary")
-        nodes.append(summary_node)
-        edges.append(_edge(scan["id"], summary_node["id"], "had"))
+        summary_node = builder.add_node(nugget_node("SCAN_SUMMARY", summary, nugget_type="DESCRIPTOR"))
+        builder.add_edge(scan["id"], summary_node["id"], "had")
 
     exit_status = scan_data.get("exit_status") or finished.get("exit_status")
     if exit_status:
-        status_node = _node("SCAN_EXIT_STATUS", "DESCRIPTOR", exit_status, "Scan Exit Status")
-        nodes.append(status_node)
-        edges.append(_edge(scan["id"], status_node["id"], "had"))
+        status_node = builder.add_node(
+            nugget_node("SCAN_EXIT_STATUS", exit_status, nugget_type="DESCRIPTOR", description="Scan Exit Status")
+        )
+        builder.add_edge(scan["id"], status_node["id"], "had")
 
     scan_tries = systems_stats.get("scan_tries")
     if scan_tries is not None:
-        tries_node = _node("SCAN_TRIES", "DESCRIPTOR", str(scan_tries), "Scan Tries")
-        nodes.append(tries_node)
-        edges.append(_edge(scan["id"], tries_node["id"], "had"))
+        tries_node = builder.add_node(
+            nugget_node("SCAN_TRIES", str(scan_tries), nugget_type="DESCRIPTOR", description="Scan Tries")
+        )
+        builder.add_edge(scan["id"], tries_node["id"], "had")
 
     empty_scans = systems_stats.get("empty_scans")
     if empty_scans is not None:
-        empty_node = _node("SCAN_EMPTY_SCANS", "DESCRIPTOR", str(empty_scans), "Empty Scans")
-        nodes.append(empty_node)
-        edges.append(_edge(scan["id"], empty_node["id"], "had"))
+        empty_node = builder.add_node(
+            nugget_node("SCAN_EMPTY_SCANS", str(empty_scans), nugget_type="DESCRIPTOR", description="Empty Scans")
+        )
+        builder.add_edge(scan["id"], empty_node["id"], "had")
 
     discovered = systems_stats.get("discovered")
     if discovered is not None:
-        discovered_node = _node("SCAN_DISCOVERED", "DESCRIPTOR", str(discovered), "Systems Discovered")
-        nodes.append(discovered_node)
-        edges.append(_edge(scan["id"], discovered_node["id"], "had"))
+        discovered_node = builder.add_node(
+            nugget_node("SCAN_DISCOVERED", str(discovered), nugget_type="DESCRIPTOR", description="Systems Discovered")
+        )
+        builder.add_edge(scan["id"], discovered_node["id"], "had")
 
     for system in systems:
         ipv4 = system.get("ipv4", "")
         mac = str(system.get("mac", "")).lower()
-        vendor = str(system.get("mac_vendor", "")).strip()
+        vendor = str(system.get("mac_vendor", "")).strip() or "Unknown"
         if not ipv4:
             continue
 
-        system_n = _node("SYSTEM", "ENTITY", ipv4, "System")
-        networks = _node("NETWORKS", "ENTITY", f"networks:{ipv4}", "Networks")
-        ip_n = _node("IP_ADDRESS", "ENTITY", ipv4, "IP Address")
-        nodes.extend([system_n, networks, ip_n])
-        edges.extend(
-            [
-                _edge(scan["id"], system_n["id"], "contains"),
-                _edge(system_n["id"], networks["id"], "contains"),
-                _edge(networks["id"], ip_n["id"], "contains"),
-            ]
-        )
+        system_n = builder.add_node(nugget_node("SYSTEM", ipv4, description="System"))
+        networks = builder.add_node(nugget_node("NETWORKS", f"networks:{ipv4}"))
+        ip_n = builder.add_node(nugget_node("IP_ADDRESS", ipv4, description="IP Address"))
+        builder.add_edge(scan["id"], system_n["id"], "contains")
+        builder.add_edge(system_n["id"], networks["id"], "contains")
+        builder.add_edge(networks["id"], ip_n["id"], "contains")
 
         if mac:
-            mac_n = _node("MAC_ADDRESS", "ENTITY", mac, "MAC Address")
-            nodes.append(mac_n)
-            edges.append(_edge(networks["id"], mac_n["id"], "contains"))
-            if vendor:
-                vend = _node("MAC_VENDOR", "DESCRIPTOR", vendor, "MAC Vendor")
-                nodes.append(vend)
-                edges.append(_edge(mac_n["id"], vend["id"], "had"))
+            mac_n = builder.add_node(nugget_node("MAC_ADDRESS", mac, description="MAC Address"))
+            builder.add_edge(networks["id"], mac_n["id"], "contains")
+            vend = builder.add_node(
+                nugget_node("MAC_VENDOR", vendor, nugget_type="DESCRIPTOR", description="MAC Vendor")
+            )
+            builder.add_edge(mac_n["id"], vend["id"], "had")
 
-    return {"nodes": nodes, "edges": edges}
+    return builder.build()
 
 
 def graph_from_json_text(raw: str) -> dict[str, Any]:
@@ -137,5 +143,6 @@ def graph_from_json_file(path: Path) -> dict[str, Any]:
 
 def write_graph_file(json_path: Path, graph_path: Path) -> dict[str, Any]:
     graph = graph_from_json_file(json_path)
+    validate_graph(graph)
     graph_path.write_text(json.dumps(graph, indent=2) + "\n", encoding="utf-8")
     return graph

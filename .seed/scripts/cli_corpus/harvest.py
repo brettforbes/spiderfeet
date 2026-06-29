@@ -239,11 +239,11 @@ def write_bundle(
         result.structured_kind = structured_kind or "json"
         structured_kind = result.structured_kind
         structured_ext = "json"
-        from netdiscover_json_to_graph import write_graph_file
+        from netdiscover_json_to_graph import write_graph_artifacts
 
         graph_path = NUGGET_ROOT / f"netdiscover_{scenario['id']}_proposed_nuggets_edges.json"
         graph_path.parent.mkdir(parents=True, exist_ok=True)
-        write_graph_file(structured_path, graph_path)
+        write_graph_artifacts(structured_path, graph_path, scenario["id"])
     elif structured_ext:
         structured_path = tool_dir / f"{prefix}_output_structured.{structured_ext}"
         out_file = scenario.get("structured_output_file")
