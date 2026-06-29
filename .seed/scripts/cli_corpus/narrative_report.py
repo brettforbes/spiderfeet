@@ -104,18 +104,28 @@ class SemanticGraph:
         traces = self.find_by_nugget_id(trace_nugget_id)
         return traces[0] if traces else None
 
-    def scan_hosts(self, scan_nugget_id: str = "SCAN_RECORD") -> List[Node]:
+    def scan_hosts(
+        self,
+        scan_nugget_id: str = "SCAN_RECORD",
+        host_nugget_id: str = "HOST",
+    ) -> List[Node]:
         scan = self.find_scan(scan_nugget_id)
         if not scan:
-            return self.find_by_nugget_id("HOST")
-        return self.contained(scan["id"], nugget_id="HOST")
+            return self.find_by_nugget_id(host_nugget_id)
+        return self.contained(scan["id"], nugget_id=host_nugget_id)
 
-    def ordered_hosts(self, scan_nugget_id: str = "SCAN_RECORD") -> List[Node]:
-        primary_ids = {host["id"] for host in self.scan_hosts(scan_nugget_id)}
-        primary = self.scan_hosts(scan_nugget_id)
+    def ordered_hosts(
+        self,
+        scan_nugget_id: str = "SCAN_RECORD",
+        host_nugget_id: str = "HOST",
+    ) -> List[Node]:
+        primary_ids = {
+            host["id"] for host in self.scan_hosts(scan_nugget_id, host_nugget_id)
+        }
+        primary = self.scan_hosts(scan_nugget_id, host_nugget_id)
         trace_only = [
             host
-            for host in self.find_by_nugget_id("HOST")
+            for host in self.find_by_nugget_id(host_nugget_id)
             if host["id"] not in primary_ids
         ]
         return primary + trace_only
@@ -209,7 +219,9 @@ class NarrativeReportBuilder:
         self._title()
         self._introduction()
         self._scan_section()
-        for host in self.graph.ordered_hosts(self.config.scan_nugget_id):
+        for host in self.graph.ordered_hosts(
+            self.config.scan_nugget_id, self.config.host_nugget_id
+        ):
             self._host_section(host)
         self._trace_section()
         self._conclusion()
@@ -272,7 +284,9 @@ class NarrativeReportBuilder:
         summary = self._descriptor_value(scan, "SCAN_SUMMARY") or ""
         elapsed = self._descriptor_value(scan, "SCAN_ELAPSED")
 
-        hosts = self.graph.scan_hosts(self.config.scan_nugget_id)
+        hosts = self.graph.scan_hosts(
+            self.config.scan_nugget_id, self.config.host_nugget_id
+        )
         host_count = len(hosts)
 
         self.lines.extend(["## Scan", ""])
@@ -620,7 +634,11 @@ class NarrativeReportBuilder:
     def _conclusion(self) -> None:
         scan = self.graph.find_scan(self.config.scan_nugget_id)
         summary = self._descriptor_value(scan, "SCAN_SUMMARY") if scan else ""
-        host_count = len(self.graph.ordered_hosts(self.config.scan_nugget_id))
+        host_count = len(
+            self.graph.ordered_hosts(
+                self.config.scan_nugget_id, self.config.host_nugget_id
+            )
+        )
         node_count = len(self.graph.nodes)
         if summary:
             self.mention(summary)
@@ -726,3 +744,259 @@ NMAP_NARRATIVE_CONFIG = NarrativeConfig(
 
 def build_nmap_narrative_report(graph: Graph, scenario_key: str) -> str:
     return build_narrative_report(graph, scenario_key, NMAP_NARRATIVE_CONFIG)
+
+
+def _mermaid_label(value: str) -> str:
+    return str(value).replace('"', "'").replace("\n", " ").strip()
+
+
+NETDISCOVER_NARRATIVE_CONFIG = NarrativeConfig(
+    tool_name="Netdiscover",
+    scan_nugget_id="SCAN_RECORD",
+    host_nugget_id="SYSTEM",
+    trace_nugget_id="TRACE",
+    environment_category="ENVIRONMENT",
+    networks_category="NETWORKS",
+    applications_category="APPLICATIONS",
+    vulnerabilities_category="VULNERABILITIES",
+    footer_brand="OS-Intel Scan",
+)
+
+
+class NetdiscoverNarrativeReportBuilder(NarrativeReportBuilder):
+    """§4.3 narrative for ARP/LAN discovery graphs (SYSTEM / NETWORKS / MAC_VENDOR)."""
+
+    def _introduction(self) -> None:
+        scan = self.graph.find_scan(self.config.scan_nugget_id)
+        target = node_value(scan) if scan else self.scenario_key
+        self.mention(target)
+        self.lines.extend(
+            [
+                "## Introduction",
+                "",
+                (
+                    f"This report narrates the findings of a **{self.config.tool_name}** ARP discovery "
+                    f"run for **{target}**. The story follows the scan metadata, each discovered "
+                    "**system** on the segment, and the **networks** inventory (IPv4, MAC, and vendor) "
+                    "attached to every system. Every observed nugget and value from the semantic graph "
+                    "appears in the narrative below or in the appendix."
+                ),
+                "",
+            ]
+        )
+
+    def _scan_section(self) -> None:
+        scan = self.graph.find_scan(self.config.scan_nugget_id)
+        if not scan:
+            return
+
+        self.mention_node(scan)
+        descriptors = self.graph.descriptors(scan["id"])
+        for desc in descriptors:
+            self.mention_node(desc)
+
+        args = self._descriptor_value(scan, "SCAN_ARGS") or node_value(scan)
+        started = self._descriptor_value(scan, "SCAN_TIMESTAMP") or "an unspecified time"
+        ended = self._descriptor_value(scan, "SCAN_END_TIME")
+        summary = self._descriptor_value(scan, "SCAN_SUMMARY") or ""
+        exit_status = self._descriptor_value(scan, "SCAN_EXIT_STATUS")
+        tries = self._descriptor_value(scan, "SCAN_TRIES")
+        empty = self._descriptor_value(scan, "SCAN_EMPTY_SCANS")
+        discovered = self._descriptor_value(scan, "SCAN_DISCOVERED")
+
+        systems = self.graph.scan_hosts(
+            self.config.scan_nugget_id, self.config.host_nugget_id
+        )
+        system_count = len(systems)
+
+        self.lines.extend(["## Scan", ""])
+        self.lines.append(
+            f"The scan started at **{started}** with arguments `{args}`."
+        )
+        if ended:
+            self.mention(ended)
+            self.lines.append(f" It finished at **{ended}**.")
+        if exit_status:
+            self.mention(exit_status)
+            self.lines.append(f" Exit status: **{exit_status}**.")
+        self.lines.append("")
+        if summary:
+            self.mention(summary)
+            self.lines.append(summary)
+            self.lines.append("")
+        if tries is not None:
+            self.mention(tries)
+            empty_phrase = f", **{empty}** empty scan(s)" if empty is not None else ""
+            self.lines.append(
+                f"Netdiscover recorded **{tries}** scan frame(s){empty_phrase} "
+                f"before settling on the host table used for this graph."
+            )
+        if discovered is not None:
+            self.mention(discovered)
+            self.lines.append(
+                f"**{discovered}** system(s) appear in the structured host inventory."
+            )
+        self.lines.append(
+            f"**{system_count}** system node(s) are linked from the scan record in this graph."
+        )
+
+        extra_desc = [
+            d
+            for d in descriptors
+            if d.get("nugget_id")
+            not in {
+                "SCAN_ARGS",
+                "SCAN_TIMESTAMP",
+                "SCAN_END_TIME",
+                "SCAN_SUMMARY",
+                "SCAN_EXIT_STATUS",
+                "SCAN_TRIES",
+                "SCAN_EMPTY_SCANS",
+                "SCAN_DISCOVERED",
+            }
+        ]
+        if extra_desc:
+            self.lines.append("")
+            self.lines.append("Additional scan metadata:")
+            for desc in extra_desc:
+                self.lines.append(f"- {descriptor_phrase(desc)}")
+        self.lines.append("")
+        if systems:
+            self._scan_topology_mermaid(scan, systems)
+
+    def _scan_topology_mermaid(self, scan: Node, systems: Sequence[Node]) -> None:
+        self.lines.extend(["### Scan topology", "", "```mermaid", "flowchart TD"])
+        scan_id = "scan"
+        self.lines.append(f'  {scan_id}["SCAN_RECORD"]')
+        for index, system in enumerate(systems, start=1):
+            node_id = f"sys{index}"
+            label = _mermaid_label(node_value(system))
+            self.lines.append(f'  {node_id}["SYSTEM {label}"]')
+            self.lines.append(f"  {scan_id} -->|contains| {node_id}")
+        self.lines.extend(["```", ""])
+
+    def _host_section(self, host: Node) -> None:
+        system_data = node_value(host)
+        self.mention_node(host)
+        self.lines.extend([f"## System {system_data}", ""])
+        self.lines.append(
+            f"System **{system_data}** was observed on the local segment during ARP discovery."
+        )
+        self.lines.append("")
+        self._host_networks(host)
+
+    def _host_networks(self, host: Node) -> None:
+        nets = self.graph.host_category(host, self.config.networks_category)
+        if not nets:
+            return
+        self.mention_node(nets)
+        self.lines.extend(["### Networks", ""])
+        self._system_network_mermaid(host, nets)
+
+        ip_nodes = self.graph.contained(nets["id"], nugget_id="IP_ADDRESS")
+        mac_nodes = self.graph.contained(nets["id"], nugget_id="MAC_ADDRESS")
+
+        if not ip_nodes and not mac_nodes:
+            self.lines.append("No network addresses were recorded under this system.")
+            self.lines.append("")
+            return
+
+        for ip in ip_nodes:
+            self.mention_node(ip)
+            self.lines.append(f"- IPv4 address **{node_value(ip)}**.")
+
+        for mac in mac_nodes:
+            self.mention_node(mac)
+            mac_val = node_value(mac)
+            vendors = [
+                d for d in self.graph.descriptors(mac["id"]) if d.get("nugget_id") == "MAC_VENDOR"
+            ]
+            if vendors:
+                for vendor in vendors:
+                    self.mention_node(vendor)
+                    self.lines.append(
+                        f"- MAC address **{mac_val}** — vendor **{node_value(vendor)}**."
+                    )
+            else:
+                self.lines.append(f"- MAC address **{mac_val}** (no vendor descriptor).")
+
+        self.lines.append("")
+
+    def _system_network_mermaid(self, system: Node, networks: Node) -> None:
+        ip = next(iter(self.graph.contained(networks["id"], nugget_id="IP_ADDRESS")), None)
+        mac = next(iter(self.graph.contained(networks["id"], nugget_id="MAC_ADDRESS")), None)
+        vendor = None
+        if mac:
+            vendor = next(
+                (
+                    d
+                    for d in self.graph.descriptors(mac["id"])
+                    if d.get("nugget_id") == "MAC_VENDOR"
+                ),
+                None,
+            )
+            if vendor:
+                self.mention_node(vendor)
+
+        self.lines.extend(["```mermaid", "flowchart TD"])
+        self.lines.append(f'  system["SYSTEM {_mermaid_label(node_value(system))}"]')
+        self.lines.append('  nets["NETWORKS"]')
+        self.lines.append(f"  system -->|contains| nets")
+        if ip:
+            self.lines.append(f'  ip["IP_ADDRESS"]')
+            self.lines.append(f"  nets -->|contains| ip")
+        if mac:
+            self.lines.append(f'  mac["MAC_ADDRESS"]')
+            self.lines.append(f"  nets -->|contains| mac")
+        if mac and vendor:
+            self.lines.append(f'  vendor["MAC_VENDOR"]')
+            self.lines.append(f"  mac -->|had| vendor")
+        self.lines.extend(["```", ""])
+
+    def _conclusion(self) -> None:
+        scan = self.graph.find_scan(self.config.scan_nugget_id)
+        summary = self._descriptor_value(scan, "SCAN_SUMMARY") if scan else ""
+        system_count = len(
+            self.graph.ordered_hosts(
+                self.config.scan_nugget_id, self.config.host_nugget_id
+            )
+        )
+        node_count = len(self.graph.nodes)
+        if summary:
+            self.mention(summary)
+        self.lines.extend(
+            [
+                "## Conclusion",
+                "",
+                (
+                    f"The scan captured **{node_count}** semantic nuggets across "
+                    f"**{system_count}** system{'s' if system_count != 1 else ''}."
+                ),
+            ]
+        )
+        if summary:
+            self.lines.append(f" {summary}")
+        self.lines.append(
+            " The appendix lists every nugget instance and value for audit and downstream review."
+        )
+        self.lines.extend(["", ""])
+
+
+    def _footer(self) -> None:
+        scan = self.graph.find_scan(self.config.scan_nugget_id)
+        date = self._descriptor_value(scan, "SCAN_TIMESTAMP") if scan else "unknown date"
+        self.mention(date or "unknown date")
+        self.lines.extend(
+            [
+                "---",
+                "",
+                f"*{self.config.footer_brand} · {date or 'unknown date'} · Page 1*",
+                "",
+            ]
+        )
+
+
+def build_netdiscover_narrative_report(graph: Graph, scenario_key: str) -> str:
+    return NetdiscoverNarrativeReportBuilder(
+        graph, scenario_key, NETDISCOVER_NARRATIVE_CONFIG
+    ).build()

@@ -21,7 +21,7 @@ CLI profiling examinations use `netdiscover_text_to_json.py` → `netdiscover_js
 | scan | `SCAN_RECORD` | root entity |
 | CLI args / timestamps / stats | `SCAN_*` descriptors | `SCAN_RECORD` → `had` |
 | host | `SYSTEM` | `SCAN_RECORD` → `contains` |
-| L3/L2 container | `NETWORKS` | `SYSTEM` → `contains` |
+| L3/L2 container | `NETWORKS` (category) | `SYSTEM` → `contains` |
 | `IP` | `IP_ADDRESS` | `NETWORKS` → `contains` |
 | `MAC` | `MAC_ADDRESS` | `NETWORKS` → `contains` |
 | `VENDOR` | **`MAC_VENDOR`** (descriptor) | `MAC_ADDRESS` → `had` |

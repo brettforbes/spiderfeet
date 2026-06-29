@@ -39,8 +39,23 @@ All discovered top-level entities link to the scan with `contains` from scan →
 ## Node identity
 
 ```python
-nugget_instance_id = f"{nugget_id}-{uuid5(namespace, nugget_data)}"
+ONTOLOGY_NAMESPACE = uuid5(NAMESPACE_DNS, "OS Threat, OS Intel Ontology")
+nugget_instance_id = f"{nugget_id}--{uuid5(ONTOLOGY_NAMESPACE, nugget_data)}"
 ```
+
+Exactly one node per `(nugget_id, nugget_data)` pair in a graph. Reuse the same instance id when the data value repeats; additional owners link via edges (e.g. many `MAC_ADDRESS` → `had` → one `MAC_VENDOR` for `"Unknown"`).
+
+Never emit duplicate instance nodes for the same canonical `nugget_id` + `nugget_data`.
+
+## Connectivity (mandatory)
+
+Every node in `nodes[]` must participate in at least one edge in `edges[]`. Orphan nuggets are invalid.
+
+Graph builders must:
+
+1. Derive ids with uuid5(ontology_seed, nugget_data) and deduplicate nodes by `id`.
+2. Validate connectivity and uniqueness after build (fail on orphan, duplicate id, or duplicate nugget_id+data).
+3. Attach descriptors with `had` from their owning entity (e.g. `MAC_ADDRESS` → `had` → `MAC_VENDOR`).
 
 ## Three-tab output derivation
 
