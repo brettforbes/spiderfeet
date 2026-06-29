@@ -56,6 +56,14 @@ Review the foundation described here to convert the structured artifact to nugge
 - Create a markdown document to describe each graph JSON, including the nodes and edges arrays, and the derived nugget graph.
 - Do not mark a tool's output model complete while any observed field, object type, error shape, or output mode is unmapped, intentionally ignored, or captured as a follow-up gap.
 
+## Graph connectivity
+
+- Instance ids: `uuid5(ontology_seed, nugget_data)` prefixed by `nugget_id` (see nmap/netdiscover `graph_builder.py`).
+- Exactly one node per `(nugget_id, nugget_data)`; repeated values reuse the same node and link via edges.
+- Every node in proposed `nodes[]` must appear in at least one `edges[]` entry; orphan nuggets are invalid.
+- Descriptors attach to their owning entity via `had` (e.g. many `MAC_ADDRESS` → `had` → one shared `MAC_VENDOR` when vendor data matches).
+- Graph builders must validate connectivity and uniqueness before writing examination graph artifacts.
+
 ## Handoff
 
 For each tool, leave a concise strategy describing how to produce rich, sparse, and error outputs; where the help text is captured; and which scenario set proves the output surface is covered.

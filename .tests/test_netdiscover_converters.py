@@ -12,6 +12,7 @@ import sys
 
 sys.path.insert(0, str(CORPUS_DIR))
 
+from graph_builder import validate_graph_connectivity
 from netdiscover_json_to_graph import netdiscover_scan_to_graph
 from netdiscover_text_to_json import (
     convert_text_to_netdiscover_scan,
@@ -84,6 +85,44 @@ Currently scanning: 192.168.1.0/24   |   Screen View: Unique Hosts
     assert len(doc["netdiscover_scan"]["systems"]) == 2
 
 
+def test_networks_nodes_are_category():
+    doc = convert_text_to_netdiscover_scan(
+        PARSABLE_SAMPLE,
+        scenario_name="parsable",
+        output_mode="parsable",
+        start_time=datetime.now(timezone.utc),
+        duration_s=1.0,
+        exit_code=0,
+    )
+    graph = netdiscover_scan_to_graph(doc)
+    networks = [n for n in graph["nodes"] if n["nugget_id"] == "NETWORKS"]
+    assert networks
+    assert all(n["nugget_type"] == "CATEGORY" for n in networks)
+    assert all(n.get("nugget_colour") == "#14B8A6" for n in networks)
+
+
+def test_shared_mac_vendor_singleton():
+    """Same vendor data → one MAC_VENDOR node; each MAC links via had."""
+    doc = {
+        "netdiscover_scan": {
+            "args": "netdiscover test",
+            "systems": [
+                {"ipv4": "10.0.0.1", "mac": "aa:bb:cc:dd:ee:01", "mac_vendor": "Unknown"},
+                {"ipv4": "10.0.0.2", "mac": "aa:bb:cc:dd:ee:02", "mac_vendor": "Unknown"},
+                {"ipv4": "10.0.0.3", "mac": "aa:bb:cc:dd:ee:03", "mac_vendor": "Apple, Inc."},
+            ],
+        }
+    }
+    graph = netdiscover_scan_to_graph(doc)
+    vendors = [n for n in graph["nodes"] if n["nugget_id"] == "MAC_VENDOR"]
+    unknown = [n for n in vendors if n["nugget_data"] == "Unknown"]
+    assert len(unknown) == 1
+    had_to_unknown = [
+        e for e in graph["edges"] if e["relation"] == "had" and e["target"] == unknown[0]["id"]
+    ]
+    assert len(had_to_unknown) == 2
+
+
 def test_mac_vendor_descriptor_in_graph():
     doc = convert_text_to_netdiscover_scan(
         PARSABLE_SAMPLE,
@@ -95,14 +134,32 @@ def test_mac_vendor_descriptor_in_graph():
     )
     graph = netdiscover_scan_to_graph(doc)
     vendors = [n for n in graph["nodes"] if n["nugget_id"] == "MAC_VENDOR"]
-    assert vendors
+    assert len(vendors) == 3
     mac_ids = [n["id"] for n in graph["nodes"] if n["nugget_id"] == "MAC_ADDRESS"]
+    assert len(mac_ids) == 3
     for mac_id in mac_ids:
-        assert any(
-            e["source"] == mac_id and e["relation"] == "had"
+        had_edges = [
+            e
             for e in graph["edges"]
-            if e["target"] in {v["id"] for v in vendors}
-        )
+            if e["source"] == mac_id and e["relation"] == "had"
+        ]
+        assert len(had_edges) == 1
+        target = had_edges[0]["target"]
+        assert any(v["id"] == target and v["nugget_id"] == "MAC_VENDOR" for v in vendors)
+
+
+def test_graph_has_no_duplicate_nodes_or_orphans():
+    doc = convert_text_to_netdiscover_scan(
+        PARSABLE_SAMPLE,
+        scenario_name="parsable",
+        output_mode="parsable",
+        start_time=datetime.now(timezone.utc),
+        duration_s=1.0,
+        exit_code=0,
+    )
+    graph = netdiscover_scan_to_graph(doc)
+    assert len(graph["nodes"]) == len({n["id"] for n in graph["nodes"]})
+    assert validate_graph_connectivity(graph) == []
 
 
 def test_six_frames_two_tables_four_empty():
