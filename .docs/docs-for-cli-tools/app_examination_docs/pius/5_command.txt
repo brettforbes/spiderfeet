@@ -1,1 +1,1 @@
-/mnt/c/projects/spiderfeet/.tools/pius run --org "ZZZZ Nonexistent Org 000000" --plugins gleif,whois --output ndjson
+/mnt/c/projects/spiderfeet/.tools/pius run --org "Nmap Scanme" --domain scanme.nmap.org --plugins crt-sh,whois --output ndjson

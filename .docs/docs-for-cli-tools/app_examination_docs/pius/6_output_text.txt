@@ -1,9 +1,1 @@
 Running 2 plugin(s) in "passive" mode...
-[domain] BBC WORLD SERVICE INDIA PRIVATE LIMITED (gleif)
-[preseed] BBC WORLD SERVICE INDIA PRIVATE LIMITED (gleif)
-[domain] BBC PROPERTY DEVELOPMENT LIMITED (gleif)
-[preseed] BBC PROPERTY DEVELOPMENT LIMITED (gleif)
-[domain] BBC MEDIA ACTION (gleif)
-[preseed] BBC MEDIA ACTION (gleif)
-[domain] BBC COMMERCIAL LIMITED (gleif)
-[preseed] BBC COMMERCIAL LIMITED (gleif)

@@ -1,1 +1,1 @@
-/mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins crt-sh,gleif,whois,edgar,wikidata,google-dorks --output ndjson
+/mnt/c/projects/spiderfeet/.tools/pius run --org Praetorian --domain praetorian.com --plugins crt-sh --output ndjson

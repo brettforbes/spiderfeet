@@ -48,6 +48,7 @@ class RunResult:
     stderr: str
     structured_path: str | None = None
     structured_kind: str | None = None
+    structured_fixture_used: str | None = None
 
 
 def ensure_dev_paths() -> None:
@@ -118,7 +119,7 @@ def run_command(
         if cwd:
             inner = f"cd {cwd} && {command}"
         inner = _bash_env_prefix(env) + inner
-        wsl_args = ["wsl", "-e", "bash", "-lc", inner]
+        wsl_args = ["wsl", "bash", "-lc", inner]
         if runtime == "wsl-root":
             wsl_args = ["wsl", "-u", "root", "bash", "-lc", inner]
         shell_cmd = wsl_args
@@ -179,6 +180,20 @@ def next_exam_id(tool_dir: Path) -> int:
     return max(existing, default=0) + 1
 
 
+def exam_id_for_scenario(manifest_meta: dict[str, Any], scenario_id: str, tool_dir: Path) -> int:
+    for idx, scenario in enumerate(manifest_meta.get("scenarios", []), start=1):
+        if scenario.get("id") == scenario_id:
+            return idx
+    return next_exam_id(tool_dir)
+
+
+def remove_exam_bundle(tool_dir: Path, exam_id: int) -> None:
+    prefix = f"{exam_id}_"
+    for path in tool_dir.glob(f"{prefix}*"):
+        if path.is_file():
+            path.unlink()
+
+
 def _netdiscover_structured_payload(
     scenario: dict[str, Any],
     result: RunResult,
@@ -210,6 +225,40 @@ def _netdiscover_structured_payload(
     return doc
 
 
+def _jsonl_lines_from_stdout(stdout: str) -> str:
+    lines = [ln for ln in stdout.splitlines() if ln.strip().startswith("{")]
+    if not lines:
+        return ""
+    return "\n".join(lines) + "\n"
+
+
+def _write_tool_graph(
+    tool: str,
+    scenario: dict[str, Any],
+    structured_path: Path | None,
+    command: str,
+) -> None:
+    if tool not in ("nerva", "pius") or structured_path is None or not structured_path.is_file():
+        return
+    raw = structured_path.read_text(encoding="utf-8", errors="replace")
+    if not raw.strip() and tool == "nerva":
+        graph = {"nodes": [], "edges": []}
+    elif not raw.strip():
+        return
+    else:
+        from cli_tool_to_graph import nerva_to_graph, pius_to_graph
+
+        target = scenario.get("target") or scenario["id"]
+        if tool == "nerva":
+            graph = nerva_to_graph(raw, target, command)
+        else:
+            org = scenario.get("org") or target
+            graph = pius_to_graph(raw, org, command)
+    graph_path = NUGGET_ROOT / f"{tool}_{scenario['id']}_proposed_nuggets_edges.json"
+    graph_path.parent.mkdir(parents=True, exist_ok=True)
+    graph_path.write_text(json.dumps(graph, indent=2) + "\n", encoding="utf-8")
+
+
 def write_bundle(
     tool: str,
     scenario: dict[str, Any],
@@ -219,7 +268,8 @@ def write_bundle(
 ) -> Path:
     tool_dir = EXAM_ROOT / tool
     tool_dir.mkdir(parents=True, exist_ok=True)
-    exam_id = next_exam_id(tool_dir)
+    exam_id = exam_id_for_scenario(manifest_meta, scenario["id"], tool_dir)
+    remove_exam_bundle(tool_dir, exam_id)
     prefix = f"{exam_id}"
     captured_at = captured_at or datetime.now(timezone.utc)
 
@@ -251,8 +301,18 @@ def write_bundle(
             structured_path.write_text(Path(out_file).read_text(encoding="utf-8", errors="replace"), encoding="utf-8")
             result.structured_path = str(structured_path.relative_to(REPO_ROOT))
             result.structured_kind = structured_kind
-        elif result.stdout.strip():
-            structured_path.write_text(result.stdout, encoding="utf-8")
+        elif result.stdout.strip() or tool in ("nerva", "pius"):
+            if tool in ("nerva", "pius") and structured_ext == "jsonl":
+                payload = _jsonl_lines_from_stdout(result.stdout)
+            else:
+                payload = result.stdout
+            fixture_rel = scenario.get("structured_fixture")
+            if tool == "pius" and not payload.strip() and fixture_rel:
+                fixture_path = REPO_ROOT / fixture_rel
+                if fixture_path.is_file():
+                    payload = fixture_path.read_text(encoding="utf-8", errors="replace")
+                    result.structured_fixture_used = str(fixture_path.relative_to(REPO_ROOT))
+            structured_path.write_text(payload, encoding="utf-8")
             result.structured_path = str(structured_path.relative_to(REPO_ROOT))
             result.structured_kind = structured_kind
 
@@ -275,6 +335,7 @@ def write_bundle(
         "scenario_id": scenario["id"],
         "scenario_name": scenario.get("name", scenario["id"]),
         "target": scenario.get("target"),
+        "org": scenario.get("org"),
         "runtime": result.runtime,
         "exit_code": result.exit_code,
         "duration_s": result.duration_s,
@@ -286,6 +347,8 @@ def write_bundle(
         "tool_manifest_version": manifest_meta.get("version"),
         "review_status": "pending",
     }
+    if result.structured_fixture_used:
+        bundle_manifest["structured_fixture_used"] = result.structured_fixture_used
     manifest_path = tool_dir / f"{prefix}_manifest.json"
     manifest_path.write_text(json.dumps(bundle_manifest, indent=2) + "\n", encoding="utf-8")
 
@@ -294,6 +357,7 @@ def write_bundle(
         json.dumps({"status": "pending", "exam_id": exam_id, "scenario_id": scenario["id"]}, indent=2) + "\n",
         encoding="utf-8",
     )
+    _write_tool_graph(tool, scenario, structured_path, result.command)
     return tool_dir
 
 
@@ -328,7 +392,14 @@ def run_scenario(tool: str, scenario_id: str, dry_run: bool = False) -> None:
     print(f"[harvest] {tool}/{scenario_id} ({runtime}) …")
     captured_at = datetime.now(timezone.utc)
     isolated_command = isolate_text_capture_command(command, runtime, tool)
+    if tool == "pius" and runtime in ("wsl", "wsl-root"):
+        subprocess.run(["wsl", "--shutdown"], capture_output=True, timeout=30)
+        time.sleep(3)
     result = run_command(isolated_command, runtime, cwd_path, timeout, env=env)
+    if tool == "pius" and runtime in ("wsl", "wsl-root") and not result.stdout.strip():
+        subprocess.run(["wsl", "--shutdown"], capture_output=True, timeout=30)
+        time.sleep(3)
+        result = run_command(isolated_command, runtime, cwd_path, timeout, env=env)
     result.command = command
     # Post-run structured file pickup (e.g. CMSeeK cms.json)
     src = scenario.get("structured_source_path")

@@ -1,0 +1,40 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--61ed183c-ae5b-5f89-9344-9076f301be05",
+      "nugget_instance_id": "SCAN_RECORD--61ed183c-ae5b-5f89-9344-9076f301be05",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Scan Record",
+      "nugget_data": "cloudflare.com"
+    },
+    {
+      "id": "SCAN_CLI--11ec672c-74f6-5bea-ae29-208921d151b8",
+      "nugget_instance_id": "SCAN_CLI--11ec672c-74f6-5bea-ae29-208921d151b8",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"Cloudflare, Inc.\" --domain cloudflare.com --plugins whois,edgar,arin,ripe,apnic --output ndjson"
+    },
+    {
+      "id": "COMPANY_NAME--5ff859a4-d657-5ee5-80c9-0e9c5468d5cc",
+      "nugget_instance_id": "COMPANY_NAME--5ff859a4-d657-5ee5-80c9-0e9c5468d5cc",
+      "nugget_id": "COMPANY_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Organization",
+      "nugget_data": "cloudflare.com"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--61ed183c-ae5b-5f89-9344-9076f301be05",
+      "target": "SCAN_CLI--11ec672c-74f6-5bea-ae29-208921d151b8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--61ed183c-ae5b-5f89-9344-9076f301be05",
+      "target": "COMPANY_NAME--5ff859a4-d657-5ee5-80c9-0e9c5468d5cc",
+      "relation": "had"
+    }
+  ]
+}
