@@ -1,0 +1,15 @@
+# SpiderFeet CLI examination capture
+# tool: nerva
+# scenario: TCP SSH with security findings (scanme:22) (tcp_ssh_misconfigs_json)
+# target: scanme.nmap.org:22
+# command: nerva -t scanme.nmap.org:22 --json --misconfigs -w 8000
+# runtime: windows
+# started_at: 2026-06-30T07:40:01.761083+00:00
+# duration_s: 5.125
+# exit_code: 0
+# fingerprint_summary_lines: 2
+# text_role: one line per discovered service/IP (pipe-friendly summary)
+# structured_role: full JSON metadata per record (headers, findings, etc.)
+
+ssh://scanme.nmap.org:22 (2600:3c01::f03c:91ff:fe18:bb2f)
+ssh://scanme.nmap.org:22 (45.33.32.156)

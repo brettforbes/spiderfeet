@@ -1,0 +1,13 @@
+# SpiderFeet CLI examination capture
+# tool: nerva
+# scenario: Closed port clean miss (scanme:1) (tcp_closed_clean_miss)
+# target: scanme.nmap.org:1
+# command: nerva -t scanme.nmap.org:1 --json -w 3000
+# runtime: windows
+# started_at: 2026-06-30T07:40:54.267267+00:00
+# duration_s: 4.641
+# exit_code: 0
+# fingerprint_summary_lines: 0
+# text_role: one line per discovered service/IP (pipe-friendly summary)
+# structured_role: full JSON metadata per record (headers, findings, etc.)
+

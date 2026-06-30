@@ -17,46 +17,6 @@
       "nugget_data": "nerva -t praetorian.com:443 --fast --json -w 5000"
     },
     {
-      "id": "HOST--c8bb6422-f12e-56f6-abab-29ecd41f3e87",
-      "nugget_instance_id": "HOST--c8bb6422-f12e-56f6-abab-29ecd41f3e87",
-      "nugget_id": "HOST",
-      "nugget_type": "ENTITY",
-      "nugget_description": "Host",
-      "nugget_data": "2606:4700:3108::ac42:283c"
-    },
-    {
-      "id": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
-      "nugget_instance_id": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
-      "nugget_id": "PORT",
-      "nugget_type": "ENTITY",
-      "nugget_description": "Port",
-      "nugget_data": "443"
-    },
-    {
-      "id": "PORT_PROTOCOL--38c78ce7-742e-5410-90d5-33c28f39bafb",
-      "nugget_instance_id": "PORT_PROTOCOL--38c78ce7-742e-5410-90d5-33c28f39bafb",
-      "nugget_id": "PORT_PROTOCOL",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Port Protocol",
-      "nugget_data": "tcp"
-    },
-    {
-      "id": "SERVICE--bc86da00-a1f2-5d26-b4ab-2fcac89834be",
-      "nugget_instance_id": "SERVICE--bc86da00-a1f2-5d26-b4ab-2fcac89834be",
-      "nugget_id": "SERVICE",
-      "nugget_type": "ENTITY",
-      "nugget_description": "Service",
-      "nugget_data": "https"
-    },
-    {
-      "id": "SERVICE_VERSION--e98ff548-def8-5051-9599-78db14e7ebc8",
-      "nugget_instance_id": "SERVICE_VERSION--e98ff548-def8-5051-9599-78db14e7ebc8",
-      "nugget_id": "SERVICE_VERSION",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Service Version",
-      "nugget_data": "cloudflare"
-    },
-    {
       "id": "HOST--b0afbf8c-7d63-5722-b6db-d09bb3e4ecb3",
       "nugget_instance_id": "HOST--b0afbf8c-7d63-5722-b6db-d09bb3e4ecb3",
       "nugget_id": "HOST",
@@ -97,12 +57,12 @@
       "nugget_data": "cloudflare"
     },
     {
-      "id": "HOST--2839b29f-d75f-58cd-85bf-e186bf5da419",
-      "nugget_instance_id": "HOST--2839b29f-d75f-58cd-85bf-e186bf5da419",
+      "id": "HOST--c8bb6422-f12e-56f6-abab-29ecd41f3e87",
+      "nugget_instance_id": "HOST--c8bb6422-f12e-56f6-abab-29ecd41f3e87",
       "nugget_id": "HOST",
       "nugget_type": "ENTITY",
       "nugget_description": "Host",
-      "nugget_data": "172.66.40.60"
+      "nugget_data": "2606:4700:3108::ac42:283c"
     },
     {
       "id": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
@@ -175,37 +135,52 @@
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Service Version",
       "nugget_data": "cloudflare"
+    },
+    {
+      "id": "HOST--2839b29f-d75f-58cd-85bf-e186bf5da419",
+      "nugget_instance_id": "HOST--2839b29f-d75f-58cd-85bf-e186bf5da419",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
+      "nugget_data": "172.66.40.60"
+    },
+    {
+      "id": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
+      "nugget_instance_id": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
+      "nugget_id": "PORT",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Port",
+      "nugget_data": "443"
+    },
+    {
+      "id": "PORT_PROTOCOL--38c78ce7-742e-5410-90d5-33c28f39bafb",
+      "nugget_instance_id": "PORT_PROTOCOL--38c78ce7-742e-5410-90d5-33c28f39bafb",
+      "nugget_id": "PORT_PROTOCOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Port Protocol",
+      "nugget_data": "tcp"
+    },
+    {
+      "id": "SERVICE--bc86da00-a1f2-5d26-b4ab-2fcac89834be",
+      "nugget_instance_id": "SERVICE--bc86da00-a1f2-5d26-b4ab-2fcac89834be",
+      "nugget_id": "SERVICE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Service",
+      "nugget_data": "https"
+    },
+    {
+      "id": "SERVICE_VERSION--e98ff548-def8-5051-9599-78db14e7ebc8",
+      "nugget_instance_id": "SERVICE_VERSION--e98ff548-def8-5051-9599-78db14e7ebc8",
+      "nugget_id": "SERVICE_VERSION",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Service Version",
+      "nugget_data": "cloudflare"
     }
   ],
   "edges": [
     {
       "source": "SCAN_RECORD--b0cfd4cb-b8d6-566f-abd3-32f6578e6dce",
       "target": "SCAN_CLI--b9fec058-460d-5ed0-aed8-92eac692d3db",
-      "relation": "had"
-    },
-    {
-      "source": "SCAN_RECORD--b0cfd4cb-b8d6-566f-abd3-32f6578e6dce",
-      "target": "HOST--c8bb6422-f12e-56f6-abab-29ecd41f3e87",
-      "relation": "contains"
-    },
-    {
-      "source": "HOST--c8bb6422-f12e-56f6-abab-29ecd41f3e87",
-      "target": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
-      "relation": "contains"
-    },
-    {
-      "source": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
-      "target": "PORT_PROTOCOL--38c78ce7-742e-5410-90d5-33c28f39bafb",
-      "relation": "had"
-    },
-    {
-      "source": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
-      "target": "SERVICE--bc86da00-a1f2-5d26-b4ab-2fcac89834be",
-      "relation": "listens-to"
-    },
-    {
-      "source": "SERVICE--bc86da00-a1f2-5d26-b4ab-2fcac89834be",
-      "target": "SERVICE_VERSION--e98ff548-def8-5051-9599-78db14e7ebc8",
       "relation": "had"
     },
     {
@@ -235,11 +210,11 @@
     },
     {
       "source": "SCAN_RECORD--b0cfd4cb-b8d6-566f-abd3-32f6578e6dce",
-      "target": "HOST--2839b29f-d75f-58cd-85bf-e186bf5da419",
+      "target": "HOST--c8bb6422-f12e-56f6-abab-29ecd41f3e87",
       "relation": "contains"
     },
     {
-      "source": "HOST--2839b29f-d75f-58cd-85bf-e186bf5da419",
+      "source": "HOST--c8bb6422-f12e-56f6-abab-29ecd41f3e87",
       "target": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
       "relation": "contains"
     },
@@ -265,6 +240,31 @@
     },
     {
       "source": "HOST--9c1cb0d8-0b57-5351-adca-ae4b09cb32fb",
+      "target": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
+      "target": "PORT_PROTOCOL--38c78ce7-742e-5410-90d5-33c28f39bafb",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
+      "target": "SERVICE--bc86da00-a1f2-5d26-b4ab-2fcac89834be",
+      "relation": "listens-to"
+    },
+    {
+      "source": "SERVICE--bc86da00-a1f2-5d26-b4ab-2fcac89834be",
+      "target": "SERVICE_VERSION--e98ff548-def8-5051-9599-78db14e7ebc8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--b0cfd4cb-b8d6-566f-abd3-32f6578e6dce",
+      "target": "HOST--2839b29f-d75f-58cd-85bf-e186bf5da419",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--2839b29f-d75f-58cd-85bf-e186bf5da419",
       "target": "PORT--0fac4174-2aa6-507b-82f2-1bef1ecf2d24",
       "relation": "contains"
     },
