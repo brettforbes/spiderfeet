@@ -1,30 +1,61 @@
 # Nerva — proposed nugget graph structure
 
-**Skill:** `.cursor/skills/nerva/SKILL.md` · **Epic:** #853 / task #855
+Ontology source: `.seed/05_Onotology_for_Nuggets.md`  
+Generator: `.seed/scripts/cli_corpus/cli_tool_to_graph.py` (`nerva_to_graph`)  
+Harvest: `.seed/scripts/cli_corpus/manifests/nerva.yaml` · runtime `windows` · `.tools/bin/nerva.exe`
 
-Generator: `.seed/scripts/cli_corpus/cli_tool_to_graph.py` · Binary: `.tools/bin/nerva.exe`
+Artifacts: `nerva_<scenario_key>_proposed_nuggets_edges.json` in this directory.
 
-## Scan head
+## Output classes
 
-`SCAN_RECORD` + `SCAN_CLI`. Each JSON line enriches a host:port with protocol and version metadata.
+| Scenario | Semantic class | Structured artifact |
+|----------|----------------|---------------------|
+| `tcp_http_rich_json` | HTTP service + CPE/technologies | JSONL |
+| `tcp_ssh_misconfigs_json` | SSH banner + misconfig findings | JSONL |
+| `tcp_https_praetorian_json` | TLS HTTPS rich metadata | JSONL |
+| `tcp_list_file_json` | Multi-target list file (`-l`) | JSONL |
+| `tcp_fast_praetorian_json` | Fast mode fingerprint | JSONL |
+| `tcp_closed_clean_miss` | Clean miss (no open port) | Empty JSONL |
+| `tcp_http_human_text` | Human-readable stdout | Text only |
 
-## Service fingerprint row (`--json`)
+## Graph head
 
+Every graph has one `SCAN_RECORD` with `SCAN_CLI` descriptor (`had`).
+
+```mermaid
+flowchart TD
+  scan["SCAN_RECORD"]
+  cli["SCAN_CLI"]
+  scan -->|had| cli
 ```
-SCAN_RECORD --contains--> HOST --contains--> PORT
-PORT --had--> PORT_PROTOCOL
-PORT --listens-to--> SERVICE --had--> SERVICE_VERSION (when present)
+
+## Per-host service tree
+
+Each JSONL row maps to host → port → protocol/service → optional version:
+
+```mermaid
+flowchart TD
+  scan["SCAN_RECORD"]
+  host["HOST"]
+  port["PORT"]
+  proto["PORT_PROTOCOL"]
+  svc["SERVICE"]
+  ver["SERVICE_VERSION"]
+  scan -->|contains| host
+  host -->|contains| port
+  port -->|had| proto
+  port -->|listens-to| svc
+  svc -->|had| ver
 ```
 
-## Scenarios examined
+- `HOST` data: IP (or resolved host).
+- `PORT` data: port number.
+- `PORT_PROTOCOL`: `tcp` / `udp` transport.
+- `SERVICE`: application protocol (`http`, `ssh`, …).
+- `SERVICE_VERSION`: banner/CPE string when present.
 
-| Key | Target | Notes |
-|-----|--------|-------|
-| `tcp_scanme_http_json` | scanme.nmap.org:80 | HTTP + Apache metadata |
-| `tcp_scanme_ssh_json` | :22 | SSH fingerprint |
-| `tcp_multi_target_json` | :80,:22 | Multi-target |
-| `tcp_fast_scanme_json` | :443 | `--fast` |
-| `tcp_closed_port_clean_miss` | :1 | No JSON line (clean miss) |
-| `tcp_scanme_human_text` | :80 | Human `ssh://`-style output |
+Instance ids use `uuid5(NAMESPACE_DNS, nugget_id:data)` via `_uid()` in `cli_tool_to_graph.py`.
 
-Upstream: netdiscover/Nmap port discovery. Structured output is **JSON Lines** only for graph derivation.
+## Examination evidence
+
+`.docs/docs-for-cli-tools/app_examination_docs/nerva/` — exams 1–7 aligned to manifest scenario order.

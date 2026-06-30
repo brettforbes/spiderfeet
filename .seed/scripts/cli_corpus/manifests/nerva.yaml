@@ -1,60 +1,64 @@
 tool: nerva
-version: 1
+version: 2
 default_runtime: windows
 default_timeout: 120
-binary_probe: nerva -h
+binary_probe: .tools/bin/nerva.exe -h
 primary_parser: jsonl
-output_path_type: 2  # structured JSON lines + optional text stderr
+output_path_type: 2
+
+# Requires open ports (Nmap/Naabu upstream). Binary: .tools/bin/nerva.exe (PATH via harvest).
 
 scenarios:
-  - id: tcp_scanme_http_json
-    name: "A — TCP scanme.nmap.org:80 (JSON)"
-    archetype: A
+  - id: tcp_http_rich_json
+    name: "TCP HTTP rich metadata (scanme:80)"
     target: scanme.nmap.org:80
     command: nerva -t scanme.nmap.org:80 --json -w 5000
     structured_kind: jsonl
     structured_ext: jsonl
     text_from: stderr
 
-  - id: tcp_scanme_ssh_json
-    name: "B — TCP scanme.nmap.org:22 (JSON)"
-    archetype: B
+  - id: tcp_ssh_misconfigs_json
+    name: "TCP SSH with security findings (scanme:22)"
     target: scanme.nmap.org:22
-    command: nerva -t scanme.nmap.org:22 --json -w 5000
+    command: nerva -t scanme.nmap.org:22 --json --misconfigs -w 8000
     structured_kind: jsonl
     structured_ext: jsonl
     text_from: stderr
 
-  - id: tcp_multi_target_json
-    name: "C — multi-target list (JSON)"
-    archetype: C
-    target: scanme.nmap.org
-    command: nerva -t scanme.nmap.org:80,scanme.nmap.org:22 --json -w 5000
+  - id: tcp_https_praetorian_json
+    name: "TCP HTTPS rich (praetorian.com:443)"
+    target: praetorian.com:443
+    command: nerva -t praetorian.com:443 --json --misconfigs -w 8000
     structured_kind: jsonl
     structured_ext: jsonl
     text_from: stderr
 
-  - id: tcp_fast_scanme_json
-    name: "D — fast mode scanme:443 (JSON)"
-    archetype: D
-    target: scanme.nmap.org:443
-    command: nerva -t scanme.nmap.org:443 --fast --json -w 5000
+  - id: tcp_list_file_json
+    name: "Multi-target list file"
+    target: scanme.nmap.org + praetorian.com
+    command: nerva -l .seed/scripts/cli_corpus/fixtures/nerva_targets.txt --json -w 8000
     structured_kind: jsonl
     structured_ext: jsonl
     text_from: stderr
 
-  - id: tcp_closed_port_clean_miss
-    name: "E — closed port clean miss (JSON)"
-    archetype: E
+  - id: tcp_fast_praetorian_json
+    name: "Fast mode HTTPS (praetorian.com:443)"
+    target: praetorian.com:443
+    command: nerva -t praetorian.com:443 --fast --json -w 5000
+    structured_kind: jsonl
+    structured_ext: jsonl
+    text_from: stderr
+
+  - id: tcp_closed_clean_miss
+    name: "Closed port clean miss (scanme:1)"
     target: scanme.nmap.org:1
-    command: nerva -t scanme.nmap.org:1 --json -w 2000
+    command: nerva -t scanme.nmap.org:1 --json -w 3000
     structured_kind: jsonl
     structured_ext: jsonl
     text_from: stderr
 
-  - id: tcp_scanme_human_text
-    name: "F — human-readable scanme:80"
-    archetype: F
+  - id: tcp_http_human_text
+    name: "Human-readable HTTP fingerprint"
     target: scanme.nmap.org:80
     command: nerva -t scanme.nmap.org:80 -w 5000
     text_from: stdout

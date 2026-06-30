@@ -165,8 +165,21 @@ def generate_tool_graphs(tool: str, scenario_keys: List[str]) -> None:
             "passive_snippet_text",
             "sparse_subnet_parsable",
         ],
-        "nerva": ["tcp_scanme_http_json"],
-        "pius": ["passive_bbc_corporate_ndjson"],
+        "nerva": [
+            "tcp_http_rich_json",
+            "tcp_ssh_misconfigs_json",
+            "tcp_https_praetorian_json",
+            "tcp_list_file_json",
+            "tcp_fast_praetorian_json",
+            "tcp_closed_clean_miss",
+        ],
+        "pius": [
+            "crt_praetorian_ndjson",
+            "crt_linode_ndjson",
+            "corporate_bbc_gleif_ndjson",
+            "rir_cidr_ndjson",
+            "sparse_scanme_ndjson",
+        ],
     }
     if tool not in generators:
         raise SystemExit(f"Unsupported tool: {tool}")
@@ -182,7 +195,8 @@ def generate_tool_graphs(tool: str, scenario_keys: List[str]) -> None:
         command = cmd_path.read_text(encoding="utf-8").strip() if cmd_path.is_file() else key
         target = manifest.get("target") or key
         if tool == "pius":
-            graph = fn(raw, "British Broadcasting Corporation", command)
+            org = manifest.get("org") or target
+            graph = fn(raw, org, command)
         else:
             graph = fn(raw, target, command)
         out = NUGGET_ROOT / f"{tool}_{key}_proposed_nuggets_edges.json"

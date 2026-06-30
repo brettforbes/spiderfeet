@@ -1,17 +1,17 @@
 {
   "tool": "nerva",
   "exam_id": 3,
-  "scenario_id": "tcp_multi_target_json",
-  "scenario_name": "C \u2014 multi-target list (JSON)",
-  "target": "scanme.nmap.org",
+  "scenario_id": "tcp_https_praetorian_json",
+  "scenario_name": "TCP HTTPS rich (praetorian.com:443)",
+  "target": "praetorian.com:443",
   "runtime": "windows",
   "exit_code": 0,
-  "duration_s": 15.61,
-  "captured_at": "2026-06-27T06:32:38.357912+00:00",
+  "duration_s": 25.985,
+  "captured_at": "2026-06-30T03:20:38.017462+00:00",
   "structured_kind": "jsonl",
   "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nerva\\3_output_structured.jsonl",
   "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nerva\\3_output_text.txt",
   "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nerva\\3_command.txt",
-  "tool_manifest_version": 1,
+  "tool_manifest_version": 2,
   "review_status": "pending"
 }

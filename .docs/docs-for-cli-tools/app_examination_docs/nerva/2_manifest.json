@@ -1,17 +1,17 @@
 {
   "tool": "nerva",
   "exam_id": 2,
-  "scenario_id": "tcp_scanme_ssh_json",
-  "scenario_name": "B \u2014 TCP scanme.nmap.org:22 (JSON)",
+  "scenario_id": "tcp_ssh_misconfigs_json",
+  "scenario_name": "TCP SSH with security findings (scanme:22)",
   "target": "scanme.nmap.org:22",
   "runtime": "windows",
   "exit_code": 0,
-  "duration_s": 5.578,
-  "captured_at": "2026-06-27T06:32:22.739766+00:00",
+  "duration_s": 4.703,
+  "captured_at": "2026-06-30T03:20:33.282350+00:00",
   "structured_kind": "jsonl",
   "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nerva\\2_output_structured.jsonl",
   "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nerva\\2_output_text.txt",
   "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nerva\\2_command.txt",
-  "tool_manifest_version": 1,
+  "tool_manifest_version": 2,
   "review_status": "pending"
 }
