@@ -1,0 +1,397 @@
+{
+  "schema": "nerva_fingerprint_v1",
+  "records": [
+    {
+      "host": "praetorian.com",
+      "ip": "2606:4700:3108::ac42:2bc4",
+      "port": 443,
+      "protocol": "https",
+      "tls": true,
+      "transport": "tcp",
+      "version": "cloudflare",
+      "metadata": {
+        "status": "301 Moved Permanently",
+        "status_code": 301,
+        "response_headers": {
+          "Alt-Svc": [
+            "h3=\":443\"; ma=86400"
+          ],
+          "Cf-Apo-Via": [
+            "origin,resnok"
+          ],
+          "Cf-Cache-Status": [
+            "BYPASS"
+          ],
+          "Cf-Ray": [
+            "a13b860ca8bc182f-SYD"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Security-Policy": [
+            "frame-src 'self' blob: *.googletagmanager.com *.greenhouse.io online.fliphtml5.com app.hubspot.com player.vimeo.com boards.greenhouse.io www.praetorian.com *.google.com *.youtube.com *.doubleclick.net *.twitter.com *.hsforms.com *.hsforms.net disqus.com *.vimeo.com vars.hotjar.com mlb.praetorian.com js.driftt.com widget.drift.com; frame-ancestors 'self' https://www.praetorian.com;"
+          ],
+          "Content-Type": [
+            "text/html"
+          ],
+          "Date": [
+            "Tue, 30 Jun 2026 07:40:34 GMT"
+          ],
+          "Location": [
+            "https://www.praetorian.com/"
+          ],
+          "Nel": [
+            "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+          ],
+          "Report-To": [
+            "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=JUIQK%2FtQb7fJbqeWuRrYCugZPDM6yC%2Btx5bHavG03REkuk98jiH3ZDifSNW5W7IB032VOMVcvQu5xoh8a9JpRCtIEK4KUfeYTHJD2Pvp4DUgsj1GHjWloE4YZWrQy9CF%2BdThQO5xyFpsq6zO\"}]}"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Server-Timing": [
+            "cfCacheStatus;desc=\"BYPASS\"",
+            "cfEdge;dur=225,cfOrigin;dur=0"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "technologies": [
+          "Cloudflare Browser Insights",
+          "HSTS",
+          "HTTP/3",
+          "Cloudflare",
+          "zyxel-firewall",
+          "nginx",
+          "checkpoint-gateway"
+        ],
+        "cpes": [
+          "cpe:2.3:o:zyxel:zld_firmware:*:*:*:*:*:*:*:*",
+          "cpe:2.3:a:f5:nginx:*:*:*:*:*:*:*:*",
+          "cpe:2.3:o:checkpoint:gaia:*:*:*:*:*:*:*:*"
+        ],
+        "fingerprint_metadata": {
+          "checkpoint-gateway": {
+            "product": "Security Gateway",
+            "vendor": "Check Point"
+          },
+          "nginx": {
+            "detection_method": "error_page",
+            "product": "Nginx",
+            "server_header": "cloudflare",
+            "variant": "nginx",
+            "vendor": "F5"
+          },
+          "zyxel-firewall": {
+            "product": "Zyxel Firewall",
+            "vendor": "Zyxel"
+          }
+        }
+      }
+    },
+    {
+      "host": "praetorian.com",
+      "ip": "2606:4700:3108::ac42:283c",
+      "port": 443,
+      "protocol": "https",
+      "tls": true,
+      "transport": "tcp",
+      "version": "cloudflare",
+      "metadata": {
+        "status": "301 Moved Permanently",
+        "status_code": 301,
+        "response_headers": {
+          "Alt-Svc": [
+            "h3=\":443\"; ma=86400"
+          ],
+          "Cf-Apo-Via": [
+            "origin,resnok"
+          ],
+          "Cf-Cache-Status": [
+            "BYPASS"
+          ],
+          "Cf-Ray": [
+            "a13b860cbb9e650d-SYD"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Security-Policy": [
+            "frame-src 'self' blob: *.googletagmanager.com *.greenhouse.io online.fliphtml5.com app.hubspot.com player.vimeo.com boards.greenhouse.io www.praetorian.com *.google.com *.youtube.com *.doubleclick.net *.twitter.com *.hsforms.com *.hsforms.net disqus.com *.vimeo.com vars.hotjar.com mlb.praetorian.com js.driftt.com widget.drift.com; frame-ancestors 'self' https://www.praetorian.com;"
+          ],
+          "Content-Type": [
+            "text/html"
+          ],
+          "Date": [
+            "Tue, 30 Jun 2026 07:40:34 GMT"
+          ],
+          "Location": [
+            "https://www.praetorian.com/"
+          ],
+          "Nel": [
+            "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+          ],
+          "Report-To": [
+            "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=tK%2FXSaGsxShqgU1bncqDzqN8Z93GFrKpGxwUY6N%2BE6SUImcIlit9n%2Fco78K4k8%2B1Sd73kfZ4SH%2BMO5Drum3cYX69P6%2FrufgBIPr2x6SZdD%2FkL%2Ffg%2BVuEnSwHRmDDliEhXW5l84JdTCj%2BCuaj\"}]}"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Server-Timing": [
+            "cfCacheStatus;desc=\"BYPASS\"",
+            "cfEdge;dur=269,cfOrigin;dur=0"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "technologies": [
+          "HTTP/3",
+          "Cloudflare",
+          "Cloudflare Browser Insights",
+          "HSTS",
+          "zyxel-firewall",
+          "checkpoint-gateway",
+          "nginx"
+        ],
+        "cpes": [
+          "cpe:2.3:o:zyxel:zld_firmware:*:*:*:*:*:*:*:*",
+          "cpe:2.3:o:checkpoint:gaia:*:*:*:*:*:*:*:*",
+          "cpe:2.3:a:f5:nginx:*:*:*:*:*:*:*:*"
+        ],
+        "fingerprint_metadata": {
+          "checkpoint-gateway": {
+            "product": "Security Gateway",
+            "vendor": "Check Point"
+          },
+          "nginx": {
+            "detection_method": "error_page",
+            "product": "Nginx",
+            "server_header": "cloudflare",
+            "variant": "nginx",
+            "vendor": "F5"
+          },
+          "zyxel-firewall": {
+            "product": "Zyxel Firewall",
+            "vendor": "Zyxel"
+          }
+        }
+      }
+    },
+    {
+      "host": "praetorian.com",
+      "ip": "172.66.43.196",
+      "port": 443,
+      "protocol": "https",
+      "tls": true,
+      "transport": "tcp",
+      "version": "cloudflare",
+      "metadata": {
+        "status": "301 Moved Permanently",
+        "status_code": 301,
+        "response_headers": {
+          "Alt-Svc": [
+            "h3=\":443\"; ma=86400"
+          ],
+          "Cf-Apo-Via": [
+            "origin,resnok"
+          ],
+          "Cf-Cache-Status": [
+            "BYPASS"
+          ],
+          "Cf-Ray": [
+            "a13b860c9c1675df-SYD"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Security-Policy": [
+            "frame-src 'self' blob: *.googletagmanager.com *.greenhouse.io online.fliphtml5.com app.hubspot.com player.vimeo.com boards.greenhouse.io www.praetorian.com *.google.com *.youtube.com *.doubleclick.net *.twitter.com *.hsforms.com *.hsforms.net disqus.com *.vimeo.com vars.hotjar.com mlb.praetorian.com js.driftt.com widget.drift.com; frame-ancestors 'self' https://www.praetorian.com;"
+          ],
+          "Content-Type": [
+            "text/html"
+          ],
+          "Date": [
+            "Tue, 30 Jun 2026 07:40:34 GMT"
+          ],
+          "Location": [
+            "https://www.praetorian.com/"
+          ],
+          "Nel": [
+            "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+          ],
+          "Report-To": [
+            "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=xvQrbVENOqphPncXKEQ9rnRI6S3S%2Bc1rzyUwIOr5jxy%2BA5VrYlbCiEk6di45SfMegTLLBLyKzi%2FM%2B3TgUxVnYfrDXoT%2Bq9d%2FxfPD6iN8vWcfwiP%2FKcyaXijCxM%2FEBfma\"}]}"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Server-Timing": [
+            "cfCacheStatus;desc=\"BYPASS\"",
+            "cfEdge;dur=220,cfOrigin;dur=0"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "technologies": [
+          "HTTP/3",
+          "Cloudflare Browser Insights",
+          "Cloudflare",
+          "HSTS",
+          "zyxel-firewall",
+          "nginx",
+          "checkpoint-gateway"
+        ],
+        "cpes": [
+          "cpe:2.3:o:zyxel:zld_firmware:*:*:*:*:*:*:*:*",
+          "cpe:2.3:a:f5:nginx:*:*:*:*:*:*:*:*",
+          "cpe:2.3:o:checkpoint:gaia:*:*:*:*:*:*:*:*"
+        ],
+        "fingerprint_metadata": {
+          "checkpoint-gateway": {
+            "product": "Security Gateway",
+            "vendor": "Check Point"
+          },
+          "nginx": {
+            "detection_method": "error_page",
+            "product": "Nginx",
+            "server_header": "cloudflare",
+            "variant": "nginx",
+            "vendor": "F5"
+          },
+          "zyxel-firewall": {
+            "product": "Zyxel Firewall",
+            "vendor": "Zyxel"
+          }
+        }
+      }
+    },
+    {
+      "host": "praetorian.com",
+      "ip": "172.66.40.60",
+      "port": 443,
+      "protocol": "https",
+      "tls": true,
+      "transport": "tcp",
+      "version": "cloudflare",
+      "metadata": {
+        "status": "301 Moved Permanently",
+        "status_code": 301,
+        "response_headers": {
+          "Alt-Svc": [
+            "h3=\":443\"; ma=86400"
+          ],
+          "Cf-Apo-Via": [
+            "origin,resnok"
+          ],
+          "Cf-Cache-Status": [
+            "BYPASS"
+          ],
+          "Cf-Ray": [
+            "a13b860cbe0e80f2-SYD"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Security-Policy": [
+            "frame-src 'self' blob: *.googletagmanager.com *.greenhouse.io online.fliphtml5.com app.hubspot.com player.vimeo.com boards.greenhouse.io www.praetorian.com *.google.com *.youtube.com *.doubleclick.net *.twitter.com *.hsforms.com *.hsforms.net disqus.com *.vimeo.com vars.hotjar.com mlb.praetorian.com js.driftt.com widget.drift.com; frame-ancestors 'self' https://www.praetorian.com;"
+          ],
+          "Content-Type": [
+            "text/html"
+          ],
+          "Date": [
+            "Tue, 30 Jun 2026 07:40:34 GMT"
+          ],
+          "Location": [
+            "https://www.praetorian.com/"
+          ],
+          "Nel": [
+            "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+          ],
+          "Report-To": [
+            "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=cl9vdu7ucwxijGhxi4aBYv0GMb3DZ5XPBOhptBMsHG8hKV1vYebELn52PraEeCF49udHeU8vJaJI%2Flav9iwPgzCgbjrij6L85YRbj4MCTLllz59Fxjx6%2Bvj3oDdbwG4Y\"}]}"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Server-Timing": [
+            "cfCacheStatus;desc=\"BYPASS\"",
+            "cfEdge;dur=264,cfOrigin;dur=0"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubDomains; preload"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "technologies": [
+          "HTTP/3",
+          "Cloudflare Browser Insights",
+          "Cloudflare",
+          "HSTS",
+          "zyxel-firewall",
+          "nginx",
+          "checkpoint-gateway"
+        ],
+        "cpes": [
+          "cpe:2.3:o:zyxel:zld_firmware:*:*:*:*:*:*:*:*",
+          "cpe:2.3:a:f5:nginx:*:*:*:*:*:*:*:*",
+          "cpe:2.3:o:checkpoint:gaia:*:*:*:*:*:*:*:*"
+        ],
+        "fingerprint_metadata": {
+          "checkpoint-gateway": {
+            "product": "Security Gateway",
+            "vendor": "Check Point"
+          },
+          "nginx": {
+            "detection_method": "error_page",
+            "product": "Nginx",
+            "server_header": "cloudflare",
+            "variant": "nginx",
+            "vendor": "F5"
+          },
+          "zyxel-firewall": {
+            "product": "Zyxel Firewall",
+            "vendor": "Zyxel"
+          }
+        }
+      }
+    }
+  ]
+}

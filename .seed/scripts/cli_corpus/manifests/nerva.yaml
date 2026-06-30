@@ -1,61 +1,56 @@
 tool: nerva
-version: 2
+version: 3
 default_runtime: windows
 default_timeout: 120
 binary_probe: .tools/bin/nerva.exe -h
-primary_parser: jsonl
+primary_parser: json
 output_path_type: 2
 
 # Requires open ports (Nmap/Naabu upstream). Binary: .tools/bin/nerva.exe (PATH via harvest).
+# JSON scenarios: structured JSON bundle + text summary derived from --json records.
 
 scenarios:
   - id: tcp_http_rich_json
     name: "TCP HTTP rich metadata (scanme:80)"
     target: scanme.nmap.org:80
     command: nerva -t scanme.nmap.org:80 --json -w 5000
-    structured_kind: jsonl
-    structured_ext: jsonl
-    text_from: stderr
+    structured_kind: json
+    structured_ext: json
 
   - id: tcp_ssh_misconfigs_json
     name: "TCP SSH with security findings (scanme:22)"
     target: scanme.nmap.org:22
     command: nerva -t scanme.nmap.org:22 --json --misconfigs -w 8000
-    structured_kind: jsonl
-    structured_ext: jsonl
-    text_from: stderr
+    structured_kind: json
+    structured_ext: json
 
   - id: tcp_https_praetorian_json
     name: "TCP HTTPS rich (praetorian.com:443)"
     target: praetorian.com:443
     command: nerva -t praetorian.com:443 --json --misconfigs -w 8000
-    structured_kind: jsonl
-    structured_ext: jsonl
-    text_from: stderr
+    structured_kind: json
+    structured_ext: json
 
   - id: tcp_list_file_json
     name: "Multi-target list file"
     target: scanme.nmap.org + praetorian.com
     command: nerva -l .seed/scripts/cli_corpus/fixtures/nerva_targets.txt --json -w 8000
-    structured_kind: jsonl
-    structured_ext: jsonl
-    text_from: stderr
+    structured_kind: json
+    structured_ext: json
 
   - id: tcp_fast_praetorian_json
     name: "Fast mode HTTPS (praetorian.com:443)"
     target: praetorian.com:443
     command: nerva -t praetorian.com:443 --fast --json -w 5000
-    structured_kind: jsonl
-    structured_ext: jsonl
-    text_from: stderr
+    structured_kind: json
+    structured_ext: json
 
   - id: tcp_closed_clean_miss
     name: "Closed port clean miss (scanme:1)"
     target: scanme.nmap.org:1
     command: nerva -t scanme.nmap.org:1 --json -w 3000
-    structured_kind: jsonl
-    structured_ext: jsonl
-    text_from: stderr
+    structured_kind: json
+    structured_ext: json
 
   - id: tcp_http_human_text
     name: "Human-readable HTTP fingerprint"

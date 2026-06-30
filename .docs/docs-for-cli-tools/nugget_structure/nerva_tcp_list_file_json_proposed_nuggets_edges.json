@@ -17,12 +17,12 @@
       "nugget_data": "nerva -l .seed/scripts/cli_corpus/fixtures/nerva_targets.txt --json -w 8000"
     },
     {
-      "id": "HOST--8922aede-34fe-594b-ab7a-b7cf742979a1",
-      "nugget_instance_id": "HOST--8922aede-34fe-594b-ab7a-b7cf742979a1",
+      "id": "HOST--3452fb7f-bac7-5192-b9d7-5e72ddfc78aa",
+      "nugget_instance_id": "HOST--3452fb7f-bac7-5192-b9d7-5e72ddfc78aa",
       "nugget_id": "HOST",
       "nugget_type": "ENTITY",
       "nugget_description": "Host",
-      "nugget_data": "45.33.32.156"
+      "nugget_data": "2600:3c01::f03c:91ff:fe18:bb2f"
     },
     {
       "id": "PORT--e23e459e-53d4-5540-bf7a-54480a3d8ca3",
@@ -49,12 +49,12 @@
       "nugget_data": "ssh"
     },
     {
-      "id": "HOST--3452fb7f-bac7-5192-b9d7-5e72ddfc78aa",
-      "nugget_instance_id": "HOST--3452fb7f-bac7-5192-b9d7-5e72ddfc78aa",
+      "id": "HOST--8922aede-34fe-594b-ab7a-b7cf742979a1",
+      "nugget_instance_id": "HOST--8922aede-34fe-594b-ab7a-b7cf742979a1",
       "nugget_id": "HOST",
       "nugget_type": "ENTITY",
       "nugget_description": "Host",
-      "nugget_data": "2600:3c01::f03c:91ff:fe18:bb2f"
+      "nugget_data": "45.33.32.156"
     },
     {
       "id": "PORT--e23e459e-53d4-5540-bf7a-54480a3d8ca3",
@@ -329,11 +329,11 @@
     },
     {
       "source": "SCAN_RECORD--b9237768-1c00-58f3-9bdf-b0b3bb725077",
-      "target": "HOST--8922aede-34fe-594b-ab7a-b7cf742979a1",
+      "target": "HOST--3452fb7f-bac7-5192-b9d7-5e72ddfc78aa",
       "relation": "contains"
     },
     {
-      "source": "HOST--8922aede-34fe-594b-ab7a-b7cf742979a1",
+      "source": "HOST--3452fb7f-bac7-5192-b9d7-5e72ddfc78aa",
       "target": "PORT--e23e459e-53d4-5540-bf7a-54480a3d8ca3",
       "relation": "contains"
     },
@@ -349,11 +349,11 @@
     },
     {
       "source": "SCAN_RECORD--b9237768-1c00-58f3-9bdf-b0b3bb725077",
-      "target": "HOST--3452fb7f-bac7-5192-b9d7-5e72ddfc78aa",
+      "target": "HOST--8922aede-34fe-594b-ab7a-b7cf742979a1",
       "relation": "contains"
     },
     {
-      "source": "HOST--3452fb7f-bac7-5192-b9d7-5e72ddfc78aa",
+      "source": "HOST--8922aede-34fe-594b-ab7a-b7cf742979a1",
       "target": "PORT--e23e459e-53d4-5540-bf7a-54480a3d8ca3",
       "relation": "contains"
     },
