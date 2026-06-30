@@ -1,1 +1,1 @@
-nerva -t scanme.nmap.org:22 --json -w 5000
+nerva -t scanme.nmap.org:22 --json --misconfigs -w 8000

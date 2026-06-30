@@ -1,61 +1,81 @@
 tool: pius
-version: 1
+version: 2
 default_runtime: wsl
 default_timeout: 600
 env_file: .tools/pius.env
-binary_probe: wsl bash -lc "/mnt/c/projects/spiderfeet/.tools/pius list 2>&1 | head -3"
+binary_probe: wsl bash -lc "test -x /mnt/c/projects/spiderfeet/.tools/pius"
 primary_parser: ndjson
 output_path_type: 2
 
+# Capture: pius NDJSON on stdout (do not shell-redirect — ndjson mode skips non-TTY);
+# status banner on stderr. Long timeout for RIR phase-2 CIDR.
+
 scenarios:
-  - id: passive_bbc_corporate_ndjson
-    name: "A — passive BBC corporate (NDJSON)"
-    archetype: A
+  - id: crt_praetorian_ndjson
+    name: "crt-sh rich domains (Praetorian)"
+    org: Praetorian
+    target: praetorian.com
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org Praetorian --domain praetorian.com --plugins crt-sh --output ndjson
+    structured_kind: ndjson
+    structured_ext: jsonl
+    text_from: stderr
+    timeout: 120
+
+  - id: crt_linode_ndjson
+    name: "crt-sh high volume (Linode)"
+    org: Linode
+    target: linode.com
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org Linode --domain linode.com --plugins crt-sh --output ndjson
+    structured_kind: ndjson
+    structured_ext: jsonl
+    text_from: stderr
+    timeout: 90
+    structured_fixture: .seed/scripts/cli_corpus/fixtures/pius_linode_crt_sample.jsonl
+
+  - id: corporate_bbc_gleif_ndjson
+    name: "Corporate gleif + wikidata (BBC)"
+    org: British Broadcasting Corporation
     target: bbc.co.uk
-    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins crt-sh,gleif,whois,edgar,wikidata,google-dorks --output ndjson
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins gleif,wikidata,whois,crt-sh --output ndjson
     structured_kind: ndjson
     structured_ext: jsonl
     text_from: stderr
+    timeout: 600
 
-  - id: passive_scanme_permissive_ndjson
-    name: "B — passive scanme permissive (NDJSON)"
-    archetype: B
+  - id: rir_cidr_ndjson
+    name: "RIR CIDR phase (Cloudflare)"
+    org: Cloudflare, Inc.
+    target: cloudflare.com
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Cloudflare, Inc." --domain cloudflare.com --plugins whois,edgar,arin,ripe,apnic --output ndjson
+    structured_kind: ndjson
+    structured_ext: jsonl
+    text_from: stderr
+    timeout: 900
+
+  - id: sparse_scanme_ndjson
+    name: "Sparse preseed only (Nmap Scanme)"
+    org: Nmap Scanme
     target: scanme.nmap.org
-    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Nmap Scanme" --domain scanme.nmap.org --plugins crt-sh,gleif,whois --output ndjson
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Nmap Scanme" --domain scanme.nmap.org --plugins crt-sh,whois --output ndjson
     structured_kind: ndjson
     structured_ext: jsonl
     text_from: stderr
+    timeout: 120
 
-  - id: passive_shodan_plugin_ndjson
-    name: "C — Shodan plugin when key present (NDJSON)"
-    archetype: C
-    target: scanme.nmap.org
-    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Nmap Scanme" --domain scanme.nmap.org --plugins shodan --output ndjson
-    structured_kind: ndjson
-    structured_ext: jsonl
-    text_from: stderr
-
-  - id: cidr_whois_arin_ndjson
-    name: "D — RIR whois CIDR phase (NDJSON)"
-    archetype: D
-    target: "British Broadcasting Corporation"
-    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins whois,edgar,arin,ripe --output ndjson
-    structured_kind: ndjson
-    structured_ext: jsonl
-    text_from: stderr
-
-  - id: passive_obscure_clean_miss_ndjson
-    name: "E — obscure org clean miss (NDJSON)"
-    archetype: E
-    target: "ZZZZ Nonexistent Org 000000"
+  - id: obscure_miss_ndjson
+    name: "Obscure org clean miss"
+    org: ZZZZ Nonexistent Org 000000
+    target: none
     command: /mnt/c/projects/spiderfeet/.tools/pius run --org "ZZZZ Nonexistent Org 000000" --plugins gleif,whois --output ndjson
     structured_kind: ndjson
     structured_ext: jsonl
     text_from: stderr
+    timeout: 120
 
-  - id: passive_bbc_terminal_text
-    name: "F — passive BBC terminal review"
-    archetype: F
+  - id: corporate_bbc_terminal
+    name: "Terminal output (BBC gleif subset)"
+    org: British Broadcasting Corporation
     target: bbc.co.uk
-    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins crt-sh,gleif --output terminal 2>&1 | head -60
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins gleif,crt-sh --output terminal
     text_from: stdout
+    timeout: 180

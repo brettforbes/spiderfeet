@@ -1,1 +1,1 @@
-nerva -t scanme.nmap.org:443 --fast --json -w 5000
+nerva -l .seed/scripts/cli_corpus/fixtures/nerva_targets.txt --json -w 8000

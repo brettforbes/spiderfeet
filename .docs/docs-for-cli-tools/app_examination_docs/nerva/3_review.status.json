@@ -1,5 +1,5 @@
 {
   "status": "pending",
   "exam_id": 3,
-  "scenario_id": "tcp_multi_target_json"
+  "scenario_id": "tcp_https_praetorian_json"
 }

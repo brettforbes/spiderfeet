@@ -1,1 +1,1 @@
-/mnt/c/projects/spiderfeet/.tools/pius run --org "Nmap Scanme" --domain scanme.nmap.org --plugins shodan --output ndjson
+/mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins gleif,wikidata,whois,crt-sh --output ndjson

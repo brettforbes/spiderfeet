@@ -1,0 +1,27 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--a17599c6-f865-512b-84e8-3fb85251bea7",
+      "nugget_instance_id": "SCAN_RECORD--a17599c6-f865-512b-84e8-3fb85251bea7",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Scan Record",
+      "nugget_data": "nerva -t scanme.nmap.org:1 --json -w 3000"
+    },
+    {
+      "id": "SCAN_CLI--9585a6c7-a512-5894-addf-2f6a8840020f",
+      "nugget_instance_id": "SCAN_CLI--9585a6c7-a512-5894-addf-2f6a8840020f",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "nerva -t scanme.nmap.org:1 --json -w 3000"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--a17599c6-f865-512b-84e8-3fb85251bea7",
+      "target": "SCAN_CLI--9585a6c7-a512-5894-addf-2f6a8840020f",
+      "relation": "had"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+scanme.nmap.org:22
+scanme.nmap.org:80
+praetorian.com:443

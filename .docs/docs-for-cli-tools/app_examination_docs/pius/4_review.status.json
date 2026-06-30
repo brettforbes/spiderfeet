@@ -1,5 +1,5 @@
 {
   "status": "pending",
   "exam_id": 4,
-  "scenario_id": "cidr_whois_arin_ndjson"
+  "scenario_id": "rir_cidr_ndjson"
 }
