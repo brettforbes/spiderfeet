@@ -232,6 +232,18 @@ def _jsonl_lines_from_stdout(stdout: str) -> str:
     return "\n".join(lines) + "\n"
 
 
+def _nerva_structured_payload(
+    scenario: dict[str, Any],
+    result: RunResult,
+) -> tuple[dict[str, Any], str]:
+    from nerva_structured import jsonl_to_bundle, structured_to_text
+
+    jsonl = _jsonl_lines_from_stdout(result.stdout)
+    bundle = jsonl_to_bundle(jsonl)
+    text_content = structured_to_text(bundle["records"])
+    return bundle, text_content
+
+
 def _write_tool_graph(
     tool: str,
     scenario: dict[str, Any],
@@ -295,26 +307,37 @@ def write_bundle(
         graph_path.parent.mkdir(parents=True, exist_ok=True)
         write_graph_artifacts(structured_path, graph_path, scenario["id"])
     elif structured_ext:
-        structured_path = tool_dir / f"{prefix}_output_structured.{structured_ext}"
-        out_file = scenario.get("structured_output_file")
-        if out_file and Path(out_file).is_file():
-            structured_path.write_text(Path(out_file).read_text(encoding="utf-8", errors="replace"), encoding="utf-8")
+        if tool == "nerva" and structured_ext in ("json", "jsonl"):
+            bundle, text_content = _nerva_structured_payload(scenario, result)
+            from nerva_structured import dumps_nerva_bundle
+
+            structured_path = tool_dir / f"{prefix}_output_structured.json"
+            structured_path.write_text(dumps_nerva_bundle(bundle), encoding="utf-8")
             result.structured_path = str(structured_path.relative_to(REPO_ROOT))
-            result.structured_kind = structured_kind
-        elif result.stdout.strip() or tool in ("nerva", "pius"):
-            if tool in ("nerva", "pius") and structured_ext == "jsonl":
-                payload = _jsonl_lines_from_stdout(result.stdout)
-            else:
-                payload = result.stdout
-            fixture_rel = scenario.get("structured_fixture")
-            if tool == "pius" and not payload.strip() and fixture_rel:
-                fixture_path = REPO_ROOT / fixture_rel
-                if fixture_path.is_file():
-                    payload = fixture_path.read_text(encoding="utf-8", errors="replace")
-                    result.structured_fixture_used = str(fixture_path.relative_to(REPO_ROOT))
-            structured_path.write_text(payload, encoding="utf-8")
-            result.structured_path = str(structured_path.relative_to(REPO_ROOT))
-            result.structured_kind = structured_kind
+            result.structured_kind = "json"
+            structured_kind = "json"
+            structured_ext = "json"
+        else:
+            structured_path = tool_dir / f"{prefix}_output_structured.{structured_ext}"
+            out_file = scenario.get("structured_output_file")
+            if out_file and Path(out_file).is_file():
+                structured_path.write_text(Path(out_file).read_text(encoding="utf-8", errors="replace"), encoding="utf-8")
+                result.structured_path = str(structured_path.relative_to(REPO_ROOT))
+                result.structured_kind = structured_kind
+            elif result.stdout.strip() or tool in ("nerva", "pius"):
+                if tool in ("nerva", "pius") and structured_ext == "jsonl":
+                    payload = _jsonl_lines_from_stdout(result.stdout)
+                else:
+                    payload = result.stdout
+                fixture_rel = scenario.get("structured_fixture")
+                if tool == "pius" and not payload.strip() and fixture_rel:
+                    fixture_path = REPO_ROOT / fixture_rel
+                    if fixture_path.is_file():
+                        payload = fixture_path.read_text(encoding="utf-8", errors="replace")
+                        result.structured_fixture_used = str(fixture_path.relative_to(REPO_ROOT))
+                structured_path.write_text(payload, encoding="utf-8")
+                result.structured_path = str(structured_path.relative_to(REPO_ROOT))
+                result.structured_kind = structured_kind
 
     text_path = tool_dir / f"{prefix}_output_text.txt"
     header = ""
@@ -323,6 +346,25 @@ def write_bundle(
             command=result.command,
             scenario_name=scenario.get("name", scenario["id"]),
             captured_at=captured_at,
+        )
+    elif tool == "nerva":
+        from nerva_structured import nerva_text_capture_header, strip_capture_header
+
+        body_lines = [
+            ln
+            for ln in strip_capture_header(text_content).replace("\r\n", "\n").split("\n")
+            if ln.strip() and not ln.startswith("#")
+        ]
+        header = nerva_text_capture_header(
+            command=result.command,
+            scenario_name=scenario.get("name", scenario["id"]),
+            scenario_id=scenario["id"],
+            target=scenario.get("target"),
+            captured_at=captured_at,
+            runtime=result.runtime,
+            exit_code=result.exit_code,
+            duration_s=result.duration_s,
+            record_count=len(body_lines),
         )
     text_path.write_text(header + text_content, encoding="utf-8")
 
