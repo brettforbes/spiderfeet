@@ -1,5 +1,17 @@
 {
   "schema": "nerva_fingerprint_v1",
+  "tool": "nerva",
+  "scenario": "TCP HTTP rich metadata (scanme:80)",
+  "scenario_id": "tcp_http_rich_json",
+  "target": "scanme.nmap.org:80",
+  "command": "nerva -t scanme.nmap.org:80 --json -w 5000",
+  "runtime": "windows",
+  "started_at": "2026-06-30T07:38:43.148728+00:00",
+  "duration_s": 16.094,
+  "exit_code": 0,
+  "fingerprint_summary_lines": 2,
+  "text_role": "one line per discovered service/IP (pipe-friendly summary)",
+  "structured_role": "full JSON metadata per record (headers, findings, etc.)",
   "records": [
     {
       "host": "scanme.nmap.org",

@@ -235,11 +235,24 @@ def _jsonl_lines_from_stdout(stdout: str) -> str:
 def _nerva_structured_payload(
     scenario: dict[str, Any],
     result: RunResult,
+    captured_at: datetime,
 ) -> tuple[dict[str, Any], str]:
-    from nerva_structured import jsonl_to_bundle, structured_to_text
+    from nerva_structured import build_nerva_bundle, nerva_scan_context, parse_jsonl, structured_to_text
 
     jsonl = _jsonl_lines_from_stdout(result.stdout)
-    bundle = jsonl_to_bundle(jsonl)
+    records = parse_jsonl(jsonl)
+    scan = nerva_scan_context(
+        command=result.command,
+        scenario_name=scenario.get("name", scenario["id"]),
+        scenario_id=scenario["id"],
+        target=scenario.get("target"),
+        captured_at=captured_at,
+        runtime=result.runtime,
+        exit_code=result.exit_code,
+        duration_s=result.duration_s,
+        record_count=len(records),
+    )
+    bundle = build_nerva_bundle(records, scan)
     text_content = structured_to_text(bundle["records"])
     return bundle, text_content
 
@@ -308,7 +321,7 @@ def write_bundle(
         write_graph_artifacts(structured_path, graph_path, scenario["id"])
     elif structured_ext:
         if tool == "nerva" and structured_ext in ("json", "jsonl"):
-            bundle, text_content = _nerva_structured_payload(scenario, result)
+            bundle, text_content = _nerva_structured_payload(scenario, result, captured_at)
             from nerva_structured import dumps_nerva_bundle
 
             structured_path = tool_dir / f"{prefix}_output_structured.json"
