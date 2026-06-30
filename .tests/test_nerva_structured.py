@@ -96,9 +96,27 @@ def test_nerva_text_capture_header_includes_scan_context() -> None:
     assert "structured_role:" in header
 
 
+def test_harvested_structured_includes_scan_context() -> None:
+    for manifest_path in sorted(EXAM_ROOT.glob("*_manifest.json")):
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        structured_rel = manifest.get("structured_path")
+        if not structured_rel:
+            continue
+        doc = json.loads((REPO_ROOT / structured_rel).read_text(encoding="utf-8"))
+        assert doc.get("tool") == "nerva", manifest.get("scenario_id")
+        assert doc.get("schema") == "nerva_fingerprint_v1"
+        assert "command" in doc
+        assert "started_at" in doc
+        assert "duration_s" in doc
+        assert "exit_code" in doc
+        assert "records" in doc
+        assert doc["fingerprint_summary_lines"] == len(doc["records"])
+
+
 if __name__ == "__main__":
     test_record_to_text_line_format()
     test_nerva_text_capture_header_includes_scan_context()
     test_reference_fixtures_match_record_multiset()
     test_harvested_text_derived_from_structured_only()
+    test_harvested_structured_includes_scan_context()
     print("ok")
