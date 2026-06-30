@@ -1,5 +1,17 @@
 {
   "schema": "nerva_fingerprint_v1",
+  "tool": "nerva",
+  "scenario": "Fast mode HTTPS (praetorian.com:443)",
+  "scenario_id": "tcp_fast_praetorian_json",
+  "target": "praetorian.com:443",
+  "command": "nerva -t praetorian.com:443 --fast --json -w 5000",
+  "runtime": "windows",
+  "started_at": "2026-06-30T07:40:30.769800+00:00",
+  "duration_s": 23.094,
+  "exit_code": 0,
+  "fingerprint_summary_lines": 4,
+  "text_role": "one line per discovered service/IP (pipe-friendly summary)",
+  "structured_role": "full JSON metadata per record (headers, findings, etc.)",
   "records": [
     {
       "host": "praetorian.com",

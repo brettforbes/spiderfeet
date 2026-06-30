@@ -123,15 +123,54 @@ def structured_to_text(
     return "\n".join(lines) + "\n"
 
 
-def build_nerva_bundle(records: list[dict[str, Any]]) -> dict[str, Any]:
-    return {
+def build_nerva_bundle(
+    records: list[dict[str, Any]],
+    scan: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    bundle: dict[str, Any] = {
         "schema": NERVA_STRUCTURED_SCHEMA,
         "records": records,
     }
+    if scan:
+        ordered_scan = {**scan, "fingerprint_summary_lines": len(records)}
+        return {
+            "schema": NERVA_STRUCTURED_SCHEMA,
+            **ordered_scan,
+            "records": records,
+        }
+    return bundle
 
 
-def jsonl_to_bundle(jsonl: str) -> dict[str, Any]:
-    return build_nerva_bundle(parse_jsonl(jsonl))
+def jsonl_to_bundle(jsonl: str, scan: dict[str, Any] | None = None) -> dict[str, Any]:
+    return build_nerva_bundle(parse_jsonl(jsonl), scan)
+
+
+def nerva_scan_context(
+    *,
+    command: str,
+    scenario_name: str,
+    scenario_id: str,
+    target: str | None,
+    captured_at: datetime,
+    runtime: str,
+    exit_code: int,
+    duration_s: float,
+    record_count: int,
+) -> dict[str, Any]:
+    return {
+        "tool": "nerva",
+        "scenario": scenario_name,
+        "scenario_id": scenario_id,
+        "target": target,
+        "command": command,
+        "runtime": runtime,
+        "started_at": captured_at.astimezone(timezone.utc).isoformat(),
+        "duration_s": round(duration_s, 3),
+        "exit_code": exit_code,
+        "fingerprint_summary_lines": record_count,
+        "text_role": "one line per discovered service/IP (pipe-friendly summary)",
+        "structured_role": "full JSON metadata per record (headers, findings, etc.)",
+    }
 
 
 def dumps_nerva_bundle(bundle: dict[str, Any]) -> str:
@@ -169,20 +208,30 @@ def nerva_text_capture_header(
     duration_s: float,
     record_count: int,
 ) -> str:
-    started = captured_at.astimezone(timezone.utc).isoformat()
-    target_line = target or "—"
+    scan = nerva_scan_context(
+        command=command,
+        scenario_name=scenario_name,
+        scenario_id=scenario_id,
+        target=target,
+        captured_at=captured_at,
+        runtime=runtime,
+        exit_code=exit_code,
+        duration_s=duration_s,
+        record_count=record_count,
+    )
+    target_line = scan["target"] or "—"
     return (
         "# SpiderFeet CLI examination capture\n"
-        "# tool: nerva\n"
-        f"# scenario: {scenario_name} ({scenario_id})\n"
+        f"# tool: {scan['tool']}\n"
+        f"# scenario: {scan['scenario']} ({scan['scenario_id']})\n"
         f"# target: {target_line}\n"
-        f"# command: {command}\n"
-        f"# runtime: {runtime}\n"
-        f"# started_at: {started}\n"
-        f"# duration_s: {duration_s:.3f}\n"
-        f"# exit_code: {exit_code}\n"
-        f"# fingerprint_summary_lines: {record_count}\n"
-        "# text_role: one line per discovered service/IP (pipe-friendly summary)\n"
-        "# structured_role: full JSON metadata per record (headers, findings, etc.)\n"
+        f"# command: {scan['command']}\n"
+        f"# runtime: {scan['runtime']}\n"
+        f"# started_at: {scan['started_at']}\n"
+        f"# duration_s: {scan['duration_s']:.3f}\n"
+        f"# exit_code: {scan['exit_code']}\n"
+        f"# fingerprint_summary_lines: {scan['fingerprint_summary_lines']}\n"
+        f"# text_role: {scan['text_role']}\n"
+        f"# structured_role: {scan['structured_role']}\n"
         "\n"
     )
