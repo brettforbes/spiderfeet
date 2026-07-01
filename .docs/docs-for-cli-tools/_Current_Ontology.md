@@ -13,7 +13,7 @@ Canonical seed: `.seed/05_Onotology_for_Nuggets.md` · Vocabulary: `.docs/analys
 
 ## System qualification hierarchy
 
-The difference between **`SYSTEM`**, **`HOST`**, **`DEVICE`**, **`MOBILE`**, and **`SERVER`** is **level of qualification** — how much evidence a scan provides about what kind of endpoint was found. Not every tool returns enough detail to assign a specific class; parsers must emit only what the evidence supports.
+The difference between **`SYSTEM`**, **`HOST`**, **`DEVICE`**, **`MOBILE`**, **`SERVER`**, and **`CDN`** is **level of qualification** — how much evidence a scan provides about what kind of endpoint was found. Not every tool returns enough detail to assign a specific class; parsers must emit only what the evidence supports.
 
 ### Type lattice
 
@@ -26,9 +26,11 @@ flowchart TB
   host["HOST — general computer\n(networks, applications,\nenvironment, vulnerabilities)"]
   server["SERVER — rack-mounted host\n(local or cloud)"]
   device["DEVICE — networking gear,\nsensor, IoT"]
+  cdn["CDN — content delivery\nnetwork edge"]
   system --> mobile
   system --> host
   system --> device
+  system --> cdn
   host --> server
 ```
 
@@ -39,6 +41,7 @@ flowchart TB
 | **`HOST`** | `SYSTEM` | General-purpose computer; may own category trees (`NETWORKS`, `APPLICATIONS`, `ENVIRONMENT`, `VULNERABILITIES`, …) |
 | **`SERVER`** | `SYSTEM` / `HOST` | A `HOST` that is rack-mounted — on-prem or cloud |
 | **`DEVICE`** | `SYSTEM` | Network appliance, sensor, or IoT endpoint (not a general computer) |
+| **`CDN`** | `SYSTEM` | Content delivery network edge or anycast presence (e.g. Cloudflare, Akamai, Fastly) — on the network but not an origin `HOST` |
 
 ### Evidence sufficiency
 
@@ -47,9 +50,12 @@ flowchart TB
 | L2 / ARP discovery | Netdiscover, ARP tables | **`SYSTEM`** | IPv4, MAC, MAC vendor under `NETWORKS` only |
 | L3 reachability + ports | Nmap, Naabu | **`HOST`** | Reachability, ports, services when probed |
 | Service fingerprint | Nerva | **`HOST`** (via port graph) | Protocol, banners, TLS, misconfigs on open ports |
+| CDN / edge detection | Nerva, Nmap headers | **`CDN`** | Edge vendor headers (`Server: cloudflare`, `CF-Ray`, …); not origin infrastructure |
 | Deep OS / app stack | Nmap NSE, CMSeeK, … | **`HOST`** + categories | `APPLICATIONS`, `ENVIRONMENT`, `VULNERABILITIES` as evidence allows |
 
-ARP and similar shallow discovery **cannot** justify `HOST`, `DEVICE`, `MOBILE`, or `SERVER` — only **`SYSTEM`** with a **`NETWORKS`** category (`IP_ADDRESS`, `MAC_ADDRESS`, `MAC_VENDOR`). Vendor strings are hints, not proof of class.
+ARP and similar shallow discovery **cannot** justify `HOST`, `DEVICE`, `MOBILE`, `SERVER`, or `CDN` — only **`SYSTEM`** with a **`NETWORKS`** category (`IP_ADDRESS`, `MAC_ADDRESS`, `MAC_VENDOR`). Vendor strings are hints, not proof of class.
+
+When service fingerprinting reveals a **CDN front** (multiple anycast IPs, vendor-specific headers, TLS terminated at edge), classify as **`CDN`** rather than counting each edge IP as a separate origin **`HOST`**. See Ruleset C in `.seed/07_Scan_Record_Host_Correlation_Rulesets.md`.
 
 ### `SYSTEM` as a temporary nugget
 
@@ -57,7 +63,7 @@ ARP and similar shallow discovery **cannot** justify `HOST`, `DEVICE`, `MOBILE`,
 
 1. **Create** — shallow scan (e.g. Netdiscover) emits `SCAN_RECORD` `contains` `SYSTEM` with `NETWORKS` facts.
 2. **Investigate** — port scan, service fingerprint, OS detection, or other enrichment on the same IP/MAC.
-3. **Reclassify** — when evidence supports it, replace or correlate the `SYSTEM` with the appropriate qualified type (`HOST`, `DEVICE`, `MOBILE`, `SERVER`) and attach the relevant category subtrees.
+3. **Reclassify** — when evidence supports it, replace or correlate the `SYSTEM` with the appropriate qualified type (`HOST`, `DEVICE`, `MOBILE`, `SERVER`, `CDN`) and attach the relevant category subtrees.
 
 Do not promote a `SYSTEM` to `HOST` (or any narrower class) without scan evidence that meets the qualification bar for that class. Correlation and merge rules live in `.seed/07_Scan_Record_Host_Correlation_Rulesets.md`.
 
@@ -65,7 +71,7 @@ Do not promote a `SYSTEM` to `HOST` (or any narrower class) without scan evidenc
 flowchart LR
   arp["ARP / Netdiscover\nSYSTEM + NETWORKS"]
   enrich["Further scans\nports, services, OS"]
-  qualified["Qualified nugget\nHOST | DEVICE | MOBILE | SERVER"]
+  qualified["Qualified nugget\nHOST | DEVICE | MOBILE | SERVER | CDN"]
   arp --> enrich --> qualified
 ```
 
@@ -75,7 +81,7 @@ flowchart LR
 |------|-----------------|-----------|
 | **Netdiscover** | `SYSTEM` | IP + MAC + vendor only — insufficient to qualify as `HOST` or `DEVICE` |
 | **Nmap** | `HOST` | Reachability, ports, services, OS, trace — general computer evidence |
-| **Nerva** | `HOST` (in port/service graph) | Fingerprints open ports; attaches to host/port model, not bare ARP |
+| **Nerva** | `HOST` (in port/service graph) | Fingerprints open ports; attaches to host/port model, not bare ARP. CDN-fronted targets may warrant **`CDN`** when edge evidence dominates (not yet emitted in corpus graphs) |
 
 Future pipeline stages should **consume** provisional `SYSTEM` nuggets and **emit** qualified replacements rather than duplicating unrelated endpoint nodes.
 
@@ -256,7 +262,7 @@ flowchart TD
 
 ## Netdiscover — system tree (provisional)
 
-LAN discovery emits **`SYSTEM`** nodes — **provisional** classification when only MAC vendor and L2/L3 addressing are known (see [System qualification hierarchy](#system-qualification-hierarchy)). Each system owns a **`NETWORKS`** category with IPv4, MAC, and vendor facts. Further scans are required before reclassifying as `HOST`, `DEVICE`, `MOBILE`, or `SERVER`.
+LAN discovery emits **`SYSTEM`** nodes — **provisional** classification when only MAC vendor and L2/L3 addressing are known (see [System qualification hierarchy](#system-qualification-hierarchy)). Each system owns a **`NETWORKS`** category with IPv4, MAC, and vendor facts. Further scans are required before reclassifying as `HOST`, `DEVICE`, `MOBILE`, `SERVER`, or `CDN`.
 
 ```mermaid
 flowchart TD
@@ -312,7 +318,7 @@ This table summarises **implemented** CLI profiling output. The qualification mo
 | L3 address | `IP_ADDRESS` under `NETWORKS` | `IP_ADDRESS` under `NETWORKS` |
 | L2 facts | Rare in XML scans | `MAC_ADDRESS` + `MAC_VENDOR` |
 | Applications | `APPLICATIONS` / `SERVICE` / ports | Not in scope |
-| Next step | Service/OS enrichment (Nerva, …) | Port scan → qualify as `HOST` or `DEVICE`, etc. |
+| Next step | Service/OS enrichment (Nerva, …); CDN detection when edge headers present | Port scan → qualify as `HOST`, `DEVICE`, `CDN`, etc. |
 
 Correlation and reclassification rules: `.seed/07_Scan_Record_Host_Correlation_Rulesets.md`.
 
@@ -332,7 +338,7 @@ flowchart LR
   nd -.->|"reclassify when\nenriched"| nm
 ```
 
-Shallow discovery leaves endpoints as **`SYSTEM`** until port/service/OS evidence supports **`HOST`**, **`DEVICE`**, **`MOBILE`**, or **`SERVER`**. Naabu and Nerva skills document downstream enrichment; this doc covers structures **implemented** in the CLI profiling corpus today (Nmap + Netdiscover).
+Shallow discovery leaves endpoints as **`SYSTEM`** until port/service/OS evidence supports **`HOST`**, **`DEVICE`**, **`MOBILE`**, **`SERVER`**, or **`CDN`**. Naabu and Nerva skills document downstream enrichment; this doc covers structures **implemented** in the CLI profiling corpus today (Nmap + Netdiscover).
 
 ---
 
