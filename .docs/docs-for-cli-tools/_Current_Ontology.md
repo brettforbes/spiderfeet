@@ -1,23 +1,80 @@
 # Current CLI Profiling Ontology
 
-Living summary of nugget graph structures produced by CLI application profiling. Start here for cross-tool vocabulary; drill into per-tool generators and field mappings when implementing parsers.
+Living summary of the **unified** nugget graph model built incrementally from CLI application profiling. Individual tools (Nmap, Netdiscover, and ~10 more planned) each contribute **sub-graphs** — validated slices of the same ontology — that **compose** into one semantic investigation graph. Start here for the full-extent vocabulary; drill into per-tool structure docs and generators when implementing parsers.
 
-| Tool | Structure doc | Generator |
-|------|---------------|-----------|
-| Nmap | [nmap_nugget_graph_structure.md](nugget_structure/nmap_nugget_graph_structure.md) | `.seed/scripts/cli_corpus/nmap_xml_to_graph.py` |
-| Netdiscover | [netdiscover_nugget_graph_structure.md](nugget_structure/netdiscover_nugget_graph_structure.md) | `.seed/scripts/cli_corpus/netdiscover_json_to_graph.py` |
+| Sub-graph (tool) | Status | Structure doc | Generator |
+|------------------|--------|---------------|-----------|
+| **Nmap** | implemented | [nmap_nugget_graph_structure.md](nugget_structure/nmap_nugget_graph_structure.md) | `.seed/scripts/cli_corpus/nmap_xml_to_graph.py` |
+| **Netdiscover** | implemented | [netdiscover_nugget_graph_structure.md](nugget_structure/netdiscover_nugget_graph_structure.md) | `.seed/scripts/cli_corpus/netdiscover_json_to_graph.py` |
+| Nerva, Naabu, Pius, … | planned / partial | per-tool `*_nugget_graph_structure.md` | per-tool generator |
 
 Canonical seed: `.seed/05_Onotology_for_Nuggets.md` · Vocabulary: `.docs/analysis/nuggets.json` + `.docs/analysis/nuggets_extension.json` · Correlation: `.seed/07_Scan_Record_Host_Correlation_Rulesets.md`
 
 ---
 
+## Unified model (full extent)
+
+Every profiled CLI app emits a graph that **plugs into** the same top-level shape:
+
+```mermaid
+flowchart TD
+  scan["SCAN_RECORD"]
+  endpoint["Endpoint entity\nSYSTEM | HOST | DEVICE | …"]
+  cat["Category nuggets\nNETWORKS | APPLICATIONS | …"]
+  desc["Descriptor nuggets\nfacts via had"]
+  scan -->|contains| endpoint
+  scan -->|had| desc
+  endpoint -->|contains| cat
+  endpoint -->|had| desc
+  cat -->|contains| desc
+```
+
+| Layer | Role | Shared across tools |
+|-------|------|---------------------|
+| **Scan head** | One `SCAN_RECORD` per examination run; tool-specific metadata as `had` descriptors | Always |
+| **Endpoint** | `SYSTEM`, `HOST`, `DEVICE`, `MOBILE`, `SERVER`, `CDN`, … — qualification level depends on evidence | Always (variant chosen per scan) |
+| **Categories** | Structural buckets under an endpoint: `NETWORKS`, `APPLICATIONS`, `ENVIRONMENT`, `VULNERABILITIES`, … | As evidence allows |
+| **Facts** | Descriptor nuggets (`IP_ADDRESS`, `MAC_VENDOR`, `SERVICE`, …) linked via `had` or nested `contains` | As evidence allows |
+
+**Composition rule:** later scans **add** nodes and edges to the same investigation; they do not define a parallel ontology. Netdiscover is not a separate product vocabulary — it is a **shallow slice** of the unified model (L2/L3 + provisional `SYSTEM`). Nmap is a **deeper slice** (qualified `HOST` + ports + services + OS). Together they describe one network; correlation merges overlapping endpoints across scan records.
+
+```mermaid
+flowchart LR
+  subgraph unified["Unified investigation graph"]
+    scan1["SCAN_RECORD\n(Netdiscover)"]
+    scan2["SCAN_RECORD\n(Nmap)"]
+    sys["SYSTEM\nprovisional"]
+    host["HOST\nqualified"]
+    nets["NETWORKS"]
+    scan1 -->|contains| sys
+    sys -->|contains| nets
+    scan2 -->|contains| host
+    host -->|contains| nets
+    sys -.->|"correlate / reclassify"| host
+  end
+```
+
+---
+
+## Relations (global)
+
+| Relation | Direction | Meaning |
+|----------|-----------|---------|
+| `contains` | parent → child | Structural ownership (scan→endpoint, endpoint→category, transport→port) |
+| `had` | entity → descriptor | Attribute fact on a node (status, version, vendor) |
+| `listens-to` | service → port | Application service associated with a transport port (Nmap sub-graph) |
+
+Instance ids use `uuid5(ontology_seed, nugget_data)` — see each tool’s graph builder.
+
+---
+
 ## System qualification hierarchy
 
-The difference between **`SYSTEM`**, **`HOST`**, **`DEVICE`**, **`MOBILE`**, **`SERVER`**, and **`CDN`** is **level of qualification** — how much evidence a scan provides about what kind of endpoint was found. Not every tool returns enough detail to assign a specific class; parsers must emit only what the evidence supports.
+Endpoint **subclass** is a qualification decision within the unified model — not a tool-specific choice. The same `NETWORKS` category appears under both provisional `SYSTEM` and qualified `HOST`; what differs is how much else the scan justified.
 
 ### Type lattice
 
-Anything observed on a network is at minimum a **`SYSTEM`**. More specific classes are subclasses of `SYSTEM` (and `SERVER` is further specialised under `HOST`):
+Anything on a network is at minimum a **`SYSTEM`**. Narrower classes are subclasses of `SYSTEM` (`SERVER` further specialises `HOST`):
 
 ```mermaid
 flowchart TB
@@ -38,88 +95,87 @@ flowchart TB
 |--------|--------|---------|
 | **`SYSTEM`** | — (root network endpoint) | Provisional: *something* on the network; class not yet qualified |
 | **`MOBILE`** | `SYSTEM` | Phone, tablet, or other mobile endpoint |
-| **`HOST`** | `SYSTEM` | General-purpose computer; may own category trees (`NETWORKS`, `APPLICATIONS`, `ENVIRONMENT`, `VULNERABILITIES`, …) |
-| **`SERVER`** | `SYSTEM` / `HOST` | A `HOST` that is rack-mounted — on-prem or cloud |
-| **`DEVICE`** | `SYSTEM` | Network appliance, sensor, or IoT endpoint (not a general computer) |
-| **`CDN`** | `SYSTEM` | Content delivery network edge or anycast presence (e.g. Cloudflare, Akamai, Fastly) — on the network but not an origin `HOST` |
+| **`HOST`** | `SYSTEM` | General-purpose computer; may own full category trees |
+| **`SERVER`** | `SYSTEM` / `HOST` | Rack-mounted host — on-prem or cloud |
+| **`DEVICE`** | `SYSTEM` | Network appliance, sensor, or IoT (not a general computer) |
+| **`CDN`** | `SYSTEM` | CDN edge / anycast — on the network but not an origin `HOST` |
 
-### Evidence sufficiency
+### Evidence → subclass (which sub-graph runs)
 
-| Scan class | Typical tools | Endpoint nugget | What you can assert |
-|------------|---------------|-----------------|---------------------|
-| L2 / ARP discovery | Netdiscover, ARP tables | **`SYSTEM`** | IPv4, MAC, MAC vendor under `NETWORKS` only |
-| L3 reachability + ports | Nmap, Naabu | **`HOST`** | Reachability, ports, services when probed |
-| Service fingerprint | Nerva | **`HOST`** (via port graph) | Protocol, banners, TLS, misconfigs on open ports |
-| CDN / edge detection | Nerva, Nmap headers | **`CDN`** | Edge vendor headers (`Server: cloudflare`, `CF-Ray`, …); not origin infrastructure |
-| Deep OS / app stack | Nmap NSE, CMSeeK, … | **`HOST`** + categories | `APPLICATIONS`, `ENVIRONMENT`, `VULNERABILITIES` as evidence allows |
+| Depth | Typical tools | Endpoint in unified model | Categories typically present |
+|-------|---------------|---------------------------|------------------------------|
+| L2 / ARP | **Netdiscover** sub-graph | **`SYSTEM`** (provisional) | `NETWORKS` → `IP_ADDRESS`, `MAC_ADDRESS`, `MAC_VENDOR` |
+| L3 + ports | **Nmap** sub-graph | **`HOST`** | `NETWORKS` → `IP_ADDRESS`, `TRANSPORT` → `PORT`; `HOST_STATUS` |
+| Service ID | Nerva (planned merge) | **`HOST`** or **`CDN`** | `APPLICATIONS` / service facts on ports |
+| OS / vulns | Nmap NSE, … | **`HOST`** | `ENVIRONMENT`, `VULNERABILITIES` |
 
-ARP and similar shallow discovery **cannot** justify `HOST`, `DEVICE`, `MOBILE`, `SERVER`, or `CDN` — only **`SYSTEM`** with a **`NETWORKS`** category (`IP_ADDRESS`, `MAC_ADDRESS`, `MAC_VENDOR`). Vendor strings are hints, not proof of class.
+ARP-level scans **cannot** justify `HOST`, `DEVICE`, `MOBILE`, `SERVER`, or `CDN` — only **`SYSTEM`**. Port and service scans **cannot** invent `MAC_VENDOR` without L2 evidence — that nugget enters via the Netdiscover (or equivalent) sub-graph.
 
-When service fingerprinting reveals a **CDN front** (multiple anycast IPs, vendor-specific headers, TLS terminated at edge), classify as **`CDN`** rather than counting each edge IP as a separate origin **`HOST`**. See Ruleset C in `.seed/07_Scan_Record_Host_Correlation_Rulesets.md`.
-
-### `SYSTEM` as a temporary nugget
-
-**`SYSTEM` nodes are provisional.** They represent “an endpoint exists here” until follow-on scans supply enough identity and behaviour to reclassify:
-
-1. **Create** — shallow scan (e.g. Netdiscover) emits `SCAN_RECORD` `contains` `SYSTEM` with `NETWORKS` facts.
-2. **Investigate** — port scan, service fingerprint, OS detection, or other enrichment on the same IP/MAC.
-3. **Reclassify** — when evidence supports it, replace or correlate the `SYSTEM` with the appropriate qualified type (`HOST`, `DEVICE`, `MOBILE`, `SERVER`, `CDN`) and attach the relevant category subtrees.
-
-Do not promote a `SYSTEM` to `HOST` (or any narrower class) without scan evidence that meets the qualification bar for that class. Correlation and merge rules live in `.seed/07_Scan_Record_Host_Correlation_Rulesets.md`.
-
-```mermaid
-flowchart LR
-  arp["ARP / Netdiscover\nSYSTEM + NETWORKS"]
-  enrich["Further scans\nports, services, OS"]
-  qualified["Qualified nugget\nHOST | DEVICE | MOBILE | SERVER | CDN"]
-  arp --> enrich --> qualified
-```
-
-### Tool mapping (today)
-
-| Tool | Endpoint entity | Rationale |
-|------|-----------------|-----------|
-| **Netdiscover** | `SYSTEM` | IP + MAC + vendor only — insufficient to qualify as `HOST` or `DEVICE` |
-| **Nmap** | `HOST` | Reachability, ports, services, OS, trace — general computer evidence |
-| **Nerva** | `HOST` (in port/service graph) | Fingerprints open ports; attaches to host/port model, not bare ARP. CDN-fronted targets may warrant **`CDN`** when edge evidence dominates (not yet emitted in corpus graphs) |
-
-Future pipeline stages should **consume** provisional `SYSTEM` nuggets and **emit** qualified replacements rather than duplicating unrelated endpoint nodes.
+**`SYSTEM` is often temporary:** create with shallow discovery → investigate with deeper sub-graphs → reclassify to `HOST`, `DEVICE`, `MOBILE`, `SERVER`, or `CDN` when evidence supports it (`.seed/07_Scan_Record_Host_Correlation_Rulesets.md`).
 
 ---
 
-| Relation | Direction | Meaning |
-|----------|-----------|---------|
-| `contains` | parent → child | Structural ownership (scan→host, host→category, transport→port) |
-| `had` | entity → descriptor | Attribute fact on a node (status, version, vendor) |
-| `listens-to` | service → port | Application service associated with a transport port (Nmap) |
+## Scan head (union of descriptors)
 
-Instance ids use `uuid5(ontology_seed, nugget_data)` — see each tool’s graph builder.
-
----
-
-## Shared scan head
-
-Both Nmap and Netdiscover graphs root at one **`SCAN_RECORD`** entity. Scan metadata is attached via **`had`** descriptors (tool-specific names).
+All tools root at **`SCAN_RECORD`**. Descriptor **names** extend the unified scan vocabulary as new tools are profiled; parsers only emit descriptors their CLI actually provides.
 
 ```mermaid
 flowchart TD
   scan["SCAN_RECORD"]
-  d1["scan descriptor"]
-  d2["scan descriptor"]
-  scan -->|had| d1
-  scan -->|had| d2
+  core["Shared scan facts\n(tool, timing, command)"]
+  nmapD["Nmap descriptor family"]
+  ndD["Netdiscover descriptor family"]
+  scan -->|had| core
+  scan -->|had| nmapD
+  scan -->|had| ndD
 ```
 
-| Tool | Typical scan descriptors |
-|------|-------------------------|
-| Nmap | `SCAN_CLI`, `SCAN_TARGET`, `SCAN_VERSION`, `SCAN_START`, `SCAN_SUMMARY`, `SCAN_ELAPSED`, `SCAN_TOOL` |
-| Netdiscover | `SCAN_ARGS`, `SCAN_TIMESTAMP`, `SCAN_END_TIME`, `SCAN_SUMMARY`, `SCAN_EXIT_STATUS`, `SCAN_TRIES`, `SCAN_EMPTY_SCANS`, `SCAN_DISCOVERED` |
+| Descriptor family | Introduced by | Examples |
+|-------------------|---------------|----------|
+| **Nmap** | Nmap sub-graph | `SCAN_CLI`, `SCAN_TARGET`, `SCAN_VERSION`, `SCAN_START`, `SCAN_SUMMARY`, `SCAN_ELAPSED`, `SCAN_TOOL` |
+| **Netdiscover** | Netdiscover sub-graph | `SCAN_ARGS`, `SCAN_TIMESTAMP`, `SCAN_END_TIME`, `SCAN_EXIT_STATUS`, `SCAN_TRIES`, `SCAN_EMPTY_SCANS`, `SCAN_DISCOVERED` |
+| *(future)* | each new CLI app | added here without changing scan-head shape |
 
 ---
 
-## Nmap — host tree
+## NETWORKS category (shared backbone)
 
-Nmap models reachable **`HOST`** nodes (qualified general computers — not provisional `SYSTEM`). Each host carries reachability descriptors and a **`NETWORKS`** category for L3/L4 facts. See [System qualification hierarchy](#system-qualification-hierarchy).
+`NETWORKS` is the **shared category** under any endpoint (`SYSTEM` or `HOST`). Tools extend which facts hang beneath it:
+
+```mermaid
+flowchart TD
+  endpoint["SYSTEM or HOST"]
+  nets["NETWORKS"]
+  ip["IP_ADDRESS"]
+  mac["MAC_ADDRESS"]
+  vendor["MAC_VENDOR"]
+  transport["TRANSPORT"]
+  port["PORT"]
+  endpoint -->|contains| nets
+  nets -->|contains| ip
+  nets -->|contains| mac
+  mac -->|had| vendor
+  ip -->|contains| transport
+  transport -->|contains| port
+```
+
+| Nugget | Sub-graph that introduces it | Notes |
+|--------|---------------------------|-------|
+| `IP_ADDRESS` | **Both** (required) | Canonical L3 key for correlation |
+| `MAC_ADDRESS` | **Netdiscover** extension | L2; not in typical Nmap XML |
+| `MAC_VENDOR` | **Netdiscover** extension | `had` on `MAC_ADDRESS`; not `RAW_RIR_DATA` |
+| `TRANSPORT` → `PORT` | **Nmap** extension | Port state, protocol, services |
+| `INTERNET_NAME` | **Nmap** (primarily) | Hostname on `HOST` via `had` |
+
+Netdiscover therefore **extends** the unified ontology with L2 nuggets and a provisional endpoint class; Nmap **extends** it with L4/application/environment depth on a qualified `HOST`. A full LAN investigation uses **both** sub-graphs on the same semantic app.
+
+---
+
+## Sub-graph: Nmap (host depth)
+
+*Nmap contributes qualified **`HOST`** trees, port/service/application structure, OS fingerprint, and traceroute. Implemented in corpus.*
+
+### Host + reachability
 
 ```mermaid
 flowchart TD
@@ -137,13 +193,8 @@ flowchart TD
 ```
 
 - `HOST` canonical key: primary IPv4 (or first address).
-- `INTERNET_NAME` descriptors on `HOST` when Nmap reports hostnames.
 
----
-
-## Nmap — port and service tree
-
-Port scans add **`APPLICATIONS`** under the host and **`TRANSPORT` → `PORT`** under the IP. Each reported service **`listens-to`** its port whenever Nmap emits `<service name="…">` (including filtered/table-derived names).
+### Port and service tree
 
 ```mermaid
 flowchart TD
@@ -178,91 +229,25 @@ flowchart TD
 | `SERVICE_EXTRAINFO` | Banner fragment / OS hint in `extrainfo` |
 | `CPE_URL` | CPE URIs under the service |
 
----
+### SSH host keys (NSE)
 
-## Nmap — SSH host keys (NSE)
+When `ssh-hostkey` fires, **`SERVICE`** **`contains`** key **`SUBENTITY`** nodes (`RSA`, `ECDSA`, `EDDSA`, `DSA`) with bit length, type, and public key descriptors.
 
-When `ssh-hostkey` fires on an open SSH port, the **`SERVICE`** **`contains`** key **`SUBENTITY`** nodes (`RSA`, `ECDSA`, `EDDSA`, `DSA`) with bit length, type, and public key descriptors.
+### OS fingerprint
 
-```mermaid
-flowchart TD
-  apps["APPLICATIONS"]
-  sshSvc["SERVICE ssh"]
-  port["PORT 22"]
-  rsa["RSA"]
-  bits["SSH_KEY_BITS"]
-  apps -->|contains| sshSvc
-  sshSvc -->|listens-to| port
-  sshSvc -->|contains| rsa
-  rsa -->|had| bits
-```
+**`ENVIRONMENT` → `OPERATING_SYSTEM`** with optional **`OS_MATCH_ACCURACY`**. Best `osmatch` by accuracy when multiple exist.
+
+### Traceroute
+
+**`TRACE`** under the scan with ordered **`TRACE_HOP`** → **`HOST`** per hop. Descriptors: `HOP_ORDER`, `HOP_TTL`, `HOP_RTT`, `TRACE_PROTOCOL`.
 
 ---
 
-## Nmap — OS fingerprint
+## Sub-graph: Netdiscover (L2 provisional slice)
 
-OS detection adds **`ENVIRONMENT` → `OPERATING_SYSTEM`** with optional **`OS_MATCH_ACCURACY`**.
+*Netdiscover extends the unified model with **`SYSTEM`** endpoints and L2 facts. It reuses `SCAN_RECORD` + `NETWORKS` + `IP_ADDRESS` and adds `MAC_ADDRESS` / `MAC_VENDOR`. Implemented in corpus.*
 
-```mermaid
-flowchart TD
-  host["HOST"]
-  env["ENVIRONMENT"]
-  os["OPERATING_SYSTEM"]
-  acc["OS_MATCH_ACCURACY"]
-  host -->|contains| env
-  env -->|contains| os
-  os -->|had| acc
-```
-
-Best `osmatch` by accuracy is selected when multiple matches exist.
-
----
-
-## Nmap — traceroute trace
-
-Traceroute scenarios add **`TRACE`** under the scan with ordered **`TRACE_HOP`** entities. Each hop **`contains`** a **`HOST`** (router or target).
-
-```mermaid
-flowchart TD
-  scan["SCAN_RECORD"]
-  target["HOST target"]
-  trace["TRACE"]
-  hop1["TRACE_HOP"]
-  r1["HOST router"]
-  scan -->|contains| target
-  scan -->|contains| trace
-  trace -->|contains| hop1
-  hop1 -->|contains| r1
-```
-
-Hop descriptors: `HOP_ORDER`, `HOP_TTL`, `HOP_RTT`, `TRACE_PROTOCOL` on `TRACE`.
-
----
-
-## Netdiscover — scan head detail
-
-Netdiscover attaches run statistics as scan descriptors (TUI frame counts, discovered host tally).
-
-```mermaid
-flowchart TD
-  scan["SCAN_RECORD"]
-  args["SCAN_ARGS"]
-  ts["SCAN_TIMESTAMP"]
-  tries["SCAN_TRIES"]
-  empty["SCAN_EMPTY_SCANS"]
-  disc["SCAN_DISCOVERED"]
-  scan -->|had| args
-  scan -->|had| ts
-  scan -->|had| tries
-  scan -->|had| empty
-  scan -->|had| disc
-```
-
----
-
-## Netdiscover — system tree (provisional)
-
-LAN discovery emits **`SYSTEM`** nodes — **provisional** classification when only MAC vendor and L2/L3 addressing are known (see [System qualification hierarchy](#system-qualification-hierarchy)). Each system owns a **`NETWORKS`** category with IPv4, MAC, and vendor facts. Further scans are required before reclassifying as `HOST`, `DEVICE`, `MOBILE`, `SERVER`, or `CDN`.
+### System tree (provisional endpoint)
 
 ```mermaid
 flowchart TD
@@ -280,68 +265,67 @@ flowchart TD
 ```
 
 - `NETWORKS` is a **CATEGORY** nugget (`#14B8A6`).
-- Identical vendor strings dedupe to one `MAC_VENDOR` node; each MAC links via its own `had` edge.
-- Do **not** use `RAW_RIR_DATA` for vendor strings — use `MAC_VENDOR`.
+- Identical vendor strings dedupe to one `MAC_VENDOR` node.
+- Does **not** emit `APPLICATIONS`, `ENVIRONMENT`, `TRACE`, or vulnerability categories — those come from other sub-graphs when run.
+
+### Multi-system scan
+
+One `SCAN_RECORD` may `contains` many `SYSTEM` nodes (subnet discovery). Each expands to its own `NETWORKS` tree keyed by IPv4.
+
+### Netdiscover scan descriptors
+
+Run statistics attach to the shared scan head: `SCAN_ARGS`, `SCAN_TIMESTAMP`, `SCAN_TRIES`, `SCAN_EMPTY_SCANS`, `SCAN_DISCOVERED`, etc.
 
 ---
 
-## Netdiscover — multi-system scan
+## Composing Nmap + Netdiscover
 
-Rich subnet scenarios attach many systems to one scan record.
+The **investigation graph** is the union of contributed sub-graphs, correlated by shared keys (primarily `IP_ADDRESS`, later MAC and identity artifacts):
 
-```mermaid
-flowchart TD
-  scan["SCAN_RECORD"]
-  s1["SYSTEM"]
-  s2["SYSTEM"]
-  sN["SYSTEM …"]
-  scan -->|contains| s1
-  scan -->|contains| s2
-  scan -->|contains| sN
-```
+| Unified concept | Netdiscover contributes | Nmap contributes |
+|-----------------|-------------------------|------------------|
+| Scan head | Netdiscover descriptor family | Nmap descriptor family |
+| Endpoint | `SYSTEM` (provisional) | `HOST` (qualified) |
+| `NETWORKS` | `IP_ADDRESS`, `MAC_ADDRESS`, `MAC_VENDOR` | `IP_ADDRESS`, `TRANSPORT` → `PORT` |
+| Reachability | implicit (discovered) | `HOST_STATUS`, `HOST_STATUS_REASON` |
+| Applications | — | `APPLICATIONS` / `SERVICE` / `listens-to` |
+| Environment / trace | — | `ENVIRONMENT`, `TRACE` |
 
-Each system expands to the system tree above (unique `NETWORKS` per IPv4).
-
-Netdiscover examinations do **not** emit `TRACE`, `APPLICATIONS`, or vulnerability categories.
-
----
-
-## HOST vs SYSTEM (cross-tool)
-
-This table summarises **implemented** CLI profiling output. The qualification model is defined in [System qualification hierarchy](#system-qualification-hierarchy): `SYSTEM` is temporary until enrichment scans justify a narrower class.
-
-| Concept | Nmap | Netdiscover |
-|---------|------|-------------|
-| Endpoint entity | `HOST` (qualified general computer) | `SYSTEM` (provisional — investigate further) |
-| Qualification level | Ports, reachability, services, OS | L2/L3 only: IP, MAC, vendor |
-| Reachability | `HOST_STATUS`, `HOST_STATUS_REASON` | (implicit via discovery) |
-| L3 address | `IP_ADDRESS` under `NETWORKS` | `IP_ADDRESS` under `NETWORKS` |
-| L2 facts | Rare in XML scans | `MAC_ADDRESS` + `MAC_VENDOR` |
-| Applications | `APPLICATIONS` / `SERVICE` / ports | Not in scope |
-| Next step | Service/OS enrichment (Nerva, …); CDN detection when edge headers present | Port scan → qualify as `HOST`, `DEVICE`, `CDN`, etc. |
-
-Correlation and reclassification rules: `.seed/07_Scan_Record_Host_Correlation_Rulesets.md`.
-
----
-
-## Typical pipeline placement
+**Typical composition order** (each step adds a sub-graph to the same semantic app):
 
 ```mermaid
 flowchart LR
-  nd["Netdiscover\nSYSTEM provisional\n+ MAC / vendor"]
-  nb["Naabu\nports"]
-  nm["Nmap\nHOST qualified\n+ SERVICE"]
-  nv["Nerva\nservice ID"]
-  nd -->|"investigate"| nb
-  nb --> nm
-  nm --> nv
-  nd -.->|"reclassify when\nenriched"| nm
+  nd["Netdiscover sub-graph\nSYSTEM + L2"]
+  nb["Naabu sub-graph\nports"]
+  nm["Nmap sub-graph\nHOST + SERVICE"]
+  nv["Nerva sub-graph\nfingerprint"]
+  nd --> nb --> nm --> nv
+  nd -.->|"same IP correlates\nSYSTEM → HOST"| nm
 ```
 
-Shallow discovery leaves endpoints as **`SYSTEM`** until port/service/OS evidence supports **`HOST`**, **`DEVICE`**, **`MOBILE`**, **`SERVER`**, or **`CDN`**. Naabu and Nerva skills document downstream enrichment; this doc covers structures **implemented** in the CLI profiling corpus today (Nmap + Netdiscover).
+Shallow discovery leaves **`SYSTEM`** until deeper sub-graphs justify **`HOST`**, **`DEVICE`**, **`MOBILE`**, **`SERVER`**, or **`CDN`**.
+
+---
+
+## Adding the next CLI apps (~10 planned)
+
+Use this checklist when profiling each new tool — **identify components, map to unified layers, add a sub-graph section**:
+
+1. **Scan head** — which new `SCAN_*` descriptors does this CLI provide?
+2. **Endpoint class** — `SYSTEM`, `HOST`, or narrower? Only emit what evidence supports.
+3. **Category extensions** — new categories under endpoint, or new facts under existing `NETWORKS` / `APPLICATIONS` / …?
+4. **New nugget types** — register in vocabulary docs if not already in `nuggets.json` / `nuggets_extension.json`.
+5. **Relations** — reuse `contains` / `had` / `listens-to` unless the tool introduces a genuinely new semantic edge (rare; spec-first).
+6. **Correlation** — how do this tool’s nodes merge with prior sub-graphs (IP, hostname, cert, SSH key, …)?
+7. **Generator** — `*_xml_to_graph.py` / `*_json_to_graph.py` emits a sub-graph that validates against the unified shape.
+
+Update the sub-graph table at the top of this doc and [CLI_Tool_Skills_&_Documentation.md](CLI_Tool_Skills_&_Documentation.md) when a tool lands an approved `*_nugget_graph_structure.md`.
 
 ---
 
 ## Expansion policy
 
-Add new sections here when a tool lands an approved `*_nugget_graph_structure.md` and graph generator. Keep each Mermaid diagram focused (≤10 nodes where possible). Update the tool table at the top and the master skills index in [CLI_Tool_Skills_&_Documentation.md](CLI_Tool_Skills_&_Documentation.md).
+- Prefer **extending** the unified model (new descriptors, new facts under `NETWORKS`, new categories) over forking per-tool ontologies.
+- Keep each Mermaid diagram focused (≤10 nodes where possible).
+- Document tool-specific parser mappings in per-tool `*_nugget_graph_structure.md`; keep this file as the **composed** full-extent view.
+- When Nerva, Naabu, Pius, and others land, add **Sub-graph: &lt;tool&gt;** sections here and show how they attach to `HOST` / `PORT` / `SCAN_RECORD` already defined above.
