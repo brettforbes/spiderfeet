@@ -7,9 +7,12 @@ Base repo: `c:\projects\spiderfeet`
 | Tool | Agent skill | References index | Zero-to-Hero | CLI options | Primary parser |
 |------|-------------|------------------|--------------|-------------|----------------|
 | TextFSM | [SKILL.md](.cursor/skills/textfsm/SKILL.md) | [references/SKILLS.md](.cursor/skills/textfsm/references/SKILLS.md) | [TextFMS-Zero-to-Hero.md](.docs/docs-for-cli-tools/TextFMS-Zero-to-Hero.md) | — | TextFSM |
+| TextFSM NTC Templates | [SKILL.md](.cursor/skills/textfsm_templates/SKILL.md) | [references/SKILLS.md](.cursor/skills/textfsm_templates/references/SKILLS.md) | [TextFSM-Templates-Zero-to-Hero.md](.docs/docs-for-cli-tools/TextFSM-Templates-Zero-to-Hero.md) | — | `ntc_templates.parse_output` |
 | Nmap | [SKILL.md](.cursor/skills/nmap/SKILL.md) | [references/SKILLS.md](.cursor/skills/nmap/references/SKILLS.md) | [NMAP-Zero-to-Hero.md](.docs/docs-for-cli-tools/NMAP-Zero-to-Hero.md) | [NMAP-CLI-Options.md](.docs/docs-for-cli-tools/NMAP-CLI-Options.md) | XML (`-oX`) |
+| Naabu | [SKILL.md](.cursor/skills/naabu/SKILL.md) | [references/SKILLS.md](.cursor/skills/naabu/references/SKILLS.md) | [Naabu-Zero-to-Hero.md](.docs/docs-for-cli-tools/Naabu-Zero-to-Hero.md) | [Naabu-CLI-Options.md](.docs/docs-for-cli-tools/Naabu-CLI-Options.md) | JSON Lines (`-json`) |
 | NetDiscover | [SKILL.md](.cursor/skills/netdiscover/SKILL.md) | [references/SKILLS.md](.cursor/skills/netdiscover/references/SKILLS.md) | [NetDiscover-Zero-to-Hero.md](.docs/docs-for-cli-tools/NetDiscover-Zero-to-Hero.md) | [NetDiscover-CLI-Options.md](.docs/docs-for-cli-tools/NetDiscover-CLI-Options.md) | TextFSM (`-P`) |
 | Nerva | [SKILL.md](.cursor/skills/nerva/SKILL.md) | [references/SKILLS.md](.cursor/skills/nerva/references/SKILLS.md) | [Nerva-Zero-to-Hero.md](.docs/docs-for-cli-tools/Nerva-Zero-to-Hero.md) | [Nerva-CLI-Options.md](.docs/docs-for-cli-tools/Nerva-CLI-Options.md) | JSON (`--json`) |
+| Julius | [SKILL.md](.cursor/skills/julius/SKILL.md) | [references/SKILLS.md](.cursor/skills/julius/references/SKILLS.md) | [Julius-Zero-to-Hero.md](.docs/docs-for-cli-tools/Julius-Zero-to-Hero.md) | [Julius-CLI-Options.md](.docs/docs-for-cli-tools/Julius-CLI-Options.md) | JSON / JSONL (`-o jsonl`) |
 | Nuclei | [SKILL.md](.cursor/skills/nuclei/SKILL.md) | [references/SKILLS.md](.cursor/skills/nuclei/references/SKILLS.md) | [Nuclei-Zero-to-Hero.md](.docs/docs-for-cli-tools/Nuclei-Zero-to-Hero.md) | [Nuclei-CLI-Options.md](.docs/docs-for-cli-tools/Nuclei-CLI-Options.md) | JSONL (`-jsonl`) |
 | Aircrack-ng | [SKILL.md](.cursor/skills/aircrack-ng/SKILL.md) | [references/SKILLS.md](.cursor/skills/aircrack-ng/references/SKILLS.md) | [Aircrack-Ng-Zero-to-Hero.md](.docs/docs-for-cli-tools/Aircrack-Ng-Zero-to-Hero.md) | [Aircrack-Ng-CLI-Options.md](.docs/docs-for-cli-tools/Aircrack-Ng-CLI-Options.md) | TextFSM (airodump CSV) |
 | CMSeeK | [SKILL.md](.cursor/skills/cmseek/SKILL.md) | [references/SKILLS.md](.cursor/skills/cmseek/references/SKILLS.md) | [CMSeeK-Zero-to-Hero.md](.docs/docs-for-cli-tools/CMSeeK-Zero-to-Hero.md) | [CMSeeK-CLI-Options.md](.docs/docs-for-cli-tools/CMSeeK-CLI-Options.md) | JSON (`cms.json`) |
@@ -31,7 +34,35 @@ Base repo: `c:\projects\spiderfeet`
 | recon-ng | [SKILL.md](.cursor/skills/recon_ng/SKILL.md) | [references/SKILLS.md](.cursor/skills/recon_ng/references/SKILLS.md) | [recon-ng-Zero-to-Hero.md](.docs/docs-for-cli-tools/recon-ng-Zero-to-Hero.md) | [recon-ng-CLI-Options.md](.docs/docs-for-cli-tools/recon-ng-CLI-Options.md) | SQLite workspace + exports |
 | Metasploit Framework | [SKILL.md](.cursor/skills/metasploit_framework/SKILL.md) | [references/SKILLS.md](.cursor/skills/metasploit_framework/references/SKILLS.md) | [Metasploit-Framework-Zero-to-Hero.md](.docs/docs-for-cli-tools/Metasploit-Framework-Zero-to-Hero.md) | [Metasploit-Framework-CLI-Options.md](.docs/docs-for-cli-tools/Metasploit-Framework-CLI-Options.md) | DB tables + console/export parsing |
 
+## Graph structure documents (CLI profiling corpus)
+
+Approved semantic graph shapes for the widget **CLI Profiling** tab. Combined cross-tool view: [_Current_Ontology.md](_Current_Ontology.md).
+
+| Tool | Structure doc | Generator |
+|------|---------------|-----------|
+| Nmap | [nmap_nugget_graph_structure.md](nugget_structure/nmap_nugget_graph_structure.md) | `.seed/scripts/cli_corpus/nmap_xml_to_graph.py` |
+| Netdiscover | [netdiscover_nugget_graph_structure.md](nugget_structure/netdiscover_nugget_graph_structure.md) | `.seed/scripts/cli_corpus/netdiscover_json_to_graph.py` |
+| Nerva | [nerva_nugget_graph_structure.md](nugget_structure/nerva_nugget_graph_structure.md) | `.seed/scripts/cli_corpus/cli_tool_to_graph.py` (`nerva_to_graph`) |
+| Pius | [pius_nugget_graph_structure.md](nugget_structure/pius_nugget_graph_structure.md) | `.seed/scripts/cli_corpus/cli_tool_to_graph.py` (`pius_to_graph`) |
+
+**Nmap service nuggets (2026-06):** `SERVICE_VERSION`, `SERVICE_FINGERPRINT`, `SERVICE_EXTRAINFO`; `listens-to` for every port with a reported service name (including filtered ports).
+
 ## Reference files by tool
+
+### TextFSM NTC Templates — `.cursor/skills/textfsm_templates/references/`
+
+| File | Link |
+|------|------|
+| Index | [SKILLS.md](.cursor/skills/textfsm_templates/references/SKILLS.md) |
+| Parse API | [parse-api.md](.cursor/skills/textfsm_templates/references/parse-api.md) |
+| Platform index | [platform-index.md](.cursor/skills/textfsm_templates/references/platform-index.md) |
+| Extending templates | [extending-templates.md](.cursor/skills/textfsm_templates/references/extending-templates.md) |
+| Nugget conversion | [nugget-conversion.md](.cursor/skills/textfsm_templates/references/nugget-conversion.md) |
+| Use cases & workflow | [use-cases-and-workflow.md](.cursor/skills/textfsm_templates/references/use-cases-and-workflow.md) |
+| TextFSM syntax primer | [textfsm-syntax-primer.md](.cursor/skills/textfsm_templates/references/textfsm-syntax-primer.md) |
+| Sources | [sources.md](.cursor/skills/textfsm_templates/references/sources.md) |
+
+**Sibling skill:** [textfsm/SKILL.md](.cursor/skills/textfsm/SKILL.md) (raw TextFSM authoring)
 
 ### TextFSM — `.cursor/skills/textfsm/references/`
 
@@ -56,6 +87,33 @@ Base repo: `c:\projects\spiderfeet`
 | CLI flags | [cli-flags.md](.cursor/skills/nmap/references/cli-flags.md) |
 | Nugget mapping | [nugget-mapping.md](.cursor/skills/nmap/references/nugget-mapping.md) |
 | Sources | [sources.md](.cursor/skills/nmap/references/sources.md) |
+
+### Naabu — `.cursor/skills/naabu/references/`
+
+| File | Link |
+|------|------|
+| Index | [SKILLS.md](.cursor/skills/naabu/references/SKILLS.md) |
+| CLI options | [cli-options.md](.cursor/skills/naabu/references/cli-options.md) |
+| JSON output schema | [json-output-schema.md](.cursor/skills/naabu/references/json-output-schema.md) |
+| Workflows & phases | [workflows-and-phases.md](.cursor/skills/naabu/references/workflows-and-phases.md) |
+| Nmap integration | [nmap-integration.md](.cursor/skills/naabu/references/nmap-integration.md) |
+| Nugget mapping | [nugget-mapping.md](.cursor/skills/naabu/references/nugget-mapping.md) |
+| Tactics | [tactics.md](.cursor/skills/naabu/references/tactics.md) |
+| Sources | [sources.md](.cursor/skills/naabu/references/sources.md) |
+
+### Julius — `.cursor/skills/julius/references/`
+
+| File | Link |
+|------|------|
+| Index | [SKILLS.md](.cursor/skills/julius/references/SKILLS.md) |
+| CLI options | [cli-options.md](.cursor/skills/julius/references/cli-options.md) |
+| JSON output schema | [json-output-schema.md](.cursor/skills/julius/references/json-output-schema.md) |
+| Probes & services | [probes-and-services.md](.cursor/skills/julius/references/probes-and-services.md) |
+| Workflows & phases | [workflows-and-phases.md](.cursor/skills/julius/references/workflows-and-phases.md) |
+| Match rules & probes | [match-rules-and-probes.md](.cursor/skills/julius/references/match-rules-and-probes.md) |
+| Nugget mapping | [nugget-mapping.md](.cursor/skills/julius/references/nugget-mapping.md) |
+| Tactics | [tactics.md](.cursor/skills/julius/references/tactics.md) |
+| Sources | [sources.md](.cursor/skills/julius/references/sources.md) |
 
 ### NetDiscover — `.cursor/skills/netdiscover/references/`
 
@@ -163,6 +221,7 @@ Base repo: `c:\projects\spiderfeet`
 | Tool | Prompt file |
 |------|-------------|
 | TextFSM | [.seed/03A_Prompt_Making_for_TextFSM.md](.seed/03A_Prompt_Making_for_TextFSM.md) |
+| TextFSM NTC Templates | [.seed/03A2_Prompt_Making_for_TextFSM_NTC_Templates.md](.seed/03A2_Prompt_Making_for_TextFSM_NTC_Templates.md) |
 | Nmap | [.seed/03B_Prompt_Making_for_NMAP.md](.seed/03B_Prompt_Making_for_NMAP.md) |
 | NetDiscover | [.seed/03C_Prompt_Making_for_NetDiscover.md](.seed/03C_Prompt_Making_for_NetDiscover.md) |
 | Nerva | [.seed/03D_Prompt_Making_for_Nerva.md](.seed/03D_Prompt_Making_for_Nerva.md) |
@@ -186,10 +245,15 @@ Base repo: `c:\projects\spiderfeet`
 | uncover | [.seed/03V_Prompt_Making_for_uncover.md](.seed/03V_Prompt_Making_for_uncover.md) |
 | recon-ng | [.seed/03W_Prompt_Making_for_recon-ng.md](.seed/03W_Prompt_Making_for_recon-ng.md) |
 | Metasploit Framework | [.seed/03X_Prompt_Making_for_Metasploit_Framework.md](.seed/03X_Prompt_Making_for_Metasploit_Framework.md) |
+| Julius | [.seed/03Y_Prompt_Making_for_Julius.md](.seed/03Y_Prompt_Making_for_Julius.md) |
+| Naabu | [.seed/03Z_Prompt_Making_for_Naabu.md](.seed/03Z_Prompt_Making_for_Naabu.md) |
+
 ## Related SpiderFeet context
 
 | Resource | Link |
 |----------|------|
+| **Current ontology (Nmap + Netdiscover)** | [_Current_Ontology.md](_Current_Ontology.md) |
 | Nugget vocabulary | [.docs/analysis/nuggets.json](.docs/analysis/nuggets.json) |
+| Nugget extensions (CLI profiling) | [.docs/analysis/nuggets_extension.json](.docs/analysis/nuggets_extension.json) |
 | Parsing primitives | [.docs/analysis/conversion_to_types/03-parsing-primitives.md](.docs/analysis/conversion_to_types/03-parsing-primitives.md) |
 | All Zero-to-Hero docs | [.docs/docs-for-cli-tools/](.docs/docs-for-cli-tools/) |

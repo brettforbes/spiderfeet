@@ -144,17 +144,30 @@ Each `TRACE_HOP` carries `HOP_ORDER`, `HOP_TTL`, `HOP_RTT`. The final hop reuses
 | `host_discovery_corporate` | Same (bbc.co.uk) |
 | `host_discovery_local_subnet` | SCAN + multiple HOST |
 | `tcp_top_ports_permissive` | HOST + PORT/SERVICE (open TCP) |
-| `tcp_top_ports_corporate` | HOST + filtered extraports pattern |
+| `tcp_top_ports_corporate` | HOST + PORT/SERVICE for all table rows (`listens-to` incl. filtered) |
 | `tcp_top_ports_local` | Multiple hosts, sparse ports |
-| `service_version_permissive` | SERVICE + SERVICE_VERSION + CPE |
+| `service_version_permissive` | SERVICE + SERVICE_VERSION + SERVICE_EXTRAINFO + CPE |
 | `os_aggressive_permissive` | ENVIRONMENT + OS + TRACE |
 | `nse_default_permissive` | SERVICE + script-heavy ports; SSH keys when `ssh-hostkey` fires |
 | `udp_top_permissive` | UDP PORT_STATE variants |
 | `traceroute_permissive` | TRACE host chain |
 | `skip_ping_permissive` | HOST without prior ping semantics |
 | `capstone_permissive` | Combined rich scan; often includes SSH keys on port 22 |
-| `service_version_corporate` | Corporate service fingerprint |
+| `service_version_corporate` | SERVICE + SERVICE_VERSION + **SERVICE_FINGERPRINT** (`servicefp`) |
 | `windows_enrich_local` | Local Windows enrichment |
+
+## Proposed service nuggets (APPLICATIONS branch)
+
+| Nugget | Type | Parent | Source | Relation |
+|--------|------|--------|--------|----------|
+| `SERVICE` | ENTITY | `APPLICATIONS` | `service@name` | `contains`; `listens-to` → `PORT` |
+| `SERVICE_VERSION` | DESCRIPTOR | `SERVICE` | `service@product` + `@version` | `had` |
+| `SERVICE_FINGERPRINT` | DESCRIPTOR | `SERVICE` | `service@servicefp` | `had` |
+| `SERVICE_EXTRAINFO` | DESCRIPTOR | `SERVICE` | `service@extrainfo` | `had` |
+| `CPE_URL` | SUBENTITY | `SERVICE` | `service/cpe` | `contains` |
+| `HTTP_TITLE` | DESCRIPTOR | `SERVICE` | NSE `http-title` | `had` |
+
+Canonical vocabulary: `.docs/analysis/nuggets_extension.json` and [nmap_proposed_nuggets.json](./nmap_proposed_nuggets.json). Combined cross-tool view: [_Current_Ontology.md](../_Current_Ontology.md).
 
 ## Field mapping (XML → nugget)
 
