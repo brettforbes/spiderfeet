@@ -47,6 +47,8 @@ flowchart TD
   port["PORT proto/id"]
   state["PORT_STATE"]
   svc["SERVICE"]
+  ver["SERVICE_VERSION"]
+  fp["SERVICE_FINGERPRINT"]
   host -->|contains| apps
   host -->|contains| nets
   nets -->|contains| ip
@@ -55,10 +57,13 @@ flowchart TD
   port -->|had| state
   apps -->|contains| svc
   svc -->|listens-to| port
+  svc -->|had| ver
+  svc -->|had| fp
 ```
 
 - `PORT_STATE` values include `open`, `filtered`, `closed`, `open|filtered` (UDP).
-- `listens-to` is emitted only when `PORT_STATE` is `open`.
+- `listens-to` links each `SERVICE` to its `PORT` whenever Nmap reports a `<service name="…">` on that port (including filtered/table-derived names).
+- `SERVICE_VERSION` carries `product` + `version`; `SERVICE_FINGERPRINT` carries the Nmap `servicefp` attribute when present.
 - Legacy flat `TCP_PORT_OPEN` maps to `PORT` + `PORT_STATE=open` + `SERVICE` `listens-to` in this hierarchy.
 
 ## SSH service and host keys (APPLICATIONS branch)
@@ -141,7 +146,7 @@ Each `TRACE_HOP` carries `HOP_ORDER`, `HOP_TTL`, `HOP_RTT`. The final hop reuses
 | `tcp_top_ports_permissive` | HOST + PORT/SERVICE (open TCP) |
 | `tcp_top_ports_corporate` | HOST + filtered extraports pattern |
 | `tcp_top_ports_local` | Multiple hosts, sparse ports |
-| `service_version_permissive` | SERVICE + SOFTWARE_USED + CPE |
+| `service_version_permissive` | SERVICE + SERVICE_VERSION + CPE |
 | `os_aggressive_permissive` | ENVIRONMENT + OS + TRACE |
 | `nse_default_permissive` | SERVICE + script-heavy ports; SSH keys when `ssh-hostkey` fires |
 | `udp_top_permissive` | UDP PORT_STATE variants |
@@ -161,7 +166,9 @@ Each `TRACE_HOP` carries `HOP_ORDER`, `HOP_TTL`, `HOP_RTT`. The final hop reuses
 | `address@addr` | `IP_ADDRESS` under `NETWORKS` |
 | `hostname@name` | `INTERNET_NAME` on `HOST` |
 | `port/state@state` | `PORT_STATE` |
-| `service@product` + `@version` | `SOFTWARE_USED` |
+| `service@product` + `@version` | `SERVICE_VERSION` |
+| `service@servicefp` | `SERVICE_FINGERPRINT` |
+| `service@extrainfo` | `SERVICE_EXTRAINFO` |
 | `service/cpe` | `CPE_URL` |
 | `script@id=ssh-hostkey` / table `@key=type` | SSH key `SUBENTITY` type (`RSA`, `ECDSA`, `EDDSA`, `DSA`) |
 | `ssh-hostkey` table `fingerprint` | Key node `nugget_data` (canonical instance key) |

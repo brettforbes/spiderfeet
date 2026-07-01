@@ -871,6 +871,11 @@
       "source": "APPLICATIONS--54c14b10-1d5b-5cbb-a4b8-d9d10f2a2a55",
       "target": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
       "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "relation": "listens-to"
     }
   ]
 }

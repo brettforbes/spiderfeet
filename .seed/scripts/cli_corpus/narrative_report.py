@@ -487,7 +487,7 @@ class NarrativeReportBuilder:
             self.mention_node(port)
             port_phrase = f" listening on port **{node_value(port)}**"
 
-        product = self._descriptor_value(service, "SOFTWARE_USED")
+        product = self._descriptor_value(service, "SERVICE_VERSION")
         extra = self._descriptor_value(service, "SERVICE_EXTRAINFO")
         http_title = self._descriptor_value(service, "HTTP_TITLE")
 
@@ -505,7 +505,7 @@ class NarrativeReportBuilder:
 
         for desc in self.graph.descriptors(service["id"]):
             if desc.get("nugget_id") not in {
-                "SOFTWARE_USED",
+                "SERVICE_VERSION",
                 "SERVICE_EXTRAINFO",
                 "HTTP_TITLE",
             }:

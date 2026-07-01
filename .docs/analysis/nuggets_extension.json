@@ -196,6 +196,20 @@
     "nugget_colour": "#F59E0B"
   },
   {
+    "nugget_id": "SERVICE_VERSION",
+    "nugget_description": "Service Version",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SERVICE_FINGERPRINT",
+    "nugget_description": "Nmap Service Fingerprint",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
     "nugget_id": "OS_MATCH_ACCURACY",
     "nugget_description": "OS Match Accuracy",
     "nugget_type": "DESCRIPTOR",

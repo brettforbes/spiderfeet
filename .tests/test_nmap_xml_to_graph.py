@@ -9,6 +9,15 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 GENERATOR_PATH = REPO_ROOT / ".seed/scripts/cli_corpus/nmap_xml_to_graph.py"
 NMAP_XML = REPO_ROOT / ".docs/docs-for-cli-tools/app_examination_docs/nmap/17_output_structured.xml"
+CORPORATE_SERVICE_XML = (
+    REPO_ROOT / ".docs/docs-for-cli-tools/app_examination_docs/nmap/23_output_structured.xml"
+)
+CORPORATE_TOP_PORTS_XML = (
+    REPO_ROOT / ".docs/docs-for-cli-tools/app_examination_docs/nmap/21_output_structured.xml"
+)
+PERMISSIVE_SERVICE_XML = (
+    REPO_ROOT / ".docs/docs-for-cli-tools/app_examination_docs/nmap/35_output_structured.xml"
+)
 
 
 def _load_generator():
@@ -90,3 +99,54 @@ def test_nmap_xml_graph_and_description_are_deterministic():
         second,
         "nse_default_permissive",
     )
+
+
+def _service_listen_pairs(graph):
+    nodes = {node["id"]: node for node in graph["nodes"]}
+    return {
+        (
+            nodes[edge["source"]]["nugget_data"],
+            nodes[edge["target"]]["nugget_data"],
+        )
+        for edge in graph["edges"]
+        if edge["relation"] == "listens-to"
+        and nodes[edge["source"]]["nugget_id"] == "SERVICE"
+        and nodes[edge["target"]]["nugget_id"] == "PORT"
+    }
+
+
+def test_nmap_corporate_service_version_emits_fingerprint_and_version():
+    generator = _load_generator()
+    graph = generator.nmap_xml_to_graph(CORPORATE_SERVICE_XML)
+    nodes = graph["nodes"]
+    nugget_ids = {node["nugget_id"] for node in nodes}
+
+    assert "SERVICE_VERSION" in nugget_ids
+    assert "SERVICE_FINGERPRINT" in nugget_ids
+    assert "SOFTWARE_USED" not in nugget_ids
+
+    fingerprints = [node["nugget_data"] for node in nodes if node["nugget_id"] == "SERVICE_FINGERPRINT"]
+    assert fingerprints
+    assert all(value.startswith("SF-Port") for value in fingerprints)
+
+
+def test_nmap_corporate_top_ports_links_every_service_to_port():
+    generator = _load_generator()
+    graph = generator.nmap_xml_to_graph(CORPORATE_TOP_PORTS_XML)
+    services = [node for node in graph["nodes"] if node["nugget_id"] == "SERVICE"]
+    listens = _service_listen_pairs(graph)
+
+    assert len(services) == 20
+    assert len(listens) == 20
+    assert ("https", "443") in listens
+    assert ("ftp", "21") in listens
+
+
+def test_nmap_permissive_service_version_links_filtered_and_open_services():
+    generator = _load_generator()
+    graph = generator.nmap_xml_to_graph(PERMISSIVE_SERVICE_XML)
+    listens = _service_listen_pairs(graph)
+
+    assert ("https", "443") in listens
+    assert ("nping-echo", "9929") in listens
+    assert ("ssh", "22") in listens
