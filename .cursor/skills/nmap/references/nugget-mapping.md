@@ -1,8 +1,32 @@
 # Nmap XML → SpiderFeet Nugget Mapping
 
-Convert **only** `-oX` XML into nugget **nodes** and **edges**. Catalogue: `.docs/analysis/nuggets.json`.
+> **CLI profiling corpus (canonical V2 hierarchy):** use `.seed/scripts/cli_corpus/nmap_xml_to_graph.py`, structure doc [nmap_nugget_graph_structure.md](../../../.docs/docs-for-cli-tools/nugget_structure/nmap_nugget_graph_structure.md), and combined ontology [_Current_Ontology.md](../../../.docs/docs-for-cli-tools/_Current_Ontology.md). The sections below retain the **legacy flat** mapping used by `modules/sfp_tool_nmap.py` text/XML paths.
 
-## Node shape (convention)
+Convert **only** `-oX` XML into nugget **nodes** and **edges**. Catalogue: `.docs/analysis/nuggets.json` + `.docs/analysis/nuggets_extension.json`.
+
+## V2 hierarchy mapping (CLI profiling)
+
+| XML path | Nugget | Relation |
+|----------|--------|----------|
+| `nmaprun` scan head | `SCAN_RECORD` + `SCAN_*` descriptors | `had` |
+| `host` + addresses | `HOST` → `NETWORKS` → `IP_ADDRESS` | `contains` |
+| `port` | `TRANSPORT` → `PORT` + `PORT_STATE`, `PORT_PROTOCOL` | `contains` / `had` |
+| `service@name` | `SERVICE` under `APPLICATIONS` | `contains`; **`listens-to` → `PORT`** (all reported services) |
+| `service@product` + `@version` | `SERVICE_VERSION` | `SERVICE` → `had` |
+| `service@servicefp` | `SERVICE_FINGERPRINT` | `SERVICE` → `had` |
+| `service@extrainfo` | `SERVICE_EXTRAINFO` | `SERVICE` → `had` |
+| `service/cpe` | `CPE_URL` | `SERVICE` → `contains` |
+| `script ssh-hostkey` | `RSA` / `ECDSA` / … + key descriptors | `SERVICE` → `contains` |
+| `os/osmatch` | `OPERATING_SYSTEM` + `OS_MATCH_ACCURACY` | `ENVIRONMENT` branch |
+| `trace/hop` | `TRACE` → `TRACE_HOP` → hop `HOST` | `contains` |
+
+Relations: `contains`, `had`, `listens-to` only (not `discovered`, `listens_on`, `runs`).
+
+---
+
+## Legacy flat mapping (module compatibility)
+
+### Node shape (convention)
 
 ```python
 {
