@@ -1018,6 +1018,11 @@
       "relation": "contains"
     },
     {
+      "source": "SERVICE--b7144d9c-a30b-53b5-a18b-11b55304f42e",
+      "target": "PORT--e9fa36d0-aae0-5724-8907-b0b9f4686c47",
+      "relation": "listens-to"
+    },
+    {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "target": "PORT--f9dd1978-95e7-5130-b2d5-6c3380633200",
       "relation": "contains"
@@ -1041,6 +1046,11 @@
       "source": "APPLICATIONS--b2f66520-adc0-5c24-8895-a7e6072de8fa",
       "target": "SERVICE--b063ce07-dd0a-5c03-bd72-57ae281966e2",
       "relation": "contains"
+    },
+    {
+      "source": "SERVICE--b063ce07-dd0a-5c03-bd72-57ae281966e2",
+      "target": "PORT--f9dd1978-95e7-5130-b2d5-6c3380633200",
+      "relation": "listens-to"
     },
     {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
@@ -1068,6 +1078,11 @@
       "relation": "contains"
     },
     {
+      "source": "SERVICE--7439ac5e-496f-5a4c-b2ac-8586acd4531e",
+      "target": "PORT--d380bc8f-0d47-56d6-a86f-dc0bdce362f3",
+      "relation": "listens-to"
+    },
+    {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "target": "PORT--1a1a610d-f25a-59b5-b85f-73462ca7b45a",
       "relation": "contains"
@@ -1093,6 +1108,11 @@
       "relation": "contains"
     },
     {
+      "source": "SERVICE--2035a0e4-44a1-5f11-994b-79885e8773d1",
+      "target": "PORT--1a1a610d-f25a-59b5-b85f-73462ca7b45a",
+      "relation": "listens-to"
+    },
+    {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "target": "PORT--48f59810-3f6d-5d7a-9911-930a23f06a53",
       "relation": "contains"
@@ -1116,6 +1136,11 @@
       "source": "APPLICATIONS--b2f66520-adc0-5c24-8895-a7e6072de8fa",
       "target": "SERVICE--adfde76c-4eab-5420-b254-664ddc18a33f",
       "relation": "contains"
+    },
+    {
+      "source": "SERVICE--adfde76c-4eab-5420-b254-664ddc18a33f",
+      "target": "PORT--48f59810-3f6d-5d7a-9911-930a23f06a53",
+      "relation": "listens-to"
     },
     {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
@@ -1173,6 +1198,11 @@
       "relation": "contains"
     },
     {
+      "source": "SERVICE--3a42bb79-4377-5a89-b4ef-f8b41dd59dd0",
+      "target": "PORT--23cfaec1-5110-5812-818c-98343194d76b",
+      "relation": "listens-to"
+    },
+    {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "target": "PORT--34555a14-f792-54f4-b5ae-88d85fbd740a",
       "relation": "contains"
@@ -1196,6 +1226,11 @@
       "source": "APPLICATIONS--b2f66520-adc0-5c24-8895-a7e6072de8fa",
       "target": "SERVICE--553bc80a-9281-5de8-871a-a90acf6cbde3",
       "relation": "contains"
+    },
+    {
+      "source": "SERVICE--553bc80a-9281-5de8-871a-a90acf6cbde3",
+      "target": "PORT--34555a14-f792-54f4-b5ae-88d85fbd740a",
+      "relation": "listens-to"
     },
     {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
@@ -1223,6 +1258,11 @@
       "relation": "contains"
     },
     {
+      "source": "SERVICE--34b584e8-7816-54cb-814c-d040b37f3a4c",
+      "target": "PORT--bbee74a0-1e60-5902-a2df-a89e17e1ada6",
+      "relation": "listens-to"
+    },
+    {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "target": "PORT--9e1238f6-107d-5679-8ba1-c1cf54900ded",
       "relation": "contains"
@@ -1248,6 +1288,11 @@
       "relation": "contains"
     },
     {
+      "source": "SERVICE--143953a8-a144-5d9a-9d84-84b513e0df08",
+      "target": "PORT--9e1238f6-107d-5679-8ba1-c1cf54900ded",
+      "relation": "listens-to"
+    },
+    {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "target": "PORT--a8868128-1ec9-506a-a078-2887a5a40c67",
       "relation": "contains"
@@ -1271,6 +1316,11 @@
       "source": "APPLICATIONS--b2f66520-adc0-5c24-8895-a7e6072de8fa",
       "target": "SERVICE--74b2b52b-a303-5ca1-bd27-a0dd8d4e8685",
       "relation": "contains"
+    },
+    {
+      "source": "SERVICE--74b2b52b-a303-5ca1-bd27-a0dd8d4e8685",
+      "target": "PORT--a8868128-1ec9-506a-a078-2887a5a40c67",
+      "relation": "listens-to"
     },
     {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
@@ -1328,6 +1378,11 @@
       "relation": "contains"
     },
     {
+      "source": "SERVICE--886f849c-6374-5963-abbd-23a119257536",
+      "target": "PORT--98fab27c-f599-5e76-a5b2-1150576b4f7f",
+      "relation": "listens-to"
+    },
+    {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "target": "PORT--00e913b7-1690-5603-9c41-df8d2fc89726",
       "relation": "contains"
@@ -1351,6 +1406,11 @@
       "source": "APPLICATIONS--b2f66520-adc0-5c24-8895-a7e6072de8fa",
       "target": "SERVICE--3db2ef03-8642-5d74-8e0f-ca49fba1ab83",
       "relation": "contains"
+    },
+    {
+      "source": "SERVICE--3db2ef03-8642-5d74-8e0f-ca49fba1ab83",
+      "target": "PORT--00e913b7-1690-5603-9c41-df8d2fc89726",
+      "relation": "listens-to"
     },
     {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
@@ -1378,6 +1438,11 @@
       "relation": "contains"
     },
     {
+      "source": "SERVICE--cd68780d-4d6b-529b-b292-cb133af6f294",
+      "target": "PORT--8223b7b1-969a-51d9-bf11-a590f7d46fdd",
+      "relation": "listens-to"
+    },
+    {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "target": "PORT--2d828ad2-7466-5bf4-80d0-3efe9861310a",
       "relation": "contains"
@@ -1401,6 +1466,11 @@
       "source": "APPLICATIONS--b2f66520-adc0-5c24-8895-a7e6072de8fa",
       "target": "SERVICE--99482198-4951-5f6a-93ad-316a633b7dc4",
       "relation": "contains"
+    },
+    {
+      "source": "SERVICE--99482198-4951-5f6a-93ad-316a633b7dc4",
+      "target": "PORT--2d828ad2-7466-5bf4-80d0-3efe9861310a",
+      "relation": "listens-to"
     },
     {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
@@ -1428,6 +1498,11 @@
       "relation": "contains"
     },
     {
+      "source": "SERVICE--cd634ec5-b8b6-5635-8825-32eb45aa08cb",
+      "target": "PORT--b4ab9bdb-e8f2-574d-9df9-e36f7433067d",
+      "relation": "listens-to"
+    },
+    {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "target": "PORT--774095c5-28a9-5656-bcc4-59155275592d",
       "relation": "contains"
@@ -1451,6 +1526,11 @@
       "source": "APPLICATIONS--b2f66520-adc0-5c24-8895-a7e6072de8fa",
       "target": "SERVICE--33c9a887-c9b8-5d1d-bc17-a19f34bbe0f8",
       "relation": "contains"
+    },
+    {
+      "source": "SERVICE--33c9a887-c9b8-5d1d-bc17-a19f34bbe0f8",
+      "target": "PORT--774095c5-28a9-5656-bcc4-59155275592d",
+      "relation": "listens-to"
     },
     {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
@@ -1478,6 +1558,11 @@
       "relation": "contains"
     },
     {
+      "source": "SERVICE--dc94bfd2-ae82-5654-964d-45660d4498ea",
+      "target": "PORT--a8f4b82c-b821-5304-95a4-ae6f263fe8b4",
+      "relation": "listens-to"
+    },
+    {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "target": "PORT--a84ee2dd-ebf4-58f9-859d-24dd1e8e3b05",
       "relation": "contains"
@@ -1501,6 +1586,11 @@
       "source": "APPLICATIONS--b2f66520-adc0-5c24-8895-a7e6072de8fa",
       "target": "SERVICE--278686a7-50be-5261-892b-b09160b8ce42",
       "relation": "contains"
+    },
+    {
+      "source": "SERVICE--278686a7-50be-5261-892b-b09160b8ce42",
+      "target": "PORT--a84ee2dd-ebf4-58f9-859d-24dd1e8e3b05",
+      "relation": "listens-to"
     }
   ]
 }

@@ -113,7 +113,19 @@
     {
       "nugget_id": "SERVICE_EXTRAINFO",
       "nugget_type": "descriptor",
-      "nugget_description": "Supplementary service fingerprint text",
+      "nugget_description": "Supplementary service detail from Nmap extrainfo",
+      "parent": "SERVICE"
+    },
+    {
+      "nugget_id": "SERVICE_VERSION",
+      "nugget_type": "descriptor",
+      "nugget_description": "Product and version string from Nmap service detection",
+      "parent": "SERVICE"
+    },
+    {
+      "nugget_id": "SERVICE_FINGERPRINT",
+      "nugget_type": "descriptor",
+      "nugget_description": "Nmap servicefp probe fingerprint string",
       "parent": "SERVICE"
     },
     {
