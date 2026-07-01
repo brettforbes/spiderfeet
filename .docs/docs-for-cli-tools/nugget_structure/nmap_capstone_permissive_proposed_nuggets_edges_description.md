@@ -202,6 +202,9 @@ The scan captured **113** semantic nuggets across **8** hosts.
 | DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
 | DESCRIPTOR | SERVICE_EXTRAINFO | Service Extra Information | `(Ubuntu)` |
 | DESCRIPTOR | SERVICE_EXTRAINFO | Service Extra Information | `Ubuntu Linux; protocol 2.0` |
+| DESCRIPTOR | SERVICE_VERSION | Service Version | `Apache httpd 2.4.7` |
+| DESCRIPTOR | SERVICE_VERSION | Service Version | `Nping echo` |
+| DESCRIPTOR | SERVICE_VERSION | Service Version | `OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13` |
 | DESCRIPTOR | SSH_KEY_BITS | SSH Key Bits | `1024` |
 | DESCRIPTOR | SSH_KEY_BITS | SSH Key Bits | `2048` |
 | DESCRIPTOR | SSH_KEY_BITS | SSH Key Bits | `256` |
@@ -256,9 +259,6 @@ The scan captured **113** semantic nuggets across **8** hosts.
 | SUBENTITY | PORT | Network Port | `80` |
 | SUBENTITY | PORT | Network Port | `9929` |
 | SUBENTITY | RSA | SSH Key - RSA | `203d2d44622ab05a9db5b30514c2a6b2` |
-| SUBENTITY | SOFTWARE_USED | Software Used | `Apache httpd 2.4.7` |
-| SUBENTITY | SOFTWARE_USED | Software Used | `Nping echo` |
-| SUBENTITY | SOFTWARE_USED | Software Used | `OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13` |
 | SUBENTITY | TRACE_HOP | Trace Hop | `114.31.192.64` |
 | SUBENTITY | TRACE_HOP | Trace Hop | `114.31.199.249` |
 | SUBENTITY | TRACE_HOP | Trace Hop | `114.31.199.41` |

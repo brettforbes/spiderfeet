@@ -332,7 +332,11 @@ def _add_service_metadata(g: GraphBuilder, service_id: str, service_el: ET.Eleme
     version = service_el.get("version")
     if product or version:
         version_str = " ".join(x for x in (product, version) if x)
-        _add_descriptor(g, service_id, "SOFTWARE_USED", version_str)
+        _add_descriptor(g, service_id, "SERVICE_VERSION", version_str)
+
+    servicefp = service_el.get("servicefp")
+    if servicefp:
+        _add_descriptor(g, service_id, "SERVICE_FINGERPRINT", servicefp)
 
     extrainfo = service_el.get("extrainfo")
     if extrainfo:
@@ -350,7 +354,7 @@ def _add_port_service(
     apps_id: str,
     port_node_id: str,
     port_el: ET.Element,
-    state_el: Optional[ET.Element],
+    _state_el: Optional[ET.Element],
 ) -> None:
     service_el = port_el.find("service")
     if service_el is None:
@@ -359,9 +363,7 @@ def _add_port_service(
     svc_name = service_el.get("name") or "unknown"
     service_id = g.add_node("SERVICE", svc_name, "ENTITY")
     g.add_edge(apps_id, service_id, "contains")
-
-    if state_el is not None and state_el.get("state") == "open":
-        g.add_edge(service_id, port_node_id, "listens-to")
+    g.add_edge(service_id, port_node_id, "listens-to")
 
     _add_service_metadata(g, service_id, service_el)
     _parse_ssh_hostkeys(g, service_id, port_el)

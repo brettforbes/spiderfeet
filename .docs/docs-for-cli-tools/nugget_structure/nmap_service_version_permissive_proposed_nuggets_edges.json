@@ -316,14 +316,14 @@
       "data": "ssh"
     },
     {
-      "id": "SOFTWARE_USED--2046c056-e092-594e-9b09-5c32ee496d63",
-      "nugget_instance_id": "SOFTWARE_USED--2046c056-e092-594e-9b09-5c32ee496d63",
-      "nugget_id": "SOFTWARE_USED",
-      "nugget_description": "Software Used",
-      "nugget_type": "SUBENTITY",
-      "nugget_event_type": "SOFTWARE_USED",
-      "nugget_icon": "icon_software_used.svg",
-      "nugget_colour": "#F97316",
+      "id": "SERVICE_VERSION--2046c056-e092-594e-9b09-5c32ee496d63",
+      "nugget_instance_id": "SERVICE_VERSION--2046c056-e092-594e-9b09-5c32ee496d63",
+      "nugget_id": "SERVICE_VERSION",
+      "nugget_description": "Service Version",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SERVICE_VERSION",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
       "nugget_data": "OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13",
       "nugget_source_data": "OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13",
       "nugget_module": "nmap",
@@ -406,14 +406,14 @@
       "data": "http"
     },
     {
-      "id": "SOFTWARE_USED--8ed02c29-4940-5dd8-ac69-4ae7052bc3c5",
-      "nugget_instance_id": "SOFTWARE_USED--8ed02c29-4940-5dd8-ac69-4ae7052bc3c5",
-      "nugget_id": "SOFTWARE_USED",
-      "nugget_description": "Software Used",
-      "nugget_type": "SUBENTITY",
-      "nugget_event_type": "SOFTWARE_USED",
-      "nugget_icon": "icon_software_used.svg",
-      "nugget_colour": "#F97316",
+      "id": "SERVICE_VERSION--8ed02c29-4940-5dd8-ac69-4ae7052bc3c5",
+      "nugget_instance_id": "SERVICE_VERSION--8ed02c29-4940-5dd8-ac69-4ae7052bc3c5",
+      "nugget_id": "SERVICE_VERSION",
+      "nugget_description": "Service Version",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_event_type": "SERVICE_VERSION",
+      "nugget_icon": "",
+      "nugget_colour": "#F59E0B",
       "nugget_data": "Apache httpd 2.4.7",
       "nugget_source_data": "Apache httpd 2.4.7",
       "nugget_module": "nmap",
@@ -679,7 +679,7 @@
     },
     {
       "source": "SERVICE--b063ce07-dd0a-5c03-bd72-57ae281966e2",
-      "target": "SOFTWARE_USED--2046c056-e092-594e-9b09-5c32ee496d63",
+      "target": "SERVICE_VERSION--2046c056-e092-594e-9b09-5c32ee496d63",
       "relation": "had"
     },
     {
@@ -729,7 +729,7 @@
     },
     {
       "source": "SERVICE--89f612eb-7588-5ef9-bbb4-04306402e094",
-      "target": "SOFTWARE_USED--8ed02c29-4940-5dd8-ac69-4ae7052bc3c5",
+      "target": "SERVICE_VERSION--8ed02c29-4940-5dd8-ac69-4ae7052bc3c5",
       "relation": "had"
     },
     {
@@ -768,6 +768,11 @@
       "relation": "contains"
     },
     {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "relation": "listens-to"
+    },
+    {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "target": "PORT--3e18bbea-b679-588f-9ab9-bdf7330b8c31",
       "relation": "contains"
@@ -791,6 +796,11 @@
       "source": "APPLICATIONS--54c14b10-1d5b-5cbb-a4b8-d9d10f2a2a55",
       "target": "SERVICE--54efc10f-402d-52a1-92cb-7cd9c4febb15",
       "relation": "contains"
+    },
+    {
+      "source": "SERVICE--54efc10f-402d-52a1-92cb-7cd9c4febb15",
+      "target": "PORT--3e18bbea-b679-588f-9ab9-bdf7330b8c31",
+      "relation": "listens-to"
     },
     {
       "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",

@@ -23,16 +23,16 @@ It answers to the internet name **scanme.nmap.org**.
 Network address **45.33.32.156**:
 - Port **22** on **tcp** is **open** (syn-ack), associated with **ssh**.
 - Port **31337** on **tcp** is **open** (syn-ack), associated with **tcpwrapped**.
-- Port **443** on **tcp** is **filtered** (no-response), associated with **an unnamed service**.
+- Port **443** on **tcp** is **filtered** (no-response), associated with **https**.
 - Port **80** on **tcp** is **open** (syn-ack), associated with **http**.
-- Port **9929** on **tcp** is **filtered** (no-response), associated with **an unnamed service**.
+- Port **9929** on **tcp** is **filtered** (no-response), associated with **nping-echo**.
 
 ### Applications
 
 Application service **http** listening on port **80**. It runs **Apache httpd 2.4.7**. Additional detail: **(Ubuntu)**.
 - Common Platform Enumeration: `cpe:/a:apache:http_server:2.4.7`.
-Application service **https**.
-Application service **nping-echo**.
+Application service **https** listening on port **443**.
+Application service **nping-echo** listening on port **9929**.
 Application service **ssh** listening on port **22**. It runs **OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13**. Additional detail: **Ubuntu Linux; protocol 2.0**.
 - Common Platform Enumeration: `cpe:/a:openbsd:openssh:6.6.1p1`.
 - Common Platform Enumeration: `cpe:/o:linux:linux_kernel`.
@@ -67,6 +67,8 @@ The scan captured **38** semantic nuggets across **1** host.
 | DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
 | DESCRIPTOR | SERVICE_EXTRAINFO | Service Extra Information | `(Ubuntu)` |
 | DESCRIPTOR | SERVICE_EXTRAINFO | Service Extra Information | `Ubuntu Linux; protocol 2.0` |
+| DESCRIPTOR | SERVICE_VERSION | Service Version | `Apache httpd 2.4.7` |
+| DESCRIPTOR | SERVICE_VERSION | Service Version | `OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13` |
 | ENTITY | HOST | Host | `45.33.32.156` |
 | ENTITY | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
 | ENTITY | IP_ADDRESS | IP Address | `45.33.32.156` |
@@ -85,8 +87,6 @@ The scan captured **38** semantic nuggets across **1** host.
 | SUBENTITY | PORT | Network Port | `443` |
 | SUBENTITY | PORT | Network Port | `80` |
 | SUBENTITY | PORT | Network Port | `9929` |
-| SUBENTITY | SOFTWARE_USED | Software Used | `Apache httpd 2.4.7` |
-| SUBENTITY | SOFTWARE_USED | Software Used | `OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13` |
 
 ---
 

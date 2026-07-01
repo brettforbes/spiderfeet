@@ -26,14 +26,14 @@ The host environment indicates **Linux 2.6.18 - 2.6.22** (match accuracy **94**)
 
 Network address **45.33.32.156**:
 - Port **22** on **tcp** is **open** (syn-ack), associated with **tcpwrapped**.
-- Port **443** on **tcp** is **filtered** (no-response), associated with **an unnamed service**.
+- Port **443** on **tcp** is **filtered** (no-response), associated with **https**.
 - Port **80** on **tcp** is **open** (syn-ack), associated with **http**.
 
 ### Applications
 
 Application service **http** listening on port **80**. It runs **Apache httpd 2.4.7**. Additional detail: **(Ubuntu)**. The HTTP title banner reads **"Go ahead and ScanMe!"**.
 - Common Platform Enumeration: `cpe:/a:apache:http_server:2.4.7`.
-Application service **https**.
+Application service **https** listening on port **443**.
 Application service **tcpwrapped** listening on port **22**.
 The **tcpwrapped** service exposes an **DSA** SSH host key (fingerprint `ac00a01a82ffcc5599dc672b34976b75`). Algorithm: **ssh-dss**. Key size: **1024** bits. Public key material: `AAAAB3NzaC1kc3MAAACBAOe8o59vFWZGaBmGPVeJBObEfi1AR8yEUYC/Ufkku3sKhGF7wM2m2ujIeZDK5vqeC0S5EN2xYo6FshCP4FQRYeTxD17nNO4PhwW65qAjDRRU0uHFfSAh5wk+vt4yQztOE++sTd1G9OBLzA8HO99qDmCAxb3zw+GQDEgPjzgyzGZ3AAAAFQCBmE1vROP8IaPkUmhM5xLFta/xHwAAAIEA3EwRfaeOPLL7TKDgGX67Lbkf9UtdlpCdC4doMjGgsznYMwWH6a7Lj3vi4/KmeZZdix6FMdFqq+2vrfT1DRqx0RS0XYdGxnkgS+2g333WYCrUkDCn6RPUWR/1TgGMPHCj7LWCa1ZwJwLWS2KX288Pa2gLOWuhZm2VYKSQx6NEDOIAAACBANxIfprSdBdbo4Ezrh6/X6HSvrhjtZ7MouStWaE714ByO5bS2coM9CyaCwYyrE5qzYiyIfb+1BG3O5nVdDuN95sQ/0bAdBKlkqLFvFqFjVbETF0ri3v97w6MpUawfF75ouDrQ4xdaUOLLEWTso6VFJcM6Jg9bDl0FA0uLZUSDEHL`
 The **tcpwrapped** service exposes an **ECDSA** SSH host key (fingerprint `9602bb5e57541c4e452f564c4a24b257`). Algorithm: **ecdsa-sha2-nistp256**. Key size: **256** bits. Public key material: `AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMD46g67x6yWNjjQJnXhiz/TskHrqQ0uPcOspFrIYW382uOGzmWDZCFV8FbFwQyH90u+j0Qr1SGNAxBZMhOQ8pc=`
@@ -200,6 +200,7 @@ The scan captured **109** semantic nuggets across **8** hosts.
 | DESCRIPTOR | SCAN_TOOL | Scan Tool | `nmap` |
 | DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
 | DESCRIPTOR | SERVICE_EXTRAINFO | Service Extra Information | `(Ubuntu)` |
+| DESCRIPTOR | SERVICE_VERSION | Service Version | `Apache httpd 2.4.7` |
 | DESCRIPTOR | SSH_KEY_BITS | SSH Key Bits | `1024` |
 | DESCRIPTOR | SSH_KEY_BITS | SSH Key Bits | `2048` |
 | DESCRIPTOR | SSH_KEY_BITS | SSH Key Bits | `256` |
@@ -250,7 +251,6 @@ The scan captured **109** semantic nuggets across **8** hosts.
 | SUBENTITY | PORT | Network Port | `443` |
 | SUBENTITY | PORT | Network Port | `80` |
 | SUBENTITY | RSA | SSH Key - RSA | `203d2d44622ab05a9db5b30514c2a6b2` |
-| SUBENTITY | SOFTWARE_USED | Software Used | `Apache httpd 2.4.7` |
 | SUBENTITY | TRACE_HOP | Trace Hop | `114.31.192.64` |
 | SUBENTITY | TRACE_HOP | Trace Hop | `114.31.199.249` |
 | SUBENTITY | TRACE_HOP | Trace Hop | `114.31.199.41` |

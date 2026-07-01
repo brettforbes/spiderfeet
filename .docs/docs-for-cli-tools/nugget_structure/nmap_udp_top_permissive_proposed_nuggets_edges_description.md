@@ -22,48 +22,48 @@ It answers to the internet name **scanme.nmap.org**.
 
 Network address **45.33.32.156**:
 - Port **123** on **udp** is **open** (udp-response), associated with **ntp**.
-- Port **135** on **udp** is **open|filtered** (no-response), associated with **an unnamed service**.
-- Port **137** on **udp** is **open|filtered** (no-response), associated with **an unnamed service**.
-- Port **138** on **udp** is **open|filtered** (no-response), associated with **an unnamed service**.
-- Port **139** on **udp** is **open|filtered** (no-response), associated with **an unnamed service**.
-- Port **1434** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
-- Port **161** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
-- Port **162** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
-- Port **1900** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
-- Port **445** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
-- Port **4500** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
-- Port **49152** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
-- Port **500** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
-- Port **514** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
-- Port **520** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
-- Port **53** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
-- Port **631** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
-- Port **67** on **udp** is **open|filtered** (no-response), associated with **an unnamed service**.
-- Port **68** on **udp** is **open|filtered** (no-response), associated with **an unnamed service**.
-- Port **69** on **udp** is **closed** (port-unreach), associated with **an unnamed service**.
+- Port **135** on **udp** is **open|filtered** (no-response), associated with **msrpc**.
+- Port **137** on **udp** is **open|filtered** (no-response), associated with **netbios-ns**.
+- Port **138** on **udp** is **open|filtered** (no-response), associated with **netbios-dgm**.
+- Port **139** on **udp** is **open|filtered** (no-response), associated with **netbios-ssn**.
+- Port **1434** on **udp** is **closed** (port-unreach), associated with **ms-sql-m**.
+- Port **161** on **udp** is **closed** (port-unreach), associated with **snmp**.
+- Port **162** on **udp** is **closed** (port-unreach), associated with **snmptrap**.
+- Port **1900** on **udp** is **closed** (port-unreach), associated with **upnp**.
+- Port **445** on **udp** is **closed** (port-unreach), associated with **microsoft-ds**.
+- Port **4500** on **udp** is **closed** (port-unreach), associated with **nat-t-ike**.
+- Port **49152** on **udp** is **closed** (port-unreach), associated with **unknown**.
+- Port **500** on **udp** is **closed** (port-unreach), associated with **isakmp**.
+- Port **514** on **udp** is **closed** (port-unreach), associated with **syslog**.
+- Port **520** on **udp** is **closed** (port-unreach), associated with **route**.
+- Port **53** on **udp** is **closed** (port-unreach), associated with **domain**.
+- Port **631** on **udp** is **closed** (port-unreach), associated with **ipp**.
+- Port **67** on **udp** is **open|filtered** (no-response), associated with **dhcps**.
+- Port **68** on **udp** is **open|filtered** (no-response), associated with **dhcpc**.
+- Port **69** on **udp** is **closed** (port-unreach), associated with **tftp**.
 
 ### Applications
 
-Application service **dhcpc**.
-Application service **dhcps**.
-Application service **domain**.
-Application service **ipp**.
-Application service **isakmp**.
-Application service **microsoft-ds**.
-Application service **ms-sql-m**.
-Application service **msrpc**.
-Application service **nat-t-ike**.
-Application service **netbios-dgm**.
-Application service **netbios-ns**.
-Application service **netbios-ssn**.
+Application service **dhcpc** listening on port **68**.
+Application service **dhcps** listening on port **67**.
+Application service **domain** listening on port **53**.
+Application service **ipp** listening on port **631**.
+Application service **isakmp** listening on port **500**.
+Application service **microsoft-ds** listening on port **445**.
+Application service **ms-sql-m** listening on port **1434**.
+Application service **msrpc** listening on port **135**.
+Application service **nat-t-ike** listening on port **4500**.
+Application service **netbios-dgm** listening on port **138**.
+Application service **netbios-ns** listening on port **137**.
+Application service **netbios-ssn** listening on port **139**.
 Application service **ntp** listening on port **123**.
-Application service **route**.
-Application service **snmp**.
-Application service **snmptrap**.
-Application service **syslog**.
-Application service **tftp**.
-Application service **unknown**.
-Application service **upnp**.
+Application service **route** listening on port **520**.
+Application service **snmp** listening on port **161**.
+Application service **snmptrap** listening on port **162**.
+Application service **syslog** listening on port **514**.
+Application service **tftp** listening on port **69**.
+Application service **unknown** listening on port **49152**.
+Application service **upnp** listening on port **1900**.
 
 ## Conclusion
 
