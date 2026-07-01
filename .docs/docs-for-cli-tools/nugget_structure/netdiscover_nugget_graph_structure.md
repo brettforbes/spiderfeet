@@ -120,3 +120,4 @@ Runtime: Windows LAN simulator (`.seed/scripts/cli_corpus/run_netdiscover_lan.ps
 - Relations use ontology vocabulary: `contains`, `had` only.
 - Do **not** use `RAW_RIR_DATA` for vendor strings — use `MAC_VENDOR`.
 - Text and structured `scan_tries` / `empty_scans` must match captured CLI output (see harvest alignment checks).
+- Combined cross-tool ontology: [_Current_Ontology.md](../_Current_Ontology.md).
