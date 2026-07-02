@@ -34,25 +34,68 @@ First read the appropriate skillset documentation, then use the tool to explore 
 ## Formal Examination
 
 - Run the tool with the input scenarios you have collected.
-- For each run, capture the results and capture/convert them into the four output formats as shown below.
+- For each run, capture results into the evidence bundle contract below (command, text, structured, graph proposal, review status).
+- Classify each tool into one **structured artifact family** before writing manifests (see next section).
 
+## Structured artifact families
+
+| Family | Examples | Structured file | Text source |
+|--------|----------|-----------------|-------------|
+| Native document | nmap XML, CMSeeK JSON | Tool-native `.xml` / `.json` | Paired text scenario or TUI capture |
+| Validated scan JSON | netdiscover | `netdiscover_scan` JSON from TextFSM | Same run text; must align |
+| JSON bundle | nerva, pius | Single `.json` with `schema` + `records[]` | **Derived** from `records[]` at harvest |
+| Text-only | netdiscover TUI | Parsed JSON from TextFSM | Full native stdout |
+
+Do not store raw `.jsonl` / NDJSON as the examination structured artifact. The CLI Profiling **Structured** tab expects one parseable JSON root (or XML/YAML/CSV).
 
 ## Output Capture
 
 - Every scenario must produce a user-readable text artifact and a structured artifact (`json`, `xml`, `yaml`, or `csv`).
 - Prefer structured formats in this order: JSON, XML, YAML, CSV. Use full verbosity where available.
 - If the tool can emit text and structured output in one run, capture both.
-- If the tool can emit only one format per run, execute paired runs for the same scenario: native text and best structured format.
+- If the tool emits **only one output mode per flag** (e.g. pius `--output ndjson` vs `--output terminal`), use **paired scenarios**: one for the machine bundle path, one for native TUI text. Do not point `text_from: stderr` at progress banners when stdout holds the findings.
 - If the tool is text-only, then all text must be captured, do not truncate it. Then parse text into structured form with TextFSM Template parser.
-- **JSONL / NDJSON tools (nerva, pius, and similar):** At harvest time, parse line-delimited JSON into a `list[dict]`, then write a **single JSON document** (not raw `.jsonl`) for the Structured tab. Use `.seed/scripts/cli_corpus/nerva_structured.py` or `pius_structured.py` as the pattern. The bundle must include scan metadata (`schema`, `tool`, `command`, `started_at`, `record_count`, etc.) and a `records` array. The Data Viewer cannot parse multi-root NDJSON as one JSON file.
-- **JSONL / NDJSON text artifact:** Do not use stderr progress banners or NDJSON stdout as the text capture. Derive human-readable text from structured records (nerva: `proto://host:port (ip)`; pius: `[type] value (source)` with optional `⚠ needs-review [confidence:n]`). Store stderr banners in structured metadata (`stderr_banner`) when useful for audit. Pair with `--output terminal` scenarios when native TUI output must be preserved separately.
-- **Backfill without re-run:** When fixing capture shape for existing examinations, use `backfill_nerva_structured_scan.py` or `backfill_pius_structured.py` to convert legacy `.jsonl` artifacts in place.
+
+### JSONL / NDJSON tools (nerva, pius, and similar)
+
+**Explore first:** document which stream carries findings vs progress (`stdout` vs `stderr`) in the tool strategy skill.
+
+**At harvest (`harvest.py`):**
+
+1. Parse line-delimited JSON from stdout into `list[dict]` (filter non-JSON lines).
+2. Write `*_output_structured.json` — a **single JSON bundle**, not `*.jsonl`.
+3. Bundle shape: `schema` (e.g. `nerva_fingerprint_v1`, `pius_finding_v1`), scan metadata (`tool`, `command`, `started_at`, `duration_s`, `exit_code`, `record_count`), optional `stderr_banner`, and `records[]`.
+4. Derive `*_output_text.txt` from records (nerva: `proto://host:port (ip)`; pius: `[type] value (source)` with optional `⚠ needs-review [confidence:n]`). Prefix with the SpiderFeet capture header (record count must match `len(records)`).
+5. Wire graph generation to read `records[]` via `<tool>_structured.records_only()` (accepts bundle JSON or legacy NDJSON).
+
+**Implement per tool:** `<tool>_structured.py`, harvest branch in `write_bundle()`, optional `backfill_<tool>_structured.py`, manifest `structured_ext: json`.
+
+**Manifest anti-patterns (pius lesson):**
+
+- `structured_ext: jsonl` — breaks Data Viewer
+- `text_from: stderr` on NDJSON scenarios — captures only `"Running N plugin(s)..."` banners
+- Shell redirect of NDJSON when the tool skips non-TTY output — use harvest stdout capture instead
+
+**Empty findings are valid:** `records: []` with scan metadata is a complete structured artifact for clean-miss scenarios (e.g. obscure org, sparse target).
+
+**Backfill without re-run:** `backfill_nerva_structured_scan.py`, `backfill_pius_structured.py`.
+
 - Capture errors and empty/clean-miss behavior as first-class scenarios with text and structured representations.
 - **Errors in structured artifacts:** Include `exit_status`, stderr (when non-empty), and scan-level error fields in structured JSON/XML — not only in text. Error scenarios are incomplete if structured output omits the failure shape.
 - No matter what format is output, you must ensure the input command and all options used to produce the output, and the timestamp of the scan are captured if it is not in the output.
 - **Never truncate examination output.** Do not pipe through `head`, `tail`, or similar limits in harvest manifest commands. Use `timeout` for bounded runs only; capture full stdout/stderr.
 - **Text-only CLI isolation:** Before each examination command for a text-only CLI app, clear the screen (`cls` on Windows, `clear` on Unix/WSL). Capture only that command's output — never concatenate multiple scans or scenarios into one text artifact. The structured JSON derived from the text must match the text capture exactly (`scan_tries`, `empty_scans`, `discovered`, and the first results table where applicable).
 - Structured artifacts for text-only tools must include scan metadata: command, timestamp, attempt counts (`scan_tries`), and parsed result tables/objects. Validate these fields before marking an examination complete.
+
+### Examination completion gate (before operator review)
+
+For each scenario bundle, verify:
+
+1. **Structured** — file parses in Data Viewer (single JSON/XML root); for bundles, `records` length matches `record_count` / header line count.
+2. **Text** — human-readable body is not only progress banners; derived or native finding lines present when `records` is non-empty.
+3. **Alignment** — text line count equals `len(records)` for JSON-bundle tools; netdiscover text/JSON alignment per `verify_text_structured_alignment`.
+4. **Graph** — `*_proposed_nuggets_edges.json` generated from structured artifact; no orphan nodes.
+5. **Manifest** — `structured_kind: json`, path ends in `_output_structured.json` for bundle tools (not `.jsonl`).
 
 ## Scenario Coverage
 
