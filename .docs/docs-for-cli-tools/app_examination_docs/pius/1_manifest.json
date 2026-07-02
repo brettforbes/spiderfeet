@@ -8,10 +8,11 @@
   "exit_code": 0,
   "duration_s": 12.407,
   "captured_at": "2026-06-30T04:09:26.834504+00:00",
-  "structured_kind": "ndjson",
-  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\1_output_structured.jsonl",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\1_output_structured.json",
   "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\1_output_text.txt",
   "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\1_command.txt",
-  "tool_manifest_version": 2,
-  "review_status": "pending"
+  "tool_manifest_version": 3,
+  "review_status": "pending",
+  "org": "Praetorian"
 }

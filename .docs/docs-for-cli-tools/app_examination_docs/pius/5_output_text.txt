@@ -1,1 +1,14 @@
-Running 2 plugin(s) in "passive" mode...
+# SpiderFeet CLI examination capture
+# tool: pius
+# scenario: Sparse preseed only (Nmap Scanme) (sparse_scanme_ndjson)
+# org: Nmap Scanme
+# target: scanme.nmap.org
+# command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Nmap Scanme" --domain scanme.nmap.org --plugins crt-sh,whois --output ndjson
+# runtime: wsl
+# started_at: 2026-06-30T04:12:48.308030+00:00
+# duration_s: 42.484
+# exit_code: 0
+# finding_summary_lines: 0
+# text_role: one line per finding: [type] value (source)
+# structured_role: full NDJSON finding objects in records[]
+

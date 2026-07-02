@@ -1,12 +1,12 @@
 {
   "nodes": [
     {
-      "id": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
-      "nugget_instance_id": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "id": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
+      "nugget_instance_id": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "nugget_id": "SCAN_RECORD",
       "nugget_type": "ENTITY",
       "nugget_description": "Scan Record",
-      "nugget_data": "linode.com"
+      "nugget_data": "Linode"
     },
     {
       "id": "SCAN_CLI--eb708ee7-371b-55a7-ad42-bed4ae353352",
@@ -17,12 +17,12 @@
       "nugget_data": "/mnt/c/projects/spiderfeet/.tools/pius run --org Linode --domain linode.com --plugins crt-sh --output ndjson"
     },
     {
-      "id": "COMPANY_NAME--8d40269a-f13b-5076-947c-86eead904093",
-      "nugget_instance_id": "COMPANY_NAME--8d40269a-f13b-5076-947c-86eead904093",
+      "id": "COMPANY_NAME--69182e38-eba8-5420-b97c-526284aeb96a",
+      "nugget_instance_id": "COMPANY_NAME--69182e38-eba8-5420-b97c-526284aeb96a",
       "nugget_id": "COMPANY_NAME",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Organization",
-      "nugget_data": "linode.com"
+      "nugget_data": "Linode"
     },
     {
       "id": "INTERNET_NAME--8d9ce148-ab9b-576b-be34-e583076a1238",
@@ -811,17 +811,17 @@
   ],
   "edges": [
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "SCAN_CLI--eb708ee7-371b-55a7-ad42-bed4ae353352",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
-      "target": "COMPANY_NAME--8d40269a-f13b-5076-947c-86eead904093",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
+      "target": "COMPANY_NAME--69182e38-eba8-5420-b97c-526284aeb96a",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--8d9ce148-ab9b-576b-be34-e583076a1238",
       "relation": "contains"
     },
@@ -831,7 +831,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--3862fb73-937a-54aa-a1d3-7970d2f9d042",
       "relation": "contains"
     },
@@ -841,7 +841,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--78feaf71-bf99-5b0e-a077-ca3c10c321ef",
       "relation": "contains"
     },
@@ -851,7 +851,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--f6eb4f16-b39f-56e5-a278-1f334a855fa3",
       "relation": "contains"
     },
@@ -861,7 +861,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--cccf6913-95a3-5a2f-8769-49efca5d112f",
       "relation": "contains"
     },
@@ -871,7 +871,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--43ccec5f-80da-5b83-bd02-d70494509bef",
       "relation": "contains"
     },
@@ -881,7 +881,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--03d58430-d0a4-59d4-8b47-a36a27b02ddb",
       "relation": "contains"
     },
@@ -891,7 +891,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--5f474dac-20eb-5444-98dd-a040b55ee69d",
       "relation": "contains"
     },
@@ -901,7 +901,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--d65f2e57-863c-5601-b52c-a6f16aebf6a6",
       "relation": "contains"
     },
@@ -911,7 +911,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--41ee17cf-40cd-59f2-a322-58839b2a5d3f",
       "relation": "contains"
     },
@@ -921,7 +921,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--f940d5f8-1f40-5826-9ccc-f26ffa2dc730",
       "relation": "contains"
     },
@@ -931,7 +931,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--0a584b48-6169-5aaf-be17-921cba145f83",
       "relation": "contains"
     },
@@ -941,7 +941,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--667a5f88-010e-5871-b1f2-2ad7a20e1a5f",
       "relation": "contains"
     },
@@ -951,7 +951,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--358ae5a5-b81a-5e88-b614-46790ba2db18",
       "relation": "contains"
     },
@@ -961,7 +961,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--6357f656-ad3d-5bb2-819c-891c536747fa",
       "relation": "contains"
     },
@@ -971,7 +971,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--23fb7aee-4c92-5836-b200-f7cf576bb333",
       "relation": "contains"
     },
@@ -981,7 +981,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--6ac3955b-6c0b-58b5-a90d-8512a545976a",
       "relation": "contains"
     },
@@ -991,7 +991,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--a70ab6d8-38c4-5b6f-879f-f6582da32648",
       "relation": "contains"
     },
@@ -1001,7 +1001,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--dfc20787-3589-5d20-94ec-46b1cfd87ea1",
       "relation": "contains"
     },
@@ -1011,7 +1011,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--871ba40d-b64b-5620-96a4-3dcdce923f9c",
       "relation": "contains"
     },
@@ -1021,7 +1021,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--35748fa9-defa-532f-87aa-f88d098c7d0d",
       "relation": "contains"
     },
@@ -1031,7 +1031,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--d7080c60-5438-55ca-828e-ffcb69ff21eb",
       "relation": "contains"
     },
@@ -1041,7 +1041,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--3b729775-d478-5bd0-a6bd-51c1db3a1dad",
       "relation": "contains"
     },
@@ -1051,7 +1051,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--169f5b48-ee21-5df8-9937-1c220ed056e2",
       "relation": "contains"
     },
@@ -1061,7 +1061,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--8b30fad6-8ffb-53a5-a589-ffa5e40fab3e",
       "relation": "contains"
     },
@@ -1071,7 +1071,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--cb8a970c-b698-5746-a2e0-36637b476705",
       "relation": "contains"
     },
@@ -1081,7 +1081,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--0501d105-6534-5f79-9554-59898642a3ad",
       "relation": "contains"
     },
@@ -1091,7 +1091,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--929d2741-b0f9-5ef8-a879-2ef538b8e202",
       "relation": "contains"
     },
@@ -1101,7 +1101,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--535fed8e-9412-5646-8429-0e9efd541181",
       "relation": "contains"
     },
@@ -1111,7 +1111,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--ba903c6d-7976-52ab-bb6d-c098f0da91ce",
       "relation": "contains"
     },
@@ -1121,7 +1121,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--b0757483-f263-5ab2-b6d0-f7a05e9069f2",
       "relation": "contains"
     },
@@ -1131,7 +1131,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--fa77034e-8f39-59a1-a5bc-cba55008cb8a",
       "relation": "contains"
     },
@@ -1141,7 +1141,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--5495938f-e4ec-5379-94f8-2c939dd62cd7",
       "relation": "contains"
     },
@@ -1151,7 +1151,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--e4c59dd0-b4a3-5272-88a1-42c9fb45079a",
       "relation": "contains"
     },
@@ -1161,7 +1161,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--64f8493a-cf51-5369-beb6-5dc1941f43e4",
       "relation": "contains"
     },
@@ -1171,7 +1171,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--6cbb28f8-7bba-5be7-919f-78bf8a6983d2",
       "relation": "contains"
     },
@@ -1181,7 +1181,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--e99e59be-4682-5b52-99fe-1484f1fef351",
       "relation": "contains"
     },
@@ -1191,7 +1191,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--5ca09e29-97db-5638-9ebc-82aa29162ed6",
       "relation": "contains"
     },
@@ -1201,7 +1201,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--c2d464a0-7645-583e-9966-324ec56ceb57",
       "relation": "contains"
     },
@@ -1211,7 +1211,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--9e607fd8-f8fb-5ebb-a497-ade53aec257f",
       "relation": "contains"
     },
@@ -1221,7 +1221,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--87520145-6830-5913-a841-b5a635bb2456",
       "relation": "contains"
     },
@@ -1231,7 +1231,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--5f1dadfd-609b-5571-8005-1b6bbe58b21c",
       "relation": "contains"
     },
@@ -1241,7 +1241,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--649f6987-efbc-5203-b5d1-321bf44266b4",
       "relation": "contains"
     },
@@ -1251,7 +1251,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--36a33cb2-0c46-5098-bdcf-23842193151d",
       "relation": "contains"
     },
@@ -1261,7 +1261,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--c6a514cd-234b-5cd6-b9c3-a166e5f0bb4c",
       "relation": "contains"
     },
@@ -1271,7 +1271,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--22021c76-268f-54b3-8cb4-4a7ad15621b5",
       "relation": "contains"
     },
@@ -1281,7 +1281,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--47980646-fa7a-5eeb-9f01-916247af428c",
       "relation": "contains"
     },
@@ -1291,7 +1291,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--f8506887-0254-546f-83b0-9e97278c6b0a",
       "relation": "contains"
     },
@@ -1301,7 +1301,7 @@
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d3ad28a3-5500-57cf-8455-93fe063d35ac",
+      "source": "SCAN_RECORD--1c532429-8d09-519b-8495-368302dc7e77",
       "target": "INTERNET_NAME--2a110f17-d5c6-5203-9f8a-88c393f1ca51",
       "relation": "contains"
     },

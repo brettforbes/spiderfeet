@@ -257,6 +257,50 @@ def _nerva_structured_payload(
     return bundle, text_content
 
 
+def _pius_ndjson_payload(result: RunResult, scenario: dict[str, Any]) -> str:
+    payload = _jsonl_lines_from_stdout(result.stdout)
+    fixture_rel = scenario.get("structured_fixture")
+    if not payload.strip() and fixture_rel:
+        fixture_path = REPO_ROOT / fixture_rel
+        if fixture_path.is_file():
+            payload = fixture_path.read_text(encoding="utf-8", errors="replace")
+            result.structured_fixture_used = str(fixture_path.relative_to(REPO_ROOT))
+    return payload
+
+
+def _pius_structured_payload(
+    scenario: dict[str, Any],
+    result: RunResult,
+    captured_at: datetime,
+) -> tuple[dict[str, Any], str]:
+    from pius_structured import (
+        build_pius_bundle,
+        parse_ndjson,
+        pius_scan_context,
+        structured_to_text,
+    )
+
+    ndjson = _pius_ndjson_payload(result, scenario)
+    records = parse_ndjson(ndjson)
+    stderr_banner = result.stderr.strip() or None
+    scan = pius_scan_context(
+        command=result.command,
+        scenario_name=scenario.get("name", scenario["id"]),
+        scenario_id=scenario["id"],
+        org=scenario.get("org"),
+        target=scenario.get("target"),
+        captured_at=captured_at,
+        runtime=result.runtime,
+        exit_code=result.exit_code,
+        duration_s=result.duration_s,
+        record_count=len(records),
+        stderr_banner=stderr_banner,
+    )
+    bundle = build_pius_bundle(records, scan)
+    text_content = structured_to_text(bundle["records"])
+    return bundle, text_content
+
+
 def _write_tool_graph(
     tool: str,
     scenario: dict[str, Any],
@@ -330,6 +374,16 @@ def write_bundle(
             result.structured_kind = "json"
             structured_kind = "json"
             structured_ext = "json"
+        elif tool == "pius" and structured_ext in ("json", "jsonl"):
+            bundle, text_content = _pius_structured_payload(scenario, result, captured_at)
+            from pius_structured import dumps_pius_bundle
+
+            structured_path = tool_dir / f"{prefix}_output_structured.json"
+            structured_path.write_text(dumps_pius_bundle(bundle), encoding="utf-8")
+            result.structured_path = str(structured_path.relative_to(REPO_ROOT))
+            result.structured_kind = "json"
+            structured_kind = "json"
+            structured_ext = "json"
         else:
             structured_path = tool_dir / f"{prefix}_output_structured.{structured_ext}"
             out_file = scenario.get("structured_output_file")
@@ -372,6 +426,26 @@ def write_bundle(
             command=result.command,
             scenario_name=scenario.get("name", scenario["id"]),
             scenario_id=scenario["id"],
+            target=scenario.get("target"),
+            captured_at=captured_at,
+            runtime=result.runtime,
+            exit_code=result.exit_code,
+            duration_s=result.duration_s,
+            record_count=len(body_lines),
+        )
+    elif tool == "pius" and structured_ext == "json" and structured_path is not None:
+        from pius_structured import pius_text_capture_header, strip_capture_header
+
+        body_lines = [
+            ln
+            for ln in strip_capture_header(text_content).replace("\r\n", "\n").split("\n")
+            if ln.strip() and not ln.startswith("#")
+        ]
+        header = pius_text_capture_header(
+            command=result.command,
+            scenario_name=scenario.get("name", scenario["id"]),
+            scenario_id=scenario["id"],
+            org=scenario.get("org"),
             target=scenario.get("target"),
             captured_at=captured_at,
             runtime=result.runtime,

@@ -19,7 +19,8 @@ EXAM_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "app_examination_docs"
 NUGGET_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "nugget_structure"
 
 from netdiscover_json_to_graph import graph_from_json_text, netdiscover_scan_to_graph
-from nerva_structured import records_only
+from nerva_structured import records_only as nerva_records_only
+from pius_structured import records_only as pius_records_only
 
 
 def _uid(nugget_id: str, data: str) -> str:
@@ -53,7 +54,7 @@ def netdiscover_to_graph(raw: str, target: str, command: str) -> Dict[str, Any]:
 
 
 def parse_nerva_jsonl(raw: str) -> List[Dict[str, Any]]:
-    return records_only(raw)
+    return nerva_records_only(raw)
 
 
 def nerva_to_graph(raw: str, target: str, command: str) -> Dict[str, Any]:
@@ -89,16 +90,7 @@ def nerva_to_graph(raw: str, target: str, command: str) -> Dict[str, Any]:
 
 
 def parse_pius_ndjson(raw: str) -> List[Dict[str, Any]]:
-    out: List[Dict[str, Any]] = []
-    for line in raw.splitlines():
-        line = line.strip()
-        if not line:
-            continue
-        try:
-            out.append(json.loads(line))
-        except json.JSONDecodeError:
-            continue
-    return out
+    return pius_records_only(raw)
 
 
 def pius_to_graph(raw: str, org: str, command: str) -> Dict[str, Any]:

@@ -1,1 +1,16 @@
-Running 5 plugin(s) in "passive" mode...
+# SpiderFeet CLI examination capture
+# tool: pius
+# scenario: RIR CIDR phase (Cloudflare) (rir_cidr_ndjson)
+# org: Cloudflare, Inc.
+# target: cloudflare.com
+# command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Cloudflare, Inc." --domain cloudflare.com --plugins whois,edgar,arin,ripe,apnic --output ndjson
+# runtime: wsl
+# started_at: 2026-06-30T04:12:36.118528+00:00
+# duration_s: 7.688
+# exit_code: 0
+# finding_summary_lines: 2
+# text_role: one line per finding: [type] value (source)
+# structured_role: full NDJSON finding objects in records[]
+
+[preseed] DATA REDACTED (whois)
+[preseed] DATA REDACTED (whois)

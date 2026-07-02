@@ -1,0 +1,40 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--882629f5-29c7-5963-bfd2-5cce288b5832",
+      "nugget_instance_id": "SCAN_RECORD--882629f5-29c7-5963-bfd2-5cce288b5832",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Scan Record",
+      "nugget_data": "ZZZZ Nonexistent Org 000000"
+    },
+    {
+      "id": "SCAN_CLI--4723e56d-8a7e-53da-b961-015029cbe8dc",
+      "nugget_instance_id": "SCAN_CLI--4723e56d-8a7e-53da-b961-015029cbe8dc",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"ZZZZ Nonexistent Org 000000\" --plugins gleif,whois --output ndjson"
+    },
+    {
+      "id": "COMPANY_NAME--a3b6e3ae-00db-5991-9740-9d0ef1be9c71",
+      "nugget_instance_id": "COMPANY_NAME--a3b6e3ae-00db-5991-9740-9d0ef1be9c71",
+      "nugget_id": "COMPANY_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Organization",
+      "nugget_data": "ZZZZ Nonexistent Org 000000"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--882629f5-29c7-5963-bfd2-5cce288b5832",
+      "target": "SCAN_CLI--4723e56d-8a7e-53da-b961-015029cbe8dc",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--882629f5-29c7-5963-bfd2-5cce288b5832",
+      "target": "COMPANY_NAME--a3b6e3ae-00db-5991-9740-9d0ef1be9c71",
+      "relation": "had"
+    }
+  ]
+}
