@@ -1,1 +1,14 @@
-Running 2 plugin(s) in "passive" mode...
+# SpiderFeet CLI examination capture
+# tool: pius
+# scenario: Obscure org clean miss (obscure_miss_ndjson)
+# org: ZZZZ Nonexistent Org 000000
+# target: none
+# command: /mnt/c/projects/spiderfeet/.tools/pius run --org "ZZZZ Nonexistent Org 000000" --plugins gleif,whois --output ndjson
+# runtime: wsl
+# started_at: 2026-06-30T04:13:34.886674+00:00
+# duration_s: 8.219
+# exit_code: 0
+# finding_summary_lines: 0
+# text_role: one line per finding: [type] value (source)
+# structured_role: full NDJSON finding objects in records[]
+

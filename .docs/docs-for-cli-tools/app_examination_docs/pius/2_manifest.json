@@ -8,11 +8,12 @@
   "exit_code": 0,
   "duration_s": 7.063,
   "captured_at": "2026-06-30T04:30:38.345430+00:00",
-  "structured_kind": "ndjson",
-  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\2_output_structured.jsonl",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\2_output_structured.json",
   "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\2_output_text.txt",
   "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\2_command.txt",
-  "tool_manifest_version": 2,
+  "tool_manifest_version": 3,
   "review_status": "pending",
-  "structured_fixture_used": ".seed\\scripts\\cli_corpus\\fixtures\\pius_linode_crt_sample.jsonl"
+  "structured_fixture_used": ".seed\\scripts\\cli_corpus\\fixtures\\pius_linode_crt_sample.jsonl",
+  "org": "Linode"
 }

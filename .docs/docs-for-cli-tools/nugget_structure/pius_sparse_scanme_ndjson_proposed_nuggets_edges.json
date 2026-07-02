@@ -1,12 +1,12 @@
 {
   "nodes": [
     {
-      "id": "SCAN_RECORD--a6562a7f-86f2-5365-a3e5-c2ed248b4909",
-      "nugget_instance_id": "SCAN_RECORD--a6562a7f-86f2-5365-a3e5-c2ed248b4909",
+      "id": "SCAN_RECORD--694631c2-e859-5807-8561-0f4995db6133",
+      "nugget_instance_id": "SCAN_RECORD--694631c2-e859-5807-8561-0f4995db6133",
       "nugget_id": "SCAN_RECORD",
       "nugget_type": "ENTITY",
       "nugget_description": "Scan Record",
-      "nugget_data": "scanme.nmap.org"
+      "nugget_data": "Nmap Scanme"
     },
     {
       "id": "SCAN_CLI--ca4fd513-a741-548e-85ad-b9bc160853b2",
@@ -17,23 +17,23 @@
       "nugget_data": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"Nmap Scanme\" --domain scanme.nmap.org --plugins crt-sh,whois --output ndjson"
     },
     {
-      "id": "COMPANY_NAME--eebcddfa-3035-564c-83fa-14fc977accab",
-      "nugget_instance_id": "COMPANY_NAME--eebcddfa-3035-564c-83fa-14fc977accab",
+      "id": "COMPANY_NAME--affea727-2db4-5bb1-a1dd-93649e79c8cd",
+      "nugget_instance_id": "COMPANY_NAME--affea727-2db4-5bb1-a1dd-93649e79c8cd",
       "nugget_id": "COMPANY_NAME",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Organization",
-      "nugget_data": "scanme.nmap.org"
+      "nugget_data": "Nmap Scanme"
     }
   ],
   "edges": [
     {
-      "source": "SCAN_RECORD--a6562a7f-86f2-5365-a3e5-c2ed248b4909",
+      "source": "SCAN_RECORD--694631c2-e859-5807-8561-0f4995db6133",
       "target": "SCAN_CLI--ca4fd513-a741-548e-85ad-b9bc160853b2",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--a6562a7f-86f2-5365-a3e5-c2ed248b4909",
-      "target": "COMPANY_NAME--eebcddfa-3035-564c-83fa-14fc977accab",
+      "source": "SCAN_RECORD--694631c2-e859-5807-8561-0f4995db6133",
+      "target": "COMPANY_NAME--affea727-2db4-5bb1-a1dd-93649e79c8cd",
       "relation": "had"
     }
   ]

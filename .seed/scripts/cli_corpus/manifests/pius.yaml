@@ -1,5 +1,5 @@
 tool: pius
-version: 2
+version: 3
 default_runtime: wsl
 default_timeout: 600
 env_file: .tools/pius.env
@@ -7,8 +7,9 @@ binary_probe: wsl bash -lc "test -x /mnt/c/projects/spiderfeet/.tools/pius"
 primary_parser: ndjson
 output_path_type: 2
 
-# Capture: pius NDJSON on stdout (do not shell-redirect — ndjson mode skips non-TTY);
-# status banner on stderr. Long timeout for RIR phase-2 CIDR.
+# NDJSON on stdout; harvest converts to JSON bundle + derived [type] value (source) text.
+# stderr progress banners are stored in structured.stderr_banner only.
+# Pair with --output terminal scenarios for native TUI capture.
 
 scenarios:
   - id: crt_praetorian_ndjson
@@ -16,9 +17,8 @@ scenarios:
     org: Praetorian
     target: praetorian.com
     command: /mnt/c/projects/spiderfeet/.tools/pius run --org Praetorian --domain praetorian.com --plugins crt-sh --output ndjson
-    structured_kind: ndjson
-    structured_ext: jsonl
-    text_from: stderr
+    structured_kind: json
+    structured_ext: json
     timeout: 120
 
   - id: crt_linode_ndjson
@@ -26,9 +26,8 @@ scenarios:
     org: Linode
     target: linode.com
     command: /mnt/c/projects/spiderfeet/.tools/pius run --org Linode --domain linode.com --plugins crt-sh --output ndjson
-    structured_kind: ndjson
-    structured_ext: jsonl
-    text_from: stderr
+    structured_kind: json
+    structured_ext: json
     timeout: 90
     structured_fixture: .seed/scripts/cli_corpus/fixtures/pius_linode_crt_sample.jsonl
 
@@ -37,9 +36,8 @@ scenarios:
     org: British Broadcasting Corporation
     target: bbc.co.uk
     command: /mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins gleif,wikidata,whois,crt-sh --output ndjson
-    structured_kind: ndjson
-    structured_ext: jsonl
-    text_from: stderr
+    structured_kind: json
+    structured_ext: json
     timeout: 600
 
   - id: rir_cidr_ndjson
@@ -47,9 +45,8 @@ scenarios:
     org: Cloudflare, Inc.
     target: cloudflare.com
     command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Cloudflare, Inc." --domain cloudflare.com --plugins whois,edgar,arin,ripe,apnic --output ndjson
-    structured_kind: ndjson
-    structured_ext: jsonl
-    text_from: stderr
+    structured_kind: json
+    structured_ext: json
     timeout: 900
 
   - id: sparse_scanme_ndjson
@@ -57,9 +54,8 @@ scenarios:
     org: Nmap Scanme
     target: scanme.nmap.org
     command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Nmap Scanme" --domain scanme.nmap.org --plugins crt-sh,whois --output ndjson
-    structured_kind: ndjson
-    structured_ext: jsonl
-    text_from: stderr
+    structured_kind: json
+    structured_ext: json
     timeout: 120
 
   - id: obscure_miss_ndjson
@@ -67,9 +63,8 @@ scenarios:
     org: ZZZZ Nonexistent Org 000000
     target: none
     command: /mnt/c/projects/spiderfeet/.tools/pius run --org "ZZZZ Nonexistent Org 000000" --plugins gleif,whois --output ndjson
-    structured_kind: ndjson
-    structured_ext: jsonl
-    text_from: stderr
+    structured_kind: json
+    structured_ext: json
     timeout: 120
 
   - id: corporate_bbc_terminal
