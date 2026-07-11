@@ -1,0 +1,52 @@
+---
+name: nuclei_strategy
+description: SpiderFeet Nuclei profiling — full template-tree scans per target, critical/high sweeps, JSONL export analysis. Use with .cursor/skills/nuclei/SKILL.md.
+---
+
+# Nuclei Strategy (comprehensive corpus)
+
+**Skill:** `.cursor/skills/nuclei/SKILL.md`  
+**Plan:** `.docs/docs-for-cli-tools/examination_plans/nuclei_formal_examination_plan.md`
+
+## Principle
+
+Do **not** pin individual templates for corpus evidence. Run the **entire template tree** (minus module exclusions) against each target and learn semantics from **which templates fire**.
+
+## Targets
+
+| Class | URL | Scan modes |
+|-------|-----|------------|
+| Permissive | `http://scanme.nmap.org` | All templates + critical/high |
+| Corporate CDN | `https://www.bbc.co.uk` | All templates + critical/high |
+| Corporate AU | `https://www.sbs.com.au` | Critical/high |
+| Security vendor | `https://praetorian.com` | Critical/high |
+| CDN edge | `https://www.cloudflare.com` | Critical/high |
+
+## Module-equivalent flags
+
+```
+-silent -jsonl -omit-raw -omit-template
+-t .tools/nuclei-templates
+-no-interactsh -etags dos,fuzz,misc -duc
+-retries 1 -c 25 -timeout 10
+-jle <export.jsonl>
+```
+
+Add `-severity critical,high` for focused sweeps.
+
+## Workflow
+
+1. **Explore** — `run_nuclei_exploration.bat` (hours per target; sequential).
+2. **Analyze** — `python .seed/scripts/cli_corpus/analyze_nuclei_jsonl.py <export> -o <summary.json>`
+3. **Examine** — `harvest.py --tool nuclei` (7 scenarios, JSON bundles).
+
+## Runtime expectations
+
+- Template engine cold start ~3 min; full-tree scans **hours** per URL on ~13k templates.
+- Use `-jle` file export (not stdout) for large result sets.
+- Harvest timeout: 14400s (all-templates), 7200s (critical/high).
+
+## Deferred
+
+- Per-template examination rows (replaced by comprehensive exports)
+- `cli_tool_to_graph.nuclei_to_graph` until operator approves bundles

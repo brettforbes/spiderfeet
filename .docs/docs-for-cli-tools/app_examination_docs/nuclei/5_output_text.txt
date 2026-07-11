@@ -1,0 +1,17 @@
+# SpiderFeet CLI examination capture
+# tool: nuclei
+# scenario: Tech fingerprint on pentest-ground DVWA (:4280) (pg_dvwa_tech_fingerprint)
+# target: https://pentest-ground.com:4280
+# command: nuclei -u https://pentest-ground.com:4280 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -tags tech -severity info -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/pg_dvwa_tech_fingerprint.jsonl
+# runtime: windows
+# started_at: 2026-07-05T11:58:42.270590+00:00
+# duration_s: 0.000
+# exit_code: 0
+# finding_summary_lines: 4
+# text_role: one line per JSONL finding: [severity] template-id @ matched-at
+# structured_role: full JSONL finding objects in records[]
+
+[info] nginx-version @ https://pentest-ground.com:4280 (extracted: nginx/1.31.2)
+[info] php-detect @ https://pentest-ground.com:4280 (extracted: 8.5.7)
+[info] tech-detect @ https://pentest-ground.com:4280 (matcher: nginx)
+[info] tech-detect @ https://pentest-ground.com:4280 (matcher: php)

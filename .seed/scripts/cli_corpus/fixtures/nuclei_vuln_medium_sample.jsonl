@@ -1,0 +1,1 @@
+{"template-id":"exposed-panel","info":{"name":"Exposed Admin Panel","severity":"medium","reference":["https://owasp.org/www-project-web-security-testing-guide/"]},"type":"http","host":"admin.example.com","matched-at":"https://admin.example.com/login","matcher-name":"title","timestamp":"2026-06-15T10:05:00.000Z"}

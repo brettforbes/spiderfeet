@@ -1,0 +1,172 @@
+{
+  "schema": "pius_finding_v1",
+  "tool": "pius",
+  "scenario": "Corporate gleif stack (The Upside)",
+  "scenario_id": "corporate_upside_ndjson",
+  "org": "The Upside Pty Ltd",
+  "target": "theupside.com.au",
+  "command": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"The Upside Pty Ltd\" --domain theupside.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson",
+  "runtime": "wsl",
+  "started_at": "2026-07-05T13:10:54.341348+00:00",
+  "duration_s": 16.125,
+  "exit_code": 0,
+  "finding_summary_lines": 17,
+  "text_role": "one line per finding: [type] value (source)",
+  "structured_role": "full NDJSON finding objects in records[]",
+  "stderr_banner": "Running 4 plugin(s) in \"passive\" mode...\n2026/07/05 23:11:02 INFO wildcard detected base=news.theupside.com.au ips_count=1\n2026/07/05 23:11:02 INFO wildcard detected, filtering subdomains parent=news.theupside.com.au\n2026/07/05 23:11:03 INFO wildcard detected base=k8s.theupside.com.au ips_count=1\n2026/07/05 23:11:03 INFO wildcard detected, filtering subdomains parent=k8s.theupside.com.au\n2026/07/05 23:11:03 INFO wildcard detected base=newsletter.theupside.com.au ips_count=1\n2026/07/05 23:11:03 INFO wildcard detected, filtering subdomains parent=newsletter.theupside.com.au\n2026/07/05 23:11:04 INFO wildcard detected base=aws.theupside.com.au ips_count=1\n2026/07/05 23:11:04 INFO wildcard detected, filtering subdomains parent=aws.theupside.com.au\n2026/07/05 23:11:05 INFO wildcard detected base=track.theupside.com.au ips_count=1\n2026/07/05 23:11:05 INFO wildcard detected, filtering subdomains parent=track.theupside.com.au\n2026/07/05 23:11:05 INFO wildcard detected base=test.theupside.com.au ips_count=1\n2026/07/05 23:11:05 INFO wildcard detected, filtering subdomains parent=test.theupside.com.au\n2026/07/05 23:11:06 INFO wildcard detected base=spf.theupside.com.au ips_count=1\n2026/07/05 23:11:06 INFO wildcard detected, filtering subdomains parent=spf.theupside.com.au\n2026/07/05 23:11:07 INFO wildcard detected base=info.theupside.com.au ips_count=1\n2026/07/05 23:11:07 INFO wildcard detected, filtering subdomains parent=info.theupside.com.au\n2026/07/05 23:11:07 INFO wildcard detected base=e.theupside.com.au ips_count=1\n2026/07/05 23:11:07 INFO wildcard detected, filtering subdomains parent=e.theupside.com.au\n2026/07/05 23:11:08 INFO wildcard detected base=mail.theupside.com.au ips_count=1\n2026/07/05 23:11:08 INFO wildcard detected, filtering subdomains parent=mail.theupside.com.au\n2026/07/05 23:11:09 INFO wildcard detected base=dev.theupside.com.au ips_count=1\n2026/07/05 23:11:09 INFO wildcard detected, filtering subdomains parent=dev.theupside.com.au\n2026/07/05 23:11:10 INFO wildcard detected base=email.theupside.com.au ips_count=1\n2026/07/05 23:11:10 INFO wildcard detected, filtering subdomains parent=email.theupside.com.au",
+  "records": [
+    {
+      "Type": "preseed",
+      "Value": ".au Domain Administration Limited",
+      "Source": "whois",
+      "Data": {
+        "preseed_title": ".au Domain Administration Limited",
+        "preseed_type": "whois+company"
+      }
+    },
+    {
+      "Type": "preseed",
+      "Value": "CEO",
+      "Source": "whois",
+      "Data": {
+        "preseed_title": "CEO",
+        "preseed_type": "whois+name"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "www.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "track.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "k8s.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "info.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "spf.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "news.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "email.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "newsletter.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "test.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "mail.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "e.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "aws.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "dev.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "cfjump.theupside.com.au",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "The Upside Pty Ltd",
+        "query": "theupside.com.au"
+      }
+    }
+  ]
+}

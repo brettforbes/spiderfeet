@@ -1,0 +1,1674 @@
+{
+  "schema": "httpx_probe_v1",
+  "tool": "httpx",
+  "scenario": "Web probe on subfinder enterprise hosts (SBS)",
+  "scenario_id": "from_subfinder_sbs",
+  "target": "sbs.com.au",
+  "subfinder_scenario": "enterprise_sbs_passive_cs",
+  "probe_profile": "status-code,title,tech-detect,server,cdn,ip",
+  "host_input_count": 50,
+  "command": "httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_sbs_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_sbs.jsonl -silent -threads 25 -timeout 20 -rate-limit 50",
+  "runtime": "windows",
+  "started_at": "2026-07-05T16:06:08.954441+00:00",
+  "duration_s": 4.344,
+  "exit_code": 0,
+  "probe_summary_lines": 50,
+  "text_role": "one line per live URL: url [status] [title] server=\u2026 tech=[\u2026]",
+  "structured_role": "full httpx JSONL probe objects in records[]",
+  "records": [
+    {
+      "timestamp": "2026-07-06T02:06:10.6493162+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.dan-1.edsqa01.aws.sbs.com.au",
+      "input": "fos.dan-1.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "52.64.45.174",
+      "path": "/",
+      "time": "88.3501ms",
+      "a": [
+        "52.64.106.73",
+        "52.64.45.174",
+        "32.236.65.92"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6577173+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.alejandrogo.edsqa01.aws.sbs.com.au",
+      "input": "fos.alejandrogo.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "13.237.197.229",
+      "path": "/",
+      "time": "97.3224ms",
+      "a": [
+        "13.211.120.68",
+        "13.238.85.150",
+        "13.237.197.229"
+      ],
+      "words": 1,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 23,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6577173+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.alego-1.edsqa01.aws.sbs.com.au",
+      "input": "fos.alego-1.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "3.104.41.239",
+      "path": "/",
+      "time": "95.8617ms",
+      "a": [
+        "3.104.41.239",
+        "54.253.177.204",
+        "3.104.127.208"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6582234+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.beta.edsqa01.aws.sbs.com.au",
+      "input": "fos.beta.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "3.25.21.202",
+      "path": "/",
+      "time": "96.9433ms",
+      "a": [
+        "3.104.133.8",
+        "3.25.21.202",
+        "13.55.238.1"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6619842+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.dan.edsqa01.aws.sbs.com.au",
+      "input": "fos.dan.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "13.237.58.83",
+      "path": "/",
+      "time": "100.7061ms",
+      "a": [
+        "3.24.142.167",
+        "15.135.16.204",
+        "13.237.58.83"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53",
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6619842+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.analytics.edsqa01.aws.sbs.com.au",
+      "input": "fos.analytics.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "3.104.69.171",
+      "path": "/",
+      "time": "100.6654ms",
+      "a": [
+        "52.62.148.123",
+        "52.63.158.242",
+        "3.104.69.171"
+      ],
+      "words": 1,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 23,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6619842+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.chrisfo.edsqa01.aws.sbs.com.au",
+      "input": "fos.chrisfo.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "52.63.78.84",
+      "path": "/",
+      "time": "100.7061ms",
+      "a": [
+        "52.63.78.84",
+        "52.64.94.126",
+        "52.62.216.77"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6649133+10:00",
+      "port": "443",
+      "url": "https://fos.adobe.edsqa01.aws.sbs.com.au",
+      "input": "fos.adobe.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "32.236.65.92",
+      "path": "/",
+      "time": "103.1068ms",
+      "a": [
+        "52.64.45.174",
+        "52.64.106.73",
+        "32.236.65.92"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6664882+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.freeze.edsdev01.aws.sbs.com.au",
+      "input": "fos.freeze.edsdev01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "54.153.170.132",
+      "path": "/",
+      "time": "105.1468ms",
+      "a": [
+        "15.134.177.243",
+        "54.206.80.61",
+        "54.153.170.132"
+      ],
+      "words": 1,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 23,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6680103+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.alego.edsqa01.aws.sbs.com.au",
+      "input": "fos.alego.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "52.65.212.70",
+      "path": "/",
+      "time": "108.1256ms",
+      "a": [
+        "52.65.212.70",
+        "54.79.173.122",
+        "54.153.167.45"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53",
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6664882+10:00",
+      "port": "443",
+      "url": "https://epgservice.c.aws.sbs.com.au",
+      "input": "epgservice.c.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "32.236.178.94",
+      "path": "/",
+      "time": "105.6129ms",
+      "a": [
+        "52.62.80.127",
+        "15.134.147.169",
+        "32.236.178.94"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53",
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6703765+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.chrisfo-1.edsqa01.aws.sbs.com.au",
+      "input": "fos.chrisfo-1.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "13.210.130.172",
+      "path": "/",
+      "time": "106.7217ms",
+      "a": [
+        "54.253.212.250",
+        "54.66.11.221",
+        "13.210.130.172"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53",
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6763544+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.bspcloud.edsqa01.aws.sbs.com.au",
+      "input": "fos.bspcloud.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "13.238.34.135",
+      "path": "/",
+      "time": "116.5879ms",
+      "a": [
+        "13.54.201.213",
+        "52.64.251.45",
+        "13.238.34.135"
+      ],
+      "words": 1,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 23,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53",
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6763544+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.cloud.edsqa01.aws.sbs.com.au",
+      "input": "fos.cloud.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "54.79.234.201",
+      "path": "/",
+      "time": "115.5822ms",
+      "a": [
+        "54.79.234.201",
+        "32.236.247.81",
+        "3.106.177.141"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53",
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6790481+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.migrate.edsprd01.aws.sbs.com.au",
+      "input": "fos.migrate.edsprd01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "52.62.1.74",
+      "path": "/",
+      "time": "119.512ms",
+      "a": [
+        "52.62.1.74",
+        "13.238.16.115",
+        "13.236.149.221"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53",
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.6871212+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://after64.sbs.com.au",
+      "input": "after64.sbs.com.au",
+      "location": "https://www.sbs.com.au:443/after64/",
+      "title": "301 Moved Permanently",
+      "scheme": "https",
+      "webserver": "awselb/2.0",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "3.33.238.52",
+      "path": "/",
+      "time": "122.7244ms",
+      "a": [
+        "15.197.243.27",
+        "3.33.238.52"
+      ],
+      "tech": [
+        "Amazon ELB",
+        "Amazon Web Services"
+      ],
+      "words": 5,
+      "lines": 6,
+      "status_code": 301,
+      "content_length": 134,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "error",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53",
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7003864+10:00",
+      "port": "443",
+      "url": "https://amp.sbs.com.au",
+      "input": "amp.sbs.com.au",
+      "scheme": "https",
+      "webserver": "nginx",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "32.236.21.220",
+      "path": "/",
+      "time": "139.5739ms",
+      "a": [
+        "13.54.177.114",
+        "32.236.21.220"
+      ],
+      "cname": [
+        "www.prod.sbs.com.au",
+        "nginx-direct.edsprd01.aws.sbs.com.au"
+      ],
+      "tech": [
+        "Nginx"
+      ],
+      "words": 0,
+      "lines": 0,
+      "status_code": 200,
+      "content_length": 0,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "other",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53",
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7039851+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.dan.edsdev01.aws.sbs.com.au",
+      "input": "fos.dan.edsdev01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "13.54.222.221",
+      "path": "/",
+      "time": "139.1078ms",
+      "a": [
+        "13.54.222.221",
+        "52.62.58.46",
+        "3.104.22.44"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53",
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7059926+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.mkoga-1.edsdev01.aws.sbs.com.au",
+      "input": "fos.mkoga-1.edsdev01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "54.66.100.140",
+      "path": "/",
+      "time": "145.121ms",
+      "a": [
+        "3.105.221.184",
+        "32.236.68.181",
+        "54.66.100.140"
+      ],
+      "words": 1,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 23,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53",
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7095175+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.mad-1.edsdev01.aws.sbs.com.au",
+      "input": "fos.mad-1.edsdev01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "54.252.110.155",
+      "path": "/",
+      "time": "144.1799ms",
+      "a": [
+        "54.252.110.155",
+        "3.24.93.166",
+        "52.64.206.168"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.747851+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.mkoga-2.edsdev01.aws.sbs.com.au",
+      "input": "fos.mkoga-2.edsdev01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "3.24.143.83",
+      "path": "/",
+      "time": "96.9544ms",
+      "a": [
+        "13.210.60.51",
+        "15.135.102.109",
+        "3.24.143.83"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7603019+10:00",
+      "port": "443",
+      "url": "https://fos.platform.edsprd01.aws.sbs.com.au",
+      "input": "fos.platform.edsprd01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "15.135.250.251",
+      "path": "/",
+      "time": "101.0712ms",
+      "a": [
+        "15.135.250.251",
+        "13.55.163.12",
+        "13.236.249.149"
+      ],
+      "words": 1,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 23,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53",
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7613033+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fusion-ses.prod.edsprd01.aws.sbs.com.au",
+      "input": "fusion-ses.prod.edsprd01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "3.106.25.208",
+      "path": "/",
+      "time": "93.8766ms",
+      "a": [
+        "3.105.140.230",
+        "54.66.161.248",
+        "3.106.25.208"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7613033+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.prod.edsprd01.aws.sbs.com.au",
+      "input": "fos.prod.edsprd01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "3.104.24.28",
+      "path": "/",
+      "time": "102.0785ms",
+      "a": [
+        "3.104.24.28",
+        "3.24.82.167",
+        "13.238.54.62"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7613033+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.pform.edsprd01.aws.sbs.com.au",
+      "input": "fos.pform.edsprd01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "52.63.158.242",
+      "path": "/",
+      "time": "102.0785ms",
+      "a": [
+        "52.63.158.242",
+        "52.62.148.123",
+        "3.104.69.171"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7613033+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://mobilelayer.edsprd01.aws.sbs.com.au",
+      "input": "mobilelayer.edsprd01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "3.105.227.54",
+      "path": "/",
+      "time": "89.9254ms",
+      "a": [
+        "3.106.158.95",
+        "3.105.227.54",
+        "13.238.57.62"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7677842+10:00",
+      "port": "443",
+      "url": "https://fos.sdk.edsdev01.aws.sbs.com.au",
+      "input": "fos.sdk.edsdev01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "32.237.8.204",
+      "path": "/",
+      "time": "102.337ms",
+      "a": [
+        "32.237.8.204",
+        "54.66.158.34",
+        "54.66.194.201"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53",
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7802533+10:00",
+      "port": "443",
+      "url": "https://phoenix.analytics.edsqa01.aws.sbs.com.au",
+      "input": "phoenix.analytics.edsqa01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "32.237.2.14",
+      "path": "/",
+      "time": "100.4299ms",
+      "a": [
+        "52.62.214.158",
+        "54.253.92.41",
+        "32.237.2.14"
+      ],
+      "words": 4,
+      "lines": 1,
+      "status_code": 500,
+      "content_length": 36,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "error",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7802533+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://mobilelayer.edsdev02.aws.sbs.com.au",
+      "input": "mobilelayer.edsdev02.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "54.253.45.17",
+      "path": "/",
+      "time": "108.932ms",
+      "a": [
+        "54.79.238.221",
+        "54.253.45.17",
+        "16.176.235.198"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53",
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.783402+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://mobilelayer-dev02.edsdev02.aws.sbs.com.au",
+      "input": "mobilelayer-dev02.edsdev02.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "52.63.142.191",
+      "path": "/",
+      "time": "113.3129ms",
+      "a": [
+        "32.236.178.119",
+        "13.237.143.49",
+        "52.63.142.191"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53",
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7839559+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.xander-1.edsdev01.aws.sbs.com.au",
+      "input": "fos.xander-1.edsdev01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "3.24.91.49",
+      "path": "/",
+      "time": "120.5287ms",
+      "a": [
+        "13.237.119.135",
+        "3.24.91.49",
+        "13.211.183.227"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53",
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7860645+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://fos.xanderbo.edsdev01.aws.sbs.com.au",
+      "input": "fos.xanderbo.edsdev01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "16.176.78.230",
+      "path": "/",
+      "time": "122.127ms",
+      "a": [
+        "15.134.193.138",
+        "16.176.78.230",
+        "32.236.110.5"
+      ],
+      "words": 1,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 23,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53",
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7919168+10:00",
+      "port": "443",
+      "url": "https://api.sbs.com.au",
+      "input": "api.sbs.com.au",
+      "title": "404 Not Found",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "23.221.132.253",
+      "path": "/",
+      "time": "228.2525ms",
+      "a": [
+        "23.221.132.253"
+      ],
+      "cname": [
+        "api.sbs.com.au.edgekey.net",
+        "e7065.b.akamaiedge.net"
+      ],
+      "words": 71,
+      "lines": 13,
+      "status_code": 404,
+      "content_length": 548,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "error",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7919168+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://nginx-video.edsprd01.aws.sbs.com.au",
+      "input": "nginx-video.edsprd01.aws.sbs.com.au",
+      "scheme": "https",
+      "webserver": "nginx",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "3.24.131.34",
+      "path": "/",
+      "time": "114.0026ms",
+      "a": [
+        "13.54.35.250",
+        "3.24.131.34"
+      ],
+      "tech": [
+        "Nginx"
+      ],
+      "words": 0,
+      "lines": 0,
+      "status_code": 200,
+      "content_length": 0,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "other",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53",
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.7978507+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://mobilelayer-dev01.edsdev02.aws.sbs.com.au",
+      "input": "mobilelayer-dev01.edsdev02.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "52.64.156.164",
+      "path": "/",
+      "time": "129.3987ms",
+      "a": [
+        "13.55.61.35",
+        "13.210.214.39",
+        "52.64.156.164"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 42,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.819457+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://phoenix.beta.edsqa01.aws.sbs.com.au",
+      "input": "phoenix.beta.edsqa01.aws.sbs.com.au",
+      "title": "Login Form",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "13.54.88.31",
+      "path": "/",
+      "time": "126.046ms",
+      "a": [
+        "3.24.243.194",
+        "16.176.68.125",
+        "13.54.88.31"
+      ],
+      "tech": [
+        "Express",
+        "Node.js"
+      ],
+      "words": 689,
+      "lines": 72,
+      "status_code": 401,
+      "content_length": 2046,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.8199622+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://phoenix.chrisfo-2.edsqa01.aws.sbs.com.au",
+      "input": "phoenix.chrisfo-2.edsqa01.aws.sbs.com.au",
+      "title": "Login Form",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "52.62.18.15",
+      "path": "/",
+      "time": "106.2961ms",
+      "a": [
+        "32.236.244.145",
+        "15.134.108.21",
+        "52.62.18.15"
+      ],
+      "tech": [
+        "Express",
+        "Node.js"
+      ],
+      "words": 707,
+      "lines": 74,
+      "status_code": 401,
+      "content_length": 2180,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53",
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.8274035+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://phoenix.chrisfo.edsqa01.aws.sbs.com.au",
+      "input": "phoenix.chrisfo.edsqa01.aws.sbs.com.au",
+      "title": "Login Form",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "13.210.120.114",
+      "path": "/",
+      "time": "105.296ms",
+      "a": [
+        "32.236.123.159",
+        "13.237.238.217",
+        "13.210.120.114"
+      ],
+      "tech": [
+        "Express",
+        "Node.js"
+      ],
+      "words": 707,
+      "lines": 74,
+      "status_code": 401,
+      "content_length": 2180,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.8279524+10:00",
+      "port": "443",
+      "url": "https://phoenix.chrisfo-1.edsqa01.aws.sbs.com.au",
+      "input": "phoenix.chrisfo-1.edsqa01.aws.sbs.com.au",
+      "title": "Login Form",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "32.236.214.47",
+      "path": "/",
+      "time": "123.1855ms",
+      "a": [
+        "13.238.69.233",
+        "32.236.214.47",
+        "52.65.202.190"
+      ],
+      "tech": [
+        "Express",
+        "Node.js"
+      ],
+      "words": 707,
+      "lines": 74,
+      "status_code": 401,
+      "content_length": 2180,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.8366627+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://phoenix.chrisha.edsqa01.aws.sbs.com.au",
+      "input": "phoenix.chrisha.edsqa01.aws.sbs.com.au",
+      "title": "Login Form",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "13.237.12.131",
+      "path": "/",
+      "time": "117.4266ms",
+      "a": [
+        "13.236.22.8",
+        "13.237.12.131",
+        "13.238.234.29"
+      ],
+      "tech": [
+        "Express",
+        "Node.js"
+      ],
+      "words": 707,
+      "lines": 74,
+      "status_code": 401,
+      "content_length": 2180,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.8371983+10:00",
+      "port": "443",
+      "url": "https://auth.sbs.com.au",
+      "input": "auth.sbs.com.au",
+      "scheme": "https",
+      "content_type": "text/plain",
+      "method": "GET",
+      "host": "2403:4800:2003:2a6::1b99",
+      "path": "/",
+      "time": "276.2746ms",
+      "a": [
+        "2.18.109.51"
+      ],
+      "aaaa": [
+        "2403:4800:2003:2a6::1b99",
+        "2403:4800:2003:2b5::1b99"
+      ],
+      "cname": [
+        "apix-auth.sbs.com.au.edgekey.net",
+        "e7065.dsct.akamaiedge.net"
+      ],
+      "words": 4,
+      "lines": 1,
+      "status_code": 404,
+      "content_length": 18,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "error",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53",
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.837716+10:00",
+      "port": "443",
+      "url": "https://phoenix.prod.edsprd01.aws.sbs.com.au",
+      "input": "phoenix.prod.edsprd01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "15.135.231.191",
+      "path": "/",
+      "time": "72.8485ms",
+      "a": [
+        "54.79.69.117",
+        "3.25.16.170",
+        "15.135.231.191"
+      ],
+      "words": 19,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 230,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "nonerror",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53",
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.841355+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://phoenix.freeze.edsdev01.aws.sbs.com.au",
+      "input": "phoenix.freeze.edsdev01.aws.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/json",
+      "method": "GET",
+      "host": "13.54.122.52",
+      "path": "/",
+      "time": "76.9491ms",
+      "a": [
+        "13.238.8.247",
+        "13.54.122.52",
+        "13.237.146.126"
+      ],
+      "words": 1,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 23,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.8704175+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://phoenix.danielpe-1.edsqa01.aws.sbs.com.au",
+      "input": "phoenix.danielpe-1.edsqa01.aws.sbs.com.au",
+      "title": "Login Form",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "3.24.27.97",
+      "path": "/",
+      "time": "111.9442ms",
+      "a": [
+        "13.238.162.164",
+        "3.106.71.19",
+        "3.24.27.97"
+      ],
+      "tech": [
+        "Express",
+        "Node.js"
+      ],
+      "words": 707,
+      "lines": 74,
+      "status_code": 401,
+      "content_length": 2180,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53",
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:10.9031813+10:00",
+      "port": "443",
+      "url": "https://fda-docs.c.aws.sbs.com.au",
+      "input": "fda-docs.c.aws.sbs.com.au",
+      "scheme": "https",
+      "webserver": "CloudFront",
+      "method": "GET",
+      "host": "3.175.115.32",
+      "path": "/",
+      "time": "341.7695ms",
+      "a": [
+        "3.175.115.20",
+        "3.175.115.32",
+        "3.175.115.69",
+        "3.175.115.62"
+      ],
+      "tech": [
+        "Amazon CloudFront",
+        "Amazon Web Services",
+        "Basic"
+      ],
+      "words": 8,
+      "lines": 1,
+      "status_code": 401,
+      "content_length": 50,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "error",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:11.0553755+10:00",
+      "port": "443",
+      "url": "https://assets.sbs.com.au",
+      "input": "assets.sbs.com.au",
+      "scheme": "https",
+      "content_type": "application/xml",
+      "method": "GET",
+      "host": "203.134.85.130",
+      "path": "/",
+      "time": "490.5755ms",
+      "a": [
+        "203.134.85.114",
+        "203.134.85.130"
+      ],
+      "cname": [
+        "images.sbs.com.au.edgekey.net",
+        "e116036.b.akamaiedge.net"
+      ],
+      "tech": [
+        "Amazon CloudFront",
+        "Amazon Web Services"
+      ],
+      "words": 4,
+      "lines": 2,
+      "status_code": 403,
+      "content_length": 263,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53",
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:11.6617577+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://account.sbs.com.au",
+      "input": "account.sbs.com.au",
+      "scheme": "https",
+      "webserver": "nginx",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "34.198.3.175",
+      "path": "/",
+      "time": "1.0875631s",
+      "a": [
+        "35.153.221.201",
+        "52.201.19.17",
+        "34.197.146.191",
+        "34.198.3.175"
+      ],
+      "cname": [
+        "account-sbs-com-au.uc17.janrain.ws"
+      ],
+      "tech": [
+        "HSTS",
+        "Nginx"
+      ],
+      "words": 183,
+      "lines": 27,
+      "status_code": 200,
+      "content_length": 1344,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "nonerror",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53",
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:13.0438489+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://phoenix.danielpe-2.edsqa01.aws.sbs.com.au",
+      "input": "phoenix.danielpe-2.edsqa01.aws.sbs.com.au",
+      "title": "Login Form",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "54.253.119.201",
+      "path": "/",
+      "time": "2.2603576s",
+      "a": [
+        "15.134.83.107",
+        "54.253.119.201",
+        "13.238.246.184"
+      ],
+      "tech": [
+        "Express",
+        "Node.js"
+      ],
+      "words": 707,
+      "lines": 74,
+      "status_code": 401,
+      "content_length": 2180,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53",
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:13.1764064+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://phoenix.chrisfo-40.edsqa01.aws.sbs.com.au",
+      "input": "phoenix.chrisfo-40.edsqa01.aws.sbs.com.au",
+      "title": "Login Form",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "3.104.193.132",
+      "path": "/",
+      "time": "2.4534308s",
+      "a": [
+        "3.25.247.150",
+        "3.104.193.132",
+        "16.176.112.161"
+      ],
+      "tech": [
+        "Express",
+        "Node.js"
+      ],
+      "words": 707,
+      "lines": 74,
+      "status_code": 401,
+      "content_length": 2180,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:06:13.2392313+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://phoenix.danielpe-3.edsqa01.aws.sbs.com.au",
+      "input": "phoenix.danielpe-3.edsqa01.aws.sbs.com.au",
+      "title": "Login Form",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "54.252.83.34",
+      "path": "/",
+      "time": "2.4631746s",
+      "a": [
+        "16.176.43.10",
+        "54.252.83.34",
+        "54.253.200.91"
+      ],
+      "tech": [
+        "Express",
+        "Node.js"
+      ],
+      "words": 689,
+      "lines": 72,
+      "status_code": 401,
+      "content_length": 2046,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "login",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "8.8.4.4:53"
+      ]
+    }
+  ]
+}

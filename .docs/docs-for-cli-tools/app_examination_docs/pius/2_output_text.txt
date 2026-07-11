@@ -1,1 +1,64 @@
-Running 1 plugin(s) in "passive" mode...
+# SpiderFeet CLI examination capture
+# tool: pius
+# scenario: crt-sh high volume (Linode) (crt_linode_ndjson)
+# org: Linode
+# target: linode.com
+# command: /mnt/c/projects/spiderfeet/.tools/pius run --org Linode --domain linode.com --plugins crt-sh --output ndjson
+# runtime: wsl
+# started_at: 2026-06-30T04:30:38.345430+00:00
+# duration_s: 7.063
+# exit_code: 0
+# finding_summary_lines: 50
+# text_role: one line per finding: [type] value (source)
+# structured_role: full NDJSON finding objects in records[]
+
+[preseed] Akamai Technologies, Inc. (whois)
+[domain] status.linode.com (crt-sh)
+[domain] li839-123.members.linode.com (crt-sh)
+[domain] li1362-220.members.linode.com (crt-sh)
+[domain] li256-77.members.linode.com (crt-sh)
+[domain] li1817-160.members.linode.com (crt-sh)
+[domain] li968-12.members.linode.com (crt-sh)
+[domain] li463-22.members.linode.com (crt-sh)
+[domain] li1055-17.members.linode.com (crt-sh)
+[domain] li1821-228.members.linode.com (crt-sh)
+[domain] li1591-123.members.linode.com (crt-sh)
+[domain] li795-130.members.linode.com (crt-sh)
+[domain] li148-141.members.linode.com (crt-sh)
+[domain] li968-8.members.linode.com (crt-sh)
+[domain] li1739-57.members.linode.com (crt-sh)
+[domain] li951-236.members.linode.com (crt-sh)
+[domain] li574-183.members.linode.com (crt-sh)
+[domain] li1772-33.members.linode.com (crt-sh)
+[domain] li1662-227.members.linode.com (crt-sh)
+[domain] li859-243.members.linode.com (crt-sh)
+[domain] li572-196.members.linode.com (crt-sh)
+[domain] li1430-61.members.linode.com (crt-sh)
+[domain] li719-216.members.linode.com (crt-sh)
+[domain] li1245-154.members.linode.com (crt-sh)
+[domain] li1672-129.members.linode.com (crt-sh)
+[domain] li1081-239.members.linode.com (crt-sh)
+[domain] li996-123.members.linode.com (crt-sh)
+[domain] li1713-17.members.linode.com (crt-sh)
+[domain] li1708-148.members.linode.com (crt-sh)
+[domain] li1656-231.members.linode.com (crt-sh)
+[domain] li929-99.members.linode.com (crt-sh)
+[domain] li852-102.members.linode.com (crt-sh)
+[domain] li165-157.members.linode.com (crt-sh)
+[domain] li229-211.members.linode.com (crt-sh)
+[domain] li1519-235.members.linode.com (crt-sh)
+[domain] li1046-180.members.linode.com (crt-sh)
+[domain] li1055-94.members.linode.com (crt-sh)
+[domain] li1452-70.members.linode.com (crt-sh)
+[domain] li238-60.members.linode.com (crt-sh)
+[domain] li572-41.members.linode.com (crt-sh)
+[domain] li1498-45.members.linode.com (crt-sh)
+[domain] li1028-8.members.linode.com (crt-sh)
+[domain] li514-170.members.linode.com (crt-sh)
+[domain] li1647-116.members.linode.com (crt-sh)
+[domain] li35-11.members.linode.com (crt-sh)
+[domain] li840-199.members.linode.com (crt-sh)
+[domain] li1451-189.members.linode.com (crt-sh)
+[domain] li1781-140.members.linode.com (crt-sh)
+[domain] li115-170.members.linode.com (crt-sh)
+[domain] li1684-125.members.linode.com (crt-sh)

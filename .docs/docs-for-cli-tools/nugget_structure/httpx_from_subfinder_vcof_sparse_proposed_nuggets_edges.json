@@ -1,0 +1,244 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_instance_id": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "httpx probe scan",
+      "nugget_data": "venturecapitalopportunitiesfund.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SCAN_CLI--6c1b193c-0017-5697-8e21-4ef06ba9b613",
+      "nugget_instance_id": "SCAN_CLI--6c1b193c-0017-5697-8e21-4ef06ba9b613",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_vcof_sparse_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_vcof_sparse.jsonl -silent -threads 5 -timeout 15",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_instance_id": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "venturecapitalopportunitiesfund.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://www.venturecapitalopportunitiesfund.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
+      "nugget_instance_id": "INTERNET_NAME--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "2606:4700:20::681a:623",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "nugget_instance_id": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "nugget_id": "HTTP_CODE",
+      "nugget_type": "DATA",
+      "nugget_description": "HTTP Status Code",
+      "nugget_data": "200",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "WEBSERVER_BANNER--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "nugget_instance_id": "WEBSERVER_BANNER--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "nugget_id": "WEBSERVER_BANNER",
+      "nugget_type": "DATA",
+      "nugget_description": "Web Server",
+      "nugget_data": "cloudflare",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--588c51cd-3cdb-5072-becb-50a48da028f5",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--588c51cd-3cdb-5072-becb-50a48da028f5",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "Bootstrap:3.3.5",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "Cloudflare",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--672b842e-44ba-5234-a949-7b57869696e7",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--672b842e-44ba-5234-a949-7b57869696e7",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "Cloudflare Browser Insights",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--242826ff-c753-5aba-b366-4ff46328c5bd",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--242826ff-c753-5aba-b366-4ff46328c5bd",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "Drupal:7",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--ea3da848-08a8-58c4-9ed6-6598774b287a",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--ea3da848-08a8-58c4-9ed6-6598774b287a",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "Google Tag Manager",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "HTTP/3",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--c3ef2e72-0820-5ffc-ac3c-61eb7a1d9d82",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--c3ef2e72-0820-5ffc-ac3c-61eb7a1d9d82",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "PHP",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--e61d90dd-149b-584b-8a21-a5903e1ad488",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--e61d90dd-149b-584b-8a21-a5903e1ad488",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "jQuery",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--9d54701c-5e1a-5544-9f2b-7ca7662d7f29",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--9d54701c-5e1a-5544-9f2b-7ca7662d7f29",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "jQuery CDN",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--2f0d3719-948f-5f9a-97a4-e90110218a46",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--2f0d3719-948f-5f9a-97a4-e90110218a46",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "jsDelivr",
+      "nugget_colour": "#F59E0B"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "target": "SCAN_CLI--6c1b193c-0017-5697-8e21-4ef06ba9b613",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "target": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "relation": "contains"
+    },
+    {
+      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "target": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "target": "INTERNET_NAME--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "INTERNET_NAME--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "WEBSERVER_BANNER--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "WEBSERVER_TECHNOLOGY--588c51cd-3cdb-5072-becb-50a48da028f5",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "WEBSERVER_TECHNOLOGY--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "WEBSERVER_TECHNOLOGY--672b842e-44ba-5234-a949-7b57869696e7",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "WEBSERVER_TECHNOLOGY--242826ff-c753-5aba-b366-4ff46328c5bd",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "WEBSERVER_TECHNOLOGY--ea3da848-08a8-58c4-9ed6-6598774b287a",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "WEBSERVER_TECHNOLOGY--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "WEBSERVER_TECHNOLOGY--c3ef2e72-0820-5ffc-ac3c-61eb7a1d9d82",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "WEBSERVER_TECHNOLOGY--e61d90dd-149b-584b-8a21-a5903e1ad488",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "WEBSERVER_TECHNOLOGY--9d54701c-5e1a-5544-9f2b-7ca7662d7f29",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "target": "WEBSERVER_TECHNOLOGY--2f0d3719-948f-5f9a-97a4-e90110218a46",
+      "relation": "had"
+    }
+  ]
+}

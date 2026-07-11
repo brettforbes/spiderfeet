@@ -1,0 +1,43 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "nugget_instance_id": "SCAN_RECORD--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "httpx probe scan",
+      "nugget_data": "not-a-real-domain-xyzzy.invalid",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SCAN_CLI--de9f1fad-ad31-5786-b3cf-387ee90dc73e",
+      "nugget_instance_id": "SCAN_CLI--de9f1fad-ad31-5786-b3cf-387ee90dc73e",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_invalid_clean_miss_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_invalid_clean_miss.jsonl -silent -threads 2 -timeout 10",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "nugget_instance_id": "DOMAIN_NAME--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "not-a-real-domain-xyzzy.invalid",
+      "nugget_colour": "#3B82F6"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "target": "SCAN_CLI--de9f1fad-ad31-5786-b3cf-387ee90dc73e",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "target": "DOMAIN_NAME--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "relation": "contains"
+    }
+  ]
+}

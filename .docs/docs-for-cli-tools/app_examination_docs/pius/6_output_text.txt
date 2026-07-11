@@ -1,1 +1,11 @@
-Running 2 plugin(s) in "passive" mode...
+# SpiderFeet CLI examination capture
+# tool: pius
+# scenario: Corporate gleif stack (K2 Asset Management) — harvest deferred (corporate_k2am_ndjson)
+# org: K2 Asset Management Ltd
+# target: k2am.com.au
+# command: /mnt/c/projects/spiderfeet/.tools/pius run --org "K2 Asset Management Ltd" --domain www.k2am.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson
+# runtime: wsl
+# harvest_deferred: true
+# harvest_deferred_reason: Target offline 2026-07-05; re-run harvest tomorrow when site is reachable
+
+# (no findings — examination not executed yet)

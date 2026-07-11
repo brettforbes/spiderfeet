@@ -1,0 +1,1 @@
+httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_sbs_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_sbs.jsonl -silent -threads 25 -timeout 20 -rate-limit 50

@@ -1,0 +1,66 @@
+# SpiderFeet CLI examination capture
+# tool: subfinder
+# scenario: Passive enumeration with sources (The Upside .com.au) (corporate_upside_au_passive_cs)
+# target: theupside.com.au
+# enumeration_mode: passive
+# command: subfinder -d theupside.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_upside_au_passive_cs.jsonl -silent
+# runtime: windows
+# started_at: 2026-07-05T14:23:45.538135+00:00
+# duration_s: 22.735
+# exit_code: 0
+# host_summary_lines: 52
+# text_role: one line per host: fqdn (sources: …) or fqdn -> ip
+# structured_role: normalized host records in records[]
+
+aws.theupside.com.au (sources: crtsh, hackertarget)
+www.aws.theupside.com.au (sources: crtsh, hackertarget)
+e.theupside.com.au (sources: crtsh, hackertarget)
+www.mail.theupside.com.au (sources: crtsh, hackertarget)
+newsletter.theupside.com.au (sources: crtsh, hackertarget)
+spf.theupside.com.au (sources: crtsh, hackertarget)
+www.track.theupside.com.au (sources: crtsh, hackertarget)
+www.theupside.com.au (sources: crtsh, hackertarget)
+www.dev.theupside.com.au (sources: crtsh, hackertarget)
+www.info.theupside.com.au (sources: crtsh, hackertarget)
+cfjump.theupside.com.au (sources: crtsh)
+dev.theupside.com.au (sources: crtsh, hackertarget)
+www.e.theupside.com.au (sources: crtsh, hackertarget)
+email.theupside.com.au (sources: crtsh, hackertarget)
+info.theupside.com.au (sources: crtsh, hackertarget)
+k8s.theupside.com.au (sources: crtsh, hackertarget)
+www.news.theupside.com.au (sources: crtsh)
+www.k8s.theupside.com.au (sources: crtsh, hackertarget)
+www.spf.theupside.com.au (sources: crtsh, hackertarget)
+www.test.theupside.com.au (sources: crtsh, hackertarget)
+news.theupside.com.au (sources: crtsh, hackertarget)
+www.newsletter.theupside.com.au (sources: crtsh, hackertarget)
+www.email.theupside.com.au (sources: crtsh, hackertarget)
+test.theupside.com.au (sources: crtsh, hackertarget)
+track.theupside.com.au (sources: crtsh, hackertarget)
+mail.theupside.com.au (sources: crtsh, hackertarget)
+news.theupside.com.au (sources: crtsh, hackertarget)
+mail.theupside.com.au (sources: crtsh, hackertarget)
+aws.theupside.com.au (sources: crtsh, hackertarget)
+info.theupside.com.au (sources: crtsh, hackertarget)
+newsletter.theupside.com.au (sources: crtsh, hackertarget)
+test.theupside.com.au (sources: crtsh, hackertarget)
+www.e.theupside.com.au (sources: crtsh, hackertarget)
+www.email.theupside.com.au (sources: crtsh, hackertarget)
+track.theupside.com.au (sources: crtsh, hackertarget)
+spf.theupside.com.au (sources: crtsh, hackertarget)
+cfjump.theupside.com.au (sources: crtsh)
+www.theupside.com.au (sources: crtsh, hackertarget)
+www.k8s.theupside.com.au (sources: crtsh, hackertarget)
+email.theupside.com.au (sources: crtsh, hackertarget)
+www.mail.theupside.com.au (sources: crtsh, hackertarget)
+k8s.theupside.com.au (sources: crtsh, hackertarget)
+www.test.theupside.com.au (sources: crtsh, hackertarget)
+www.spf.theupside.com.au (sources: crtsh, hackertarget)
+www.track.theupside.com.au (sources: crtsh, hackertarget)
+www.info.theupside.com.au (sources: crtsh, hackertarget)
+www.aws.theupside.com.au (sources: crtsh, hackertarget)
+www.news.theupside.com.au (sources: crtsh)
+e.theupside.com.au (sources: crtsh, hackertarget)
+www.newsletter.theupside.com.au (sources: crtsh, hackertarget)
+dev.theupside.com.au (sources: crtsh, hackertarget)
+www.dev.theupside.com.au (sources: crtsh, hackertarget)

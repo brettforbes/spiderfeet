@@ -1,1 +1,31 @@
-Running 2 plugin(s) in "passive" mode...
+# SpiderFeet CLI examination capture
+# tool: pius
+# scenario: Corporate gleif stack (The Upside) (corporate_upside_ndjson)
+# org: The Upside Pty Ltd
+# target: theupside.com.au
+# command: /mnt/c/projects/spiderfeet/.tools/pius run --org "The Upside Pty Ltd" --domain theupside.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson
+# runtime: wsl
+# started_at: 2026-07-05T13:10:54.341348+00:00
+# duration_s: 16.125
+# exit_code: 0
+# finding_summary_lines: 17
+# text_role: one line per finding: [type] value (source)
+# structured_role: full NDJSON finding objects in records[]
+
+[preseed] .au Domain Administration Limited (whois)
+[preseed] CEO (whois)
+[domain] theupside.com.au (crt-sh)
+[domain] www.theupside.com.au (crt-sh)
+[domain] track.theupside.com.au (crt-sh)
+[domain] k8s.theupside.com.au (crt-sh)
+[domain] info.theupside.com.au (crt-sh)
+[domain] spf.theupside.com.au (crt-sh)
+[domain] news.theupside.com.au (crt-sh)
+[domain] email.theupside.com.au (crt-sh)
+[domain] newsletter.theupside.com.au (crt-sh)
+[domain] test.theupside.com.au (crt-sh)
+[domain] mail.theupside.com.au (crt-sh)
+[domain] e.theupside.com.au (crt-sh)
+[domain] aws.theupside.com.au (crt-sh)
+[domain] dev.theupside.com.au (crt-sh)
+[domain] cfjump.theupside.com.au (crt-sh)

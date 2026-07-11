@@ -1,0 +1,11 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "scanme_nmap_org_phase_c_crit_high",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_c_crit_high.jsonl",
+  "started_at": "2026-07-04T14:21:19.328698+00:00",
+  "finding_summary_lines": 0,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": []
+}

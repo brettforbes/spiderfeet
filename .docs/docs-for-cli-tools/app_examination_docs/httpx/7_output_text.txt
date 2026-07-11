@@ -1,0 +1,66 @@
+# SpiderFeet CLI examination capture
+# tool: httpx
+# scenario: Web probe on subfinder enterprise hosts (SBS) (from_subfinder_sbs)
+# target: sbs.com.au
+# subfinder_scenario: enterprise_sbs_passive_cs
+# probe_profile: status-code,title,tech-detect,server,cdn,ip
+# host_input_count: 50
+# command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_sbs_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_sbs.jsonl -silent -threads 25 -timeout 20 -rate-limit 50
+# runtime: windows
+# started_at: 2026-07-05T16:06:08.954441+00:00
+# duration_s: 4.344
+# exit_code: 0
+# probe_summary_lines: 50
+# text_role: one line per live URL: url [status] [title] server=… tech=[…]
+# structured_role: full httpx JSONL probe objects in records[]
+
+https://fos.dan-1.edsqa01.aws.sbs.com.au [403]
+https://fos.alejandrogo.edsqa01.aws.sbs.com.au [403]
+https://fos.alego-1.edsqa01.aws.sbs.com.au [403]
+https://fos.beta.edsqa01.aws.sbs.com.au [403]
+https://fos.dan.edsqa01.aws.sbs.com.au [403]
+https://fos.analytics.edsqa01.aws.sbs.com.au [403]
+https://fos.chrisfo.edsqa01.aws.sbs.com.au [403]
+https://fos.adobe.edsqa01.aws.sbs.com.au [403]
+https://fos.freeze.edsdev01.aws.sbs.com.au [403]
+https://fos.alego.edsqa01.aws.sbs.com.au [403]
+https://epgservice.c.aws.sbs.com.au [403]
+https://fos.chrisfo-1.edsqa01.aws.sbs.com.au [403]
+https://fos.bspcloud.edsqa01.aws.sbs.com.au [403]
+https://fos.cloud.edsqa01.aws.sbs.com.au [403]
+https://fos.migrate.edsprd01.aws.sbs.com.au [403]
+https://after64.sbs.com.au [301] [301 Moved Permanently] server=awselb/2.0 tech=[Amazon ELB, Amazon Web Services]
+https://amp.sbs.com.au [200] server=nginx tech=[Nginx]
+https://fos.dan.edsdev01.aws.sbs.com.au [403]
+https://fos.mkoga-1.edsdev01.aws.sbs.com.au [403]
+https://fos.mad-1.edsdev01.aws.sbs.com.au [403]
+https://fos.mkoga-2.edsdev01.aws.sbs.com.au [403]
+https://fos.platform.edsprd01.aws.sbs.com.au [403]
+https://fusion-ses.prod.edsprd01.aws.sbs.com.au [403]
+https://fos.prod.edsprd01.aws.sbs.com.au [403]
+https://fos.pform.edsprd01.aws.sbs.com.au [403]
+https://mobilelayer.edsprd01.aws.sbs.com.au [403]
+https://fos.sdk.edsdev01.aws.sbs.com.au [403]
+https://phoenix.analytics.edsqa01.aws.sbs.com.au [500]
+https://mobilelayer.edsdev02.aws.sbs.com.au [403]
+https://mobilelayer-dev02.edsdev02.aws.sbs.com.au [403]
+https://fos.xander-1.edsdev01.aws.sbs.com.au [403]
+https://fos.xanderbo.edsdev01.aws.sbs.com.au [403]
+https://api.sbs.com.au [404] [404 Not Found]
+https://nginx-video.edsprd01.aws.sbs.com.au [200] server=nginx tech=[Nginx]
+https://mobilelayer-dev01.edsdev02.aws.sbs.com.au [403]
+https://phoenix.beta.edsqa01.aws.sbs.com.au [401] [Login Form] tech=[Express, Node.js]
+https://phoenix.chrisfo-2.edsqa01.aws.sbs.com.au [401] [Login Form] tech=[Express, Node.js]
+https://phoenix.chrisfo.edsqa01.aws.sbs.com.au [401] [Login Form] tech=[Express, Node.js]
+https://phoenix.chrisfo-1.edsqa01.aws.sbs.com.au [401] [Login Form] tech=[Express, Node.js]
+https://phoenix.chrisha.edsqa01.aws.sbs.com.au [401] [Login Form] tech=[Express, Node.js]
+https://auth.sbs.com.au [404]
+https://phoenix.prod.edsprd01.aws.sbs.com.au [403]
+https://phoenix.freeze.edsdev01.aws.sbs.com.au [403]
+https://phoenix.danielpe-1.edsqa01.aws.sbs.com.au [401] [Login Form] tech=[Express, Node.js]
+https://fda-docs.c.aws.sbs.com.au [401] server=CloudFront tech=[Amazon CloudFront, Amazon Web Services, Basic]
+https://assets.sbs.com.au [403] tech=[Amazon CloudFront, Amazon Web Services]
+https://account.sbs.com.au [200] server=nginx tech=[HSTS, Nginx]
+https://phoenix.danielpe-2.edsqa01.aws.sbs.com.au [401] [Login Form] tech=[Express, Node.js]
+https://phoenix.chrisfo-40.edsqa01.aws.sbs.com.au [401] [Login Form] tech=[Express, Node.js]
+https://phoenix.danielpe-3.edsqa01.aws.sbs.com.au [401] [Login Form] tech=[Express, Node.js]

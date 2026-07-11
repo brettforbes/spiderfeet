@@ -1,0 +1,19 @@
+{
+  "schema": "pius_finding_v1",
+  "tool": "pius",
+  "scenario": "Corporate gleif stack (K2 Asset Management) — harvest deferred",
+  "scenario_id": "corporate_k2am_ndjson",
+  "org": "K2 Asset Management Ltd",
+  "target": "k2am.com.au",
+  "command": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"K2 Asset Management Ltd\" --domain www.k2am.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson",
+  "runtime": "wsl",
+  "started_at": "2026-07-05T13:12:00.000000+00:00",
+  "duration_s": null,
+  "exit_code": null,
+  "finding_summary_lines": 0,
+  "text_role": "one line per finding: [type] value (source)",
+  "structured_role": "full NDJSON finding objects in records[]",
+  "harvest_deferred": true,
+  "harvest_deferred_reason": "Target offline 2026-07-05; run harvest tomorrow: python .seed/scripts/cli_corpus/harvest.py --tool pius --scenario corporate_k2am_ndjson",
+  "records": []
+}

@@ -1,0 +1,38 @@
+# SpiderFeet CLI examination capture
+# tool: nuclei
+# scenario: All templates on scanme.nmap.org (module-default filters) (scanme_all_templates)
+# target: http://scanme.nmap.org
+# command: nuclei -u http://scanme.nmap.org -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/scanme_all_templates.jsonl
+# runtime: windows
+# started_at: 2026-07-05T11:58:42.182007+00:00
+# duration_s: 0.000
+# exit_code: 0
+# finding_summary_lines: 25
+# text_role: one line per JSONL finding: [severity] template-id @ matched-at
+# structured_role: full JSONL finding objects in records[]
+
+[low] apache-mod-negotiation-listing @ http://scanme.nmap.org/index (extracted: index.html)
+[medium] CVE-2023-48795 @ scanme.nmap.org:22 (extracted: Vulnerable to Terrapin) [CVE: CVE-2023-48795]
+[info] ssh-auth-methods @ scanme.nmap.org:22 (extracted: ["publickey","password"])
+[low] ssh-diffie-hellman-logjam @ scanme.nmap.org:22
+[info] ssh-password-auth @ scanme.nmap.org:22
+[info] ssh-server-enumeration @ scanme.nmap.org:22 (extracted: SSH-2.0-OpenSSH_6.6.1p1 Ubuntu-2ubuntu2.13)
+[info] ssh-sha1-hmac-algo @ scanme.nmap.org:22
+[low] ssh-cbc-mode-ciphers @ scanme.nmap.org:22
+[medium] ssh-weak-algo-supported @ scanme.nmap.org:22
+[low] ssh-weak-mac-algo @ scanme.nmap.org:22
+[low] ssh-weakkey-exchange-algo @ scanme.nmap.org:22
+[info] openssh-detect @ scanme.nmap.org:22 (extracted: SSH-2.0-OpenSSH_6.6.1p1 Ubuntu-2ubuntu2.13) [CVE: CVE-2016-6210, CVE-2018-15473]
+[info] apache-detect @ http://scanme.nmap.org (extracted: Apache/2.4.7 (Ubuntu))
+[info] http-missing-security-headers @ http://scanme.nmap.org (matcher: content-security-policy)
+[info] http-missing-security-headers @ http://scanme.nmap.org (matcher: permissions-policy)
+[info] http-missing-security-headers @ http://scanme.nmap.org (matcher: x-content-type-options)
+[info] http-missing-security-headers @ http://scanme.nmap.org (matcher: cross-origin-embedder-policy)
+[info] http-missing-security-headers @ http://scanme.nmap.org (matcher: cross-origin-opener-policy)
+[info] http-missing-security-headers @ http://scanme.nmap.org (matcher: cross-origin-resource-policy)
+[info] http-missing-security-headers @ http://scanme.nmap.org (matcher: x-frame-options)
+[info] http-missing-security-headers @ http://scanme.nmap.org (matcher: x-permitted-cross-domain-policies)
+[info] http-missing-security-headers @ http://scanme.nmap.org (matcher: referrer-policy)
+[info] http-missing-security-headers @ http://scanme.nmap.org (matcher: strict-transport-security)
+[info] aaaa-fingerprint @ scanme.nmap.org (extracted: 2600:3c01::f03c:91ff:fe18:bb2f)
+[info] caa-fingerprint @ scanme.nmap.org

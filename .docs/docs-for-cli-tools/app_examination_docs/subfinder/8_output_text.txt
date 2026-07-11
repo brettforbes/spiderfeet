@@ -1,0 +1,14 @@
+# SpiderFeet CLI examination capture
+# tool: subfinder
+# scenario: Clean miss on invalid apex domain (invalid_domain_clean_miss)
+# target: not-a-real-domain-xyzzy.invalid
+# enumeration_mode: passive
+# command: subfinder -d not-a-real-domain-xyzzy.invalid -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/invalid_domain_clean_miss.jsonl -silent
+# runtime: windows
+# started_at: 2026-07-05T14:26:26.453039+00:00
+# duration_s: 24.594
+# exit_code: 0
+# host_summary_lines: 0
+# text_role: one line per host: fqdn (sources: …) or fqdn -> ip
+# structured_role: normalized host records in records[]
+

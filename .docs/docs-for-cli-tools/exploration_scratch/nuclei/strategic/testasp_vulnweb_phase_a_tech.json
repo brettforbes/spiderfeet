@@ -1,0 +1,111 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "testasp_vulnweb_phase_a_tech",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_a_tech.jsonl",
+  "started_at": "2026-07-04T15:13:32.048924+00:00",
+  "finding_summary_lines": 3,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/microsoft-iis-version",
+      "template-id": "microsoft-iis-version",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\microsoft\\microsoft-iis-version.yaml",
+      "info": {
+        "name": "Microsoft IIS version detect",
+        "author": [
+          "wlayzz"
+        ],
+        "tags": [
+          "tech",
+          "microsoft",
+          "iis",
+          "discovery"
+        ],
+        "description": "Some Microsoft IIS servers have the version on the response header. Useful when you need to find specific CVEs on your targets.",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "type": "http",
+      "host": "testasp.vulnweb.com",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://testasp.vulnweb.com",
+      "matched-at": "http://testasp.vulnweb.com",
+      "extracted-results": [
+        "Microsoft-IIS/8.5"
+      ],
+      "ip": "44.238.29.244",
+      "timestamp": "2026-07-05T01:12:21.335955+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (ZZ; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36' 'http://testasp.vulnweb.com'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/tech-detect",
+      "template-id": "tech-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\tech-detect.yaml",
+      "info": {
+        "name": "Wappalyzer Technology Detection",
+        "author": [
+          "hakluke",
+          "righettod",
+          "matejsmycka"
+        ],
+        "tags": [
+          "tech",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "matcher-name": "dreamweaver",
+      "type": "http",
+      "host": "testasp.vulnweb.com",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://testasp.vulnweb.com",
+      "matched-at": "http://testasp.vulnweb.com",
+      "ip": "44.238.29.244",
+      "timestamp": "2026-07-05T01:12:51.893053+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0' 'http://testasp.vulnweb.com'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/tech-detect",
+      "template-id": "tech-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\tech-detect.yaml",
+      "info": {
+        "name": "Wappalyzer Technology Detection",
+        "author": [
+          "hakluke",
+          "righettod",
+          "matejsmycka"
+        ],
+        "tags": [
+          "tech",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "matcher-name": "ms-iis",
+      "type": "http",
+      "host": "testasp.vulnweb.com",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://testasp.vulnweb.com",
+      "matched-at": "http://testasp.vulnweb.com",
+      "ip": "44.238.29.244",
+      "timestamp": "2026-07-05T01:12:51.893053+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0' 'http://testasp.vulnweb.com'",
+      "matcher-status": true
+    }
+  ]
+}

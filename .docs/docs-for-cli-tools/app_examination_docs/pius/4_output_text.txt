@@ -1,1 +1,20 @@
-Running 5 plugin(s) in "passive" mode...
+# SpiderFeet CLI examination capture
+# tool: pius
+# scenario: Corporate gleif stack (Square Peg Capital) (corporate_squarepeg_ndjson)
+# org: Square Peg Capital Pty Ltd
+# target: squarepeg.vc
+# command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Square Peg Capital Pty Ltd" --domain squarepeg.vc --plugins gleif,wikidata,whois,crt-sh --output ndjson
+# runtime: wsl
+# started_at: 2026-07-05T13:10:18.904973+00:00
+# duration_s: 35.046
+# exit_code: 0
+# finding_summary_lines: 6
+# text_role: one line per finding: [type] value (source)
+# structured_role: full NDJSON finding objects in records[]
+
+[domain] www.squarepeg.vc (crt-sh)
+[domain] squarepeg.vc (crt-sh)
+[domain] foundersummit2026.squarepeg.vc (crt-sh)
+[domain] email.foundersummit2026.squarepeg.vc (crt-sh)
+[domain] helix.squarepeg.vc (crt-sh)
+[domain] data.squarepeg.vc (crt-sh)

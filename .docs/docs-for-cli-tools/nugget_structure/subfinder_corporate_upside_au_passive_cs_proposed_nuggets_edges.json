@@ -1,0 +1,685 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "nugget_instance_id": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Subfinder scan",
+      "nugget_data": "theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SCAN_CLI--3d70793d-9f60-5ad1-8ffd-16b748af2456",
+      "nugget_instance_id": "SCAN_CLI--3d70793d-9f60-5ad1-8ffd-16b748af2456",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "subfinder -d theupside.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_upside_au_passive_cs.jsonl -silent",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "nugget_instance_id": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "aws.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "nugget_instance_id": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "nugget_id": "RAW_DNS_RECORDS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Passive sources",
+      "nugget_data": "crtsh,hackertarget",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--d410d01c-a5e7-5a4a-b745-8212a6b70448",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--d410d01c-a5e7-5a4a-b745-8212a6b70448",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.aws.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "e.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--a079062c-decb-543b-9709-c7de57c9c8ae",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--a079062c-decb-543b-9709-c7de57c9c8ae",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.mail.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "newsletter.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "spf.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--953fd32b-1ae0-575e-9900-a869f72b4154",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--953fd32b-1ae0-575e-9900-a869f72b4154",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.track.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--e1058b4f-10a2-5f3a-8cf9-6516fd31c241",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--e1058b4f-10a2-5f3a-8cf9-6516fd31c241",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--acf62e93-3c65-5218-b65b-6f766a2d7622",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--acf62e93-3c65-5218-b65b-6f766a2d7622",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.dev.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--a5b835c2-a69c-5469-8894-190e00b50f22",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--a5b835c2-a69c-5469-8894-190e00b50f22",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.info.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--e7cc4c87-6daa-55f2-b576-fea5d962916d",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--e7cc4c87-6daa-55f2-b576-fea5d962916d",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "cfjump.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "nugget_instance_id": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "nugget_id": "RAW_DNS_RECORDS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Passive sources",
+      "nugget_data": "crtsh",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "dev.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--30df331d-be80-5d73-97c6-a2a7238caf26",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--30df331d-be80-5d73-97c6-a2a7238caf26",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.e.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--483fc780-9a30-5250-a578-874234ed423f",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--483fc780-9a30-5250-a578-874234ed423f",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "email.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "info.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "k8s.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--ca51396b-24bc-5c65-bb3a-f7955cdd7d81",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--ca51396b-24bc-5c65-bb3a-f7955cdd7d81",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.news.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--bc09b9dd-9523-511c-8de9-68870a5e2858",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--bc09b9dd-9523-511c-8de9-68870a5e2858",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.k8s.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--1477e5d2-d023-50f3-8ac6-3fdb9388c541",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--1477e5d2-d023-50f3-8ac6-3fdb9388c541",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.spf.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--5b1d219d-37d5-5282-ae22-d6405dec657f",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--5b1d219d-37d5-5282-ae22-d6405dec657f",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.test.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "news.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--192cddad-9bd3-5b8f-84f8-b1b9ea5b60b8",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--192cddad-9bd3-5b8f-84f8-b1b9ea5b60b8",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.newsletter.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--f79fa768-1b71-5e36-9ce0-e22e587bf37c",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--f79fa768-1b71-5e36-9ce0-e22e587bf37c",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.email.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--576a882e-f8d8-51ee-9066-e0a983145021",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--576a882e-f8d8-51ee-9066-e0a983145021",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "test.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "track.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "mail.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "SCAN_CLI--3d70793d-9f60-5ad1-8ffd-16b748af2456",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "contains"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--d410d01c-a5e7-5a4a-b745-8212a6b70448",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--d410d01c-a5e7-5a4a-b745-8212a6b70448",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--d410d01c-a5e7-5a4a-b745-8212a6b70448",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--a079062c-decb-543b-9709-c7de57c9c8ae",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--a079062c-decb-543b-9709-c7de57c9c8ae",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--a079062c-decb-543b-9709-c7de57c9c8ae",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--953fd32b-1ae0-575e-9900-a869f72b4154",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--953fd32b-1ae0-575e-9900-a869f72b4154",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--953fd32b-1ae0-575e-9900-a869f72b4154",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--e1058b4f-10a2-5f3a-8cf9-6516fd31c241",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--e1058b4f-10a2-5f3a-8cf9-6516fd31c241",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--e1058b4f-10a2-5f3a-8cf9-6516fd31c241",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--acf62e93-3c65-5218-b65b-6f766a2d7622",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--acf62e93-3c65-5218-b65b-6f766a2d7622",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--acf62e93-3c65-5218-b65b-6f766a2d7622",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--a5b835c2-a69c-5469-8894-190e00b50f22",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--a5b835c2-a69c-5469-8894-190e00b50f22",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--a5b835c2-a69c-5469-8894-190e00b50f22",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--e7cc4c87-6daa-55f2-b576-fea5d962916d",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--e7cc4c87-6daa-55f2-b576-fea5d962916d",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--e7cc4c87-6daa-55f2-b576-fea5d962916d",
+      "target": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--30df331d-be80-5d73-97c6-a2a7238caf26",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--30df331d-be80-5d73-97c6-a2a7238caf26",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--30df331d-be80-5d73-97c6-a2a7238caf26",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--483fc780-9a30-5250-a578-874234ed423f",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--483fc780-9a30-5250-a578-874234ed423f",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--483fc780-9a30-5250-a578-874234ed423f",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--ca51396b-24bc-5c65-bb3a-f7955cdd7d81",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--ca51396b-24bc-5c65-bb3a-f7955cdd7d81",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--ca51396b-24bc-5c65-bb3a-f7955cdd7d81",
+      "target": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--bc09b9dd-9523-511c-8de9-68870a5e2858",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--bc09b9dd-9523-511c-8de9-68870a5e2858",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--bc09b9dd-9523-511c-8de9-68870a5e2858",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--1477e5d2-d023-50f3-8ac6-3fdb9388c541",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--1477e5d2-d023-50f3-8ac6-3fdb9388c541",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--1477e5d2-d023-50f3-8ac6-3fdb9388c541",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--5b1d219d-37d5-5282-ae22-d6405dec657f",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--5b1d219d-37d5-5282-ae22-d6405dec657f",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--5b1d219d-37d5-5282-ae22-d6405dec657f",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--192cddad-9bd3-5b8f-84f8-b1b9ea5b60b8",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--192cddad-9bd3-5b8f-84f8-b1b9ea5b60b8",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--192cddad-9bd3-5b8f-84f8-b1b9ea5b60b8",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--f79fa768-1b71-5e36-9ce0-e22e587bf37c",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--f79fa768-1b71-5e36-9ce0-e22e587bf37c",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--f79fa768-1b71-5e36-9ce0-e22e587bf37c",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--576a882e-f8d8-51ee-9066-e0a983145021",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--576a882e-f8d8-51ee-9066-e0a983145021",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--576a882e-f8d8-51ee-9066-e0a983145021",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "INTERNET_NAME_UNRESOLVED--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    }
+  ]
+}

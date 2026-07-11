@@ -1,0 +1,26 @@
+# SpiderFeet CLI examination capture
+# tool: subfinder
+# scenario: Passive enumeration with sources (The Upside .com) (corporate_upside_com_passive_cs)
+# target: theupside.com
+# enumeration_mode: passive
+# command: subfinder -d theupside.com -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_upside_com_passive_cs.jsonl -silent
+# runtime: windows
+# started_at: 2026-07-05T14:25:39.820582+00:00
+# duration_s: 24.250
+# exit_code: 0
+# host_summary_lines: 12
+# text_role: one line per host: fqdn (sources: …) or fqdn -> ip
+# structured_role: normalized host records in records[]
+
+uat.theupside.com (sources: hackertarget)
+uk.theupside.com (sources: crtsh, hackertarget)
+www.theupside.com (sources: crtsh, hackertarget)
+blog.theupside.com (sources: crtsh)
+image.theupside.com (sources: crtsh)
+www.nancyz.theupside.com (sources: crtsh)
+international.theupside.com (sources: crtsh, hackertarget)
+returns.theupside.com (sources: crtsh, hackertarget)
+link2.theupside.com (sources: crtsh)
+link.theupside.com (sources: crtsh)
+mail.theupside.com (sources: crtsh)
+nancyz.theupside.com (sources: crtsh)

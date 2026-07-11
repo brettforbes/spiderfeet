@@ -1,0 +1,90 @@
+{
+  "schema": "subfinder_host_v1",
+  "tool": "subfinder",
+  "scenario": "Active resolution with IP (K2 Asset Management)",
+  "scenario_id": "corporate_k2am_active_oI",
+  "target": "k2am.com.au",
+  "enumeration_mode": "active",
+  "command": "subfinder -d k2am.com.au -active -oJ -oI -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_k2am_active_oI.jsonl -silent",
+  "runtime": "windows",
+  "started_at": "2026-07-05T14:25:16.558422+00:00",
+  "duration_s": 23.187,
+  "exit_code": 0,
+  "host_summary_lines": 8,
+  "text_role": "one line per host: fqdn (sources: \u2026) or fqdn -> ip",
+  "structured_role": "normalized host records in records[]",
+  "records": [
+    {
+      "host": "ksm.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "active",
+      "ip": "172.64.153.235",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "kii.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "active",
+      "ip": "172.64.153.235",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "owa.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "active",
+      "ip": "59.100.198.94",
+      "sources": [
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "link.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "active",
+      "ip": "170.187.131.209",
+      "sources": [
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "smtp1.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "active",
+      "ip": "58.171.162.96",
+      "sources": [
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "smtp2.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "active",
+      "ip": "59.100.198.94",
+      "sources": [
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "active",
+      "ip": "101.0.68.158",
+      "sources": [
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "mail.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "active",
+      "ip": "58.171.162.96",
+      "sources": [
+        "hackertarget"
+      ]
+    }
+  ]
+}

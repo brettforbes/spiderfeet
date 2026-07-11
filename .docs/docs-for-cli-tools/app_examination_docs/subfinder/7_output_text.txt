@@ -1,0 +1,64 @@
+# SpiderFeet CLI examination capture
+# tool: subfinder
+# scenario: Enterprise-scale passive enumeration (SBS) (enterprise_sbs_passive_cs)
+# target: sbs.com.au
+# enumeration_mode: passive
+# command: subfinder -d sbs.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/enterprise_sbs_passive_cs.jsonl -silent
+# runtime: windows
+# started_at: 2026-07-05T14:26:04.142058+00:00
+# duration_s: 22.234
+# exit_code: 0
+# host_summary_lines: 50
+# text_role: one line per host: fqdn (sources: …) or fqdn -> ip
+# structured_role: normalized host records in records[]
+
+epgservice.c.aws.sbs.com.au (sources: hackertarget)
+fos.analytics.edsqa01.aws.sbs.com.au (sources: hackertarget)
+after64.sbs.com.au (sources: hackertarget)
+fos.dan.edsdev01.aws.sbs.com.au (sources: hackertarget)
+fos.alejandrogo.edsqa01.aws.sbs.com.au (sources: hackertarget)
+phoenix.chrisha.edsqa01.aws.sbs.com.au (sources: hackertarget)
+fos.dan-1.edsqa01.aws.sbs.com.au (sources: hackertarget)
+fda-docs.c.aws.sbs.com.au (sources: hackertarget)
+account.sbs.com.au (sources: hackertarget)
+assets.sbs.com.au (sources: hackertarget)
+fos.migrate.edsprd01.aws.sbs.com.au (sources: hackertarget)
+fos.alego-1.edsqa01.aws.sbs.com.au (sources: hackertarget)
+fos.dan.edsqa01.aws.sbs.com.au (sources: hackertarget)
+fos.xanderbo.edsdev01.aws.sbs.com.au (sources: hackertarget)
+fos.platform.edsprd01.aws.sbs.com.au (sources: hackertarget)
+phoenix.analytics.edsqa01.aws.sbs.com.au (sources: hackertarget)
+fos.mkoga-1.edsdev01.aws.sbs.com.au (sources: hackertarget)
+fos.pform.edsprd01.aws.sbs.com.au (sources: hackertarget)
+phoenix.prod.edsprd01.aws.sbs.com.au (sources: hackertarget)
+fos.alego.edsqa01.aws.sbs.com.au (sources: hackertarget)
+mobilelayer.edsdev02.aws.sbs.com.au (sources: hackertarget)
+fos.prod.edsprd01.aws.sbs.com.au (sources: hackertarget)
+phoenix.chrisfo.edsqa01.aws.sbs.com.au (sources: hackertarget)
+auth.sbs.com.au (sources: hackertarget)
+phoenix.freeze.edsdev01.aws.sbs.com.au (sources: hackertarget)
+fos.mad-1.edsdev01.aws.sbs.com.au (sources: hackertarget)
+nginx-video.edsprd01.aws.sbs.com.au (sources: hackertarget)
+phoenix.danielpe-1.edsqa01.aws.sbs.com.au (sources: hackertarget)
+api.sbs.com.au (sources: hackertarget)
+fos.mkoga-2.edsdev01.aws.sbs.com.au (sources: hackertarget)
+fos.xander-1.edsdev01.aws.sbs.com.au (sources: hackertarget)
+fos.cloud.edsqa01.aws.sbs.com.au (sources: hackertarget)
+amp.sbs.com.au (sources: hackertarget)
+fos.adobe.edsqa01.aws.sbs.com.au (sources: hackertarget)
+fos.beta.edsqa01.aws.sbs.com.au (sources: hackertarget)
+fos.bspcloud.edsqa01.aws.sbs.com.au (sources: hackertarget)
+fos.chrisfo.edsqa01.aws.sbs.com.au (sources: hackertarget)
+phoenix.chrisfo-2.edsqa01.aws.sbs.com.au (sources: hackertarget)
+phoenix.danielpe-2.edsqa01.aws.sbs.com.au (sources: hackertarget)
+fos.freeze.edsdev01.aws.sbs.com.au (sources: hackertarget)
+phoenix.chrisfo-40.edsqa01.aws.sbs.com.au (sources: hackertarget)
+phoenix.danielpe-3.edsqa01.aws.sbs.com.au (sources: hackertarget)
+phoenix.chrisfo-1.edsqa01.aws.sbs.com.au (sources: hackertarget)
+mobilelayer-dev01.edsdev02.aws.sbs.com.au (sources: hackertarget)
+mobilelayer-dev02.edsdev02.aws.sbs.com.au (sources: hackertarget)
+fos.sdk.edsdev01.aws.sbs.com.au (sources: hackertarget)
+fusion-ses.prod.edsprd01.aws.sbs.com.au (sources: hackertarget)
+fos.chrisfo-1.edsqa01.aws.sbs.com.au (sources: hackertarget)
+mobilelayer.edsprd01.aws.sbs.com.au (sources: hackertarget)
+phoenix.beta.edsqa01.aws.sbs.com.au (sources: hackertarget)

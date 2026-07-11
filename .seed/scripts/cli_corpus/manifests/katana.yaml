@@ -1,0 +1,109 @@
+tool: katana
+version: 1
+default_runtime: windows
+default_timeout: 900
+binary_probe: .tools/bin/katana.exe -version
+primary_parser: jsonl
+output_path_type: 2
+
+# Seed URL lists derived from httpx formal examinations (prepare_katana_urls_from_httpx.py).
+# Shallow, scope-bounded crawl on httpx-discovered live URLs (-fs fqdn -ct caps).
+
+scenarios:
+  - id: from_httpx_upside_au
+    name: "Katana crawl on httpx seeds (The Upside .com.au)"
+    target: theupside.com.au
+    httpx_scenario: from_subfinder_upside_au
+    url_list: .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_upside_au_urls.txt
+    crawl_profile: "depth-2,fqdn-scope,concurrency-5,timeout-10,crawl-duration-3m"
+    command: katana -list .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_upside_au_urls.txt -silent -j -duc -ob -or -o .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_upside_au.jsonl -depth 2 -c 5 -timeout 10 -fs fqdn -ct 3m
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_upside_au.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 600
+
+  - id: from_httpx_squarepeg
+    name: "Katana crawl on httpx seeds (Square Peg Capital)"
+    target: squarepeg.vc
+    httpx_scenario: from_subfinder_squarepeg
+    url_list: .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_squarepeg_urls.txt
+    crawl_profile: "depth-2,fqdn-scope,concurrency-5,timeout-10,crawl-duration-5m"
+    command: katana -list .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_squarepeg_urls.txt -silent -j -duc -ob -or -o .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_squarepeg.jsonl -depth 2 -c 5 -timeout 10 -fs fqdn -ct 5m
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_squarepeg.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 900
+
+  - id: from_httpx_vcof_sparse
+    name: "Katana crawl on httpx ultra-sparse seed (VC Opportunities Fund)"
+    target: venturecapitalopportunitiesfund.com.au
+    httpx_scenario: from_subfinder_vcof_sparse
+    url_list: .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_vcof_sparse_urls.txt
+    crawl_profile: "depth-3,fqdn-scope,concurrency-5,timeout-15,crawl-duration-3m"
+    command: katana -list .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_vcof_sparse_urls.txt -silent -j -duc -ob -or -o .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_vcof_sparse.jsonl -depth 3 -c 5 -timeout 15 -fs fqdn -ct 3m
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_vcof_sparse.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 600
+
+  - id: from_httpx_k2am_passive
+    name: "Katana crawl on httpx passive seeds (K2 Asset Management)"
+    target: k2am.com.au
+    httpx_scenario: from_subfinder_k2am_passive
+    url_list: .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_k2am_passive_urls.txt
+    crawl_profile: "depth-2,fqdn-scope,concurrency-5,timeout-10,crawl-duration-5m"
+    command: katana -list .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_k2am_passive_urls.txt -silent -j -duc -ob -or -o .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_k2am_passive.jsonl -depth 2 -c 5 -timeout 10 -fs fqdn -ct 5m
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_k2am_passive.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 900
+
+  - id: from_httpx_k2am_active
+    name: "Katana crawl on httpx active seeds (K2)"
+    target: k2am.com.au
+    httpx_scenario: from_subfinder_k2am_active
+    url_list: .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_k2am_active_urls.txt
+    crawl_profile: "depth-2,fqdn-scope,concurrency-5,timeout-10,crawl-duration-5m"
+    command: katana -list .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_k2am_active_urls.txt -silent -j -duc -ob -or -o .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_k2am_active.jsonl -depth 2 -c 5 -timeout 10 -fs fqdn -ct 5m
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_k2am_active.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 900
+
+  - id: from_httpx_upside_com
+    name: "Katana crawl on httpx seeds (The Upside .com)"
+    target: theupside.com
+    httpx_scenario: from_subfinder_upside_com
+    url_list: .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_upside_com_urls.txt
+    crawl_profile: "depth-2,fqdn-scope,concurrency-5,timeout-10,crawl-duration-3m,omit-body"
+    command: katana -list .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_upside_com_urls.txt -silent -j -duc -ob -or -o .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_upside_com.jsonl -depth 2 -c 5 -timeout 10 -fs fqdn -ct 3m -p 3
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_upside_com.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 600
+
+  - id: from_httpx_sbs
+    name: "Katana crawl on httpx enterprise seeds (SBS)"
+    target: sbs.com.au
+    httpx_scenario: from_subfinder_sbs
+    url_list: .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_sbs_urls.txt
+    crawl_profile: "depth-1,fqdn-scope,concurrency-8,timeout-15,crawl-duration-10m,max-domain-pages-40"
+    command: katana -list .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_sbs_urls.txt -silent -j -duc -ob -or -o .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_sbs.jsonl -depth 1 -c 8 -timeout 15 -fs fqdn -ct 10m -mdp 40 -rl 30
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_sbs.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 1800
+
+  - id: from_httpx_invalid_clean_miss
+    name: "Clean miss katana crawl (no httpx seed URLs)"
+    target: not-a-real-domain-xyzzy.invalid
+    httpx_scenario: from_subfinder_invalid_clean_miss
+    url_list: .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_invalid_clean_miss_urls.txt
+    crawl_profile: "n/a"
+    harvest_deferred: true
+    harvest_deferred_reason: "httpx examination produced zero live URLs (clean miss)"
+    command: katana -list .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_invalid_clean_miss_urls.txt -silent -j -duc -ob -or -o .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_invalid_clean_miss.jsonl -depth 1 -c 1 -timeout 5
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_invalid_clean_miss.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 60

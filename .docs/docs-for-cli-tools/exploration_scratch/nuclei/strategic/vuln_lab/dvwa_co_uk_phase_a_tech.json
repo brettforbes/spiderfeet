@@ -1,0 +1,45 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "dvwa_co_uk_phase_a_tech",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vuln_lab/dvwa_co_uk_phase_a_tech.jsonl",
+  "started_at": "2026-07-05T05:01:33.149008+00:00",
+  "finding_summary_lines": 1,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/tech-detect",
+      "template-id": "tech-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\tech-detect.yaml",
+      "info": {
+        "name": "Wappalyzer Technology Detection",
+        "author": [
+          "hakluke",
+          "righettod",
+          "matejsmycka"
+        ],
+        "tags": [
+          "tech",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "matcher-name": "cloudflare",
+      "type": "http",
+      "host": "www.dvwa.co.uk",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://www.dvwa.co.uk/",
+      "path": "/",
+      "matched-at": "http://www.dvwa.co.uk/",
+      "ip": "104.21.32.202",
+      "timestamp": "2026-07-05T15:01:13.9958639+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/118.0' 'http://www.dvwa.co.uk/'",
+      "matcher-status": true
+    }
+  ]
+}

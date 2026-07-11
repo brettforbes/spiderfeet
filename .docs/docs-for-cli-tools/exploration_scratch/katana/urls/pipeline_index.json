@@ -1,0 +1,50 @@
+[
+  {
+    "katana_scenario": "from_httpx_upside_au",
+    "httpx_scenario": "from_subfinder_upside_au",
+    "url_count": 2,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\katana\\urls\\from_httpx_upside_au_urls.txt"
+  },
+  {
+    "katana_scenario": "from_httpx_squarepeg",
+    "httpx_scenario": "from_subfinder_squarepeg",
+    "url_count": 7,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\katana\\urls\\from_httpx_squarepeg_urls.txt"
+  },
+  {
+    "katana_scenario": "from_httpx_vcof_sparse",
+    "httpx_scenario": "from_subfinder_vcof_sparse",
+    "url_count": 1,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\katana\\urls\\from_httpx_vcof_sparse_urls.txt"
+  },
+  {
+    "katana_scenario": "from_httpx_k2am_passive",
+    "httpx_scenario": "from_subfinder_k2am_passive",
+    "url_count": 4,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\katana\\urls\\from_httpx_k2am_passive_urls.txt"
+  },
+  {
+    "katana_scenario": "from_httpx_k2am_active",
+    "httpx_scenario": "from_subfinder_k2am_active",
+    "url_count": 4,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\katana\\urls\\from_httpx_k2am_active_urls.txt"
+  },
+  {
+    "katana_scenario": "from_httpx_upside_com",
+    "httpx_scenario": "from_subfinder_upside_com",
+    "url_count": 8,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\katana\\urls\\from_httpx_upside_com_urls.txt"
+  },
+  {
+    "katana_scenario": "from_httpx_sbs",
+    "httpx_scenario": "from_subfinder_sbs",
+    "url_count": 50,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\katana\\urls\\from_httpx_sbs_urls.txt"
+  },
+  {
+    "katana_scenario": "from_httpx_invalid_clean_miss",
+    "httpx_scenario": "from_subfinder_invalid_clean_miss",
+    "url_count": 0,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\katana\\urls\\from_httpx_invalid_clean_miss_urls.txt"
+  }
+]

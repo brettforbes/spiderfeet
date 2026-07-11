@@ -1,0 +1,18 @@
+# SpiderFeet CLI examination capture
+# tool: nuclei
+# scenario: GraphQL misconfiguration sweep on pentest-ground (:5013) (pg_graphql_graphql_misconfig)
+# target: https://pentest-ground.com:5013
+# command: nuclei -u https://pentest-ground.com:5013 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -tags graphql -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/pg_graphql_graphql_misconfig.jsonl
+# runtime: windows
+# started_at: 2026-07-05T11:58:42.249760+00:00
+# duration_s: 0.000
+# exit_code: 0
+# finding_summary_lines: 5
+# text_role: one line per JSONL finding: [severity] template-id @ matched-at
+# structured_role: full JSONL finding objects in records[]
+
+[info] graphql-array-batching @ https://pentest-ground.com:5013/graphql
+[info] graphql-detect @ https://pentest-ground.com:5013/graphiql
+[info] graphql-field-suggestion @ https://pentest-ground.com:5013/graphql
+[info] graphql-alias-batching @ https://pentest-ground.com:5013/graphql
+[info] graphql-get-method @ https://pentest-ground.com:5013/graphql?query={__typename}

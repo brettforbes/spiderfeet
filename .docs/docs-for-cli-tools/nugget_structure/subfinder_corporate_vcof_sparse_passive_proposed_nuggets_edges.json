@@ -1,0 +1,76 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_instance_id": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Subfinder scan",
+      "nugget_data": "venturecapitalopportunitiesfund.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SCAN_CLI--86bebfc2-532c-5bc2-894c-84a11b1bc565",
+      "nugget_instance_id": "SCAN_CLI--86bebfc2-532c-5bc2-894c-84a11b1bc565",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "subfinder -d venturecapitalopportunitiesfund.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_vcof_sparse_passive.jsonl -silent",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_instance_id": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "venturecapitalopportunitiesfund.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--17cebccd-3738-523b-99dd-92f5df906bcb",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--17cebccd-3738-523b-99dd-92f5df906bcb",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.venturecapitalopportunitiesfund.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "nugget_instance_id": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "nugget_id": "RAW_DNS_RECORDS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Passive sources",
+      "nugget_data": "crtsh,hackertarget",
+      "nugget_colour": "#14B8A6"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "target": "SCAN_CLI--86bebfc2-532c-5bc2-894c-84a11b1bc565",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "target": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "relation": "contains"
+    },
+    {
+      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "target": "INTERNET_NAME_UNRESOLVED--17cebccd-3738-523b-99dd-92f5df906bcb",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "target": "INTERNET_NAME_UNRESOLVED--17cebccd-3738-523b-99dd-92f5df906bcb",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--17cebccd-3738-523b-99dd-92f5df906bcb",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    }
+  ]
+}

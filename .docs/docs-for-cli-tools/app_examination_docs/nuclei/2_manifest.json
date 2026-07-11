@@ -1,0 +1,19 @@
+{
+  "tool": "nuclei",
+  "exam_id": 2,
+  "scenario_id": "pg_shadowlogic_weblogic_cves",
+  "scenario_name": "WebLogic CVE sweep on pentest-ground ShadowLogic (:7001)",
+  "target": "https://pentest-ground.com:7001",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 0.0,
+  "captured_at": "2026-07-05T11:58:42.211978+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nuclei\\2_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nuclei\\2_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nuclei\\2_command.txt",
+  "tool_manifest_version": 4,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\nuclei\\pg_shadowlogic_weblogic_cves.jsonl"
+}

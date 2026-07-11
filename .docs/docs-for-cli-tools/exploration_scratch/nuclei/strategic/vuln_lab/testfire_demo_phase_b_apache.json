@@ -1,0 +1,46 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "testfire_demo_phase_b_apache",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vuln_lab/testfire_demo_phase_b_apache.jsonl",
+  "started_at": "2026-07-05T08:14:59.949685+00:00",
+  "finding_summary_lines": 1,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/apache-detect",
+      "template-id": "apache-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\apache\\apache-detect.yaml",
+      "info": {
+        "name": "Apache Detection",
+        "author": [
+          "philippedelteil"
+        ],
+        "tags": [
+          "tech",
+          "apache",
+          "discovery"
+        ],
+        "description": "Some Apache servers have the version on the response header. The OpenSSL version can be also obtained",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "type": "http",
+      "host": "demo.testfire.net",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://demo.testfire.net",
+      "matched-at": "http://demo.testfire.net",
+      "extracted-results": [
+        "Apache-Coyote/1.1"
+      ],
+      "ip": "65.61.137.117",
+      "timestamp": "2026-07-05T18:13:56.9490097+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0' 'http://demo.testfire.net'",
+      "matcher-status": true
+    }
+  ]
+}

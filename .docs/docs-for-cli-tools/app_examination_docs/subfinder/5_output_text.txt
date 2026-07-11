@@ -1,0 +1,22 @@
+# SpiderFeet CLI examination capture
+# tool: subfinder
+# scenario: Active resolution with IP (K2 Asset Management) (corporate_k2am_active_oI)
+# target: k2am.com.au
+# enumeration_mode: active
+# command: subfinder -d k2am.com.au -active -oJ -oI -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_k2am_active_oI.jsonl -silent
+# runtime: windows
+# started_at: 2026-07-05T14:25:16.558422+00:00
+# duration_s: 23.187
+# exit_code: 0
+# host_summary_lines: 8
+# text_role: one line per host: fqdn (sources: …) or fqdn -> ip
+# structured_role: normalized host records in records[]
+
+ksm.k2am.com.au -> 172.64.153.235 (source: crtsh)
+kii.k2am.com.au -> 172.64.153.235 (source: crtsh)
+owa.k2am.com.au -> 59.100.198.94 (source: hackertarget)
+link.k2am.com.au -> 170.187.131.209 (source: hackertarget)
+smtp1.k2am.com.au -> 58.171.162.96 (source: hackertarget)
+smtp2.k2am.com.au -> 59.100.198.94 (source: hackertarget)
+www.k2am.com.au -> 101.0.68.158 (source: hackertarget)
+mail.k2am.com.au -> 58.171.162.96 (source: hackertarget)

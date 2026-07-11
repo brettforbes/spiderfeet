@@ -1,0 +1,19 @@
+{
+  "tool": "subfinder",
+  "exam_id": 5,
+  "scenario_id": "corporate_k2am_active_oI",
+  "scenario_name": "Active resolution with IP (K2 Asset Management)",
+  "target": "k2am.com.au",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 23.187,
+  "captured_at": "2026-07-05T14:25:16.558422+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\5_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\5_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\5_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\subfinder\\exams\\corporate_k2am_active_oI.jsonl"
+}

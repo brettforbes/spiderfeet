@@ -1,0 +1,19 @@
+{
+  "tool": "nuclei",
+  "exam_id": 5,
+  "scenario_id": "pg_dvwa_tech_fingerprint",
+  "scenario_name": "Tech fingerprint on pentest-ground DVWA (:4280)",
+  "target": "https://pentest-ground.com:4280",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 0.0,
+  "captured_at": "2026-07-05T11:58:42.270590+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nuclei\\5_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nuclei\\5_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nuclei\\5_command.txt",
+  "tool_manifest_version": 4,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\nuclei\\pg_dvwa_tech_fingerprint.jsonl"
+}

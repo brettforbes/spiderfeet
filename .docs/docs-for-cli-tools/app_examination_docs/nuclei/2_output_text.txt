@@ -1,0 +1,18 @@
+# SpiderFeet CLI examination capture
+# tool: nuclei
+# scenario: WebLogic CVE sweep on pentest-ground ShadowLogic (:7001) (pg_shadowlogic_weblogic_cves)
+# target: https://pentest-ground.com:7001
+# command: nuclei -u https://pentest-ground.com:7001 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -tags weblogic,cve -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/pg_shadowlogic_weblogic_cves.jsonl
+# runtime: windows
+# started_at: 2026-07-05T11:58:42.211978+00:00
+# duration_s: 0.000
+# exit_code: 0
+# finding_summary_lines: 5
+# text_role: one line per JSONL finding: [severity] template-id @ matched-at
+# structured_role: full JSONL finding objects in records[]
+
+[critical] CVE-2018-2894 @ https://pentest-ground.com:7001/ws_utc/css/config/keystore/1783251120029_3G5AZCcZT5qYVA1PEoiJkkonI4L.jsp [CVE: CVE-2018-2894]
+[high] CVE-2020-14883 @ https://pentest-ground.com:7001/console/images/%252e%252e%252fconsole.portal [CVE: CVE-2020-14883]
+[critical] CVE-2020-2551 @ https://pentest-ground.com:7001/console/login/LoginForm.jsp [CVE: CVE-2020-2551]
+[info] weblogic-login @ https://pentest-ground.com:7001/console/login/LoginForm.jsp (extracted: 12.2.1.3.0)
+[info] weblogic-detect @ https://pentest-ground.com:7001/3G5AZEk1KMyWTecav2FwtoVBKD4

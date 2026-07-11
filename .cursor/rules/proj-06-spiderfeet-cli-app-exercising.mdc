@@ -19,9 +19,12 @@ First read the appropriate skillset documentation, then use the tool to explore 
 - **Semantic outcome matrix (mandatory gate):** Before any formal examination, draft a table of every distinct output shape the tool can emit (rich host rows, sparse/empty scans, passive vs active modes, parseable vs TUI text, auth failures, invalid targets, rate limits, dependency errors, clean misses). Do not start `harvest.py` until each row has a planned scenario id, target, and command family. If a row cannot be demonstrated after tuning inputs, record it as a proven limitation with evidence — not as a silent gap.
 - Explore by semantic output variation, and by every flag permutation, as well as the different input types and formats. Add a scenario whenever options, target class, mode, template/module, protocol, privilege, or failure condition changes the shape of returned data.
 - Use permissive targets to maximize rich output and protected/corporate targets to capture filtered, sparse, blocked, or error output.
+- **Target classes:** permissive lab, intentional vuln lab (pentest-ground / vulnweb when CVE or app-class signal is needed), smaller real org (org-intelligence tools), corporate/CDN (often negative fixtures), and **deferred** when a site is offline — placeholder bundle + `harvest_deferred`, not fake data.
 - If a run returns too little information, treat the input or option choice as suspect until richer alternatives have been tried or the limitation is proven. **Change targets, subnets, modes, and flags until the outcome class is demonstrated** — one default command is never sufficient evidence.
 - Search the web for example commands, targets, and report samples used by practitioners when help text and local trials are insufficient.
 - Keep tuning the inputs until you have a collection of input scenarios that cover every conceivable semantic variation of output. Do not be afraid to use the tool's help text to guide your exploration.
+- **Exploration completion gate:** Do not start formal examination while matrix rows are unclassified, batches were skipped because empty exports existed, or only info/noise was captured where critical/CVE/org enrichment was required. Each row must be Demonstrated, Proven limitation, Blocked, or Deferred with evidence. See `.cursor/skills/cli_app_profiling/references/exploration-examination-lessons.md`.
+- **Multi-mode scanners** (Nuclei and similar): one batch / one goal — tech fingerprint, then separate passes per tag/path/protocol family; avoid full-template sweeps on hardened targets. Maintain a tool **strategy skill** (e.g. `nuclei_strategy`) before locking formal scenarios.
 
 ## Ontology and nugget catalogue (mandatory)
 
@@ -34,16 +37,64 @@ First read the appropriate skillset documentation, then use the tool to explore 
 ## Formal Examination
 
 - Run the tool with the input scenarios you have collected.
-- For each run, capture the results and capture/convert them into the four output formats as shown below.
+- For each run, capture results into the evidence bundle contract below (command, text, structured, graph proposal, review status).
+- Classify each tool into one **structured artifact family** before writing manifests (see next section).
 
+## Structured artifact families
+
+| Family | Examples | Structured file | Text source |
+|--------|----------|-----------------|-------------|
+| Native document | nmap XML, CMSeeK JSON | Tool-native `.xml` / `.json` | Paired text scenario or TUI capture |
+| Validated scan JSON | netdiscover | `netdiscover_scan` JSON from TextFSM | Same run text; must align |
+| JSON bundle | nerva, pius | Single `.json` with `schema` + `records[]` | **Derived** from `records[]` at harvest |
+| Text-only | netdiscover TUI | Parsed JSON from TextFSM | Full native stdout |
+
+Do not store raw `.jsonl` / NDJSON as the examination structured artifact. The CLI Profiling **Structured** tab expects one parseable JSON root (or XML/YAML/CSV).
 
 ## Output Capture
 
 - Every scenario must produce a user-readable text artifact and a structured artifact (`json`, `xml`, `yaml`, or `csv`).
 - Prefer structured formats in this order: JSON, XML, YAML, CSV. Use full verbosity where available.
 - If the tool can emit text and structured output in one run, capture both.
-- If the tool can emit only one format per run, execute paired runs for the same scenario: native text and best structured format.
+- If the tool emits **only one output mode per flag** (e.g. pius `--output ndjson` vs `--output terminal`), use **paired scenarios**: one for the machine bundle path, one for native TUI text. Do not point `text_from: stderr` at progress banners when stdout holds the findings.
 - If the tool is text-only, then all text must be captured, do not truncate it. Then parse text into structured form with TextFSM Template parser.
+
+### JSONL / NDJSON tools (nerva, pius, and similar)
+
+**Explore first:** document which stream carries findings vs progress (`stdout` vs `stderr`) in the tool strategy skill.
+
+**At harvest (`harvest.py`):**
+
+1. Parse line-delimited JSON from stdout into `list[dict]` (filter non-JSON lines).
+2. Write `*_output_structured.json` — a **single JSON bundle**, not `*.jsonl`.
+3. Bundle shape: `schema` (e.g. `nerva_fingerprint_v1`, `pius_finding_v1`), scan metadata (`tool`, `command`, `started_at`, `duration_s`, `exit_code`, `record_count`), optional `stderr_banner`, and `records[]`.
+4. Derive `*_output_text.txt` from records (nerva: `proto://host:port (ip)`; pius: `[type] value (source)` with optional `⚠ needs-review [confidence:n]`). Prefix with the SpiderFeet capture header (record count must match `len(records)`).
+5. Wire graph generation to read `records[]` via `<tool>_structured.records_only()` (accepts bundle JSON or legacy NDJSON).
+
+**Implement per tool:** `<tool>_structured.py`, harvest branch in `write_bundle()`, optional `backfill_<tool>_structured.py`, manifest `structured_ext: json`.
+
+**Manifest anti-patterns (pius lesson):**
+
+- `structured_ext: jsonl` — breaks Data Viewer
+- `text_from: stderr` on NDJSON scenarios — captures only `"Running N plugin(s)..."` banners
+- Shell redirect of NDJSON when the tool skips non-TTY output — use harvest stdout capture instead
+- **`--domain` as URL** (`https://host/`) when the tool expects hostname only — yields zero records; validate args in exploration before manifest lock
+- **`wsl --shutdown`** immediately before a WSL harvest — breaks DNS for the next `wsl bash -lc` run
+
+**Harvest deferral (offline targets):**
+
+- Manifest `harvest_deferred: true` + placeholder examination bundle (empty `records[]`, explicit reason)
+- Re-run `harvest.py --tool <tool> --scenario <key>` when the target is reachable
+
+**Exploration runner hygiene:**
+
+- Do not treat **empty JSONL/stdout** as a completed batch when using skip-existing or resume logic — require stderr sidecar or force re-run
+- `reuse_export` only when the export matches the manifest command (or document the manual run in `command.txt`)
+
+**Empty findings are valid:** `records: []` with scan metadata is a complete structured artifact for clean-miss scenarios (e.g. obscure org, sparse target).
+
+**Backfill without re-run:** `backfill_nerva_structured_scan.py`, `backfill_pius_structured.py`.
+
 - Capture errors and empty/clean-miss behavior as first-class scenarios with text and structured representations.
 - **Errors in structured artifacts:** Include `exit_status`, stderr (when non-empty), and scan-level error fields in structured JSON/XML — not only in text. Error scenarios are incomplete if structured output omits the failure shape.
 - No matter what format is output, you must ensure the input command and all options used to produce the output, and the timestamp of the scan are captured if it is not in the output.
@@ -51,11 +102,22 @@ First read the appropriate skillset documentation, then use the tool to explore 
 - **Text-only CLI isolation:** Before each examination command for a text-only CLI app, clear the screen (`cls` on Windows, `clear` on Unix/WSL). Capture only that command's output — never concatenate multiple scans or scenarios into one text artifact. The structured JSON derived from the text must match the text capture exactly (`scan_tries`, `empty_scans`, `discovered`, and the first results table where applicable).
 - Structured artifacts for text-only tools must include scan metadata: command, timestamp, attempt counts (`scan_tries`), and parsed result tables/objects. Validate these fields before marking an examination complete.
 
+### Examination completion gate (before operator review)
+
+For each scenario bundle, verify:
+
+1. **Structured** — file parses in Data Viewer (single JSON/XML root); for bundles, `records` length matches `record_count` / header line count.
+2. **Text** — human-readable body is not only progress banners; derived or native finding lines present when `records` is non-empty.
+3. **Alignment** — text line count equals `len(records)` for JSON-bundle tools; netdiscover text/JSON alignment per `verify_text_structured_alignment`.
+4. **Graph** — `*_proposed_nuggets_edges.json` generated from structured artifact; no orphan nodes.
+5. **Manifest** — `structured_kind: json`, path ends in `_output_structured.json` for bundle tools (not `.jsonl`).
+
 ## Scenario Coverage
 
 - A formal examination is incomplete until the scenario matrix covers all known output classes and each scenario has command, manifest, text, structured data, proposed graph JSON, markdown graph structure, and review status.
 - Required scenario classes where applicable: baseline, maximum verbosity/rich output, each structured format family, alternate protocol/mode/module/template families, permissive target, protected target, clean miss, invalid input, dependency/auth/rate-limit/network error.
 - Do not collapse distinct output shapes into one scenario just because they come from the same tool.
+- **Replace low-value examinations** when a scenario only produces progress banners or info noise for its stated goal, or when a better target class (vuln lab, smaller org) demonstrates the same semantic types. Keep clean-miss scenarios only when clean miss is what is under test.
 
 ## Nugget Graph Derivation Discipline
 
@@ -78,4 +140,4 @@ Review the foundation described here to convert the structured artifact to nugge
 
 ## Handoff
 
-For each tool, leave a concise strategy describing how to produce rich, sparse, and error outputs; where the help text is captured; which scenario set proves the output surface is covered; and a completed semantic outcome matrix. On operator approval: set all `review_status` / `*_review.status.json` to `approved`, update `corpus_index.json` phase to `complete`, and add `<tool>_pilot_signoff.md` when pilot criteria are met.
+For each tool, leave a concise strategy describing how to produce rich, sparse, and error outputs; where the help text is captured; which scenario set proves the output surface is covered; and a completed semantic outcome matrix. Document proven tool limits (e.g. Nuclei app-logic vs CVE templates, OOB/Interactsh dependencies) in the strategy skill or examination plan. On operator approval: set all `review_status` / `*_review.status.json` to `approved`, update `corpus_index.json` phase to `complete`, and add `<tool>_pilot_signoff.md` when pilot criteria are met.

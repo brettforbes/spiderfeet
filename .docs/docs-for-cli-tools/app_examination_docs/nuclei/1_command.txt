@@ -1,0 +1,1 @@
+nuclei -u http://scanme.nmap.org -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/scanme_all_templates.jsonl

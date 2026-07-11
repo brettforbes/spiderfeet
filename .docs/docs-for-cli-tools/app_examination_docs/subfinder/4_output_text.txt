@@ -1,0 +1,32 @@
+# SpiderFeet CLI examination capture
+# tool: subfinder
+# scenario: Passive enumeration with sources (K2 Asset Management) (corporate_k2am_passive_cs)
+# target: k2am.com.au
+# enumeration_mode: passive
+# command: subfinder -d k2am.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_k2am_passive_cs.jsonl -silent
+# runtime: windows
+# started_at: 2026-07-05T14:24:52.891526+00:00
+# duration_s: 23.594
+# exit_code: 0
+# host_summary_lines: 18
+# text_role: one line per host: fqdn (sources: …) or fqdn -> ip
+# structured_role: normalized host records in records[]
+
+link.k2am.com.au (sources: crtsh, hackertarget)
+owa.k2am.com.au (sources: crtsh, hackertarget)
+smtp2.k2am.com.au (sources: hackertarget)
+www.k2am.com.au (sources: crtsh, hackertarget)
+www.apps.k2am.com.au (sources: crtsh)
+kii.k2am.com.au (sources: crtsh)
+www.owa.k2am.com.au (sources: crtsh)
+smtp1.k2am.com.au (sources: hackertarget)
+apps.k2am.com.au (sources: crtsh)
+cpcontacts.k2am.com.au (sources: crtsh)
+webmail.k2am.com.au (sources: crtsh)
+mail.k2am.com.au (sources: crtsh, hackertarget)
+cpanel.k2am.com.au (sources: crtsh)
+cpcalendars.k2am.com.au (sources: crtsh)
+webdisk.k2am.com.au (sources: crtsh)
+www.ksm.k2am.com.au (sources: crtsh)
+ksm.k2am.com.au (sources: crtsh)
+www.kii.k2am.com.au (sources: crtsh)
