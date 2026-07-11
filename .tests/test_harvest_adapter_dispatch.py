@@ -41,8 +41,9 @@ def test_harvest_adapter_tools_include_netdiscover_and_nmap():
     assert harvest.ADAPTER_TOOLS == frozenset({"netdiscover", "nmap"})
 
 
-def test_harvest_adapter_dispatch_writes_four_netdiscover_artifacts(tmp_path):
+def test_harvest_adapter_dispatch_writes_four_netdiscover_artifacts(tmp_path, monkeypatch):
     harvest = _load_harvest()
+    monkeypatch.setattr(harvest, "NUGGET_ROOT", tmp_path / "nugget_structure")
     raw_text = _strip_capture_header(NETDISCOVER_TEXT.read_text(encoding="utf-8"))
     scenario = {
         "id": "local_subnet_active_parsable",
