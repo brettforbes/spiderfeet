@@ -1,0 +1,23 @@
+# SpiderFeet CLI examination capture
+# tool: httpx
+# scenario: Web probe on subfinder hosts (Square Peg Capital) (from_subfinder_squarepeg)
+# target: squarepeg.vc
+# subfinder_scenario: corporate_squarepeg_passive_cs
+# probe_profile: status-code,title,tech-detect,server,cdn,ip
+# host_input_count: 7
+# command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_squarepeg_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_squarepeg.jsonl -silent -threads 15 -timeout 15 -rate-limit 30
+# runtime: windows
+# started_at: 2026-07-05T16:04:57.955640+00:00
+# duration_s: 3.078
+# exit_code: 0
+# probe_summary_lines: 7
+# text_role: one line per live URL: url [status] [title] server=… tech=[…]
+# structured_role: full httpx JSONL probe objects in records[]
+
+https://static.squarepeg.vc [403] server=cloudflare tech=[Amazon Web Services, Cloudflare, HTTP/3]
+https://data.squarepeg.vc [200] [Metabase] server=cloudflare tech=[Cloudflare, HSTS, HTTP/3]
+https://email.foundersummit2026.squarepeg.vc [404]
+https://helix.squarepeg.vc [200] [Helix Library] server=AmazonS3 tech=[Amazon CloudFront, Amazon S3, Amazon Web Services, HSTS]
+https://foundersummit2026.squarepeg.vc [200] [Site d'inscription] tech=[HSTS, React]
+https://www.squarepeg.vc [200] [Square Peg: Helping founders from our corner of the world shape the future] server=cloudflare tech=[Campaign Monitor, Cloudflare, HSTS, HTTP/3, Unpkg, cdnjs, jQuery, jQuery UI, jsDelivr]
+https://plus.squarepeg.vc [200] [Proven] server=cloudflare tech=[Amazon CloudFront, Amazon Web Services, Cloudflare, Google Tag Manager, HSTS]

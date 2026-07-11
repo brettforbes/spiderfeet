@@ -1,0 +1,50 @@
+[
+  {
+    "httpx_scenario": "from_subfinder_upside_au",
+    "subfinder_scenario": "corporate_upside_au_passive_cs",
+    "host_count": 26,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\httpx\\hosts\\from_subfinder_upside_au_hosts.txt"
+  },
+  {
+    "httpx_scenario": "from_subfinder_squarepeg",
+    "subfinder_scenario": "corporate_squarepeg_passive_cs",
+    "host_count": 7,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\httpx\\hosts\\from_subfinder_squarepeg_hosts.txt"
+  },
+  {
+    "httpx_scenario": "from_subfinder_vcof_sparse",
+    "subfinder_scenario": "corporate_vcof_sparse_passive",
+    "host_count": 1,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\httpx\\hosts\\from_subfinder_vcof_sparse_hosts.txt"
+  },
+  {
+    "httpx_scenario": "from_subfinder_k2am_passive",
+    "subfinder_scenario": "corporate_k2am_passive_cs",
+    "host_count": 18,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\httpx\\hosts\\from_subfinder_k2am_passive_hosts.txt"
+  },
+  {
+    "httpx_scenario": "from_subfinder_k2am_active",
+    "subfinder_scenario": "corporate_k2am_active_oI",
+    "host_count": 8,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\httpx\\hosts\\from_subfinder_k2am_active_hosts.txt"
+  },
+  {
+    "httpx_scenario": "from_subfinder_upside_com",
+    "subfinder_scenario": "corporate_upside_com_passive_cs",
+    "host_count": 12,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\httpx\\hosts\\from_subfinder_upside_com_hosts.txt"
+  },
+  {
+    "httpx_scenario": "from_subfinder_sbs",
+    "subfinder_scenario": "enterprise_sbs_passive_cs",
+    "host_count": 50,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\httpx\\hosts\\from_subfinder_sbs_hosts.txt"
+  },
+  {
+    "httpx_scenario": "from_subfinder_invalid_clean_miss",
+    "subfinder_scenario": "invalid_domain_clean_miss",
+    "host_count": 0,
+    "path": ".docs\\docs-for-cli-tools\\exploration_scratch\\httpx\\hosts\\from_subfinder_invalid_clean_miss_hosts.txt"
+  }
+]

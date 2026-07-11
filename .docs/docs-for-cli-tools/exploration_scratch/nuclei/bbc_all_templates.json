@@ -1,0 +1,788 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "bbc_all_templates",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/bbc_all_templates.jsonl",
+  "started_at": "2026-07-03T06:49:57.034146+00:00",
+  "finding_summary_lines": 17,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template": "\\ssl\\tls-version.yaml",
+      "template-url": "https://cloud.projectdiscovery.io/public/tls-version",
+      "template-id": "tls-version",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\ssl\\tls-version.yaml",
+      "info": {
+        "name": "TLS Version - Detect",
+        "author": [
+          "pdteam",
+          "pussycat0x"
+        ],
+        "tags": [
+          "ssl",
+          "tls",
+          "discovery"
+        ],
+        "description": "TLS version detection is a security process used to determine the version of the Transport Layer Security (TLS) protocol used by a computer or server.\nIt is important to detect the TLS version in order to ensure secure communication between two computers or servers.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 4
+        }
+      },
+      "type": "ssl",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "matched-at": "www.bbc.co.uk:443",
+      "extracted-results": [
+        "tls12"
+      ],
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:45:55.5822078+10:00",
+      "matcher-status": true
+    },
+    {
+      "template": "\\ssl\\tls-version.yaml",
+      "template-url": "https://cloud.projectdiscovery.io/public/tls-version",
+      "template-id": "tls-version",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\ssl\\tls-version.yaml",
+      "info": {
+        "name": "TLS Version - Detect",
+        "author": [
+          "pdteam",
+          "pussycat0x"
+        ],
+        "tags": [
+          "ssl",
+          "tls",
+          "discovery"
+        ],
+        "description": "TLS version detection is a security process used to determine the version of the Transport Layer Security (TLS) protocol used by a computer or server.\nIt is important to detect the TLS version in order to ensure secure communication between two computers or servers.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 4
+        }
+      },
+      "type": "ssl",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "matched-at": "www.bbc.co.uk:443",
+      "extracted-results": [
+        "tls13"
+      ],
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:45:56.2760475+10:00",
+      "matcher-status": true
+    },
+    {
+      "template": "\\http\\misconfiguration\\missing-sri.yaml",
+      "template-id": "missing-sri",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\missing-sri.yaml",
+      "info": {
+        "name": "Missing Subresource Integrity",
+        "author": [
+          "lucky0x0d",
+          "pulsesecurity.co.nz",
+          "sullo amarsct"
+        ],
+        "tags": [
+          "compliance",
+          "js",
+          "css",
+          "sri",
+          "misconfig",
+          "vuln"
+        ],
+        "description": "Checks if external script and stylesheet tags in the HTML response are missing the Subresource Integrity (SRI) attribute.\n",
+        "reference": [
+          "https://cheatsheetseries.owasp.org/cheatsheets/Third_Party_Javascript_Management_Cheat_Sheet.html#subresource-integrity",
+          "https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-353"
+          ]
+        }
+      },
+      "type": "http",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.bbc.co.uk",
+      "matched-at": "https://www.bbc.co.uk/",
+      "extracted-results": [
+        "https://static.files.bbci.co.uk/core/bundle-component-head-to-head-v2.4a693149b8599ba126f9.js",
+        "https://static.files.bbci.co.uk/core/bundle-fixtures-banner.508713bb491ffc554c0e.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-uas-button.daf7f5aaa67f5b212d34.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-media-player.e2e938ef576201ef2a64.js",
+        "https://static.files.bbci.co.uk/core/bundle-hierarchical-promo-collection.cb114d7ce184863250ce.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-portrait-video-modal.a956cb85adea8d80637c.js",
+        "https://static.files.bbci.co.uk/core/bundle-portrait-video-experience.0b3f5ec3c50b89bbd941.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-call-to-action-link.fa80680c68226e5c83ae.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-error-message.5c3e589e08ed502723be.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-in-situ-media-promo.713d171751aced82861d.js",
+        "https://static.files.bbci.co.uk/core/bundle-base-website.a7beb80df85b976aa8ac.js",
+        "https://static.files.bbci.co.uk/core/bundle-main-heading.9f3ed8bc84a799fda088.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-sport-badge.dd4b04fcf7f7e9a8f517.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-short-form-promo.bf1d9a11945ffe6b57b7.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-hierarchical-promo-collection.82a434758c7db65f8561.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-rich-text.bec0f5453e8e22218967.js",
+        "https://static.files.bbci.co.uk/core/bundle-default-vendors.68c703e9281c7c1d33e1.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-tabs.6b0c7fa4794de2ce344c.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-index-promo.7a34c4b61cc810e06392.js",
+        "https://static.files.bbci.co.uk/core/bundle-billboard.7b09edda060581ed3607.js",
+        "https://static.files.bbci.co.uk/core/bundle-framework.f7e017970ae4a5b1f8fc.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-contributor.5f928871cd5e9a22d15c.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-high-impact-promo.e15364ad022e35daa35a.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-quick-user-actions-menu.7a498eb6857274da0760.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-portrait-video-promo.c9d251333678e0d0efe8.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-non-vignette-billboard.dc6c898e35150bd112b1.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-vignette-billboard.68db044f34bbbb15bf53.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-simple-promo-collection.8d272b7567f2be903652.js",
+        "https://static.files.bbci.co.uk/core/bundle-pwa.c5c1e5084f33ea2fda58.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-image.3f64258261f10d955436.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-promo-carousel.2464f31ee63e0775df11.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-promo.6c779365158e9af385e2.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-carousel.412bdd9b97f8c19efcc3.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-four-quarter-head-to-head.f77bddc05ab01de49225.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-page-type-indicator.9cf749f5dadd927fc608.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-collection-header.83e541b873ef5a6c4aa2.js",
+        "https://static.files.bbci.co.uk/core/bundle-static-links.74bc11b5ccc0158a5e7d.js",
+        "https://static.files.bbci.co.uk/core/bundle-gel.f315b84260869ab176d6.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-product-navigation.7ed10611a13fbc179be3.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-head-to-head.1070927e1c75b61c2286.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-button.185d9e786db760c713fe.js",
+        "https://static.files.bbci.co.uk/core/bundle-product-navigation.ff91774065c1a8ea5b7b.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-static-links.3b6bda631de68ac5a5ed.js",
+        "https://static.files.bbci.co.uk/core/bundle-vendor-optimizely.9ab47623665878697e7e.js",
+        "https://static.files.bbci.co.uk/core/bundle-vendor-date-fns.f7d729fc0e57321ccb50.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-additional-links.2061efb7dd6a2a98c546.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-promo-with-ranking.b3de8c3fd2c603f94e6a.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-global-navigation.e13a014d477c45cb2c60.js",
+        "https://static.files.bbci.co.uk/core/bundle-global-navigation.81cc04cf2e5059ddb935.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-masthead.4ee43f896b31e77121ee.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-metadata-strip.7e4039fe8f55d1d4afd3.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-live-preview-promo.58e13abcda0e0e19c567.js",
+        "https://static.files.bbci.co.uk/core/bundle-simple-promo-collection.f9e3ee2e25125013c98a.js",
+        "https://static.files.bbci.co.uk/core/bundle-website.3617229178139d4d0766.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-metadata-snippet.2f0d436853060113dcba.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-follow.2dd1d6d13705c0015e59.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-information-wrapper.3fbb0c0ca96ce1feb27d.js",
+        "https://static.files.bbci.co.uk/core/bundle-component-information-panel.8aedc57c27d34733fc46.js",
+        "https://static.files.bbci.co.uk/core/bundle-global-footer.791be7d5e929a55c9b5f.js"
+      ],
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:46:35.0307008+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (X11; Linux i686; rv:1.9.7.20) Gecko/ Firefox/3.6.13' 'https://www.bbc.co.uk/'",
+      "matcher-status": true
+    },
+    {
+      "template": "\\http\\misconfiguration\\fastly-debug-headers.yaml",
+      "template-url": "https://cloud.projectdiscovery.io/public/fastly-debug-headers",
+      "template-id": "fastly-debug-headers",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\fastly-debug-headers.yaml",
+      "info": {
+        "name": "Fastly CDN Debug Headers Exposure",
+        "author": [
+          "pussycat0x"
+        ],
+        "tags": [
+          "fastly",
+          "cdn",
+          "exposure",
+          "misconfig"
+        ],
+        "description": "Detected Fastly CDN debug headers being exposed when the Fastly-Debug header was sent in a request.This exposure disclosed sensitive debugging information such as cache paths, TTL values, content digests, surrogate keys, and cache server identities, which could help attackers understand CDN configuration and cache behavior.\n",
+        "reference": [
+          "https://www.fastly.com/documentation/reference/http/http-headers/Fastly-Debug/"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1,
+          "shodan-query": "X-Served-By: cache",
+          "verified": true
+        }
+      },
+      "matcher-name": "fastly-debug-path",
+      "type": "http",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.bbc.co.uk",
+      "matched-at": "https://www.bbc.co.uk",
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:47:34.7077697+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'Fastly-Debug: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1' 'https://www.bbc.co.uk'",
+      "matcher-status": true
+    },
+    {
+      "template": "\\http\\misconfiguration\\fastly-debug-headers.yaml",
+      "template-url": "https://cloud.projectdiscovery.io/public/fastly-debug-headers",
+      "template-id": "fastly-debug-headers",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\fastly-debug-headers.yaml",
+      "info": {
+        "name": "Fastly CDN Debug Headers Exposure",
+        "author": [
+          "pussycat0x"
+        ],
+        "tags": [
+          "fastly",
+          "cdn",
+          "exposure",
+          "misconfig"
+        ],
+        "description": "Detected Fastly CDN debug headers being exposed when the Fastly-Debug header was sent in a request.This exposure disclosed sensitive debugging information such as cache paths, TTL values, content digests, surrogate keys, and cache server identities, which could help attackers understand CDN configuration and cache behavior.\n",
+        "reference": [
+          "https://www.fastly.com/documentation/reference/http/http-headers/Fastly-Debug/"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1,
+          "shodan-query": "X-Served-By: cache",
+          "verified": true
+        }
+      },
+      "matcher-name": "fastly-debug-ttl",
+      "type": "http",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.bbc.co.uk",
+      "matched-at": "https://www.bbc.co.uk",
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:47:34.7077697+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'Fastly-Debug: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1' 'https://www.bbc.co.uk'",
+      "matcher-status": true
+    },
+    {
+      "template": "\\http\\misconfiguration\\fastly-debug-headers.yaml",
+      "template-url": "https://cloud.projectdiscovery.io/public/fastly-debug-headers",
+      "template-id": "fastly-debug-headers",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\fastly-debug-headers.yaml",
+      "info": {
+        "name": "Fastly CDN Debug Headers Exposure",
+        "author": [
+          "pussycat0x"
+        ],
+        "tags": [
+          "fastly",
+          "cdn",
+          "exposure",
+          "misconfig"
+        ],
+        "description": "Detected Fastly CDN debug headers being exposed when the Fastly-Debug header was sent in a request.This exposure disclosed sensitive debugging information such as cache paths, TTL values, content digests, surrogate keys, and cache server identities, which could help attackers understand CDN configuration and cache behavior.\n",
+        "reference": [
+          "https://www.fastly.com/documentation/reference/http/http-headers/Fastly-Debug/"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1,
+          "shodan-query": "X-Served-By: cache",
+          "verified": true
+        }
+      },
+      "matcher-name": "fastly-debug-digest",
+      "type": "http",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.bbc.co.uk",
+      "matched-at": "https://www.bbc.co.uk",
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:47:34.7077697+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'Fastly-Debug: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1' 'https://www.bbc.co.uk'",
+      "matcher-status": true
+    },
+    {
+      "template": "\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "template-id": "http-missing-security-headers",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "info": {
+        "name": "HTTP Missing Security Headers",
+        "author": [
+          "socketz",
+          "geeknik",
+          "g4l1t0",
+          "convisoappsec",
+          "kurohost",
+          "dawid-czarnecki",
+          "forgedhallpass",
+          "jub0bs",
+          "userdehghani",
+          "celbahraoui",
+          "safejulian"
+        ],
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "x-permitted-cross-domain-policies",
+      "type": "http",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.bbc.co.uk",
+      "matched-at": "https://www.bbc.co.uk",
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:47:46.9759894+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36' 'https://www.bbc.co.uk'",
+      "matcher-status": true
+    },
+    {
+      "template": "\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "template-id": "http-missing-security-headers",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "info": {
+        "name": "HTTP Missing Security Headers",
+        "author": [
+          "socketz",
+          "geeknik",
+          "g4l1t0",
+          "convisoappsec",
+          "kurohost",
+          "dawid-czarnecki",
+          "forgedhallpass",
+          "jub0bs",
+          "userdehghani",
+          "celbahraoui",
+          "safejulian"
+        ],
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "cross-origin-embedder-policy",
+      "type": "http",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.bbc.co.uk",
+      "matched-at": "https://www.bbc.co.uk",
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:47:46.9759894+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36' 'https://www.bbc.co.uk'",
+      "matcher-status": true
+    },
+    {
+      "template": "\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "template-id": "http-missing-security-headers",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "info": {
+        "name": "HTTP Missing Security Headers",
+        "author": [
+          "socketz",
+          "geeknik",
+          "g4l1t0",
+          "convisoappsec",
+          "kurohost",
+          "dawid-czarnecki",
+          "forgedhallpass",
+          "jub0bs",
+          "userdehghani",
+          "celbahraoui",
+          "safejulian"
+        ],
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "cross-origin-opener-policy",
+      "type": "http",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.bbc.co.uk",
+      "matched-at": "https://www.bbc.co.uk",
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:47:46.9759894+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36' 'https://www.bbc.co.uk'",
+      "matcher-status": true
+    },
+    {
+      "template": "\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "template-id": "http-missing-security-headers",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "info": {
+        "name": "HTTP Missing Security Headers",
+        "author": [
+          "socketz",
+          "geeknik",
+          "g4l1t0",
+          "convisoappsec",
+          "kurohost",
+          "dawid-czarnecki",
+          "forgedhallpass",
+          "jub0bs",
+          "userdehghani",
+          "celbahraoui",
+          "safejulian"
+        ],
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "cross-origin-resource-policy",
+      "type": "http",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.bbc.co.uk",
+      "matched-at": "https://www.bbc.co.uk",
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:47:46.9759894+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36' 'https://www.bbc.co.uk'",
+      "matcher-status": true
+    },
+    {
+      "template": "\\http\\technologies\\fingerprinthub-web-fingerprints.yaml",
+      "template-id": "fingerprinthub-web-fingerprints",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\fingerprinthub-web-fingerprints.yaml",
+      "info": {
+        "name": "FingerprintHub Technology Fingerprint",
+        "author": [
+          "pdteam",
+          "righettod"
+        ],
+        "tags": [
+          "tech",
+          "discovery"
+        ],
+        "description": "FingerprintHub Technology Fingerprint tests run in nuclei.",
+        "reference": [
+          "https://github.com/0x727/FingerprintHub"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-200"
+          ]
+        }
+      },
+      "matcher-name": "landmark-dus",
+      "type": "http",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.bbc.co.uk",
+      "matched-at": "https://www.bbc.co.uk",
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:47:49.565857+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36' 'https://www.bbc.co.uk'",
+      "matcher-status": true
+    },
+    {
+      "template": "\\http\\misconfiguration\\weak-csp-detect.yaml",
+      "template-id": "weak-csp-detect",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\weak-csp-detect.yaml",
+      "info": {
+        "name": "Weak Content Security Policy - Detect",
+        "author": [
+          "pussycat0x",
+          "celbahraoui"
+        ],
+        "tags": [
+          "csp",
+          "misconfig",
+          "headers"
+        ],
+        "description": "Detected misconfigured CSP directives containing unsafe and overly permissive keywords that weakened resource loading restrictions. This configuration allowed high-risk script behaviors, resulting in reduced protection against XSS attacks.\n",
+        "reference": [
+          "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors",
+          "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src",
+          "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/object-src",
+          "https://content-security-policy.com/"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1,
+          "verified": true
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "unsafe-script-src",
+      "type": "http",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.bbc.co.uk",
+      "matched-at": "https://www.bbc.co.uk",
+      "extracted-results": [
+        "default-src 'none'; script-src 'strict-dynamic' 'nonce-t3i5kJc1ro4Y6Qebknps52odxGMHEqzRZXVg96dMPOFtdRU92y' 'self' 'report-sample' 'unsafe-inline' cdn.syndication.twimg.com connect.facebook.net c.files.bbci.co.uk emp.bbci.co.uk mybbc-analytics.files.bbci.co.uk nav.files.bbci.co.uk news.files.bbci.co.uk platform.twitter.com public.flourish.studio static.bbc.co.uk static.bbci.co.uk static.chartbeat.com static2.chartbeat.com www.bbc.co.uk www.instagram.com www.ons.gov.uk gn-web-assets.api.bbc.com www.google-analytics.com bitesize.files.bbci.co.uk www.tiktok.com lf16-tiktok-web.ttwstatic.com static.files.bbci.co.uk; img-src 'self' https: data:; font-src c.files.bbci.co.uk gel.files.bbci.co.uk static.files.bbci.co.uk static.bbci.co.uk news.files.bbci.co.uk ws-downloads.files.bbci.co.uk bitesize.files.bbci.co.uk; style-src branding.files.bbci.co.uk cdn.riddle.com flo.uri.sh news.files.bbci.co.uk platform.twitter.com static.bbc.co.uk static.bbci.co.uk static.files.bbci.co.uk ton.twimg.com www.riddle.com 'unsafe-inline' lf16-tiktok-web.ttwstatic.com; frame-src 'self' bbc001.carto.com bbc003.carto.com bbc-maps.carto.com cdn.riddle.com chartbeat.com emp.bbc.co.uk emp.bbc.com flo.uri.sh graphics.reuters.com www.reuters.com graphics.thomsonreuters.com dynamic.mc-cdn.io vapi.mc-cdn.io vapi.beta.mc-cdn.io elections.mapcreator.io elections.beta.mapcreator.io cdn.mapcreator.io m.facebook.com news.files.bbci.co.uk personaltaxcalculator2.deloittecloud.co.uk platform.twitter.com public.flourish.studio static2.chartbeat.com syndication.twitter.com web.facebook.com www.bbc.co.uk www.facebook.com www.instagram.com www.tiktok.com www.ons.gov.uk www.riddle.com www.youtube.com www.youtube-nocookie.com uk-script.dotmetrics.net ssp-app-uk.votenow.tv ssp-app-uktest.votenow.tv ssp-app-ukbench.votenow.tv session.test.bbc.co.uk session.bbc.co.uk session.stage.bbc.co.uk bitesize.files.bbci.co.uk; object-src 'none'; manifest-src static.files.bbci.co.uk bitesize.files.bbci.co.uk; media-src 'self' blob: https:; connect-src 'self' https:; child-src blob:; base-uri 'none'; form-action 'self' platform.twitter.com syndication.twitter.com uk-script.dotmetrics.net/DeviceInfo.dotmetrics account.bbc.com/auth/identifier/landing; frame-ancestors 'none'; upgrade-insecure-requests; report-to default; report-uri https://webcore.bbc-reporting-api.app/report-endpoint;"
+      ],
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:47:56.9087628+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:136.0) Gecko/20100101 Firefox/136.0' 'https://www.bbc.co.uk'",
+      "matcher-status": true
+    },
+    {
+      "template": "\\http\\misconfiguration\\xss-deprecated-header.yaml",
+      "template-id": "xss-deprecated-header",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\xss-deprecated-header.yaml",
+      "info": {
+        "name": "XSS-Protection Header - Cross-Site Scripting",
+        "author": [
+          "joshlarsen"
+        ],
+        "tags": [
+          "xss",
+          "misconfig",
+          "generic",
+          "vuln"
+        ],
+        "description": "Setting the XSS-Protection header is deprecated. Setting the header to anything other than `0` can actually introduce an XSS vulnerability.",
+        "reference": [
+          "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection",
+          "https://owasp.org/www-project-secure-headers/#x-xss-protection"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-79"
+          ],
+          "cvss-metrics": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
+        }
+      },
+      "type": "http",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.bbc.co.uk",
+      "matched-at": "https://www.bbc.co.uk",
+      "extracted-results": [
+        "1; mode=block"
+      ],
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:47:56.9108346+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:136.0) Gecko/20100101 Firefox/136.0' 'https://www.bbc.co.uk'",
+      "matcher-status": true
+    },
+    {
+      "template": "\\dns\\dns-saas-service-detection.yaml",
+      "template-id": "dns-saas-service-detection",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\dns\\dns-saas-service-detection.yaml",
+      "info": {
+        "name": "DNS SaaS Service Detection",
+        "author": [
+          "noah @thesubtlety",
+          "pdteam"
+        ],
+        "tags": [
+          "dns",
+          "service",
+          "discovery"
+        ],
+        "description": "A CNAME DNS record was discovered",
+        "reference": [
+          "https://ns1.com/resources/cname",
+          "https://www.theregister.com/2021/02/24/dns_cname_tracking/",
+          "https://www.ionos.com/digitalguide/hosting/technical-matters/cname-record/"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "type": "dns",
+      "host": "www.bbc.co.uk",
+      "matched-at": "www.bbc.co.uk",
+      "extracted-results": [
+        "www.bbc.co.uk.pri.bbc.co.uk"
+      ],
+      "timestamp": "2026-07-03T16:48:06.5639714+10:00",
+      "matcher-status": true
+    },
+    {
+      "template": "\\dns\\caa-fingerprint.yaml",
+      "template-id": "caa-fingerprint",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\dns\\caa-fingerprint.yaml",
+      "info": {
+        "name": "CAA Record",
+        "author": [
+          "pdteam"
+        ],
+        "tags": [
+          "dns",
+          "caa",
+          "discovery"
+        ],
+        "description": "A CAA record was discovered. A CAA record is used to specify which certificate authorities (CAs) are allowed to issue certificates for a domain.",
+        "reference": [
+          "https://support.dnsimple.com/articles/caa-record/#whats-a-caa-record"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-200"
+          ]
+        }
+      },
+      "type": "dns",
+      "host": "www.bbc.co.uk",
+      "matched-at": "www.bbc.co.uk",
+      "timestamp": "2026-07-03T16:48:06.5678645+10:00",
+      "matcher-status": true
+    },
+    {
+      "template": "\\ssl\\detect-ssl-issuer.yaml",
+      "template-url": "https://cloud.projectdiscovery.io/public/ssl-issuer",
+      "template-id": "ssl-issuer",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\ssl\\detect-ssl-issuer.yaml",
+      "info": {
+        "name": "Detect SSL Certificate Issuer",
+        "author": [
+          "lingtren"
+        ],
+        "tags": [
+          "ssl",
+          "tls",
+          "discovery"
+        ],
+        "description": "Extract the issuer's organization from the target's certificate. Issuers are entities which sign and distribute certificates.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "type": "ssl",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "matched-at": "www.bbc.co.uk:443",
+      "extracted-results": [
+        "GlobalSign nv-sa"
+      ],
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:48:06.7243912+10:00",
+      "matcher-status": true
+    },
+    {
+      "template": "\\ssl\\ssl-dns-names.yaml",
+      "template-url": "https://cloud.projectdiscovery.io/public/ssl-dns-names",
+      "template-id": "ssl-dns-names",
+      "template-path": "c:\\projects\\spiderfeet\\.tools\\nuclei-templates\\ssl\\ssl-dns-names.yaml",
+      "info": {
+        "name": "SSL DNS Names",
+        "author": [
+          "pdteam"
+        ],
+        "tags": [
+          "ssl",
+          "tls",
+          "vuln"
+        ],
+        "description": "Extract the Subject Alternative Name (SAN) from the target's certificate. SAN facilitates the usage of additional hostnames with the same certificate.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "type": "ssl",
+      "host": "www.bbc.co.uk",
+      "port": "443",
+      "matched-at": "www.bbc.co.uk:443",
+      "extracted-results": [
+        "cdnedge.bbc.co.uk",
+        "account.bbc.com",
+        "bbc.co.uk",
+        "wwwnews.live.bbc.co.uk",
+        "bbc.com",
+        "www.bbc.co.uk",
+        "bbcrussian.com",
+        "session.bbc.co.uk",
+        "open.live.bbc.co.uk",
+        "news.bbc.co.uk",
+        "newsimg.bbc.co.uk",
+        "newsrss.bbc.co.uk",
+        "playlists.bbc.co.uk",
+        "www.bbc.com",
+        "search.bbc.co.uk",
+        "newsvote.bbc.co.uk",
+        "r.bbci.co.uk",
+        "node1.bbcimg.co.uk",
+        "news.bbcimg.co.uk",
+        "session.bbc.com",
+        "www.bbcrussian.com"
+      ],
+      "ip": "151.101.192.81",
+      "timestamp": "2026-07-03T16:48:06.7243912+10:00",
+      "matcher-status": true
+    }
+  ]
+}

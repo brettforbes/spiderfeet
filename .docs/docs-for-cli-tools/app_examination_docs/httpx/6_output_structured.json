@@ -1,0 +1,353 @@
+{
+  "schema": "httpx_probe_v1",
+  "tool": "httpx",
+  "scenario": "Web probe on subfinder hosts (The Upside .com)",
+  "scenario_id": "from_subfinder_upside_com",
+  "target": "theupside.com",
+  "subfinder_scenario": "corporate_upside_com_passive_cs",
+  "probe_profile": "status-code,title,tech-detect,server,cdn,ip",
+  "host_input_count": 12,
+  "command": "httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_upside_com_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_upside_com.jsonl -silent -threads 15 -timeout 15 -rate-limit 30",
+  "runtime": "windows",
+  "started_at": "2026-07-05T16:05:47.065894+00:00",
+  "duration_s": 21.844,
+  "exit_code": 0,
+  "probe_summary_lines": 8,
+  "text_role": "one line per live URL: url [status] [title] server=\u2026 tech=[\u2026]",
+  "structured_role": "full httpx JSONL probe objects in records[]",
+  "records": [
+    {
+      "timestamp": "2026-07-06T02:05:48.9620305+10:00",
+      "cdn_name": "aws",
+      "cdn_type": "cloud",
+      "port": "443",
+      "url": "https://uat.theupside.com",
+      "input": "uat.theupside.com",
+      "scheme": "https",
+      "webserver": "awselb/2.0",
+      "method": "GET",
+      "host": "3.106.48.93",
+      "path": "/",
+      "time": "88.4247ms",
+      "a": [
+        "13.55.48.164",
+        "3.106.48.93"
+      ],
+      "tech": [
+        "Amazon ELB",
+        "Amazon Web Services"
+      ],
+      "words": 0,
+      "lines": 0,
+      "status_code": 204,
+      "content_length": 0,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "other",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53",
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:05:49.5351031+10:00",
+      "port": "443",
+      "url": "https://returns.theupside.com",
+      "input": "returns.theupside.com",
+      "title": "Returns Center",
+      "scheme": "https",
+      "webserver": "cloudflare",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "2606:4700::6813:b503",
+      "path": "/",
+      "time": "514.1537ms",
+      "a": [
+        "104.19.181.3",
+        "104.19.180.3"
+      ],
+      "aaaa": [
+        "2606:4700::6813:b503",
+        "2606:4700::6813:b403"
+      ],
+      "cname": [
+        "domains.myreturnscenter.com"
+      ],
+      "tech": [
+        "Cloudflare",
+        "Google Cloud",
+        "Google Cloud CDN",
+        "HSTS"
+      ],
+      "words": 392,
+      "lines": 59,
+      "status_code": 404,
+      "content_length": 10482,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "error",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:05:49.9272365+10:00",
+      "cdn_name": "cloudflare",
+      "cdn_type": "waf",
+      "port": "443",
+      "url": "https://image.theupside.com",
+      "input": "image.theupside.com",
+      "scheme": "https",
+      "webserver": "cloudflare",
+      "content_type": "text/plain",
+      "method": "GET",
+      "host": "172.64.151.2",
+      "path": "/",
+      "time": "1.0524295s",
+      "a": [
+        "104.18.36.254",
+        "172.64.151.2"
+      ],
+      "cname": [
+        "img-theupsidesport-com.emarsys.net",
+        "suite16-cf.emarsys.net",
+        "suite16-cf.emarsys.net.cdn.cloudflare.net"
+      ],
+      "tech": [
+        "Cloudflare",
+        "HTTP/3"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 403,
+      "content_length": 17,
+      "failed": false,
+      "cdn": true,
+      "knowledgebase": {
+        "PageType": "error",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:05:50.5835753+10:00",
+      "port": "443",
+      "url": "https://international.theupside.com",
+      "input": "international.theupside.com",
+      "title": "THE UPSIDE | INTERNATIONAL",
+      "scheme": "https",
+      "webserver": "cloudflare",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "2606:4700:3037::6815:178c",
+      "path": "/",
+      "time": "561.561ms",
+      "a": [
+        "104.21.23.140",
+        "172.67.211.84"
+      ],
+      "aaaa": [
+        "2606:4700:3037::ac43:d354",
+        "2606:4700:3037::6815:178c"
+      ],
+      "tech": [
+        "BigCommerce",
+        "Cloudflare",
+        "Cloudflare Browser Insights",
+        "Google Tag Manager",
+        "HSTS",
+        "HTTP/3",
+        "Klaviyo",
+        "jQuery",
+        "jQuery CDN"
+      ],
+      "words": 59113,
+      "lines": 2384,
+      "status_code": 200,
+      "content_length": 254060,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "other",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53",
+        "1.1.1.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:05:50.6385818+10:00",
+      "port": "443",
+      "url": "https://uk.theupside.com",
+      "input": "uk.theupside.com",
+      "title": "THE UPSIDE | UK",
+      "scheme": "https",
+      "webserver": "cloudflare",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "2606:4700:3037::6815:178c",
+      "path": "/",
+      "time": "625.0629ms",
+      "a": [
+        "172.67.211.84",
+        "104.21.23.140"
+      ],
+      "aaaa": [
+        "2606:4700:3037::6815:178c",
+        "2606:4700:3037::ac43:d354"
+      ],
+      "tech": [
+        "BigCommerce",
+        "Cloudflare",
+        "Cloudflare Bot Management",
+        "Google Cloud",
+        "Google Cloud CDN",
+        "Google Tag Manager",
+        "HSTS",
+        "HTTP/3",
+        "Klaviyo",
+        "jQuery",
+        "jQuery CDN"
+      ],
+      "words": 59489,
+      "lines": 2361,
+      "status_code": 200,
+      "content_length": 252893,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "other",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53",
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:05:50.691009+10:00",
+      "port": "443",
+      "url": "https://link2.theupside.com",
+      "input": "link2.theupside.com",
+      "location": "https://suite16.emarsys.net/docroot.html",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "217.175.192.21",
+      "path": "/",
+      "time": "1.8179333s",
+      "a": [
+        "217.175.192.21"
+      ],
+      "cname": [
+        "suite16.emarsys.net"
+      ],
+      "tech": [
+        "HSTS"
+      ],
+      "words": 0,
+      "lines": 0,
+      "status_code": 302,
+      "content_length": 0,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "other",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53",
+        "8.8.8.8:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:05:50.7378215+10:00",
+      "cdn_name": "cloudflare",
+      "cdn_type": "waf",
+      "port": "443",
+      "url": "https://www.theupside.com",
+      "input": "www.theupside.com",
+      "title": "THE UPSIDE | USA",
+      "scheme": "https",
+      "webserver": "cloudflare",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "104.21.23.140",
+      "path": "/",
+      "time": "664.1195ms",
+      "a": [
+        "172.67.211.84",
+        "104.21.23.140"
+      ],
+      "aaaa": [
+        "2606:4700:3037::6815:178c",
+        "2606:4700:3037::ac43:d354"
+      ],
+      "tech": [
+        "BigCommerce",
+        "Cloudflare",
+        "Cloudflare Browser Insights",
+        "Google Tag Manager",
+        "HSTS",
+        "HTTP/3",
+        "Klaviyo",
+        "jQuery",
+        "jQuery CDN"
+      ],
+      "words": 60300,
+      "lines": 2494,
+      "status_code": 200,
+      "content_length": 265288,
+      "failed": false,
+      "cdn": true,
+      "knowledgebase": {
+        "PageType": "other",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.4.4:53",
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:05:51.205687+10:00",
+      "port": "443",
+      "url": "https://link.theupside.com",
+      "input": "link.theupside.com",
+      "location": "https://suite16.emarsys.net/docroot.html",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "217.175.192.21",
+      "path": "/",
+      "time": "2.326916s",
+      "a": [
+        "217.175.192.21"
+      ],
+      "cname": [
+        "suite16.emarsys.net"
+      ],
+      "tech": [
+        "HSTS"
+      ],
+      "words": 0,
+      "lines": 0,
+      "status_code": 302,
+      "content_length": 0,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "other",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "8.8.8.8:53"
+      ]
+    }
+  ]
+}

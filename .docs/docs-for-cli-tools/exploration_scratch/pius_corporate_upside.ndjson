@@ -1,0 +1,17 @@
+{"Type":"preseed","Value":".au Domain Administration Limited","Source":"whois","Data":{"preseed_title":".au Domain Administration Limited","preseed_type":"whois+company"}}
+{"Type":"preseed","Value":"CEO","Source":"whois","Data":{"preseed_title":"CEO","preseed_type":"whois+name"}}
+{"Type":"domain","Value":"theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"www.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"track.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"k8s.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"info.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"spf.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"news.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"email.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"newsletter.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"test.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"mail.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"e.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"aws.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"dev.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}
+{"Type":"domain","Value":"cfjump.theupside.com.au","Source":"crt-sh","Data":{"org":"The Upside Pty Ltd","query":"theupside.com.au"}}

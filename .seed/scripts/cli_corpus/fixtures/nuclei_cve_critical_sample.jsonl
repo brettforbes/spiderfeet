@@ -1,0 +1,1 @@
+{"template-id":"CVE-2021-44228","info":{"name":"Log4j RCE","severity":"critical","reference":["https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-44228"]},"type":"http","host":"app.example.com","matched-at":"https://app.example.com/api","matcher-name":"log4j","timestamp":"2026-06-15T10:00:00.000Z"}

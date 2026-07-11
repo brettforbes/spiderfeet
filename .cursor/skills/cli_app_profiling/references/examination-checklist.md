@@ -8,6 +8,9 @@
 - [ ] **Draft semantic outcome matrix** — every distinct output shape with planned scenario id (rich, sparse, empty, error, clean miss, mode/format variants)
 - [ ] List command families that change **semantic data types** (not just formatting)
 - [ ] Compare permissive vs corporate target behaviour; tune inputs until each matrix row is demonstrated or documented as impossible
+- [ ] Add intentional vuln-lab and/or smaller-org rows when the tool's value is CVE/app-class or org enrichment (not only CDN corporate)
+- [ ] Validate CLI argument forms produce output before locking manifest commands (hostname vs URL, protocol family, API keys)
+- [ ] For multi-mode scanners: draft one-batch-one-goal passes; write tool strategy skill before formal plan
 - [ ] Search the web for practitioner example commands when local trials under-deliver
 - [ ] Write formal examination plan with scenario ids
 - [ ] Write `.strategy/<tool>_strategy.skill`
@@ -16,6 +19,8 @@
 
 - [ ] Add/update `.seed/scripts/cli_corpus/manifests/<tool>.yaml`
 - [ ] Run `harvest.py` for each scenario (structured + text per rules; `cls` before text-only runs)
+- [ ] For WSL tools: do not run `wsl --shutdown` before harvest; confirm DNS resolves in the same WSL session
+- [ ] For deferred targets: `harvest_deferred` + placeholder bundle; schedule re-harvest
 - [ ] Verify structured JSON includes command, timestamp, scan metadata, and `exit_status` (text-only tools)
 - [ ] Confirm structured counts match text (`scan_tries`, `empty_scans`, row counts)
 - [ ] Confirm no `head`/`tail` truncation in manifest commands or captured text
@@ -40,3 +45,5 @@
 - Skip corporate-target scenarios
 - Promote nugget types without evidence bundle
 - Run Aircrack-ng until hardware available
+- Treat empty export files as completed exploration batches
+- Lock examinations that only capture info noise when the matrix row needs critical/CVE/org signal

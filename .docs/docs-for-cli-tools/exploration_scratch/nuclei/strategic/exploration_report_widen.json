@@ -1,0 +1,1169 @@
+{
+  "generated_at": "2026-07-04T17:08:19.964420+00:00",
+  "strategy_skill": ".cursor/skills/nuclei_strategy/SKILL.md",
+  "output_dir": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic",
+  "target_scores": {
+    "scanme_nmap_org": {
+      "total_records": 15,
+      "severities": {
+        "info": 12,
+        "low": 3
+      },
+      "types": {
+        "http": 15
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_misconfig_path",
+        "phase_b_apache"
+      ],
+      "signal_score": 4.2
+    },
+    "testphp_vulnweb": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "testasp_vulnweb": {
+      "total_records": 7,
+      "severities": {
+        "info": 7
+      },
+      "types": {
+        "http": 5,
+        "javascript": 2
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_misconfig_path"
+      ],
+      "signal_score": 0.7
+    },
+    "testhtml5_vulnweb": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "testfire_demo": {
+      "total_records": 3,
+      "severities": {
+        "info": 3
+      },
+      "types": {
+        "http": 2,
+        "javascript": 1
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_misconfig_path"
+      ],
+      "signal_score": 0.3
+    },
+    "vco_fund": {
+      "total_records": 20,
+      "severities": {
+        "info": 20
+      },
+      "types": {
+        "http": 20
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_misconfig_path",
+        "phase_b_drupal"
+      ],
+      "signal_score": 2.0
+    }
+  },
+  "ranking": [
+    {
+      "slug": "scanme_nmap_org",
+      "total_records": 15,
+      "severities": {
+        "info": 12,
+        "low": 3
+      },
+      "types": {
+        "http": 15
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_misconfig_path",
+        "phase_b_apache"
+      ],
+      "signal_score": 4.2
+    },
+    {
+      "slug": "vco_fund",
+      "total_records": 20,
+      "severities": {
+        "info": 20
+      },
+      "types": {
+        "http": 20
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_misconfig_path",
+        "phase_b_drupal"
+      ],
+      "signal_score": 2.0
+    },
+    {
+      "slug": "testasp_vulnweb",
+      "total_records": 7,
+      "severities": {
+        "info": 7
+      },
+      "types": {
+        "http": 5,
+        "javascript": 2
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_misconfig_path"
+      ],
+      "signal_score": 0.7
+    },
+    {
+      "slug": "testfire_demo",
+      "total_records": 3,
+      "severities": {
+        "info": 3
+      },
+      "types": {
+        "http": 2,
+        "javascript": 1
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_misconfig_path"
+      ],
+      "signal_score": 0.3
+    },
+    {
+      "slug": "testphp_vulnweb",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "testhtml5_vulnweb",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    }
+  ],
+  "batches": {
+    "scanme_nmap_org": [
+      {
+        "target": "scanme_nmap_org",
+        "url": "http://scanme.nmap.org",
+        "phase_id": "phase_a_tech",
+        "phase_name": "Tech fingerprint (chaining input)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://scanme.nmap.org -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags tech -severity info -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_a_tech.jsonl",
+        "exit_code": 0,
+        "duration_s": 19.91,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('apache', 'discovery', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "apache-detect",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_a_tech.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_nmap_org",
+        "url": "http://scanme.nmap.org",
+        "phase_id": "phase_b_exposure",
+        "phase_name": "Exposure tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://scanme.nmap.org -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags exposure -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_b_exposure.jsonl",
+        "exit_code": 0,
+        "duration_s": 38.59,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "low": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=low|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('apache', 'exposure', 'misconfig')": 1
+          },
+          "top_templates": [
+            [
+              "apache-mod-negotiation-listing",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_b_exposure.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_nmap_org",
+        "url": "http://scanme.nmap.org",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "phase_name": "HTTP vulnerabilities path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://scanme.nmap.org -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\vulnerabilities -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_b_vulnerabilities_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 35.91,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_b_vulnerabilities_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_nmap_org",
+        "url": "http://scanme.nmap.org",
+        "phase_id": "phase_b_cves_path",
+        "phase_name": "Full http/cves path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://scanme.nmap.org -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\cves -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_b_cves_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 86.69,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_b_cves_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_nmap_org",
+        "url": "http://scanme.nmap.org",
+        "phase_id": "phase_b_misconfig_path",
+        "phase_name": "HTTP misconfiguration path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://scanme.nmap.org -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_b_misconfig_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 23.94,
+        "record_count": 11,
+        "summary": {
+          "record_count": 11,
+          "unique_templates_matched": 2,
+          "severities": {
+            "info": 10,
+            "low": 1
+          },
+          "types": {
+            "http": 11
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 10,
+            "severity=low|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('apache', 'exposure', 'misconfig')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              10
+            ],
+            [
+              "apache-mod-negotiation-listing",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_b_misconfig_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_nmap_org",
+        "url": "http://scanme.nmap.org",
+        "phase_id": "phase_c_crit_high",
+        "phase_name": "Critical+high (all matching templates)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://scanme.nmap.org -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -severity critical -severity high -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_c_crit_high.jsonl",
+        "exit_code": 0,
+        "duration_s": 112.83,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_c_crit_high.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_nmap_org",
+        "url": "http://scanme.nmap.org",
+        "phase_id": "phase_b_apache",
+        "phase_name": "Apache tag",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://scanme.nmap.org -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags apache -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_b_apache.jsonl",
+        "exit_code": 0,
+        "duration_s": 23.74,
+        "record_count": 2,
+        "summary": {
+          "record_count": 2,
+          "unique_templates_matched": 2,
+          "severities": {
+            "low": 1,
+            "info": 1
+          },
+          "types": {
+            "http": 2
+          },
+          "shapes": {
+            "severity=low|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('apache', 'exposure', 'misconfig')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('apache', 'discovery', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "apache-mod-negotiation-listing",
+              1
+            ],
+            [
+              "apache-detect",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_b_apache.jsonl",
+        "skipped": false
+      }
+    ],
+    "testphp_vulnweb": [
+      {
+        "target": "testphp_vulnweb",
+        "url": "http://testphp.vulnweb.com",
+        "phase_id": "phase_a_tech",
+        "phase_name": "Tech fingerprint (chaining input)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testphp.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags tech -severity info -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testphp_vulnweb_phase_a_tech.jsonl",
+        "exit_code": 0,
+        "duration_s": 843.01,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testphp_vulnweb_phase_a_tech.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testphp_vulnweb",
+        "url": "http://testphp.vulnweb.com",
+        "phase_id": "phase_b_exposure",
+        "phase_name": "Exposure tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testphp.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags exposure -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testphp_vulnweb_phase_b_exposure.jsonl",
+        "exit_code": 0,
+        "duration_s": 1543.34,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testphp_vulnweb_phase_b_exposure.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testphp_vulnweb",
+        "url": "http://testphp.vulnweb.com",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "phase_name": "HTTP vulnerabilities path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testphp.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\vulnerabilities -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testphp_vulnweb_phase_b_vulnerabilities_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 91.03,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testphp_vulnweb_phase_b_vulnerabilities_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testphp_vulnweb",
+        "url": "http://testphp.vulnweb.com",
+        "phase_id": "phase_b_cves_path",
+        "phase_name": "Full http/cves path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testphp.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\cves -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testphp_vulnweb_phase_b_cves_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 211.67,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testphp_vulnweb_phase_b_cves_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testphp_vulnweb",
+        "url": "http://testphp.vulnweb.com",
+        "phase_id": "phase_b_misconfig_path",
+        "phase_name": "HTTP misconfiguration path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testphp.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testphp_vulnweb_phase_b_misconfig_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 151.14,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testphp_vulnweb_phase_b_misconfig_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testphp_vulnweb",
+        "url": "http://testphp.vulnweb.com",
+        "phase_id": "phase_c_crit_high",
+        "phase_name": "Critical+high (all matching templates)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testphp.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -severity critical -severity high -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testphp_vulnweb_phase_c_crit_high.jsonl",
+        "exit_code": 0,
+        "duration_s": 68.64,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testphp_vulnweb_phase_c_crit_high.jsonl",
+        "skipped": false
+      }
+    ],
+    "testasp_vulnweb": [
+      {
+        "target": "testasp_vulnweb",
+        "url": "http://testasp.vulnweb.com",
+        "phase_id": "phase_a_tech",
+        "phase_name": "Tech fingerprint (chaining input)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testasp.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags tech -severity info -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_a_tech.jsonl",
+        "exit_code": 0,
+        "duration_s": 198.72,
+        "record_count": 3,
+        "summary": {
+          "record_count": 3,
+          "unique_templates_matched": 2,
+          "severities": {
+            "info": 3
+          },
+          "types": {
+            "http": 3
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 2,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('iis', 'microsoft', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "tech-detect",
+              2
+            ],
+            [
+              "microsoft-iis-version",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_a_tech.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testasp_vulnweb",
+        "url": "http://testasp.vulnweb.com",
+        "phase_id": "phase_b_exposure",
+        "phase_name": "Exposure tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testasp.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags exposure -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_b_exposure.jsonl",
+        "exit_code": 0,
+        "duration_s": 308.34,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_b_exposure.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testasp_vulnweb",
+        "url": "http://testasp.vulnweb.com",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "phase_name": "HTTP vulnerabilities path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testasp.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\vulnerabilities -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_b_vulnerabilities_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 42.47,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_b_vulnerabilities_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testasp_vulnweb",
+        "url": "http://testasp.vulnweb.com",
+        "phase_id": "phase_b_cves_path",
+        "phase_name": "Full http/cves path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testasp.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\cves -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_b_cves_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 932.66,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_b_cves_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testasp_vulnweb",
+        "url": "http://testasp.vulnweb.com",
+        "phase_id": "phase_b_misconfig_path",
+        "phase_name": "HTTP misconfiguration path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testasp.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_b_misconfig_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 72.83,
+        "record_count": 4,
+        "summary": {
+          "record_count": 4,
+          "unique_templates_matched": 3,
+          "severities": {
+            "info": 4
+          },
+          "types": {
+            "javascript": 2,
+            "http": 2
+          },
+          "shapes": {
+            "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cookie', 'http', 'misconfig')": 2,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('edb', 'iis', 'vuln')": 2
+          },
+          "top_templates": [
+            [
+              "iis-shortname-detect",
+              2
+            ],
+            [
+              "cookies-without-secure",
+              1
+            ],
+            [
+              "cookies-without-httponly",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_b_misconfig_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testasp_vulnweb",
+        "url": "http://testasp.vulnweb.com",
+        "phase_id": "phase_c_crit_high",
+        "phase_name": "Critical+high (all matching templates)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testasp.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -severity critical -severity high -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_c_crit_high.jsonl",
+        "exit_code": 0,
+        "duration_s": 106.42,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testasp_vulnweb_phase_c_crit_high.jsonl",
+        "skipped": false
+      }
+    ],
+    "testhtml5_vulnweb": [
+      {
+        "target": "testhtml5_vulnweb",
+        "url": "http://testhtml5.vulnweb.com",
+        "phase_id": "phase_a_tech",
+        "phase_name": "Tech fingerprint (chaining input)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testhtml5.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags tech -severity info -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_a_tech.jsonl",
+        "exit_code": 0,
+        "duration_s": 844.11,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_a_tech.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testhtml5_vulnweb",
+        "url": "http://testhtml5.vulnweb.com",
+        "phase_id": "phase_b_exposure",
+        "phase_name": "Exposure tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testhtml5.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags exposure -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_b_exposure.jsonl",
+        "exit_code": 0,
+        "duration_s": 1671.41,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_b_exposure.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testhtml5_vulnweb",
+        "url": "http://testhtml5.vulnweb.com",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "phase_name": "HTTP vulnerabilities path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testhtml5.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\vulnerabilities -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_b_vulnerabilities_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 90.98,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_b_vulnerabilities_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testhtml5_vulnweb",
+        "url": "http://testhtml5.vulnweb.com",
+        "phase_id": "phase_b_cves_path",
+        "phase_name": "Full http/cves path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testhtml5.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\cves -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_b_cves_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 461.67,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_b_cves_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testhtml5_vulnweb",
+        "url": "http://testhtml5.vulnweb.com",
+        "phase_id": "phase_b_misconfig_path",
+        "phase_name": "HTTP misconfiguration path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testhtml5.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_b_misconfig_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 560.56,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_b_misconfig_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testhtml5_vulnweb",
+        "url": "http://testhtml5.vulnweb.com",
+        "phase_id": "phase_c_crit_high",
+        "phase_name": "Critical+high (all matching templates)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://testhtml5.vulnweb.com -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -severity critical -severity high -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_c_crit_high.jsonl",
+        "exit_code": 0,
+        "duration_s": 386.67,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_c_crit_high.jsonl",
+        "skipped": false
+      }
+    ],
+    "testfire_demo": [
+      {
+        "target": "testfire_demo",
+        "url": "http://demo.testfire.net",
+        "phase_id": "phase_a_tech",
+        "phase_name": "Tech fingerprint (chaining input)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://demo.testfire.net -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags tech -severity info -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_a_tech.jsonl",
+        "exit_code": 0,
+        "duration_s": 224.78,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('apache', 'discovery', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "apache-detect",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_a_tech.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testfire_demo",
+        "url": "http://demo.testfire.net",
+        "phase_id": "phase_b_exposure",
+        "phase_name": "Exposure tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://demo.testfire.net -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags exposure -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_b_exposure.jsonl",
+        "exit_code": 0,
+        "duration_s": 85.44,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('api', 'exposure', 'swagger')": 1
+          },
+          "top_templates": [
+            [
+              "swagger-api",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_b_exposure.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testfire_demo",
+        "url": "http://demo.testfire.net",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "phase_name": "HTTP vulnerabilities path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://demo.testfire.net -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\vulnerabilities -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_b_vulnerabilities_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 251.02,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_b_vulnerabilities_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testfire_demo",
+        "url": "http://demo.testfire.net",
+        "phase_id": "phase_b_cves_path",
+        "phase_name": "Full http/cves path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://demo.testfire.net -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\cves -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_b_cves_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 11.3,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_b_cves_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testfire_demo",
+        "url": "http://demo.testfire.net",
+        "phase_id": "phase_b_misconfig_path",
+        "phase_name": "HTTP misconfiguration path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://demo.testfire.net -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_b_misconfig_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 74.3,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "javascript": 1
+          },
+          "shapes": {
+            "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cookie', 'http', 'misconfig')": 1
+          },
+          "top_templates": [
+            [
+              "cookies-without-secure",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_b_misconfig_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testfire_demo",
+        "url": "http://demo.testfire.net",
+        "phase_id": "phase_c_crit_high",
+        "phase_name": "Critical+high (all matching templates)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://demo.testfire.net -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -severity critical -severity high -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_c_crit_high.jsonl",
+        "exit_code": 0,
+        "duration_s": 167.92,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_c_crit_high.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "testfire_demo",
+        "url": "http://demo.testfire.net",
+        "phase_id": "phase_b_apache",
+        "phase_name": "Apache tag",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u http://demo.testfire.net -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags apache -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_b_apache.jsonl",
+        "exit_code": 0,
+        "duration_s": 10.62,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testfire_demo_phase_b_apache.jsonl",
+        "skipped": false
+      }
+    ],
+    "vco_fund": [
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_a_tech",
+        "phase_name": "Tech fingerprint (chaining input)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags tech -severity info -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_a_tech.jsonl",
+        "exit_code": 0,
+        "duration_s": 49.72,
+        "record_count": 8,
+        "summary": {
+          "record_count": 8,
+          "unique_templates_matched": 4,
+          "severities": {
+            "info": 8
+          },
+          "types": {
+            "http": 8
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 6,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'drupal', 'tech')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cms', 'discovery', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "tech-detect",
+              5
+            ],
+            [
+              "drupal-detect",
+              1
+            ],
+            [
+              "fingerprinthub-web-fingerprints",
+              1
+            ],
+            [
+              "metatag-cms",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_a_tech.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_b_exposure",
+        "phase_name": "Exposure tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags exposure -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_exposure.jsonl",
+        "exit_code": 0,
+        "duration_s": 144.61,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('config', 'exposure', 'vuln')": 1
+          },
+          "top_templates": [
+            [
+              "web-config",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_exposure.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "phase_name": "HTTP vulnerabilities path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\vulnerabilities -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_vulnerabilities_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 54.91,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_vulnerabilities_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_b_cves_path",
+        "phase_name": "Full http/cves path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\cves -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_cves_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 95.83,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_cves_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_b_misconfig_path",
+        "phase_name": "HTTP misconfiguration path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_misconfig_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 46.75,
+        "record_count": 9,
+        "summary": {
+          "record_count": 9,
+          "unique_templates_matched": 2,
+          "severities": {
+            "info": 9
+          },
+          "types": {
+            "http": 9
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 8,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('compliance', 'css', 'js')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              8
+            ],
+            [
+              "missing-sri",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_misconfig_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_c_crit_high",
+        "phase_name": "Critical+high (all matching templates)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -severity critical -severity high -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_c_crit_high.jsonl",
+        "exit_code": 0,
+        "duration_s": 154.98,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_c_crit_high.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_b_drupal",
+        "phase_name": "Drupal tag",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags drupal -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_drupal.jsonl",
+        "exit_code": 0,
+        "duration_s": 37.41,
+        "record_count": 2,
+        "summary": {
+          "record_count": 2,
+          "unique_templates_matched": 2,
+          "severities": {
+            "info": 2
+          },
+          "types": {
+            "http": 2
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'drupal', 'tech')": 1,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'drupal', 'panel')": 1
+          },
+          "top_templates": [
+            [
+              "drupal-detect",
+              1
+            ],
+            [
+              "drupal-login",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_drupal.jsonl",
+        "skipped": false
+      }
+    ]
+  }
+}

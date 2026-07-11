@@ -1,0 +1,99 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "scanme_nmap_org_phase_b_apache",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_b_apache.jsonl",
+  "started_at": "2026-07-04T14:21:44.498433+00:00",
+  "finding_summary_lines": 2,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/apache-mod-negotiation-listing",
+      "template-id": "apache-mod-negotiation-listing",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\apache\\apache-mod-negotiation-listing.yaml",
+      "info": {
+        "name": "Apache mod_negotiation - Pseudo Directory Listing",
+        "author": [
+          "0x_akoko"
+        ],
+        "tags": [
+          "apache",
+          "misconfig",
+          "exposure",
+          "mod-negotiation"
+        ],
+        "description": "Detected Apache server with mod_negotiation and MultiViews enabled, exposing a pseudo directory listing when invalid Accept headers are sent to extensionless filenames.\n",
+        "reference": [
+          "https://www.acunetix.com/vulnerabilities/web/apache-mod_negotiation-filename-bruteforcing/",
+          "https://cwe.mitre.org/data/definitions/538.html"
+        ],
+        "severity": "low",
+        "metadata": {
+          "max-request": 5,
+          "verified": true
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-538"
+          ],
+          "cvss-metrics": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss-score": 5.3
+        }
+      },
+      "extractor-name": "exposed_files",
+      "type": "http",
+      "host": "scanme.nmap.org",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://scanme.nmap.org",
+      "path": "/index",
+      "matched-at": "http://scanme.nmap.org/index",
+      "extracted-results": [
+        "index.html"
+      ],
+      "meta": {
+        "path": "/index"
+      },
+      "ip": "45.33.32.156",
+      "timestamp": "2026-07-05T00:21:23.8447266+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: fake/fake' -H 'Host: scanme.nmap.org' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.5.20' 'http://scanme.nmap.org/index'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/apache-detect",
+      "template-id": "apache-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\apache\\apache-detect.yaml",
+      "info": {
+        "name": "Apache Detection",
+        "author": [
+          "philippedelteil"
+        ],
+        "tags": [
+          "tech",
+          "apache",
+          "discovery"
+        ],
+        "description": "Some Apache servers have the version on the response header. The OpenSSL version can be also obtained",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "type": "http",
+      "host": "scanme.nmap.org",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://scanme.nmap.org",
+      "matched-at": "http://scanme.nmap.org",
+      "extracted-results": [
+        "Apache/2.4.7 (Ubuntu)"
+      ],
+      "ip": "45.33.32.156",
+      "timestamp": "2026-07-05T00:21:26.6929568+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (X11; Linux i686; rv:1.9.5.20) Gecko/ Firefox/6.0' 'http://scanme.nmap.org'",
+      "matcher-status": true
+    }
+  ]
+}

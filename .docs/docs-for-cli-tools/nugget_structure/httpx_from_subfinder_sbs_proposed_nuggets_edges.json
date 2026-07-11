@@ -1,0 +1,2465 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "nugget_instance_id": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "httpx probe scan",
+      "nugget_data": "sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SCAN_CLI--6b47f659-cc7c-56c4-98d0-ffc0c32806c9",
+      "nugget_instance_id": "SCAN_CLI--6b47f659-cc7c-56c4-98d0-ffc0c32806c9",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_sbs_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_sbs.jsonl -silent -threads 25 -timeout 20 -rate-limit 50",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "nugget_instance_id": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--90403186-07b6-5d46-a83e-212ae719c7c9",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--90403186-07b6-5d46-a83e-212ae719c7c9",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.dan-1.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--8691855f-06b0-5c01-b040-00b95badef2c",
+      "nugget_instance_id": "INTERNET_NAME--8691855f-06b0-5c01-b040-00b95badef2c",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "52.64.45.174",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "nugget_instance_id": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "nugget_id": "HTTP_CODE",
+      "nugget_type": "DATA",
+      "nugget_description": "HTTP Status Code",
+      "nugget_data": "403",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "nugget_instance_id": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "nugget_id": "PROVIDER_HOSTING",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Hosting Provider",
+      "nugget_data": "aws",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--841cfd41-e597-5241-853a-44d6467d9f3b",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--841cfd41-e597-5241-853a-44d6467d9f3b",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.alejandrogo.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--e9481e61-4add-5f15-9936-25220f0febf4",
+      "nugget_instance_id": "INTERNET_NAME--e9481e61-4add-5f15-9936-25220f0febf4",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "13.237.197.229",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--93d13540-23fa-5ba3-bc37-35fc345412a7",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--93d13540-23fa-5ba3-bc37-35fc345412a7",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.alego-1.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--95b93231-0d43-5431-b20c-3c7b0b12648b",
+      "nugget_instance_id": "INTERNET_NAME--95b93231-0d43-5431-b20c-3c7b0b12648b",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.104.41.239",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--7e50f86c-7735-5d79-9f63-a2c615c51d15",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--7e50f86c-7735-5d79-9f63-a2c615c51d15",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.beta.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--8d6d395e-1c89-5060-ba7d-123fa89c548b",
+      "nugget_instance_id": "INTERNET_NAME--8d6d395e-1c89-5060-ba7d-123fa89c548b",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.25.21.202",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--aa8de9b0-4279-5bca-8fe5-892541571b03",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--aa8de9b0-4279-5bca-8fe5-892541571b03",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.dan.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--dea74b15-9f64-51c3-a59e-003accac9a71",
+      "nugget_instance_id": "INTERNET_NAME--dea74b15-9f64-51c3-a59e-003accac9a71",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "13.237.58.83",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--f77b3724-3841-5499-a0b3-2dd33085f68d",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--f77b3724-3841-5499-a0b3-2dd33085f68d",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.analytics.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--ec3eeaca-a2e1-5c19-915a-f83d41c4f199",
+      "nugget_instance_id": "INTERNET_NAME--ec3eeaca-a2e1-5c19-915a-f83d41c4f199",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.104.69.171",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--4a8794fd-1e82-5994-a1c5-87da5c621dbd",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--4a8794fd-1e82-5994-a1c5-87da5c621dbd",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.chrisfo.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--ace8a8da-4b96-5eb1-a7c9-43a7311bbdbc",
+      "nugget_instance_id": "INTERNET_NAME--ace8a8da-4b96-5eb1-a7c9-43a7311bbdbc",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "52.63.78.84",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--73289e2c-8504-50e5-843a-def343ab207a",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--73289e2c-8504-50e5-843a-def343ab207a",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.adobe.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--62eaaba5-a1c4-5f1d-9de0-de4d12919471",
+      "nugget_instance_id": "INTERNET_NAME--62eaaba5-a1c4-5f1d-9de0-de4d12919471",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "32.236.65.92",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--b62e168f-df02-58fa-970d-723b0ab4a69b",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--b62e168f-df02-58fa-970d-723b0ab4a69b",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.freeze.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--b10f2dac-f033-5158-adbf-947c68d0d4e8",
+      "nugget_instance_id": "INTERNET_NAME--b10f2dac-f033-5158-adbf-947c68d0d4e8",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "54.153.170.132",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--dd997917-b369-55e3-975d-5633a6f50adb",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--dd997917-b369-55e3-975d-5633a6f50adb",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.alego.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--8481c8cf-4250-5fc3-b55b-67bd39b98924",
+      "nugget_instance_id": "INTERNET_NAME--8481c8cf-4250-5fc3-b55b-67bd39b98924",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "52.65.212.70",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--9f6b801a-5263-574c-9ec1-2d2a4efc24b9",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--9f6b801a-5263-574c-9ec1-2d2a4efc24b9",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://epgservice.c.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--34fd354f-708b-5544-bb47-9d2eeba41f7b",
+      "nugget_instance_id": "INTERNET_NAME--34fd354f-708b-5544-bb47-9d2eeba41f7b",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "32.236.178.94",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--59b16d44-ef3d-58e8-9d85-2f26358c6087",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--59b16d44-ef3d-58e8-9d85-2f26358c6087",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.chrisfo-1.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--8b600b7b-325c-5c7c-b0a1-59998d83e209",
+      "nugget_instance_id": "INTERNET_NAME--8b600b7b-325c-5c7c-b0a1-59998d83e209",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "13.210.130.172",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--d52b2263-364c-5ef5-959b-68edb804183a",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--d52b2263-364c-5ef5-959b-68edb804183a",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.bspcloud.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--9ad4f9a3-9f13-5103-a4b0-90e1276a4b08",
+      "nugget_instance_id": "INTERNET_NAME--9ad4f9a3-9f13-5103-a4b0-90e1276a4b08",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "13.238.34.135",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--a534c1ed-e21c-5c6e-89cb-1d980d5c65fd",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--a534c1ed-e21c-5c6e-89cb-1d980d5c65fd",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.cloud.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--d46083d7-db68-5f4a-b12a-4c337b24354c",
+      "nugget_instance_id": "INTERNET_NAME--d46083d7-db68-5f4a-b12a-4c337b24354c",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "54.79.234.201",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--a9eb5e9d-aa47-57c3-840b-0b11ad21f2cb",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--a9eb5e9d-aa47-57c3-840b-0b11ad21f2cb",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.migrate.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--de10826c-0bde-5f41-99e0-da7747a12d79",
+      "nugget_instance_id": "INTERNET_NAME--de10826c-0bde-5f41-99e0-da7747a12d79",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "52.62.1.74",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--c0aa9cc3-f1c3-5ff4-b118-ac88f34db152",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--c0aa9cc3-f1c3-5ff4-b118-ac88f34db152",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://after64.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--72d0cd23-568f-52d9-8d31-2bac7ff45f29",
+      "nugget_instance_id": "INTERNET_NAME--72d0cd23-568f-52d9-8d31-2bac7ff45f29",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.33.238.52",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_CODE--54debc6f-0098-5120-9f22-4c80ce11548f",
+      "nugget_instance_id": "HTTP_CODE--54debc6f-0098-5120-9f22-4c80ce11548f",
+      "nugget_id": "HTTP_CODE",
+      "nugget_type": "DATA",
+      "nugget_description": "HTTP Status Code",
+      "nugget_data": "301",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "WEBSERVER_BANNER--9100f64c-bfbb-53ba-8165-6445dc62de03",
+      "nugget_instance_id": "WEBSERVER_BANNER--9100f64c-bfbb-53ba-8165-6445dc62de03",
+      "nugget_id": "WEBSERVER_BANNER",
+      "nugget_type": "DATA",
+      "nugget_description": "Web Server",
+      "nugget_data": "awselb/2.0",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--2053d8c7-f5fa-54c7-bf5b-78043d74ca88",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--2053d8c7-f5fa-54c7-bf5b-78043d74ca88",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "Amazon ELB",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--cf40919d-939d-5bcb-9dc3-afd355521a04",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--cf40919d-939d-5bcb-9dc3-afd355521a04",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "Amazon Web Services",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--1f7ec470-b02b-5732-8d3b-714c4a2aae37",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--1f7ec470-b02b-5732-8d3b-714c4a2aae37",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://amp.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--8bd6f73c-a4f9-5240-8f8e-a9e9d8c7b874",
+      "nugget_instance_id": "INTERNET_NAME--8bd6f73c-a4f9-5240-8f8e-a9e9d8c7b874",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "32.236.21.220",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "nugget_instance_id": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "nugget_id": "HTTP_CODE",
+      "nugget_type": "DATA",
+      "nugget_description": "HTTP Status Code",
+      "nugget_data": "200",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "WEBSERVER_BANNER--78d3a718-c4ae-5506-aca4-de00e5075459",
+      "nugget_instance_id": "WEBSERVER_BANNER--78d3a718-c4ae-5506-aca4-de00e5075459",
+      "nugget_id": "WEBSERVER_BANNER",
+      "nugget_type": "DATA",
+      "nugget_description": "Web Server",
+      "nugget_data": "nginx",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--fe567a97-a761-58d1-ba46-ed02c4852545",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--fe567a97-a761-58d1-ba46-ed02c4852545",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "Nginx",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--9c115c46-243f-5fa4-bbeb-4ee3b63666fc",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--9c115c46-243f-5fa4-bbeb-4ee3b63666fc",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.dan.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--c69b6e99-5f88-5e18-8d3a-3a403f35a09f",
+      "nugget_instance_id": "INTERNET_NAME--c69b6e99-5f88-5e18-8d3a-3a403f35a09f",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "13.54.222.221",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--9a60f184-f4cb-5645-ab6a-c502512c1029",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--9a60f184-f4cb-5645-ab6a-c502512c1029",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.mkoga-1.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--36c18925-1c20-505d-9fe2-0491da0f5e68",
+      "nugget_instance_id": "INTERNET_NAME--36c18925-1c20-505d-9fe2-0491da0f5e68",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "54.66.100.140",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--decb3fd3-e023-5837-9301-ee439f686c8e",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--decb3fd3-e023-5837-9301-ee439f686c8e",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.mad-1.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--50047ce1-c7be-51b3-8d5d-335c4e5a19fd",
+      "nugget_instance_id": "INTERNET_NAME--50047ce1-c7be-51b3-8d5d-335c4e5a19fd",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "54.252.110.155",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--7ab6b506-d46b-5fbc-9800-286aca395a50",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--7ab6b506-d46b-5fbc-9800-286aca395a50",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.mkoga-2.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--974d5cdd-f832-560f-8c90-6995cd4a9922",
+      "nugget_instance_id": "INTERNET_NAME--974d5cdd-f832-560f-8c90-6995cd4a9922",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.24.143.83",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--ce3e31cc-5b7d-5ec1-9a4e-bbff7fa1d197",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--ce3e31cc-5b7d-5ec1-9a4e-bbff7fa1d197",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.platform.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--f1eb8b90-7800-5d98-b70d-8d898a3011fe",
+      "nugget_instance_id": "INTERNET_NAME--f1eb8b90-7800-5d98-b70d-8d898a3011fe",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "15.135.250.251",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--57864e3d-b2bb-5618-abb0-1a114988f822",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--57864e3d-b2bb-5618-abb0-1a114988f822",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fusion-ses.prod.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--42c4163c-6b7c-5542-8e3a-fc2757a82a81",
+      "nugget_instance_id": "INTERNET_NAME--42c4163c-6b7c-5542-8e3a-fc2757a82a81",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.106.25.208",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--c14e613f-abc4-5735-98eb-342493739f99",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--c14e613f-abc4-5735-98eb-342493739f99",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.prod.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--c3e88dea-4f97-56e8-bcea-3953d5940439",
+      "nugget_instance_id": "INTERNET_NAME--c3e88dea-4f97-56e8-bcea-3953d5940439",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.104.24.28",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--1ffa078a-8755-5988-b2b4-4b94b156a50e",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--1ffa078a-8755-5988-b2b4-4b94b156a50e",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.pform.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--c1dc7229-6517-5dea-bd4b-ef605ecfeef1",
+      "nugget_instance_id": "INTERNET_NAME--c1dc7229-6517-5dea-bd4b-ef605ecfeef1",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "52.63.158.242",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--f0854be5-67ea-502c-8c82-52c667df5e55",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--f0854be5-67ea-502c-8c82-52c667df5e55",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://mobilelayer.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--0e42f8fc-466f-56f2-a836-9ec6cf2e673b",
+      "nugget_instance_id": "INTERNET_NAME--0e42f8fc-466f-56f2-a836-9ec6cf2e673b",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.105.227.54",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--8d0f5032-cfe7-5d73-a1ee-997e573e12cd",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--8d0f5032-cfe7-5d73-a1ee-997e573e12cd",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.sdk.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--4b40180d-5d0d-513f-a897-fdc0ce2348e1",
+      "nugget_instance_id": "INTERNET_NAME--4b40180d-5d0d-513f-a897-fdc0ce2348e1",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "32.237.8.204",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--d0ff724c-eea5-58d4-8610-e3ba3c90765f",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--d0ff724c-eea5-58d4-8610-e3ba3c90765f",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://phoenix.analytics.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--4b4be339-594c-50b7-9bf9-7ed9a8b798f1",
+      "nugget_instance_id": "INTERNET_NAME--4b4be339-594c-50b7-9bf9-7ed9a8b798f1",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "32.237.2.14",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_CODE--6df18914-5551-5d99-96fa-27c85b2e62be",
+      "nugget_instance_id": "HTTP_CODE--6df18914-5551-5d99-96fa-27c85b2e62be",
+      "nugget_id": "HTTP_CODE",
+      "nugget_type": "DATA",
+      "nugget_description": "HTTP Status Code",
+      "nugget_data": "500",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--b3ebd7c5-60fd-5409-ae0d-634dab111310",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--b3ebd7c5-60fd-5409-ae0d-634dab111310",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://mobilelayer.edsdev02.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--9e7fb5d8-4986-5348-80bc-e4922a3580df",
+      "nugget_instance_id": "INTERNET_NAME--9e7fb5d8-4986-5348-80bc-e4922a3580df",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "54.253.45.17",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--358573b0-93e7-5289-a1b7-c9b3e4311c1d",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--358573b0-93e7-5289-a1b7-c9b3e4311c1d",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://mobilelayer-dev02.edsdev02.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--9c8e6964-5002-55e5-b98a-51993e7549db",
+      "nugget_instance_id": "INTERNET_NAME--9c8e6964-5002-55e5-b98a-51993e7549db",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "52.63.142.191",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--b8997d95-698a-580d-9bfe-a2b7edb158b3",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--b8997d95-698a-580d-9bfe-a2b7edb158b3",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.xander-1.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--e0335fc4-d553-596c-82bb-e825847248be",
+      "nugget_instance_id": "INTERNET_NAME--e0335fc4-d553-596c-82bb-e825847248be",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.24.91.49",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--ef523172-42f2-521f-badf-bd1fc2fe8038",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--ef523172-42f2-521f-badf-bd1fc2fe8038",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fos.xanderbo.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--adbb1099-ad9b-523f-b3f1-3fcd15eb1abd",
+      "nugget_instance_id": "INTERNET_NAME--adbb1099-ad9b-523f-b3f1-3fcd15eb1abd",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "16.176.78.230",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--f8f761ea-73ca-565f-87dd-997d1e5b2d68",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--f8f761ea-73ca-565f-87dd-997d1e5b2d68",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://api.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--1cb35259-70ba-5aad-96f0-bddfc7a35597",
+      "nugget_instance_id": "INTERNET_NAME--1cb35259-70ba-5aad-96f0-bddfc7a35597",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "23.221.132.253",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_CODE--b9b83c04-8fd5-50d4-a913-1c409d3b5581",
+      "nugget_instance_id": "HTTP_CODE--b9b83c04-8fd5-50d4-a913-1c409d3b5581",
+      "nugget_id": "HTTP_CODE",
+      "nugget_type": "DATA",
+      "nugget_description": "HTTP Status Code",
+      "nugget_data": "404",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--48634c5b-f075-5d52-8ea9-1c5a7be22d39",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--48634c5b-f075-5d52-8ea9-1c5a7be22d39",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://nginx-video.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--f1e0a92b-a5b4-52a1-8faf-25f2f198df8e",
+      "nugget_instance_id": "INTERNET_NAME--f1e0a92b-a5b4-52a1-8faf-25f2f198df8e",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.24.131.34",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--b7cc0a5a-6e64-506d-ade9-91b71fcdabe6",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--b7cc0a5a-6e64-506d-ade9-91b71fcdabe6",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://mobilelayer-dev01.edsdev02.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--e891df7c-838e-5d7c-b509-dd4f6a7ef533",
+      "nugget_instance_id": "INTERNET_NAME--e891df7c-838e-5d7c-b509-dd4f6a7ef533",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "52.64.156.164",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--e8e44f0f-580c-5762-9e77-573b4bd4f220",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--e8e44f0f-580c-5762-9e77-573b4bd4f220",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://phoenix.beta.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--eaa50291-ea33-53af-9869-da2a2e4432c1",
+      "nugget_instance_id": "INTERNET_NAME--eaa50291-ea33-53af-9869-da2a2e4432c1",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "13.54.88.31",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_CODE--74afe82e-c4ef-5cc6-bf63-24c1f18b1136",
+      "nugget_instance_id": "HTTP_CODE--74afe82e-c4ef-5cc6-bf63-24c1f18b1136",
+      "nugget_id": "HTTP_CODE",
+      "nugget_type": "DATA",
+      "nugget_description": "HTTP Status Code",
+      "nugget_data": "401",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--9e198c0f-f7f1-5675-bfc0-a1a471e6daea",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--9e198c0f-f7f1-5675-bfc0-a1a471e6daea",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "Express",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--45d9ce73-75c9-58fd-8fd3-5a62c240bed3",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--45d9ce73-75c9-58fd-8fd3-5a62c240bed3",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "Node.js",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--5202754a-c8bd-51b7-83dd-dc5a661906ba",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--5202754a-c8bd-51b7-83dd-dc5a661906ba",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://phoenix.chrisfo-2.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--a7902920-248a-5e59-8d96-4c09482c5314",
+      "nugget_instance_id": "INTERNET_NAME--a7902920-248a-5e59-8d96-4c09482c5314",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "52.62.18.15",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--ac645493-16cd-5764-b8e3-2a779ec3808d",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--ac645493-16cd-5764-b8e3-2a779ec3808d",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://phoenix.chrisfo.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--84c61c30-a378-554f-80dc-a606411e6874",
+      "nugget_instance_id": "INTERNET_NAME--84c61c30-a378-554f-80dc-a606411e6874",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "13.210.120.114",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--55f62f1e-d030-5079-bd32-ef89afc8ffcf",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--55f62f1e-d030-5079-bd32-ef89afc8ffcf",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://phoenix.chrisfo-1.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--921f90cd-a4b6-5ecf-a455-41ccc06de848",
+      "nugget_instance_id": "INTERNET_NAME--921f90cd-a4b6-5ecf-a455-41ccc06de848",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "32.236.214.47",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--f4a9564d-9b92-57e1-8dc6-782a9a40faee",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--f4a9564d-9b92-57e1-8dc6-782a9a40faee",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://phoenix.chrisha.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--d4205b91-9993-50ec-aba9-d4203a609b53",
+      "nugget_instance_id": "INTERNET_NAME--d4205b91-9993-50ec-aba9-d4203a609b53",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "13.237.12.131",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--cfe09abc-61ad-56db-aac0-fd3d15102c55",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--cfe09abc-61ad-56db-aac0-fd3d15102c55",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://auth.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--fdc3c1f6-85bf-5e96-b8b1-32529f995a1a",
+      "nugget_instance_id": "INTERNET_NAME--fdc3c1f6-85bf-5e96-b8b1-32529f995a1a",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "2403:4800:2003:2a6::1b99",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--be921dc9-1459-5e9d-b220-50116bbbf890",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--be921dc9-1459-5e9d-b220-50116bbbf890",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://phoenix.prod.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--e520b024-316c-5533-9140-06f538e3cab1",
+      "nugget_instance_id": "INTERNET_NAME--e520b024-316c-5533-9140-06f538e3cab1",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "15.135.231.191",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--f244bf7f-8cc0-5d2c-b185-45c429d81e77",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--f244bf7f-8cc0-5d2c-b185-45c429d81e77",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://phoenix.freeze.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--b7a7d566-8f90-5111-89ee-4b960177fa15",
+      "nugget_instance_id": "INTERNET_NAME--b7a7d566-8f90-5111-89ee-4b960177fa15",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "13.54.122.52",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--9f4a30e0-6d62-5abd-b427-7969be0a372c",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--9f4a30e0-6d62-5abd-b427-7969be0a372c",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://phoenix.danielpe-1.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--deb95022-f0c7-5c0f-a572-9f1a943475fe",
+      "nugget_instance_id": "INTERNET_NAME--deb95022-f0c7-5c0f-a572-9f1a943475fe",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.24.27.97",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--aea894d2-4563-52c9-bb3a-4fe200c21c6c",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--aea894d2-4563-52c9-bb3a-4fe200c21c6c",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://fda-docs.c.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--26390905-a6d6-51cd-af55-55ba37c70546",
+      "nugget_instance_id": "INTERNET_NAME--26390905-a6d6-51cd-af55-55ba37c70546",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.175.115.32",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "WEBSERVER_BANNER--56554504-2d10-56f3-98a5-5089942d67ff",
+      "nugget_instance_id": "WEBSERVER_BANNER--56554504-2d10-56f3-98a5-5089942d67ff",
+      "nugget_id": "WEBSERVER_BANNER",
+      "nugget_type": "DATA",
+      "nugget_description": "Web Server",
+      "nugget_data": "CloudFront",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--1b4b7345-6a98-574d-9e73-747e8f0a6904",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--1b4b7345-6a98-574d-9e73-747e8f0a6904",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "Amazon CloudFront",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--930a8f30-3e00-5a1a-8248-3df58e249bf5",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--930a8f30-3e00-5a1a-8248-3df58e249bf5",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "Basic",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--68a03441-cb55-5d6a-afda-5718b445459c",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--68a03441-cb55-5d6a-afda-5718b445459c",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://assets.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--06cfe66e-1394-5ee5-868a-31adf51e7cdb",
+      "nugget_instance_id": "INTERNET_NAME--06cfe66e-1394-5ee5-868a-31adf51e7cdb",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "203.134.85.130",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--838cd05e-84f0-5c55-83ca-b05cd7a5671f",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--838cd05e-84f0-5c55-83ca-b05cd7a5671f",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://account.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--3dd5002a-9831-51db-a8c0-ade891952272",
+      "nugget_instance_id": "INTERNET_NAME--3dd5002a-9831-51db-a8c0-ade891952272",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "34.198.3.175",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "WEBSERVER_TECHNOLOGY--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
+      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
+      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Web Technology",
+      "nugget_data": "HSTS",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--6575bde2-cf7a-5742-a853-93e548dbd431",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--6575bde2-cf7a-5742-a853-93e548dbd431",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://phoenix.danielpe-2.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--e50bbf0c-f8a1-56f1-b787-85d42b8c1749",
+      "nugget_instance_id": "INTERNET_NAME--e50bbf0c-f8a1-56f1-b787-85d42b8c1749",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "54.253.119.201",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--92f9235e-a75a-5f69-8982-b82ebf7609b9",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--92f9235e-a75a-5f69-8982-b82ebf7609b9",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://phoenix.chrisfo-40.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--cfaa7645-e64b-5f0d-a73a-0b68c36d6ce7",
+      "nugget_instance_id": "INTERNET_NAME--cfaa7645-e64b-5f0d-a73a-0b68c36d6ce7",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "3.104.193.132",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LINKED_URL_INTERNAL--42c795fd-ecfe-5aa5-a217-71cbdf76442a",
+      "nugget_instance_id": "LINKED_URL_INTERNAL--42c795fd-ecfe-5aa5-a217-71cbdf76442a",
+      "nugget_id": "LINKED_URL_INTERNAL",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Linked URL - Internal",
+      "nugget_data": "https://phoenix.danielpe-3.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "INTERNET_NAME--75f96fd7-5e0a-5d48-8360-1e19db0ba07b",
+      "nugget_instance_id": "INTERNET_NAME--75f96fd7-5e0a-5d48-8360-1e19db0ba07b",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "54.252.83.34",
+      "nugget_colour": "#3B82F6"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "SCAN_CLI--6b47f659-cc7c-56c4-98d0-ffc0c32806c9",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "relation": "contains"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--90403186-07b6-5d46-a83e-212ae719c7c9",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--8691855f-06b0-5c01-b040-00b95badef2c",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--90403186-07b6-5d46-a83e-212ae719c7c9",
+      "target": "INTERNET_NAME--8691855f-06b0-5c01-b040-00b95badef2c",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--90403186-07b6-5d46-a83e-212ae719c7c9",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--90403186-07b6-5d46-a83e-212ae719c7c9",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--841cfd41-e597-5241-853a-44d6467d9f3b",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--e9481e61-4add-5f15-9936-25220f0febf4",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--841cfd41-e597-5241-853a-44d6467d9f3b",
+      "target": "INTERNET_NAME--e9481e61-4add-5f15-9936-25220f0febf4",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--841cfd41-e597-5241-853a-44d6467d9f3b",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--841cfd41-e597-5241-853a-44d6467d9f3b",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--93d13540-23fa-5ba3-bc37-35fc345412a7",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--95b93231-0d43-5431-b20c-3c7b0b12648b",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--93d13540-23fa-5ba3-bc37-35fc345412a7",
+      "target": "INTERNET_NAME--95b93231-0d43-5431-b20c-3c7b0b12648b",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--93d13540-23fa-5ba3-bc37-35fc345412a7",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--93d13540-23fa-5ba3-bc37-35fc345412a7",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--7e50f86c-7735-5d79-9f63-a2c615c51d15",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--8d6d395e-1c89-5060-ba7d-123fa89c548b",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--7e50f86c-7735-5d79-9f63-a2c615c51d15",
+      "target": "INTERNET_NAME--8d6d395e-1c89-5060-ba7d-123fa89c548b",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--7e50f86c-7735-5d79-9f63-a2c615c51d15",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--7e50f86c-7735-5d79-9f63-a2c615c51d15",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--aa8de9b0-4279-5bca-8fe5-892541571b03",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--dea74b15-9f64-51c3-a59e-003accac9a71",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--aa8de9b0-4279-5bca-8fe5-892541571b03",
+      "target": "INTERNET_NAME--dea74b15-9f64-51c3-a59e-003accac9a71",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--aa8de9b0-4279-5bca-8fe5-892541571b03",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--aa8de9b0-4279-5bca-8fe5-892541571b03",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--f77b3724-3841-5499-a0b3-2dd33085f68d",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--ec3eeaca-a2e1-5c19-915a-f83d41c4f199",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f77b3724-3841-5499-a0b3-2dd33085f68d",
+      "target": "INTERNET_NAME--ec3eeaca-a2e1-5c19-915a-f83d41c4f199",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f77b3724-3841-5499-a0b3-2dd33085f68d",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f77b3724-3841-5499-a0b3-2dd33085f68d",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--4a8794fd-1e82-5994-a1c5-87da5c621dbd",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--ace8a8da-4b96-5eb1-a7c9-43a7311bbdbc",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--4a8794fd-1e82-5994-a1c5-87da5c621dbd",
+      "target": "INTERNET_NAME--ace8a8da-4b96-5eb1-a7c9-43a7311bbdbc",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--4a8794fd-1e82-5994-a1c5-87da5c621dbd",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--4a8794fd-1e82-5994-a1c5-87da5c621dbd",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--73289e2c-8504-50e5-843a-def343ab207a",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--62eaaba5-a1c4-5f1d-9de0-de4d12919471",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--73289e2c-8504-50e5-843a-def343ab207a",
+      "target": "INTERNET_NAME--62eaaba5-a1c4-5f1d-9de0-de4d12919471",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--73289e2c-8504-50e5-843a-def343ab207a",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--b62e168f-df02-58fa-970d-723b0ab4a69b",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--b10f2dac-f033-5158-adbf-947c68d0d4e8",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--b62e168f-df02-58fa-970d-723b0ab4a69b",
+      "target": "INTERNET_NAME--b10f2dac-f033-5158-adbf-947c68d0d4e8",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--b62e168f-df02-58fa-970d-723b0ab4a69b",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--b62e168f-df02-58fa-970d-723b0ab4a69b",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--dd997917-b369-55e3-975d-5633a6f50adb",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--8481c8cf-4250-5fc3-b55b-67bd39b98924",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--dd997917-b369-55e3-975d-5633a6f50adb",
+      "target": "INTERNET_NAME--8481c8cf-4250-5fc3-b55b-67bd39b98924",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--dd997917-b369-55e3-975d-5633a6f50adb",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--dd997917-b369-55e3-975d-5633a6f50adb",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--9f6b801a-5263-574c-9ec1-2d2a4efc24b9",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--34fd354f-708b-5544-bb47-9d2eeba41f7b",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9f6b801a-5263-574c-9ec1-2d2a4efc24b9",
+      "target": "INTERNET_NAME--34fd354f-708b-5544-bb47-9d2eeba41f7b",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9f6b801a-5263-574c-9ec1-2d2a4efc24b9",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--59b16d44-ef3d-58e8-9d85-2f26358c6087",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--8b600b7b-325c-5c7c-b0a1-59998d83e209",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--59b16d44-ef3d-58e8-9d85-2f26358c6087",
+      "target": "INTERNET_NAME--8b600b7b-325c-5c7c-b0a1-59998d83e209",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--59b16d44-ef3d-58e8-9d85-2f26358c6087",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--59b16d44-ef3d-58e8-9d85-2f26358c6087",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--d52b2263-364c-5ef5-959b-68edb804183a",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--9ad4f9a3-9f13-5103-a4b0-90e1276a4b08",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d52b2263-364c-5ef5-959b-68edb804183a",
+      "target": "INTERNET_NAME--9ad4f9a3-9f13-5103-a4b0-90e1276a4b08",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d52b2263-364c-5ef5-959b-68edb804183a",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d52b2263-364c-5ef5-959b-68edb804183a",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--a534c1ed-e21c-5c6e-89cb-1d980d5c65fd",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--d46083d7-db68-5f4a-b12a-4c337b24354c",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--a534c1ed-e21c-5c6e-89cb-1d980d5c65fd",
+      "target": "INTERNET_NAME--d46083d7-db68-5f4a-b12a-4c337b24354c",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--a534c1ed-e21c-5c6e-89cb-1d980d5c65fd",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--a534c1ed-e21c-5c6e-89cb-1d980d5c65fd",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--a9eb5e9d-aa47-57c3-840b-0b11ad21f2cb",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--de10826c-0bde-5f41-99e0-da7747a12d79",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--a9eb5e9d-aa47-57c3-840b-0b11ad21f2cb",
+      "target": "INTERNET_NAME--de10826c-0bde-5f41-99e0-da7747a12d79",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--a9eb5e9d-aa47-57c3-840b-0b11ad21f2cb",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--a9eb5e9d-aa47-57c3-840b-0b11ad21f2cb",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--c0aa9cc3-f1c3-5ff4-b118-ac88f34db152",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--72d0cd23-568f-52d9-8d31-2bac7ff45f29",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--c0aa9cc3-f1c3-5ff4-b118-ac88f34db152",
+      "target": "INTERNET_NAME--72d0cd23-568f-52d9-8d31-2bac7ff45f29",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--c0aa9cc3-f1c3-5ff4-b118-ac88f34db152",
+      "target": "HTTP_CODE--54debc6f-0098-5120-9f22-4c80ce11548f",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--c0aa9cc3-f1c3-5ff4-b118-ac88f34db152",
+      "target": "WEBSERVER_BANNER--9100f64c-bfbb-53ba-8165-6445dc62de03",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--c0aa9cc3-f1c3-5ff4-b118-ac88f34db152",
+      "target": "WEBSERVER_TECHNOLOGY--2053d8c7-f5fa-54c7-bf5b-78043d74ca88",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--c0aa9cc3-f1c3-5ff4-b118-ac88f34db152",
+      "target": "WEBSERVER_TECHNOLOGY--cf40919d-939d-5bcb-9dc3-afd355521a04",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--c0aa9cc3-f1c3-5ff4-b118-ac88f34db152",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--1f7ec470-b02b-5732-8d3b-714c4a2aae37",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--8bd6f73c-a4f9-5240-8f8e-a9e9d8c7b874",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--1f7ec470-b02b-5732-8d3b-714c4a2aae37",
+      "target": "INTERNET_NAME--8bd6f73c-a4f9-5240-8f8e-a9e9d8c7b874",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--1f7ec470-b02b-5732-8d3b-714c4a2aae37",
+      "target": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--1f7ec470-b02b-5732-8d3b-714c4a2aae37",
+      "target": "WEBSERVER_BANNER--78d3a718-c4ae-5506-aca4-de00e5075459",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--1f7ec470-b02b-5732-8d3b-714c4a2aae37",
+      "target": "WEBSERVER_TECHNOLOGY--fe567a97-a761-58d1-ba46-ed02c4852545",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--9c115c46-243f-5fa4-bbeb-4ee3b63666fc",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--c69b6e99-5f88-5e18-8d3a-3a403f35a09f",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9c115c46-243f-5fa4-bbeb-4ee3b63666fc",
+      "target": "INTERNET_NAME--c69b6e99-5f88-5e18-8d3a-3a403f35a09f",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9c115c46-243f-5fa4-bbeb-4ee3b63666fc",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9c115c46-243f-5fa4-bbeb-4ee3b63666fc",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--9a60f184-f4cb-5645-ab6a-c502512c1029",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--36c18925-1c20-505d-9fe2-0491da0f5e68",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9a60f184-f4cb-5645-ab6a-c502512c1029",
+      "target": "INTERNET_NAME--36c18925-1c20-505d-9fe2-0491da0f5e68",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9a60f184-f4cb-5645-ab6a-c502512c1029",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9a60f184-f4cb-5645-ab6a-c502512c1029",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--decb3fd3-e023-5837-9301-ee439f686c8e",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--50047ce1-c7be-51b3-8d5d-335c4e5a19fd",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--decb3fd3-e023-5837-9301-ee439f686c8e",
+      "target": "INTERNET_NAME--50047ce1-c7be-51b3-8d5d-335c4e5a19fd",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--decb3fd3-e023-5837-9301-ee439f686c8e",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--decb3fd3-e023-5837-9301-ee439f686c8e",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--7ab6b506-d46b-5fbc-9800-286aca395a50",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--974d5cdd-f832-560f-8c90-6995cd4a9922",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--7ab6b506-d46b-5fbc-9800-286aca395a50",
+      "target": "INTERNET_NAME--974d5cdd-f832-560f-8c90-6995cd4a9922",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--7ab6b506-d46b-5fbc-9800-286aca395a50",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--7ab6b506-d46b-5fbc-9800-286aca395a50",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--ce3e31cc-5b7d-5ec1-9a4e-bbff7fa1d197",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--f1eb8b90-7800-5d98-b70d-8d898a3011fe",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--ce3e31cc-5b7d-5ec1-9a4e-bbff7fa1d197",
+      "target": "INTERNET_NAME--f1eb8b90-7800-5d98-b70d-8d898a3011fe",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--ce3e31cc-5b7d-5ec1-9a4e-bbff7fa1d197",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--57864e3d-b2bb-5618-abb0-1a114988f822",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--42c4163c-6b7c-5542-8e3a-fc2757a82a81",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--57864e3d-b2bb-5618-abb0-1a114988f822",
+      "target": "INTERNET_NAME--42c4163c-6b7c-5542-8e3a-fc2757a82a81",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--57864e3d-b2bb-5618-abb0-1a114988f822",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--57864e3d-b2bb-5618-abb0-1a114988f822",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--c14e613f-abc4-5735-98eb-342493739f99",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--c3e88dea-4f97-56e8-bcea-3953d5940439",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--c14e613f-abc4-5735-98eb-342493739f99",
+      "target": "INTERNET_NAME--c3e88dea-4f97-56e8-bcea-3953d5940439",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--c14e613f-abc4-5735-98eb-342493739f99",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--c14e613f-abc4-5735-98eb-342493739f99",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--1ffa078a-8755-5988-b2b4-4b94b156a50e",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--c1dc7229-6517-5dea-bd4b-ef605ecfeef1",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--1ffa078a-8755-5988-b2b4-4b94b156a50e",
+      "target": "INTERNET_NAME--c1dc7229-6517-5dea-bd4b-ef605ecfeef1",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--1ffa078a-8755-5988-b2b4-4b94b156a50e",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--1ffa078a-8755-5988-b2b4-4b94b156a50e",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--f0854be5-67ea-502c-8c82-52c667df5e55",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--0e42f8fc-466f-56f2-a836-9ec6cf2e673b",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f0854be5-67ea-502c-8c82-52c667df5e55",
+      "target": "INTERNET_NAME--0e42f8fc-466f-56f2-a836-9ec6cf2e673b",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f0854be5-67ea-502c-8c82-52c667df5e55",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f0854be5-67ea-502c-8c82-52c667df5e55",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--8d0f5032-cfe7-5d73-a1ee-997e573e12cd",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--4b40180d-5d0d-513f-a897-fdc0ce2348e1",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--8d0f5032-cfe7-5d73-a1ee-997e573e12cd",
+      "target": "INTERNET_NAME--4b40180d-5d0d-513f-a897-fdc0ce2348e1",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--8d0f5032-cfe7-5d73-a1ee-997e573e12cd",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--d0ff724c-eea5-58d4-8610-e3ba3c90765f",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--4b4be339-594c-50b7-9bf9-7ed9a8b798f1",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d0ff724c-eea5-58d4-8610-e3ba3c90765f",
+      "target": "INTERNET_NAME--4b4be339-594c-50b7-9bf9-7ed9a8b798f1",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--d0ff724c-eea5-58d4-8610-e3ba3c90765f",
+      "target": "HTTP_CODE--6df18914-5551-5d99-96fa-27c85b2e62be",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--b3ebd7c5-60fd-5409-ae0d-634dab111310",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--9e7fb5d8-4986-5348-80bc-e4922a3580df",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--b3ebd7c5-60fd-5409-ae0d-634dab111310",
+      "target": "INTERNET_NAME--9e7fb5d8-4986-5348-80bc-e4922a3580df",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--b3ebd7c5-60fd-5409-ae0d-634dab111310",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--b3ebd7c5-60fd-5409-ae0d-634dab111310",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--358573b0-93e7-5289-a1b7-c9b3e4311c1d",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--9c8e6964-5002-55e5-b98a-51993e7549db",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--358573b0-93e7-5289-a1b7-c9b3e4311c1d",
+      "target": "INTERNET_NAME--9c8e6964-5002-55e5-b98a-51993e7549db",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--358573b0-93e7-5289-a1b7-c9b3e4311c1d",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--358573b0-93e7-5289-a1b7-c9b3e4311c1d",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--b8997d95-698a-580d-9bfe-a2b7edb158b3",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--e0335fc4-d553-596c-82bb-e825847248be",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--b8997d95-698a-580d-9bfe-a2b7edb158b3",
+      "target": "INTERNET_NAME--e0335fc4-d553-596c-82bb-e825847248be",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--b8997d95-698a-580d-9bfe-a2b7edb158b3",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--b8997d95-698a-580d-9bfe-a2b7edb158b3",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--ef523172-42f2-521f-badf-bd1fc2fe8038",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--adbb1099-ad9b-523f-b3f1-3fcd15eb1abd",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--ef523172-42f2-521f-badf-bd1fc2fe8038",
+      "target": "INTERNET_NAME--adbb1099-ad9b-523f-b3f1-3fcd15eb1abd",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--ef523172-42f2-521f-badf-bd1fc2fe8038",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--ef523172-42f2-521f-badf-bd1fc2fe8038",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--f8f761ea-73ca-565f-87dd-997d1e5b2d68",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--1cb35259-70ba-5aad-96f0-bddfc7a35597",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f8f761ea-73ca-565f-87dd-997d1e5b2d68",
+      "target": "INTERNET_NAME--1cb35259-70ba-5aad-96f0-bddfc7a35597",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f8f761ea-73ca-565f-87dd-997d1e5b2d68",
+      "target": "HTTP_CODE--b9b83c04-8fd5-50d4-a913-1c409d3b5581",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--48634c5b-f075-5d52-8ea9-1c5a7be22d39",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--f1e0a92b-a5b4-52a1-8faf-25f2f198df8e",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--48634c5b-f075-5d52-8ea9-1c5a7be22d39",
+      "target": "INTERNET_NAME--f1e0a92b-a5b4-52a1-8faf-25f2f198df8e",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--48634c5b-f075-5d52-8ea9-1c5a7be22d39",
+      "target": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--48634c5b-f075-5d52-8ea9-1c5a7be22d39",
+      "target": "WEBSERVER_BANNER--78d3a718-c4ae-5506-aca4-de00e5075459",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--48634c5b-f075-5d52-8ea9-1c5a7be22d39",
+      "target": "WEBSERVER_TECHNOLOGY--fe567a97-a761-58d1-ba46-ed02c4852545",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--48634c5b-f075-5d52-8ea9-1c5a7be22d39",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--b7cc0a5a-6e64-506d-ade9-91b71fcdabe6",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--e891df7c-838e-5d7c-b509-dd4f6a7ef533",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--b7cc0a5a-6e64-506d-ade9-91b71fcdabe6",
+      "target": "INTERNET_NAME--e891df7c-838e-5d7c-b509-dd4f6a7ef533",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--b7cc0a5a-6e64-506d-ade9-91b71fcdabe6",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--b7cc0a5a-6e64-506d-ade9-91b71fcdabe6",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--e8e44f0f-580c-5762-9e77-573b4bd4f220",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--eaa50291-ea33-53af-9869-da2a2e4432c1",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--e8e44f0f-580c-5762-9e77-573b4bd4f220",
+      "target": "INTERNET_NAME--eaa50291-ea33-53af-9869-da2a2e4432c1",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--e8e44f0f-580c-5762-9e77-573b4bd4f220",
+      "target": "HTTP_CODE--74afe82e-c4ef-5cc6-bf63-24c1f18b1136",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--e8e44f0f-580c-5762-9e77-573b4bd4f220",
+      "target": "WEBSERVER_TECHNOLOGY--9e198c0f-f7f1-5675-bfc0-a1a471e6daea",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--e8e44f0f-580c-5762-9e77-573b4bd4f220",
+      "target": "WEBSERVER_TECHNOLOGY--45d9ce73-75c9-58fd-8fd3-5a62c240bed3",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--e8e44f0f-580c-5762-9e77-573b4bd4f220",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--5202754a-c8bd-51b7-83dd-dc5a661906ba",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--a7902920-248a-5e59-8d96-4c09482c5314",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--5202754a-c8bd-51b7-83dd-dc5a661906ba",
+      "target": "INTERNET_NAME--a7902920-248a-5e59-8d96-4c09482c5314",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--5202754a-c8bd-51b7-83dd-dc5a661906ba",
+      "target": "HTTP_CODE--74afe82e-c4ef-5cc6-bf63-24c1f18b1136",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--5202754a-c8bd-51b7-83dd-dc5a661906ba",
+      "target": "WEBSERVER_TECHNOLOGY--9e198c0f-f7f1-5675-bfc0-a1a471e6daea",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--5202754a-c8bd-51b7-83dd-dc5a661906ba",
+      "target": "WEBSERVER_TECHNOLOGY--45d9ce73-75c9-58fd-8fd3-5a62c240bed3",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--5202754a-c8bd-51b7-83dd-dc5a661906ba",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--ac645493-16cd-5764-b8e3-2a779ec3808d",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--84c61c30-a378-554f-80dc-a606411e6874",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--ac645493-16cd-5764-b8e3-2a779ec3808d",
+      "target": "INTERNET_NAME--84c61c30-a378-554f-80dc-a606411e6874",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--ac645493-16cd-5764-b8e3-2a779ec3808d",
+      "target": "HTTP_CODE--74afe82e-c4ef-5cc6-bf63-24c1f18b1136",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--ac645493-16cd-5764-b8e3-2a779ec3808d",
+      "target": "WEBSERVER_TECHNOLOGY--9e198c0f-f7f1-5675-bfc0-a1a471e6daea",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--ac645493-16cd-5764-b8e3-2a779ec3808d",
+      "target": "WEBSERVER_TECHNOLOGY--45d9ce73-75c9-58fd-8fd3-5a62c240bed3",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--ac645493-16cd-5764-b8e3-2a779ec3808d",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--55f62f1e-d030-5079-bd32-ef89afc8ffcf",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--921f90cd-a4b6-5ecf-a455-41ccc06de848",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--55f62f1e-d030-5079-bd32-ef89afc8ffcf",
+      "target": "INTERNET_NAME--921f90cd-a4b6-5ecf-a455-41ccc06de848",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--55f62f1e-d030-5079-bd32-ef89afc8ffcf",
+      "target": "HTTP_CODE--74afe82e-c4ef-5cc6-bf63-24c1f18b1136",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--55f62f1e-d030-5079-bd32-ef89afc8ffcf",
+      "target": "WEBSERVER_TECHNOLOGY--9e198c0f-f7f1-5675-bfc0-a1a471e6daea",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--55f62f1e-d030-5079-bd32-ef89afc8ffcf",
+      "target": "WEBSERVER_TECHNOLOGY--45d9ce73-75c9-58fd-8fd3-5a62c240bed3",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--f4a9564d-9b92-57e1-8dc6-782a9a40faee",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--d4205b91-9993-50ec-aba9-d4203a609b53",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f4a9564d-9b92-57e1-8dc6-782a9a40faee",
+      "target": "INTERNET_NAME--d4205b91-9993-50ec-aba9-d4203a609b53",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f4a9564d-9b92-57e1-8dc6-782a9a40faee",
+      "target": "HTTP_CODE--74afe82e-c4ef-5cc6-bf63-24c1f18b1136",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f4a9564d-9b92-57e1-8dc6-782a9a40faee",
+      "target": "WEBSERVER_TECHNOLOGY--9e198c0f-f7f1-5675-bfc0-a1a471e6daea",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f4a9564d-9b92-57e1-8dc6-782a9a40faee",
+      "target": "WEBSERVER_TECHNOLOGY--45d9ce73-75c9-58fd-8fd3-5a62c240bed3",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f4a9564d-9b92-57e1-8dc6-782a9a40faee",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--cfe09abc-61ad-56db-aac0-fd3d15102c55",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--fdc3c1f6-85bf-5e96-b8b1-32529f995a1a",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--cfe09abc-61ad-56db-aac0-fd3d15102c55",
+      "target": "INTERNET_NAME--fdc3c1f6-85bf-5e96-b8b1-32529f995a1a",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--cfe09abc-61ad-56db-aac0-fd3d15102c55",
+      "target": "HTTP_CODE--b9b83c04-8fd5-50d4-a913-1c409d3b5581",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--be921dc9-1459-5e9d-b220-50116bbbf890",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--e520b024-316c-5533-9140-06f538e3cab1",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--be921dc9-1459-5e9d-b220-50116bbbf890",
+      "target": "INTERNET_NAME--e520b024-316c-5533-9140-06f538e3cab1",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--be921dc9-1459-5e9d-b220-50116bbbf890",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--f244bf7f-8cc0-5d2c-b185-45c429d81e77",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--b7a7d566-8f90-5111-89ee-4b960177fa15",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f244bf7f-8cc0-5d2c-b185-45c429d81e77",
+      "target": "INTERNET_NAME--b7a7d566-8f90-5111-89ee-4b960177fa15",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f244bf7f-8cc0-5d2c-b185-45c429d81e77",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--f244bf7f-8cc0-5d2c-b185-45c429d81e77",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--9f4a30e0-6d62-5abd-b427-7969be0a372c",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--deb95022-f0c7-5c0f-a572-9f1a943475fe",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9f4a30e0-6d62-5abd-b427-7969be0a372c",
+      "target": "INTERNET_NAME--deb95022-f0c7-5c0f-a572-9f1a943475fe",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9f4a30e0-6d62-5abd-b427-7969be0a372c",
+      "target": "HTTP_CODE--74afe82e-c4ef-5cc6-bf63-24c1f18b1136",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9f4a30e0-6d62-5abd-b427-7969be0a372c",
+      "target": "WEBSERVER_TECHNOLOGY--9e198c0f-f7f1-5675-bfc0-a1a471e6daea",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9f4a30e0-6d62-5abd-b427-7969be0a372c",
+      "target": "WEBSERVER_TECHNOLOGY--45d9ce73-75c9-58fd-8fd3-5a62c240bed3",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--9f4a30e0-6d62-5abd-b427-7969be0a372c",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--aea894d2-4563-52c9-bb3a-4fe200c21c6c",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--26390905-a6d6-51cd-af55-55ba37c70546",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--aea894d2-4563-52c9-bb3a-4fe200c21c6c",
+      "target": "INTERNET_NAME--26390905-a6d6-51cd-af55-55ba37c70546",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--aea894d2-4563-52c9-bb3a-4fe200c21c6c",
+      "target": "HTTP_CODE--74afe82e-c4ef-5cc6-bf63-24c1f18b1136",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--aea894d2-4563-52c9-bb3a-4fe200c21c6c",
+      "target": "WEBSERVER_BANNER--56554504-2d10-56f3-98a5-5089942d67ff",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--aea894d2-4563-52c9-bb3a-4fe200c21c6c",
+      "target": "WEBSERVER_TECHNOLOGY--1b4b7345-6a98-574d-9e73-747e8f0a6904",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--aea894d2-4563-52c9-bb3a-4fe200c21c6c",
+      "target": "WEBSERVER_TECHNOLOGY--cf40919d-939d-5bcb-9dc3-afd355521a04",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--aea894d2-4563-52c9-bb3a-4fe200c21c6c",
+      "target": "WEBSERVER_TECHNOLOGY--930a8f30-3e00-5a1a-8248-3df58e249bf5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--68a03441-cb55-5d6a-afda-5718b445459c",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--06cfe66e-1394-5ee5-868a-31adf51e7cdb",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--68a03441-cb55-5d6a-afda-5718b445459c",
+      "target": "INTERNET_NAME--06cfe66e-1394-5ee5-868a-31adf51e7cdb",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--68a03441-cb55-5d6a-afda-5718b445459c",
+      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--68a03441-cb55-5d6a-afda-5718b445459c",
+      "target": "WEBSERVER_TECHNOLOGY--1b4b7345-6a98-574d-9e73-747e8f0a6904",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--68a03441-cb55-5d6a-afda-5718b445459c",
+      "target": "WEBSERVER_TECHNOLOGY--cf40919d-939d-5bcb-9dc3-afd355521a04",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--838cd05e-84f0-5c55-83ca-b05cd7a5671f",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--3dd5002a-9831-51db-a8c0-ade891952272",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--838cd05e-84f0-5c55-83ca-b05cd7a5671f",
+      "target": "INTERNET_NAME--3dd5002a-9831-51db-a8c0-ade891952272",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--838cd05e-84f0-5c55-83ca-b05cd7a5671f",
+      "target": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--838cd05e-84f0-5c55-83ca-b05cd7a5671f",
+      "target": "WEBSERVER_BANNER--78d3a718-c4ae-5506-aca4-de00e5075459",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--838cd05e-84f0-5c55-83ca-b05cd7a5671f",
+      "target": "WEBSERVER_TECHNOLOGY--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--838cd05e-84f0-5c55-83ca-b05cd7a5671f",
+      "target": "WEBSERVER_TECHNOLOGY--fe567a97-a761-58d1-ba46-ed02c4852545",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--838cd05e-84f0-5c55-83ca-b05cd7a5671f",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--6575bde2-cf7a-5742-a853-93e548dbd431",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--e50bbf0c-f8a1-56f1-b787-85d42b8c1749",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--6575bde2-cf7a-5742-a853-93e548dbd431",
+      "target": "INTERNET_NAME--e50bbf0c-f8a1-56f1-b787-85d42b8c1749",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--6575bde2-cf7a-5742-a853-93e548dbd431",
+      "target": "HTTP_CODE--74afe82e-c4ef-5cc6-bf63-24c1f18b1136",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--6575bde2-cf7a-5742-a853-93e548dbd431",
+      "target": "WEBSERVER_TECHNOLOGY--9e198c0f-f7f1-5675-bfc0-a1a471e6daea",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--6575bde2-cf7a-5742-a853-93e548dbd431",
+      "target": "WEBSERVER_TECHNOLOGY--45d9ce73-75c9-58fd-8fd3-5a62c240bed3",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--6575bde2-cf7a-5742-a853-93e548dbd431",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--92f9235e-a75a-5f69-8982-b82ebf7609b9",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--cfaa7645-e64b-5f0d-a73a-0b68c36d6ce7",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--92f9235e-a75a-5f69-8982-b82ebf7609b9",
+      "target": "INTERNET_NAME--cfaa7645-e64b-5f0d-a73a-0b68c36d6ce7",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--92f9235e-a75a-5f69-8982-b82ebf7609b9",
+      "target": "HTTP_CODE--74afe82e-c4ef-5cc6-bf63-24c1f18b1136",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--92f9235e-a75a-5f69-8982-b82ebf7609b9",
+      "target": "WEBSERVER_TECHNOLOGY--9e198c0f-f7f1-5675-bfc0-a1a471e6daea",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--92f9235e-a75a-5f69-8982-b82ebf7609b9",
+      "target": "WEBSERVER_TECHNOLOGY--45d9ce73-75c9-58fd-8fd3-5a62c240bed3",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--92f9235e-a75a-5f69-8982-b82ebf7609b9",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "LINKED_URL_INTERNAL--42c795fd-ecfe-5aa5-a217-71cbdf76442a",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME--75f96fd7-5e0a-5d48-8360-1e19db0ba07b",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--42c795fd-ecfe-5aa5-a217-71cbdf76442a",
+      "target": "INTERNET_NAME--75f96fd7-5e0a-5d48-8360-1e19db0ba07b",
+      "relation": "contains"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--42c795fd-ecfe-5aa5-a217-71cbdf76442a",
+      "target": "HTTP_CODE--74afe82e-c4ef-5cc6-bf63-24c1f18b1136",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--42c795fd-ecfe-5aa5-a217-71cbdf76442a",
+      "target": "WEBSERVER_TECHNOLOGY--9e198c0f-f7f1-5675-bfc0-a1a471e6daea",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--42c795fd-ecfe-5aa5-a217-71cbdf76442a",
+      "target": "WEBSERVER_TECHNOLOGY--45d9ce73-75c9-58fd-8fd3-5a62c240bed3",
+      "relation": "had"
+    },
+    {
+      "source": "LINKED_URL_INTERNAL--42c795fd-ecfe-5aa5-a217-71cbdf76442a",
+      "target": "PROVIDER_HOSTING--ddf03383-783e-5a33-b433-c6300afc6ab5",
+      "relation": "had"
+    }
+  ]
+}

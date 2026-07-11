@@ -1,0 +1,19 @@
+{
+  "schema": "httpx_probe_v1",
+  "tool": "httpx",
+  "scenario": "Clean miss web probe (invalid subfinder apex)",
+  "scenario_id": "from_subfinder_invalid_clean_miss",
+  "target": "not-a-real-domain-xyzzy.invalid",
+  "subfinder_scenario": "invalid_domain_clean_miss",
+  "probe_profile": "status-code,title,tech-detect,server,cdn,ip",
+  "host_input_count": 1,
+  "command": "httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_invalid_clean_miss_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_invalid_clean_miss.jsonl -silent -threads 2 -timeout 10",
+  "runtime": "windows",
+  "started_at": "2026-07-05T16:06:13.333301+00:00",
+  "duration_s": 1.688,
+  "exit_code": 0,
+  "probe_summary_lines": 0,
+  "text_role": "one line per live URL: url [status] [title] server=\u2026 tech=[\u2026]",
+  "structured_role": "full httpx JSONL probe objects in records[]",
+  "records": []
+}

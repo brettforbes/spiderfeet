@@ -1,0 +1,19 @@
+{
+  "tool": "subfinder",
+  "exam_id": 3,
+  "scenario_id": "corporate_vcof_sparse_passive",
+  "scenario_name": "Ultra-sparse passive enumeration (VC Opportunities Fund)",
+  "target": "venturecapitalopportunitiesfund.com.au",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 22.312,
+  "captured_at": "2026-07-05T14:24:30.524396+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\3_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\3_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\3_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\subfinder\\exams\\corporate_vcof_sparse_passive.jsonl"
+}

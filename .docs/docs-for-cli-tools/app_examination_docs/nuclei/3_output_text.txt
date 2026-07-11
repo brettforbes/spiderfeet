@@ -1,0 +1,15 @@
+# SpiderFeet CLI examination capture
+# tool: nuclei
+# scenario: Redis CVE-2022-0543 + unauthenticated exposure on pentest-ground (:6379) (cipherheart_redis_lab)
+# target: pentest-ground.com:6379
+# command: nuclei -u pentest-ground.com:6379 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates/network/cves/2022/CVE-2022-0543.yaml -t .tools/nuclei-templates/network/exposures/exposed-redis.yaml -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 10 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/cipherheart_redis_lab.jsonl
+# runtime: windows
+# started_at: 2026-07-05T11:58:42.228637+00:00
+# duration_s: 0.000
+# exit_code: 0
+# finding_summary_lines: 2
+# text_role: one line per JSONL finding: [severity] template-id @ matched-at
+# structured_role: full JSONL finding objects in records[]
+
+[critical] CVE-2022-0543 @ pentest-ground.com:6379 [CVE: CVE-2022-0543]
+[high] exposed-redis @ pentest-ground.com:6379

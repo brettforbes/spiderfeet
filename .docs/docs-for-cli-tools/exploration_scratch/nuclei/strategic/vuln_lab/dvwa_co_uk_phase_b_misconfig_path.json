@@ -1,0 +1,412 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "dvwa_co_uk_phase_b_misconfig_path",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vuln_lab/dvwa_co_uk_phase_b_misconfig_path.jsonl",
+  "started_at": "2026-07-05T05:04:19.914533+00:00",
+  "finding_summary_lines": 8,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/http-missing-security-headers",
+      "template-id": "http-missing-security-headers",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "info": {
+        "name": "HTTP Missing Security Headers",
+        "author": [
+          "socketz",
+          "geeknik",
+          "g4l1t0",
+          "convisoappsec",
+          "kurohost",
+          "dawid-czarnecki",
+          "forgedhallpass",
+          "jub0bs",
+          "userdehghani",
+          "celbahraoui",
+          "safejulian"
+        ],
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "content-security-policy",
+      "type": "http",
+      "host": "www.dvwa.co.uk",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://www.dvwa.co.uk/",
+      "path": "/",
+      "matched-at": "http://www.dvwa.co.uk/",
+      "ip": "172.67.154.147",
+      "timestamp": "2026-07-05T15:03:59.3348517+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (ZZ; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' 'http://www.dvwa.co.uk/'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/http-missing-security-headers",
+      "template-id": "http-missing-security-headers",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "info": {
+        "name": "HTTP Missing Security Headers",
+        "author": [
+          "socketz",
+          "geeknik",
+          "g4l1t0",
+          "convisoappsec",
+          "kurohost",
+          "dawid-czarnecki",
+          "forgedhallpass",
+          "jub0bs",
+          "userdehghani",
+          "celbahraoui",
+          "safejulian"
+        ],
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "permissions-policy",
+      "type": "http",
+      "host": "www.dvwa.co.uk",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://www.dvwa.co.uk/",
+      "path": "/",
+      "matched-at": "http://www.dvwa.co.uk/",
+      "ip": "172.67.154.147",
+      "timestamp": "2026-07-05T15:03:59.3431189+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (ZZ; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' 'http://www.dvwa.co.uk/'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/http-missing-security-headers",
+      "template-id": "http-missing-security-headers",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "info": {
+        "name": "HTTP Missing Security Headers",
+        "author": [
+          "socketz",
+          "geeknik",
+          "g4l1t0",
+          "convisoappsec",
+          "kurohost",
+          "dawid-czarnecki",
+          "forgedhallpass",
+          "jub0bs",
+          "userdehghani",
+          "celbahraoui",
+          "safejulian"
+        ],
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "x-content-type-options",
+      "type": "http",
+      "host": "www.dvwa.co.uk",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://www.dvwa.co.uk/",
+      "path": "/",
+      "matched-at": "http://www.dvwa.co.uk/",
+      "ip": "172.67.154.147",
+      "timestamp": "2026-07-05T15:03:59.3431189+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (ZZ; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' 'http://www.dvwa.co.uk/'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/http-missing-security-headers",
+      "template-id": "http-missing-security-headers",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "info": {
+        "name": "HTTP Missing Security Headers",
+        "author": [
+          "socketz",
+          "geeknik",
+          "g4l1t0",
+          "convisoappsec",
+          "kurohost",
+          "dawid-czarnecki",
+          "forgedhallpass",
+          "jub0bs",
+          "userdehghani",
+          "celbahraoui",
+          "safejulian"
+        ],
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "x-permitted-cross-domain-policies",
+      "type": "http",
+      "host": "www.dvwa.co.uk",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://www.dvwa.co.uk/",
+      "path": "/",
+      "matched-at": "http://www.dvwa.co.uk/",
+      "ip": "172.67.154.147",
+      "timestamp": "2026-07-05T15:03:59.3431189+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (ZZ; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' 'http://www.dvwa.co.uk/'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/http-missing-security-headers",
+      "template-id": "http-missing-security-headers",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "info": {
+        "name": "HTTP Missing Security Headers",
+        "author": [
+          "socketz",
+          "geeknik",
+          "g4l1t0",
+          "convisoappsec",
+          "kurohost",
+          "dawid-czarnecki",
+          "forgedhallpass",
+          "jub0bs",
+          "userdehghani",
+          "celbahraoui",
+          "safejulian"
+        ],
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "cross-origin-embedder-policy",
+      "type": "http",
+      "host": "www.dvwa.co.uk",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://www.dvwa.co.uk/",
+      "path": "/",
+      "matched-at": "http://www.dvwa.co.uk/",
+      "ip": "172.67.154.147",
+      "timestamp": "2026-07-05T15:03:59.3431189+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (ZZ; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' 'http://www.dvwa.co.uk/'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/http-missing-security-headers",
+      "template-id": "http-missing-security-headers",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "info": {
+        "name": "HTTP Missing Security Headers",
+        "author": [
+          "socketz",
+          "geeknik",
+          "g4l1t0",
+          "convisoappsec",
+          "kurohost",
+          "dawid-czarnecki",
+          "forgedhallpass",
+          "jub0bs",
+          "userdehghani",
+          "celbahraoui",
+          "safejulian"
+        ],
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "cross-origin-opener-policy",
+      "type": "http",
+      "host": "www.dvwa.co.uk",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://www.dvwa.co.uk/",
+      "path": "/",
+      "matched-at": "http://www.dvwa.co.uk/",
+      "ip": "172.67.154.147",
+      "timestamp": "2026-07-05T15:03:59.3431189+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (ZZ; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' 'http://www.dvwa.co.uk/'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/http-missing-security-headers",
+      "template-id": "http-missing-security-headers",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "info": {
+        "name": "HTTP Missing Security Headers",
+        "author": [
+          "socketz",
+          "geeknik",
+          "g4l1t0",
+          "convisoappsec",
+          "kurohost",
+          "dawid-czarnecki",
+          "forgedhallpass",
+          "jub0bs",
+          "userdehghani",
+          "celbahraoui",
+          "safejulian"
+        ],
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "cross-origin-resource-policy",
+      "type": "http",
+      "host": "www.dvwa.co.uk",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://www.dvwa.co.uk/",
+      "path": "/",
+      "matched-at": "http://www.dvwa.co.uk/",
+      "ip": "172.67.154.147",
+      "timestamp": "2026-07-05T15:03:59.3431189+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (ZZ; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' 'http://www.dvwa.co.uk/'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/http-missing-security-headers",
+      "template-id": "http-missing-security-headers",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\http-missing-security-headers.yaml",
+      "info": {
+        "name": "HTTP Missing Security Headers",
+        "author": [
+          "socketz",
+          "geeknik",
+          "g4l1t0",
+          "convisoappsec",
+          "kurohost",
+          "dawid-czarnecki",
+          "forgedhallpass",
+          "jub0bs",
+          "userdehghani",
+          "celbahraoui",
+          "safejulian"
+        ],
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-693"
+          ]
+        }
+      },
+      "matcher-name": "strict-transport-security",
+      "type": "http",
+      "host": "www.dvwa.co.uk",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://www.dvwa.co.uk/",
+      "path": "/",
+      "matched-at": "http://www.dvwa.co.uk/",
+      "ip": "172.67.154.147",
+      "timestamp": "2026-07-05T15:03:59.343661+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (ZZ; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' 'http://www.dvwa.co.uk/'",
+      "matcher-status": true
+    }
+  ]
+}

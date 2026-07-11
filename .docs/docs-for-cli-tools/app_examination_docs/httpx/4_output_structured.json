@@ -1,0 +1,176 @@
+{
+  "schema": "httpx_probe_v1",
+  "tool": "httpx",
+  "scenario": "Web probe on subfinder passive hosts (K2 Asset Management)",
+  "scenario_id": "from_subfinder_k2am_passive",
+  "target": "k2am.com.au",
+  "subfinder_scenario": "corporate_k2am_passive_cs",
+  "probe_profile": "status-code,title,tech-detect,server,cdn,ip",
+  "host_input_count": 18,
+  "command": "httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_k2am_passive_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_k2am_passive.jsonl -silent -threads 15 -timeout 15 -rate-limit 30",
+  "runtime": "windows",
+  "started_at": "2026-07-05T16:05:03.491676+00:00",
+  "duration_s": 21.782,
+  "exit_code": 0,
+  "probe_summary_lines": 4,
+  "text_role": "one line per live URL: url [status] [title] server=\u2026 tech=[\u2026]",
+  "structured_role": "full httpx JSONL probe objects in records[]",
+  "records": [
+    {
+      "timestamp": "2026-07-06T02:05:05.3292777+10:00",
+      "cdn_name": "cloudflare",
+      "cdn_type": "waf",
+      "port": "80",
+      "url": "http://ksm.k2am.com.au",
+      "input": "ksm.k2am.com.au",
+      "scheme": "http",
+      "webserver": "cloudflare",
+      "content_type": "text/plain",
+      "method": "GET",
+      "host": "104.18.34.21",
+      "path": "/",
+      "time": "26.6143ms",
+      "a": [
+        "104.18.34.21",
+        "172.64.153.235"
+      ],
+      "cname": [
+        "unbouncepages.com"
+      ],
+      "tech": [
+        "Cloudflare"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 409,
+      "content_length": 16,
+      "failed": false,
+      "cdn": true,
+      "knowledgebase": {
+        "PageType": "error",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53",
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:05:05.3361793+10:00",
+      "cdn_name": "cloudflare",
+      "cdn_type": "waf",
+      "port": "80",
+      "url": "http://kii.k2am.com.au",
+      "input": "kii.k2am.com.au",
+      "scheme": "http",
+      "webserver": "cloudflare",
+      "content_type": "text/plain",
+      "method": "GET",
+      "host": "104.18.34.21",
+      "path": "/",
+      "time": "23.1847ms",
+      "a": [
+        "172.64.153.235",
+        "104.18.34.21"
+      ],
+      "cname": [
+        "unbouncepages.com"
+      ],
+      "tech": [
+        "Cloudflare"
+      ],
+      "words": 3,
+      "lines": 1,
+      "status_code": 409,
+      "content_length": 16,
+      "failed": false,
+      "cdn": true,
+      "knowledgebase": {
+        "PageType": "error",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.1.1.1:53",
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:05:05.4655046+10:00",
+      "port": "443",
+      "url": "https://www.k2am.com.au",
+      "input": "www.k2am.com.au",
+      "title": "Home",
+      "scheme": "https",
+      "webserver": "Apache",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "101.0.68.158",
+      "path": "/",
+      "time": "120.6392ms",
+      "a": [
+        "101.0.68.158"
+      ],
+      "tech": [
+        "Apache HTTP Server",
+        "Bootstrap",
+        "Chart.js:2.4.0",
+        "Cloudflare",
+        "D3",
+        "Google Hosted Libraries",
+        "Modernizr",
+        "PHP",
+        "Slick",
+        "cdnjs",
+        "jQuery"
+      ],
+      "words": 1070,
+      "lines": 419,
+      "status_code": 200,
+      "content_length": 13336,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "nonerror",
+        "pHash": 0
+      },
+      "resolvers": [
+        "8.8.8.8:53",
+        "1.0.0.1:53"
+      ]
+    },
+    {
+      "timestamp": "2026-07-06T02:05:06.2194447+10:00",
+      "port": "443",
+      "url": "https://link.k2am.com.au",
+      "input": "link.k2am.com.au",
+      "title": "SMTP2GO",
+      "scheme": "https",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "170.187.131.209",
+      "path": "/",
+      "time": "966.9239ms",
+      "a": [
+        "185.3.93.228",
+        "170.187.131.209"
+      ],
+      "cname": [
+        "track.smtp2go.net"
+      ],
+      "tech": [
+        "HSTS"
+      ],
+      "words": 642,
+      "lines": 84,
+      "status_code": 200,
+      "content_length": 2334,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "nonerror",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53"
+      ]
+    }
+  ]
+}

@@ -1,14 +1,11 @@
 # SpiderFeet CLI examination capture
 # tool: pius
-# scenario: Obscure org clean miss (obscure_miss_ndjson)
-# org: ZZZZ Nonexistent Org 000000
-# target: none
-# command: /mnt/c/projects/spiderfeet/.tools/pius run --org "ZZZZ Nonexistent Org 000000" --plugins gleif,whois --output ndjson
+# scenario: Corporate gleif stack (K2 Asset Management) — harvest deferred (corporate_k2am_ndjson)
+# org: K2 Asset Management Ltd
+# target: k2am.com.au
+# command: /mnt/c/projects/spiderfeet/.tools/pius run --org "K2 Asset Management Ltd" --domain www.k2am.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson
 # runtime: wsl
-# started_at: 2026-06-30T04:13:34.886674+00:00
-# duration_s: 8.219
-# exit_code: 0
-# finding_summary_lines: 0
-# text_role: one line per finding: [type] value (source)
-# structured_role: full NDJSON finding objects in records[]
+# harvest_deferred: true
+# harvest_deferred_reason: Target offline 2026-07-05; re-run harvest tomorrow when site is reachable
 
+# (no findings — examination not executed yet)

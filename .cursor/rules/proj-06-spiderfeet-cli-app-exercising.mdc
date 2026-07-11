@@ -19,9 +19,12 @@ First read the appropriate skillset documentation, then use the tool to explore 
 - **Semantic outcome matrix (mandatory gate):** Before any formal examination, draft a table of every distinct output shape the tool can emit (rich host rows, sparse/empty scans, passive vs active modes, parseable vs TUI text, auth failures, invalid targets, rate limits, dependency errors, clean misses). Do not start `harvest.py` until each row has a planned scenario id, target, and command family. If a row cannot be demonstrated after tuning inputs, record it as a proven limitation with evidence — not as a silent gap.
 - Explore by semantic output variation, and by every flag permutation, as well as the different input types and formats. Add a scenario whenever options, target class, mode, template/module, protocol, privilege, or failure condition changes the shape of returned data.
 - Use permissive targets to maximize rich output and protected/corporate targets to capture filtered, sparse, blocked, or error output.
+- **Target classes:** permissive lab, intentional vuln lab (pentest-ground / vulnweb when CVE or app-class signal is needed), smaller real org (org-intelligence tools), corporate/CDN (often negative fixtures), and **deferred** when a site is offline — placeholder bundle + `harvest_deferred`, not fake data.
 - If a run returns too little information, treat the input or option choice as suspect until richer alternatives have been tried or the limitation is proven. **Change targets, subnets, modes, and flags until the outcome class is demonstrated** — one default command is never sufficient evidence.
 - Search the web for example commands, targets, and report samples used by practitioners when help text and local trials are insufficient.
 - Keep tuning the inputs until you have a collection of input scenarios that cover every conceivable semantic variation of output. Do not be afraid to use the tool's help text to guide your exploration.
+- **Exploration completion gate:** Do not start formal examination while matrix rows are unclassified, batches were skipped because empty exports existed, or only info/noise was captured where critical/CVE/org enrichment was required. Each row must be Demonstrated, Proven limitation, Blocked, or Deferred with evidence. See `.cursor/skills/cli_app_profiling/references/exploration-examination-lessons.md`.
+- **Multi-mode scanners** (Nuclei and similar): one batch / one goal — tech fingerprint, then separate passes per tag/path/protocol family; avoid full-template sweeps on hardened targets. Maintain a tool **strategy skill** (e.g. `nuclei_strategy`) before locking formal scenarios.
 
 ## Ontology and nugget catalogue (mandatory)
 
@@ -75,6 +78,18 @@ Do not store raw `.jsonl` / NDJSON as the examination structured artifact. The C
 - `structured_ext: jsonl` — breaks Data Viewer
 - `text_from: stderr` on NDJSON scenarios — captures only `"Running N plugin(s)..."` banners
 - Shell redirect of NDJSON when the tool skips non-TTY output — use harvest stdout capture instead
+- **`--domain` as URL** (`https://host/`) when the tool expects hostname only — yields zero records; validate args in exploration before manifest lock
+- **`wsl --shutdown`** immediately before a WSL harvest — breaks DNS for the next `wsl bash -lc` run
+
+**Harvest deferral (offline targets):**
+
+- Manifest `harvest_deferred: true` + placeholder examination bundle (empty `records[]`, explicit reason)
+- Re-run `harvest.py --tool <tool> --scenario <key>` when the target is reachable
+
+**Exploration runner hygiene:**
+
+- Do not treat **empty JSONL/stdout** as a completed batch when using skip-existing or resume logic — require stderr sidecar or force re-run
+- `reuse_export` only when the export matches the manifest command (or document the manual run in `command.txt`)
 
 **Empty findings are valid:** `records: []` with scan metadata is a complete structured artifact for clean-miss scenarios (e.g. obscure org, sparse target).
 
@@ -102,6 +117,7 @@ For each scenario bundle, verify:
 - A formal examination is incomplete until the scenario matrix covers all known output classes and each scenario has command, manifest, text, structured data, proposed graph JSON, markdown graph structure, and review status.
 - Required scenario classes where applicable: baseline, maximum verbosity/rich output, each structured format family, alternate protocol/mode/module/template families, permissive target, protected target, clean miss, invalid input, dependency/auth/rate-limit/network error.
 - Do not collapse distinct output shapes into one scenario just because they come from the same tool.
+- **Replace low-value examinations** when a scenario only produces progress banners or info noise for its stated goal, or when a better target class (vuln lab, smaller org) demonstrates the same semantic types. Keep clean-miss scenarios only when clean miss is what is under test.
 
 ## Nugget Graph Derivation Discipline
 
@@ -124,4 +140,4 @@ Review the foundation described here to convert the structured artifact to nugge
 
 ## Handoff
 
-For each tool, leave a concise strategy describing how to produce rich, sparse, and error outputs; where the help text is captured; which scenario set proves the output surface is covered; and a completed semantic outcome matrix. On operator approval: set all `review_status` / `*_review.status.json` to `approved`, update `corpus_index.json` phase to `complete`, and add `<tool>_pilot_signoff.md` when pilot criteria are met.
+For each tool, leave a concise strategy describing how to produce rich, sparse, and error outputs; where the help text is captured; which scenario set proves the output surface is covered; and a completed semantic outcome matrix. Document proven tool limits (e.g. Nuclei app-logic vs CVE templates, OOB/Interactsh dependencies) in the strategy skill or examination plan. On operator approval: set all `review_status` / `*_review.status.json` to `approved`, update `corpus_index.json` phase to `complete`, and add `<tool>_pilot_signoff.md` when pilot criteria are met.

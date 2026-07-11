@@ -1,0 +1,43 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_instance_id": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Katana crawl scan",
+      "nugget_data": "venturecapitalopportunitiesfund.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SCAN_CLI--239cf014-4654-5706-b8eb-dc207c5cb8b5",
+      "nugget_instance_id": "SCAN_CLI--239cf014-4654-5706-b8eb-dc207c5cb8b5",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "katana -list .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_vcof_sparse_urls.txt -silent -jsonl -o .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_vcof_sparse.jsonl -depth 3 -c 5 -timeout 15 -fs fqdn -ct 3m",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_instance_id": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "venturecapitalopportunitiesfund.com.au",
+      "nugget_colour": "#3B82F6"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "target": "SCAN_CLI--239cf014-4654-5706-b8eb-dc207c5cb8b5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "target": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "relation": "contains"
+    }
+  ]
+}

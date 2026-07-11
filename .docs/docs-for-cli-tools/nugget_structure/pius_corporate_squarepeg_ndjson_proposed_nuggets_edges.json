@@ -1,0 +1,196 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
+      "nugget_instance_id": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Scan Record",
+      "nugget_data": "Square Peg Capital Pty Ltd"
+    },
+    {
+      "id": "SCAN_CLI--c4fe707c-322e-5d91-a8ff-9411eba844b1",
+      "nugget_instance_id": "SCAN_CLI--c4fe707c-322e-5d91-a8ff-9411eba844b1",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"Square Peg Capital Pty Ltd\" --domain squarepeg.vc --plugins gleif,wikidata,whois,crt-sh --output ndjson"
+    },
+    {
+      "id": "COMPANY_NAME--53b0b896-f56f-5410-9bf3-3d51e148f354",
+      "nugget_instance_id": "COMPANY_NAME--53b0b896-f56f-5410-9bf3-3d51e148f354",
+      "nugget_id": "COMPANY_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Organization",
+      "nugget_data": "Square Peg Capital Pty Ltd"
+    },
+    {
+      "id": "INTERNET_NAME--84c42091-620c-52e5-872a-dae53cb4cc73",
+      "nugget_instance_id": "INTERNET_NAME--84c42091-620c-52e5-872a-dae53cb4cc73",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "www.squarepeg.vc"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--8bf944d5-d3f7-51a7-973a-adcf58ca210a",
+      "nugget_instance_id": "INTERNET_NAME--8bf944d5-d3f7-51a7-973a-adcf58ca210a",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "squarepeg.vc"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--e35b6fad-46a8-57e4-89c0-7891c8459ac3",
+      "nugget_instance_id": "INTERNET_NAME--e35b6fad-46a8-57e4-89c0-7891c8459ac3",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "foundersummit2026.squarepeg.vc"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--0614dd9d-2696-5d94-b01b-71c88deae0ed",
+      "nugget_instance_id": "INTERNET_NAME--0614dd9d-2696-5d94-b01b-71c88deae0ed",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "email.foundersummit2026.squarepeg.vc"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--a26354db-7d02-53fd-822d-a166e3b4da1a",
+      "nugget_instance_id": "INTERNET_NAME--a26354db-7d02-53fd-822d-a166e3b4da1a",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "helix.squarepeg.vc"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--0c12ab3c-1621-5fea-9eea-9b3957e367e2",
+      "nugget_instance_id": "INTERNET_NAME--0c12ab3c-1621-5fea-9eea-9b3957e367e2",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "data.squarepeg.vc"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
+      "target": "SCAN_CLI--c4fe707c-322e-5d91-a8ff-9411eba844b1",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
+      "target": "COMPANY_NAME--53b0b896-f56f-5410-9bf3-3d51e148f354",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
+      "target": "INTERNET_NAME--84c42091-620c-52e5-872a-dae53cb4cc73",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--84c42091-620c-52e5-872a-dae53cb4cc73",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
+      "target": "INTERNET_NAME--8bf944d5-d3f7-51a7-973a-adcf58ca210a",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--8bf944d5-d3f7-51a7-973a-adcf58ca210a",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
+      "target": "INTERNET_NAME--e35b6fad-46a8-57e4-89c0-7891c8459ac3",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--e35b6fad-46a8-57e4-89c0-7891c8459ac3",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
+      "target": "INTERNET_NAME--0614dd9d-2696-5d94-b01b-71c88deae0ed",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--0614dd9d-2696-5d94-b01b-71c88deae0ed",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
+      "target": "INTERNET_NAME--a26354db-7d02-53fd-822d-a166e3b4da1a",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--a26354db-7d02-53fd-822d-a166e3b4da1a",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
+      "target": "INTERNET_NAME--0c12ab3c-1621-5fea-9eea-9b3957e367e2",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--0c12ab3c-1621-5fea-9eea-9b3957e367e2",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    }
+  ]
+}

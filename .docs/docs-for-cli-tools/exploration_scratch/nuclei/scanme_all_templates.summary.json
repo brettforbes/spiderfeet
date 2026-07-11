@@ -1,0 +1,96 @@
+{
+  "source": "C:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nuclei\\scanme_all_templates.jsonl",
+  "record_count": 25,
+  "unique_templates_matched": 16,
+  "severities": {
+    "info": 18,
+    "low": 5,
+    "medium": 2
+  },
+  "types": {
+    "http": 12,
+    "javascript": 10,
+    "dns": 2,
+    "tcp": 1
+  },
+  "shapes": {
+    "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 10,
+    "severity=low|type=javascript|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('enum', 'js', 'ssh')": 4,
+    "severity=info|type=javascript|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('enum', 'js', 'ssh')": 2,
+    "severity=low|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('apache', 'exposure', 'misconfig')": 1,
+    "severity=medium|type=javascript|matcher=False|extracted=True|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2023', 'packetstorm')": 1,
+    "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('detect', 'js', 'ssh')": 1,
+    "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('enum', 'js', 'ssh')": 1,
+    "severity=medium|type=javascript|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('enum', 'js', 'ssh')": 1,
+    "severity=info|type=tcp|matcher=False|extracted=True|cve_line=True|cve_class=False|tags_sample=('network', 'seclists', 'ssh')": 1,
+    "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('apache', 'discovery', 'tech')": 1,
+    "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('aaaa', 'dns', 'ipv6')": 1,
+    "severity=info|type=dns|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('caa', 'discovery', 'dns')": 1
+  },
+  "top_templates": [
+    [
+      "http-missing-security-headers",
+      10
+    ],
+    [
+      "apache-mod-negotiation-listing",
+      1
+    ],
+    [
+      "CVE-2023-48795",
+      1
+    ],
+    [
+      "ssh-auth-methods",
+      1
+    ],
+    [
+      "ssh-diffie-hellman-logjam",
+      1
+    ],
+    [
+      "ssh-password-auth",
+      1
+    ],
+    [
+      "ssh-server-enumeration",
+      1
+    ],
+    [
+      "ssh-sha1-hmac-algo",
+      1
+    ],
+    [
+      "ssh-cbc-mode-ciphers",
+      1
+    ],
+    [
+      "ssh-weak-algo-supported",
+      1
+    ],
+    [
+      "ssh-weak-mac-algo",
+      1
+    ],
+    [
+      "ssh-weakkey-exchange-algo",
+      1
+    ],
+    [
+      "openssh-detect",
+      1
+    ],
+    [
+      "apache-detect",
+      1
+    ],
+    [
+      "aaaa-fingerprint",
+      1
+    ],
+    [
+      "caa-fingerprint",
+      1
+    ]
+  ]
+}

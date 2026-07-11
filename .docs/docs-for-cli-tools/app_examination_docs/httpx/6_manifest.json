@@ -1,0 +1,19 @@
+{
+  "tool": "httpx",
+  "exam_id": 6,
+  "scenario_id": "from_subfinder_upside_com",
+  "scenario_name": "Web probe on subfinder hosts (The Upside .com)",
+  "target": "theupside.com",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 21.844,
+  "captured_at": "2026-07-05T16:05:47.065894+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\httpx\\6_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\httpx\\6_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\httpx\\6_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\httpx\\exams\\from_subfinder_upside_com.jsonl"
+}

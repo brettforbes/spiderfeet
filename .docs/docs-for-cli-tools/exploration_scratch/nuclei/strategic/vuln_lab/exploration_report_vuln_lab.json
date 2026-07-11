@@ -1,0 +1,2554 @@
+{
+  "generated_at": "2026-07-05T10:11:58.320712+00:00",
+  "strategy_skill": ".cursor/skills/nuclei_strategy/SKILL.md",
+  "output_dir": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vuln_lab",
+  "target_scores": {
+    "vulnweb_netlify": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "itsecgames": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    "dvwa_co_uk": {
+      "total_records": 9,
+      "severities": {
+        "info": 9
+      },
+      "types": {
+        "http": 9
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_misconfig_path"
+      ],
+      "signal_score": 0.9
+    },
+    "hackthissite": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "gruyere": {
+      "total_records": 11,
+      "severities": {
+        "info": 11
+      },
+      "types": {
+        "http": 11
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_misconfig_path"
+      ],
+      "signal_score": 1.1
+    },
+    "testaspnet_vulnweb": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    "testasp_vulnweb": {
+      "total_records": 5,
+      "severities": {
+        "info": 5
+      },
+      "types": {
+        "http": 3,
+        "javascript": 2
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_misconfig_path"
+      ],
+      "signal_score": 0.5
+    },
+    "pg_dvwa": {
+      "total_records": 20,
+      "severities": {
+        "info": 19,
+        "low": 1
+      },
+      "types": {
+        "http": 18,
+        "javascript": 2
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_misconfig_path",
+        "phase_b_nginx"
+      ],
+      "signal_score": 2.9
+    },
+    "pg_graphql": {
+      "total_records": 28,
+      "severities": {
+        "info": 28
+      },
+      "types": {
+        "http": 26,
+        "javascript": 2
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_misconfig_path",
+        "phase_hint_graphql",
+        "phase_b_nginx"
+      ],
+      "signal_score": 2.8
+    },
+    "pg_restflaw": {
+      "total_records": 18,
+      "severities": {
+        "info": 18
+      },
+      "types": {
+        "http": 18
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_misconfig_path",
+        "phase_b_nginx"
+      ],
+      "signal_score": 1.8
+    },
+    "pg_weblogic": {
+      "total_records": 26,
+      "severities": {
+        "info": 14,
+        "critical": 8,
+        "high": 4
+      },
+      "types": {
+        "http": 26
+      },
+      "cve_ids": [],
+      "crit_high_count": 12,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_cves_path",
+        "phase_b_misconfig_path",
+        "phase_c_crit_high",
+        "phase_hint_weblogic",
+        "phase_hint_rce"
+      ],
+      "signal_score": 121.4
+    },
+    "pg_guardianleaks": {
+      "total_records": 21,
+      "severities": {
+        "info": 21
+      },
+      "types": {
+        "http": 19,
+        "javascript": 2
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_misconfig_path",
+        "phase_b_nginx"
+      ],
+      "signal_score": 2.1
+    },
+    "testphp_vulnweb": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    "testhtml5_vulnweb": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    "testfire_demo": {
+      "total_records": 15,
+      "severities": {
+        "info": 15
+      },
+      "types": {
+        "http": 14,
+        "javascript": 1
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_misconfig_path",
+        "phase_b_apache"
+      ],
+      "signal_score": 1.5
+    }
+  },
+  "ranking": [
+    {
+      "slug": "pg_weblogic",
+      "total_records": 26,
+      "severities": {
+        "info": 14,
+        "critical": 8,
+        "high": 4
+      },
+      "types": {
+        "http": 26
+      },
+      "cve_ids": [],
+      "crit_high_count": 12,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_cves_path",
+        "phase_b_misconfig_path",
+        "phase_c_crit_high",
+        "phase_hint_weblogic",
+        "phase_hint_rce"
+      ],
+      "signal_score": 121.4
+    },
+    {
+      "slug": "pg_dvwa",
+      "total_records": 20,
+      "severities": {
+        "info": 19,
+        "low": 1
+      },
+      "types": {
+        "http": 18,
+        "javascript": 2
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_misconfig_path",
+        "phase_b_nginx"
+      ],
+      "signal_score": 2.9
+    },
+    {
+      "slug": "pg_graphql",
+      "total_records": 28,
+      "severities": {
+        "info": 28
+      },
+      "types": {
+        "http": 26,
+        "javascript": 2
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_misconfig_path",
+        "phase_hint_graphql",
+        "phase_b_nginx"
+      ],
+      "signal_score": 2.8
+    },
+    {
+      "slug": "pg_guardianleaks",
+      "total_records": 21,
+      "severities": {
+        "info": 21
+      },
+      "types": {
+        "http": 19,
+        "javascript": 2
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_misconfig_path",
+        "phase_b_nginx"
+      ],
+      "signal_score": 2.1
+    },
+    {
+      "slug": "pg_restflaw",
+      "total_records": 18,
+      "severities": {
+        "info": 18
+      },
+      "types": {
+        "http": 18
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_misconfig_path",
+        "phase_b_nginx"
+      ],
+      "signal_score": 1.8
+    },
+    {
+      "slug": "testfire_demo",
+      "total_records": 15,
+      "severities": {
+        "info": 15
+      },
+      "types": {
+        "http": 14,
+        "javascript": 1
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_misconfig_path",
+        "phase_b_apache"
+      ],
+      "signal_score": 1.5
+    },
+    {
+      "slug": "gruyere",
+      "total_records": 11,
+      "severities": {
+        "info": 11
+      },
+      "types": {
+        "http": 11
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_misconfig_path"
+      ],
+      "signal_score": 1.1
+    },
+    {
+      "slug": "dvwa_co_uk",
+      "total_records": 9,
+      "severities": {
+        "info": 9
+      },
+      "types": {
+        "http": 9
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_misconfig_path"
+      ],
+      "signal_score": 0.9
+    },
+    {
+      "slug": "testasp_vulnweb",
+      "total_records": 5,
+      "severities": {
+        "info": 5
+      },
+      "types": {
+        "http": 3,
+        "javascript": 2
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_misconfig_path"
+      ],
+      "signal_score": 0.5
+    },
+    {
+      "slug": "vulnweb_netlify",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "itsecgames",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    {
+      "slug": "hackthissite",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "testaspnet_vulnweb",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    {
+      "slug": "testphp_vulnweb",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    {
+      "slug": "testhtml5_vulnweb",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    }
+  ],
+  "batches": {
+    "vulnweb_netlify": [
+      {
+        "target": "vulnweb_netlify",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "vulnweb_netlify",
+        "phase_id": "phase_b_exposure",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "vulnweb_netlify",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "vulnweb_netlify",
+        "phase_id": "phase_b_cves_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "vulnweb_netlify",
+        "phase_id": "phase_b_misconfig_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "vulnweb_netlify",
+        "phase_id": "phase_b_default_logins",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "vulnweb_netlify",
+        "phase_id": "phase_b_network",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "vulnweb_netlify",
+        "phase_id": "phase_c_crit_high",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      }
+    ],
+    "itsecgames": [
+      {
+        "target": "itsecgames",
+        "url": "http://www.itsecgames.com/",
+        "phase_id": "preflight",
+        "phase_name": "HTTP preflight",
+        "record_count": 0,
+        "summary": {
+          "severities": {}
+        },
+        "skipped": true,
+        "preflight_ok": false,
+        "preflight_reason": "<urlopen error timed out>"
+      }
+    ],
+    "dvwa_co_uk": [
+      {
+        "target": "dvwa_co_uk",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "tech-detect",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "dvwa_co_uk",
+        "phase_id": "phase_b_exposure",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "dvwa_co_uk",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "dvwa_co_uk",
+        "phase_id": "phase_b_cves_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "dvwa_co_uk",
+        "phase_id": "phase_b_misconfig_path",
+        "skipped": true,
+        "record_count": 8,
+        "summary": {
+          "record_count": 8,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 8
+          },
+          "types": {
+            "http": 8
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 8
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              8
+            ]
+          ]
+        }
+      },
+      {
+        "target": "dvwa_co_uk",
+        "phase_id": "phase_b_default_logins",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "dvwa_co_uk",
+        "phase_id": "phase_b_network",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "dvwa_co_uk",
+        "phase_id": "phase_c_crit_high",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      }
+    ],
+    "hackthissite": [
+      {
+        "target": "hackthissite",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "hackthissite",
+        "phase_id": "phase_b_exposure",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "hackthissite",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "hackthissite",
+        "phase_id": "phase_b_cves_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "hackthissite",
+        "phase_id": "phase_b_misconfig_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "hackthissite",
+        "phase_id": "phase_b_default_logins",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "hackthissite",
+        "phase_id": "phase_b_network",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "hackthissite",
+        "phase_id": "phase_c_crit_high",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      }
+    ],
+    "gruyere": [
+      {
+        "target": "gruyere",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('google', 'httpserver', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "google-frontend-httpserver",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "gruyere",
+        "phase_id": "phase_b_exposure",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "gruyere",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "gruyere",
+        "phase_id": "phase_b_cves_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "gruyere",
+        "phase_id": "phase_b_misconfig_path",
+        "skipped": true,
+        "record_count": 10,
+        "summary": {
+          "record_count": 10,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 10
+          },
+          "types": {
+            "http": 10
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 10
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              10
+            ]
+          ]
+        }
+      },
+      {
+        "target": "gruyere",
+        "phase_id": "phase_b_default_logins",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "gruyere",
+        "phase_id": "phase_b_network",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "gruyere",
+        "phase_id": "phase_c_crit_high",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      }
+    ],
+    "testaspnet_vulnweb": [
+      {
+        "target": "testaspnet_vulnweb",
+        "url": "http://testaspnet.vulnweb.com/",
+        "phase_id": "preflight",
+        "phase_name": "HTTP preflight",
+        "record_count": 0,
+        "summary": {
+          "severities": {}
+        },
+        "skipped": true,
+        "preflight_ok": false,
+        "preflight_reason": "<urlopen error timed out>"
+      }
+    ],
+    "testasp_vulnweb": [
+      {
+        "target": "testasp_vulnweb",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 3,
+        "summary": {
+          "record_count": 3,
+          "unique_templates_matched": 2,
+          "severities": {
+            "info": 3
+          },
+          "types": {
+            "http": 3
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 2,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('iis', 'microsoft', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "tech-detect",
+              2
+            ],
+            [
+              "microsoft-iis-version",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "testasp_vulnweb",
+        "phase_id": "phase_b_exposure",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "testasp_vulnweb",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "testasp_vulnweb",
+        "phase_id": "phase_b_cves_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "testasp_vulnweb",
+        "phase_id": "phase_b_misconfig_path",
+        "skipped": true,
+        "record_count": 2,
+        "summary": {
+          "record_count": 2,
+          "unique_templates_matched": 2,
+          "severities": {
+            "info": 2
+          },
+          "types": {
+            "javascript": 2
+          },
+          "shapes": {
+            "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cookie', 'http', 'misconfig')": 2
+          },
+          "top_templates": [
+            [
+              "cookies-without-secure",
+              1
+            ],
+            [
+              "cookies-without-httponly",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "testasp_vulnweb",
+        "phase_id": "phase_b_default_logins",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "testasp_vulnweb",
+        "phase_id": "phase_b_network",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "testasp_vulnweb",
+        "phase_id": "phase_c_crit_high",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      }
+    ],
+    "pg_dvwa": [
+      {
+        "target": "pg_dvwa",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 4,
+        "summary": {
+          "record_count": 4,
+          "unique_templates_matched": 3,
+          "severities": {
+            "info": 4
+          },
+          "types": {
+            "http": 4
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 2,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'nginx', 'tech')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'php', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "tech-detect",
+              2
+            ],
+            [
+              "nginx-version",
+              1
+            ],
+            [
+              "php-detect",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_dvwa",
+        "phase_id": "phase_b_exposure",
+        "skipped": true,
+        "record_count": 2,
+        "summary": {
+          "record_count": 2,
+          "unique_templates_matched": 2,
+          "severities": {
+            "low": 1,
+            "info": 1
+          },
+          "types": {
+            "http": 2
+          },
+          "shapes": {
+            "severity=low|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('config', 'exposure', 'phpinfo')": 1,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('exposure', 'files', 'markdown')": 1
+          },
+          "top_templates": [
+            [
+              "phpinfo-files",
+              1
+            ],
+            [
+              "readme-md",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_dvwa",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_dvwa",
+        "phase_id": "phase_b_cves_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_dvwa",
+        "phase_id": "phase_b_misconfig_path",
+        "skipped": true,
+        "record_count": 13,
+        "summary": {
+          "record_count": 13,
+          "unique_templates_matched": 4,
+          "severities": {
+            "info": 13
+          },
+          "types": {
+            "http": 11,
+            "javascript": 2
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 10,
+            "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cookie', 'http', 'misconfig')": 2,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cookie', 'misconfig', 'samesite')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              10
+            ],
+            [
+              "cookies-without-secure",
+              1
+            ],
+            [
+              "cookies-without-httponly",
+              1
+            ],
+            [
+              "missing-cookie-samesite-strict",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_dvwa",
+        "phase_id": "phase_b_default_logins",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_dvwa",
+        "phase_id": "phase_b_network",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_dvwa",
+        "phase_id": "phase_c_crit_high",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_dvwa",
+        "phase_id": "phase_hint_sqli",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_dvwa",
+        "phase_id": "phase_hint_xss",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_dvwa",
+        "phase_id": "phase_b_nginx",
+        "skipped": true,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'nginx', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "nginx-version",
+              1
+            ]
+          ]
+        }
+      }
+    ],
+    "pg_graphql": [
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 4,
+        "summary": {
+          "record_count": 4,
+          "unique_templates_matched": 3,
+          "severities": {
+            "info": 4
+          },
+          "types": {
+            "http": 4
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 2,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'graphql', 'tech')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'nginx', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "tech-detect",
+              2
+            ],
+            [
+              "graphql-detect",
+              1
+            ],
+            [
+              "nginx-version",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_b_exposure",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_b_cves_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_b_misconfig_path",
+        "skipped": true,
+        "record_count": 18,
+        "summary": {
+          "record_count": 18,
+          "unique_templates_matched": 9,
+          "severities": {
+            "info": 18
+          },
+          "types": {
+            "http": 16,
+            "javascript": 2
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 10,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('graphql', 'misconfig', 'vuln')": 4,
+            "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cookie', 'http', 'misconfig')": 2,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('compliance', 'css', 'js')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cookie', 'misconfig', 'samesite')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              10
+            ],
+            [
+              "cookies-without-httponly",
+              1
+            ],
+            [
+              "graphql-alias-batching",
+              1
+            ],
+            [
+              "cookies-without-secure",
+              1
+            ],
+            [
+              "graphql-array-batching",
+              1
+            ],
+            [
+              "graphql-field-suggestion",
+              1
+            ],
+            [
+              "graphql-get-method",
+              1
+            ],
+            [
+              "missing-sri",
+              1
+            ],
+            [
+              "missing-cookie-samesite-strict",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_b_default_logins",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_b_network",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_c_crit_high",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_hint_graphql",
+        "skipped": true,
+        "record_count": 5,
+        "summary": {
+          "record_count": 5,
+          "unique_templates_matched": 5,
+          "severities": {
+            "info": 5
+          },
+          "types": {
+            "http": 5
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('graphql', 'misconfig', 'vuln')": 4,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'graphql', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "graphql-alias-batching",
+              1
+            ],
+            [
+              "graphql-field-suggestion",
+              1
+            ],
+            [
+              "graphql-array-batching",
+              1
+            ],
+            [
+              "graphql-detect",
+              1
+            ],
+            [
+              "graphql-get-method",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_hint_sqli",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_hint_xss",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_hint_rce",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_graphql",
+        "phase_id": "phase_b_nginx",
+        "skipped": true,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'nginx', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "nginx-version",
+              1
+            ]
+          ]
+        }
+      }
+    ],
+    "pg_restflaw": [
+      {
+        "target": "pg_restflaw",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 5,
+        "summary": {
+          "record_count": 5,
+          "unique_templates_matched": 3,
+          "severities": {
+            "info": 5
+          },
+          "types": {
+            "http": 5
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 3,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech', 'werkzeug')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'nginx', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "tech-detect",
+              3
+            ],
+            [
+              "werkzeug-debugger-detect",
+              1
+            ],
+            [
+              "nginx-version",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_restflaw",
+        "phase_id": "phase_b_exposure",
+        "skipped": true,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('api', 'discovery', 'exposure')": 1
+          },
+          "top_templates": [
+            [
+              "openapi",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_restflaw",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_restflaw",
+        "phase_id": "phase_b_cves_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_restflaw",
+        "phase_id": "phase_b_misconfig_path",
+        "skipped": true,
+        "record_count": 11,
+        "summary": {
+          "record_count": 11,
+          "unique_templates_matched": 2,
+          "severities": {
+            "info": 11
+          },
+          "types": {
+            "http": 11
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 10,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('compliance', 'css', 'js')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              10
+            ],
+            [
+              "missing-sri",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_restflaw",
+        "phase_id": "phase_b_default_logins",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_restflaw",
+        "phase_id": "phase_b_network",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_restflaw",
+        "phase_id": "phase_c_crit_high",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_restflaw",
+        "phase_id": "phase_hint_sqli",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_restflaw",
+        "phase_id": "phase_hint_ssrf",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_restflaw",
+        "phase_id": "phase_b_nginx",
+        "skipped": true,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'nginx', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "nginx-version",
+              1
+            ]
+          ]
+        }
+      }
+    ],
+    "pg_weblogic": [
+      {
+        "target": "pg_weblogic",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 2,
+        "summary": {
+          "record_count": 2,
+          "unique_templates_matched": 2,
+          "severities": {
+            "info": 2
+          },
+          "types": {
+            "http": 2
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 1,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('intrusive', 'tech', 'weblogic')": 1
+          },
+          "top_templates": [
+            [
+              "fingerprinthub-web-fingerprints",
+              1
+            ],
+            [
+              "weblogic-detect",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_weblogic",
+        "phase_id": "phase_b_exposure",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_weblogic",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_weblogic",
+        "phase_id": "phase_b_cves_path",
+        "skipped": true,
+        "record_count": 3,
+        "summary": {
+          "record_count": 3,
+          "unique_templates_matched": 3,
+          "severities": {
+            "critical": 2,
+            "high": 1
+          },
+          "types": {
+            "http": 3
+          },
+          "shapes": {
+            "severity=critical|type=http|matcher=False|extracted=False|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2018', 'oracle')": 1,
+            "severity=high|type=http|matcher=False|extracted=False|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2020', 'oracle')": 1,
+            "severity=critical|type=http|matcher=False|extracted=False|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2020', 'oracle')": 1
+          },
+          "top_templates": [
+            [
+              "CVE-2018-2894",
+              1
+            ],
+            [
+              "CVE-2020-14883",
+              1
+            ],
+            [
+              "CVE-2020-2551",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_weblogic",
+        "phase_id": "phase_b_misconfig_path",
+        "skipped": true,
+        "record_count": 10,
+        "summary": {
+          "record_count": 10,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 10
+          },
+          "types": {
+            "http": 10
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 10
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              10
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_weblogic",
+        "phase_id": "phase_b_default_logins",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_weblogic",
+        "phase_id": "phase_b_network",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_weblogic",
+        "phase_id": "phase_c_crit_high",
+        "skipped": true,
+        "record_count": 3,
+        "summary": {
+          "record_count": 3,
+          "unique_templates_matched": 3,
+          "severities": {
+            "critical": 2,
+            "high": 1
+          },
+          "types": {
+            "http": 3
+          },
+          "shapes": {
+            "severity=critical|type=http|matcher=False|extracted=False|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2018', 'oracle')": 1,
+            "severity=high|type=http|matcher=False|extracted=False|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2020', 'oracle')": 1,
+            "severity=critical|type=http|matcher=False|extracted=False|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2020', 'oracle')": 1
+          },
+          "top_templates": [
+            [
+              "CVE-2018-2894",
+              1
+            ],
+            [
+              "CVE-2020-14883",
+              1
+            ],
+            [
+              "CVE-2020-2551",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_weblogic",
+        "phase_id": "phase_hint_weblogic",
+        "skipped": true,
+        "record_count": 5,
+        "summary": {
+          "record_count": 5,
+          "unique_templates_matched": 5,
+          "severities": {
+            "critical": 2,
+            "info": 2,
+            "high": 1
+          },
+          "types": {
+            "http": 5
+          },
+          "shapes": {
+            "severity=critical|type=http|matcher=False|extracted=False|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2018', 'oracle')": 1,
+            "severity=high|type=http|matcher=False|extracted=False|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2020', 'oracle')": 1,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('intrusive', 'tech', 'weblogic')": 1,
+            "severity=critical|type=http|matcher=False|extracted=False|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2020', 'oracle')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('oracle', 'panel', 'weblogic')": 1
+          },
+          "top_templates": [
+            [
+              "CVE-2018-2894",
+              1
+            ],
+            [
+              "CVE-2020-14883",
+              1
+            ],
+            [
+              "weblogic-detect",
+              1
+            ],
+            [
+              "CVE-2020-2551",
+              1
+            ],
+            [
+              "weblogic-login",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_weblogic",
+        "phase_id": "phase_hint_rce",
+        "skipped": true,
+        "record_count": 3,
+        "summary": {
+          "record_count": 3,
+          "unique_templates_matched": 3,
+          "severities": {
+            "critical": 2,
+            "high": 1
+          },
+          "types": {
+            "http": 3
+          },
+          "shapes": {
+            "severity=critical|type=http|matcher=False|extracted=False|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2018', 'oracle')": 1,
+            "severity=high|type=http|matcher=False|extracted=False|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2020', 'oracle')": 1,
+            "severity=critical|type=http|matcher=False|extracted=False|cve_line=True|cve_class=True|tags_sample=('cve', 'cve2020', 'oracle')": 1
+          },
+          "top_templates": [
+            [
+              "CVE-2018-2894",
+              1
+            ],
+            [
+              "CVE-2020-14883",
+              1
+            ],
+            [
+              "CVE-2020-2551",
+              1
+            ]
+          ]
+        }
+      }
+    ],
+    "pg_guardianleaks": [
+      {
+        "target": "pg_guardianleaks",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 6,
+        "summary": {
+          "record_count": 6,
+          "unique_templates_matched": 3,
+          "severities": {
+            "info": 6
+          },
+          "types": {
+            "http": 6
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 4,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech', 'werkzeug')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'nginx', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "tech-detect",
+              4
+            ],
+            [
+              "werkzeug-debugger-detect",
+              1
+            ],
+            [
+              "nginx-version",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_guardianleaks",
+        "phase_id": "phase_b_exposure",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_guardianleaks",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_guardianleaks",
+        "phase_id": "phase_b_cves_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_guardianleaks",
+        "phase_id": "phase_b_misconfig_path",
+        "skipped": true,
+        "record_count": 14,
+        "summary": {
+          "record_count": 14,
+          "unique_templates_matched": 5,
+          "severities": {
+            "info": 14
+          },
+          "types": {
+            "http": 12,
+            "javascript": 2
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 10,
+            "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cookie', 'http', 'misconfig')": 2,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cookie', 'misconfig', 'samesite')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('compliance', 'css', 'js')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              10
+            ],
+            [
+              "cookies-without-httponly",
+              1
+            ],
+            [
+              "cookies-without-secure",
+              1
+            ],
+            [
+              "missing-cookie-samesite-strict",
+              1
+            ],
+            [
+              "missing-sri",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "pg_guardianleaks",
+        "phase_id": "phase_b_default_logins",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_guardianleaks",
+        "phase_id": "phase_b_network",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_guardianleaks",
+        "phase_id": "phase_c_crit_high",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_guardianleaks",
+        "phase_id": "phase_hint_xss",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_guardianleaks",
+        "phase_id": "phase_hint_ssrf",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "pg_guardianleaks",
+        "phase_id": "phase_b_nginx",
+        "skipped": true,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'nginx', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "nginx-version",
+              1
+            ]
+          ]
+        }
+      }
+    ],
+    "testphp_vulnweb": [
+      {
+        "target": "testphp_vulnweb",
+        "url": "http://testphp.vulnweb.com",
+        "phase_id": "preflight",
+        "phase_name": "HTTP preflight",
+        "record_count": 0,
+        "summary": {
+          "severities": {}
+        },
+        "skipped": true,
+        "preflight_ok": false,
+        "preflight_reason": "<urlopen error timed out>"
+      }
+    ],
+    "testhtml5_vulnweb": [
+      {
+        "target": "testhtml5_vulnweb",
+        "url": "http://testhtml5.vulnweb.com",
+        "phase_id": "preflight",
+        "phase_name": "HTTP preflight",
+        "record_count": 0,
+        "summary": {
+          "severities": {}
+        },
+        "skipped": true,
+        "preflight_ok": false,
+        "preflight_reason": "<urlopen error timed out>"
+      }
+    ],
+    "testfire_demo": [
+      {
+        "target": "testfire_demo",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('apache', 'discovery', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "apache-detect",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "testfire_demo",
+        "phase_id": "phase_b_exposure",
+        "skipped": true,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('api', 'exposure', 'swagger')": 1
+          },
+          "top_templates": [
+            [
+              "swagger-api",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "testfire_demo",
+        "phase_id": "phase_b_vulnerabilities_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "testfire_demo",
+        "phase_id": "phase_b_cves_path",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "testfire_demo",
+        "phase_id": "phase_b_misconfig_path",
+        "skipped": true,
+        "record_count": 12,
+        "summary": {
+          "record_count": 12,
+          "unique_templates_matched": 3,
+          "severities": {
+            "info": 12
+          },
+          "types": {
+            "http": 11,
+            "javascript": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 10,
+            "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cookie', 'http', 'misconfig')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cookie', 'misconfig', 'samesite')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              10
+            ],
+            [
+              "cookies-without-secure",
+              1
+            ],
+            [
+              "missing-cookie-samesite-strict",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "testfire_demo",
+        "phase_id": "phase_b_default_logins",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "testfire_demo",
+        "phase_id": "phase_b_network",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "testfire_demo",
+        "phase_id": "phase_c_crit_high",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "testfire_demo",
+        "phase_id": "phase_hint_sqli",
+        "skipped": true,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        }
+      },
+      {
+        "target": "testfire_demo",
+        "phase_id": "phase_b_apache",
+        "skipped": true,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('apache', 'discovery', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "apache-detect",
+              1
+            ]
+          ]
+        }
+      }
+    ]
+  }
+}

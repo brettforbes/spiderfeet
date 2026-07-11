@@ -1,0 +1,1 @@
+nuclei -u pentest-ground.com:6379 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates/network/cves/2022/CVE-2022-0543.yaml -t .tools/nuclei-templates/network/exposures/exposed-redis.yaml -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 10 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/cipherheart_redis_lab.jsonl

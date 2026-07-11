@@ -1,0 +1,430 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "nugget_instance_id": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Scan Record",
+      "nugget_data": "The Upside Pty Ltd"
+    },
+    {
+      "id": "SCAN_CLI--6962fc1a-50e7-5edc-8289-e7396871572c",
+      "nugget_instance_id": "SCAN_CLI--6962fc1a-50e7-5edc-8289-e7396871572c",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"The Upside Pty Ltd\" --domain theupside.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson"
+    },
+    {
+      "id": "COMPANY_NAME--dfbfaaa2-7f38-5949-ba88-b8110e9ed3d3",
+      "nugget_instance_id": "COMPANY_NAME--dfbfaaa2-7f38-5949-ba88-b8110e9ed3d3",
+      "nugget_id": "COMPANY_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Organization",
+      "nugget_data": "The Upside Pty Ltd"
+    },
+    {
+      "id": "INTERNET_NAME--9d4e4da7-361b-51a8-b87a-ae3cc6cbd227",
+      "nugget_instance_id": "INTERNET_NAME--9d4e4da7-361b-51a8-b87a-ae3cc6cbd227",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--9084ad40-1083-5165-85ef-51c3c414dc3a",
+      "nugget_instance_id": "INTERNET_NAME--9084ad40-1083-5165-85ef-51c3c414dc3a",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "www.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--a05a5246-9764-5071-a1b7-0db2e003a9ed",
+      "nugget_instance_id": "INTERNET_NAME--a05a5246-9764-5071-a1b7-0db2e003a9ed",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "track.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--5a1d0252-9b10-5d8d-a0af-71187804de24",
+      "nugget_instance_id": "INTERNET_NAME--5a1d0252-9b10-5d8d-a0af-71187804de24",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "k8s.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--fe3a7475-976d-596a-b429-bc4de525b086",
+      "nugget_instance_id": "INTERNET_NAME--fe3a7475-976d-596a-b429-bc4de525b086",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "info.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--63b21cc7-87ba-5e4e-b6af-d69ff916b576",
+      "nugget_instance_id": "INTERNET_NAME--63b21cc7-87ba-5e4e-b6af-d69ff916b576",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "spf.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--d0edd771-5edd-52d1-8242-ec7e2ccdffaa",
+      "nugget_instance_id": "INTERNET_NAME--d0edd771-5edd-52d1-8242-ec7e2ccdffaa",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "news.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--6f822e2d-10cc-57a6-88ed-3660fd993231",
+      "nugget_instance_id": "INTERNET_NAME--6f822e2d-10cc-57a6-88ed-3660fd993231",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "email.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--0629cf14-7a90-5a99-8fcd-7bad07042dc9",
+      "nugget_instance_id": "INTERNET_NAME--0629cf14-7a90-5a99-8fcd-7bad07042dc9",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "newsletter.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--a8283c8a-d9c7-5e93-8f83-1904fa55cd00",
+      "nugget_instance_id": "INTERNET_NAME--a8283c8a-d9c7-5e93-8f83-1904fa55cd00",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "test.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--69e802b1-5e44-55bf-92f3-c89582d2ebe6",
+      "nugget_instance_id": "INTERNET_NAME--69e802b1-5e44-55bf-92f3-c89582d2ebe6",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "mail.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--6ca6da09-2e1d-5c24-b1dd-f2ccba8f920c",
+      "nugget_instance_id": "INTERNET_NAME--6ca6da09-2e1d-5c24-b1dd-f2ccba8f920c",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "e.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--b30b8622-12a0-564b-9b3a-1448c81d49ba",
+      "nugget_instance_id": "INTERNET_NAME--b30b8622-12a0-564b-9b3a-1448c81d49ba",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "aws.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--d7b6be7c-5cff-53bf-8900-dbba4007d20e",
+      "nugget_instance_id": "INTERNET_NAME--d7b6be7c-5cff-53bf-8900-dbba4007d20e",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "dev.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    },
+    {
+      "id": "INTERNET_NAME--ecce903f-0a2b-54a4-a63b-4c77a26c10e8",
+      "nugget_instance_id": "INTERNET_NAME--ecce903f-0a2b-54a4-a63b-4c77a26c10e8",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name",
+      "nugget_data": "cfjump.theupside.com.au"
+    },
+    {
+      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "nugget_id": "PIUS_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "PIUS Source",
+      "nugget_data": "crt-sh"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "SCAN_CLI--6962fc1a-50e7-5edc-8289-e7396871572c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "COMPANY_NAME--dfbfaaa2-7f38-5949-ba88-b8110e9ed3d3",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--9d4e4da7-361b-51a8-b87a-ae3cc6cbd227",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--9d4e4da7-361b-51a8-b87a-ae3cc6cbd227",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--9084ad40-1083-5165-85ef-51c3c414dc3a",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--9084ad40-1083-5165-85ef-51c3c414dc3a",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--a05a5246-9764-5071-a1b7-0db2e003a9ed",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--a05a5246-9764-5071-a1b7-0db2e003a9ed",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--5a1d0252-9b10-5d8d-a0af-71187804de24",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--5a1d0252-9b10-5d8d-a0af-71187804de24",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--fe3a7475-976d-596a-b429-bc4de525b086",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--fe3a7475-976d-596a-b429-bc4de525b086",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--63b21cc7-87ba-5e4e-b6af-d69ff916b576",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--63b21cc7-87ba-5e4e-b6af-d69ff916b576",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--d0edd771-5edd-52d1-8242-ec7e2ccdffaa",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--d0edd771-5edd-52d1-8242-ec7e2ccdffaa",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--6f822e2d-10cc-57a6-88ed-3660fd993231",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--6f822e2d-10cc-57a6-88ed-3660fd993231",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--0629cf14-7a90-5a99-8fcd-7bad07042dc9",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--0629cf14-7a90-5a99-8fcd-7bad07042dc9",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--a8283c8a-d9c7-5e93-8f83-1904fa55cd00",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--a8283c8a-d9c7-5e93-8f83-1904fa55cd00",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--69e802b1-5e44-55bf-92f3-c89582d2ebe6",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--69e802b1-5e44-55bf-92f3-c89582d2ebe6",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--6ca6da09-2e1d-5c24-b1dd-f2ccba8f920c",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--6ca6da09-2e1d-5c24-b1dd-f2ccba8f920c",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--b30b8622-12a0-564b-9b3a-1448c81d49ba",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--b30b8622-12a0-564b-9b3a-1448c81d49ba",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--d7b6be7c-5cff-53bf-8900-dbba4007d20e",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--d7b6be7c-5cff-53bf-8900-dbba4007d20e",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "target": "INTERNET_NAME--ecce903f-0a2b-54a4-a63b-4c77a26c10e8",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME--ecce903f-0a2b-54a4-a63b-4c77a26c10e8",
+      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "relation": "had"
+    }
+  ]
+}

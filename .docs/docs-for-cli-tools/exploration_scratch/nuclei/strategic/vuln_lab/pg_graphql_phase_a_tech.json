@@ -1,0 +1,147 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "pg_graphql_phase_a_tech",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vuln_lab/pg_graphql_phase_a_tech.jsonl",
+  "started_at": "2026-07-05T08:41:58.952170+00:00",
+  "finding_summary_lines": 4,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/graphql-detect",
+      "template-id": "graphql-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\graphql-detect.yaml",
+      "info": {
+        "name": "GraphQL API Detection",
+        "author": [
+          "nkxxkn",
+          "elsfa7110",
+          "ofjaaah",
+          "exceed"
+        ],
+        "tags": [
+          "tech",
+          "graphql",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 124
+        }
+      },
+      "type": "http",
+      "host": "pentest-ground.com",
+      "port": "5013",
+      "scheme": "https",
+      "url": "https://pentest-ground.com:5013",
+      "matched-at": "https://pentest-ground.com:5013/graphql",
+      "meta": {
+        "paths": "/graphql"
+      },
+      "ip": "178.79.134.182",
+      "timestamp": "2026-07-05T18:41:22.5192422+10:00",
+      "curl-command": "curl -X 'POST' -d '{\"query\":\"query IntrospectionQuery{__schema {queryType { name }}}\"}' -H 'Accept: */*' -H 'Accept-Language: en' -H 'Content-Type: application/json' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/113.0' 'https://pentest-ground.com:5013/graphql'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/tech-detect",
+      "template-id": "tech-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\tech-detect.yaml",
+      "info": {
+        "name": "Wappalyzer Technology Detection",
+        "author": [
+          "hakluke",
+          "righettod",
+          "matejsmycka"
+        ],
+        "tags": [
+          "tech",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "matcher-name": "bootstrap",
+      "type": "http",
+      "host": "pentest-ground.com",
+      "port": "5013",
+      "scheme": "https",
+      "url": "https://pentest-ground.com:5013",
+      "matched-at": "https://pentest-ground.com:5013",
+      "ip": "178.79.134.182",
+      "timestamp": "2026-07-05T18:41:49.9409665+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Knoppix; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36' 'https://pentest-ground.com:5013'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/tech-detect",
+      "template-id": "tech-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\tech-detect.yaml",
+      "info": {
+        "name": "Wappalyzer Technology Detection",
+        "author": [
+          "hakluke",
+          "righettod",
+          "matejsmycka"
+        ],
+        "tags": [
+          "tech",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "matcher-name": "nginx",
+      "type": "http",
+      "host": "pentest-ground.com",
+      "port": "5013",
+      "scheme": "https",
+      "url": "https://pentest-ground.com:5013",
+      "matched-at": "https://pentest-ground.com:5013",
+      "ip": "178.79.134.182",
+      "timestamp": "2026-07-05T18:41:49.9409665+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Knoppix; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36' 'https://pentest-ground.com:5013'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/nginx-version",
+      "template-id": "nginx-version",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\nginx\\nginx-version.yaml",
+      "info": {
+        "name": "Nginx version detect",
+        "author": [
+          "philippedelteil",
+          "daffainfo"
+        ],
+        "tags": [
+          "tech",
+          "nginx",
+          "discovery"
+        ],
+        "description": "Some nginx servers have the version on the response header. Useful when you need to find specific CVEs on your targets.",
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "type": "http",
+      "host": "pentest-ground.com",
+      "port": "5013",
+      "scheme": "https",
+      "url": "https://pentest-ground.com:5013",
+      "matched-at": "https://pentest-ground.com:5013",
+      "extracted-results": [
+        "nginx/1.31.2"
+      ],
+      "ip": "178.79.134.182",
+      "timestamp": "2026-07-05T18:41:52.5266806+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115.0' 'https://pentest-ground.com:5013'",
+      "matcher-status": true
+    }
+  ]
+}

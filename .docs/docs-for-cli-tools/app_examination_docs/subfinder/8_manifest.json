@@ -1,0 +1,19 @@
+{
+  "tool": "subfinder",
+  "exam_id": 8,
+  "scenario_id": "invalid_domain_clean_miss",
+  "scenario_name": "Clean miss on invalid apex domain",
+  "target": "not-a-real-domain-xyzzy.invalid",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 24.594,
+  "captured_at": "2026-07-05T14:26:26.453039+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\8_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\8_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\8_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\subfinder\\exams\\invalid_domain_clean_miss.jsonl"
+}

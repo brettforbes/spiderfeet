@@ -1,0 +1,96 @@
+id: workflow--1c51e712-b5b5-4ef2-9967-e11debbcc607
+
+info:
+  name: Recon Attack Surface
+  description: This workflow is used to recon the attack surface of a target.
+  author: Modeller
+  created: Tuesday, 7th July 2026, 21:58:32
+  modules: 
+    - sfp_subfinder
+    - sfp_nmap
+    - sfp_nerva
+    - sfp_httpx
+    - sfp_katana
+    - sfp_nuclei
+  start: sfp_subfinder
+  targets: 
+    - https://example.com
+
+sequence:
+  - sfp_subfinder:
+    input:
+      - type: list
+        value: {{targets}}
+    config:
+      cli_options: -d {{targets}} -oJ -cs -o {{temp_file}} -silent
+      temp_file: auto
+    output:
+      - domains:
+        - type: list
+          value: {{DOMAIN_NAME}}
+      - subdomains:
+        - type: list
+          value: {{SUBDOMAIN}}
+      - all_domains:
+        - type: list
+          value: sum({{domains}}, {{subdomains}})
+    context:
+      graph: {{scan_graph}}
+
+  - sfp_nmap:
+    input:
+      - type: list
+        value: {{all_domains}}
+    config:
+      cli_options:  -sT -T3 -p-  -oX {{temp_file}} {{all_domains}}
+      temp_file: auto
+    output:
+        - ip_port_list:
+          - type: list
+            value: concat({{IP_ADDRESS}}, ":", {{PORT}})
+    context:
+      graph: {{scan_graph}}
+
+  - sfp_nerva:
+    input:
+      - type: list
+        value: {{ip_port_list}}
+    config:
+      cli_options:  -sT -A -T3  -oX {{temp_file}} {{ip_port_list}}
+      temp_file: auto
+    context:
+      graph: {{scan_graph}}
+
+  - sfp_httpx:
+    input:
+      - type: list
+        value: {{all_domains}}
+    config:
+      cli_options:  httpx -l {{all_domains}} -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o {{temp_file}} -silent -threads 10 -timeout 15 -rate-limit 25  
+      temp_file: auto
+    output:
+        - web_url_list:
+          - type: list
+            value: {{URL_WEB_FRAMEWORK}}
+
+  - sfp_katana:
+    input:
+      - type: list
+        value: {{all_domains}}
+    config:
+      cli_options:  katana -list {{web_url_list}} -j -duc -ob -or -o {{temp_file}}  -depth 2 -c 5 -timeout 10 -fs fqdn -ct 8m 
+      temp_file: auto
+    output:
+        - internal_url_list:
+          - type: list
+            value: {{"LINKED_URL_INTERNAL"}}
+
+  - sfp_nuclei:
+    input:
+      - type: list
+        value: {{all_domains}}
+    config:
+      cli_options:  nuclei -u {{internal_url_list}} -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -tags weblogic,cve -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 15 -jle {{temp_file}}       
+      temp_file: auto
+    context:
+      graph: {{scan_graph}}

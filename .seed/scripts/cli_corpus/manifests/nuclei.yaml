@@ -1,0 +1,60 @@
+tool: nuclei
+version: 4
+default_runtime: windows
+default_timeout: 14400
+binary_probe: .tools/bin/nuclei.exe -version
+primary_parser: ndjson
+output_path_type: 2
+
+# Selective strategic scenarios (nuclei_strategy skill) — one batch goal per examination.
+
+scenarios:
+  - id: scanme_all_templates
+    name: "All templates on scanme.nmap.org (module-default filters)"
+    target: http://scanme.nmap.org
+    command: nuclei -u http://scanme.nmap.org -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/scanme_all_templates.jsonl
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/nuclei/scanme_all_templates.jsonl
+    reuse_export: true
+    structured_kind: json
+    structured_ext: json
+    timeout: 14400
+
+  - id: pg_shadowlogic_weblogic_cves
+    name: "WebLogic CVE sweep on pentest-ground ShadowLogic (:7001)"
+    target: https://pentest-ground.com:7001
+    command: nuclei -u https://pentest-ground.com:7001 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -tags weblogic,cve -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/pg_shadowlogic_weblogic_cves.jsonl
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/nuclei/pg_shadowlogic_weblogic_cves.jsonl
+    reuse_export: true
+    structured_kind: json
+    structured_ext: json
+    timeout: 1800
+
+  - id: cipherheart_redis_lab
+    name: "Redis CVE-2022-0543 + unauthenticated exposure on pentest-ground (:6379)"
+    target: pentest-ground.com:6379
+    command: nuclei -u pentest-ground.com:6379 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates/network/cves/2022/CVE-2022-0543.yaml -t .tools/nuclei-templates/network/exposures/exposed-redis.yaml -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 10 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/cipherheart_redis_lab.jsonl
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/nuclei/cipherheart_redis_lab.jsonl
+    reuse_export: true
+    structured_kind: json
+    structured_ext: json
+    timeout: 600
+
+  - id: pg_graphql_graphql_misconfig
+    name: "GraphQL misconfiguration sweep on pentest-ground (:5013)"
+    target: https://pentest-ground.com:5013
+    command: nuclei -u https://pentest-ground.com:5013 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -tags graphql -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/pg_graphql_graphql_misconfig.jsonl
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/nuclei/pg_graphql_graphql_misconfig.jsonl
+    reuse_export: true
+    structured_kind: json
+    structured_ext: json
+    timeout: 1200
+
+  - id: pg_dvwa_tech_fingerprint
+    name: "Tech fingerprint on pentest-ground DVWA (:4280)"
+    target: https://pentest-ground.com:4280
+    command: nuclei -u https://pentest-ground.com:4280 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -tags tech -severity info -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/pg_dvwa_tech_fingerprint.jsonl
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/nuclei/pg_dvwa_tech_fingerprint.jsonl
+    reuse_export: true
+    structured_kind: json
+    structured_ext: json
+    timeout: 900

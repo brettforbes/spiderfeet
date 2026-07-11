@@ -1,0 +1,106 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "testasp_vulnweb_phase_b_misconfig_path",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vuln_lab/testasp_vulnweb_phase_b_misconfig_path.jsonl",
+  "started_at": "2026-07-05T07:38:02.450575+00:00",
+  "finding_summary_lines": 2,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/cookies-without-secure",
+      "template-id": "cookies-without-secure",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\cookies-without-secure.yaml",
+      "info": {
+        "name": "Cookies without Secure attribute - Detect",
+        "author": [
+          "vthiery",
+          "rj coleman"
+        ],
+        "tags": [
+          "misconfig",
+          "http",
+          "cookie",
+          "generic",
+          "vuln"
+        ],
+        "description": "Checks whether cookies in the HTTP response contain the Secure attribute. If the Secure flag is set, it means that the cookie can only be transmitted over HTTPS\n",
+        "impact": "Lack of Secure flag on cookies allows the cookie to be sent over unsecure HTTP, making it vulnerable to man-in-the-middle (MITM) attacks.\n",
+        "reference": [
+          "https://owasp.org/www-community/controls/SecureCookieAttribute"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1,
+          "verified": true
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-614"
+          ],
+          "cvss-metrics": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
+        },
+        "remediation": "Ensure that all cookies are set with the Secure attribute to prevent MITM attacks.\n"
+      },
+      "type": "javascript",
+      "host": "testasp.vulnweb.com",
+      "port": "80",
+      "url": "http://testasp.vulnweb.com/",
+      "matched-at": "testasp.vulnweb.com",
+      "extracted-results": [
+        "ASPSESSIONIDACCTQBTB"
+      ],
+      "timestamp": "2026-07-05T17:36:38.6944474+10:00",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/cookies-without-httponly",
+      "template-id": "cookies-without-httponly",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\cookies-without-httponly.yaml",
+      "info": {
+        "name": "Cookies without HttpOnly attribute - Detect",
+        "author": [
+          "rj coleman",
+          "mr.bobo hp"
+        ],
+        "tags": [
+          "misconfig",
+          "http",
+          "cookie",
+          "generic",
+          "vuln"
+        ],
+        "description": "Checks whether cookies in the HTTP response contain the HttpOnly attribute. If the HttpOnly flag is set, it means that the cookie is HTTP-only\n",
+        "impact": "Lack of HttpOnly flag on cookies increases the risk of client-side attacks, compromising user session security and data privacy.\n",
+        "reference": [
+          "https://owasp.org/www-community/HttpOnly"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1,
+          "verified": true
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-1004"
+          ],
+          "cvss-metrics": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
+        },
+        "remediation": "Ensure that all cookies are set with the HttpOnly attribute to prevent client-side access.\n"
+      },
+      "type": "javascript",
+      "host": "testasp.vulnweb.com",
+      "port": "80",
+      "url": "http://testasp.vulnweb.com/",
+      "matched-at": "testasp.vulnweb.com",
+      "extracted-results": [
+        "ASPSESSIONIDACCTQBTB"
+      ],
+      "timestamp": "2026-07-05T17:36:38.710372+10:00",
+      "matcher-status": true
+    }
+  ]
+}

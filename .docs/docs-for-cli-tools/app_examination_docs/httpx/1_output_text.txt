@@ -1,0 +1,18 @@
+# SpiderFeet CLI examination capture
+# tool: httpx
+# scenario: Web probe on subfinder hosts (The Upside .com.au) (from_subfinder_upside_au)
+# target: theupside.com.au
+# subfinder_scenario: corporate_upside_au_passive_cs
+# probe_profile: status-code,title,tech-detect,server,cdn,ip
+# host_input_count: 26
+# command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_upside_au_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_upside_au.jsonl -silent -threads 20 -timeout 15 -rate-limit 40
+# runtime: windows
+# started_at: 2026-07-05T16:04:25.245971+00:00
+# duration_s: 32.578
+# exit_code: 0
+# probe_summary_lines: 2
+# text_role: one line per live URL: url [status] [title] server=… tech=[…]
+# structured_role: full httpx JSONL probe objects in records[]
+
+http://cfjump.theupside.com.au [301] [Object moved]
+https://www.theupside.com.au [200] [THE UPSIDE | AUSTRALIA] server=cloudflare tech=[BigCommerce, Cloudflare, Google Tag Manager, HSTS, Klaviyo, jQuery, jQuery CDN]

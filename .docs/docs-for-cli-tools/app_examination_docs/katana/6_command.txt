@@ -1,0 +1,1 @@
+katana -list .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_upside_com_urls.txt -silent -j -duc -ob -or -o .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_upside_com.jsonl -depth 2 -c 5 -timeout 10 -fs fqdn -ct 8m

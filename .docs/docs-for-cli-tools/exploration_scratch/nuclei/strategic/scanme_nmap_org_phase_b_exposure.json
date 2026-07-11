@@ -1,0 +1,65 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "scanme_nmap_org_phase_b_exposure",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_nmap_org_phase_b_exposure.jsonl",
+  "started_at": "2026-07-04T14:17:01.360475+00:00",
+  "finding_summary_lines": 1,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/apache-mod-negotiation-listing",
+      "template-id": "apache-mod-negotiation-listing",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\misconfiguration\\apache\\apache-mod-negotiation-listing.yaml",
+      "info": {
+        "name": "Apache mod_negotiation - Pseudo Directory Listing",
+        "author": [
+          "0x_akoko"
+        ],
+        "tags": [
+          "apache",
+          "misconfig",
+          "exposure",
+          "mod-negotiation"
+        ],
+        "description": "Detected Apache server with mod_negotiation and MultiViews enabled, exposing a pseudo directory listing when invalid Accept headers are sent to extensionless filenames.\n",
+        "reference": [
+          "https://www.acunetix.com/vulnerabilities/web/apache-mod_negotiation-filename-bruteforcing/",
+          "https://cwe.mitre.org/data/definitions/538.html"
+        ],
+        "severity": "low",
+        "metadata": {
+          "max-request": 5,
+          "verified": true
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-538"
+          ],
+          "cvss-metrics": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss-score": 5.3
+        }
+      },
+      "extractor-name": "exposed_files",
+      "type": "http",
+      "host": "scanme.nmap.org",
+      "port": "80",
+      "scheme": "http",
+      "url": "http://scanme.nmap.org",
+      "path": "/index",
+      "matched-at": "http://scanme.nmap.org/index",
+      "extracted-results": [
+        "index.html"
+      ],
+      "meta": {
+        "path": "/index"
+      },
+      "ip": "45.33.32.156",
+      "timestamp": "2026-07-05T00:16:29.2922803+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: fake/fake' -H 'Host: scanme.nmap.org' -H 'User-Agent: Mozilla/5.0 (CentOS; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36' 'http://scanme.nmap.org/index'",
+      "matcher-status": true
+    }
+  ]
+}

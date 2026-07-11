@@ -1,5 +1,5 @@
 tool: pius
-version: 3
+version: 4
 default_runtime: wsl
 default_timeout: 600
 env_file: .tools/pius.env
@@ -40,32 +40,38 @@ scenarios:
     structured_ext: json
     timeout: 600
 
-  - id: rir_cidr_ndjson
-    name: "RIR CIDR phase (Cloudflare)"
-    org: Cloudflare, Inc.
-    target: cloudflare.com
-    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Cloudflare, Inc." --domain cloudflare.com --plugins whois,edgar,arin,ripe,apnic --output ndjson
+  - id: corporate_squarepeg_ndjson
+    name: "Corporate gleif stack (Square Peg Capital)"
+    org: Square Peg Capital Pty Ltd
+    target: squarepeg.vc
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Square Peg Capital Pty Ltd" --domain squarepeg.vc --plugins gleif,wikidata,whois,crt-sh --output ndjson
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/pius_corporate_squarepeg.ndjson
+    reuse_export: false
     structured_kind: json
     structured_ext: json
-    timeout: 900
+    timeout: 600
 
-  - id: sparse_scanme_ndjson
-    name: "Sparse preseed only (Nmap Scanme)"
-    org: Nmap Scanme
-    target: scanme.nmap.org
-    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Nmap Scanme" --domain scanme.nmap.org --plugins crt-sh,whois --output ndjson
+  - id: corporate_upside_ndjson
+    name: "Corporate gleif stack (The Upside)"
+    org: The Upside Pty Ltd
+    target: theupside.com.au
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "The Upside Pty Ltd" --domain theupside.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/pius_corporate_upside.ndjson
+    reuse_export: false
     structured_kind: json
     structured_ext: json
-    timeout: 120
+    timeout: 600
 
-  - id: obscure_miss_ndjson
-    name: "Obscure org clean miss"
-    org: ZZZZ Nonexistent Org 000000
-    target: none
-    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "ZZZZ Nonexistent Org 000000" --plugins gleif,whois --output ndjson
+  - id: corporate_k2am_ndjson
+    name: "Corporate gleif stack (K2 Asset Management) — harvest deferred"
+    org: K2 Asset Management Ltd
+    target: k2am.com.au
+    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "K2 Asset Management Ltd" --domain www.k2am.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson
     structured_kind: json
     structured_ext: json
-    timeout: 120
+    timeout: 600
+    harvest_deferred: true
+    harvest_deferred_reason: "Target offline 2026-07-05; run harvest tomorrow when site is reachable"
 
   - id: corporate_bbc_terminal
     name: "Terminal output (BBC gleif subset)"

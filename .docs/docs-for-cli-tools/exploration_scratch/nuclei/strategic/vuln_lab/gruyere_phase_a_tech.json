@@ -1,0 +1,46 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "gruyere_phase_a_tech",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vuln_lab/gruyere_phase_a_tech.jsonl",
+  "started_at": "2026-07-05T08:15:30.031635+00:00",
+  "finding_summary_lines": 1,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/google-frontend-httpserver",
+      "template-id": "google-frontend-httpserver",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\google-frontend-httpserver.yaml",
+      "info": {
+        "name": "Google frontend HttpServer",
+        "author": [
+          "pikpikcu"
+        ],
+        "tags": [
+          "tech",
+          "google",
+          "httpserver",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "fofa-query": "Server: Google Frontend",
+          "max-request": 1,
+          "verified": true
+        }
+      },
+      "type": "http",
+      "host": "google-gruyere.appspot.com",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://google-gruyere.appspot.com/",
+      "path": "/",
+      "matched-at": "https://google-gruyere.appspot.com/",
+      "ip": "172.217.25.180",
+      "timestamp": "2026-07-05T18:15:14.2094134+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.2; rv:140.0) Gecko/20100101 Firefox/140.0' 'https://google-gruyere.appspot.com/'",
+      "matcher-status": true
+    }
+  ]
+}

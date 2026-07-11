@@ -1,0 +1,11 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "squarepeg_phase_b_cve",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_cve.jsonl",
+  "started_at": "2026-07-04T14:27:04.738144+00:00",
+  "finding_summary_lines": 0,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": []
+}
