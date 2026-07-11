@@ -1,0 +1,7 @@
+tool: nuclei
+profile: stub
+sections:
+  - introduction
+  - hosts
+  - findings
+  - appendix

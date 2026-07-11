@@ -1013,5 +1013,292 @@
     "nugget_type": "DESCRIPTOR",
     "nugget_icon": "",
     "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_FINDING_COUNT",
+    "nugget_description": "Scan Finding Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SECURITY",
+    "nugget_description": "Security Knowledge Container",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "TEMPLATES_USED",
+    "nugget_description": "Templates Used Container",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "FINDINGS",
+    "nugget_description": "Findings Container",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "NUCLEI_SEVERITY_INFO",
+    "nugget_description": "Nuclei Info Severity Bucket",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "NUCLEI_SEVERITY_LOW",
+    "nugget_description": "Nuclei Low Severity Bucket",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "NUCLEI_SEVERITY_MEDIUM",
+    "nugget_description": "Nuclei Medium Severity Bucket",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "NUCLEI_SEVERITY_HIGH",
+    "nugget_description": "Nuclei High Severity Bucket",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "NUCLEI_SEVERITY_CRITICAL",
+    "nugget_description": "Nuclei Critical Severity Bucket",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE",
+    "nugget_description": "Nuclei Template",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING",
+    "nugget_description": "Nuclei Finding",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "NUCLEI_VULNERABILITY",
+    "nugget_description": "Nuclei Vulnerability Observation",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE_ID",
+    "nugget_description": "Nuclei Template ID",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE_NAME",
+    "nugget_description": "Nuclei Template Name",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE_PATH",
+    "nugget_description": "Nuclei Template Path",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE_AUTHOR",
+    "nugget_description": "Nuclei Template Author",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE_TAGS",
+    "nugget_description": "Nuclei Template Tags",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE_PROTOCOL",
+    "nugget_description": "Nuclei Template Protocol",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_MATCHED_AT",
+    "nugget_description": "Nuclei Matched At",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING_TIMESTAMP",
+    "nugget_description": "Nuclei Finding Timestamp",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING_HOST",
+    "nugget_description": "Nuclei Finding Host",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING_IP",
+    "nugget_description": "Nuclei Finding IP",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING_PORT",
+    "nugget_description": "Nuclei Finding Port",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING_URL",
+    "nugget_description": "Nuclei Finding URL",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING_PROTOCOL",
+    "nugget_description": "Nuclei Finding Protocol",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_MATCHER_NAME",
+    "nugget_description": "Nuclei Matcher Name",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_MATCHER_STATUS",
+    "nugget_description": "Nuclei Matcher Status",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_EXTRACTED_RESULTS",
+    "nugget_description": "Nuclei Extracted Results",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_DESCRIPTION",
+    "nugget_description": "Nuclei Vulnerability Description",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_IMPACT",
+    "nugget_description": "Nuclei Vulnerability Impact",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_REMEDIATION",
+    "nugget_description": "Nuclei Vulnerability Remediation",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_SEVERITY",
+    "nugget_description": "Nuclei Vulnerability Severity",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_VENDOR",
+    "nugget_description": "Nuclei Vulnerability Vendor",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_PRODUCT",
+    "nugget_description": "Nuclei Vulnerability Product",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_TAGS",
+    "nugget_description": "Nuclei Vulnerability Tags",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_CWE",
+    "nugget_description": "Nuclei Vulnerability CWE",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_CPE",
+    "nugget_description": "Nuclei Vulnerability CPE",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_CVSS_METRICS",
+    "nugget_description": "Nuclei Vulnerability CVSS Metrics",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_CVSS_SCORE",
+    "nugget_description": "Nuclei Vulnerability CVSS Score",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_EPSS_SCORE",
+    "nugget_description": "Nuclei Vulnerability EPSS Score",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_EPSS_PERCENTILE",
+    "nugget_description": "Nuclei Vulnerability EPSS Percentile",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
   }
 ]
