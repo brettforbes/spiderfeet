@@ -91,3 +91,17 @@ def test_cli_tool_to_graph_delegates_to_nerva_adapter():
     graph = nerva_to_graph(raw, "targets", "nerva -l targets --json")
     assert any(n["nugget_id"] == "CDN" for n in graph["nodes"])
     assert any(n["nugget_id"] == "HOST" for n in graph["nodes"])
+
+
+def test_nerva_narrative_covers_cdn_indeterminate_phrasing_and_node_values():
+    from narrative_report import validate_narrative_coverage
+
+    doc = json.loads(FIXTURE.read_text(encoding="utf-8"))
+    graph = nerva.to_graph(doc)
+    markdown = nerva.to_narrative(graph, scenario_key="seed07_appendix")
+
+    assert "CDN / edge fronting" in markdown
+    assert "indeterminate" in markdown.lower()
+    assert "Cloudflare" in markdown
+    ok, missing = validate_narrative_coverage(graph, markdown, require_appendix=True)
+    assert ok, missing[:10]

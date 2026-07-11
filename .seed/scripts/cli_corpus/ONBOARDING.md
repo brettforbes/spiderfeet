@@ -39,6 +39,17 @@ Versioned YAML under `rules/_shared/`:
 
 Loader: `core.correlation_lists.load_cdn_signatures()` / `load_edge_asns()`.
 
+## Nerva narrative phrasing (C4)
+
+`rules/nerva/narrative.yaml` owns CDN / indeterminate-origin wording used by
+`adapters.nerva.to_narrative`. Harvest writes the Markdown pane to
+`nugget_structure/nerva_<scenario>_proposed_nuggets_edges_description.md`.
+
+When extending phrasing, keep:
+- fronted hosts: origin count = indeterminate
+- suppressed fingerprints: audit-only, not origin stack claims
+- appendix covering every node value (run `validate_narrative_coverage`)
+
 ## Templates
 
 Copy from `rules/_template/` and `adapters/_template/`.
