@@ -1,0 +1,15 @@
+tool: subfinder
+profile: subfinder_default
+version: 1
+seed_docs:
+  - .seed/09_Ontology_For_Subfinder.md
+sections:
+  - introduction
+  - domains
+  - appendix
+phrasing:
+  introduction: >
+    Subfinder contributes DNS-focused domain enumeration. Active-mode IP
+    resolution is retained as an IP_ADDRESS fact using currently approved
+    SPEC-004 relations; the exact dns-resolves-to relation remains deferred
+    until relation coverage is updated.
