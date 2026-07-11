@@ -824,5 +824,180 @@
     "nugget_type": "DESCRIPTOR",
     "nugget_icon": "",
     "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SOFTWARE_USED",
+    "nugget_description": "Software Used",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "CDN_NAME",
+    "nugget_description": "CDN Name",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CDN_TYPE",
+    "nugget_description": "CDN Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "TRANSPORT_PROTOCOL",
+    "nugget_description": "Transport Protocol",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HTTP_STATUS_CODE",
+    "nugget_description": "HTTP Status Code",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HTTP_TITLE",
+    "nugget_description": "HTTP Title",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CONTENT_TYPE",
+    "nugget_description": "Content Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CONTENT_LENGTH",
+    "nugget_description": "Content Length",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HTTP_METHOD",
+    "nugget_description": "HTTP Method",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HTTP_PATH",
+    "nugget_description": "HTTP Path",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "RESPONSE_TIME_MS",
+    "nugget_description": "Response Time Milliseconds",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "WORD_COUNT",
+    "nugget_description": "Word Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "LINE_COUNT",
+    "nugget_description": "Line Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PROBE_FAILED",
+    "nugget_description": "Probe Failed",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PAGE_TYPE",
+    "nugget_description": "Page Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PAGE_HASH",
+    "nugget_description": "Page Hash",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PROBE_TIMESTAMP",
+    "nugget_description": "Probe Timestamp",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SOFTWARE_VERSION",
+    "nugget_description": "Software Version",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "IS_ERROR_PAGE",
+    "nugget_description": "Is Error Page",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CNAME_TARGET",
+    "nugget_description": "CNAME Target",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HTTP_LIVENESS_STATUS",
+    "nugget_description": "HTTP Liveness Status",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_PROBE_PROFILE",
+    "nugget_description": "Scan Probe Profile",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_HOST_INPUT_COUNT",
+    "nugget_description": "Scan Host Input Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PROBE_CONNECTED",
+    "nugget_description": "Probe Connected Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "UPSTREAM_SCENARIO_ID",
+    "nugget_description": "Upstream Scenario Identifier",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
   }
 ]

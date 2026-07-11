@@ -1,0 +1,14 @@
+tool: httpx
+profile: httpx_default
+version: 1
+seed_docs:
+  - .seed/10_Rules_For_Httpx.md
+sections:
+  - introduction
+  - systems
+  - appendix
+phrasing:
+  relation_deferral: >
+    Seed-defined dns-resolves-to, cname-alias-to, and derived-from relations
+    are represented with approved SPEC-004 relations in this slice until
+    relation coverage is updated.
