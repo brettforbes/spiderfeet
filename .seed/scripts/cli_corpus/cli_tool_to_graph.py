@@ -54,34 +54,11 @@ def parse_nerva_jsonl(raw: str) -> List[Dict[str, Any]]:
 
 
 def nerva_to_graph(raw: str, target: str, command: str) -> Dict[str, Any]:
-    scan = _node("SCAN_RECORD", "ENTITY", command, "Scan Record")
-    scan_cli = _node("SCAN_CLI", "DESCRIPTOR", command, "Scan CLI")
-    nodes = [scan, scan_cli]
-    edges = [_edge(scan["id"], scan_cli["id"], "had")]
-    for rec in parse_nerva_jsonl(raw):
-        ip = rec.get("ip") or rec.get("host", "")
-        port = rec["port"]
-        protocol = rec.get("protocol", "unknown")
-        transport = rec.get("transport", "tcp")
-        host = _node("HOST", "ENTITY", ip, "Host")
-        port_n = _node("PORT", "ENTITY", str(port), "Port")
-        proto = _node("PORT_PROTOCOL", "DESCRIPTOR", transport, "Port Protocol")
-        svc = _node("SERVICE", "ENTITY", protocol, "Service")
-        nodes.extend([host, port_n, proto, svc])
-        edges.extend(
-            [
-                _edge(scan["id"], host["id"], "contains"),
-                _edge(host["id"], port_n["id"], "contains"),
-                _edge(port_n["id"], proto["id"], "had"),
-                _edge(port_n["id"], svc["id"], "listens-to"),
-            ]
-        )
-        version = rec.get("version")
-        if version:
-            ver = _node("SERVICE_VERSION", "DESCRIPTOR", version, "Service Version")
-            nodes.append(ver)
-            edges.append(_edge(svc["id"], ver["id"], "had"))
-    return {"nodes": nodes, "edges": edges}
+    """Delegate to SPEC-004 Nerva adapter (07B + correlation_engine)."""
+    from adapters import nerva as nerva_adapter
+
+    del target
+    return nerva_adapter.to_graph(nerva_adapter.to_structured(raw, command=command))
 
 
 def parse_pius_ndjson(raw: str) -> List[Dict[str, Any]]:
