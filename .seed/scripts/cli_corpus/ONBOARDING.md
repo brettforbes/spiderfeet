@@ -39,6 +39,16 @@ Versioned YAML under `rules/_shared/`:
 
 Loader: `core.correlation_lists.load_cdn_signatures()` / `load_edge_asns()`.
 
+## Narrative profiles (D6)
+
+Each structured-native adapter loads `rules/<tool>/narrative.yaml` and must pass
+`validate_narrative_coverage` (every node `nugget_data` appears in the Markdown
+appendix). Harvest writes graph + Markdown for all `ADAPTER_TOOLS`, including
+pius, subfinder, httpx, katana, and nuclei.
+
+Regression: `.tests/test_spec004_narrative_coverage.py` and
+`.tests/test_harvest_adapter_dispatch.py`.
+
 ## Nerva narrative phrasing (C4)
 
 `rules/nerva/narrative.yaml` owns CDN / indeterminate-origin wording used by

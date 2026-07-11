@@ -70,16 +70,24 @@ def to_graph(structured: dict[str, Any] | str, *, target: str | None = None) -> 
 
 
 def to_narrative(graph: dict[str, Any], *, scenario_key: str = "katana") -> str:
+    """Build Markdown report from narrative.yaml profile."""
+    from core.narrative_profile import append_standard_appendix, load_narrative_profile
+
+    profile = load_narrative_profile(RULES_DIR / "katana" / "narrative.yaml")
+    phrasing = profile.get("phrasing") or {}
     nodes = graph.get("nodes") or []
-    edges = graph.get("edges") or []
-    by_id = {n["id"]: n for n in nodes}
     urls = [n for n in nodes if n.get("nugget_id") == "LINKED_URL_INTERNAL"]
+    domains = [n for n in nodes if n.get("nugget_id") == "DOMAIN_NAME"]
     lines = [
         f"# Katana crawl narrative — `{scenario_key}`",
         "",
         "## Introduction",
         "",
-        f"This report summarizes Katana crawl output with **{len(urls)}** discovered URL node(s).",
+        (phrasing.get("introduction") or "").strip()
+        or (
+            f"This report summarizes Katana crawl output with **{len(urls)}** discovered URL "
+            f"node(s) across **{len(domains)}** domain node(s)."
+        ),
         "",
         "## URLs",
         "",
@@ -88,14 +96,7 @@ def to_narrative(graph: dict[str, Any], *, scenario_key: str = "katana") -> str:
         lines.append(f"- `{url.get('nugget_data')}`")
     if not urls:
         lines.append("- (none)")
-    lines.extend(["", "## Appendix", "", "### Nodes", ""])
-    for node in sorted(nodes, key=lambda n: (n.get("nugget_id", ""), n.get("nugget_data", ""))):
-        lines.append(f"- `{node.get('nugget_id')}`: {node.get('nugget_data')}")
-    lines.extend(["", "### Edges", ""])
-    for edge in edges:
-        src = by_id.get(edge.get("source"), {})
-        tgt = by_id.get(edge.get("target"), {})
-        lines.append(f"- `{src.get('nugget_id')}` `{edge.get('relation')}` `{tgt.get('nugget_id')}`")
+    append_standard_appendix(lines, graph)
     return "\n".join(lines).strip() + "\n"
 
 

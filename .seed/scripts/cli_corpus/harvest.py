@@ -33,7 +33,10 @@ if str(CORPUS_DIR) not in sys.path:
 MANIFESTS_DIR = CORPUS_DIR / "manifests"
 EXAM_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "app_examination_docs"
 NUGGET_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "nugget_structure"
-ADAPTER_TOOLS = frozenset({"netdiscover", "nmap", "nerva"})
+ADAPTER_TOOLS = frozenset(
+    {"netdiscover", "nmap", "nerva", "pius", "subfinder", "httpx", "katana", "nuclei"}
+)
+STRUCTURED_NATIVE_ADAPTER_TOOLS = frozenset({"pius", "subfinder", "httpx", "katana", "nuclei"})
 
 
 @dataclass
@@ -314,6 +317,197 @@ def _write_adapter_four_outputs(
             record_count=len(structured.get("records") or []),
         )
         text_content = header + outputs["text"]
+    elif tool == "pius":
+        from pius_structured import dumps_pius_bundle, pius_text_capture_header
+
+        outputs = adapter.build_outputs(
+            raw_input,
+            scenario_key=scenario_key,
+            org=scenario.get("org"),
+            command=result.command,
+        )
+        structured = outputs["structured"]
+        structured["scenario"] = scenario_name
+        structured["scenario_id"] = scenario_key
+        structured["target"] = scenario.get("target")
+        structured["org"] = scenario.get("org")
+        structured["command"] = result.command
+        structured["runtime"] = result.runtime
+        structured["started_at"] = captured_at.isoformat()
+        structured["duration_s"] = result.duration_s
+        structured["exit_code"] = result.exit_code
+        structured["scan_data"] = (
+            f"pius:{scenario.get('org') or scenario.get('target') or scenario_key}:{result.command}"
+        )
+        outputs["structured"] = structured
+        outputs["structured_json"] = dumps_pius_bundle(structured)
+        header = pius_text_capture_header(
+            command=result.command,
+            scenario_name=scenario_name,
+            scenario_id=scenario_key,
+            org=scenario.get("org"),
+            target=scenario.get("target"),
+            captured_at=captured_at,
+            runtime=result.runtime,
+            exit_code=result.exit_code,
+            duration_s=result.duration_s,
+            record_count=len(structured.get("records") or []),
+        )
+        text_content = header + outputs["text"]
+    elif tool == "subfinder":
+        from subfinder_structured import dumps_subfinder_bundle, subfinder_text_capture_header
+
+        outputs = adapter.build_outputs(
+            raw_input,
+            scenario_key=scenario_key,
+            target=scenario.get("target"),
+            command=result.command,
+        )
+        structured = outputs["structured"]
+        structured["scenario"] = scenario_name
+        structured["scenario_id"] = scenario_key
+        structured["target"] = scenario.get("target")
+        structured["enumeration_mode"] = scenario.get("enumeration_mode", "passive")
+        structured["command"] = result.command
+        structured["runtime"] = result.runtime
+        structured["started_at"] = captured_at.isoformat()
+        structured["duration_s"] = result.duration_s
+        structured["exit_code"] = result.exit_code
+        structured["scan_data"] = (
+            f"subfinder:{scenario.get('target') or scenario_key}:{result.command}"
+        )
+        outputs["structured"] = structured
+        outputs["structured_json"] = dumps_subfinder_bundle(structured)
+        header = subfinder_text_capture_header(
+            command=result.command,
+            scenario_name=scenario_name,
+            scenario_id=scenario_key,
+            target=scenario.get("target"),
+            enumeration_mode=scenario.get("enumeration_mode", "passive"),
+            captured_at=captured_at,
+            runtime=result.runtime,
+            exit_code=result.exit_code,
+            duration_s=result.duration_s,
+            record_count=len(structured.get("records") or []),
+        )
+        text_content = header + outputs["text"]
+    elif tool == "httpx":
+        from httpx_structured import dumps_httpx_bundle, httpx_text_capture_header
+
+        outputs = adapter.build_outputs(
+            raw_input,
+            scenario_key=scenario_key,
+            target=scenario.get("target"),
+            command=result.command,
+        )
+        structured = outputs["structured"]
+        structured["scenario"] = scenario_name
+        structured["scenario_id"] = scenario_key
+        structured["target"] = scenario.get("target")
+        structured["subfinder_scenario"] = scenario.get("subfinder_scenario")
+        structured["probe_profile"] = scenario.get("probe_profile", "")
+        structured["host_input_count"] = _host_input_count(scenario)
+        structured["command"] = result.command
+        structured["runtime"] = result.runtime
+        structured["started_at"] = captured_at.isoformat()
+        structured["duration_s"] = result.duration_s
+        structured["exit_code"] = result.exit_code
+        structured["scan_data"] = (
+            f"httpx:{scenario.get('target') or scenario_key}:{result.command}"
+        )
+        outputs["structured"] = structured
+        outputs["structured_json"] = dumps_httpx_bundle(structured)
+        header = httpx_text_capture_header(
+            command=result.command,
+            scenario_name=scenario_name,
+            scenario_id=scenario_key,
+            target=scenario.get("target"),
+            subfinder_scenario=scenario.get("subfinder_scenario"),
+            probe_profile=scenario.get("probe_profile", ""),
+            host_input_count=_host_input_count(scenario),
+            captured_at=captured_at,
+            runtime=result.runtime,
+            exit_code=result.exit_code,
+            duration_s=result.duration_s,
+            record_count=len(structured.get("records") or []),
+        )
+        text_content = header + outputs["text"]
+    elif tool == "katana":
+        from katana_structured import dumps_katana_bundle, katana_text_capture_header
+
+        outputs = adapter.build_outputs(
+            raw_input,
+            scenario_key=scenario_key,
+            target=scenario.get("target"),
+            command=result.command,
+        )
+        structured = outputs["structured"]
+        structured["scenario"] = scenario_name
+        structured["scenario_id"] = scenario_key
+        structured["target"] = scenario.get("target")
+        structured["httpx_scenario"] = scenario.get("httpx_scenario")
+        structured["crawl_profile"] = scenario.get("crawl_profile", "")
+        structured["url_input_count"] = _url_input_count(scenario)
+        structured["command"] = result.command
+        structured["runtime"] = result.runtime
+        structured["started_at"] = captured_at.isoformat()
+        structured["duration_s"] = result.duration_s
+        structured["exit_code"] = result.exit_code
+        structured["scan_data"] = (
+            f"katana:{scenario.get('target') or scenario_key}:{result.command}"
+        )
+        outputs["structured"] = structured
+        outputs["structured_json"] = dumps_katana_bundle(structured)
+        header = katana_text_capture_header(
+            command=result.command,
+            scenario_name=scenario_name,
+            scenario_id=scenario_key,
+            target=scenario.get("target"),
+            httpx_scenario=scenario.get("httpx_scenario"),
+            crawl_profile=scenario.get("crawl_profile", ""),
+            url_input_count=_url_input_count(scenario),
+            captured_at=captured_at,
+            runtime=result.runtime,
+            exit_code=result.exit_code,
+            duration_s=result.duration_s,
+            record_count=len(structured.get("records") or []),
+        )
+        text_content = header + outputs["text"]
+    elif tool == "nuclei":
+        from nuclei_structured import dumps_nuclei_bundle, nuclei_text_capture_header
+
+        outputs = adapter.build_outputs(
+            raw_input,
+            scenario_key=scenario_key,
+            target=scenario.get("target"),
+            command=result.command,
+        )
+        structured = outputs["structured"]
+        structured["scenario"] = scenario_name
+        structured["scenario_id"] = scenario_key
+        structured["target"] = scenario.get("target")
+        structured["command"] = result.command
+        structured["runtime"] = result.runtime
+        structured["started_at"] = captured_at.isoformat()
+        structured["duration_s"] = result.duration_s
+        structured["exit_code"] = result.exit_code
+        structured["scan_data"] = (
+            f"nuclei:{scenario.get('target') or scenario_key}:{result.command}"
+        )
+        outputs["structured"] = structured
+        outputs["structured_json"] = dumps_nuclei_bundle(structured)
+        header = nuclei_text_capture_header(
+            command=result.command,
+            scenario_name=scenario_name,
+            scenario_id=scenario_key,
+            target=scenario.get("target"),
+            captured_at=captured_at,
+            runtime=result.runtime,
+            exit_code=result.exit_code,
+            duration_s=result.duration_s,
+            record_count=len(structured.get("records") or []),
+        )
+        text_content = header + outputs["text"]
     else:
         raise ValueError(f"unsupported adapter tool: {tool}")
 
@@ -555,6 +749,20 @@ def _katana_structured_payload(
     return bundle, text_content
 
 
+def _structured_native_raw_input(tool: str, result: RunResult, scenario: dict[str, Any]) -> str:
+    if tool == "pius":
+        return _pius_ndjson_payload(result, scenario)
+    if tool == "subfinder":
+        return _subfinder_jsonl_payload(result, scenario)
+    if tool == "httpx":
+        return _httpx_jsonl_payload(result, scenario)
+    if tool == "katana":
+        return _katana_jsonl_payload(result, scenario)
+    if tool == "nuclei":
+        return _nuclei_ndjson_payload(result, scenario)
+    raise ValueError(f"unsupported structured-native tool: {tool}")
+
+
 def _nuclei_structured_payload(
     scenario: dict[str, Any],
     result: RunResult,
@@ -697,78 +905,42 @@ def write_bundle(
         result.structured_kind = "json"
         structured_kind = "json"
         structured_ext = "json"
+    elif tool in STRUCTURED_NATIVE_ADAPTER_TOOLS and structured_ext in ("json", "jsonl"):
+        raw_input = _structured_native_raw_input(tool, result, scenario)
+        structured_path, adapter_text_content, adapter_graph_path, adapter_markdown_path = _write_adapter_four_outputs(
+            tool,
+            scenario,
+            raw_input=raw_input,
+            captured_at=captured_at,
+            result=result,
+            prefix=prefix,
+            tool_dir=tool_dir,
+        )
+        result.structured_path = str(structured_path.relative_to(REPO_ROOT))
+        result.structured_kind = "json"
+        structured_kind = "json"
+        structured_ext = "json"
     elif structured_ext:
-        if tool == "pius" and structured_ext in ("json", "jsonl"):
-            bundle, text_content = _pius_structured_payload(scenario, result, captured_at)
-            from pius_structured import dumps_pius_bundle
-
-            structured_path = tool_dir / f"{prefix}_output_structured.json"
-            structured_path.write_text(dumps_pius_bundle(bundle), encoding="utf-8")
+        structured_path = tool_dir / f"{prefix}_output_structured.{structured_ext}"
+        out_file = scenario.get("structured_output_file")
+        if out_file and Path(out_file).is_file():
+            structured_path.write_text(Path(out_file).read_text(encoding="utf-8", errors="replace"), encoding="utf-8")
             result.structured_path = str(structured_path.relative_to(REPO_ROOT))
-            result.structured_kind = "json"
-            structured_kind = "json"
-            structured_ext = "json"
-        elif tool == "nuclei" and structured_ext in ("json", "jsonl"):
-            bundle, text_content = _nuclei_structured_payload(scenario, result, captured_at)
-            from nuclei_structured import dumps_nuclei_bundle
-
-            structured_path = tool_dir / f"{prefix}_output_structured.json"
-            structured_path.write_text(dumps_nuclei_bundle(bundle), encoding="utf-8")
+            result.structured_kind = structured_kind
+        elif result.stdout.strip() or tool in ("nerva", "pius", "nuclei", "subfinder", "httpx", "katana"):
+            if tool in ("nerva", "pius", "nuclei", "subfinder", "httpx", "katana") and structured_ext == "jsonl":
+                payload = _jsonl_lines_from_stdout(result.stdout)
+            else:
+                payload = result.stdout
+            fixture_rel = scenario.get("structured_fixture")
+            if tool in ("pius", "nuclei") and not payload.strip() and fixture_rel:
+                fixture_path = REPO_ROOT / fixture_rel
+                if fixture_path.is_file():
+                    payload = fixture_path.read_text(encoding="utf-8", errors="replace")
+                    result.structured_fixture_used = str(fixture_path.relative_to(REPO_ROOT))
+            structured_path.write_text(payload, encoding="utf-8")
             result.structured_path = str(structured_path.relative_to(REPO_ROOT))
-            result.structured_kind = "json"
-            structured_kind = "json"
-            structured_ext = "json"
-        elif tool == "subfinder" and structured_ext in ("json", "jsonl"):
-            bundle, text_content = _subfinder_structured_payload(scenario, result, captured_at)
-            from subfinder_structured import dumps_subfinder_bundle
-
-            structured_path = tool_dir / f"{prefix}_output_structured.json"
-            structured_path.write_text(dumps_subfinder_bundle(bundle), encoding="utf-8")
-            result.structured_path = str(structured_path.relative_to(REPO_ROOT))
-            result.structured_kind = "json"
-            structured_kind = "json"
-            structured_ext = "json"
-        elif tool == "httpx" and structured_ext in ("json", "jsonl"):
-            bundle, text_content = _httpx_structured_payload(scenario, result, captured_at)
-            from httpx_structured import dumps_httpx_bundle
-
-            structured_path = tool_dir / f"{prefix}_output_structured.json"
-            structured_path.write_text(dumps_httpx_bundle(bundle), encoding="utf-8")
-            result.structured_path = str(structured_path.relative_to(REPO_ROOT))
-            result.structured_kind = "json"
-            structured_kind = "json"
-            structured_ext = "json"
-        elif tool == "katana" and structured_ext in ("json", "jsonl"):
-            bundle, text_content = _katana_structured_payload(scenario, result, captured_at)
-            from katana_structured import dumps_katana_bundle
-
-            structured_path = tool_dir / f"{prefix}_output_structured.json"
-            structured_path.write_text(dumps_katana_bundle(bundle), encoding="utf-8")
-            result.structured_path = str(structured_path.relative_to(REPO_ROOT))
-            result.structured_kind = "json"
-            structured_kind = "json"
-            structured_ext = "json"
-        else:
-            structured_path = tool_dir / f"{prefix}_output_structured.{structured_ext}"
-            out_file = scenario.get("structured_output_file")
-            if out_file and Path(out_file).is_file():
-                structured_path.write_text(Path(out_file).read_text(encoding="utf-8", errors="replace"), encoding="utf-8")
-                result.structured_path = str(structured_path.relative_to(REPO_ROOT))
-                result.structured_kind = structured_kind
-            elif result.stdout.strip() or tool in ("nerva", "pius", "nuclei", "subfinder", "httpx", "katana"):
-                if tool in ("nerva", "pius", "nuclei", "subfinder", "httpx", "katana") and structured_ext == "jsonl":
-                    payload = _jsonl_lines_from_stdout(result.stdout)
-                else:
-                    payload = result.stdout
-                fixture_rel = scenario.get("structured_fixture")
-                if tool in ("pius", "nuclei") and not payload.strip() and fixture_rel:
-                    fixture_path = REPO_ROOT / fixture_rel
-                    if fixture_path.is_file():
-                        payload = fixture_path.read_text(encoding="utf-8", errors="replace")
-                        result.structured_fixture_used = str(fixture_path.relative_to(REPO_ROOT))
-                structured_path.write_text(payload, encoding="utf-8")
-                result.structured_path = str(structured_path.relative_to(REPO_ROOT))
-                result.structured_kind = structured_kind
+            result.structured_kind = structured_kind
 
     text_path = tool_dir / f"{prefix}_output_text.txt"
     header = ""
