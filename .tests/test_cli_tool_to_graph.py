@@ -94,8 +94,9 @@ def test_pius_graph_filters_preseed(graph_mod):
     )
     g = graph_mod.pius_to_graph(raw, "Acme Corp", "pius run --org Acme")
     types = {n["nugget_id"] for n in g["nodes"]}
-    assert "INTERNET_NAME" in types
-    assert all(n["nugget_data"] != "Acme" or n["nugget_id"] != "INTERNET_NAME" for n in g["nodes"])
+    assert "DOMAIN_NAME" in types
+    assert any(n["nugget_id"] == "CANDIDATE_ENTITY" and n["nugget_data"] == "Acme" for n in g["nodes"])
+    assert all(n["nugget_data"] != "Acme" or n["nugget_id"] != "DOMAIN_NAME" for n in g["nodes"])
 
 
 def test_capstone_graph_artifacts_exist():

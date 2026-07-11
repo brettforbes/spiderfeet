@@ -614,5 +614,180 @@
     "nugget_type": "DESCRIPTOR",
     "nugget_icon": "",
     "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_TARGET_ORG",
+    "nugget_description": "Scan Target Organization",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CANDIDATE_ENTITY",
+    "nugget_description": "Unresolved Research Lead",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "PAGE",
+    "nugget_description": "Web Page URL",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "AFFILIATES",
+    "nugget_description": "Affiliated Companies Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "DOMAINS",
+    "nugget_description": "Domains Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "LEADS",
+    "nugget_description": "Research Leads Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "PAGES",
+    "nugget_description": "Pages Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "WIKIDATA_ID",
+    "nugget_description": "Wikidata Identifier",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "LEI",
+    "nugget_description": "Legal Entity Identifier",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "JURISDICTION",
+    "nugget_description": "Legal Jurisdiction",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CONFIDENCE_SCORE",
+    "nugget_description": "Source Confidence Score",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DISCOVERY_METHOD",
+    "nugget_description": "Discovery Method",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NEEDS_REVIEW",
+    "nugget_description": "Needs Human Review",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PRESEED_TYPE",
+    "nugget_description": "Preseed Record Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "IS_PLACEHOLDER",
+    "nugget_description": "Placeholder Identity Flag",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "RAW_VALUE",
+    "nugget_description": "Raw Unnormalized Value",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "IS_WILDCARD_DNS",
+    "nugget_description": "Wildcard DNS Detected",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "WILDCARD_IP_COUNT",
+    "nugget_description": "Wildcard DNS IP Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SUBDOMAIN_ENUMERATION_SUPPRESSED",
+    "nugget_description": "Subdomain Enumeration Suppressed",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NETWORK_TYPE",
+    "nugget_description": "Network Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PAGE_URL",
+    "nugget_description": "Page URL",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PAGE_PATH",
+    "nugget_description": "Page Path",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "BRAND_NAME",
+    "nugget_description": "Brand Name",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "REVIEW_STATUS",
+    "nugget_description": "Review Status",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "RELATIONSHIP_TYPE",
+    "nugget_description": "Relationship Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
   }
 ]
