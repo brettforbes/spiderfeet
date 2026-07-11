@@ -1,0 +1,95 @@
+---
+description: Hybrid CLI structured→graph→narrative rules engine — four outputs, YAML packs, adapter boundaries
+globs:
+  - ".seed/scripts/cli_corpus/**"
+  - ".seed/06B*.md"
+  - ".seed/07*.md"
+  - ".seed/08*.md"
+  - ".seed/09*.md"
+  - ".seed/10*.md"
+  - ".seed/11*.md"
+  - ".seed/14_Business_Rules_for_Converting_Structured_Data_to_Graph.md"
+  - ".governance/specs/SPEC-004-cli-graph-rules-engine.md"
+  - ".governance/project/SPEC004*.md"
+  - ".docs/docs-for-cli-tools/**"
+  - ".tests/test_*graph*"
+  - ".tests/test_narrative*"
+  - "modules/sfp_tool_*.py"
+  - "modules/sfp_*.py"
+alwaysApply: false
+---
+
+# Project: CLI Graph Rules Engine (SPEC-004)
+
+**Spec:** `.governance/specs/SPEC-004-cli-graph-rules-engine.md`  
+**Overview:** `.seed/14_Business_Rules_for_Converting_Structured_Data_to_Graph.md`  
+**Ontology:** `.cursor/rules/proj-05-spiderfeet-nugget-ontology.mdc`  
+**Profiling:** `.cursor/rules/proj-06-spiderfeet-cli-app-exercising.mdc`
+
+## Four outputs (mandatory)
+
+Every formal examination / harvest-complete tool must emit:
+
+1. **Text** — summary or native stdout  
+2. **Structured** — single-root JSON or XML  
+3. **Graph** — `nodes[]` + `edges[]` under the common ontology  
+4. **Markdown Report** — narrative + appendix of every field/node/edge  
+
+## Capture families
+
+Declare exactly one per adapter:
+
+- `structured_native` — normalize tool JSON/XML; **must** produce Text pane content (derived or paired).  
+- `text_native` — keep native text; **must** produce Structured via TextFSM (or equivalent).
+
+## Where logic may live
+
+| Location | Allowed | Forbidden |
+|----------|---------|-----------|
+| `adapters/<tool>/` | CLI invoke, parse/normalize, TextFSM, derived text, harvest quirks, **cited** `hooks.py` | Full field→`nugget_id` maps when YAML can express them; new UUID schemes; new relation names |
+| `rules/` | Mapping YAML, topology templates, narrative profiles, correlation thresholds, CDN/ASN lists, validation | Tool subprocess / TextFSM parsing |
+| `core/` | Shared engine, identity, validation, narrative builder, correlation engine | Tool-specific field paths |
+| `modules/sfp_*` (second push) | abuse.ch-shaped meta/opts/events + call adapter | Reimplement rule engine or mapping packs |
+
+## Identity
+
+Use only `core.graph_builder.nugget_instance_id`:
+
+```text
+nugget_id--{uuid5(ONTOLOGY_NAMESPACE, nugget_data)}
+```
+
+Do not add alternate `_uid` helpers.
+
+## Hooks gate
+
+Every function in `hooks.py` must cite a seed rule id in its docstring (e.g. `06B N0`, `07 A1`, `07B N1`, `11B …`).
+
+## Relations
+
+Default allowed edges: `contains`, `had`, `listens-to` (see proj-05). New relations require seed doc + SPEC update before use.
+
+## Nerva / Nuclei seeds
+
+- Nerva: `.seed/07_Nerva_Scan_Record_Host_Correlation_Rulesets.md` **and** `.seed/07B_Nerva_Ontology_Rules.md`  
+- Nuclei: `.seed/11_Ontology_for_Nuclei.md` **and** `.seed/11B_Rules_for_Nuclei.md`  
+- **No Nexus** tool or adapters.
+
+## Review vs goldens
+
+Do **not** lock golden graph/narrative byte fixtures until operator visual review (SPEC R4-01-08). Prefer structural tests (connectivity, coverage) during migration.
+
+## Onboarding checklist (new CLI app)
+
+1. Capture family declared  
+2. Intermediate structured schema  
+3. `rules/<tool>/` mapping (+ narrative)  
+4. Optional cited hooks  
+5. Four artifacts via harvest  
+6. `*_nugget_graph_structure.md` + `_Current_Ontology.md` section  
+7. Visual review  
+8. Golden tests only after review sign-off  
+
+## Second push
+
+`sfp_<app>` modules come **after** goldens (SPEC R4-01-09). First-wave PRs must not rewrite production modules unless the issue is under Epic E.

@@ -1,0 +1,5 @@
+# Narrative profile template - copy to rules/<tool>/narrative.yaml
+tool: REPLACE_ME
+host_nugget_id: HOST  # or SYSTEM, CDN, COMPANY_NAME, ...
+include_trace: false
+include_appendix: true
