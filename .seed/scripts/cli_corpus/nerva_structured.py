@@ -30,7 +30,12 @@ def parse_nerva_structured(raw: str) -> dict[str, Any]:
     if not stripped:
         return {"schema": NERVA_STRUCTURED_SCHEMA, "records": []}
     if stripped.startswith("{"):
-        doc = json.loads(stripped)
+        try:
+            doc = json.loads(stripped)
+        except json.JSONDecodeError:
+            # Multi-record JSONL also starts with `{` — fall through to line parser.
+            records = parse_jsonl(stripped)
+            return {"schema": NERVA_STRUCTURED_SCHEMA, "records": records}
         if isinstance(doc, list):
             return {"schema": NERVA_STRUCTURED_SCHEMA, "records": doc}
         records = doc.get("records") or []

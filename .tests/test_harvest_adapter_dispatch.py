@@ -38,7 +38,7 @@ def _strip_capture_header(text: str) -> str:
 
 def test_harvest_adapter_tools_include_netdiscover_and_nmap():
     harvest = _load_harvest()
-    assert harvest.ADAPTER_TOOLS == frozenset({"netdiscover", "nmap"})
+    assert harvest.ADAPTER_TOOLS == frozenset({"netdiscover", "nmap", "nerva"})
 
 
 def test_harvest_adapter_dispatch_writes_four_netdiscover_artifacts(tmp_path, monkeypatch):
@@ -126,3 +126,52 @@ def test_write_tool_graph_skips_adapter_tools():
         Path("missing.json"),
         "nmap",
     )
+    harvest._write_tool_graph(
+        "nerva",
+        {"id": "tcp_http_rich_json"},
+        Path("missing.json"),
+        "nerva",
+    )
+
+
+def test_harvest_adapter_dispatch_writes_four_nerva_artifacts(tmp_path, monkeypatch):
+    harvest = _load_harvest()
+    monkeypatch.setattr(harvest, "NUGGET_ROOT", tmp_path / "nugget_structure")
+    fixture = CLI_CORPUS / "fixtures" / "nerva_correlation_seed07.json"
+    raw = fixture.read_text(encoding="utf-8")
+    # Convert bundle records into JSONL stdout shape harvest expects.
+    records = json.loads(raw)["records"]
+    stdout = "\n".join(json.dumps(record) for record in records) + "\n"
+    scenario = {
+        "id": "tcp_list_file_json",
+        "name": "Multi-target list file",
+        "target": "scanme.nmap.org + praetorian.com",
+    }
+    result = harvest.RunResult(
+        command="nerva -l targets --json -w 8000",
+        runtime="windows",
+        exit_code=0,
+        duration_s=2.0,
+        stdout=stdout,
+        stderr="",
+    )
+    captured_at = datetime(2026, 6, 30, 7, 40, 7, tzinfo=timezone.utc)
+
+    structured_path, text_content, graph_path, markdown_path = harvest._write_adapter_four_outputs(
+        "nerva",
+        scenario,
+        raw_input=stdout,
+        captured_at=captured_at,
+        result=result,
+        prefix="42",
+        tool_dir=tmp_path,
+    )
+
+    structured = json.loads(structured_path.read_text(encoding="utf-8"))
+    assert structured["schema"] == "nerva_fingerprint_v1"
+    assert text_content.startswith("# SpiderFeet CLI examination capture")
+    assert graph_path.is_file()
+    assert markdown_path.is_file()
+    assert "indeterminate" in markdown_path.read_text(encoding="utf-8").lower()
+    assert any(node["nugget_id"] == "CDN" for node in json.loads(graph_path.read_text())["nodes"])
+

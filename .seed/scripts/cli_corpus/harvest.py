@@ -33,7 +33,7 @@ if str(CORPUS_DIR) not in sys.path:
 MANIFESTS_DIR = CORPUS_DIR / "manifests"
 EXAM_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "app_examination_docs"
 NUGGET_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "nugget_structure"
-ADAPTER_TOOLS = frozenset({"netdiscover", "nmap"})
+ADAPTER_TOOLS = frozenset({"netdiscover", "nmap", "nerva"})
 
 
 @dataclass
@@ -277,6 +277,43 @@ def _write_adapter_four_outputs(
     elif tool == "nmap":
         outputs = adapter.build_outputs(raw_input, scenario_key=scenario_key)
         text_content = outputs["text"]
+    elif tool == "nerva":
+        from nerva_structured import nerva_text_capture_header
+
+        outputs = adapter.build_outputs(
+            raw_input,
+            scenario_key=scenario_key,
+            command=result.command,
+        )
+        # Preserve harvest metadata on the structured bundle.
+        structured = outputs["structured"]
+        structured["scenario"] = scenario_name
+        structured["scenario_id"] = scenario_key
+        structured["target"] = scenario.get("target")
+        structured["command"] = result.command
+        structured["runtime"] = result.runtime
+        structured["started_at"] = captured_at.isoformat()
+        structured["duration_s"] = result.duration_s
+        structured["exit_code"] = result.exit_code
+        structured["scan_data"] = (
+            f"nerva:{scenario.get('target') or scenario_key}:{result.command}"
+        )
+        outputs["structured"] = structured
+        from nerva_structured import dumps_nerva_bundle
+
+        outputs["structured_json"] = dumps_nerva_bundle(structured)
+        header = nerva_text_capture_header(
+            command=result.command,
+            scenario_name=scenario_name,
+            scenario_id=scenario_key,
+            target=scenario.get("target"),
+            captured_at=captured_at,
+            runtime=result.runtime,
+            exit_code=result.exit_code,
+            duration_s=result.duration_s,
+            record_count=len(structured.get("records") or []),
+        )
+        text_content = header + outputs["text"]
     else:
         raise ValueError(f"unsupported adapter tool: {tool}")
 
@@ -296,31 +333,6 @@ def _jsonl_lines_from_stdout(stdout: str) -> str:
     if not lines:
         return ""
     return "\n".join(lines) + "\n"
-
-
-def _nerva_structured_payload(
-    scenario: dict[str, Any],
-    result: RunResult,
-    captured_at: datetime,
-) -> tuple[dict[str, Any], str]:
-    from nerva_structured import build_nerva_bundle, nerva_scan_context, parse_jsonl, structured_to_text
-
-    jsonl = _jsonl_lines_from_stdout(result.stdout)
-    records = parse_jsonl(jsonl)
-    scan = nerva_scan_context(
-        command=result.command,
-        scenario_name=scenario.get("name", scenario["id"]),
-        scenario_id=scenario["id"],
-        target=scenario.get("target"),
-        captured_at=captured_at,
-        runtime=result.runtime,
-        exit_code=result.exit_code,
-        duration_s=result.duration_s,
-        record_count=len(records),
-    )
-    bundle = build_nerva_bundle(records, scan)
-    text_content = structured_to_text(bundle["records"])
-    return bundle, text_content
 
 
 def _pius_ndjson_payload(result: RunResult, scenario: dict[str, Any]) -> str:
@@ -670,18 +682,23 @@ def write_bundle(
         result.structured_kind = "json"
         structured_kind = "json"
         structured_ext = "json"
+    elif tool == "nerva" and structured_ext in ("json", "jsonl"):
+        raw_nerva = _jsonl_lines_from_stdout(result.stdout) or text_content
+        structured_path, adapter_text_content, adapter_graph_path, adapter_markdown_path = _write_adapter_four_outputs(
+            tool,
+            scenario,
+            raw_input=raw_nerva,
+            captured_at=captured_at,
+            result=result,
+            prefix=prefix,
+            tool_dir=tool_dir,
+        )
+        result.structured_path = str(structured_path.relative_to(REPO_ROOT))
+        result.structured_kind = "json"
+        structured_kind = "json"
+        structured_ext = "json"
     elif structured_ext:
-        if tool == "nerva" and structured_ext in ("json", "jsonl"):
-            bundle, text_content = _nerva_structured_payload(scenario, result, captured_at)
-            from nerva_structured import dumps_nerva_bundle
-
-            structured_path = tool_dir / f"{prefix}_output_structured.json"
-            structured_path.write_text(dumps_nerva_bundle(bundle), encoding="utf-8")
-            result.structured_path = str(structured_path.relative_to(REPO_ROOT))
-            result.structured_kind = "json"
-            structured_kind = "json"
-            structured_ext = "json"
-        elif tool == "pius" and structured_ext in ("json", "jsonl"):
+        if tool == "pius" and structured_ext in ("json", "jsonl"):
             bundle, text_content = _pius_structured_payload(scenario, result, captured_at)
             from pius_structured import dumps_pius_bundle
 

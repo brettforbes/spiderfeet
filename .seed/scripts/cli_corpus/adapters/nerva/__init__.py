@@ -75,27 +75,99 @@ def to_graph(structured: dict[str, Any] | str) -> dict[str, Any]:
     return builder.build()
 
 
+def _load_narrative_profile() -> dict[str, Any]:
+    import yaml
+
+    path = RULES_DIR / "nerva" / "narrative.yaml"
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    return data if isinstance(data, dict) else {}
+
+
 def to_narrative(graph: dict[str, Any], *, scenario_key: str = "nerva") -> str:
-    """Build a Markdown report pane (C4 specializes narrative YAML further)."""
+    """Build Markdown report with CDN / indeterminate-origin phrasing from narrative.yaml."""
+    profile = _load_narrative_profile()
+    phrasing = profile.get("phrasing") or {}
     nodes = graph.get("nodes") or []
     edges = graph.get("edges") or []
+    by_id = {n["id"]: n for n in nodes}
     systems = [n for n in nodes if n.get("nugget_id") in {"HOST", "CDN"}]
+    cdn_nodes = [n for n in systems if n.get("nugget_id") == "CDN"]
+    host_nodes = [n for n in systems if n.get("nugget_id") == "HOST"]
+    suppressed = [n for n in nodes if n.get("nugget_id") == "ORIGIN_FINGERPRINT_SUPPRESSED"]
+    vendors = sorted({n.get("nugget_data") for n in nodes if n.get("nugget_id") == "CDN_VENDOR"})
+
     lines = [
         f"# Nerva scan narrative — `{scenario_key}`",
         "",
-        f"Qualified systems: **{len(systems)}** (HOST/CDN after Ruleset A/C/B).",
-        f"Graph size: **{len(nodes)}** nodes, **{len(edges)}** edges.",
+        "## Introduction",
+        "",
+        (
+            f"This report summarizes a Nerva fingerprint capture after Rulesets A/C/B "
+            f"qualification. **{len(systems)}** system node(s) were emitted "
+            f"({len(host_nodes)} HOST, {len(cdn_nodes)} CDN)."
+        ),
         "",
         "## Systems",
         "",
     ]
     for system in systems:
-        lines.append(f"- `{system.get('nugget_id')}` `{system.get('nugget_data')}`")
-    lines.extend(["", "## Appendix", "", "### Nodes", ""])
+        classification = next(
+            (
+                by_id[e["target"]].get("nugget_data")
+                for e in edges
+                if e.get("source") == system["id"]
+                and e.get("relation") == "had"
+                and by_id.get(e.get("target"), {}).get("nugget_id") == "HOST_CLASSIFICATION"
+            ),
+            None,
+        )
+        lines.append(
+            f"- `{system.get('nugget_id')}` `{system.get('nugget_data')}`"
+            + (f" — classification `{classification}`" if classification else "")
+        )
+
+    lines.extend(["", "## CDN / edge fronting", ""])
+    if cdn_nodes:
+        lines.append((phrasing.get("fronted_unknown") or "").strip())
+        lines.append("")
+        if vendors:
+            lines.append(f"Detected vendor(s): **{', '.join(str(v) for v in vendors if v)}**.")
+            lines.append("")
+        lines.append(
+            "Origin host count is **"
+            + str(phrasing.get("indeterminate_origin_count") or "indeterminate")
+            + "** — edge IP cardinality must not be treated as origin host count."
+        )
+        lines.append("")
+    else:
+        lines.append((phrasing.get("standard_host") or "No CDN fronting detected.").strip())
+        lines.append("")
+
+    if suppressed:
+        lines.extend(
+            [
+                "## Origin fingerprint suppression",
+                "",
+                (phrasing.get("origin_fingerprint_suppressed") or "").strip(),
+                "",
+                f"Suppressed fingerprint markers present: **{len(suppressed)}**.",
+                "",
+            ]
+        )
+
+    services = [n for n in nodes if n.get("nugget_id") == "SERVICE"]
+    lines.extend(["## Services", ""])
+    if services:
+        for service in services:
+            lines.append(f"- `{service.get('nugget_data')}`")
+    else:
+        lines.append("- (none)")
+    lines.append("")
+
+    lines.extend(["## Appendix", "", "### Nodes", ""])
     for node in sorted(nodes, key=lambda n: (n.get("nugget_id", ""), n.get("nugget_data", ""))):
         lines.append(f"- `{node.get('nugget_id')}`: {node.get('nugget_data')}")
     lines.extend(["", "### Edges", ""])
-    by_id = {n["id"]: n for n in nodes}
     for edge in edges:
         src = by_id.get(edge.get("source"), {})
         tgt = by_id.get(edge.get("target"), {})
