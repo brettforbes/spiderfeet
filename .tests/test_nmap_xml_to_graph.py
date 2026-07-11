@@ -8,6 +8,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 GENERATOR_PATH = REPO_ROOT / ".seed/scripts/cli_corpus/nmap_xml_to_graph.py"
+GRAPH_BUILDER_PATH = REPO_ROOT / ".seed/scripts/cli_corpus/graph_builder.py"
 NMAP_XML = REPO_ROOT / ".docs/docs-for-cli-tools/app_examination_docs/nmap/17_output_structured.xml"
 CORPORATE_SERVICE_XML = (
     REPO_ROOT / ".docs/docs-for-cli-tools/app_examination_docs/nmap/23_output_structured.xml"
@@ -27,6 +28,17 @@ def _load_generator():
     module = importlib.util.module_from_spec(spec)
     assert spec.loader is not None
     sys.modules["nmap_xml_to_graph"] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+def _load_graph_builder():
+    import sys
+
+    spec = importlib.util.spec_from_file_location("graph_builder", GRAPH_BUILDER_PATH)
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    sys.modules["graph_builder"] = module
     spec.loader.exec_module(module)
     return module
 
@@ -53,6 +65,18 @@ def test_nmap_xml_graph_parses_ssh_keys_and_http_title():
         for edge in graph["edges"]
         if edge["target"] in ssh_key_node_ids
     )
+
+
+def test_nmap_xml_graph_uses_shared_identity_helper():
+    generator = _load_generator()
+    graph_builder = _load_graph_builder()
+    builder = generator.GraphBuilder()
+
+    node_id = builder.add_node("IP_ADDRESS", "45.33.32.156", "ENTITY")
+
+    assert node_id == graph_builder.nugget_instance_id("IP_ADDRESS", "45.33.32.156")
+    assert "def instance_id" not in GENERATOR_PATH.read_text(encoding="utf-8")
+    assert "NAMESPACE_DNS" not in GENERATOR_PATH.read_text(encoding="utf-8")
 
 
 def test_nmap_xml_graph_uses_template_fields_and_normalized_values():

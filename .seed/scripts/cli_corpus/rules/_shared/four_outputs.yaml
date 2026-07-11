@@ -1,0 +1,6 @@
+required_outputs:
+  - text
+  - structured
+  - graph
+  - markdown_report
+visual_review_required_before_goldens: true

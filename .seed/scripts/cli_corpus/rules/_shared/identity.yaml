@@ -1,0 +1,3 @@
+function: core.graph_builder.nugget_instance_id
+format: "{nugget_id}--{uuid5(ONTOLOGY_NAMESPACE, nugget_data)}"
+namespace_seed: OS Threat, OS Intel Ontology

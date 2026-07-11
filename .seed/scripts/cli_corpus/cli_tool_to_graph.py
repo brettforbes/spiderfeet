@@ -7,7 +7,6 @@ import argparse
 import json
 import re
 import sys
-import uuid
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -21,14 +20,11 @@ NUGGET_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "nugget_structure"
 from netdiscover_json_to_graph import graph_from_json_text, netdiscover_scan_to_graph
 from nerva_structured import records_only as nerva_records_only
 from pius_structured import records_only as pius_records_only
-
-
-def _uid(nugget_id: str, data: str) -> str:
-    return f"{nugget_id}--{uuid.uuid5(uuid.NAMESPACE_DNS, f'{nugget_id}:{data}')}"
+from graph_builder import nugget_instance_id
 
 
 def _node(nugget_id: str, nugget_type: str, data: str, description: str) -> Dict[str, Any]:
-    iid = _uid(nugget_id, data)
+    iid = nugget_instance_id(nugget_id, data)
     return {
         "id": iid,
         "nugget_instance_id": iid,
@@ -67,7 +63,6 @@ def nerva_to_graph(raw: str, target: str, command: str) -> Dict[str, Any]:
         port = rec["port"]
         protocol = rec.get("protocol", "unknown")
         transport = rec.get("transport", "tcp")
-        port_data = f"{ip}:{port}"
         host = _node("HOST", "ENTITY", ip, "Host")
         port_n = _node("PORT", "ENTITY", str(port), "Port")
         proto = _node("PORT_PROTOCOL", "DESCRIPTOR", transport, "Port Protocol")
@@ -127,7 +122,6 @@ def latest_exam_for_scenario(tool: str, scenario_key: str) -> Optional[Tuple[int
         if key != scenario_key and not sid.startswith(scenario_key):
             continue
         exam_id = int(manifest_path.name.split("_", 1)[0])
-        struct_ext = manifest.get("structured_kind")
         for ext in ("jsonl", "json", "xml", "txt"):
             sp = tool_dir / f"{exam_id}_output_structured.{ext}"
             if sp.is_file():
@@ -199,10 +193,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument("--all-defaults", action="store_true")
     args = parser.parse_args(argv)
     keys = args.scenarios or []
-    if args.all_defaults or not keys:
-        generate_tool_graphs(args.tool, keys)
-    else:
-        generate_tool_graphs(args.tool, keys)
+    generate_tool_graphs(args.tool, keys)
     return 0
 
 

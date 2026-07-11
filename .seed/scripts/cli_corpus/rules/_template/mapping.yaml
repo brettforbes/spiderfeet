@@ -1,0 +1,14 @@
+# Tool mapping pack template
+# Copy to rules/<tool>/mapping.yaml and fill.
+
+tool: REPLACE_ME
+capture_family: structured_native  # or text_native
+seed_docs:
+  - .seed/REPLACE_ME.md
+
+# Example field mapping entries (engine schema finalized in story B1):
+# mappings:
+#   - path: records[*].ip
+#     nugget_id: IP_ADDRESS
+#     parent: NETWORKS
+#     relation: contains

@@ -118,6 +118,23 @@ Use a hybrid rule-engine architecture:
 
 This gives us the scalability we want (20+ tools, 4x ontology growth) without sacrificing precision where complex logic is unavoidable.
 
+### 1.8 Documents describing the Conversion of Structured Data to a Common, Semantic Graph for the CLI Apps
+
+The ontology that includes both NMAP and NetDiscover data is here `.docs\docs-for-cli-tools\_Current_Ontology.md`.
+
+In addition to that, the following documents include rules and ontology descriptions for converting the structured data to a common, semantic graph for the CLI apps:
+
+- `.seed\06B_NMAP_Ontology_Update_Ruleset.md`
+- `.seed\07_Nerva_Scan_Record_Host_Correlation_Rulesets.md` (correlation A/B/C)
+- `.seed\07B_Nerva_Ontology_Rules.md` (Nerva sub-graph N0–N5)
+- `.seed\08_Rules_for_Pius.md`
+- `.seed\09_Ontology_For_Subfinder.md`
+- `.seed\10_Rules_For_Httpx.md`
+- `.seed\11_Ontology_for_Nuclei.md`
+- `.seed\11B_Rules_for_Nuclei.md`
+
+Governing spec: `.governance\specs\SPEC-004-cli-graph-rules-engine.md` · Agent rule: `.cursor\rules\proj-07-cli-graph-rules-engine.mdc`
+
 ## 2.0 Conversion of Semantic Graphs to a Markdown Narrative Report Document
 
 One advantage of converting Cli-app-specific data to a common semantic ontology is that the meaning of the scan is encoded in the graph, and can be used to generate a narrative report document. The narraitve report document has access to the scan and all of its descriptors, as well as all the sub-graphs discovered by the scan. The narrative is something simple, facts with some small amount of context, plus explanatory mermaid graphs and tables. For example ...
@@ -128,4 +145,8 @@ One advantage of converting Cli-app-specific data to a common semantic ontology 
 
 "Appendix with detailed tables of every object and relation in the scan graph"
 
-Clearly there are a lot of oppourtunities for using a centralised set of rules and policies to generate the narrative report document for each CLI app.
+Clearly there are a lot of opportunities for using a centralised set of rules and policies to generate the narrative report document for each CLI app.
+
+## 3.0 After the Rules are Extracted, the Remaining CLI App-Specific Code will Eventually be Refactored into an sfp-app-specific code module.
+
+The current modules do not use all of any single CLI App, or even some APIs, and instead it was simplified down to single nuggets. 
