@@ -1,7 +1,14 @@
 tool: katana
 profile: katana_default
 version: 1
+seed_docs:
+  - .seed/scripts/cli_corpus/katana_json_to_graph.py
+  - .seed/14_Business_Rules_for_Converting_Structured_Data_to_Graph.md
 sections:
   - introduction
   - urls
   - appendix
+phrasing:
+  introduction: >
+    Katana emits internal linked URLs, host domains, and HTTP status/method
+    descriptors for each crawled endpoint discovered from the seed target.

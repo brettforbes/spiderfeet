@@ -36,9 +36,11 @@ def _strip_capture_header(text: str) -> str:
     return "\n".join(body).lstrip("\n")
 
 
-def test_harvest_adapter_tools_include_netdiscover_and_nmap():
+def test_harvest_adapter_tools_include_spec004_adapters():
     harvest = _load_harvest()
-    assert harvest.ADAPTER_TOOLS == frozenset({"netdiscover", "nmap", "nerva"})
+    assert harvest.ADAPTER_TOOLS == frozenset(
+        {"netdiscover", "nmap", "nerva", "pius", "subfinder", "httpx", "katana", "nuclei"}
+    )
 
 
 def test_harvest_adapter_dispatch_writes_four_netdiscover_artifacts(tmp_path, monkeypatch):
@@ -132,6 +134,56 @@ def test_write_tool_graph_skips_adapter_tools():
         Path("missing.json"),
         "nerva",
     )
+    harvest._write_tool_graph(
+        "pius",
+        {"id": "crt_linode_ndjson", "org": "Linode"},
+        Path("missing.json"),
+        "pius",
+    )
+    harvest._write_tool_graph(
+        "nuclei",
+        {"id": "pg_dvwa_tech_fingerprint"},
+        Path("missing.json"),
+        "nuclei",
+    )
+
+
+def test_harvest_adapter_dispatch_writes_four_pius_artifacts(tmp_path, monkeypatch):
+    harvest = _load_harvest()
+    monkeypatch.setattr(harvest, "NUGGET_ROOT", tmp_path / "nugget_structure")
+    raw = (CLI_CORPUS / "fixtures" / "pius_linode_crt_sample.jsonl").read_text(encoding="utf-8")
+    scenario = {
+        "id": "crt_linode_ndjson",
+        "name": "CRT Linode sample",
+        "org": "Linode",
+        "target": "linode.com",
+    }
+    result = harvest.RunResult(
+        command="pius run --org Linode --domain linode.com --output ndjson",
+        runtime="windows",
+        exit_code=0,
+        duration_s=1.0,
+        stdout=raw,
+        stderr="",
+    )
+    captured_at = datetime(2026, 6, 15, 10, 0, 0, tzinfo=timezone.utc)
+
+    structured_path, text_content, graph_path, markdown_path = harvest._write_adapter_four_outputs(
+        "pius",
+        scenario,
+        raw_input=raw,
+        captured_at=captured_at,
+        result=result,
+        prefix="12",
+        tool_dir=tmp_path,
+    )
+
+    assert structured_path.name == "12_output_structured.json"
+    assert text_content.startswith("# SpiderFeet CLI examination capture")
+    assert graph_path.is_file()
+    assert markdown_path.is_file()
+    assert "## Organization" in markdown_path.read_text(encoding="utf-8")
+    assert "## Appendix" in markdown_path.read_text(encoding="utf-8")
 
 
 def test_harvest_adapter_dispatch_writes_four_nerva_artifacts(tmp_path, monkeypatch):

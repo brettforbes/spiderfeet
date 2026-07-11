@@ -8,6 +8,9 @@ sections:
   - systems
   - appendix
 phrasing:
+  introduction: >
+    Httpx confirms live web endpoints, HTTP metadata, and technology signals
+    for each probed host under the 10 H0-H7 ruleset.
   relation_deferral: >
     Seed-defined dns-resolves-to, cname-alias-to, and derived-from relations
     are represented with approved SPEC-004 relations in this slice until

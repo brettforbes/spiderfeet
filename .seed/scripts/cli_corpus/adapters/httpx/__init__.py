@@ -75,10 +75,12 @@ def to_graph(structured: dict[str, Any] | str, *, target: str | None = None) -> 
 
 
 def to_narrative(graph: dict[str, Any], *, scenario_key: str = "httpx") -> str:
-    """Build Markdown report (stub profile; expanded in D6)."""
+    """Build Markdown report with relation-deferral phrasing from narrative.yaml."""
+    from core.narrative_profile import append_standard_appendix, load_narrative_profile
+
+    profile = load_narrative_profile(RULES_DIR / "httpx" / "narrative.yaml")
+    phrasing = profile.get("phrasing") or {}
     nodes = graph.get("nodes") or []
-    edges = graph.get("edges") or []
-    by_id = {n["id"]: n for n in nodes}
     hosts = [n for n in nodes if n.get("nugget_id") == "HOST"]
     cdns = [n for n in nodes if n.get("nugget_id") == "CDN"]
     services = [n for n in nodes if n.get("nugget_id") == "SERVICE"]
@@ -88,7 +90,8 @@ def to_narrative(graph: dict[str, Any], *, scenario_key: str = "httpx") -> str:
         "",
         "## Introduction",
         "",
-        (
+        (phrasing.get("introduction") or "").strip()
+        or (
             f"This report summarizes Httpx live-web probe output with **{len(hosts)}** HOST, "
             f"**{len(cdns)}** CDN, and **{len(services)}** service node(s)."
         ),
@@ -101,16 +104,11 @@ def to_narrative(graph: dict[str, Any], *, scenario_key: str = "httpx") -> str:
     if not hosts and not cdns:
         lines.append("- (none)")
 
-    lines.extend(["", "## Appendix", "", "### Nodes", ""])
-    for node in sorted(nodes, key=lambda n: (n.get("nugget_id", ""), n.get("nugget_data", ""))):
-        lines.append(f"- `{node.get('nugget_id')}`: {node.get('nugget_data')}")
-    lines.extend(["", "### Edges", ""])
-    for edge in edges:
-        src = by_id.get(edge.get("source"), {})
-        tgt = by_id.get(edge.get("target"), {})
-        lines.append(
-            f"- `{src.get('nugget_id')}` `{edge.get('relation')}` `{tgt.get('nugget_id')}`"
-        )
+    deferral = (phrasing.get("relation_deferral") or "").strip()
+    if deferral:
+        lines.extend(["", "## Relation notes", "", deferral, ""])
+
+    append_standard_appendix(lines, graph)
     return "\n".join(lines).strip() + "\n"
 
 
