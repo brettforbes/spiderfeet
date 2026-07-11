@@ -20,7 +20,7 @@ def _url_from_record(record: dict[str, Any]) -> str:
 
 
 def apply_katana_records(builder: GraphBuilder, scan_id: str, doc: dict[str, Any]) -> None:
-    """Migrate existing Katana URL/domain/status hierarchy into adapter hooks."""
+    """Apply Katana crawl hierarchy (doc 14 / legacy katana_json_to_graph migration)."""
     target = str(doc.get("target") or "").lower().rstrip(".")
     if target:
         root = builder.add_node(nugget_node("DOMAIN_NAME", target))
