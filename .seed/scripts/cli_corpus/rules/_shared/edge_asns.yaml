@@ -1,0 +1,99 @@
+schema: edge_asns_v1
+version: 1
+source_seed: .seed/07_Nerva_Scan_Record_Host_Correlation_Rulesets.md
+ruleset: C2
+description: >
+  Known CDN / edge / cloud-proxy autonomous system numbers for Ruleset C fronting detection.
+  Update when new edge providers appear — see ONBOARDING.md shared correlation lists.
+
+asns:
+  - asn: 13335
+    vendor: Cloudflare
+    org_names:
+      - CLOUDFLARE
+      - Cloudflare, Inc.
+
+  - asn: 209242
+    vendor: Cloudflare
+    org_names:
+      - CLOUDFLARENET
+
+  - asn: 54113
+    vendor: Fastly
+    org_names:
+      - FASTLY
+      - Fastly, Inc.
+
+  - asn: 20940
+    vendor: Akamai
+    org_names:
+      - AKAMAI
+      - Akamai Technologies
+
+  - asn: 16625
+    vendor: Akamai
+    org_names:
+      - AKAMAI-AS
+      - Akamai International B.V.
+
+  - asn: 16509
+    vendor: Amazon CloudFront
+    org_names:
+      - AMAZON-02
+      - Amazon.com, Inc.
+
+  - asn: 14618
+    vendor: Amazon CloudFront
+    org_names:
+      - AMAZON-AES
+      - Amazon Data Services
+
+  - asn: 15169
+    vendor: Google
+    org_names:
+      - GOOGLE
+      - Google LLC
+
+  - asn: 396982
+    vendor: Google Cloud
+    org_names:
+      - GOOGLE-CLOUD-PLATFORM
+
+  - asn: 8075
+    vendor: Microsoft Azure
+    org_names:
+      - MICROSOFT-CORP-MSN-AS-BLOCK
+      - Microsoft Corporation
+
+  - asn: 8068
+    vendor: Microsoft Azure
+    org_names:
+      - MICROSOFT-CORP-MSN-AS-BLOCK
+
+  - asn: 394536
+    vendor: Vercel
+    org_names:
+      - VERCEL-INC
+      - Vercel Inc
+
+  - asn: 209103
+    vendor: Netlify
+    org_names:
+      - NETLIFY
+
+  - asn: 30148
+    vendor: Sucuri
+    org_names:
+      - SUCURI-SEC
+
+  - asn: 19551
+    vendor: Imperva
+    org_names:
+      - INCAPSULA
+      - Imperva Inc.
+
+  - asn: 12989
+    vendor: StackPath
+    org_names:
+      - HIGHWINDS
+      - StackPath LLC
