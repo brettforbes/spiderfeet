@@ -21,11 +21,8 @@ import yaml
 
 from netdiscover_text_to_json import (
     assert_no_truncation,
-    convert_text_to_netdiscover_scan,
-    dumps_netdiscover_scan,
     output_mode_for_scenario,
     text_capture_header,
-    validate_netdiscover_scan,
     verify_text_structured_alignment,
 )
 
@@ -36,6 +33,7 @@ if str(CORPUS_DIR) not in sys.path:
 MANIFESTS_DIR = CORPUS_DIR / "manifests"
 EXAM_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "app_examination_docs"
 NUGGET_ROOT = REPO_ROOT / ".docs" / "docs-for-cli-tools" / "nugget_structure"
+ADAPTER_TOOLS = frozenset({"netdiscover", "nmap", "nerva"})
 
 
 @dataclass
@@ -221,35 +219,113 @@ def remove_exam_bundle(tool_dir: Path, exam_id: int) -> None:
             path.unlink()
 
 
-def _netdiscover_structured_payload(
+def _import_adapter(tool: str):
+    import importlib
+
+    return importlib.import_module(f"adapters.{tool}")
+
+
+def _nmap_xml_payload(text_content: str, scenario: dict[str, Any]) -> str:
+    out_file = scenario.get("structured_output_file")
+    if out_file and Path(out_file).is_file():
+        return Path(out_file).read_text(encoding="utf-8", errors="replace")
+    return text_content
+
+
+def _write_adapter_four_outputs(
+    tool: str,
     scenario: dict[str, Any],
-    result: RunResult,
+    *,
+    raw_input: str,
     captured_at: datetime,
-    raw_text: str,
-) -> dict[str, Any]:
-    mode = output_mode_for_scenario(scenario, result.command)
-    start_time = captured_at - timedelta(seconds=result.duration_s)
-    doc = convert_text_to_netdiscover_scan(
-        raw_text,
-        scenario_name=scenario.get("name", scenario["id"]),
-        output_mode=mode,
-        start_time=start_time,
-        duration_s=result.duration_s,
-        exit_code=result.exit_code,
-    )
-    errors = validate_netdiscover_scan(doc)
-    if errors:
-        raise SystemExit(f"netdiscover structured validation failed for {scenario['id']}: {errors}")
-    alignment = verify_text_structured_alignment(
-        raw_text,
-        doc,
-        output_mode=mode,
-    )
-    if alignment:
-        raise SystemExit(
-            f"netdiscover structured/text mismatch for {scenario['id']}: {alignment}"
+    result: RunResult,
+    prefix: str,
+    tool_dir: Path,
+) -> tuple[Path, str, Path, Path]:
+    """Build and persist Text/Structured/Graph/Markdown via adapters.<tool>."""
+    adapter = _import_adapter(tool)
+    scenario_key = scenario["id"]
+    scenario_name = scenario.get("name", scenario_key)
+
+    if tool == "netdiscover":
+        mode = output_mode_for_scenario(scenario, result.command)
+        start_time = captured_at - timedelta(seconds=result.duration_s)
+        outputs = adapter.build_outputs(
+            raw_input,
+            scenario_name=scenario_name,
+            scenario_key=scenario_key,
+            output_mode=mode,
+            start_time=start_time,
+            duration_s=result.duration_s,
+            exit_code=result.exit_code,
         )
-    return doc
+        alignment = verify_text_structured_alignment(
+            raw_input,
+            outputs["structured"],
+            output_mode=mode,
+        )
+        if alignment:
+            raise SystemExit(
+                f"netdiscover structured/text mismatch for {scenario_key}: {alignment}"
+            )
+        header = text_capture_header(
+            command=result.command,
+            scenario_name=scenario_name,
+            captured_at=captured_at,
+        )
+        text_content = header + outputs["text"]
+    elif tool == "nmap":
+        outputs = adapter.build_outputs(raw_input, scenario_key=scenario_key)
+        text_content = outputs["text"]
+    elif tool == "nerva":
+        from nerva_structured import nerva_text_capture_header
+
+        outputs = adapter.build_outputs(
+            raw_input,
+            scenario_key=scenario_key,
+            command=result.command,
+        )
+        # Preserve harvest metadata on the structured bundle.
+        structured = outputs["structured"]
+        structured["scenario"] = scenario_name
+        structured["scenario_id"] = scenario_key
+        structured["target"] = scenario.get("target")
+        structured["command"] = result.command
+        structured["runtime"] = result.runtime
+        structured["started_at"] = captured_at.isoformat()
+        structured["duration_s"] = result.duration_s
+        structured["exit_code"] = result.exit_code
+        structured["scan_data"] = (
+            f"nerva:{scenario.get('target') or scenario_key}:{result.command}"
+        )
+        outputs["structured"] = structured
+        from nerva_structured import dumps_nerva_bundle
+
+        outputs["structured_json"] = dumps_nerva_bundle(structured)
+        header = nerva_text_capture_header(
+            command=result.command,
+            scenario_name=scenario_name,
+            scenario_id=scenario_key,
+            target=scenario.get("target"),
+            captured_at=captured_at,
+            runtime=result.runtime,
+            exit_code=result.exit_code,
+            duration_s=result.duration_s,
+            record_count=len(structured.get("records") or []),
+        )
+        text_content = header + outputs["text"]
+    else:
+        raise ValueError(f"unsupported adapter tool: {tool}")
+
+    structured_path = tool_dir / f"{prefix}_output_structured.json"
+    structured_path.write_text(outputs["structured_json"], encoding="utf-8")
+
+    graph_path = NUGGET_ROOT / f"{tool}_{scenario_key}_proposed_nuggets_edges.json"
+    markdown_path = NUGGET_ROOT / f"{tool}_{scenario_key}_proposed_nuggets_edges_description.md"
+    graph_path.parent.mkdir(parents=True, exist_ok=True)
+    graph_path.write_text(json.dumps(outputs["graph"], indent=2) + "\n", encoding="utf-8")
+    markdown_path.write_text(outputs["markdown_report"], encoding="utf-8")
+    return structured_path, text_content, graph_path, markdown_path
 
 
 def _jsonl_lines_from_stdout(stdout: str) -> str:
@@ -257,31 +333,6 @@ def _jsonl_lines_from_stdout(stdout: str) -> str:
     if not lines:
         return ""
     return "\n".join(lines) + "\n"
-
-
-def _nerva_structured_payload(
-    scenario: dict[str, Any],
-    result: RunResult,
-    captured_at: datetime,
-) -> tuple[dict[str, Any], str]:
-    from nerva_structured import build_nerva_bundle, nerva_scan_context, parse_jsonl, structured_to_text
-
-    jsonl = _jsonl_lines_from_stdout(result.stdout)
-    records = parse_jsonl(jsonl)
-    scan = nerva_scan_context(
-        command=result.command,
-        scenario_name=scenario.get("name", scenario["id"]),
-        scenario_id=scenario["id"],
-        target=scenario.get("target"),
-        captured_at=captured_at,
-        runtime=result.runtime,
-        exit_code=result.exit_code,
-        duration_s=result.duration_s,
-        record_count=len(records),
-    )
-    bundle = build_nerva_bundle(records, scan)
-    text_content = structured_to_text(bundle["records"])
-    return bundle, text_content
 
 
 def _pius_ndjson_payload(result: RunResult, scenario: dict[str, Any]) -> str:
@@ -542,6 +593,8 @@ def _write_tool_graph(
     structured_path: Path | None,
     command: str,
 ) -> None:
+    if tool in ADAPTER_TOOLS:
+        return
     if tool not in ("nerva", "pius", "subfinder", "httpx", "katana") or structured_path is None or not structured_path.is_file():
         return
     raw = structured_path.read_text(encoding="utf-8", errors="replace")
@@ -594,31 +647,58 @@ def write_bundle(
     if scenario.get("text_output_file") and Path(scenario["text_output_file"]).is_file():
         text_content = Path(scenario["text_output_file"]).read_text(encoding="utf-8", errors="replace")
 
+    adapter_text_content: str | None = None
+    adapter_graph_path: Path | None = None
+    adapter_markdown_path: Path | None = None
+
     if tool == "netdiscover" and structured_ext:
-        doc = _netdiscover_structured_payload(scenario, result, captured_at, text_content)
-        structured_path = tool_dir / f"{prefix}_output_structured.json"
-        structured_path.write_text(dumps_netdiscover_scan(doc), encoding="utf-8")
+        structured_path, adapter_text_content, adapter_graph_path, adapter_markdown_path = _write_adapter_four_outputs(
+            tool,
+            scenario,
+            raw_input=text_content,
+            captured_at=captured_at,
+            result=result,
+            prefix=prefix,
+            tool_dir=tool_dir,
+        )
         result.structured_path = str(structured_path.relative_to(REPO_ROOT))
-        result.structured_kind = structured_kind or "json"
-        structured_kind = result.structured_kind
+        result.structured_kind = "json"
+        structured_kind = "json"
         structured_ext = "json"
-        from netdiscover_json_to_graph import write_graph_artifacts
-
-        graph_path = NUGGET_ROOT / f"netdiscover_{scenario['id']}_proposed_nuggets_edges.json"
-        graph_path.parent.mkdir(parents=True, exist_ok=True)
-        write_graph_artifacts(structured_path, graph_path, scenario["id"])
+    elif tool == "nmap" and structured_ext == "xml":
+        raw_xml = _nmap_xml_payload(text_content, scenario)
+        if not raw_xml.strip():
+            raise SystemExit(f"nmap XML scenario {scenario['id']} produced empty structured output")
+        structured_path, adapter_text_content, adapter_graph_path, adapter_markdown_path = _write_adapter_four_outputs(
+            tool,
+            scenario,
+            raw_input=raw_xml,
+            captured_at=captured_at,
+            result=result,
+            prefix=prefix,
+            tool_dir=tool_dir,
+        )
+        result.structured_path = str(structured_path.relative_to(REPO_ROOT))
+        result.structured_kind = "json"
+        structured_kind = "json"
+        structured_ext = "json"
+    elif tool == "nerva" and structured_ext in ("json", "jsonl"):
+        raw_nerva = _jsonl_lines_from_stdout(result.stdout) or text_content
+        structured_path, adapter_text_content, adapter_graph_path, adapter_markdown_path = _write_adapter_four_outputs(
+            tool,
+            scenario,
+            raw_input=raw_nerva,
+            captured_at=captured_at,
+            result=result,
+            prefix=prefix,
+            tool_dir=tool_dir,
+        )
+        result.structured_path = str(structured_path.relative_to(REPO_ROOT))
+        result.structured_kind = "json"
+        structured_kind = "json"
+        structured_ext = "json"
     elif structured_ext:
-        if tool == "nerva" and structured_ext in ("json", "jsonl"):
-            bundle, text_content = _nerva_structured_payload(scenario, result, captured_at)
-            from nerva_structured import dumps_nerva_bundle
-
-            structured_path = tool_dir / f"{prefix}_output_structured.json"
-            structured_path.write_text(dumps_nerva_bundle(bundle), encoding="utf-8")
-            result.structured_path = str(structured_path.relative_to(REPO_ROOT))
-            result.structured_kind = "json"
-            structured_kind = "json"
-            structured_ext = "json"
-        elif tool == "pius" and structured_ext in ("json", "jsonl"):
+        if tool == "pius" and structured_ext in ("json", "jsonl"):
             bundle, text_content = _pius_structured_payload(scenario, result, captured_at)
             from pius_structured import dumps_pius_bundle
 
@@ -692,7 +772,9 @@ def write_bundle(
 
     text_path = tool_dir / f"{prefix}_output_text.txt"
     header = ""
-    if tool == "netdiscover":
+    if adapter_text_content is not None:
+        text_content = adapter_text_content
+    elif tool == "netdiscover":
         header = text_capture_header(
             command=result.command,
             scenario_name=scenario.get("name", scenario["id"]),
@@ -845,6 +927,10 @@ def write_bundle(
     }
     if result.structured_fixture_used:
         bundle_manifest["structured_fixture_used"] = result.structured_fixture_used
+    if adapter_graph_path is not None:
+        bundle_manifest["graph_path"] = str(adapter_graph_path.relative_to(REPO_ROOT))
+    if adapter_markdown_path is not None:
+        bundle_manifest["markdown_report_path"] = str(adapter_markdown_path.relative_to(REPO_ROOT))
     manifest_path = tool_dir / f"{prefix}_manifest.json"
     manifest_path.write_text(json.dumps(bundle_manifest, indent=2) + "\n", encoding="utf-8")
 

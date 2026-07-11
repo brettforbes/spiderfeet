@@ -1,0 +1,35 @@
+schema: pius_lists_v1
+seed_docs:
+  - .seed/08_Rules_for_Pius.md
+registrars:
+  - GoDaddy
+  - MarkMonitor
+  - Nominet UK
+  - ".au Domain Administration Limited"
+  - Amazon Registrar
+  - CSC Corporate Domains
+  - Network Solutions
+placeholders:
+  - CEO
+  - Registrant
+  - Admin Contact
+  - Technical Contact
+  - Owner
+  - Domain Administrator
+  - REDACTED FOR PRIVACY
+  - Not Disclosed
+  - Data Protected
+legal_suffix_denylist:
+  - LIMITED
+  - LLC
+  - INC
+  - INCORPORATED
+  - CORPORATION
+  - CORP
+  - PRIVATE
+  - LTD
+  - PLC
+  - GMBH
+  - SA
+  - BV
+  - PTY

@@ -1,0 +1,4 @@
+allowed_relations:
+  - contains
+  - had
+  - listens-to

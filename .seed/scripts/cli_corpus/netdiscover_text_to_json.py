@@ -21,14 +21,17 @@ PLATFORM = "spiderfeet_netdiscover"
 COMMAND_PARSABLE = "netdiscover -P"
 COMMAND_INTERACTIVE = "netdiscover interactive"
 
-ANSI_RE = re.compile(r"\x1b\[[0-9;?]*[0-9;]*[a-zA-Z]")
+ANSI_RE = re.compile(r"\x1b\[[0-9;?]*[A-Za-z]")
 CAPTURE_HEADER_RE = re.compile(
     r"^# SpiderFeet CLI examination capture\n(?:# .+\n)*\n",
     re.MULTILINE,
 )
 HOST_ROW_RE = re.compile(
-    r"^(\d+\.\d+\.\d+\.\d+)\s+([0-9a-fA-F:]{17})\s+(\d+)\s+(\d+)\s+(.+)$",
+    r"^(\d{1,3}(?:\.\d{1,3}){3})\s+"
+    r"([0-9A-Fa-f]{2}(?::[0-9A-Fa-f]{2}){5})\s+"
+    r"(\d+)\s+(\d+)\s+([^\r\n]+)$",
 )
+MAC_ADDRESS_RE = re.compile(r"[0-9A-Fa-f]{2}(?::[0-9A-Fa-f]{2}){5}")
 FOOTER_ACTIVE_RE = re.compile(r"-- Active scan completed, (\d+) Hosts found\.?", re.IGNORECASE)
 FOOTER_PASSIVE_RE = re.compile(r"-- Passive capture ended, (\d+) Hosts observed\.?", re.IGNORECASE)
 TRUNCATION_PATTERNS = ("| head", "| tail", "head -", "tail -")
@@ -112,6 +115,9 @@ def parse_host_rows_ntc(raw: str, *, command: str = COMMAND_PARSABLE) -> list[di
             )
     if rows:
         return [_normalize_row(row) for row in rows]
+
+    if not MAC_ADDRESS_RE.search(cleaned):
+        return []
 
     try:
         import textfsm
@@ -303,40 +309,46 @@ def convert_text_to_netdiscover_scan(
     }
 
 
-def validate_netdiscover_scan(doc: dict[str, Any]) -> list[str]:
+def _missing_fields(mapping: dict[str, Any], fields: tuple[str, ...], prefix: str) -> list[str]:
+    return [f"missing {prefix}.{field}" for field in fields if field not in mapping]
+
+
+def _validate_runstats(runstats: Any) -> list[str]:
     errors: list[str] = []
-    scan = doc.get("netdiscover_scan")
-    if not isinstance(scan, dict):
-        return ["missing netdiscover_scan root object"]
-
-    for field in ("scanner", "args", "start_time", "exit_status"):
-        if not scan.get(field):
-            errors.append(f"missing netdiscover_scan.{field}")
-
-    if "systems" not in scan or not isinstance(scan["systems"], list):
-        errors.append("missing netdiscover_scan.systems array")
-
-    runstats = scan.get("runstats")
     if not isinstance(runstats, dict):
-        errors.append("missing netdiscover_scan.runstats")
-        return errors
+        return ["missing netdiscover_scan.runstats"]
 
     finished = runstats.get("finished_time")
     if not isinstance(finished, dict):
         errors.append("missing runstats.finished_time")
     else:
-        for field in ("end_time", "elapsed", "summary", "exit_status"):
-            if field not in finished:
-                errors.append(f"missing runstats.finished_time.{field}")
+        errors.extend(
+            _missing_fields(finished, ("end_time", "elapsed", "summary", "exit_status"), "runstats.finished_time")
+        )
 
     systems_stats = runstats.get("systems")
     if not isinstance(systems_stats, dict):
         errors.append("missing runstats.systems")
     else:
-        for field in ("discovered", "scan_tries", "empty_scans"):
-            if field not in systems_stats:
-                errors.append(f"missing runstats.systems.{field}")
+        errors.extend(
+            _missing_fields(systems_stats, ("discovered", "scan_tries", "empty_scans"), "runstats.systems")
+        )
+    return errors
 
+
+def validate_netdiscover_scan(doc: dict[str, Any]) -> list[str]:
+    scan = doc.get("netdiscover_scan")
+    if not isinstance(scan, dict):
+        return ["missing netdiscover_scan root object"]
+
+    errors = [
+        f"missing netdiscover_scan.{field}"
+        for field in ("scanner", "args", "start_time", "exit_status")
+        if not scan.get(field)
+    ]
+    if "systems" not in scan or not isinstance(scan["systems"], list):
+        errors.append("missing netdiscover_scan.systems array")
+    errors.extend(_validate_runstats(scan.get("runstats")))
     return errors
 
 

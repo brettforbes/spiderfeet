@@ -3,6 +3,13 @@
 Primary tracker: [GitHub Issues](https://github.com/brettforbes/spiderfeet/issues) (+ [widget repo](https://github.com/brettforbes/spiderFeet-widget/issues)).  
 Spec: **SPEC-002** (stages 0–4). Legacy bootstrap items: SPEC-001 below.
 
+## SPEC-004 — CLI graph rules engine (active)
+
+Centralize structured→graph→narrative (four UI outputs). Spec: [SPEC-004-cli-graph-rules-engine.md](../specs/SPEC-004-cli-graph-rules-engine.md). Rule: `.cursor/rules/proj-07-cli-graph-rules-engine.mdc`.  
+Does **not** block Stage 0–4 exit. Related: [#826](https://github.com/brettforbes/spiderfeet/issues/826), [#723](https://github.com/brettforbes/spiderfeet/issues/723).  
+**Issue index:** [SPEC004_ISSUE_INDEX.md](SPEC004_ISSUE_INDEX.md) · Epics [#906](https://github.com/brettforbes/spiderfeet/issues/906)–[#910](https://github.com/brettforbes/spiderfeet/issues/910) · Stories [#911](https://github.com/brettforbes/spiderfeet/issues/911)–[#932](https://github.com/brettforbes/spiderfeet/issues/932).  
+**First coding pickup:** [#912](https://github.com/brettforbes/spiderfeet/issues/912) (A2 identity) after closing verify stories A1/A5/A6 if setup already landed.
+
 ## Stage program (SPEC-002)
 
 | Stage | Epic (spiderFeet) | Epic (widget) | Spec IDs | Status |

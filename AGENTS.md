@@ -10,7 +10,8 @@ Governed SpiderFeet fork. Read this before doing substantive work.
 | Active spec (bootstrap) | `.governance/specs/SPEC-001-governance-bootstrap.md` |
 | Active spec (product) | `.governance/specs/SPEC-002-first-four-stages.md` |
 | Active spec (stage 5) | `.governance/specs/SPEC-003-stage5-quarantine.md` |
-| Project rules | `.governance/project/rules/` (mirrored in `.cursor/rules/proj-*.mdc`) |
+| Active spec (CLI graph rules) | `.governance/specs/SPEC-004-cli-graph-rules-engine.md` |
+| Project rules | `.cursor/rules/proj-*.mdc` (subset also under `.governance/project/rules/`) |
 | Stage plan | `.seed/02_stage_by_stage_reengineer.md` |
 | Backlog | `.governance/project/BACKLOG.md` |
 | Governance rules | `.governance/rules/gov-*.mdc` (mirrored in `.cursor/rules/`) |
@@ -25,7 +26,8 @@ Governed SpiderFeet fork. Read this before doing substantive work.
 - Quarantined modules: `.docs/quarantine_modules.md`
 - Core non-OSINT: `.docs/non_osint_modules.md`
 - **Nugget ontology (canonical):** `.seed/05_Onotology_for_Nuggets.md` · rule: `.cursor/rules/proj-05-spiderfeet-nugget-ontology.mdc`
-- **CLI Profiling (Nmap pilot signed off):** `.docs/docs-for-cli-tools/nmap_pilot_signoff.md` · skill: `.cursor/skills/cli_app_profiling/SKILL.md`
+- **CLI Profiling:** skill `.cursor/skills/cli_app_profiling/SKILL.md` · exercising rule `.cursor/rules/proj-06-spiderfeet-cli-app-exercising.mdc` · Nmap pilot `.docs/docs-for-cli-tools/nmap_pilot_signoff.md`
+- **SPEC-004 structured→graph→narrative (active):** spec `.governance/specs/SPEC-004-cli-graph-rules-engine.md` · rule `.cursor/rules/proj-07-cli-graph-rules-engine.mdc` · issue index `.governance/project/SPEC004_ISSUE_INDEX.md` · handoff `.governance/project/continuity/SPEC004_SETUP_HANDOFF.md` · four UI outputs (Text, Structured, Graph, Markdown Report)
 - **Widget Data Viewer embed:** `@spiderfeet-widget/.docs/data-viewer-embed.md` (Structured tabs, postMessage contract)
 
 ## Stage 4 — Tests corpus (read before seed or Tests work)
@@ -44,10 +46,11 @@ None-tier seed research is **closed** (79 smoke + 8 error). Upstream-blocked mod
 ## Operating rules
 
 1. **Stage 0–4 work** must map to SPEC-002 requirement IDs (see `.governance/project/BACKLOG.md`).
-2. Follow GOV-02 delivery loop: Observe → Plan → Implement → Verify → Document.
-3. Issue-first / spec-first for implementation tasks (GOV-06).
-4. Checkpoint continuity per GOV-09 when instructions change, blockers appear, or handoff risk is high.
-5. **Commit policy:** only when the operator explicitly requests commits.
+2. **SPEC-004 CLI graph/rules work** must map to R4-01-* and follow proj-07; pickup from `SPEC004_ISSUE_INDEX.md` in order (do not invent Nexus; no `sfp_*` rewrite until Epic E).
+3. Follow GOV-02 delivery loop: Observe → Plan → Implement → Verify → Document.
+4. Issue-first / spec-first for implementation tasks (GOV-06).
+5. Checkpoint continuity per GOV-09 when instructions change, blockers appear, or handoff risk is high.
+6. **Commit policy:** only when the operator explicitly requests commits.
 
 ## Default work pickup
 

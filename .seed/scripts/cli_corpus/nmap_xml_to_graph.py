@@ -10,20 +10,18 @@ import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
-from uuid import NAMESPACE_DNS, uuid5
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 _CLI_CORPUS = Path(__file__).resolve().parent
 if str(_CLI_CORPUS) not in sys.path:
     sys.path.insert(0, str(_CLI_CORPUS))
 
+from graph_builder import nugget_instance_id
 from narrative_report import build_nmap_narrative_report
 EXAM_ROOT = REPO_ROOT / ".docs/docs-for-cli-tools/app_examination_docs/nmap"
 NUGGET_ROOT = REPO_ROOT / ".docs/docs-for-cli-tools/nugget_structure"
 NUGGETS_PATH = REPO_ROOT / ".docs/analysis/nuggets.json"
 NUGGETS_EXTENSION_PATH = REPO_ROOT / ".docs/analysis/nuggets_extension.json"
-
-ONTOLOGY_NAMESPACE = uuid5(NAMESPACE_DNS, "OS Threat, OS Intel Ontology")
 
 DEFAULT_TYPE_COLOURS = {
     "ENTITY": "#3B82F6",
@@ -59,10 +57,6 @@ def _load_nugget_templates() -> Dict[str, Dict[str, Any]]:
 NUGGET_TEMPLATES = _load_nugget_templates()
 
 
-def instance_id(nugget_id: str, data: str) -> str:
-    return f"{nugget_id}--{uuid5(ONTOLOGY_NAMESPACE, data)}"
-
-
 def _fallback_template(nugget_id: str, nugget_type: str) -> Dict[str, Any]:
     return {
         "nugget_id": nugget_id,
@@ -88,7 +82,7 @@ class GraphBuilder:
         template = NUGGET_TEMPLATES.get(nugget_id) or _fallback_template(nugget_id, nugget_type)
         template_type = template.get("nugget_type") or nugget_type
         data_value = str(data)
-        nid = instance_id(nugget_id, data_value)
+        nid = nugget_instance_id(nugget_id, data_value)
         if nid not in self.nodes:
             self.nodes[nid] = {
                 "id": nid,
@@ -378,7 +372,7 @@ def _parse_ports(g: GraphBuilder, host_id: str, host_key: str, host_el: ET.Eleme
     apps_id = g.add_node("APPLICATIONS", f"applications:{host_key}", "CATEGORY")
     g.add_edge(host_id, apps_id, "contains")
 
-    ip_id = instance_id("IP_ADDRESS", host_key)
+    ip_id = nugget_instance_id("IP_ADDRESS", host_key)
 
     for port_el in ports_el.findall("port"):
         proto = port_el.get("protocol", "tcp")
