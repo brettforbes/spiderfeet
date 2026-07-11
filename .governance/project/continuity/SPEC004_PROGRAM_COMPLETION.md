@@ -43,7 +43,7 @@ python -m pytest \
   -q
 ```
 
-Last run: **63 passed** (develop after Phase 4 merge).
+Last run: **65 passed** (develop @ `72239686`, full SPEC-004 bundle including Epic E bridge).
 
 ## Residual / follow-up
 
