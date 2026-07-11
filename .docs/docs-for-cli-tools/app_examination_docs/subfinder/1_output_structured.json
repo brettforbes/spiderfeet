@@ -1,0 +1,482 @@
+{
+  "schema": "subfinder_host_v1",
+  "tool": "subfinder",
+  "scenario": "Passive enumeration with sources (The Upside .com.au)",
+  "scenario_id": "corporate_upside_au_passive_cs",
+  "target": "theupside.com.au",
+  "enumeration_mode": "passive",
+  "command": "subfinder -d theupside.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_upside_au_passive_cs.jsonl -silent",
+  "runtime": "windows",
+  "started_at": "2026-07-05T14:23:45.538135+00:00",
+  "duration_s": 22.735,
+  "exit_code": 0,
+  "host_summary_lines": 52,
+  "text_role": "one line per host: fqdn (sources: \u2026) or fqdn -> ip",
+  "structured_role": "normalized host records in records[]",
+  "records": [
+    {
+      "host": "aws.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.aws.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "e.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.mail.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "newsletter.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "spf.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.track.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.dev.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.info.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "cfjump.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "dev.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.e.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "email.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "info.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "k8s.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.news.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "www.k8s.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.spf.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.test.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "news.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.newsletter.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.email.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "test.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "track.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "mail.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "news.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "mail.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "aws.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "info.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "newsletter.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "test.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.e.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.email.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "track.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "spf.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "cfjump.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "www.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.k8s.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "email.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.mail.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "k8s.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.test.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.spf.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.track.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.info.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.aws.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.news.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "e.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.newsletter.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "dev.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.dev.theupside.com.au",
+      "input": "theupside.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    }
+  ]
+}

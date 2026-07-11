@@ -1,0 +1,15 @@
+# SpiderFeet CLI examination capture
+# tool: subfinder
+# scenario: Ultra-sparse passive enumeration (VC Opportunities Fund) (corporate_vcof_sparse_passive)
+# target: venturecapitalopportunitiesfund.com.au
+# enumeration_mode: passive
+# command: subfinder -d venturecapitalopportunitiesfund.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_vcof_sparse_passive.jsonl -silent
+# runtime: windows
+# started_at: 2026-07-05T14:24:30.524396+00:00
+# duration_s: 22.312
+# exit_code: 0
+# host_summary_lines: 1
+# text_role: one line per host: fqdn (sources: …) or fqdn -> ip
+# structured_role: normalized host records in records[]
+
+www.venturecapitalopportunitiesfund.com.au (sources: crtsh, hackertarget)

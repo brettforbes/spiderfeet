@@ -1,0 +1,19 @@
+{
+  "tool": "nuclei",
+  "exam_id": 3,
+  "scenario_id": "cipherheart_redis_lab",
+  "scenario_name": "Redis CVE-2022-0543 + unauthenticated exposure on pentest-ground (:6379)",
+  "target": "pentest-ground.com:6379",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 0.0,
+  "captured_at": "2026-07-05T11:58:42.228637+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nuclei\\3_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nuclei\\3_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nuclei\\3_command.txt",
+  "tool_manifest_version": 4,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\nuclei\\cipherheart_redis_lab.jsonl"
+}

@@ -1,0 +1,91 @@
+tool: subfinder
+version: 1
+default_runtime: windows
+default_timeout: 300
+binary_probe: .tools/bin/subfinder.exe -version
+primary_parser: jsonl
+output_path_type: 2
+
+# JSONL via -oJ; harvest converts to JSON bundle (records[]) + derived text.
+# jsonl_export path is written by -o and re-read after the run (like nuclei -jle).
+
+scenarios:
+  - id: corporate_upside_au_passive_cs
+    name: "Passive enumeration with sources (The Upside .com.au)"
+    target: theupside.com.au
+    enumeration_mode: passive
+    command: subfinder -d theupside.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_upside_au_passive_cs.jsonl -silent
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_upside_au_passive_cs.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 120
+
+  - id: corporate_squarepeg_passive_cs
+    name: "Passive enumeration with sources (Square Peg Capital)"
+    target: squarepeg.vc
+    enumeration_mode: passive
+    command: subfinder -d squarepeg.vc -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_squarepeg_passive_cs.jsonl -silent
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_squarepeg_passive_cs.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 90
+
+  - id: corporate_vcof_sparse_passive
+    name: "Ultra-sparse passive enumeration (VC Opportunities Fund)"
+    target: venturecapitalopportunitiesfund.com.au
+    enumeration_mode: passive
+    command: subfinder -d venturecapitalopportunitiesfund.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_vcof_sparse_passive.jsonl -silent
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_vcof_sparse_passive.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 90
+
+  - id: corporate_k2am_passive_cs
+    name: "Passive enumeration with sources (K2 Asset Management)"
+    target: k2am.com.au
+    enumeration_mode: passive
+    command: subfinder -d k2am.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_k2am_passive_cs.jsonl -silent
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_k2am_passive_cs.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 90
+
+  - id: corporate_k2am_active_oI
+    name: "Active resolution with IP (K2 Asset Management)"
+    target: k2am.com.au
+    enumeration_mode: active
+    command: subfinder -d k2am.com.au -active -oJ -oI -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_k2am_active_oI.jsonl -silent
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_k2am_active_oI.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 180
+
+  - id: corporate_upside_com_passive_cs
+    name: "Passive enumeration with sources (The Upside .com)"
+    target: theupside.com
+    enumeration_mode: passive
+    command: subfinder -d theupside.com -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_upside_com_passive_cs.jsonl -silent
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_upside_com_passive_cs.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 120
+
+  - id: enterprise_sbs_passive_cs
+    name: "Enterprise-scale passive enumeration (SBS)"
+    target: sbs.com.au
+    enumeration_mode: passive
+    command: subfinder -d sbs.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/enterprise_sbs_passive_cs.jsonl -silent
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/enterprise_sbs_passive_cs.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 180
+
+  - id: invalid_domain_clean_miss
+    name: "Clean miss on invalid apex domain"
+    target: not-a-real-domain-xyzzy.invalid
+    enumeration_mode: passive
+    command: subfinder -d not-a-real-domain-xyzzy.invalid -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/invalid_domain_clean_miss.jsonl -silent
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/invalid_domain_clean_miss.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 60

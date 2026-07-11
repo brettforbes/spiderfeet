@@ -1,0 +1,1 @@
+subfinder -d not-a-real-domain-xyzzy.invalid -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/invalid_domain_clean_miss.jsonl -silent

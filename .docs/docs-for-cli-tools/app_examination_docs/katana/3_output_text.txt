@@ -1,0 +1,16 @@
+# SpiderFeet CLI examination capture
+# tool: katana
+# scenario: Katana crawl on httpx ultra-sparse seed (VC Opportunities Fund) (from_httpx_vcof_sparse)
+# target: venturecapitalopportunitiesfund.com.au
+# httpx_scenario: from_subfinder_vcof_sparse
+# crawl_profile: depth-3,fqdn-scope,concurrency-5,timeout-15,crawl-duration-3m
+# url_input_count: 1
+# command: katana -list .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_vcof_sparse_urls.txt -silent -jsonl -o .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_vcof_sparse.jsonl -depth 3 -c 5 -timeout 15 -fs fqdn -ct 3m
+# runtime: windows
+# started_at: 2026-07-06T11:25:46.218632+00:00
+# duration_s: 705.719
+# exit_code: 124
+# endpoint_summary_lines: 0
+# text_role: one line per endpoint: url host=… method=… status=…
+# structured_role: full katana JSONL crawl objects in records[]
+

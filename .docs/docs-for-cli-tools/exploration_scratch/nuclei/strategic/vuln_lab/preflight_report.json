@@ -1,0 +1,437 @@
+{
+  "generated_at": "2026-07-05T07:00:23.646949+00:00",
+  "strategy_skill": ".cursor/skills/nuclei_strategy/SKILL.md",
+  "output_dir": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vuln_lab",
+  "target_scores": {
+    "vulnweb_netlify": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "itsecgames": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    "dvwa_co_uk": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "hackthissite": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "gruyere": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "testaspnet_vulnweb": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "testasp_vulnweb": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "pg_dvwa": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "pg_graphql": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "pg_restflaw": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "pg_weblogic": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "pg_guardianleaks": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "testphp_vulnweb": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    "testhtml5_vulnweb": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    "testfire_demo": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    }
+  },
+  "ranking": [
+    {
+      "slug": "vulnweb_netlify",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "itsecgames",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    {
+      "slug": "dvwa_co_uk",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "hackthissite",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "gruyere",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "testaspnet_vulnweb",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "testasp_vulnweb",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "pg_dvwa",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "pg_graphql",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "pg_restflaw",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "pg_weblogic",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "pg_guardianleaks",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    {
+      "slug": "testphp_vulnweb",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    {
+      "slug": "testhtml5_vulnweb",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0,
+      "unreachable": true
+    },
+    {
+      "slug": "testfire_demo",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    }
+  ],
+  "batches": {
+    "vulnweb_netlify": [
+      {
+        "target": "vulnweb_netlify",
+        "preflight_ok": true,
+        "preflight_reason": "HTTP 200"
+      }
+    ],
+    "itsecgames": [
+      {
+        "target": "itsecgames",
+        "preflight_ok": false,
+        "preflight_reason": "<urlopen error timed out>"
+      }
+    ],
+    "dvwa_co_uk": [
+      {
+        "target": "dvwa_co_uk",
+        "preflight_ok": true,
+        "preflight_reason": "HTTP 403"
+      }
+    ],
+    "hackthissite": [
+      {
+        "target": "hackthissite",
+        "preflight_ok": true,
+        "preflight_reason": "HTTP 503"
+      }
+    ],
+    "gruyere": [
+      {
+        "target": "gruyere",
+        "preflight_ok": true,
+        "preflight_reason": "HTTP 200"
+      }
+    ],
+    "testaspnet_vulnweb": [
+      {
+        "target": "testaspnet_vulnweb",
+        "preflight_ok": true,
+        "preflight_reason": "HTTP 200"
+      }
+    ],
+    "testasp_vulnweb": [
+      {
+        "target": "testasp_vulnweb",
+        "preflight_ok": true,
+        "preflight_reason": "HTTP 200"
+      }
+    ],
+    "pg_dvwa": [
+      {
+        "target": "pg_dvwa",
+        "preflight_ok": true,
+        "preflight_reason": "HTTP 200"
+      }
+    ],
+    "pg_graphql": [
+      {
+        "target": "pg_graphql",
+        "preflight_ok": true,
+        "preflight_reason": "HTTP 200"
+      }
+    ],
+    "pg_restflaw": [
+      {
+        "target": "pg_restflaw",
+        "preflight_ok": true,
+        "preflight_reason": "HTTP 200"
+      }
+    ],
+    "pg_weblogic": [
+      {
+        "target": "pg_weblogic",
+        "preflight_ok": true,
+        "preflight_reason": "HTTP 404"
+      }
+    ],
+    "pg_guardianleaks": [
+      {
+        "target": "pg_guardianleaks",
+        "preflight_ok": true,
+        "preflight_reason": "HTTP 200"
+      }
+    ],
+    "testphp_vulnweb": [
+      {
+        "target": "testphp_vulnweb",
+        "preflight_ok": false,
+        "preflight_reason": "<urlopen error timed out>"
+      }
+    ],
+    "testhtml5_vulnweb": [
+      {
+        "target": "testhtml5_vulnweb",
+        "preflight_ok": false,
+        "preflight_reason": "<urlopen error timed out>"
+      }
+    ],
+    "testfire_demo": [
+      {
+        "target": "testfire_demo",
+        "preflight_ok": true,
+        "preflight_reason": "HTTP 200"
+      }
+    ]
+  }
+}

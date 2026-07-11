@@ -1,0 +1,19 @@
+{
+  "tool": "nuclei",
+  "exam_id": 4,
+  "scenario_id": "pg_graphql_graphql_misconfig",
+  "scenario_name": "GraphQL misconfiguration sweep on pentest-ground (:5013)",
+  "target": "https://pentest-ground.com:5013",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 0.0,
+  "captured_at": "2026-07-05T11:58:42.249760+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nuclei\\4_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nuclei\\4_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nuclei\\4_command.txt",
+  "tool_manifest_version": 4,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\nuclei\\pg_graphql_graphql_misconfig.jsonl"
+}

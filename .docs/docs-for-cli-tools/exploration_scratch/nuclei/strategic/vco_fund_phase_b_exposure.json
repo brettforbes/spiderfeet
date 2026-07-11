@@ -1,0 +1,54 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "vco_fund_phase_b_exposure",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_exposure.jsonl",
+  "started_at": "2026-07-04T17:01:50.010230+00:00",
+  "finding_summary_lines": 1,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/web-config",
+      "template-id": "web-config",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\exposures\\configs\\web-config.yaml",
+      "info": {
+        "name": "Web Configuration File - Detect",
+        "author": [
+          "yash anand @yashanand155",
+          "dhiyaneshdk"
+        ],
+        "tags": [
+          "config",
+          "exposure",
+          "vuln"
+        ],
+        "description": "Web configuration file was detected.",
+        "reference": [
+          "https://github.com/imhunterand/ApachSAL/blob/main/assets/exploits.json"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 2
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-200"
+          ],
+          "cvss-metrics": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
+        }
+      },
+      "type": "http",
+      "host": "www.venturecapitalopportunitiesfund.com.au",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.venturecapitalopportunitiesfund.com.au",
+      "matched-at": "https://www.venturecapitalopportunitiesfund.com.au/web.config",
+      "ip": "104.26.7.35",
+      "timestamp": "2026-07-05T03:00:37.5668023+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0' 'https://www.venturecapitalopportunitiesfund.com.au/web.config'",
+      "matcher-status": true
+    }
+  ]
+}

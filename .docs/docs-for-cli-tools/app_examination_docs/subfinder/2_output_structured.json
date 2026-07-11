@@ -1,0 +1,79 @@
+{
+  "schema": "subfinder_host_v1",
+  "tool": "subfinder",
+  "scenario": "Passive enumeration with sources (Square Peg Capital)",
+  "scenario_id": "corporate_squarepeg_passive_cs",
+  "target": "squarepeg.vc",
+  "enumeration_mode": "passive",
+  "command": "subfinder -d squarepeg.vc -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_squarepeg_passive_cs.jsonl -silent",
+  "runtime": "windows",
+  "started_at": "2026-07-05T14:24:08.368569+00:00",
+  "duration_s": 22.094,
+  "exit_code": 0,
+  "host_summary_lines": 7,
+  "text_role": "one line per host: fqdn (sources: \u2026) or fqdn -> ip",
+  "structured_role": "normalized host records in records[]",
+  "records": [
+    {
+      "host": "helix.squarepeg.vc",
+      "input": "squarepeg.vc",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "plus.squarepeg.vc",
+      "input": "squarepeg.vc",
+      "mode": "passive",
+      "sources": [
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "static.squarepeg.vc",
+      "input": "squarepeg.vc",
+      "mode": "passive",
+      "sources": [
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.squarepeg.vc",
+      "input": "squarepeg.vc",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "data.squarepeg.vc",
+      "input": "squarepeg.vc",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "foundersummit2026.squarepeg.vc",
+      "input": "squarepeg.vc",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "email.foundersummit2026.squarepeg.vc",
+      "input": "squarepeg.vc",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    }
+  ]
+}

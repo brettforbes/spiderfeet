@@ -1,0 +1,24 @@
+# SpiderFeet CLI examination capture
+# tool: httpx
+# scenario: Web probe on subfinder hosts (The Upside .com) (from_subfinder_upside_com)
+# target: theupside.com
+# subfinder_scenario: corporate_upside_com_passive_cs
+# probe_profile: status-code,title,tech-detect,server,cdn,ip
+# host_input_count: 12
+# command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_upside_com_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_upside_com.jsonl -silent -threads 15 -timeout 15 -rate-limit 30
+# runtime: windows
+# started_at: 2026-07-05T16:05:47.065894+00:00
+# duration_s: 21.844
+# exit_code: 0
+# probe_summary_lines: 8
+# text_role: one line per live URL: url [status] [title] server=… tech=[…]
+# structured_role: full httpx JSONL probe objects in records[]
+
+https://uat.theupside.com [204] server=awselb/2.0 tech=[Amazon ELB, Amazon Web Services]
+https://returns.theupside.com [404] [Returns Center] server=cloudflare tech=[Cloudflare, Google Cloud, Google Cloud CDN, HSTS]
+https://image.theupside.com [403] server=cloudflare tech=[Cloudflare, HTTP/3]
+https://international.theupside.com [200] [THE UPSIDE | INTERNATIONAL] server=cloudflare tech=[BigCommerce, Cloudflare, Cloudflare Browser Insights, Google Tag Manager, HSTS, HTTP/3, Klaviyo, jQuery, jQuery CDN]
+https://uk.theupside.com [200] [THE UPSIDE | UK] server=cloudflare tech=[BigCommerce, Cloudflare, Cloudflare Bot Management, Google Cloud, Google Cloud CDN, Google Tag Manager, HSTS, HTTP/3, Klaviyo, jQuery, jQuery CDN]
+https://link2.theupside.com [302] tech=[HSTS]
+https://www.theupside.com [200] [THE UPSIDE | USA] server=cloudflare tech=[BigCommerce, Cloudflare, Cloudflare Browser Insights, Google Tag Manager, HSTS, HTTP/3, Klaviyo, jQuery, jQuery CDN]
+https://link.theupside.com [302] tech=[HSTS]

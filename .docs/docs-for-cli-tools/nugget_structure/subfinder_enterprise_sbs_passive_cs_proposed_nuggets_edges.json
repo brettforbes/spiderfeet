@@ -1,0 +1,1252 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "nugget_instance_id": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Subfinder scan",
+      "nugget_data": "sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SCAN_CLI--0bf69236-5d5f-517b-baad-9128b53d1f87",
+      "nugget_instance_id": "SCAN_CLI--0bf69236-5d5f-517b-baad-9128b53d1f87",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "subfinder -d sbs.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/enterprise_sbs_passive_cs.jsonl -silent",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "nugget_instance_id": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--c1bc9bf3-8620-51a5-ad98-ebc72cfeff08",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--c1bc9bf3-8620-51a5-ad98-ebc72cfeff08",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "epgservice.c.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "nugget_instance_id": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "nugget_id": "RAW_DNS_RECORDS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Passive sources",
+      "nugget_data": "hackertarget",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--5388edee-63e9-5dd9-acf8-757b667e790e",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--5388edee-63e9-5dd9-acf8-757b667e790e",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.analytics.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--dbe58083-ee27-58b0-a643-b0be9e9b573f",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--dbe58083-ee27-58b0-a643-b0be9e9b573f",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "after64.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--27d1dd51-6852-5f4b-bdd1-e1fcc270f26e",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--27d1dd51-6852-5f4b-bdd1-e1fcc270f26e",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.dan.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--12682cf5-70cb-5490-a9a0-60df51e8b665",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--12682cf5-70cb-5490-a9a0-60df51e8b665",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.alejandrogo.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--acb82cc6-950c-5dde-9c80-400873c0f187",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--acb82cc6-950c-5dde-9c80-400873c0f187",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "phoenix.chrisha.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--8136b9d6-e379-589d-9c8e-b188ae0805e7",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--8136b9d6-e379-589d-9c8e-b188ae0805e7",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.dan-1.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--d7cab16b-948f-5cdd-96c0-331c19c827cd",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--d7cab16b-948f-5cdd-96c0-331c19c827cd",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fda-docs.c.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--00c7f701-6c4c-5396-b012-7db0394f84c1",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--00c7f701-6c4c-5396-b012-7db0394f84c1",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "account.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--5d05b18f-4fca-5dd4-a87d-3d4fbe76e9f1",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--5d05b18f-4fca-5dd4-a87d-3d4fbe76e9f1",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "assets.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--17d5483c-22b5-5b27-ad1f-63a892339b35",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--17d5483c-22b5-5b27-ad1f-63a892339b35",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.migrate.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--87a24be2-f221-56eb-92ae-b1b71a9bf60f",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--87a24be2-f221-56eb-92ae-b1b71a9bf60f",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.alego-1.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--ab5697f6-e362-56b1-9c97-1f5d0a1ecce1",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--ab5697f6-e362-56b1-9c97-1f5d0a1ecce1",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.dan.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--3e69f64a-539b-560b-84cc-20fba521a7e3",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--3e69f64a-539b-560b-84cc-20fba521a7e3",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.xanderbo.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--77e1b8db-0fd2-55d3-86ec-894f7939c8f5",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--77e1b8db-0fd2-55d3-86ec-894f7939c8f5",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.platform.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--e8aec9c5-c7d3-59ac-b4f2-ab8d2d454f87",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--e8aec9c5-c7d3-59ac-b4f2-ab8d2d454f87",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "phoenix.analytics.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--7b302c66-db5d-53d8-b9a4-b733ec36cf57",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--7b302c66-db5d-53d8-b9a4-b733ec36cf57",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.mkoga-1.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--cc8c10c7-3cdf-50ac-a955-110e0b66c08c",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--cc8c10c7-3cdf-50ac-a955-110e0b66c08c",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.pform.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--4da329af-df38-5d70-b202-ed71fb2ed456",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--4da329af-df38-5d70-b202-ed71fb2ed456",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "phoenix.prod.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--13c32e84-4baa-5b62-a214-b346a0ef8749",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--13c32e84-4baa-5b62-a214-b346a0ef8749",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.alego.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--38a4b069-3fbf-5fb8-9d25-673dcc82117b",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--38a4b069-3fbf-5fb8-9d25-673dcc82117b",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "mobilelayer.edsdev02.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--bec6c21b-cb8d-5ced-9a4b-1f18ebc6ca06",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--bec6c21b-cb8d-5ced-9a4b-1f18ebc6ca06",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.prod.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--222aea2e-cc6a-5da1-a0c7-081c9f025e3e",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--222aea2e-cc6a-5da1-a0c7-081c9f025e3e",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "phoenix.chrisfo.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--4a95508c-17e2-5b4e-af56-8b467e9ebf47",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--4a95508c-17e2-5b4e-af56-8b467e9ebf47",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "auth.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--1c5c3f3f-c36f-54e6-bd60-bce06b0a966d",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--1c5c3f3f-c36f-54e6-bd60-bce06b0a966d",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "phoenix.freeze.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--3281b63e-dd79-5bf5-a595-3003d2085eff",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--3281b63e-dd79-5bf5-a595-3003d2085eff",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.mad-1.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--8fc00a5e-f546-5438-9cc8-b66d38daff7b",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--8fc00a5e-f546-5438-9cc8-b66d38daff7b",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "nginx-video.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--09e3b94d-f472-5f05-a39f-8da36eb66a3e",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--09e3b94d-f472-5f05-a39f-8da36eb66a3e",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "phoenix.danielpe-1.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--44874b29-85c1-5954-a39a-5ab066b67629",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--44874b29-85c1-5954-a39a-5ab066b67629",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "api.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--1d774eee-3d59-5b10-afe6-84ad1637fc8e",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--1d774eee-3d59-5b10-afe6-84ad1637fc8e",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.mkoga-2.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--d465f3d1-425f-5937-809e-8bb51d74f3be",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--d465f3d1-425f-5937-809e-8bb51d74f3be",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.xander-1.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--ae504523-e92b-5302-b039-9e61cab9ab12",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--ae504523-e92b-5302-b039-9e61cab9ab12",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.cloud.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--7022ee1f-bdd2-5e8b-83dc-d3c507467151",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--7022ee1f-bdd2-5e8b-83dc-d3c507467151",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "amp.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--483be800-d0f4-54db-b909-b40f47ee074a",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--483be800-d0f4-54db-b909-b40f47ee074a",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.adobe.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--dcf52c56-76ba-5035-9a48-cf0a94402430",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--dcf52c56-76ba-5035-9a48-cf0a94402430",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.beta.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--2e1ad8b8-0507-577c-9317-abbd9d1fe6ec",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--2e1ad8b8-0507-577c-9317-abbd9d1fe6ec",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.bspcloud.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--d784612b-89df-5251-ad81-2885eea425a6",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--d784612b-89df-5251-ad81-2885eea425a6",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.chrisfo.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--6facea11-030d-5900-9301-630121f63f88",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--6facea11-030d-5900-9301-630121f63f88",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "phoenix.chrisfo-2.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--1d63b3a9-ed07-5779-8a2b-592a937ec94f",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--1d63b3a9-ed07-5779-8a2b-592a937ec94f",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "phoenix.danielpe-2.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--9df70737-e637-51a3-812c-d30c0a1ea299",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--9df70737-e637-51a3-812c-d30c0a1ea299",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.freeze.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--1d7ffbea-3bf3-5072-9783-2bb19ea93b82",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--1d7ffbea-3bf3-5072-9783-2bb19ea93b82",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "phoenix.chrisfo-40.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--8218178b-38de-539d-a1ee-15d772884a32",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--8218178b-38de-539d-a1ee-15d772884a32",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "phoenix.danielpe-3.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--14c2e818-00e1-57c5-b60f-c0bfadc89c49",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--14c2e818-00e1-57c5-b60f-c0bfadc89c49",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "phoenix.chrisfo-1.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--fe69c4be-1260-5492-a7ac-a7c999989af7",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--fe69c4be-1260-5492-a7ac-a7c999989af7",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "mobilelayer-dev01.edsdev02.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--74ddd00d-646e-596a-b030-9feacc7309a8",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--74ddd00d-646e-596a-b030-9feacc7309a8",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "mobilelayer-dev02.edsdev02.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--98f314f0-69b6-570d-bbb5-9f0e32651cd3",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--98f314f0-69b6-570d-bbb5-9f0e32651cd3",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.sdk.edsdev01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--2658bda2-0a92-56d6-afe1-35549e55b18a",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--2658bda2-0a92-56d6-afe1-35549e55b18a",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fusion-ses.prod.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--53015985-7542-5d4f-bf42-6679b591a9f8",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--53015985-7542-5d4f-bf42-6679b591a9f8",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "fos.chrisfo-1.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--e38b8d25-c19a-5fa1-bac6-5c1c9b82ba0c",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--e38b8d25-c19a-5fa1-bac6-5c1c9b82ba0c",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "mobilelayer.edsprd01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--b14d26f5-b323-50bf-835c-b36dbbc44bb1",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--b14d26f5-b323-50bf-835c-b36dbbc44bb1",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "phoenix.beta.edsqa01.aws.sbs.com.au",
+      "nugget_colour": "#3B82F6"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "SCAN_CLI--0bf69236-5d5f-517b-baad-9128b53d1f87",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "relation": "contains"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--c1bc9bf3-8620-51a5-ad98-ebc72cfeff08",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--c1bc9bf3-8620-51a5-ad98-ebc72cfeff08",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--c1bc9bf3-8620-51a5-ad98-ebc72cfeff08",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--5388edee-63e9-5dd9-acf8-757b667e790e",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--5388edee-63e9-5dd9-acf8-757b667e790e",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--5388edee-63e9-5dd9-acf8-757b667e790e",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--dbe58083-ee27-58b0-a643-b0be9e9b573f",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--dbe58083-ee27-58b0-a643-b0be9e9b573f",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--dbe58083-ee27-58b0-a643-b0be9e9b573f",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--27d1dd51-6852-5f4b-bdd1-e1fcc270f26e",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--27d1dd51-6852-5f4b-bdd1-e1fcc270f26e",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--27d1dd51-6852-5f4b-bdd1-e1fcc270f26e",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--12682cf5-70cb-5490-a9a0-60df51e8b665",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--12682cf5-70cb-5490-a9a0-60df51e8b665",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--12682cf5-70cb-5490-a9a0-60df51e8b665",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--acb82cc6-950c-5dde-9c80-400873c0f187",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--acb82cc6-950c-5dde-9c80-400873c0f187",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--acb82cc6-950c-5dde-9c80-400873c0f187",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--8136b9d6-e379-589d-9c8e-b188ae0805e7",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--8136b9d6-e379-589d-9c8e-b188ae0805e7",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--8136b9d6-e379-589d-9c8e-b188ae0805e7",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--d7cab16b-948f-5cdd-96c0-331c19c827cd",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--d7cab16b-948f-5cdd-96c0-331c19c827cd",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--d7cab16b-948f-5cdd-96c0-331c19c827cd",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--00c7f701-6c4c-5396-b012-7db0394f84c1",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--00c7f701-6c4c-5396-b012-7db0394f84c1",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--00c7f701-6c4c-5396-b012-7db0394f84c1",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--5d05b18f-4fca-5dd4-a87d-3d4fbe76e9f1",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--5d05b18f-4fca-5dd4-a87d-3d4fbe76e9f1",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--5d05b18f-4fca-5dd4-a87d-3d4fbe76e9f1",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--17d5483c-22b5-5b27-ad1f-63a892339b35",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--17d5483c-22b5-5b27-ad1f-63a892339b35",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--17d5483c-22b5-5b27-ad1f-63a892339b35",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--87a24be2-f221-56eb-92ae-b1b71a9bf60f",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--87a24be2-f221-56eb-92ae-b1b71a9bf60f",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--87a24be2-f221-56eb-92ae-b1b71a9bf60f",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--ab5697f6-e362-56b1-9c97-1f5d0a1ecce1",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--ab5697f6-e362-56b1-9c97-1f5d0a1ecce1",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--ab5697f6-e362-56b1-9c97-1f5d0a1ecce1",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--3e69f64a-539b-560b-84cc-20fba521a7e3",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--3e69f64a-539b-560b-84cc-20fba521a7e3",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--3e69f64a-539b-560b-84cc-20fba521a7e3",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--77e1b8db-0fd2-55d3-86ec-894f7939c8f5",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--77e1b8db-0fd2-55d3-86ec-894f7939c8f5",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--77e1b8db-0fd2-55d3-86ec-894f7939c8f5",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--e8aec9c5-c7d3-59ac-b4f2-ab8d2d454f87",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--e8aec9c5-c7d3-59ac-b4f2-ab8d2d454f87",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--e8aec9c5-c7d3-59ac-b4f2-ab8d2d454f87",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--7b302c66-db5d-53d8-b9a4-b733ec36cf57",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--7b302c66-db5d-53d8-b9a4-b733ec36cf57",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--7b302c66-db5d-53d8-b9a4-b733ec36cf57",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--cc8c10c7-3cdf-50ac-a955-110e0b66c08c",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--cc8c10c7-3cdf-50ac-a955-110e0b66c08c",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--cc8c10c7-3cdf-50ac-a955-110e0b66c08c",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--4da329af-df38-5d70-b202-ed71fb2ed456",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--4da329af-df38-5d70-b202-ed71fb2ed456",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--4da329af-df38-5d70-b202-ed71fb2ed456",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--13c32e84-4baa-5b62-a214-b346a0ef8749",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--13c32e84-4baa-5b62-a214-b346a0ef8749",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--13c32e84-4baa-5b62-a214-b346a0ef8749",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--38a4b069-3fbf-5fb8-9d25-673dcc82117b",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--38a4b069-3fbf-5fb8-9d25-673dcc82117b",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--38a4b069-3fbf-5fb8-9d25-673dcc82117b",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--bec6c21b-cb8d-5ced-9a4b-1f18ebc6ca06",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--bec6c21b-cb8d-5ced-9a4b-1f18ebc6ca06",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--bec6c21b-cb8d-5ced-9a4b-1f18ebc6ca06",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--222aea2e-cc6a-5da1-a0c7-081c9f025e3e",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--222aea2e-cc6a-5da1-a0c7-081c9f025e3e",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--222aea2e-cc6a-5da1-a0c7-081c9f025e3e",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--4a95508c-17e2-5b4e-af56-8b467e9ebf47",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--4a95508c-17e2-5b4e-af56-8b467e9ebf47",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--4a95508c-17e2-5b4e-af56-8b467e9ebf47",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--1c5c3f3f-c36f-54e6-bd60-bce06b0a966d",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--1c5c3f3f-c36f-54e6-bd60-bce06b0a966d",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--1c5c3f3f-c36f-54e6-bd60-bce06b0a966d",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--3281b63e-dd79-5bf5-a595-3003d2085eff",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--3281b63e-dd79-5bf5-a595-3003d2085eff",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--3281b63e-dd79-5bf5-a595-3003d2085eff",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--8fc00a5e-f546-5438-9cc8-b66d38daff7b",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--8fc00a5e-f546-5438-9cc8-b66d38daff7b",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--8fc00a5e-f546-5438-9cc8-b66d38daff7b",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--09e3b94d-f472-5f05-a39f-8da36eb66a3e",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--09e3b94d-f472-5f05-a39f-8da36eb66a3e",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--09e3b94d-f472-5f05-a39f-8da36eb66a3e",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--44874b29-85c1-5954-a39a-5ab066b67629",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--44874b29-85c1-5954-a39a-5ab066b67629",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--44874b29-85c1-5954-a39a-5ab066b67629",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--1d774eee-3d59-5b10-afe6-84ad1637fc8e",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--1d774eee-3d59-5b10-afe6-84ad1637fc8e",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--1d774eee-3d59-5b10-afe6-84ad1637fc8e",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--d465f3d1-425f-5937-809e-8bb51d74f3be",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--d465f3d1-425f-5937-809e-8bb51d74f3be",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--d465f3d1-425f-5937-809e-8bb51d74f3be",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--ae504523-e92b-5302-b039-9e61cab9ab12",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--ae504523-e92b-5302-b039-9e61cab9ab12",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--ae504523-e92b-5302-b039-9e61cab9ab12",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--7022ee1f-bdd2-5e8b-83dc-d3c507467151",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--7022ee1f-bdd2-5e8b-83dc-d3c507467151",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--7022ee1f-bdd2-5e8b-83dc-d3c507467151",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--483be800-d0f4-54db-b909-b40f47ee074a",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--483be800-d0f4-54db-b909-b40f47ee074a",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--483be800-d0f4-54db-b909-b40f47ee074a",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--dcf52c56-76ba-5035-9a48-cf0a94402430",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--dcf52c56-76ba-5035-9a48-cf0a94402430",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--dcf52c56-76ba-5035-9a48-cf0a94402430",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--2e1ad8b8-0507-577c-9317-abbd9d1fe6ec",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--2e1ad8b8-0507-577c-9317-abbd9d1fe6ec",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--2e1ad8b8-0507-577c-9317-abbd9d1fe6ec",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--d784612b-89df-5251-ad81-2885eea425a6",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--d784612b-89df-5251-ad81-2885eea425a6",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--d784612b-89df-5251-ad81-2885eea425a6",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--6facea11-030d-5900-9301-630121f63f88",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--6facea11-030d-5900-9301-630121f63f88",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--6facea11-030d-5900-9301-630121f63f88",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--1d63b3a9-ed07-5779-8a2b-592a937ec94f",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--1d63b3a9-ed07-5779-8a2b-592a937ec94f",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--1d63b3a9-ed07-5779-8a2b-592a937ec94f",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--9df70737-e637-51a3-812c-d30c0a1ea299",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--9df70737-e637-51a3-812c-d30c0a1ea299",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--9df70737-e637-51a3-812c-d30c0a1ea299",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--1d7ffbea-3bf3-5072-9783-2bb19ea93b82",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--1d7ffbea-3bf3-5072-9783-2bb19ea93b82",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--1d7ffbea-3bf3-5072-9783-2bb19ea93b82",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--8218178b-38de-539d-a1ee-15d772884a32",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--8218178b-38de-539d-a1ee-15d772884a32",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--8218178b-38de-539d-a1ee-15d772884a32",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--14c2e818-00e1-57c5-b60f-c0bfadc89c49",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--14c2e818-00e1-57c5-b60f-c0bfadc89c49",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--14c2e818-00e1-57c5-b60f-c0bfadc89c49",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--fe69c4be-1260-5492-a7ac-a7c999989af7",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--fe69c4be-1260-5492-a7ac-a7c999989af7",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--fe69c4be-1260-5492-a7ac-a7c999989af7",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--74ddd00d-646e-596a-b030-9feacc7309a8",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--74ddd00d-646e-596a-b030-9feacc7309a8",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--74ddd00d-646e-596a-b030-9feacc7309a8",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--98f314f0-69b6-570d-bbb5-9f0e32651cd3",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--98f314f0-69b6-570d-bbb5-9f0e32651cd3",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--98f314f0-69b6-570d-bbb5-9f0e32651cd3",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--2658bda2-0a92-56d6-afe1-35549e55b18a",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--2658bda2-0a92-56d6-afe1-35549e55b18a",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--2658bda2-0a92-56d6-afe1-35549e55b18a",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--53015985-7542-5d4f-bf42-6679b591a9f8",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--53015985-7542-5d4f-bf42-6679b591a9f8",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--53015985-7542-5d4f-bf42-6679b591a9f8",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--e38b8d25-c19a-5fa1-bac6-5c1c9b82ba0c",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--e38b8d25-c19a-5fa1-bac6-5c1c9b82ba0c",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--e38b8d25-c19a-5fa1-bac6-5c1c9b82ba0c",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--b14d26f5-b323-50bf-835c-b36dbbc44bb1",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e6fbf1f2-d60d-5bd2-b08d-b2861e4bbd4a",
+      "target": "INTERNET_NAME_UNRESOLVED--b14d26f5-b323-50bf-835c-b36dbbc44bb1",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--b14d26f5-b323-50bf-835c-b36dbbc44bb1",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    }
+  ]
+}

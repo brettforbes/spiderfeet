@@ -1,0 +1,118 @@
+{
+  "schema": "subfinder_host_v1",
+  "tool": "subfinder",
+  "scenario": "Passive enumeration with sources (The Upside .com)",
+  "scenario_id": "corporate_upside_com_passive_cs",
+  "target": "theupside.com",
+  "enumeration_mode": "passive",
+  "command": "subfinder -d theupside.com -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_upside_com_passive_cs.jsonl -silent",
+  "runtime": "windows",
+  "started_at": "2026-07-05T14:25:39.820582+00:00",
+  "duration_s": 24.25,
+  "exit_code": 0,
+  "host_summary_lines": 12,
+  "text_role": "one line per host: fqdn (sources: \u2026) or fqdn -> ip",
+  "structured_role": "normalized host records in records[]",
+  "records": [
+    {
+      "host": "uat.theupside.com",
+      "input": "theupside.com",
+      "mode": "passive",
+      "sources": [
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "uk.theupside.com",
+      "input": "theupside.com",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.theupside.com",
+      "input": "theupside.com",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "blog.theupside.com",
+      "input": "theupside.com",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "image.theupside.com",
+      "input": "theupside.com",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "www.nancyz.theupside.com",
+      "input": "theupside.com",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "international.theupside.com",
+      "input": "theupside.com",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "returns.theupside.com",
+      "input": "theupside.com",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "link2.theupside.com",
+      "input": "theupside.com",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "link.theupside.com",
+      "input": "theupside.com",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "mail.theupside.com",
+      "input": "theupside.com",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "nancyz.theupside.com",
+      "input": "theupside.com",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    }
+  ]
+}

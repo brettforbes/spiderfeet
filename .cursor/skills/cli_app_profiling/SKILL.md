@@ -39,6 +39,8 @@ Default commands and single targets are **insufficient**. Before formal runs:
 2. Tune targets and flags until each class is demonstrated or proven impossible.
 3. Search the web for practitioner example commands when local trials under-deliver.
 4. Do not run `harvest.py` until the outcome matrix is complete on paper.
+5. **Exploration is incomplete** if batches were skipped due to empty exports, or only low-value noise was captured while the matrix needs rich/CVE/org signal — see `references/exploration-examination-lessons.md`.
+6. Multi-mode scanners: one batch / one goal; tech fingerprint then chained selective passes (tool strategy skill when applicable).
 
 ## Output rules (fixed)
 
@@ -56,7 +58,12 @@ Default commands and single targets are **insufficient**. Before formal runs:
 | Class | Examples | Purpose |
 |-------|----------|---------|
 | Permissive | `scanme.nmap.org` | Full data breadth |
-| Corporate | `bbc.co.uk`, `sbs.com.au` | Filtered / protected behaviour |
+| Intentional vuln lab | `pentest-ground.com`, vulnweb | High-signal vuln/CVE classes when tool supports them |
+| Smaller real org | `squarepeg.vc`, `theupside.com.au` | Org-intelligence / enrichment tools |
+| Corporate | `bbc.co.uk`, `sbs.com.au` | Filtered / protected behaviour (often negative fixtures) |
+| Deferred | offline site | Placeholder bundle + `harvest_deferred`; re-harvest later |
+
+See [exploration-examination-lessons.md](references/exploration-examination-lessons.md) for 2026-07 Nuclei/Pius pitfalls (skip-existing, WSL DNS, hostname vs URL, protocol families).
 
 ## Evidence bundle (per examination)
 
@@ -123,6 +130,7 @@ Next tools: follow `corpus_index.json` priority after exploration gate passes.
 | [references/SKILLS.md](references/SKILLS.md) | Index |
 | [references/v2-graph-rules.md](references/v2-graph-rules.md) | Nodes, edges, scan head |
 | [references/examination-checklist.md](references/examination-checklist.md) | Per-tool checklist |
+| [references/exploration-examination-lessons.md](references/exploration-examination-lessons.md) | Nuclei/Pius lessons; target taxonomy; harvest pitfalls |
 | [references/evidence-layout.md](references/evidence-layout.md) | File naming + scenario bundles |
 | `@spiderfeet-widget/.docs/data-viewer-embed.md` | Data Viewer host integration |
 

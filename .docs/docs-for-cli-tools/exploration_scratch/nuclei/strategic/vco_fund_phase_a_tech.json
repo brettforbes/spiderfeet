@@ -1,0 +1,296 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "vco_fund_phase_a_tech",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_a_tech.jsonl",
+  "started_at": "2026-07-04T16:59:25.345326+00:00",
+  "finding_summary_lines": 8,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/drupal-detect",
+      "template-id": "drupal-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\drupal-detect.yaml",
+      "info": {
+        "name": "Drupal - Detect",
+        "author": [
+          "1nf1n7y",
+          "pathtaga"
+        ],
+        "tags": [
+          "tech",
+          "drupal",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 4,
+          "product": "drupal",
+          "shodan-query": [
+            "http.component:\"drupal\"",
+            "cpe:\"cpe:2.3:a:drupal:drupal\""
+          ],
+          "vendor": "drupal",
+          "verified": true
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-200"
+          ],
+          "cvss-metrics": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N",
+          "cpe": "cpe:2.3:a:drupal:drupal:*:*:*:*:*:*:*:*"
+        }
+      },
+      "type": "http",
+      "host": "www.venturecapitalopportunitiesfund.com.au",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.venturecapitalopportunitiesfund.com.au",
+      "matched-at": "https://www.venturecapitalopportunitiesfund.com.au",
+      "ip": "104.26.7.35",
+      "timestamp": "2026-07-05T02:58:45.2045405+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_6; it-it) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27' 'https://www.venturecapitalopportunitiesfund.com.au'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/fingerprinthub-web-fingerprints",
+      "template-id": "fingerprinthub-web-fingerprints",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\fingerprinthub-web-fingerprints.yaml",
+      "info": {
+        "name": "FingerprintHub Technology Fingerprint",
+        "author": [
+          "pdteam",
+          "righettod"
+        ],
+        "tags": [
+          "tech",
+          "discovery"
+        ],
+        "description": "FingerprintHub Technology Fingerprint tests run in nuclei.",
+        "reference": [
+          "https://github.com/0x727/FingerprintHub"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-200"
+          ]
+        }
+      },
+      "matcher-name": "drupal",
+      "type": "http",
+      "host": "www.venturecapitalopportunitiesfund.com.au",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.venturecapitalopportunitiesfund.com.au",
+      "matched-at": "https://www.venturecapitalopportunitiesfund.com.au",
+      "ip": "104.26.7.35",
+      "timestamp": "2026-07-05T02:58:50.3814879+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; hu-HU) AppleWebKit/528.16 (KHTML, like Gecko) Version/4.0 Safari/528.16' 'https://www.venturecapitalopportunitiesfund.com.au'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/metatag-cms",
+      "template-id": "metatag-cms",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\metatag-cms.yaml",
+      "info": {
+        "name": "Metatag CMS Detection",
+        "author": [
+          "dadevel"
+        ],
+        "tags": [
+          "tech",
+          "cms",
+          "discovery"
+        ],
+        "description": "Generic CMS Detection using html meta generator tag",
+        "reference": [
+          "https://www.w3schools.com/tags/att_meta_name.asp"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "type": "http",
+      "host": "www.venturecapitalopportunitiesfund.com.au",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.venturecapitalopportunitiesfund.com.au",
+      "matched-at": "https://www.venturecapitalopportunitiesfund.com.au",
+      "extracted-results": [
+        "Drupal 7 (https://www.drupal.org)"
+      ],
+      "ip": "104.26.7.35",
+      "timestamp": "2026-07-05T02:58:50.3853445+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; hu-HU) AppleWebKit/528.16 (KHTML, like Gecko) Version/4.0 Safari/528.16' 'https://www.venturecapitalopportunitiesfund.com.au'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/tech-detect",
+      "template-id": "tech-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\tech-detect.yaml",
+      "info": {
+        "name": "Wappalyzer Technology Detection",
+        "author": [
+          "hakluke",
+          "righettod",
+          "matejsmycka"
+        ],
+        "tags": [
+          "tech",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "matcher-name": "jsdelivr",
+      "type": "http",
+      "host": "www.venturecapitalopportunitiesfund.com.au",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.venturecapitalopportunitiesfund.com.au",
+      "matched-at": "https://www.venturecapitalopportunitiesfund.com.au",
+      "ip": "104.26.7.35",
+      "timestamp": "2026-07-05T02:58:50.4558807+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; hu-HU) AppleWebKit/528.16 (KHTML, like Gecko) Version/4.0 Safari/528.16' 'https://www.venturecapitalopportunitiesfund.com.au'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/tech-detect",
+      "template-id": "tech-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\tech-detect.yaml",
+      "info": {
+        "name": "Wappalyzer Technology Detection",
+        "author": [
+          "hakluke",
+          "righettod",
+          "matejsmycka"
+        ],
+        "tags": [
+          "tech",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "matcher-name": "google-tag-manager",
+      "type": "http",
+      "host": "www.venturecapitalopportunitiesfund.com.au",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.venturecapitalopportunitiesfund.com.au",
+      "matched-at": "https://www.venturecapitalopportunitiesfund.com.au",
+      "ip": "104.26.7.35",
+      "timestamp": "2026-07-05T02:58:50.4558807+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; hu-HU) AppleWebKit/528.16 (KHTML, like Gecko) Version/4.0 Safari/528.16' 'https://www.venturecapitalopportunitiesfund.com.au'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/tech-detect",
+      "template-id": "tech-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\tech-detect.yaml",
+      "info": {
+        "name": "Wappalyzer Technology Detection",
+        "author": [
+          "hakluke",
+          "righettod",
+          "matejsmycka"
+        ],
+        "tags": [
+          "tech",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "matcher-name": "bootstrap",
+      "type": "http",
+      "host": "www.venturecapitalopportunitiesfund.com.au",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.venturecapitalopportunitiesfund.com.au",
+      "matched-at": "https://www.venturecapitalopportunitiesfund.com.au",
+      "ip": "104.26.7.35",
+      "timestamp": "2026-07-05T02:58:50.4558807+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; hu-HU) AppleWebKit/528.16 (KHTML, like Gecko) Version/4.0 Safari/528.16' 'https://www.venturecapitalopportunitiesfund.com.au'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/tech-detect",
+      "template-id": "tech-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\tech-detect.yaml",
+      "info": {
+        "name": "Wappalyzer Technology Detection",
+        "author": [
+          "hakluke",
+          "righettod",
+          "matejsmycka"
+        ],
+        "tags": [
+          "tech",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "matcher-name": "drupal",
+      "type": "http",
+      "host": "www.venturecapitalopportunitiesfund.com.au",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.venturecapitalopportunitiesfund.com.au",
+      "matched-at": "https://www.venturecapitalopportunitiesfund.com.au",
+      "ip": "104.26.7.35",
+      "timestamp": "2026-07-05T02:58:50.4558807+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; hu-HU) AppleWebKit/528.16 (KHTML, like Gecko) Version/4.0 Safari/528.16' 'https://www.venturecapitalopportunitiesfund.com.au'",
+      "matcher-status": true
+    },
+    {
+      "template-url": "https://cloud.projectdiscovery.io/public/tech-detect",
+      "template-id": "tech-detect",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\tech-detect.yaml",
+      "info": {
+        "name": "Wappalyzer Technology Detection",
+        "author": [
+          "hakluke",
+          "righettod",
+          "matejsmycka"
+        ],
+        "tags": [
+          "tech",
+          "discovery"
+        ],
+        "severity": "info",
+        "metadata": {
+          "max-request": 1
+        }
+      },
+      "matcher-name": "cloudflare",
+      "type": "http",
+      "host": "www.venturecapitalopportunitiesfund.com.au",
+      "port": "443",
+      "scheme": "https",
+      "url": "https://www.venturecapitalopportunitiesfund.com.au",
+      "matched-at": "https://www.venturecapitalopportunitiesfund.com.au",
+      "ip": "104.26.7.35",
+      "timestamp": "2026-07-05T02:58:50.4558807+10:00",
+      "curl-command": "curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; hu-HU) AppleWebKit/528.16 (KHTML, like Gecko) Version/4.0 Safari/528.16' 'https://www.venturecapitalopportunitiesfund.com.au'",
+      "matcher-status": true
+    }
+  ]
+}

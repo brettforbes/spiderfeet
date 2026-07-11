@@ -1,1 +1,1 @@
-/mnt/c/projects/spiderfeet/.tools/pius run --org "Cloudflare, Inc." --domain cloudflare.com --plugins whois,edgar,arin,ripe,apnic --output ndjson
+/mnt/c/projects/spiderfeet/.tools/pius run --org "Square Peg Capital Pty Ltd" --domain squarepeg.vc --plugins gleif,wikidata,whois,crt-sh --output ndjson

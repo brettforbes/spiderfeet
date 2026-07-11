@@ -178,3 +178,21 @@ docs/_build/
 
 # TypeDB connection (operator-local; see .config/typedb.connection.example.json) #
 .config/typedb.connection.json
+
+# CodeGraph local index (per-machine; see .cursor/rules/codegraph.mdc) #
+.codegraph/
+
+# Cursor operator-local MCP config #
+.cursor/mcp.json
+
+# CLI exploration scratch diagnostics (underscore-prefixed transient files) #
+.docs/docs-for-cli-tools/exploration_scratch/**/_*
+.docs/docs-for-cli-tools/app_examination_docs/**/_*
+
+# Nuclei chunked trial operational state (reproducible via run_nuclei_katana_trial.py) #
+.docs/docs-for-cli-tools/exploration_scratch/nuclei/trials/**/chunks/
+.docs/docs-for-cli-tools/exploration_scratch/nuclei/trials/**/.job.lock
+.docs/docs-for-cli-tools/exploration_scratch/nuclei/trials/**/pause_after_next.flag
+.docs/docs-for-cli-tools/exploration_scratch/nuclei/trials/**/preflight_smoke*
+.docs/docs-for-cli-tools/exploration_scratch/nuclei/trials/**/run.log
+.docs/docs-for-cli-tools/exploration_scratch/nuclei/trials/**/critical_high_findings_worker*.json

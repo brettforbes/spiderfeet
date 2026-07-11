@@ -1,5 +1,7 @@
 {
   "status": "pending",
   "exam_id": 6,
-  "scenario_id": "obscure_miss_ndjson"
+  "scenario_id": "corporate_k2am_ndjson",
+  "harvest_deferred": true,
+  "harvest_deferred_reason": "Target offline 2026-07-05; re-harvest tomorrow when www.k2am.com.au is reachable"
 }

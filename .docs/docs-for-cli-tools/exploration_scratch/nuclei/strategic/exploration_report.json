@@ -1,0 +1,1363 @@
+{
+  "generated_at": "2026-07-04T14:28:51.256672+00:00",
+  "strategy_skill": ".cursor/skills/nuclei_strategy/SKILL.md",
+  "output_dir": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic",
+  "target_scores": {
+    "scanme_sh": {
+      "total_records": 58,
+      "severities": {
+        "info": 52,
+        "low": 6
+      },
+      "types": {
+        "ssl": 22,
+        "http": 20,
+        "javascript": 8,
+        "dns": 6,
+        "tcp": 2
+      },
+      "cve_ids": [
+        "CVE-2016-6210",
+        "CVE-2018-15473"
+      ],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_b_exposures_path",
+        "phase_b_default_logins"
+      ],
+      "signal_score": 11.2
+    },
+    "k2am": {
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    },
+    "vco_fund": {
+      "total_records": 78,
+      "severities": {
+        "info": 74,
+        "low": 4
+      },
+      "types": {
+        "http": 50,
+        "ssl": 22,
+        "dns": 6
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_panel",
+        "phase_b_exposures_path",
+        "phase_b_default_logins"
+      ],
+      "signal_score": 11.4
+    },
+    "squarepeg": {
+      "total_records": 54,
+      "severities": {
+        "info": 54
+      },
+      "types": {
+        "http": 33,
+        "dns": 13,
+        "ssl": 8
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposures_path",
+        "phase_b_default_logins"
+      ],
+      "signal_score": 5.4
+    }
+  },
+  "ranking": [
+    {
+      "slug": "vco_fund",
+      "total_records": 78,
+      "severities": {
+        "info": 74,
+        "low": 4
+      },
+      "types": {
+        "http": 50,
+        "ssl": 22,
+        "dns": 6
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposure",
+        "phase_b_panel",
+        "phase_b_exposures_path",
+        "phase_b_default_logins"
+      ],
+      "signal_score": 11.4
+    },
+    {
+      "slug": "scanme_sh",
+      "total_records": 58,
+      "severities": {
+        "info": 52,
+        "low": 6
+      },
+      "types": {
+        "ssl": 22,
+        "http": 20,
+        "javascript": 8,
+        "dns": 6,
+        "tcp": 2
+      },
+      "cve_ids": [
+        "CVE-2016-6210",
+        "CVE-2018-15473"
+      ],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_b_exposures_path",
+        "phase_b_default_logins"
+      ],
+      "signal_score": 11.2
+    },
+    {
+      "slug": "squarepeg",
+      "total_records": 54,
+      "severities": {
+        "info": 54
+      },
+      "types": {
+        "http": 33,
+        "dns": 13,
+        "ssl": 8
+      },
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [
+        "phase_a_tech",
+        "phase_b_exposures_path",
+        "phase_b_default_logins"
+      ],
+      "signal_score": 5.4
+    },
+    {
+      "slug": "k2am",
+      "total_records": 0,
+      "severities": {},
+      "types": {},
+      "cve_ids": [],
+      "crit_high_count": 0,
+      "medium_count": 0,
+      "phases_with_hits": [],
+      "signal_score": 0.0
+    }
+  ],
+  "batches": {
+    "scanme_sh": [
+      {
+        "target": "scanme_sh",
+        "url": "https://scanme.sh",
+        "phase_id": "phase_a_tech",
+        "phase_name": "Tech fingerprint (chaining input)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://scanme.sh -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags tech -severity info -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_a_tech.jsonl",
+        "exit_code": 0,
+        "duration_s": 17.62,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_a_tech.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_sh",
+        "url": "https://scanme.sh",
+        "phase_id": "phase_b_exposure",
+        "phase_name": "Exposure tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://scanme.sh -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags exposure -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_b_exposure.jsonl",
+        "exit_code": 0,
+        "duration_s": 45.53,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_b_exposure.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_sh",
+        "url": "https://scanme.sh",
+        "phase_id": "phase_b_misconfig",
+        "phase_name": "Misconfiguration tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://scanme.sh -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags misconfiguration -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_b_misconfig.jsonl",
+        "exit_code": 0,
+        "duration_s": 2.53,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_b_misconfig.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_sh",
+        "url": "https://scanme.sh",
+        "phase_id": "phase_b_panel",
+        "phase_name": "Panel/admin tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://scanme.sh -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags panel,admin -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_b_panel.jsonl",
+        "exit_code": 0,
+        "duration_s": 21.66,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_b_panel.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_sh",
+        "url": "https://scanme.sh",
+        "phase_id": "phase_b_exposures_path",
+        "phase_name": "HTTP exposures template path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://scanme.sh -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\exposures -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_b_exposures_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 218.34,
+        "record_count": 29,
+        "summary": {
+          "record_count": 29,
+          "unique_templates_matched": 15,
+          "severities": {
+            "info": 26,
+            "low": 3
+          },
+          "types": {
+            "ssl": 11,
+            "http": 10,
+            "javascript": 4,
+            "dns": 3,
+            "tcp": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 10,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'ssl', 'tls')": 5,
+            "severity=info|type=javascript|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('enum', 'js', 'ssh')": 2,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('ssl', 'tls', 'vuln')": 2,
+            "severity=low|type=ssl|matcher=True|extracted=True|cve_line=False|cve_class=False|tags_sample=('misconfig', 'ssl', 'tls')": 2,
+            "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('detect', 'js', 'ssh')": 1,
+            "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('enum', 'js', 'ssh')": 1,
+            "severity=info|type=tcp|matcher=False|extracted=True|cve_line=True|cve_class=False|tags_sample=('network', 'seclists', 'ssh')": 1,
+            "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('aaaa', 'dns', 'ipv6')": 1,
+            "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'dns', 'ns')": 1,
+            "severity=info|type=dns|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('caa', 'discovery', 'dns')": 1,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('mismatched', 'ssl', 'tls')": 1,
+            "severity=low|type=ssl|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('self-signed', 'ssl', 'tls')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              10
+            ],
+            [
+              "tls-version",
+              4
+            ],
+            [
+              "deprecated-tls",
+              2
+            ],
+            [
+              "weak-cipher-suites",
+              2
+            ],
+            [
+              "ssh-auth-methods",
+              1
+            ],
+            [
+              "ssh-server-enumeration",
+              1
+            ],
+            [
+              "ssh-password-auth",
+              1
+            ],
+            [
+              "ssh-sha1-hmac-algo",
+              1
+            ],
+            [
+              "openssh-detect",
+              1
+            ],
+            [
+              "aaaa-fingerprint",
+              1
+            ],
+            [
+              "nameserver-fingerprint",
+              1
+            ],
+            [
+              "caa-fingerprint",
+              1
+            ],
+            [
+              "ssl-issuer",
+              1
+            ],
+            [
+              "mismatched-ssl-certificate",
+              1
+            ],
+            [
+              "self-signed-ssl",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_b_exposures_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_sh",
+        "url": "https://scanme.sh",
+        "phase_id": "phase_b_default_logins",
+        "phase_name": "Default logins template path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://scanme.sh -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\default-logins -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_b_default_logins.jsonl",
+        "exit_code": 0,
+        "duration_s": 210.12,
+        "record_count": 29,
+        "summary": {
+          "record_count": 29,
+          "unique_templates_matched": 15,
+          "severities": {
+            "info": 26,
+            "low": 3
+          },
+          "types": {
+            "ssl": 11,
+            "http": 10,
+            "javascript": 4,
+            "dns": 3,
+            "tcp": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 10,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'ssl', 'tls')": 5,
+            "severity=info|type=javascript|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('enum', 'js', 'ssh')": 2,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('ssl', 'tls', 'vuln')": 2,
+            "severity=low|type=ssl|matcher=True|extracted=True|cve_line=False|cve_class=False|tags_sample=('misconfig', 'ssl', 'tls')": 2,
+            "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('detect', 'js', 'ssh')": 1,
+            "severity=info|type=javascript|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('enum', 'js', 'ssh')": 1,
+            "severity=info|type=tcp|matcher=False|extracted=True|cve_line=True|cve_class=False|tags_sample=('network', 'seclists', 'ssh')": 1,
+            "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'dns', 'ns')": 1,
+            "severity=info|type=dns|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('caa', 'discovery', 'dns')": 1,
+            "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('aaaa', 'dns', 'ipv6')": 1,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('mismatched', 'ssl', 'tls')": 1,
+            "severity=low|type=ssl|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('self-signed', 'ssl', 'tls')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              10
+            ],
+            [
+              "tls-version",
+              4
+            ],
+            [
+              "deprecated-tls",
+              2
+            ],
+            [
+              "weak-cipher-suites",
+              2
+            ],
+            [
+              "ssh-auth-methods",
+              1
+            ],
+            [
+              "ssh-password-auth",
+              1
+            ],
+            [
+              "ssh-sha1-hmac-algo",
+              1
+            ],
+            [
+              "ssh-server-enumeration",
+              1
+            ],
+            [
+              "openssh-detect",
+              1
+            ],
+            [
+              "nameserver-fingerprint",
+              1
+            ],
+            [
+              "caa-fingerprint",
+              1
+            ],
+            [
+              "aaaa-fingerprint",
+              1
+            ],
+            [
+              "ssl-issuer",
+              1
+            ],
+            [
+              "mismatched-ssl-certificate",
+              1
+            ],
+            [
+              "self-signed-ssl",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_b_default_logins.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_sh",
+        "url": "https://scanme.sh",
+        "phase_id": "phase_b_cve",
+        "phase_name": "CVE tag (medium+)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://scanme.sh -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags cve -severity medium -severity high -severity critical -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_b_cve.jsonl",
+        "exit_code": 0,
+        "duration_s": 74.45,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_b_cve.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "scanme_sh",
+        "url": "https://scanme.sh",
+        "phase_id": "phase_c_crit_high",
+        "phase_name": "Critical+high (all matching templates)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://scanme.sh -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -severity critical -severity high -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_c_crit_high.jsonl",
+        "exit_code": 0,
+        "duration_s": 92.95,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/scanme_sh_phase_c_crit_high.jsonl",
+        "skipped": false
+      }
+    ],
+    "k2am": [
+      {
+        "target": "k2am",
+        "url": "https://www.k2am.com.au/",
+        "phase_id": "phase_a_tech",
+        "phase_name": "Tech fingerprint (chaining input)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.k2am.com.au/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags tech -severity info -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_a_tech.jsonl",
+        "exit_code": 0,
+        "duration_s": 823.14,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_a_tech.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "k2am",
+        "url": "https://www.k2am.com.au/",
+        "phase_id": "phase_b_exposure",
+        "phase_name": "Exposure tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.k2am.com.au/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags exposure -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_exposure.jsonl",
+        "exit_code": 0,
+        "duration_s": 10.86,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_exposure.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "k2am",
+        "url": "https://www.k2am.com.au/",
+        "phase_id": "phase_b_misconfig",
+        "phase_name": "Misconfiguration tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.k2am.com.au/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags misconfiguration -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_misconfig.jsonl",
+        "exit_code": 0,
+        "duration_s": 100.83,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_misconfig.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "k2am",
+        "url": "https://www.k2am.com.au/",
+        "phase_id": "phase_b_panel",
+        "phase_name": "Panel/admin tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.k2am.com.au/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags panel,admin -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_panel.jsonl",
+        "exit_code": 0,
+        "duration_s": 11.34,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_panel.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "k2am",
+        "url": "https://www.k2am.com.au/",
+        "phase_id": "phase_b_exposures_path",
+        "phase_name": "HTTP exposures template path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.k2am.com.au/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\exposures -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_exposures_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 76.11,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_exposures_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "k2am",
+        "url": "https://www.k2am.com.au/",
+        "phase_id": "phase_b_default_logins",
+        "phase_name": "Default logins template path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.k2am.com.au/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\default-logins -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_default_logins.jsonl",
+        "exit_code": 0,
+        "duration_s": 81.92,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_default_logins.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "k2am",
+        "url": "https://www.k2am.com.au/",
+        "phase_id": "phase_b_cve",
+        "phase_name": "CVE tag (medium+)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.k2am.com.au/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags cve -severity medium -severity high -severity critical -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_cve.jsonl",
+        "exit_code": 0,
+        "duration_s": 41.58,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_cve.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "k2am",
+        "url": "https://www.k2am.com.au/",
+        "phase_id": "phase_c_crit_high",
+        "phase_name": "Critical+high (all matching templates)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.k2am.com.au/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -severity critical -severity high -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_c_crit_high.jsonl",
+        "exit_code": 0,
+        "duration_s": 16.17,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_c_crit_high.jsonl",
+        "skipped": false
+      }
+    ],
+    "vco_fund": [
+      {
+        "target": "vco_fund",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 8,
+        "summary": {
+          "record_count": 8,
+          "unique_templates_matched": 4,
+          "severities": {
+            "info": 8
+          },
+          "types": {
+            "http": 8
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 6,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'drupal', 'tech')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cms', 'discovery', 'tech')": 1
+          },
+          "top_templates": [
+            [
+              "tech-detect",
+              5
+            ],
+            [
+              "drupal-detect",
+              1
+            ],
+            [
+              "fingerprinthub-web-fingerprints",
+              1
+            ],
+            [
+              "metatag-cms",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_b_exposure",
+        "phase_name": "Exposure tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags exposure -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_exposure.jsonl",
+        "exit_code": 0,
+        "duration_s": 110.91,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('config', 'exposure', 'vuln')": 1
+          },
+          "top_templates": [
+            [
+              "web-config",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_exposure.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_b_misconfig",
+        "phase_name": "Misconfiguration tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags misconfiguration -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_misconfig.jsonl",
+        "exit_code": 0,
+        "duration_s": 1.3,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_misconfig.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_b_panel",
+        "phase_name": "Panel/admin tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags panel,admin -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_panel.jsonl",
+        "exit_code": 0,
+        "duration_s": 47.31,
+        "record_count": 1,
+        "summary": {
+          "record_count": 1,
+          "unique_templates_matched": 1,
+          "severities": {
+            "info": 1
+          },
+          "types": {
+            "http": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'drupal', 'panel')": 1
+          },
+          "top_templates": [
+            [
+              "drupal-login",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_panel.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_b_exposures_path",
+        "phase_name": "HTTP exposures template path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\exposures -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_exposures_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 637.61,
+        "record_count": 34,
+        "summary": {
+          "record_count": 34,
+          "unique_templates_matched": 18,
+          "severities": {
+            "info": 32,
+            "low": 2
+          },
+          "types": {
+            "http": 20,
+            "ssl": 11,
+            "dns": 3
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 8,
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 6,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'ssl', 'tls')": 5,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('ssl', 'tls', 'vuln')": 3,
+            "severity=low|type=ssl|matcher=True|extracted=True|cve_line=False|cve_class=False|tags_sample=('misconfig', 'ssl', 'tls')": 2,
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('bitcoin', 'crypto', 'monero')": 1,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('config', 'exposure', 'vuln')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cms', 'discovery', 'tech')": 1,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'drupal', 'tech')": 1,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'drupal', 'panel')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('compliance', 'css', 'js')": 1,
+            "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('aaaa', 'dns', 'ipv6')": 1,
+            "severity=info|type=dns|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('caa', 'discovery', 'dns')": 1,
+            "severity=info|type=dns|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'dns', 'soa')": 1,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('ssl', 'tls', 'wildcard')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              8
+            ],
+            [
+              "tech-detect",
+              5
+            ],
+            [
+              "tls-version",
+              4
+            ],
+            [
+              "deprecated-tls",
+              2
+            ],
+            [
+              "weak-cipher-suites",
+              2
+            ],
+            [
+              "crypto-address-detect",
+              1
+            ],
+            [
+              "web-config",
+              1
+            ],
+            [
+              "fingerprinthub-web-fingerprints",
+              1
+            ],
+            [
+              "metatag-cms",
+              1
+            ],
+            [
+              "drupal-detect",
+              1
+            ],
+            [
+              "drupal-login",
+              1
+            ],
+            [
+              "missing-sri",
+              1
+            ],
+            [
+              "aaaa-fingerprint",
+              1
+            ],
+            [
+              "caa-fingerprint",
+              1
+            ],
+            [
+              "soa-detect",
+              1
+            ],
+            [
+              "ssl-issuer",
+              1
+            ],
+            [
+              "ssl-dns-names",
+              1
+            ],
+            [
+              "wildcard-tls",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_exposures_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_b_default_logins",
+        "phase_name": "Default logins template path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\default-logins -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_default_logins.jsonl",
+        "exit_code": 0,
+        "duration_s": 457.12,
+        "record_count": 34,
+        "summary": {
+          "record_count": 34,
+          "unique_templates_matched": 18,
+          "severities": {
+            "info": 32,
+            "low": 2
+          },
+          "types": {
+            "http": 20,
+            "ssl": 11,
+            "dns": 3
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 8,
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 6,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'ssl', 'tls')": 5,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('ssl', 'tls', 'vuln')": 3,
+            "severity=low|type=ssl|matcher=True|extracted=True|cve_line=False|cve_class=False|tags_sample=('misconfig', 'ssl', 'tls')": 2,
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('bitcoin', 'crypto', 'monero')": 1,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('config', 'exposure', 'vuln')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('compliance', 'css', 'js')": 1,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'drupal', 'tech')": 1,
+            "severity=info|type=http|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'drupal', 'panel')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('cms', 'discovery', 'tech')": 1,
+            "severity=info|type=dns|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'dns', 'soa')": 1,
+            "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('aaaa', 'dns', 'ipv6')": 1,
+            "severity=info|type=dns|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('caa', 'discovery', 'dns')": 1,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('ssl', 'tls', 'wildcard')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              8
+            ],
+            [
+              "tech-detect",
+              5
+            ],
+            [
+              "tls-version",
+              4
+            ],
+            [
+              "deprecated-tls",
+              2
+            ],
+            [
+              "weak-cipher-suites",
+              2
+            ],
+            [
+              "crypto-address-detect",
+              1
+            ],
+            [
+              "web-config",
+              1
+            ],
+            [
+              "missing-sri",
+              1
+            ],
+            [
+              "drupal-detect",
+              1
+            ],
+            [
+              "drupal-login",
+              1
+            ],
+            [
+              "fingerprinthub-web-fingerprints",
+              1
+            ],
+            [
+              "metatag-cms",
+              1
+            ],
+            [
+              "soa-detect",
+              1
+            ],
+            [
+              "aaaa-fingerprint",
+              1
+            ],
+            [
+              "caa-fingerprint",
+              1
+            ],
+            [
+              "ssl-issuer",
+              1
+            ],
+            [
+              "ssl-dns-names",
+              1
+            ],
+            [
+              "wildcard-tls",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_default_logins.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_b_cve",
+        "phase_name": "CVE tag (medium+)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags cve -severity medium -severity high -severity critical -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_cve.jsonl",
+        "exit_code": 0,
+        "duration_s": 134.88,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_b_cve.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "vco_fund",
+        "url": "https://www.venturecapitalopportunitiesfund.com.au",
+        "phase_id": "phase_c_crit_high",
+        "phase_name": "Critical+high (all matching templates)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.venturecapitalopportunitiesfund.com.au -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -severity critical -severity high -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_c_crit_high.jsonl",
+        "exit_code": 0,
+        "duration_s": 180.52,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/vco_fund_phase_c_crit_high.jsonl",
+        "skipped": false
+      }
+    ],
+    "squarepeg": [
+      {
+        "target": "squarepeg",
+        "phase_id": "phase_a_tech",
+        "skipped": true,
+        "record_count": 4,
+        "summary": {
+          "record_count": 4,
+          "unique_templates_matched": 2,
+          "severities": {
+            "info": 4
+          },
+          "types": {
+            "http": 3,
+            "dns": 1
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 3,
+            "severity=info|type=dns|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('dns', 'tech', 'waf')": 1
+          },
+          "top_templates": [
+            [
+              "tech-detect",
+              3
+            ],
+            [
+              "dns-waf-detect",
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "target": "squarepeg",
+        "url": "https://www.squarepeg.vc/",
+        "phase_id": "phase_b_exposure",
+        "phase_name": "Exposure tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.squarepeg.vc/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags exposure -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_exposure.jsonl",
+        "exit_code": 0,
+        "duration_s": 63.36,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_exposure.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "squarepeg",
+        "url": "https://www.squarepeg.vc/",
+        "phase_id": "phase_b_misconfig",
+        "phase_name": "Misconfiguration tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.squarepeg.vc/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags misconfiguration -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_misconfig.jsonl",
+        "exit_code": 0,
+        "duration_s": 1.14,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_misconfig.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "squarepeg",
+        "url": "https://www.squarepeg.vc/",
+        "phase_id": "phase_b_panel",
+        "phase_name": "Panel/admin tag sweep",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.squarepeg.vc/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags panel,admin -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_panel.jsonl",
+        "exit_code": 0,
+        "duration_s": 45.97,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_panel.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "squarepeg",
+        "url": "https://www.squarepeg.vc/",
+        "phase_id": "phase_b_exposures_path",
+        "phase_name": "HTTP exposures template path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.squarepeg.vc/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\exposures -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_exposures_path.jsonl",
+        "exit_code": 0,
+        "duration_s": 342.66,
+        "record_count": 25,
+        "summary": {
+          "record_count": 25,
+          "unique_templates_matched": 14,
+          "severities": {
+            "info": 25
+          },
+          "types": {
+            "http": 15,
+            "dns": 6,
+            "ssl": 4
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 7,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'ssl', 'tls')": 3,
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 3,
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('bitcoin', 'crypto', 'monero')": 2,
+            "severity=info|type=http|matcher=True|extracted=True|cve_line=False|cve_class=False|tags_sample=('csp', 'headers', 'misconfig')": 2,
+            "severity=info|type=dns|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('dns', 'tech', 'waf')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('compliance', 'css', 'js')": 1,
+            "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'dns', 'service')": 1,
+            "severity=info|type=dns|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'dns', 'soa')": 1,
+            "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'dns', 'ns')": 1,
+            "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('aaaa', 'dns', 'ipv6')": 1,
+            "severity=info|type=dns|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('caa', 'discovery', 'dns')": 1,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('ssl', 'tls', 'vuln')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              7
+            ],
+            [
+              "tech-detect",
+              3
+            ],
+            [
+              "tls-version",
+              2
+            ],
+            [
+              "crypto-address-detect",
+              2
+            ],
+            [
+              "weak-csp-detect",
+              2
+            ],
+            [
+              "dns-waf-detect",
+              1
+            ],
+            [
+              "missing-sri",
+              1
+            ],
+            [
+              "dns-saas-service-detection",
+              1
+            ],
+            [
+              "soa-detect",
+              1
+            ],
+            [
+              "nameserver-fingerprint",
+              1
+            ],
+            [
+              "aaaa-fingerprint",
+              1
+            ],
+            [
+              "caa-fingerprint",
+              1
+            ],
+            [
+              "ssl-issuer",
+              1
+            ],
+            [
+              "ssl-dns-names",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_exposures_path.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "squarepeg",
+        "url": "https://www.squarepeg.vc/",
+        "phase_id": "phase_b_default_logins",
+        "phase_name": "Default logins template path",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.squarepeg.vc/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\default-logins -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_default_logins.jsonl",
+        "exit_code": 0,
+        "duration_s": 313.38,
+        "record_count": 25,
+        "summary": {
+          "record_count": 25,
+          "unique_templates_matched": 14,
+          "severities": {
+            "info": 25
+          },
+          "types": {
+            "http": 15,
+            "dns": 6,
+            "ssl": 4
+          },
+          "shapes": {
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 7,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'ssl', 'tls')": 3,
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 3,
+            "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('bitcoin', 'crypto', 'monero')": 2,
+            "severity=info|type=http|matcher=True|extracted=True|cve_line=False|cve_class=False|tags_sample=('csp', 'headers', 'misconfig')": 2,
+            "severity=info|type=dns|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('dns', 'tech', 'waf')": 1,
+            "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('compliance', 'css', 'js')": 1,
+            "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('aaaa', 'dns', 'ipv6')": 1,
+            "severity=info|type=dns|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('caa', 'discovery', 'dns')": 1,
+            "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'dns', 'service')": 1,
+            "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'dns', 'ns')": 1,
+            "severity=info|type=dns|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'dns', 'soa')": 1,
+            "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('ssl', 'tls', 'vuln')": 1
+          },
+          "top_templates": [
+            [
+              "http-missing-security-headers",
+              7
+            ],
+            [
+              "tech-detect",
+              3
+            ],
+            [
+              "tls-version",
+              2
+            ],
+            [
+              "crypto-address-detect",
+              2
+            ],
+            [
+              "weak-csp-detect",
+              2
+            ],
+            [
+              "dns-waf-detect",
+              1
+            ],
+            [
+              "missing-sri",
+              1
+            ],
+            [
+              "aaaa-fingerprint",
+              1
+            ],
+            [
+              "caa-fingerprint",
+              1
+            ],
+            [
+              "dns-saas-service-detection",
+              1
+            ],
+            [
+              "nameserver-fingerprint",
+              1
+            ],
+            [
+              "soa-detect",
+              1
+            ],
+            [
+              "ssl-issuer",
+              1
+            ],
+            [
+              "ssl-dns-names",
+              1
+            ]
+          ]
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_default_logins.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "squarepeg",
+        "url": "https://www.squarepeg.vc/",
+        "phase_id": "phase_b_cve",
+        "phase_name": "CVE tag (medium+)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.squarepeg.vc/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -tags cve -severity medium -severity high -severity critical -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_cve.jsonl",
+        "exit_code": 0,
+        "duration_s": 94.7,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_b_cve.jsonl",
+        "skipped": false
+      },
+      {
+        "target": "squarepeg",
+        "url": "https://www.squarepeg.vc/",
+        "phase_id": "phase_c_crit_high",
+        "phase_name": "Critical+high (all matching templates)",
+        "command": "C:\\projects\\spiderfeet\\.tools\\bin\\nuclei.exe -u https://www.squarepeg.vc/ -silent -jsonl -omit-raw -omit-template -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 10 -t C:\\projects\\spiderfeet\\.tools\\nuclei-templates -severity critical -severity high -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_c_crit_high.jsonl",
+        "exit_code": 0,
+        "duration_s": 106.25,
+        "record_count": 0,
+        "summary": {
+          "record_count": 0,
+          "shapes": {},
+          "severities": {},
+          "types": {},
+          "template_ids": []
+        },
+        "export": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/squarepeg_phase_c_crit_high.jsonl",
+        "skipped": false
+      }
+    ]
+  }
+}

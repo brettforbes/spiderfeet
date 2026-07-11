@@ -1,0 +1,68 @@
+[
+  {
+    "label": "sbs",
+    "domain": "sbs.com.au",
+    "exit": 0,
+    "seconds": 18.2,
+    "record_count": 50,
+    "unique_hosts": 50,
+    "source_count": 0,
+    "top_sources": "",
+    "sample_hosts": "account.sbs.com.au; after64.sbs.com.au; amp.sbs.com.au; api.sbs.com.au; assets.sbs.com.au; auth.sbs.com.au; epgservice.c.aws.sbs.com.au; fda-docs.c.aws.sbs.com.au"
+  },
+  {
+    "label": "k2am",
+    "domain": "k2am.com.au",
+    "exit": 0,
+    "seconds": 2.9,
+    "record_count": 18,
+    "unique_hosts": 18,
+    "source_count": 0,
+    "top_sources": "",
+    "sample_hosts": "apps.k2am.com.au; cpanel.k2am.com.au; cpcalendars.k2am.com.au; cpcontacts.k2am.com.au; kii.k2am.com.au; ksm.k2am.com.au; link.k2am.com.au; mail.k2am.com.au"
+  },
+  {
+    "label": "vcof",
+    "domain": "venturecapitalopportunitiesfund.com.au",
+    "exit": 0,
+    "seconds": 4.4,
+    "record_count": 1,
+    "unique_hosts": 1,
+    "source_count": 0,
+    "top_sources": "",
+    "sample_hosts": "www.venturecapitalopportunitiesfund.com.au"
+  },
+  {
+    "label": "squarepeg",
+    "domain": "squarepeg.vc",
+    "exit": 0,
+    "seconds": 3.2,
+    "record_count": 7,
+    "unique_hosts": 7,
+    "source_count": 0,
+    "top_sources": "",
+    "sample_hosts": "data.squarepeg.vc; email.foundersummit2026.squarepeg.vc; foundersummit2026.squarepeg.vc; helix.squarepeg.vc; plus.squarepeg.vc; static.squarepeg.vc; www.squarepeg.vc"
+  },
+  {
+    "label": "upside_au",
+    "domain": "theupside.com.au",
+    "exit": 0,
+    "seconds": 22.0,
+    "record_count": 26,
+    "unique_hosts": 26,
+    "source_count": 0,
+    "top_sources": "",
+    "sample_hosts": "aws.theupside.com.au; cfjump.theupside.com.au; dev.theupside.com.au; e.theupside.com.au; email.theupside.com.au; info.theupside.com.au; k8s.theupside.com.au; mail.theupside.com.au"
+  },
+  {
+    "label": "upside_com",
+    "domain": "theupside.com",
+    "exit": 0,
+    "seconds": 22.5,
+    "record_count": 12,
+    "unique_hosts": 12,
+    "source_count": 0,
+    "top_sources": "",
+    "sample_hosts": "blog.theupside.com; image.theupside.com; international.theupside.com; link.theupside.com; link2.theupside.com; mail.theupside.com; nancyz.theupside.com; returns.theupside.com"
+  }
+]

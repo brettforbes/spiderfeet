@@ -1,0 +1,19 @@
+{
+  "tool": "httpx",
+  "exam_id": 2,
+  "scenario_id": "from_subfinder_squarepeg",
+  "scenario_name": "Web probe on subfinder hosts (Square Peg Capital)",
+  "target": "squarepeg.vc",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 3.078,
+  "captured_at": "2026-07-05T16:04:57.955640+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\httpx\\2_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\httpx\\2_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\httpx\\2_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\httpx\\exams\\from_subfinder_squarepeg.jsonl"
+}

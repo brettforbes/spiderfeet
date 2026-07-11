@@ -1,0 +1,25 @@
+Running 4 plugin(s) in "passive" mode...
+2026/07/05 23:07:45 INFO wildcard detected base=newsletter.theupside.com.au ips_count=1
+2026/07/05 23:07:45 INFO wildcard detected, filtering subdomains parent=newsletter.theupside.com.au
+2026/07/05 23:07:45 INFO wildcard detected base=info.theupside.com.au ips_count=1
+2026/07/05 23:07:45 INFO wildcard detected, filtering subdomains parent=info.theupside.com.au
+2026/07/05 23:07:47 INFO wildcard detected base=mail.theupside.com.au ips_count=1
+2026/07/05 23:07:47 INFO wildcard detected, filtering subdomains parent=mail.theupside.com.au
+2026/07/05 23:07:47 INFO wildcard detected base=email.theupside.com.au ips_count=1
+2026/07/05 23:07:47 INFO wildcard detected, filtering subdomains parent=email.theupside.com.au
+2026/07/05 23:07:48 INFO wildcard detected base=news.theupside.com.au ips_count=1
+2026/07/05 23:07:48 INFO wildcard detected, filtering subdomains parent=news.theupside.com.au
+2026/07/05 23:07:49 INFO wildcard detected base=e.theupside.com.au ips_count=1
+2026/07/05 23:07:49 INFO wildcard detected, filtering subdomains parent=e.theupside.com.au
+2026/07/05 23:07:50 INFO wildcard detected base=dev.theupside.com.au ips_count=1
+2026/07/05 23:07:50 INFO wildcard detected, filtering subdomains parent=dev.theupside.com.au
+2026/07/05 23:07:51 INFO wildcard detected base=test.theupside.com.au ips_count=1
+2026/07/05 23:07:51 INFO wildcard detected, filtering subdomains parent=test.theupside.com.au
+2026/07/05 23:07:52 INFO wildcard detected base=spf.theupside.com.au ips_count=1
+2026/07/05 23:07:52 INFO wildcard detected, filtering subdomains parent=spf.theupside.com.au
+2026/07/05 23:07:53 INFO wildcard detected base=track.theupside.com.au ips_count=1
+2026/07/05 23:07:53 INFO wildcard detected, filtering subdomains parent=track.theupside.com.au
+2026/07/05 23:07:54 INFO wildcard detected base=aws.theupside.com.au ips_count=1
+2026/07/05 23:07:54 INFO wildcard detected, filtering subdomains parent=aws.theupside.com.au
+2026/07/05 23:08:00 INFO wildcard detected base=k8s.theupside.com.au ips_count=1
+2026/07/05 23:08:00 INFO wildcard detected, filtering subdomains parent=k8s.theupside.com.au

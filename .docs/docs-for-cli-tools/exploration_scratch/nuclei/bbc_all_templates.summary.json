@@ -1,0 +1,71 @@
+{
+  "source": "C:\\projects\\spiderfeet\\.docs\\docs-for-cli-tools\\exploration_scratch\\nuclei\\bbc_all_templates.jsonl",
+  "record_count": 17,
+  "unique_templates_matched": 11,
+  "severities": {
+    "info": 17
+  },
+  "types": {
+    "http": 11,
+    "ssl": 4,
+    "dns": 2
+  },
+  "shapes": {
+    "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('generic', 'headers', 'misconfig')": 4,
+    "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'ssl', 'tls')": 3,
+    "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('cdn', 'exposure', 'fastly')": 3,
+    "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('compliance', 'css', 'js')": 1,
+    "severity=info|type=http|matcher=True|extracted=False|cve_line=False|cve_class=False|tags_sample=('discovery', 'tech')": 1,
+    "severity=info|type=http|matcher=True|extracted=True|cve_line=False|cve_class=False|tags_sample=('csp', 'headers', 'misconfig')": 1,
+    "severity=info|type=http|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('generic', 'misconfig', 'xss')": 1,
+    "severity=info|type=dns|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('discovery', 'dns', 'service')": 1,
+    "severity=info|type=dns|matcher=False|extracted=False|cve_line=False|cve_class=False|tags_sample=('caa', 'discovery', 'dns')": 1,
+    "severity=info|type=ssl|matcher=False|extracted=True|cve_line=False|cve_class=False|tags_sample=('ssl', 'tls', 'vuln')": 1
+  },
+  "top_templates": [
+    [
+      "http-missing-security-headers",
+      4
+    ],
+    [
+      "fastly-debug-headers",
+      3
+    ],
+    [
+      "tls-version",
+      2
+    ],
+    [
+      "missing-sri",
+      1
+    ],
+    [
+      "fingerprinthub-web-fingerprints",
+      1
+    ],
+    [
+      "weak-csp-detect",
+      1
+    ],
+    [
+      "xss-deprecated-header",
+      1
+    ],
+    [
+      "dns-saas-service-detection",
+      1
+    ],
+    [
+      "caa-fingerprint",
+      1
+    ],
+    [
+      "ssl-issuer",
+      1
+    ],
+    [
+      "ssl-dns-names",
+      1
+    ]
+  ]
+}

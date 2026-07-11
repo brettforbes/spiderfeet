@@ -49,6 +49,7 @@ Run **after** host lists exist (`subfinder`, `dnsx`, `naabu`, `nmap`); httpx doe
 - **Not Python httpx** — Always ProjectDiscovery binary `httpx` on PATH.
 - **Default HTTPS→HTTP fallback** — A single input may yield one URL; use `-no-fallback` to see both.
 - **JSONL ≠ JSON array** — Parse line by line; harvest bundles use `records[]`.
+- **`-no-stdin`** — Required when running `-l` or `-u` without a pipe (especially Windows); otherwise httpx blocks on stdin.
 - **`-path` / `-screenshot` / `-vhost`** — Heavy modes; run as dedicated scenarios, not default corpus noise.
 - **Response storage** — `-store-response` / `-irr` can produce huge artifacts; cap with `-response-size-to-read`.
 - **Headless screenshots** — Very slow; disable in bulk pipelines unless scenario requires visuals.

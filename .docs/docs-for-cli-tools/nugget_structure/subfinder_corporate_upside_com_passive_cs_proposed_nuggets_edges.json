@@ -1,0 +1,358 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "nugget_instance_id": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Subfinder scan",
+      "nugget_data": "theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SCAN_CLI--4328926c-ebe9-5452-8ee0-05325a4dd7a3",
+      "nugget_instance_id": "SCAN_CLI--4328926c-ebe9-5452-8ee0-05325a4dd7a3",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "subfinder -d theupside.com -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_upside_com_passive_cs.jsonl -silent",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "nugget_instance_id": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--785faab1-090b-51f0-a724-6e7e2c11a29f",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--785faab1-090b-51f0-a724-6e7e2c11a29f",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "uat.theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "nugget_instance_id": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "nugget_id": "RAW_DNS_RECORDS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Passive sources",
+      "nugget_data": "hackertarget",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--8ea4a365-0b01-5284-8507-1af2d44bc116",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--8ea4a365-0b01-5284-8507-1af2d44bc116",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "uk.theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "nugget_instance_id": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "nugget_id": "RAW_DNS_RECORDS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Passive sources",
+      "nugget_data": "crtsh,hackertarget",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--787702e6-15d2-536c-92c0-7730a17f0396",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--787702e6-15d2-536c-92c0-7730a17f0396",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--76d27907-3042-5cbe-af56-0ccb900977c6",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--76d27907-3042-5cbe-af56-0ccb900977c6",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "blog.theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "nugget_instance_id": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "nugget_id": "RAW_DNS_RECORDS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Passive sources",
+      "nugget_data": "crtsh",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--4c31af23-aa75-5660-9b8a-535d3903cb84",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--4c31af23-aa75-5660-9b8a-535d3903cb84",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "image.theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--7c039ae8-68c4-5afb-bc94-d3a9b2f8e144",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--7c039ae8-68c4-5afb-bc94-d3a9b2f8e144",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "www.nancyz.theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--24882c44-5bc8-5703-83a8-89e9e5e2a287",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--24882c44-5bc8-5703-83a8-89e9e5e2a287",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "international.theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--9514c5f9-bb3b-5636-9a92-36f5f8b1943d",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--9514c5f9-bb3b-5636-9a92-36f5f8b1943d",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "returns.theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--2cf133a2-778e-55f9-9dd1-5ba91cc1bf9e",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--2cf133a2-778e-55f9-9dd1-5ba91cc1bf9e",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "link2.theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--8f2f0acb-9c8a-58ed-bb3d-ea68911cbd35",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--8f2f0acb-9c8a-58ed-bb3d-ea68911cbd35",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "link.theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--faa1377c-73ad-5f2a-9e58-8c6380ed5e27",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--faa1377c-73ad-5f2a-9e58-8c6380ed5e27",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "mail.theupside.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "INTERNET_NAME_UNRESOLVED--051faa8b-3615-5279-92ba-2f9c54d9fe2f",
+      "nugget_instance_id": "INTERNET_NAME_UNRESOLVED--051faa8b-3615-5279-92ba-2f9c54d9fe2f",
+      "nugget_id": "INTERNET_NAME_UNRESOLVED",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Internet Name - Unresolved",
+      "nugget_data": "nancyz.theupside.com",
+      "nugget_colour": "#3B82F6"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "SCAN_CLI--4328926c-ebe9-5452-8ee0-05325a4dd7a3",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "relation": "contains"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--785faab1-090b-51f0-a724-6e7e2c11a29f",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--785faab1-090b-51f0-a724-6e7e2c11a29f",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--785faab1-090b-51f0-a724-6e7e2c11a29f",
+      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--8ea4a365-0b01-5284-8507-1af2d44bc116",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--8ea4a365-0b01-5284-8507-1af2d44bc116",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--8ea4a365-0b01-5284-8507-1af2d44bc116",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--787702e6-15d2-536c-92c0-7730a17f0396",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--787702e6-15d2-536c-92c0-7730a17f0396",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--787702e6-15d2-536c-92c0-7730a17f0396",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--76d27907-3042-5cbe-af56-0ccb900977c6",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--76d27907-3042-5cbe-af56-0ccb900977c6",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--76d27907-3042-5cbe-af56-0ccb900977c6",
+      "target": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--4c31af23-aa75-5660-9b8a-535d3903cb84",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--4c31af23-aa75-5660-9b8a-535d3903cb84",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--4c31af23-aa75-5660-9b8a-535d3903cb84",
+      "target": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--7c039ae8-68c4-5afb-bc94-d3a9b2f8e144",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--7c039ae8-68c4-5afb-bc94-d3a9b2f8e144",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--7c039ae8-68c4-5afb-bc94-d3a9b2f8e144",
+      "target": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--24882c44-5bc8-5703-83a8-89e9e5e2a287",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--24882c44-5bc8-5703-83a8-89e9e5e2a287",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--24882c44-5bc8-5703-83a8-89e9e5e2a287",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--9514c5f9-bb3b-5636-9a92-36f5f8b1943d",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--9514c5f9-bb3b-5636-9a92-36f5f8b1943d",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--9514c5f9-bb3b-5636-9a92-36f5f8b1943d",
+      "target": "RAW_DNS_RECORDS--cc6b6745-32fc-5ab7-9570-1ebdd10a63a8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--2cf133a2-778e-55f9-9dd1-5ba91cc1bf9e",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--2cf133a2-778e-55f9-9dd1-5ba91cc1bf9e",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--2cf133a2-778e-55f9-9dd1-5ba91cc1bf9e",
+      "target": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--8f2f0acb-9c8a-58ed-bb3d-ea68911cbd35",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--8f2f0acb-9c8a-58ed-bb3d-ea68911cbd35",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--8f2f0acb-9c8a-58ed-bb3d-ea68911cbd35",
+      "target": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--faa1377c-73ad-5f2a-9e58-8c6380ed5e27",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--faa1377c-73ad-5f2a-9e58-8c6380ed5e27",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--faa1377c-73ad-5f2a-9e58-8c6380ed5e27",
+      "target": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--051faa8b-3615-5279-92ba-2f9c54d9fe2f",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--439f98cc-d46b-54d9-8d16-98c08690013f",
+      "target": "INTERNET_NAME_UNRESOLVED--051faa8b-3615-5279-92ba-2f9c54d9fe2f",
+      "relation": "contains"
+    },
+    {
+      "source": "INTERNET_NAME_UNRESOLVED--051faa8b-3615-5279-92ba-2f9c54d9fe2f",
+      "target": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "relation": "had"
+    }
+  ]
+}

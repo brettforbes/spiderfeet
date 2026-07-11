@@ -1,0 +1,19 @@
+{
+  "tool": "subfinder",
+  "exam_id": 2,
+  "scenario_id": "corporate_squarepeg_passive_cs",
+  "scenario_name": "Passive enumeration with sources (Square Peg Capital)",
+  "target": "squarepeg.vc",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 22.094,
+  "captured_at": "2026-07-05T14:24:08.368569+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\2_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\2_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\2_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\subfinder\\exams\\corporate_squarepeg_passive_cs.jsonl"
+}

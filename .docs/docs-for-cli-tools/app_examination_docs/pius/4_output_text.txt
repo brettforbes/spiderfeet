@@ -1,16 +1,20 @@
 # SpiderFeet CLI examination capture
 # tool: pius
-# scenario: RIR CIDR phase (Cloudflare) (rir_cidr_ndjson)
-# org: Cloudflare, Inc.
-# target: cloudflare.com
-# command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Cloudflare, Inc." --domain cloudflare.com --plugins whois,edgar,arin,ripe,apnic --output ndjson
+# scenario: Corporate gleif stack (Square Peg Capital) (corporate_squarepeg_ndjson)
+# org: Square Peg Capital Pty Ltd
+# target: squarepeg.vc
+# command: /mnt/c/projects/spiderfeet/.tools/pius run --org "Square Peg Capital Pty Ltd" --domain squarepeg.vc --plugins gleif,wikidata,whois,crt-sh --output ndjson
 # runtime: wsl
-# started_at: 2026-06-30T04:12:36.118528+00:00
-# duration_s: 7.688
+# started_at: 2026-07-05T13:10:18.904973+00:00
+# duration_s: 35.046
 # exit_code: 0
-# finding_summary_lines: 2
+# finding_summary_lines: 6
 # text_role: one line per finding: [type] value (source)
 # structured_role: full NDJSON finding objects in records[]
 
-[preseed] DATA REDACTED (whois)
-[preseed] DATA REDACTED (whois)
+[domain] www.squarepeg.vc (crt-sh)
+[domain] squarepeg.vc (crt-sh)
+[domain] foundersummit2026.squarepeg.vc (crt-sh)
+[domain] email.foundersummit2026.squarepeg.vc (crt-sh)
+[domain] helix.squarepeg.vc (crt-sh)
+[domain] data.squarepeg.vc (crt-sh)

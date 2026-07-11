@@ -1,1 +1,1 @@
-/mnt/c/projects/spiderfeet/.tools/pius run --org "Nmap Scanme" --domain scanme.nmap.org --plugins crt-sh,whois --output ndjson
+/mnt/c/projects/spiderfeet/.tools/pius run --org "The Upside Pty Ltd" --domain theupside.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson

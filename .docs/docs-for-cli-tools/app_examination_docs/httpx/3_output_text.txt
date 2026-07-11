@@ -1,0 +1,17 @@
+# SpiderFeet CLI examination capture
+# tool: httpx
+# scenario: Web probe on subfinder ultra-sparse host (VC Opportunities Fund) (from_subfinder_vcof_sparse)
+# target: venturecapitalopportunitiesfund.com.au
+# subfinder_scenario: corporate_vcof_sparse_passive
+# probe_profile: status-code,title,tech-detect,server,cdn,ip
+# host_input_count: 1
+# command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_vcof_sparse_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_vcof_sparse.jsonl -silent -threads 5 -timeout 15
+# runtime: windows
+# started_at: 2026-07-05T16:05:01.072497+00:00
+# duration_s: 2.375
+# exit_code: 0
+# probe_summary_lines: 1
+# text_role: one line per live URL: url [status] [title] server=… tech=[…]
+# structured_role: full httpx JSONL probe objects in records[]
+
+https://www.venturecapitalopportunitiesfund.com.au [200] [Home - Venture Capital Opportunities Fund] server=cloudflare tech=[Bootstrap:3.3.5, Cloudflare, Cloudflare Browser Insights, Drupal:7, Google Tag Manager, HTTP/3, PHP, jQuery, jQuery CDN, jsDelivr]

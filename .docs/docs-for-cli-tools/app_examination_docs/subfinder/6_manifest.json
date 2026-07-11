@@ -1,0 +1,19 @@
+{
+  "tool": "subfinder",
+  "exam_id": 6,
+  "scenario_id": "corporate_upside_com_passive_cs",
+  "scenario_name": "Passive enumeration with sources (The Upside .com)",
+  "target": "theupside.com",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 24.25,
+  "captured_at": "2026-07-05T14:25:39.820582+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\6_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\6_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\6_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\subfinder\\exams\\corporate_upside_com_passive_cs.jsonl"
+}

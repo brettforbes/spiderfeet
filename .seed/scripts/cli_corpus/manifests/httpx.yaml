@@ -1,0 +1,107 @@
+tool: httpx
+version: 1
+default_runtime: windows
+default_timeout: 600
+binary_probe: .tools/bin/httpx.exe -version
+primary_parser: jsonl
+output_path_type: 2
+
+# Host lists derived from subfinder formal examinations (prepare_httpx_hosts_from_subfinder.py).
+# Rich web fingerprint pass on subfinder-discovered hostnames.
+
+scenarios:
+  - id: from_subfinder_upside_au
+    name: "Web probe on subfinder hosts (The Upside .com.au)"
+    target: theupside.com.au
+    subfinder_scenario: corporate_upside_au_passive_cs
+    host_list: .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_upside_au_hosts.txt
+    probe_profile: "status-code,title,tech-detect,server,cdn,ip"
+    command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_upside_au_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_upside_au.jsonl -silent -threads 20 -timeout 15 -rate-limit 40
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_upside_au.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 900
+
+  - id: from_subfinder_squarepeg
+    name: "Web probe on subfinder hosts (Square Peg Capital)"
+    target: squarepeg.vc
+    subfinder_scenario: corporate_squarepeg_passive_cs
+    host_list: .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_squarepeg_hosts.txt
+    probe_profile: "status-code,title,tech-detect,server,cdn,ip"
+    command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_squarepeg_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_squarepeg.jsonl -silent -threads 15 -timeout 15 -rate-limit 30
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_squarepeg.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 300
+
+  - id: from_subfinder_vcof_sparse
+    name: "Web probe on subfinder ultra-sparse host (VC Opportunities Fund)"
+    target: venturecapitalopportunitiesfund.com.au
+    subfinder_scenario: corporate_vcof_sparse_passive
+    host_list: .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_vcof_sparse_hosts.txt
+    probe_profile: "status-code,title,tech-detect,server,cdn,ip"
+    command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_vcof_sparse_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_vcof_sparse.jsonl -silent -threads 5 -timeout 15
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_vcof_sparse.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 120
+
+  - id: from_subfinder_k2am_passive
+    name: "Web probe on subfinder passive hosts (K2 Asset Management)"
+    target: k2am.com.au
+    subfinder_scenario: corporate_k2am_passive_cs
+    host_list: .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_k2am_passive_hosts.txt
+    probe_profile: "status-code,title,tech-detect,server,cdn,ip"
+    command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_k2am_passive_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_k2am_passive.jsonl -silent -threads 15 -timeout 15 -rate-limit 30
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_k2am_passive.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 600
+
+  - id: from_subfinder_k2am_active
+    name: "Web probe on subfinder active-resolved hosts (K2)"
+    target: k2am.com.au
+    subfinder_scenario: corporate_k2am_active_oI
+    host_list: .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_k2am_active_hosts.txt
+    probe_profile: "status-code,title,tech-detect,server,cdn,ip"
+    command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_k2am_active_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_k2am_active.jsonl -silent -threads 10 -timeout 15 -rate-limit 25
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_k2am_active.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 300
+
+  - id: from_subfinder_upside_com
+    name: "Web probe on subfinder hosts (The Upside .com)"
+    target: theupside.com
+    subfinder_scenario: corporate_upside_com_passive_cs
+    host_list: .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_upside_com_hosts.txt
+    probe_profile: "status-code,title,tech-detect,server,cdn,ip"
+    command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_upside_com_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_upside_com.jsonl -silent -threads 15 -timeout 15 -rate-limit 30
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_upside_com.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 600
+
+  - id: from_subfinder_sbs
+    name: "Web probe on subfinder enterprise hosts (SBS)"
+    target: sbs.com.au
+    subfinder_scenario: enterprise_sbs_passive_cs
+    host_list: .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_sbs_hosts.txt
+    probe_profile: "status-code,title,tech-detect,server,cdn,ip"
+    command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_sbs_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_sbs.jsonl -silent -threads 25 -timeout 20 -rate-limit 50
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_sbs.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 1200
+
+  - id: from_subfinder_invalid_clean_miss
+    name: "Clean miss web probe (invalid subfinder apex)"
+    target: not-a-real-domain-xyzzy.invalid
+    subfinder_scenario: invalid_domain_clean_miss
+    host_list: .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_invalid_clean_miss_hosts.txt
+    probe_profile: "status-code,title,tech-detect,server,cdn,ip"
+    command: httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_invalid_clean_miss_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_invalid_clean_miss.jsonl -silent -threads 2 -timeout 10
+    jsonl_export: .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_invalid_clean_miss.jsonl
+    structured_kind: json
+    structured_ext: json
+    timeout: 60

@@ -1,0 +1,19 @@
+{
+  "tool": "katana",
+  "exam_id": 3,
+  "scenario_id": "from_httpx_vcof_sparse",
+  "scenario_name": "Katana crawl on httpx ultra-sparse seed (VC Opportunities Fund)",
+  "target": "venturecapitalopportunitiesfund.com.au",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 124,
+  "duration_s": 705.719,
+  "captured_at": "2026-07-06T11:25:46.218632+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\katana\\3_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\katana\\3_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\katana\\3_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\katana\\exams\\from_httpx_vcof_sparse.jsonl"
+}

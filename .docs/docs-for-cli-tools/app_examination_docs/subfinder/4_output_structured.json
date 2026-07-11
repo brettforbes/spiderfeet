@@ -1,0 +1,166 @@
+{
+  "schema": "subfinder_host_v1",
+  "tool": "subfinder",
+  "scenario": "Passive enumeration with sources (K2 Asset Management)",
+  "scenario_id": "corporate_k2am_passive_cs",
+  "target": "k2am.com.au",
+  "enumeration_mode": "passive",
+  "command": "subfinder -d k2am.com.au -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_k2am_passive_cs.jsonl -silent",
+  "runtime": "windows",
+  "started_at": "2026-07-05T14:24:52.891526+00:00",
+  "duration_s": 23.594,
+  "exit_code": 0,
+  "host_summary_lines": 18,
+  "text_role": "one line per host: fqdn (sources: \u2026) or fqdn -> ip",
+  "structured_role": "normalized host records in records[]",
+  "records": [
+    {
+      "host": "link.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "owa.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "smtp2.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "www.apps.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "kii.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "www.owa.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "smtp1.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "apps.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "cpcontacts.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "webmail.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "mail.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    },
+    {
+      "host": "cpanel.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "cpcalendars.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "webdisk.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "www.ksm.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "ksm.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    },
+    {
+      "host": "www.kii.k2am.com.au",
+      "input": "k2am.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh"
+      ]
+    }
+  ]
+}

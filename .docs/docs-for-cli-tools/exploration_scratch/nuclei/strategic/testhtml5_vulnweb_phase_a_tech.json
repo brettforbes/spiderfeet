@@ -1,0 +1,11 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "testhtml5_vulnweb_phase_a_tech",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/testhtml5_vulnweb_phase_a_tech.jsonl",
+  "started_at": "2026-07-04T15:51:58.906927+00:00",
+  "finding_summary_lines": 0,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": []
+}

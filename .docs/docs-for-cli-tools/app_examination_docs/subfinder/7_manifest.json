@@ -1,0 +1,19 @@
+{
+  "tool": "subfinder",
+  "exam_id": 7,
+  "scenario_id": "enterprise_sbs_passive_cs",
+  "scenario_name": "Enterprise-scale passive enumeration (SBS)",
+  "target": "sbs.com.au",
+  "org": null,
+  "runtime": "windows",
+  "exit_code": 0,
+  "duration_s": 22.234,
+  "captured_at": "2026-07-05T14:26:04.142058+00:00",
+  "structured_kind": "json",
+  "structured_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\7_output_structured.json",
+  "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\7_output_text.txt",
+  "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\subfinder\\7_command.txt",
+  "tool_manifest_version": 1,
+  "review_status": "pending",
+  "structured_fixture_used": ".docs\\docs-for-cli-tools\\exploration_scratch\\subfinder\\exams\\enterprise_sbs_passive_cs.jsonl"
+}

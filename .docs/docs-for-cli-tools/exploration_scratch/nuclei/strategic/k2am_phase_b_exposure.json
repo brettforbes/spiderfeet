@@ -1,0 +1,11 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario_id": "k2am_phase_b_exposure",
+  "source_jsonl": ".docs/docs-for-cli-tools/exploration_scratch/nuclei/strategic/k2am_phase_b_exposure.jsonl",
+  "started_at": "2026-07-04T13:41:05.855568+00:00",
+  "finding_summary_lines": 0,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": []
+}
