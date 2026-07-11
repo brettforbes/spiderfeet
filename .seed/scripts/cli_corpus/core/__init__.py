@@ -11,6 +11,13 @@ from .graph_builder import (
     validate_graph_connectivity,
 )
 from .rule_engine import RuleEngine, RulePackError, load_rule_pack, load_shared_rules, resolve_path
+from .correlation_engine import (
+    CorrelationRecord,
+    RecordCorrelationResult,
+    correlate_nerva_records,
+    correlate_records,
+    normalize_nerva_record,
+)
 from .correlation_lists import (
     CDN_SIGNATURES_PATH,
     EDGE_ASNS_PATH,
@@ -32,7 +39,11 @@ from .types import CaptureFamily, RulePack
 __all__ = [
     "DEFAULT_TYPE_COLOURS",
     "ONTOLOGY_NAMESPACE",
-    "CaptureFamily",
+    "correlate_nerva_records",
+    "correlate_records",
+    "CorrelationRecord",
+    "RecordCorrelationResult",
+    "normalize_nerva_record",
     "GraphBuilder",
     "RulePack",
     "RuleEngine",
