@@ -66,27 +66,10 @@ def parse_pius_ndjson(raw: str) -> List[Dict[str, Any]]:
 
 
 def pius_to_graph(raw: str, org: str, command: str) -> Dict[str, Any]:
-    scan = _node("SCAN_RECORD", "ENTITY", org, "Scan Record")
-    scan_cli = _node("SCAN_CLI", "DESCRIPTOR", command, "Scan CLI")
-    org_n = _node("COMPANY_NAME", "DESCRIPTOR", org, "Organization")
-    nodes = [scan, scan_cli, org_n]
-    edges = [_edge(scan["id"], scan_cli["id"], "had"), _edge(scan["id"], org_n["id"], "had")]
-    for finding in parse_pius_ndjson(raw):
-        ftype = finding.get("Type", "")
-        value = str(finding.get("Value", "")).strip()
-        if not value or ftype in ("preseed",):
-            continue
-        if ftype == "domain" and " " not in value and "." in value:
-            dom = _node("INTERNET_NAME", "ENTITY", value.lower(), "Internet Name")
-            src = _node("PIUS_SOURCE", "DESCRIPTOR", finding.get("Source", ""), "PIUS Source")
-            nodes.extend([dom, src])
-            edges.extend([_edge(scan["id"], dom["id"], "contains"), _edge(dom["id"], src["id"], "had")])
-        elif ftype == "cidr" and "/" in value:
-            nb = _node("NETBLOCK_OWNER", "ENTITY", value, "Netblock Owner")
-            src = _node("PIUS_SOURCE", "DESCRIPTOR", finding.get("Source", ""), "PIUS Source")
-            nodes.extend([nb, src])
-            edges.extend([_edge(scan["id"], nb["id"], "contains"), _edge(nb["id"], src["id"], "had")])
-    return {"nodes": nodes, "edges": edges}
+    from adapters import pius as pius_adapter
+
+    structured = pius_adapter.to_structured(raw, org=org, command=command)
+    return pius_adapter.to_graph(structured, org=org)
 
 
 def latest_exam_for_scenario(tool: str, scenario_key: str) -> Optional[Tuple[int, Path, Path, Dict[str, Any]]]:
