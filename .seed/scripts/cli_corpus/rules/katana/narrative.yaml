@@ -1,0 +1,7 @@
+tool: katana
+profile: katana_default
+version: 1
+sections:
+  - introduction
+  - urls
+  - appendix

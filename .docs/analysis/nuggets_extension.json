@@ -999,5 +999,19 @@
     "nugget_type": "DESCRIPTOR",
     "nugget_icon": "",
     "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_CRAWL_PROFILE",
+    "nugget_description": "Scan Crawl Profile",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_URL_INPUT_COUNT",
+    "nugget_description": "Scan URL Input Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
   }
 ]
