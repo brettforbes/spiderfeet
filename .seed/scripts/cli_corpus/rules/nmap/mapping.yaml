@@ -1,0 +1,31 @@
+tool: nmap
+capture_family: structured_native
+seed_docs:
+  - .seed/06B_NMAP_Ontology_Update_Ruleset.md
+  - .seed/06_Updates_to_NMAP_Cli_App_Profiling.md
+  - .seed/14_Business_Rules_for_Converting_Structured_Data_to_Graph.md
+scan_head:
+  data_path: scan_data
+  fallback: nmap scan
+hooks:
+  - apply_nmap_hosts
+topology_templates:
+  - scan_head
+  - host_networks_port_service
+  - trace_hop_chain
+mappings:
+  - path: version
+    nugget_id: SCAN_VERSION
+    relation: had
+  - path: startstr
+    nugget_id: SCAN_START
+    relation: had
+  - path: scan_target
+    nugget_id: SCAN_TARGET
+    relation: had
+  - path: finished.summary
+    nugget_id: SCAN_SUMMARY
+    relation: had
+  - path: finished.elapsed
+    nugget_id: SCAN_ELAPSED
+    relation: had
