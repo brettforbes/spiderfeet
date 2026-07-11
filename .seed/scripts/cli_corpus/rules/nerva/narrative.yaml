@@ -1,0 +1,9 @@
+tool: nerva
+profile: nerva_default
+sections:
+  - scan_summary
+  - systems
+  - appendix
+notes: >
+  C4 will expand CDN / indeterminate-origin phrasing. C3 emits a structural
+  appendix covering HOST/CDN qualification after correlation_engine.
