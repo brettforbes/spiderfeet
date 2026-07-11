@@ -13,7 +13,7 @@
 | C Nerva correlation | #908 | C1–C4 (#922–#925) | **Complete** |
 | D Remaining tools + narratives | #909 | D1–D7 (#926–#932) | **Complete** |
 | Phase 4 | — | F1 #950, F2 #949 | **Complete** (structural goldens; byte-lock gated on operator sign-off) |
-| E Thin sfp modules | #910 | E1–E3 (see index) | **In progress** — bridge pilot |
+| E Thin sfp modules | #910 | E1–E3 (#953, #952, #954) | **Complete** — bridge pilot + pattern docs |
 
 ## Acceptance evidence (SPEC-004 program)
 

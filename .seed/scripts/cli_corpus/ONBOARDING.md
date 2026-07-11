@@ -49,7 +49,10 @@ pius, subfinder, httpx, katana, and nuclei.
 Regression: `.tests/test_spec004_narrative_coverage.py` and
 `.tests/test_harvest_adapter_dispatch.py`.
 
-Operator visual review before golden fixtures: `.governance/project/SPEC004_VISUAL_REVIEW_CHECKLIST.md` (R4-01-08 / D7).
+## Second push (Epic E)
+
+`sfp_<app>` modules call `sfp_adapter_bridge.py` after Phase 4 structural goldens.
+Pattern: `.governance/project/SPEC004_SFP_THIN_WRAPPER_PATTERN.md`
 
 ## Nerva narrative phrasing (C4)
 
