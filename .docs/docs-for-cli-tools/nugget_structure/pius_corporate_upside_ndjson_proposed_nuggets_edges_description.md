@@ -26,6 +26,42 @@ Organizational attack-surface findings are grouped under the head company, with 
 - `track.theupside.com.au`
 - `www.theupside.com.au`
 
+## Graph structure (types)
+
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_TARGET_ORG
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| COMPANY_NAME
+  COMPANY_NAME -->|contains| DOMAIN_REGISTRAR
+  CANDIDATE_ENTITY -->|had| PRESEED_TYPE
+  CANDIDATE_ENTITY -->|had| IS_PLACEHOLDER
+  CANDIDATE_ENTITY -->|had| NEEDS_REVIEW
+  COMPANY_NAME -->|contains| LEADS
+  LEADS -->|contains| CANDIDATE_ENTITY
+  COMPANY_NAME -->|contains| CANDIDATE_ENTITY
+  CANDIDATE_ENTITY -->|had| REVIEW_STATUS
+  DOMAIN_NAME -->|had| DISCOVERY_METHOD
+  DOMAIN_NAME -->|had| DOMAIN_NAME_PARENT
+  COMPANY_NAME -->|contains| DOMAINS
+  DOMAINS -->|contains| DOMAIN_NAME
+  COMPANY_NAME -->|contains| DOMAIN_NAME
+  DOMAIN_NAME -->|had| REVIEW_STATUS
+  DOMAIN_NAME -->|had| IS_WILDCARD_DNS
+  DOMAIN_NAME -->|had| WILDCARD_IP_COUNT
+  DOMAIN_NAME -->|had| SUBDOMAIN_ENUMERATION_SUPPRESSED
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
+
+
 ## Appendix
 
 ### Nodes
@@ -199,3 +235,6 @@ Organizational attack-surface findings are grouped under the head company, with 
 - `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
 - `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
 - `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+---
+
+*OS-Intel Scan*

@@ -19,30 +19,30 @@
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_TIMESTAMP--20ca472a-5d65-579c-9e91-8309fd89926e",
-      "nugget_instance_id": "SCAN_TIMESTAMP--20ca472a-5d65-579c-9e91-8309fd89926e",
+      "id": "SCAN_TIMESTAMP--7609b37c-be8c-58d7-9c31-2d14ae6f15fb",
+      "nugget_instance_id": "SCAN_TIMESTAMP--7609b37c-be8c-58d7-9c31-2d14ae6f15fb",
       "nugget_id": "SCAN_TIMESTAMP",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Start Time",
-      "nugget_data": "Sun Jul 12 14:07:32 2026",
+      "nugget_data": "Sun Jul 12 14:14:46 2026",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_END_TIME--f7549deb-7c4b-577b-9228-9adae5b06741",
-      "nugget_instance_id": "SCAN_END_TIME--f7549deb-7c4b-577b-9228-9adae5b06741",
+      "id": "SCAN_END_TIME--b8edf3be-7e84-5fa5-b6e9-45a9c66ac9c9",
+      "nugget_instance_id": "SCAN_END_TIME--b8edf3be-7e84-5fa5-b6e9-45a9c66ac9c9",
       "nugget_id": "SCAN_END_TIME",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan End Time",
-      "nugget_data": "Sun Jul 12 14:07:48 2026",
+      "nugget_data": "Sun Jul 12 14:15:03 2026",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_SUMMARY--7af3c4df-2db3-57ae-bedd-2f38dc6d0bf7",
-      "nugget_instance_id": "SCAN_SUMMARY--7af3c4df-2db3-57ae-bedd-2f38dc6d0bf7",
+      "id": "SCAN_SUMMARY--77e22a1c-6940-5b75-a24e-514530c077b4",
+      "nugget_instance_id": "SCAN_SUMMARY--77e22a1c-6940-5b75-a24e-514530c077b4",
       "nugget_id": "SCAN_SUMMARY",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Summary",
-      "nugget_data": "NetDiscover done at Sun Jul 12 14:07:48 2026; 12 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 16.88 seconds",
+      "nugget_data": "NetDiscover done at Sun Jul 12 14:15:03 2026; 12 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 16.88 seconds",
       "nugget_colour": "#F59E0B"
     },
     {
@@ -522,17 +522,17 @@
     },
     {
       "source": "SCAN_RECORD--383a11f9-246e-54e8-9b07-29e4af03e282",
-      "target": "SCAN_TIMESTAMP--20ca472a-5d65-579c-9e91-8309fd89926e",
+      "target": "SCAN_TIMESTAMP--7609b37c-be8c-58d7-9c31-2d14ae6f15fb",
       "relation": "had"
     },
     {
       "source": "SCAN_RECORD--383a11f9-246e-54e8-9b07-29e4af03e282",
-      "target": "SCAN_END_TIME--f7549deb-7c4b-577b-9228-9adae5b06741",
+      "target": "SCAN_END_TIME--b8edf3be-7e84-5fa5-b6e9-45a9c66ac9c9",
       "relation": "had"
     },
     {
       "source": "SCAN_RECORD--383a11f9-246e-54e8-9b07-29e4af03e282",
-      "target": "SCAN_SUMMARY--7af3c4df-2db3-57ae-bedd-2f38dc6d0bf7",
+      "target": "SCAN_SUMMARY--77e22a1c-6940-5b75-a24e-514530c077b4",
       "relation": "had"
     },
     {

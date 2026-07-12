@@ -11,14 +11,67 @@ Nuclei findings are grouped under each host's SECURITY container with severity b
 
 ## Findings
 
+- `Nginx version detect`
+- `PHP Detect`
+- `Wappalyzer Technology Detection`
 - `nginx-version:https://pentest-ground.com:4280:2026-07-05T21:13:28.5772446+10:00`
 - `php-detect:https://pentest-ground.com:4280:2026-07-05T21:13:28.5816208+10:00`
 - `tech-detect:https://pentest-ground.com:4280:2026-07-05T21:13:46.4923374+10:00`
 - `tech-detect:https://pentest-ground.com:4280:2026-07-05T21:13:46.4928817+10:00`
 
-## Relation notes
+## Graph structure (types)
 
-Seed-defined affected-by and based-on relations are represented with approved SPEC-004 had/contains edges until relation coverage is updated.
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_FINDING_COUNT
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| HOST
+  HOST -->|contains| SECURITY
+  SECURITY -->|contains| TEMPLATES_USED
+  SECURITY -->|contains| FINDINGS
+  FINDINGS -->|contains| NUCLEI_SEVERITY_INFO
+  TEMPLATES_USED -->|contains| NUCLEI_TEMPLATE
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_ID
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_NAME
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_PATH
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_AUTHOR
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_TAGS
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_PROTOCOL
+  NUCLEI_SEVERITY_INFO -->|contains| NUCLEI_FINDING
+  NUCLEI_FINDING -->|had| NUCLEI_TEMPLATE_ID
+  NUCLEI_FINDING -->|had| NUCLEI_MATCHED_AT
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_TIMESTAMP
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_HOST
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_IP
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_PORT
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_URL
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_PROTOCOL
+  NUCLEI_FINDING -->|had| NUCLEI_MATCHER_STATUS
+  NUCLEI_FINDING -->|had| NUCLEI_EXTRACTED_RESULTS
+  NUCLEI_FINDING -->|contains| NUCLEI_VULNERABILITY
+  NUCLEI_VULNERABILITY -->|had| VULNERABILITY_GENERAL
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_DESCRIPTION
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_SEVERITY
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_TAGS
+  NUCLEI_FINDING -->|had| NUCLEI_TEMPLATE
+  HOST -->|contains| SERVICE
+  SERVICE -->|had| NUCLEI_FINDING_PORT
+  SERVICE -->|had| NUCLEI_VULNERABILITY
+  HOST -->|had| NUCLEI_VULNERABILITY
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_VENDOR
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_PRODUCT
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_CPE
+  NUCLEI_FINDING -->|had| NUCLEI_MATCHER_NAME
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
 
 
 ## Appendix
@@ -208,3 +261,6 @@ Seed-defined affected-by and based-on relations are represented with approved SP
 - `NUCLEI_FINDING` `had` `NUCLEI_TEMPLATE`
 - `SERVICE` `had` `NUCLEI_VULNERABILITY`
 - `HOST` `had` `NUCLEI_VULNERABILITY`
+---
+
+*OS-Intel Scan*

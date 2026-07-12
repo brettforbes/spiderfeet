@@ -2,33 +2,84 @@
 
 ## Introduction
 
-This report summarizes a Nerva fingerprint capture after Rulesets A/C/B qualification. **3** system node(s) were emitted (1 HOST, 2 CDN).
+The scan used Nerva. Findings are organised under each host or system's category sections (ENVIRONMENT, NETWORKS, APPLICATIONS, VULNERABILITIES). This report follows Scan → Host/System → Trace → Appendix. This report follows Scan → Host/System (categories) → Trace → Appendix. Section diagrams show ontology types and relations only; values appear in prose, tables, and the appendix.
 
 ## Systems
 
-- `HOST` `scanme.nmap.org:group:1` — classification `standard_host`
-- `CDN` `scanme.nmap.org` — classification `fronted_unknown`
-- `CDN` `praetorian.com` — classification `fronted_unknown`
+- `CDN` `praetorian.com`
+- `CDN` `scanme.nmap.org`
+- `HOST` `scanme.nmap.org:group:1`
 
 ## CDN / edge fronting
 
 This hostname is fronted by a CDN/edge vendor. Origin host count is indeterminate — do not treat edge IP cardinality as origin host count.
 
-Detected vendor(s): **Cloudflare, Netlify**.
-
-Origin host count is **indeterminate** — edge IP cardinality must not be treated as origin host count.
-
-## Origin fingerprint suppression
-
-SOFTWARE_USED nodes tagged ORIGIN_FINGERPRINT_SUPPRESSED are retained for audit only and must not be reported as confirmed origin stack.
-
-Suppressed fingerprint markers present: **1**.
+Origin host count is **indeterminate**.
 
 ## Services
 
 - `ssh`
 - `http`
 - `https`
+
+## Graph structure (types)
+
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| HOST
+  HOST -->|had| HOST_CLASSIFICATION
+  HOST -->|had| CLASSIFICATION_RULE_FIRED
+  HOST -->|contains| NETWORKS
+  HOST -->|contains| APPLICATIONS
+  NETWORKS -->|contains| IPV6_ADDRESS
+  APPLICATIONS -->|contains| SERVICE
+  IPV6_ADDRESS -->|contains| TRANSPORT
+  TRANSPORT -->|contains| PORT
+  SERVICE -->|listens-to| PORT
+  SERVICE -->|had| TLS_ENABLED
+  SERVICE -->|had| SERVICE_BANNER
+  NETWORKS -->|contains| IP_ADDRESS
+  IP_ADDRESS -->|contains| TRANSPORT
+  SCAN_RECORD -->|contains| CDN
+  CDN -->|had| HOST_CLASSIFICATION
+  CDN -->|had| CLASSIFICATION_RULE_FIRED
+  CDN -->|had| CDN_VENDOR
+  CDN -->|had| ORIGIN_HOST_COUNT
+  CDN -->|contains| NETWORKS
+  CDN -->|contains| APPLICATIONS
+  SERVICE -->|had| SERVICE_VERSION
+  SERVICE -->|had| HTTP_STATUS_CODE
+  SERVICE -->|contains| SOFTWARE_USED
+  SOFTWARE_USED -->|had| ORIGIN_FINGERPRINT_SUPPRESSED
+  SERVICE -->|contains| CPE_URL
+  CDN -->|had| EDGE_NODE_ID
+  CDN -->|had| CDN_POP_CODE
+  SERVICE -->|had| CACHE_STATUS
+  SERVICE -->|had| EDGE_DURATION_MS
+  SERVICE -->|had| ORIGIN_DURATION_MS
+  SERVICE -->|had| PROTOCOLS_OFFERED
+  SERVICE -->|had| HSTS_MAX_AGE
+  SERVICE -->|had| HSTS_PRELOAD
+  SERVICE -->|had| HSTS_INCLUDE_SUBDOMAINS
+  SERVICE -->|had| CSP_THIRD_PARTY_DOMAIN
+  SERVICE -->|had| NEL_ACTIVE
+  SOFTWARE_USED -->|had| SOFTWARE_VENDOR
+  SOFTWARE_USED -->|had| SOFTWARE_PRODUCT
+  SOFTWARE_USED -->|had| DETECTION_METHOD
+  SERVICE -->|had| HTTP_REDIRECT_LOCATION
+  SERVICE -->|contains| DOMAIN_NAME
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
+
 
 ## Appendix
 
@@ -260,3 +311,6 @@ Suppressed fingerprint markers present: **1**.
 - `IPV6_ADDRESS` `contains` `TRANSPORT`
 - `CDN` `had` `EDGE_NODE_ID`
 - `SERVICE` `had` `EDGE_DURATION_MS`
+---
+
+*OS-Intel Scan*

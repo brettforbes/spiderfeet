@@ -1370,6 +1370,64 @@ Organizational attack-surface findings are grouped under the head company, with 
 - `zenoss.tools.bbc.co.uk`
 - `zero.vj.tools.bbc.co.uk`
 
+## Graph structure (types)
+
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_TARGET_ORG
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| COMPANY_NAME
+  DOMAIN_NAME -->|had| WIKIDATA_ID
+  DOMAIN_NAME -->|had| CONFIDENCE_SCORE
+  DOMAIN_NAME -->|had| DISCOVERY_METHOD
+  DOMAIN_NAME -->|had| NEEDS_REVIEW
+  DOMAIN_NAME -->|had| DOMAIN_NAME_PARENT
+  COMPANY_NAME -->|contains| AFFILIATES
+  AFFILIATES -->|contains| AFFILIATE_COMPANY_NAME
+  COMPANY_NAME -->|contains| AFFILIATE_COMPANY_NAME
+  AFFILIATE_COMPANY_NAME -->|had| RELATIONSHIP_TYPE
+  COMPANY_NAME -->|contains| DOMAINS
+  DOMAINS -->|contains| DOMAIN_NAME
+  AFFILIATE_COMPANY_NAME -->|contains| DOMAIN_NAME
+  DOMAIN_NAME -->|had| REVIEW_STATUS
+  COMPANY_NAME -->|contains| PAGES
+  DOMAIN_NAME -->|contains| PAGES
+  PAGES -->|contains| PAGE
+  PAGE -->|had| PAGE_URL
+  PAGE -->|had| PAGE_PATH
+  PAGE -->|had| BRAND_NAME
+  CANDIDATE_ENTITY -->|had| WIKIDATA_ID
+  CANDIDATE_ENTITY -->|had| CONFIDENCE_SCORE
+  CANDIDATE_ENTITY -->|had| DISCOVERY_METHOD
+  CANDIDATE_ENTITY -->|had| NEEDS_REVIEW
+  CANDIDATE_ENTITY -->|had| PRESEED_TYPE
+  COMPANY_NAME -->|contains| LEADS
+  LEADS -->|contains| CANDIDATE_ENTITY
+  COMPANY_NAME -->|contains| CANDIDATE_ENTITY
+  CANDIDATE_ENTITY -->|had| REVIEW_STATUS
+  DOMAIN_NAME -->|had| NETWORK_TYPE
+  COMPANY_NAME -->|contains| DOMAIN_REGISTRAR
+  AFFILIATE_COMPANY_NAME -->|had| LEI
+  AFFILIATE_COMPANY_NAME -->|had| JURISDICTION
+  AFFILIATE_COMPANY_NAME -->|had| CONFIDENCE_SCORE
+  AFFILIATE_COMPANY_NAME -->|had| NEEDS_REVIEW
+  CANDIDATE_ENTITY -->|had| LEI
+  CANDIDATE_ENTITY -->|had| JURISDICTION
+  COMPANY_NAME -->|contains| DOMAIN_NAME
+  AFFILIATE_COMPANY_NAME -->|had| DISCOVERY_METHOD
+  AFFILIATE_COMPANY_NAME -->|had| REVIEW_STATUS
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
+
+
 ## Appendix
 
 ### Nodes
@@ -11375,3 +11433,6 @@ Organizational attack-surface findings are grouped under the head company, with 
 - `DOMAINS` `contains` `DOMAIN_NAME`
 - `COMPANY_NAME` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `REVIEW_STATUS`
+---
+
+*OS-Intel Scan*

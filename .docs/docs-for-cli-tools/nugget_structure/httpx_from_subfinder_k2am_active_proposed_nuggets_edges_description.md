@@ -10,9 +10,63 @@ Httpx confirms live web endpoints, HTTP metadata, and technology signals for eac
 - `HOST` `101.0.68.158`
 - `HOST` `170.187.131.209`
 
-## Relation notes
+## Graph structure (types)
 
-Seed-defined dns-resolves-to, cname-alias-to, and derived-from relations are represented with approved SPEC-004 relations in this slice until relation coverage is updated.
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_PROBE_PROFILE
+  SCAN_RECORD -->|had| SCAN_HOST_INPUT_COUNT
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| DOMAIN_NAME
+  SCAN_RECORD -->|had| UPSTREAM_SCENARIO_ID
+  DOMAIN_NAME -->|had| HTTP_LIVENESS_STATUS
+  SCAN_RECORD -->|contains| CDN
+  DOMAIN_NAME -->|had| CDN
+  CDN -->|had| CDN_NAME
+  CDN -->|had| CDN_TYPE
+  CDN -->|contains| NETWORKS
+  NETWORKS -->|contains| IP_ADDRESS
+  IP_ADDRESS -->|contains| TRANSPORT
+  TRANSPORT -->|had| TRANSPORT_PROTOCOL
+  TRANSPORT -->|contains| PORT
+  PORT -->|had| PORT_STATE
+  CDN -->|contains| APPLICATIONS
+  APPLICATIONS -->|contains| SERVICE
+  SERVICE -->|listens-to| PORT
+  SERVICE -->|had| HTTP_STATUS_CODE
+  SERVICE -->|had| CONTENT_TYPE
+  SERVICE -->|had| CONTENT_LENGTH
+  SERVICE -->|had| HTTP_METHOD
+  SERVICE -->|had| HTTP_PATH
+  SERVICE -->|had| RESPONSE_TIME_MS
+  SERVICE -->|had| WORD_COUNT
+  SERVICE -->|had| LINE_COUNT
+  SERVICE -->|had| PROBE_FAILED
+  SERVICE -->|had| PROBE_TIMESTAMP
+  SERVICE -->|had| PAGE_TYPE
+  SERVICE -->|had| PAGE_HASH
+  SERVICE -->|had| IS_ERROR_PAGE
+  SERVICE -->|contains| SOFTWARE_USED
+  DOMAIN_NAME -->|had| DOMAIN_NAME
+  DOMAIN_NAME -->|had| CNAME_TARGET
+  DOMAIN_NAME -->|had| IP_ADDRESS
+  IP_ADDRESS -->|had| PROBE_CONNECTED
+  SCAN_RECORD -->|contains| HOST
+  DOMAIN_NAME -->|had| HOST
+  HOST -->|contains| NETWORKS
+  HOST -->|contains| APPLICATIONS
+  SERVICE -->|had| HTTP_TITLE
+  SOFTWARE_USED -->|had| SOFTWARE_VERSION
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
 
 
 ## Appendix
@@ -226,3 +280,6 @@ Seed-defined dns-resolves-to, cname-alias-to, and derived-from relations are rep
 - `DOMAIN_NAME` `had` `IP_ADDRESS`
 - `IP_ADDRESS` `had` `PROBE_CONNECTED`
 - `DOMAIN_NAME` `had` `HTTP_LIVENESS_STATUS`
+---
+
+*OS-Intel Scan*

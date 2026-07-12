@@ -75,47 +75,9 @@ def to_graph(structured: dict[str, Any] | str, *, target: str | None = None) -> 
 
 
 def to_narrative(graph: dict[str, Any], *, scenario_key: str = "nuclei") -> str:
-    """Build Markdown report with 11B phrasing from narrative.yaml."""
-    from core.narrative_profile import append_standard_appendix, load_narrative_profile
+    from core.narrative_engine import render_narrative
 
-    profile = load_narrative_profile(RULES_DIR / "nuclei" / "narrative.yaml")
-    phrasing = profile.get("phrasing") or {}
-    nodes = graph.get("nodes") or []
-    hosts = [n for n in nodes if n.get("nugget_id") == "HOST"]
-    findings = [n for n in nodes if n.get("nugget_id") == "NUCLEI_FINDING"]
-    templates = [n for n in nodes if n.get("nugget_id") == "NUCLEI_TEMPLATE"]
-
-    lines = [
-        f"# Nuclei scan narrative — `{scenario_key}`",
-        "",
-        "## Introduction",
-        "",
-        (phrasing.get("introduction") or "").strip()
-        or (
-            f"This report summarizes Nuclei vulnerability scan output with **{len(hosts)}** host(s), "
-            f"**{len(findings)}** finding(s), and **{len(templates)}** template(s)."
-        ),
-        "",
-        "## Hosts",
-        "",
-    ]
-    for host in sorted(hosts, key=lambda n: str(n.get("nugget_data"))):
-        lines.append(f"- `{host.get('nugget_data')}`")
-    if not hosts:
-        lines.append("- (none)")
-
-    lines.extend(["", "## Findings", ""])
-    for finding in sorted(findings, key=lambda n: str(n.get("nugget_data"))):
-        lines.append(f"- `{finding.get('nugget_data')}`")
-    if not findings:
-        lines.append("- (none)")
-
-    deferral = (phrasing.get("relation_deferral") or "").strip()
-    if deferral:
-        lines.extend(["", "## Relation notes", "", deferral, ""])
-
-    append_standard_appendix(lines, graph)
-    return "\n".join(lines).strip() + "\n"
+    return render_narrative(graph, tool="nuclei", scenario_key=scenario_key)
 
 
 def build_outputs(

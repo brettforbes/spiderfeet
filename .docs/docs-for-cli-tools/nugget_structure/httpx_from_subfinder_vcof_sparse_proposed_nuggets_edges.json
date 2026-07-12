@@ -136,12 +136,12 @@
       "nugget_colour": "#14B8A6"
     },
     {
-      "id": "IPV6_ADDRESS--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
-      "nugget_instance_id": "IPV6_ADDRESS--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
-      "nugget_id": "IPV6_ADDRESS",
+      "id": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "nugget_instance_id": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "nugget_id": "IP_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "IP Address",
-      "nugget_data": "2606:4700:20::681a:623",
+      "nugget_data": "104.26.6.35",
       "nugget_colour": "#3B82F6"
     },
     {
@@ -433,15 +433,6 @@
       "nugget_colour": "#F97316"
     },
     {
-      "id": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
-      "nugget_instance_id": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
-      "nugget_id": "IP_ADDRESS",
-      "nugget_type": "ENTITY",
-      "nugget_description": "IP Address",
-      "nugget_data": "104.26.6.35",
-      "nugget_colour": "#3B82F6"
-    },
-    {
       "id": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
       "nugget_instance_id": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
       "nugget_id": "PROBE_CONNECTED",
@@ -556,11 +547,11 @@
     },
     {
       "source": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
-      "target": "IPV6_ADDRESS--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
+      "target": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
       "relation": "contains"
     },
     {
-      "source": "IPV6_ADDRESS--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
+      "source": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
       "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "relation": "contains"
     },

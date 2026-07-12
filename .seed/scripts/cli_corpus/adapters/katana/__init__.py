@@ -70,34 +70,9 @@ def to_graph(structured: dict[str, Any] | str, *, target: str | None = None) -> 
 
 
 def to_narrative(graph: dict[str, Any], *, scenario_key: str = "katana") -> str:
-    """Build Markdown report from narrative.yaml profile."""
-    from core.narrative_profile import append_standard_appendix, load_narrative_profile
+    from core.narrative_engine import render_narrative
 
-    profile = load_narrative_profile(RULES_DIR / "katana" / "narrative.yaml")
-    phrasing = profile.get("phrasing") or {}
-    nodes = graph.get("nodes") or []
-    urls = [n for n in nodes if n.get("nugget_id") == "LINKED_URL_INTERNAL"]
-    domains = [n for n in nodes if n.get("nugget_id") == "DOMAIN_NAME"]
-    lines = [
-        f"# Katana crawl narrative — `{scenario_key}`",
-        "",
-        "## Introduction",
-        "",
-        (phrasing.get("introduction") or "").strip()
-        or (
-            f"This report summarizes Katana crawl output with **{len(urls)}** discovered URL "
-            f"node(s) across **{len(domains)}** domain node(s)."
-        ),
-        "",
-        "## URLs",
-        "",
-    ]
-    for url in sorted(urls, key=lambda n: str(n.get("nugget_data"))):
-        lines.append(f"- `{url.get('nugget_data')}`")
-    if not urls:
-        lines.append("- (none)")
-    append_standard_appendix(lines, graph)
-    return "\n".join(lines).strip() + "\n"
+    return render_narrative(graph, tool="katana", scenario_key=scenario_key)
 
 
 def build_outputs(raw: str | dict[str, Any], *, scenario_key: str = "katana", target: str | None = None, command: str | None = None) -> dict[str, Any]:

@@ -1,4 +1,4 @@
-# Katana crawl narrative — `from_httpx_vcof_sparse`
+# Katana scan narrative — `from_httpx_vcof_sparse`
 
 ## Introduction
 
@@ -7,6 +7,27 @@ Katana emits internal linked URLs, host domains, and HTTP status/method descript
 ## URLs
 
 - (none)
+
+## Graph structure (types)
+
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_CRAWL_PROFILE
+  SCAN_RECORD -->|had| SCAN_URL_INPUT_COUNT
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| DOMAIN_NAME
+  SCAN_RECORD -->|had| UPSTREAM_SCENARIO_ID
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
+
 
 ## Appendix
 
@@ -36,3 +57,6 @@ Katana emits internal linked URLs, host domains, and HTTP status/method descript
 - `SCAN_RECORD` `had` `SCAN_TOOL`
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `SCAN_RECORD` `had` `UPSTREAM_SCENARIO_ID`
+---
+
+*OS-Intel Scan*

@@ -11,15 +11,69 @@ Nuclei findings are grouped under each host's SECURITY container with severity b
 
 ## Findings
 
+- `GraphQL API Detection`
+- `GraphQL Alias-based Batching`
+- `GraphQL Array-based Batching`
+- `GraphQL CSRF / GET method`
+- `GraphQL Field Suggestion Information Disclosure`
 - `graphql-alias-batching:https://pentest-ground.com:5013/graphql:2026-07-05T21:20:55.0820086+10:00`
 - `graphql-array-batching:https://pentest-ground.com:5013/graphql:2026-07-05T21:20:54.8728928+10:00`
 - `graphql-detect:https://pentest-ground.com:5013/graphiql:2026-07-05T21:20:54.9333934+10:00`
 - `graphql-field-suggestion:https://pentest-ground.com:5013/graphql:2026-07-05T21:20:54.9665974+10:00`
 - `graphql-get-method:https://pentest-ground.com:5013/graphql?query={__typename}:2026-07-05T21:20:58.3170497+10:00`
 
-## Relation notes
+## Graph structure (types)
 
-Seed-defined affected-by and based-on relations are represented with approved SPEC-004 had/contains edges until relation coverage is updated.
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_FINDING_COUNT
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| HOST
+  HOST -->|contains| SECURITY
+  SECURITY -->|contains| TEMPLATES_USED
+  SECURITY -->|contains| FINDINGS
+  FINDINGS -->|contains| NUCLEI_SEVERITY_INFO
+  TEMPLATES_USED -->|contains| NUCLEI_TEMPLATE
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_ID
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_NAME
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_PATH
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_AUTHOR
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_TAGS
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_PROTOCOL
+  NUCLEI_SEVERITY_INFO -->|contains| NUCLEI_FINDING
+  NUCLEI_FINDING -->|had| NUCLEI_TEMPLATE_ID
+  NUCLEI_FINDING -->|had| NUCLEI_MATCHED_AT
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_TIMESTAMP
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_HOST
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_IP
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_PORT
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_URL
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_PROTOCOL
+  NUCLEI_FINDING -->|had| NUCLEI_MATCHER_STATUS
+  NUCLEI_FINDING -->|contains| NUCLEI_VULNERABILITY
+  NUCLEI_VULNERABILITY -->|had| VULNERABILITY_GENERAL
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_DESCRIPTION
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_REMEDIATION
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_SEVERITY
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_TAGS
+  NUCLEI_FINDING -->|had| NUCLEI_TEMPLATE
+  HOST -->|contains| SERVICE
+  SERVICE -->|had| NUCLEI_FINDING_PORT
+  SERVICE -->|had| NUCLEI_VULNERABILITY
+  HOST -->|had| NUCLEI_VULNERABILITY
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_VENDOR
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_PRODUCT
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_CPE
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
 
 
 ## Appendix
@@ -265,3 +319,6 @@ However, an attacker can leverage this feature to evade many security measures, 
 - `NUCLEI_FINDING` `had` `NUCLEI_TEMPLATE`
 - `SERVICE` `had` `NUCLEI_VULNERABILITY`
 - `HOST` `had` `NUCLEI_VULNERABILITY`
+---
+
+*OS-Intel Scan*
