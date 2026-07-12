@@ -165,11 +165,8 @@ def _graph_deferred_fields(manifest: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _scenario_complete(flags: Dict[str, bool], manifest: Dict[str, Any]) -> bool:
-    """Text-only graph_deferred scenarios are complete when text is captured."""
-    if manifest.get("graph_deferred"):
-        if not flags.get("has_structured"):
-            return bool(flags.get("has_text"))
-        return bool(flags.get("has_text")) and bool(flags.get("has_structured"))
+    """Graph + narrative are mandatory; graph_deferred is not a valid completion path."""
+    _ = manifest  # manifest retained for API signature; graph_deferred ignored
     return all(flags.values())
 
 

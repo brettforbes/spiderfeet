@@ -88,16 +88,17 @@ def audit_tool(tool: str) -> list[dict]:
         graph_path, graph_tried = _resolve_graph(tool, scenario_key, scenario_id)
         md_path, md_tried = _resolve_markdown(tool, scenario_key, scenario_id)
         deferred = bool(manifest.get("graph_deferred"))
-        if not has_structured and has_text and not graph_path and not md_path:
-            classification = "deferred" if deferred else "missing-text-only"
+        if not graph_path or not md_path:
+            if has_structured:
+                classification = "missing-both" if not graph_path and not md_path else (
+                    "missing-markdown" if graph_path and not md_path else "missing-graph"
+                )
+            elif has_text:
+                classification = "missing-both"
+            else:
+                classification = "partial"
         elif graph_path and md_path:
             classification = "ok"
-        elif graph_path and not md_path:
-            classification = "missing-markdown"
-        elif not graph_path and md_path:
-            classification = "missing-graph"
-        elif not graph_path and not md_path and has_structured:
-            classification = "missing-both"
         else:
             classification = "partial"
         rows.append(

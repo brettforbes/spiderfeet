@@ -1,1 +1,0 @@
-nerva -t scanme.nmap.org:80 -w 5000

@@ -1,0 +1,92 @@
+tool: nerva
+display_name: Nerva
+seed_docs:
+  - .seed/05_Onotology_for_Nuggets.md
+  - .seed/07_Nerva_Scan_Record_Host_Correlation_Rulesets.md
+  - .seed/07B_Nerva_Ontology_Rules.md
+generator: .seed/scripts/cli_corpus/adapters/nerva
+artifacts:
+  graph: nerva_<scenario_id>_proposed_nuggets_edges.json
+  narrative: nerva_<scenario_id>_proposed_nuggets_edges_description.md
+  output_dir: .docs/docs-for-cli-tools/nugget_structure
+narrative:
+  engine: .seed/scripts/cli_corpus/core/narrative_engine.py
+  method: render_narrative
+patterns:
+  - id: scan_head
+    title: Scan head
+    prose: >
+      Every graph has one SCAN_RECORD with scan descriptors (SCAN_TARGET, SCAN_START,
+      SCAN_ELAPSED, SCAN_EXIT_STATUS) via had from the JSON bundle metadata.
+  - id: host_networks_port_service
+    title: Per-host service tree
+    prose: >
+      Each JSON record maps to HOST (or CDN when edge markers justify reclassification),
+      NETWORKS port chain, and APPLICATIONS SERVICE with version and technology descriptors.
+    bullets:
+      - PORT_PROTOCOL carries tcp/udp transport.
+      - SERVICE listens-to PORT; SERVICE_VERSION carries banner/CPE when present.
+      - correlate_nerva_records may reclassify HOST to CDN for Cloudflare-style edges.
+specialty_sections:
+  - title: CDN edge reclassification
+    pattern: host_networks_port_service
+    prose: >
+      When response headers and technology markers indicate a CDN edge, the endpoint may emit
+      CDN instead of HOST while preserving NETWORKS and APPLICATIONS facts.
+    bullets:
+      - CDN descriptors include PROVIDER_HOSTING and edge timing headers when present.
+scenarios:
+  - id: tcp_http_rich_json
+    structures: HOST + PORT/SERVICE HTTP + technologies
+  - id: tcp_ssh_misconfigs_json
+    structures: HOST + SSH SERVICE + misconfig descriptors
+  - id: tcp_https_praetorian_json
+    structures: HOST or CDN + TLS HTTPS metadata
+  - id: tcp_list_file_json
+    structures: Multi-target HOST trees
+  - id: tcp_fast_praetorian_json
+    structures: Fast-mode fingerprint
+  - id: tcp_closed_clean_miss
+    structures: SCAN head only; empty records[]
+field_mapping:
+  - path: target
+    nugget_id: SCAN_TARGET
+  - path: started_at
+    nugget_id: SCAN_START
+  - path: duration_s
+    nugget_id: SCAN_ELAPSED
+  - path: exit_code
+    nugget_id: SCAN_EXIT_STATUS
+  - path: records[].host
+    nugget_id: HOST or CDN
+    notes: correlation engine reclassifies CDN edges
+  - path: records[].ip
+    nugget_id: IP_ADDRESS
+    notes: under NETWORKS via classify_ip
+  - path: records[].port
+    nugget_id: PORT
+  - path: records[].proto
+    nugget_id: PORT_PROTOCOL
+  - path: records[].service
+    nugget_id: SERVICE
+  - path: records[].version
+    nugget_id: SERVICE_VERSION
+  - path: records[].technologies[]
+    nugget_id: WEBSERVER_TECHNOLOGY
+    notes: had on SERVICE
+proposed_nuggets:
+  - nugget_id: CDN
+    type: ENTITY
+    parent: SCAN_RECORD
+    source: correlation markers
+    relation: contains
+  - nugget_id: PROVIDER_HOSTING
+    type: DESCRIPTOR
+    parent: CDN or SERVICE
+    source: response headers
+    relation: had
+review_notes:
+  - Requires open ports from upstream Nmap/Naabu discovery.
+  - Structured capture uses --json only; text pane is derived from records[].
+  - Misconfiguration findings attach as descriptors on SERVICE when plugins emit them.
+cross_link: ../_Current_Ontology.md

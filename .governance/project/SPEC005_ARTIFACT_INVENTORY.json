@@ -994,20 +994,6 @@
     "markdown_resolved": ".docs/docs-for-cli-tools/nugget_structure/nerva_tcp_closed_clean_miss_proposed_nuggets_edges_description.md"
   },
   {
-    "tool": "nerva",
-    "exam_id": 7,
-    "scenario_id": "tcp_http_human_text",
-    "scenario_key": "tcp_http_human",
-    "has_structured": false,
-    "has_text": true,
-    "has_graph": false,
-    "has_markdown": false,
-    "graph_deferred": true,
-    "classification": "deferred",
-    "graph_resolved": "",
-    "markdown_resolved": ""
-  },
-  {
     "tool": "pius",
     "exam_id": 1,
     "scenario_id": "crt_praetorian_ndjson",
@@ -1090,20 +1076,6 @@
     "classification": "ok",
     "graph_resolved": ".docs/docs-for-cli-tools/nugget_structure/pius_corporate_k2am_ndjson_proposed_nuggets_edges.json",
     "markdown_resolved": ".docs/docs-for-cli-tools/nugget_structure/pius_corporate_k2am_ndjson_proposed_nuggets_edges_description.md"
-  },
-  {
-    "tool": "pius",
-    "exam_id": 7,
-    "scenario_id": "corporate_bbc_terminal",
-    "scenario_key": "corporate_bbc_terminal",
-    "has_structured": false,
-    "has_text": true,
-    "has_graph": false,
-    "has_markdown": false,
-    "graph_deferred": true,
-    "classification": "deferred",
-    "graph_resolved": "",
-    "markdown_resolved": ""
   },
   {
     "tool": "subfinder",
