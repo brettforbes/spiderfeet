@@ -1002,8 +1002,8 @@
     "has_text": true,
     "has_graph": false,
     "has_markdown": false,
-    "graph_deferred": false,
-    "classification": "missing-text-only",
+    "graph_deferred": true,
+    "classification": "deferred",
     "graph_resolved": "",
     "markdown_resolved": ""
   },
@@ -1100,8 +1100,8 @@
     "has_text": true,
     "has_graph": false,
     "has_markdown": false,
-    "graph_deferred": false,
-    "classification": "missing-text-only",
+    "graph_deferred": true,
+    "classification": "deferred",
     "graph_resolved": "",
     "markdown_resolved": ""
   },

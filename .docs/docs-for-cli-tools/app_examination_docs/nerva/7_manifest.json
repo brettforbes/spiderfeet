@@ -14,5 +14,7 @@
   "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nerva\\7_output_text.txt",
   "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\nerva\\7_command.txt",
   "tool_manifest_version": 3,
-  "review_status": "pending"
+  "review_status": "pending",
+  "graph_deferred": true,
+  "graph_deferred_reason": "Paired TUI scenario; structured JSON sibling tcp_http_rich_json supplies graph and narrative. TextFSM derivation deferred."
 }
