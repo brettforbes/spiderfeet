@@ -7,6 +7,7 @@ from typing import Any
 
 from adapters.pius.classify import normalize_value
 from core.graph_builder import GraphBuilder, nugget_node
+from core.ip_classify import ip_nugget_node
 
 
 def _add_descriptor(
@@ -94,7 +95,7 @@ def apply_subfinder_records(builder: GraphBuilder, scan_id: str, doc: dict[str, 
 
         ip = str(record.get("ip") or "").strip()
         if ip:
-            ip_node = builder.add_node(nugget_node("IP_ADDRESS", ip))
+            ip_node = builder.add_node(ip_nugget_node(ip))
             builder.add_edge(domain["id"], ip_node["id"], "had")
             _add_descriptor(builder, domain["id"], "LIVENESS_STATUS", "confirmed")
             if ip_fan_in[ip] >= 2:

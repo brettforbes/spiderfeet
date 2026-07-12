@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from core.graph_builder import GraphBuilder, nugget_node
+from core.ip_classify import ip_nugget_node
 
 
 def _add_descriptor(
@@ -53,7 +54,7 @@ def apply_host_scan_head(
         _add_descriptor(builder, host_node["id"], "INTERNET_NAME", name)
 
     networks = builder.add_node(nugget_node("NETWORKS", f"networks:{host_key}"))
-    ip_node = builder.add_node(nugget_node("IP_ADDRESS", host_key, description="IP Address"))
+    ip_node = builder.add_node(ip_nugget_node(host_key, description="IP Address"))
     builder.add_edge(host_node["id"], networks["id"], "contains")
     builder.add_edge(networks["id"], ip_node["id"], "contains")
 

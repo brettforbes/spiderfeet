@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 
 from core.correlation_engine import RecordCorrelationResult, correlate_nerva_records
 from core.graph_builder import GraphBuilder, nugget_node
+from core.ip_classify import ip_nugget_node
 
 _CDN_LAYER_MARKERS = frozenset(
     {
@@ -192,7 +193,7 @@ def _attach_record(
 ) -> None:
     ip = str(record.get("ip") or "")
     if ip and ip not in system_ctx["ips"]:
-        ip_node = builder.add_node(nugget_node("IP_ADDRESS", ip, description="IP Address"))
+        ip_node = builder.add_node(ip_nugget_node(ip, description="IP Address"))
         builder.add_edge(system_ctx["networks"]["id"], ip_node["id"], "contains")
         system_ctx["ips"].add(ip)
 
@@ -215,7 +216,7 @@ def _attach_record(
             transport_node = builder.add_node(
                 nugget_node("TRANSPORT", transport, description="Transport Protocol")
             )
-            ip_id = builder.add_node(nugget_node("IP_ADDRESS", ip))["id"]
+            ip_id = builder.add_node(ip_nugget_node(ip))["id"]
             builder.add_edge(ip_id, transport_node["id"], "contains")
             builder.add_edge(transport_node["id"], port_node["id"], "contains")
         builder.add_edge(service["id"], port_node["id"], "listens-to")
