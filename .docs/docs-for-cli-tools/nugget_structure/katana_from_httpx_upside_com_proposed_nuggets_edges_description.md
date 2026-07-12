@@ -1,4 +1,4 @@
-# Katana crawl narrative — `from_httpx_upside_com`
+# Katana scan narrative — `from_httpx_upside_com`
 
 ## Introduction
 
@@ -3376,6 +3376,32 @@ Katana emits internal linked URLs, host domains, and HTTP status/method descript
 - `https://www.theupside.com/wishlist.php?action=addwishlist&product_id=4929`
 - `https://www.theupside.com/wishlist.php?action=addwishlist&product_id=4931`
 - `https://www.youtube.com/user/TheUpsideChannel/`
+
+## Graph structure (types)
+
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_CRAWL_PROFILE
+  SCAN_RECORD -->|had| SCAN_URL_INPUT_COUNT
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| DOMAIN_NAME
+  SCAN_RECORD -->|had| UPSTREAM_SCENARIO_ID
+  SCAN_RECORD -->|contains| LINKED_URL_INTERNAL
+  DOMAIN_NAME -->|contains| DOMAIN_NAME
+  DOMAIN_NAME -->|contains| LINKED_URL_INTERNAL
+  LINKED_URL_INTERNAL -->|had| HTTP_METHOD
+  LINKED_URL_INTERNAL -->|had| HTTP_STATUS_CODE
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
+
 
 ## Appendix
 
@@ -18009,3 +18035,6 @@ Katana emits internal linked URLs, host domains, and HTTP status/method descript
 - `SCAN_RECORD` `contains` `LINKED_URL_INTERNAL`
 - `DOMAIN_NAME` `contains` `LINKED_URL_INTERNAL`
 - `LINKED_URL_INTERNAL` `had` `HTTP_METHOD`
+---
+
+*OS-Intel Scan*

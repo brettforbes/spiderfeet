@@ -14,12 +14,78 @@ Nuclei findings are grouped under each host's SECURITY container with severity b
 - `CVE-2018-2894:https://pentest-ground.com:7001/ws_utc/css/config/keystore/1783251120029_3G5AZCcZT5qYVA1PEoiJkkonI4L.jsp:2026-07-05T21:32:01.5655399+10:00`
 - `CVE-2020-14883:https://pentest-ground.com:7001/console/images/%252e%252e%252fconsole.portal:2026-07-05T21:32:10.22518+10:00`
 - `CVE-2020-2551:https://pentest-ground.com:7001/console/login/LoginForm.jsp:2026-07-05T21:34:15.3934195+10:00`
+- `Detect Weblogic`
+- `Oracle Fusion Middleware WebLogic Server Administration Console - Remote Code Execution`
+- `Oracle WebLogic Login Panel - Detect`
+- `Oracle WebLogic Server - Remote Code Execution`
 - `weblogic-detect:https://pentest-ground.com:7001/3G5AZEk1KMyWTecav2FwtoVBKD4:2026-07-05T21:34:34.1626247+10:00`
 - `weblogic-login:https://pentest-ground.com:7001/console/login/LoginForm.jsp:2026-07-05T21:34:15.3944344+10:00`
 
-## Relation notes
+## Graph structure (types)
 
-Seed-defined affected-by and based-on relations are represented with approved SPEC-004 had/contains edges until relation coverage is updated.
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_FINDING_COUNT
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| HOST
+  HOST -->|contains| SECURITY
+  SECURITY -->|contains| TEMPLATES_USED
+  SECURITY -->|contains| FINDINGS
+  FINDINGS -->|contains| NUCLEI_SEVERITY_CRITICAL
+  TEMPLATES_USED -->|contains| NUCLEI_TEMPLATE
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_ID
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_NAME
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_PATH
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_AUTHOR
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_TAGS
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_PROTOCOL
+  NUCLEI_SEVERITY_CRITICAL -->|contains| NUCLEI_FINDING
+  NUCLEI_FINDING -->|had| NUCLEI_TEMPLATE_ID
+  NUCLEI_FINDING -->|had| NUCLEI_MATCHED_AT
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_TIMESTAMP
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_HOST
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_IP
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_PORT
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_URL
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_PROTOCOL
+  NUCLEI_FINDING -->|had| NUCLEI_MATCHER_STATUS
+  NUCLEI_FINDING -->|contains| NUCLEI_VULNERABILITY
+  NUCLEI_VULNERABILITY -->|had| VULNERABILITY_GENERAL
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_DESCRIPTION
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_IMPACT
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_REMEDIATION
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_SEVERITY
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_VENDOR
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_PRODUCT
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_TAGS
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_CPE
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_CVSS_METRICS
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_CVSS_SCORE
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_EPSS_SCORE
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_EPSS_PERCENTILE
+  NUCLEI_VULNERABILITY -->|had| VULNERABILITY_CVE_CRITICAL
+  NUCLEI_FINDING -->|had| NUCLEI_TEMPLATE
+  HOST -->|contains| SERVICE
+  SERVICE -->|had| NUCLEI_FINDING_PORT
+  SERVICE -->|had| NUCLEI_VULNERABILITY
+  HOST -->|had| NUCLEI_VULNERABILITY
+  FINDINGS -->|contains| NUCLEI_SEVERITY_HIGH
+  NUCLEI_SEVERITY_HIGH -->|contains| NUCLEI_FINDING
+  NUCLEI_VULNERABILITY -->|had| VULNERABILITY_CVE_HIGH
+  FINDINGS -->|contains| NUCLEI_SEVERITY_INFO
+  NUCLEI_SEVERITY_INFO -->|contains| NUCLEI_FINDING
+  NUCLEI_FINDING -->|had| NUCLEI_EXTRACTED_RESULTS
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_CWE
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
 
 
 ## Appendix
@@ -330,3 +396,6 @@ Seed-defined affected-by and based-on relations are represented with approved SP
 - `NUCLEI_FINDING` `had` `NUCLEI_TEMPLATE`
 - `SERVICE` `had` `NUCLEI_VULNERABILITY`
 - `HOST` `had` `NUCLEI_VULNERABILITY`
+---
+
+*OS-Intel Scan*

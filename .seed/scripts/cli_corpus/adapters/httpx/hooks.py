@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 
 from adapters.pius.classify import normalize_value
 from core.graph_builder import GraphBuilder, nugget_node
-from core.ip_classify import ip_nugget_node
+from core.ip_classify import classify_ip, ip_nugget_node
 
 
 def _add_descriptor(builder: GraphBuilder, parent_id: str, nugget_id: str, value: Any) -> None:
@@ -67,10 +67,13 @@ def _add_network_chain(
     """10 H2 — Nmap-style NETWORKS -> IP_ADDRESS -> TRANSPORT -> PORT chain."""
     networks = builder.add_node(nugget_node("NETWORKS", "NETWORKS", nugget_type="CATEGORY"))
     builder.add_edge(system_id, networks["id"], "contains")
-    ip_node = builder.add_node(ip_nugget_node(ip_value))
-    builder.add_edge(networks["id"], ip_node["id"], "contains")
+    transport_parent = networks["id"]
+    if ip_value and classify_ip(ip_value):
+        ip_node = builder.add_node(ip_nugget_node(ip_value))
+        builder.add_edge(networks["id"], ip_node["id"], "contains")
+        transport_parent = ip_node["id"]
     transport = builder.add_node(nugget_node("TRANSPORT", "tcp"))
-    builder.add_edge(ip_node["id"], transport["id"], "contains")
+    builder.add_edge(transport_parent, transport["id"], "contains")
     _add_descriptor(builder, transport["id"], "TRANSPORT_PROTOCOL", "tcp")
     port = builder.add_node(nugget_node("PORT", port_value, nugget_type="SUBENTITY"))
     builder.add_edge(transport["id"], port["id"], "contains")
@@ -164,8 +167,12 @@ def apply_httpx_records(builder: GraphBuilder, scan_id: str, doc: dict[str, Any]
             _add_descriptor(builder, system["id"], "CDN_NAME", record.get("cdn_name"))
             _add_descriptor(builder, system["id"], "CDN_TYPE", record.get("cdn_type"))
 
-        ip_value = str(record.get("host") or record.get("ip") or "").strip()
-        port = _add_network_chain(builder, system["id"], ip_value or _system_key(record, domain_value), _port_value(record))
+        ip_value = str(record.get("ip") or "").strip()
+        if not ip_value:
+            a_records = record.get("a") or []
+            if a_records:
+                ip_value = str(a_records[0]).strip()
+        port = _add_network_chain(builder, system["id"], ip_value, _port_value(record))
         _add_service_chain(builder, system["id"], port["id"], record)
 
         for cname in record.get("cname") or []:

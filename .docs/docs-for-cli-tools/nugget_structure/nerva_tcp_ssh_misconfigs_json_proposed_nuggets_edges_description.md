@@ -2,11 +2,11 @@
 
 ## Introduction
 
-This report summarizes a Nerva fingerprint capture after Rulesets A/C/B qualification. **1** system node(s) were emitted (1 HOST, 0 CDN).
+The scan used Nerva. Findings are organised under each host or system's category sections (ENVIRONMENT, NETWORKS, APPLICATIONS, VULNERABILITIES). This report follows Scan → Host/System → Trace → Appendix. This report follows Scan → Host/System (categories) → Trace → Appendix. Section diagrams show ontology types and relations only; values appear in prose, tables, and the appendix.
 
 ## Systems
 
-- `HOST` `scanme.nmap.org:group:1` — classification `standard_host`
+- `HOST` `scanme.nmap.org:group:1`
 
 ## CDN / edge fronting
 
@@ -15,6 +15,37 @@ Durable machine identity evidence supports a standard (non-fronted) host classif
 ## Services
 
 - `ssh`
+
+## Graph structure (types)
+
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| HOST
+  HOST -->|had| HOST_CLASSIFICATION
+  HOST -->|had| CLASSIFICATION_RULE_FIRED
+  HOST -->|contains| NETWORKS
+  HOST -->|contains| APPLICATIONS
+  NETWORKS -->|contains| IPV6_ADDRESS
+  APPLICATIONS -->|contains| SERVICE
+  IPV6_ADDRESS -->|contains| TRANSPORT
+  TRANSPORT -->|contains| PORT
+  SERVICE -->|listens-to| PORT
+  SERVICE -->|had| TLS_ENABLED
+  SERVICE -->|had| SERVICE_BANNER
+  NETWORKS -->|contains| IP_ADDRESS
+  IP_ADDRESS -->|contains| TRANSPORT
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
+
 
 ## Appendix
 
@@ -62,3 +93,6 @@ Durable machine identity evidence supports a standard (non-fronted) host classif
 - `SERVICE` `had` `SERVICE_BANNER`
 - `NETWORKS` `contains` `IP_ADDRESS`
 - `IP_ADDRESS` `contains` `TRANSPORT`
+---
+
+*OS-Intel Scan*

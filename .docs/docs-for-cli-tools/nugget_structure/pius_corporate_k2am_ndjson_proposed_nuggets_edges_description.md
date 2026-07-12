@@ -12,6 +12,23 @@ Organizational attack-surface findings are grouped under the head company, with 
 
 - (none)
 
+## Graph structure (types)
+
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_TARGET_ORG
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| COMPANY_NAME
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
+
+
 ## Appendix
 
 ### Nodes
@@ -32,3 +49,6 @@ Organizational attack-surface findings are grouped under the head company, with 
 - `SCAN_RECORD` `had` `SCAN_START`
 - `SCAN_RECORD` `had` `SCAN_TOOL`
 - `SCAN_RECORD` `contains` `COMPANY_NAME`
+---
+
+*OS-Intel Scan*

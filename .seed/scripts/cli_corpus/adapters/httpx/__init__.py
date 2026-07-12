@@ -75,41 +75,9 @@ def to_graph(structured: dict[str, Any] | str, *, target: str | None = None) -> 
 
 
 def to_narrative(graph: dict[str, Any], *, scenario_key: str = "httpx") -> str:
-    """Build Markdown report with relation-deferral phrasing from narrative.yaml."""
-    from core.narrative_profile import append_standard_appendix, load_narrative_profile
+    from core.narrative_engine import render_narrative
 
-    profile = load_narrative_profile(RULES_DIR / "httpx" / "narrative.yaml")
-    phrasing = profile.get("phrasing") or {}
-    nodes = graph.get("nodes") or []
-    hosts = [n for n in nodes if n.get("nugget_id") == "HOST"]
-    cdns = [n for n in nodes if n.get("nugget_id") == "CDN"]
-    services = [n for n in nodes if n.get("nugget_id") == "SERVICE"]
-
-    lines = [
-        f"# Httpx scan narrative — `{scenario_key}`",
-        "",
-        "## Introduction",
-        "",
-        (phrasing.get("introduction") or "").strip()
-        or (
-            f"This report summarizes Httpx live-web probe output with **{len(hosts)}** HOST, "
-            f"**{len(cdns)}** CDN, and **{len(services)}** service node(s)."
-        ),
-        "",
-        "## Systems",
-        "",
-    ]
-    for node in sorted(hosts + cdns, key=lambda n: (n.get("nugget_id", ""), n.get("nugget_data", ""))):
-        lines.append(f"- `{node.get('nugget_id')}` `{node.get('nugget_data')}`")
-    if not hosts and not cdns:
-        lines.append("- (none)")
-
-    deferral = (phrasing.get("relation_deferral") or "").strip()
-    if deferral:
-        lines.extend(["", "## Relation notes", "", deferral, ""])
-
-    append_standard_appendix(lines, graph)
-    return "\n".join(lines).strip() + "\n"
+    return render_narrative(graph, tool="httpx", scenario_key=scenario_key)
 
 
 def build_outputs(

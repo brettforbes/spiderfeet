@@ -8,9 +8,26 @@ Httpx confirms live web endpoints, HTTP metadata, and technology signals for eac
 
 - (none)
 
-## Relation notes
+## Graph structure (types)
 
-Seed-defined dns-resolves-to, cname-alias-to, and derived-from relations are represented with approved SPEC-004 relations in this slice until relation coverage is updated.
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_PROBE_PROFILE
+  SCAN_RECORD -->|had| SCAN_HOST_INPUT_COUNT
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| DOMAIN_NAME
+  SCAN_RECORD -->|had| UPSTREAM_SCENARIO_ID
+  DOMAIN_NAME -->|had| HTTP_LIVENESS_STATUS
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
 
 
 ## Appendix
@@ -43,3 +60,6 @@ Seed-defined dns-resolves-to, cname-alias-to, and derived-from relations are rep
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `SCAN_RECORD` `had` `UPSTREAM_SCENARIO_ID`
 - `DOMAIN_NAME` `had` `HTTP_LIVENESS_STATUS`
+---
+
+*OS-Intel Scan*

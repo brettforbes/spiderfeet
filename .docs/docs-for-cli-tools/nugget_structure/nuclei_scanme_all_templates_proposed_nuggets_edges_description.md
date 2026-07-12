@@ -11,7 +11,23 @@ Nuclei findings are grouped under each host's SECURITY container with severity b
 
 ## Findings
 
+- `AAAA Record - IPv6 Detection`
+- `Apache Detection`
+- `Apache mod_negotiation - Pseudo Directory Listing`
+- `CAA Record`
 - `CVE-2023-48795:scanme.nmap.org:22:2026-07-03T16:38:13.0711464+10:00`
+- `HTTP Missing Security Headers`
+- `OpenSSH Service - Detect`
+- `OpenSSH Terrapin Attack - Detection`
+- `SSH Auth Methods - Detection`
+- `SSH Diffie-Hellman Modulus <= 1024 Bits`
+- `SSH Password-based Authentication`
+- `SSH SHA-1 HMAC Algorithms Enabled`
+- `SSH Server CBC Mode Ciphers Enabled`
+- `SSH Server Software Enumeration`
+- `SSH Weak Algorithms Supported`
+- `SSH Weak Key Exchange Algorithms Enabled`
+- `SSH Weak MAC Algorithms Enabled`
 - `aaaa-fingerprint:scanme.nmap.org:2026-07-03T16:40:55.4186512+10:00`
 - `apache-detect:http://scanme.nmap.org:2026-07-03T16:39:10.2215385+10:00`
 - `apache-mod-negotiation-listing:http://scanme.nmap.org/index:2026-07-03T16:37:45.1751204+10:00`
@@ -30,9 +46,72 @@ Nuclei findings are grouped under each host's SECURITY container with severity b
 - `ssh-weak-mac-algo:scanme.nmap.org:22:2026-07-03T16:38:24.4391555+10:00`
 - `ssh-weakkey-exchange-algo:scanme.nmap.org:22:2026-07-03T16:38:24.5962106+10:00`
 
-## Relation notes
+## Graph structure (types)
 
-Seed-defined affected-by and based-on relations are represented with approved SPEC-004 had/contains edges until relation coverage is updated.
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_FINDING_COUNT
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| HOST
+  HOST -->|contains| SECURITY
+  SECURITY -->|contains| TEMPLATES_USED
+  SECURITY -->|contains| FINDINGS
+  FINDINGS -->|contains| NUCLEI_SEVERITY_LOW
+  TEMPLATES_USED -->|contains| NUCLEI_TEMPLATE
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_ID
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_NAME
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_PATH
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_AUTHOR
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_TAGS
+  NUCLEI_TEMPLATE -->|had| NUCLEI_TEMPLATE_PROTOCOL
+  NUCLEI_SEVERITY_LOW -->|contains| NUCLEI_FINDING
+  NUCLEI_FINDING -->|had| NUCLEI_TEMPLATE_ID
+  NUCLEI_FINDING -->|had| NUCLEI_MATCHED_AT
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_TIMESTAMP
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_HOST
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_IP
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_PORT
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_URL
+  NUCLEI_FINDING -->|had| NUCLEI_FINDING_PROTOCOL
+  NUCLEI_FINDING -->|had| NUCLEI_MATCHER_STATUS
+  NUCLEI_FINDING -->|had| NUCLEI_EXTRACTED_RESULTS
+  NUCLEI_FINDING -->|contains| NUCLEI_VULNERABILITY
+  NUCLEI_VULNERABILITY -->|had| VULNERABILITY_GENERAL
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_DESCRIPTION
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_SEVERITY
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_TAGS
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_CWE
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_CVSS_METRICS
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_CVSS_SCORE
+  NUCLEI_FINDING -->|had| NUCLEI_TEMPLATE
+  HOST -->|contains| SERVICE
+  SERVICE -->|had| NUCLEI_FINDING_PORT
+  SERVICE -->|had| NUCLEI_VULNERABILITY
+  HOST -->|had| NUCLEI_VULNERABILITY
+  FINDINGS -->|contains| NUCLEI_SEVERITY_MEDIUM
+  NUCLEI_SEVERITY_MEDIUM -->|contains| NUCLEI_FINDING
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_IMPACT
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_REMEDIATION
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_VENDOR
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_PRODUCT
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_CPE
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_EPSS_SCORE
+  NUCLEI_VULNERABILITY -->|had| NUCLEI_VULN_EPSS_PERCENTILE
+  NUCLEI_VULNERABILITY -->|had| VULNERABILITY_CVE_MEDIUM
+  FINDINGS -->|contains| NUCLEI_SEVERITY_INFO
+  NUCLEI_SEVERITY_INFO -->|contains| NUCLEI_FINDING
+  NUCLEI_VULNERABILITY -->|had| VULNERABILITY_CVE_LOW
+  NUCLEI_FINDING -->|had| NUCLEI_MATCHER_NAME
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
 
 
 ## Appendix
@@ -801,3 +880,6 @@ Seed-defined affected-by and based-on relations are represented with approved SP
 - `NUCLEI_VULNERABILITY` `had` `NUCLEI_VULN_CWE`
 - `NUCLEI_FINDING` `had` `NUCLEI_TEMPLATE`
 - `HOST` `had` `NUCLEI_VULNERABILITY`
+---
+
+*OS-Intel Scan*

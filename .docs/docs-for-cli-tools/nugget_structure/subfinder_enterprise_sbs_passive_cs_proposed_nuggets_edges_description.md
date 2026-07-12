@@ -58,6 +58,29 @@ Subfinder contributes DNS-focused domain enumeration. Active-mode IP resolution 
 - `phoenix.prod.edsprd01.aws.sbs.com.au`
 - `sbs.com.au`
 
+## Graph structure (types)
+
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_MODE
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| DOMAIN_NAME
+  DOMAIN_NAME -->|had| DOMAIN_NAME_PARENT
+  DOMAIN_NAME -->|had| DISCOVERY_MODE
+  DOMAIN_NAME -->|had| DISCOVERY_SOURCE
+  DOMAIN_NAME -->|had| LIVENESS_STATUS
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
+
+
 ## Appendix
 
 ### Nodes
@@ -422,3 +445,6 @@ Subfinder contributes DNS-focused domain enumeration. Active-mode IP resolution 
 - `DOMAIN_NAME` `had` `DISCOVERY_SOURCE`
 - `DOMAIN_NAME` `had` `LIVENESS_STATUS`
 - `DOMAIN_NAME` `had` `LIVENESS_STATUS`
+---
+
+*OS-Intel Scan*

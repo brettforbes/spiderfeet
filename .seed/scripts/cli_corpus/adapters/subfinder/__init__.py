@@ -88,46 +88,9 @@ def _load_narrative_profile() -> dict[str, Any]:
 
 
 def to_narrative(graph: dict[str, Any], *, scenario_key: str = "subfinder") -> str:
-    """Build Markdown report (stub profile; expanded in D6)."""
-    profile = _load_narrative_profile()
-    phrasing = profile.get("phrasing") or {}
-    nodes = graph.get("nodes") or []
-    edges = graph.get("edges") or []
-    by_id = {n["id"]: n for n in nodes}
-    domains = [n for n in nodes if n.get("nugget_id") == "DOMAIN_NAME"]
-    ips = [n for n in nodes if n.get("nugget_id") == "IP_ADDRESS"]
+    from core.narrative_engine import render_narrative
 
-    lines = [
-        f"# Subfinder scan narrative — `{scenario_key}`",
-        "",
-        "## Introduction",
-        "",
-        (phrasing.get("introduction") or "").strip()
-        or (
-            f"This report summarizes Subfinder domain enumeration with **{len(domains)}** "
-            f"domain node(s) and **{len(ips)}** resolved IP node(s)."
-        ),
-        "",
-        "## Domains",
-        "",
-    ]
-    if domains:
-        for domain in sorted(domains, key=lambda n: str(n.get("nugget_data"))):
-            lines.append(f"- `{domain.get('nugget_data')}`")
-    else:
-        lines.append("- (none)")
-
-    lines.extend(["", "## Appendix", "", "### Nodes", ""])
-    for node in sorted(nodes, key=lambda n: (n.get("nugget_id", ""), n.get("nugget_data", ""))):
-        lines.append(f"- `{node.get('nugget_id')}`: {node.get('nugget_data')}")
-    lines.extend(["", "### Edges", ""])
-    for edge in edges:
-        src = by_id.get(edge.get("source"), {})
-        tgt = by_id.get(edge.get("target"), {})
-        lines.append(
-            f"- `{src.get('nugget_id')}` `{edge.get('relation')}` `{tgt.get('nugget_id')}`"
-        )
-    return "\n".join(lines).strip() + "\n"
+    return render_narrative(graph, tool="subfinder", scenario_key=scenario_key)
 
 
 def build_outputs(

@@ -115,6 +115,31 @@ Organizational attack-surface findings are grouped under the head company, with 
 - `www2.praetorian.com`
 - `www3.praetorian.com`
 
+## Graph structure (types)
+
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_TARGET_ORG
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| COMPANY_NAME
+  DOMAIN_NAME -->|had| DISCOVERY_METHOD
+  DOMAIN_NAME -->|had| DOMAIN_NAME_PARENT
+  COMPANY_NAME -->|contains| DOMAINS
+  DOMAINS -->|contains| DOMAIN_NAME
+  COMPANY_NAME -->|contains| DOMAIN_NAME
+  DOMAIN_NAME -->|had| REVIEW_STATUS
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
+
+
 ## Appendix
 
 ### Nodes
@@ -787,3 +812,6 @@ Organizational attack-surface findings are grouped under the head company, with 
 - `DOMAINS` `contains` `DOMAIN_NAME`
 - `COMPANY_NAME` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `REVIEW_STATUS`
+---
+
+*OS-Intel Scan*
