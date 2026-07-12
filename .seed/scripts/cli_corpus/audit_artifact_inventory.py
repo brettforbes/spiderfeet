@@ -89,7 +89,7 @@ def audit_tool(tool: str) -> list[dict]:
         md_path, md_tried = _resolve_markdown(tool, scenario_key, scenario_id)
         deferred = bool(manifest.get("graph_deferred"))
         if not has_structured and has_text and not graph_path and not md_path:
-            classification = "deferred-candidate" if deferred else "missing-text-only"
+            classification = "deferred" if deferred else "missing-text-only"
         elif graph_path and md_path:
             classification = "ok"
         elif graph_path and not md_path:

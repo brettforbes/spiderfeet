@@ -1097,6 +1097,10 @@ def write_bundle(
         "tool_manifest_version": manifest_meta.get("version"),
         "review_status": "pending",
     }
+    if scenario.get("graph_deferred"):
+        bundle_manifest["graph_deferred"] = True
+        if scenario.get("graph_deferred_reason"):
+            bundle_manifest["graph_deferred_reason"] = scenario["graph_deferred_reason"]
     if result.structured_fixture_used:
         bundle_manifest["structured_fixture_used"] = result.structured_fixture_used
     if adapter_graph_path is not None:

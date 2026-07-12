@@ -57,3 +57,5 @@ scenarios:
     target: scanme.nmap.org:80
     command: nerva -t scanme.nmap.org:80 -w 5000
     text_from: stdout
+    graph_deferred: true
+    graph_deferred_reason: "Paired TUI scenario; structured JSON sibling tcp_http_rich_json supplies graph and narrative. TextFSM derivation deferred."

@@ -80,3 +80,5 @@ scenarios:
     command: /mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins gleif,crt-sh --output terminal
     text_from: stdout
     timeout: 180
+    graph_deferred: true
+    graph_deferred_reason: "Paired terminal scenario; NDJSON sibling corporate_bbc_gleif_ndjson supplies graph and narrative. Terminal-to-bundle parser deferred."

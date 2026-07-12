@@ -156,6 +156,23 @@ def _artifact_flags(bundle_dir: Path) -> Dict[str, bool]:
     }
 
 
+def _graph_deferred_fields(manifest: Dict[str, Any]) -> Dict[str, Any]:
+    deferred = bool(manifest.get("graph_deferred"))
+    fields: Dict[str, Any] = {"graph_deferred": deferred}
+    if deferred:
+        fields["graph_deferred_reason"] = manifest.get("graph_deferred_reason") or ""
+    return fields
+
+
+def _scenario_complete(flags: Dict[str, bool], manifest: Dict[str, Any]) -> bool:
+    """Text-only graph_deferred scenarios are complete when text is captured."""
+    if manifest.get("graph_deferred"):
+        if not flags.get("has_structured"):
+            return bool(flags.get("has_text"))
+        return bool(flags.get("has_text")) and bool(flags.get("has_structured"))
+    return all(flags.values())
+
+
 def _review_status_bundle(bundle_dir: Path, manifest: Dict[str, Any]) -> str:
     review_path = bundle_dir / "review.status.json"
     if review_path.is_file():
@@ -194,7 +211,8 @@ def _load_scenario_bundle(tool_id: str, bundle_dir: Path) -> Dict[str, Any]:
         "review_status": _review_status_bundle(bundle_dir, manifest),
         "legacy_exam_ids": manifest.get("legacy_exam_ids") or [],
         **flags,
-        "complete": all(flags.values()),
+        **_graph_deferred_fields(manifest),
+        "complete": _scenario_complete(flags, manifest),
     }
 
 
@@ -262,6 +280,12 @@ def list_scenarios(tool_id: str) -> List[Dict[str, Any]]:
         has_text = any((tool_dir / f"{eid}_output_text.txt").is_file() for eid, _ in members)
         graph_path = _resolve_graph_path(tool_id, key, sid)
         md_path = _resolve_markdown_path(tool_id, key, sid)
+        flags = {
+            "has_text": has_text,
+            "has_structured": has_structured,
+            "has_graph": graph_path.is_file(),
+            "has_markdown": md_path is not None,
+        }
         rows.append(
             {
                 "scenario_key": key,
@@ -271,11 +295,9 @@ def list_scenarios(tool_id: str) -> List[Dict[str, Any]]:
                 "structured_kind": primary.get("structured_kind"),
                 "review_status": _legacy_scenario_review_status(tool_dir, members),
                 "legacy_exam_ids": [eid for eid, _ in members],
-                "has_text": has_text,
-                "has_structured": has_structured,
-                "has_graph": graph_path.is_file(),
-                "has_markdown": md_path is not None,
-                "complete": has_text and has_structured and graph_path.is_file() and md_path is not None,
+                **flags,
+                **_graph_deferred_fields(primary),
+                "complete": _scenario_complete(flags, primary),
             }
         )
     return rows
@@ -420,7 +442,8 @@ def _get_scenario_from_bundle(tool_id: str, scenario_key: str, bundle_dir: Path)
         "graph_description_markdown": markdown,
         "markdown": markdown,
         "artifacts": flags,
-        "complete": all(flags.values()),
+        **_graph_deferred_fields(manifest),
+        "complete": _scenario_complete(flags, manifest),
     }
 
 
@@ -524,7 +547,8 @@ def _merge_legacy_scenario(
         "graph_description_markdown": markdown,
         "markdown": markdown,
         "artifacts": flags,
-        "complete": all(flags.values()),
+        **_graph_deferred_fields(primary_manifest),
+        "complete": _scenario_complete(flags, primary_manifest),
     }
 
 

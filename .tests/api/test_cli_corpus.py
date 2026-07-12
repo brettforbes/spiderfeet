@@ -158,3 +158,26 @@ def test_cli_corpus_scenario_detail_and_review_roundtrip(api_client: TestClient)
             f"/api/v1/cli-corpus/tools/nmap/scenarios/{scenario_key}/review",
             json={"status": original},
         )
+
+
+def test_cli_corpus_graph_deferred_text_only_scenarios(api_client: TestClient):
+    cases = (
+        ("nerva", "tcp_http_human", "tcp_http_human_text"),
+        ("pius", "corporate_bbc_terminal", "corporate_bbc_terminal"),
+    )
+    for tool_id, scenario_key, scenario_id in cases:
+        response = api_client.get(f"/api/v1/cli-corpus/tools/{tool_id}/scenarios/{scenario_key}")
+        assert response.status_code == 200, f"{tool_id}/{scenario_key}"
+        body = response.json()
+        assert body["graph_deferred"] is True
+        assert body.get("graph_deferred_reason")
+        assert body["manifest"]["scenario_id"] == scenario_id
+        assert body["artifacts"]["has_text"] is True
+        assert body["artifacts"]["has_graph"] is False
+        assert body["artifacts"]["has_markdown"] is False
+        assert body["complete"] is True
+
+    list_resp = api_client.get("/api/v1/cli-corpus/tools/nerva/scenarios")
+    row = next(s for s in list_resp.json() if s["scenario_key"] == "tcp_http_human")
+    assert row["graph_deferred"] is True
+    assert row["complete"] is True

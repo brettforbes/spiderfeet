@@ -13,5 +13,7 @@
   "text_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\7_output_text.txt",
   "command_path": ".docs\\docs-for-cli-tools\\app_examination_docs\\pius\\7_command.txt",
   "tool_manifest_version": 2,
-  "review_status": "pending"
+  "review_status": "pending",
+  "graph_deferred": true,
+  "graph_deferred_reason": "Paired terminal scenario; NDJSON sibling corporate_bbc_gleif_ndjson supplies graph and narrative. Terminal-to-bundle parser deferred."
 }
