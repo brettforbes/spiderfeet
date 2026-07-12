@@ -1,0 +1,99 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--45fec569-ad68-54c5-920e-edc132c9da02",
+      "nugget_instance_id": "SCAN_RECORD--45fec569-ad68-54c5-920e-edc132c9da02",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Scan Record",
+      "nugget_data": "pius:K2 Asset Management Ltd:/mnt/c/projects/spiderfeet/.tools/pius run --org \"K2 Asset Management Ltd\" --domain www.k2am.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SCAN_CLI--fca04d86-6dde-59e9-9e51-b69820fc0bdb",
+      "nugget_instance_id": "SCAN_CLI--fca04d86-6dde-59e9-9e51-b69820fc0bdb",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"K2 Asset Management Ltd\" --domain www.k2am.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TARGET--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "nugget_instance_id": "SCAN_TARGET--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "k2am.com.au",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TARGET_ORG--759aed83-6112-5b57-8c34-0eaa14ca6fd5",
+      "nugget_instance_id": "SCAN_TARGET_ORG--759aed83-6112-5b57-8c34-0eaa14ca6fd5",
+      "nugget_id": "SCAN_TARGET_ORG",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target Organization",
+      "nugget_data": "K2 Asset Management Ltd",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_START--00d4b08a-8f9f-5122-be65-35f8b6e28f2c",
+      "nugget_instance_id": "SCAN_START--00d4b08a-8f9f-5122-be65-35f8b6e28f2c",
+      "nugget_id": "SCAN_START",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Start",
+      "nugget_data": "2026-07-05T13:12:00.000000+00:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--3c0d7a10-a0bb-5dd4-9a16-549a2e2ad8b9",
+      "nugget_instance_id": "SCAN_TOOL--3c0d7a10-a0bb-5dd4-9a16-549a2e2ad8b9",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "pius",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "COMPANY_NAME--759aed83-6112-5b57-8c34-0eaa14ca6fd5",
+      "nugget_instance_id": "COMPANY_NAME--759aed83-6112-5b57-8c34-0eaa14ca6fd5",
+      "nugget_id": "COMPANY_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Company Name",
+      "nugget_data": "K2 Asset Management Ltd",
+      "nugget_colour": "#3B82F6"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--45fec569-ad68-54c5-920e-edc132c9da02",
+      "target": "SCAN_CLI--fca04d86-6dde-59e9-9e51-b69820fc0bdb",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--45fec569-ad68-54c5-920e-edc132c9da02",
+      "target": "SCAN_TARGET--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--45fec569-ad68-54c5-920e-edc132c9da02",
+      "target": "SCAN_TARGET_ORG--759aed83-6112-5b57-8c34-0eaa14ca6fd5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--45fec569-ad68-54c5-920e-edc132c9da02",
+      "target": "SCAN_START--00d4b08a-8f9f-5122-be65-35f8b6e28f2c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--45fec569-ad68-54c5-920e-edc132c9da02",
+      "target": "SCAN_TOOL--3c0d7a10-a0bb-5dd4-9a16-549a2e2ad8b9",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--45fec569-ad68-54c5-920e-edc132c9da02",
+      "target": "COMPANY_NAME--759aed83-6112-5b57-8c34-0eaa14ca6fd5",
+      "relation": "contains"
+    }
+  ]
+}

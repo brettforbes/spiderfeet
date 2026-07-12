@@ -10,39 +10,39 @@
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "SCAN_ARGS--383a11f9-246e-54e8-9b07-29e4af03e282",
-      "nugget_instance_id": "SCAN_ARGS--383a11f9-246e-54e8-9b07-29e4af03e282",
-      "nugget_id": "SCAN_ARGS",
+      "id": "SCAN_CLI--383a11f9-246e-54e8-9b07-29e4af03e282",
+      "nugget_instance_id": "SCAN_CLI--383a11f9-246e-54e8-9b07-29e4af03e282",
+      "nugget_id": "SCAN_CLI",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Scan Args",
+      "nugget_description": "Scan CLI",
       "nugget_data": "netdiscover \u2014 C \u2014 passive ARP snippet (bounded)",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_TIMESTAMP--565dada2-c47d-5124-b3b2-a17e94c3ba11",
-      "nugget_instance_id": "SCAN_TIMESTAMP--565dada2-c47d-5124-b3b2-a17e94c3ba11",
+      "id": "SCAN_TIMESTAMP--20ca472a-5d65-579c-9e91-8309fd89926e",
+      "nugget_instance_id": "SCAN_TIMESTAMP--20ca472a-5d65-579c-9e91-8309fd89926e",
       "nugget_id": "SCAN_TIMESTAMP",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Start Time",
-      "nugget_data": "Mon Jun 29 14:34:57 2026",
+      "nugget_data": "Sun Jul 12 14:07:32 2026",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_END_TIME--cf842727-8611-5a32-9b9c-0e0a94c49de0",
-      "nugget_instance_id": "SCAN_END_TIME--cf842727-8611-5a32-9b9c-0e0a94c49de0",
+      "id": "SCAN_END_TIME--f7549deb-7c4b-577b-9228-9adae5b06741",
+      "nugget_instance_id": "SCAN_END_TIME--f7549deb-7c4b-577b-9228-9adae5b06741",
       "nugget_id": "SCAN_END_TIME",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan End Time",
-      "nugget_data": "Mon Jun 29 14:35:14 2026",
+      "nugget_data": "Sun Jul 12 14:07:48 2026",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "SCAN_SUMMARY--732e7b5c-aca3-5aa0-9bc6-ba8c219b0afe",
-      "nugget_instance_id": "SCAN_SUMMARY--732e7b5c-aca3-5aa0-9bc6-ba8c219b0afe",
+      "id": "SCAN_SUMMARY--7af3c4df-2db3-57ae-bedd-2f38dc6d0bf7",
+      "nugget_instance_id": "SCAN_SUMMARY--7af3c4df-2db3-57ae-bedd-2f38dc6d0bf7",
       "nugget_id": "SCAN_SUMMARY",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Summary",
-      "nugget_data": "NetDiscover done at Mon Jun 29 14:35:14 2026; 12 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 16.88 seconds",
+      "nugget_data": "NetDiscover done at Sun Jul 12 14:07:48 2026; 12 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 16.88 seconds",
       "nugget_colour": "#F59E0B"
     },
     {
@@ -517,22 +517,22 @@
   "edges": [
     {
       "source": "SCAN_RECORD--383a11f9-246e-54e8-9b07-29e4af03e282",
-      "target": "SCAN_ARGS--383a11f9-246e-54e8-9b07-29e4af03e282",
+      "target": "SCAN_CLI--383a11f9-246e-54e8-9b07-29e4af03e282",
       "relation": "had"
     },
     {
       "source": "SCAN_RECORD--383a11f9-246e-54e8-9b07-29e4af03e282",
-      "target": "SCAN_TIMESTAMP--565dada2-c47d-5124-b3b2-a17e94c3ba11",
+      "target": "SCAN_TIMESTAMP--20ca472a-5d65-579c-9e91-8309fd89926e",
       "relation": "had"
     },
     {
       "source": "SCAN_RECORD--383a11f9-246e-54e8-9b07-29e4af03e282",
-      "target": "SCAN_END_TIME--cf842727-8611-5a32-9b9c-0e0a94c49de0",
+      "target": "SCAN_END_TIME--f7549deb-7c4b-577b-9228-9adae5b06741",
       "relation": "had"
     },
     {
       "source": "SCAN_RECORD--383a11f9-246e-54e8-9b07-29e4af03e282",
-      "target": "SCAN_SUMMARY--732e7b5c-aca3-5aa0-9bc6-ba8c219b0afe",
+      "target": "SCAN_SUMMARY--7af3c4df-2db3-57ae-bedd-2f38dc6d0bf7",
       "relation": "had"
     },
     {
