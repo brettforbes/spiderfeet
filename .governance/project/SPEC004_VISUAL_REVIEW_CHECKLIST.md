@@ -61,7 +61,7 @@ python -m pytest .tests/test_spec004_narrative_coverage.py .tests/test_harvest_a
 | VR-001 | all | UI resolution | Format-suffixed scenario keys may hide existing graph/MD | [#964](https://github.com/brettforbes/spiderfeet/issues/964) (G1) | **landed** develop |
 | VR-002 | all | nugget_id | IPv6 literals incorrectly mapped as `IP_ADDRESS` | [#959](https://github.com/brettforbes/spiderfeet/issues/959) (Epic H) | **landed** develop |
 | VR-003 | all | engine / YAML | Stub narratives for non-nmap/netdiscover tools; need §4.3 v2 | [#960](https://github.com/brettforbes/spiderfeet/issues/960) (Epic I) | **landed** develop — operator re-review pending |
-| VR-004 | nerva / pius | missing artifacts | Text-only scenarios lack graph/MD | [#965](https://github.com/brettforbes/spiderfeet/issues/965) (G2) | **landed** `graph_deferred` |
+| VR-004 | nerva / pius | removed invalid scenarios | Text-only rows without graph retired; graph-mandatory policy | [#965](https://github.com/brettforbes/spiderfeet/issues/965) (G2) | **landed** — scenarios removed |
 
 Program plan: `.governance/project/SPEC005_AGENT_PLAN.md` · Index: `.governance/project/SPEC005_ISSUE_INDEX.md`
 

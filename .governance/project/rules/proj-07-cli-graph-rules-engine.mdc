@@ -29,6 +29,7 @@ alwaysApply: false
 **Ontology:** `.cursor/rules/proj-05-spiderfeet-nugget-ontology.mdc` · `.seed/05_Onotology_for_Nuggets.md` §4  
 **Profiling / explore→examine:** `.cursor/rules/proj-06-spiderfeet-cli-app-exercising.mdc`  
 **Onboard a new tool:** `.seed/scripts/cli_corpus/ONBOARDING.md`  
+**Tool Structure docs (SPEC-006):** `.governance/specs/SPEC-006-tool-structure-docs-ontology.md` · plan `.governance/project/SPEC006_AGENT_PLAN.md` · quality bar `.governance/project/SPEC006_STRUCTURE_QUALITY_BAR.md` · gold `nugget_structure/nmap_nugget_graph_structure.md`  
 **Operator guide:** `.docs/docs-for-cli-tools/SPEC004_SYSTEM_GUIDE.md`
 
 ## Design law (80 / 20)
@@ -44,10 +45,10 @@ Do **not** write a new full `*_to_graph.py` mapper. Copy `rules/_template/` + `a
 
 Every formal examination / harvest-complete tool must emit:
 
-1. **Text** — summary or native stdout  
-2. **Structured** — single-root JSON or XML (never raw `.jsonl` as the Structured pane file)  
-3. **Graph** — `nodes[]` + `edges[]` under the common ontology  
-4. **Markdown Report** — §4.3 narrative (meta-concepts → categories → appendix)
+1. **Structured** — single-root JSON or XML (never raw `.jsonl` as the Structured pane file); **canonical source** for graph and narrative  
+2. **Text** — human-readable summary; **derived from structured** when the tool is structured-native, or native stdout only when the tool has no structured mode  
+3. **Graph** — `nodes[]` + `edges[]` under the common ontology (from structured only)  
+4. **Markdown Report** — §4.3 narrative (meta-concepts → categories → appendix; from structured only)
 
 Harvest path for adapter tools: `adapters.<tool>.build_outputs` → writes examination files **and**
 
@@ -62,10 +63,10 @@ Use the **full** `scenario_id` in filenames (including `_xml` / `_json` / `_text
 
 Declare exactly one per adapter:
 
-- `structured_native` — normalize tool JSON/XML/JSONL→bundle; **must** derive or pair Text.  
-- `text_native` — keep native text; **must** produce Structured via TextFSM (or equivalent).
+- `structured_native` — normalize tool JSON/XML/JSONL→bundle; **derive Text** at harvest; graph/narrative read structured only. **Never** add a second text-only scenario when structured flags exist.  
+- `text_native` — tool has **no** structured output mode; capture native text; **must** produce Structured via TextFSM (or equivalent) before graph derivation.
 
-Paired modes (tool cannot emit both at once): two scenarios (machine + TUI). Text-only without a derived graph must set `graph_deferred: true` + reason — never silent empty Graph/Markdown panes.
+**Structured-first law** (proj-06): if structured is available, it is the only examination capture mode. **Graph-mandatory law:** no graph = invalid scenario; `graph_deferred` is forbidden.
 
 ## Where logic may live
 

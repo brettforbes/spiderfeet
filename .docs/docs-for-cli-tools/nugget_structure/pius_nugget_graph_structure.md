@@ -1,51 +1,123 @@
 # Pius — proposed nugget graph structure
 
-Ontology source: `.seed/05_Onotology_for_Nuggets.md`  
-Generator: `.seed/scripts/cli_corpus/cli_tool_to_graph.py` (`pius_to_graph`)  
-Harvest: `.seed/scripts/cli_corpus/manifests/pius.yaml` · runtime `wsl` · `.tools/pius`
+Ontology source: `.seed/05_Onotology_for_Nuggets.md` · `.seed/08_Rules_for_Pius.md`.
+Generator: `.seed/scripts/cli_corpus/adapters/pius`
+Artifacts: `pius_<scenario_id>_proposed_nuggets_edges.json` and narrative `pius_<scenario_id>_proposed_nuggets_edges_description.md` in `.docs/docs-for-cli-tools/nugget_structure`.
 
-Artifacts: `pius_<scenario_key>_proposed_nuggets_edges.json` in this directory.
+## Narrative reports (§4.3)
 
-## Capture discipline
+Graph JSON is converted to readable OSINT Markdown by `.seed/scripts/cli_corpus/core/narrative_engine.py` via `render_narrative()`. Reports follow scan → endpoint categories → appendix; `validate_narrative_coverage()` enforces full value inventory in tests.
 
-- NDJSON (`--output ndjson`) must be captured via **subprocess stdout** — shell redirect produces empty files.
-- Status banners land on **stderr** (`text_from: stderr` in manifest).
-- WSL networking is flaky; harvest runs `wsl --shutdown` before each Pius scenario and retries once on empty stdout.
-- `crt_linode_ndjson` may use `structured_fixture` when live crt-sh returns empty (upstream rate limit); fixture recorded in exam manifest as `structured_fixture_used`.
+## Scan head
 
-## Output classes
-
-| Scenario | Semantic class | Notes |
-|----------|----------------|-------|
-| `crt_praetorian_ndjson` | Rich `Type:domain` crt-sh | ~100+ subdomains |
-| `crt_linode_ndjson` | High-volume crt-sh | Fixture fallback when live empty |
-| `corporate_bbc_gleif_ndjson` | gleif/wikidata/whois/crt corporate | Subsidiaries, `needs_review` |
-| `rir_cidr_ndjson` | RIR phase-1 preseed | `Type:cidr` deferred — phase-2 not observed in bounded run |
-| `sparse_scanme_ndjson` | whois preseed only | Intentional sparse |
-| `obscure_miss_ndjson` | Clean miss | Empty NDJSON |
-| `corporate_bbc_terminal` | Terminal review text | Text only, no graph |
-
-## Graph head
+SCAN_RECORD carries SCAN_CLI, SCAN_TARGET, SCAN_TARGET_ORG, timing, and exit descriptors via had. When org is known, COMPANY_NAME links from scan via contains.
 
 ```mermaid
 flowchart TD
-  scan["SCAN_RECORD"]
-  cli["SCAN_CLI"]
-  org["COMPANY_NAME"]
-  scan -->|had| cli
-  scan -->|had| org
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI"]
+  scan_target_3["SCAN_TARGET"]
+  scan_start_4["SCAN_START"]
+  scan_record_1 -->|had| scan_cli_2
+  scan_record_1 -->|had| scan_target_3
+  scan_record_1 -->|had| scan_start_4
 ```
 
-## Findings
+## Organisation findings tree
 
-| NDJSON `Type` | Nugget | Edge |
-|---------------|--------|------|
-| `domain` | `INTERNET_NAME` | `SCAN_RECORD` → `contains` → domain; `PIUS_SOURCE` descriptor via `had` |
-| `cidr` | `NETBLOCK_OWNER` | `SCAN_RECORD` → `contains` → netblock; `PIUS_SOURCE` via `had` |
-| `preseed` | *(skipped in graph)* | Internal seed rows only |
+NDJSON records classify into DOMAINS and NETBLOCKS categories under COMPANY_NAME. INTERNET_NAME and NETBLOCK_OWNER entities carry PIUS_SOURCE and confidence descriptors.
 
-## Examination evidence
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  company_name_2["COMPANY_NAME"]
+  domains_3["DOMAINS category"]
+  netblocks_4["NETBLOCKS category"]
+  domains_5["DOMAINS"]
+  internet_name_6["INTERNET_NAME"]
+  netblocks_7["NETBLOCKS"]
+  netblock_owner_8["NETBLOCK_OWNER"]
+  pius_source_9["PIUS_SOURCE"]
+  scan_record_1 -->|contains| company_name_2
+  company_name_2 -->|contains| domains_3
+  company_name_2 -->|contains| netblocks_4
+  domains_5 -->|contains| internet_name_6
+  netblocks_7 -->|contains| netblock_owner_8
+  internet_name_6 -->|had| pius_source_9
+  netblock_owner_8 -->|had| pius_source_9
+```
 
-`.docs/docs-for-cli-tools/app_examination_docs/pius/` — exams 1–7 aligned to manifest scenario order.
+- Type:domain rows become INTERNET_NAME under DOMAINS.
+- Type:cidr rows become NETBLOCK_OWNER under NETBLOCKS.
+- Type:preseed rows are skipped in graph output.
 
-Semantic exploration matrix: `.docs/analysis/cli_exploration/pius_semantic_outcome_matrix.md`
+## Wikidata and gleif enrichment
+
+Corporate plugin stacks may attach subsidiary COMPANY_NAME nodes and gleif/wikidata descriptors on domain and netblock entities when plugins return structured enrichment.
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  company_name_2["COMPANY_NAME"]
+  domains_3["DOMAINS category"]
+  netblocks_4["NETBLOCKS category"]
+  domains_5["DOMAINS"]
+  internet_name_6["INTERNET_NAME"]
+  netblocks_7["NETBLOCKS"]
+  netblock_owner_8["NETBLOCK_OWNER"]
+  pius_source_9["PIUS_SOURCE"]
+  scan_record_1 -->|contains| company_name_2
+  company_name_2 -->|contains| domains_3
+  company_name_2 -->|contains| netblocks_4
+  domains_5 -->|contains| internet_name_6
+  netblocks_7 -->|contains| netblock_owner_8
+  internet_name_6 -->|had| pius_source_9
+  netblock_owner_8 -->|had| pius_source_9
+```
+
+- needs_review confidence surfaces as descriptor facts, not new relation types.
+
+## Scenario coverage
+
+| Scenario key | Primary structures | Notes |
+|---|---|---|
+| crt_praetorian_ndjson | COMPANY_NAME + DOMAINS + rich INTERNET_NAME |  |
+| crt_linode_ndjson | High-volume crt-sh domains | fixture fallback when live crt-sh empty |
+| corporate_bbc_gleif_ndjson | gleif/wikidata/whois/crt corporate stack |  |
+| corporate_squarepeg_ndjson | gleif corporate domains |  |
+| corporate_upside_ndjson | gleif corporate domains |  |
+| corporate_k2am_ndjson | deferred harvest when target offline |  |
+
+## Proposed nuggets
+
+| Nugget | Type | Parent | Source | Relation |
+|---|---|---|---|---|
+| COMPANY_NAME | ENTITY | SCAN_RECORD | org argument | contains |
+| DOMAINS | CATEGORY | COMPANY_NAME | 08 R3 | contains |
+| NETBLOCKS | CATEGORY | COMPANY_NAME | 08 R3 | contains |
+| PIUS_SOURCE | DESCRIPTOR | INTERNET_NAME or NETBLOCK_OWNER | record source plugin | had |
+
+Canonical vocabulary: `.docs/analysis/nuggets.json` and `.docs/analysis/nuggets_extension.json`. Combined cross-tool view: [../_Current_Ontology.md](../_Current_Ontology.md).
+
+## Field mapping (structured → nugget)
+
+| Structured path | Nugget | Notes |
+|---|---|---|
+| command | SCAN_CLI |  |
+| target | SCAN_TARGET |  |
+| org | SCAN_TARGET_ORG |  |
+| started_at | SCAN_START |  |
+| duration_s | SCAN_ELAPSED |  |
+| exit_code | SCAN_EXIT_STATUS |  |
+| records[].Type=domain | INTERNET_NAME | DOMAINS contains; PIUS_SOURCE had |
+| records[].Type=cidr | NETBLOCK_OWNER | NETBLOCKS contains; PIUS_SOURCE had |
+| records[].source | PIUS_SOURCE |  |
+| records[].confidence | CONFIDENCE_SCORE | had when needs_review |
+
+## Review notes
+
+- NDJSON must be captured via subprocess stdout; shell redirect yields empty files.
+- stderr progress banners are stored in structured.stderr_banner only.
+- WSL networking may require retry when stdout is empty after wsl --shutdown hygiene.
+
+Combined cross-tool view: [../_Current_Ontology.md](../_Current_Ontology.md).

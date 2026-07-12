@@ -160,24 +160,21 @@ def test_cli_corpus_scenario_detail_and_review_roundtrip(api_client: TestClient)
         )
 
 
-def test_cli_corpus_graph_deferred_text_only_scenarios(api_client: TestClient):
-    cases = (
-        ("nerva", "tcp_http_human", "tcp_http_human_text"),
-        ("pius", "corporate_bbc_terminal", "corporate_bbc_terminal"),
+def test_cli_corpus_complete_requires_graph_and_markdown(api_client: TestClient):
+    """Graph + Markdown are mandatory; graph-only text scenarios were removed."""
+    removed = (
+        ("nerva", "tcp_http_human"),
+        ("pius", "corporate_bbc_terminal"),
     )
-    for tool_id, scenario_key, scenario_id in cases:
+    for tool_id, scenario_key in removed:
         response = api_client.get(f"/api/v1/cli-corpus/tools/{tool_id}/scenarios/{scenario_key}")
-        assert response.status_code == 200, f"{tool_id}/{scenario_key}"
-        body = response.json()
-        assert body["graph_deferred"] is True
-        assert body.get("graph_deferred_reason")
-        assert body["manifest"]["scenario_id"] == scenario_id
-        assert body["artifacts"]["has_text"] is True
-        assert body["artifacts"]["has_graph"] is False
-        assert body["artifacts"]["has_markdown"] is False
-        assert body["complete"] is True
+        assert response.status_code == 404, f"{tool_id}/{scenario_key} should be removed"
 
-    list_resp = api_client.get("/api/v1/cli-corpus/tools/nerva/scenarios")
-    row = next(s for s in list_resp.json() if s["scenario_key"] == "tcp_http_human")
-    assert row["graph_deferred"] is True
-    assert row["complete"] is True
+    for tool_id in ("nerva", "pius", "nmap", "netdiscover"):
+        list_resp = api_client.get(f"/api/v1/cli-corpus/tools/{tool_id}/scenarios")
+        assert list_resp.status_code == 200
+        for row in list_resp.json():
+            if row["complete"]:
+                assert row["has_graph"], f"{tool_id}/{row['scenario_key']} complete without graph"
+                assert row["has_markdown"], f"{tool_id}/{row['scenario_key']} complete without markdown"
+            assert row.get("graph_deferred") is not True

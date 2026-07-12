@@ -28,7 +28,7 @@ Upgrade the **centralized** structured→graph→narrative path so that:
 | R5-01-08 | Introduction is factual: tool used + ontology hierarchy guide for how the report is laid out (types/containment), not marketing fluff |
 | R5-01-09 | Appendix retains complete node/edge inventory (table preferred); `validate_narrative_coverage` still passes |
 | R5-01-10 | UI/API scenario-key resolution finds graph + description for format-suffixed scenario ids (`_text`, `_json`, `_xml`, …) |
-| R5-01-11 | Text-only paired scenarios either (a) derive structured→graph→narrative from text, or (b) are explicitly flagged `graph_deferred: true` with operator-visible reason — no silent missing panes |
+| R5-01-11 | Every formal scenario must produce graph + narrative Markdown; `graph_deferred` is forbidden; structured-only capture when structured modes exist |
 | R5-01-12 | Regenerate `nugget_structure/*_proposed_nuggets_edges*.json|md` for all eight tools after engine+IP land; operator re-review before byte goldens |
 
 ## Non-goals
