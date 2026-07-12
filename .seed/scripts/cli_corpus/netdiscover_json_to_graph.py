@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from graph_builder import GraphBuilder, nugget_node, validate_graph
+from core.ip_classify import ip_nugget_node
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
@@ -116,7 +117,7 @@ def netdiscover_scan_to_graph(doc: dict[str, Any]) -> dict[str, Any]:
 
         system_n = builder.add_node(nugget_node("SYSTEM", ipv4, description="System"))
         networks = builder.add_node(nugget_node("NETWORKS", f"networks:{ipv4}"))
-        ip_n = builder.add_node(nugget_node("IP_ADDRESS", ipv4, description="IP Address"))
+        ip_n = builder.add_node(ip_nugget_node(ipv4, description="IP Address"))
         builder.add_edge(scan["id"], system_n["id"], "contains")
         builder.add_edge(system_n["id"], networks["id"], "contains")
         builder.add_edge(networks["id"], ip_n["id"], "contains")

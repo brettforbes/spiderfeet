@@ -7,6 +7,7 @@ from urllib.parse import urlparse
 
 from adapters.pius.classify import normalize_value
 from core.graph_builder import GraphBuilder, nugget_node
+from core.ip_classify import ip_nugget_node
 
 
 def _add_descriptor(builder: GraphBuilder, parent_id: str, nugget_id: str, value: Any) -> None:
@@ -66,7 +67,7 @@ def _add_network_chain(
     """10 H2 — Nmap-style NETWORKS -> IP_ADDRESS -> TRANSPORT -> PORT chain."""
     networks = builder.add_node(nugget_node("NETWORKS", "NETWORKS", nugget_type="CATEGORY"))
     builder.add_edge(system_id, networks["id"], "contains")
-    ip_node = builder.add_node(nugget_node("IP_ADDRESS", ip_value))
+    ip_node = builder.add_node(ip_nugget_node(ip_value))
     builder.add_edge(networks["id"], ip_node["id"], "contains")
     transport = builder.add_node(nugget_node("TRANSPORT", "tcp"))
     builder.add_edge(ip_node["id"], transport["id"], "contains")
@@ -174,7 +175,7 @@ def apply_httpx_records(builder: GraphBuilder, scan_id: str, doc: dict[str, Any]
             _add_descriptor(builder, domain["id"], "CNAME_TARGET", cname_value)
 
         for ip in record.get("a") or []:
-            ip_node = builder.add_node(nugget_node("IP_ADDRESS", str(ip)))
+            ip_node = builder.add_node(ip_nugget_node(str(ip)))
             builder.add_edge(domain["id"], ip_node["id"], "had")
             _add_descriptor(
                 builder,
