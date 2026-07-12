@@ -1,5 +1,42 @@
-# Narrative profile template - copy to rules/<tool>/narrative.yaml
+# Narrative profile template — copy to rules/<tool>/narrative.yaml
+# Quality bar: nmap/netdiscover description MD · ontology §4.3 · proj-07
+# Keys here must be consumed by the shared narrative engine (no dead config).
+
 tool: REPLACE_ME
-host_nugget_id: HOST  # or SYSTEM, CDN, COMPANY_NAME, ...
+profile: default
+version: 1
+
+# Primary entity under Scan for per-item sections
+host_nugget_id: HOST  # SYSTEM | CDN | COMPANY_NAME | …
+
+# Which meta-concepts to render (order matters)
+meta_concepts:
+  - scan
+  - host
+  # - cdn
+  # - trace
+
+# Category subsections under host/system (omit unused)
+categories:
+  - ENVIRONMENT
+  - NETWORKS
+  - APPLICATIONS
+  - VULNERABILITIES
+
 include_trace: false
 include_appendix: true
+appendix_format: table  # table | bullets
+
+# Factual intro: tool + how ontology types/categories organise the report
+phrasing:
+  introduction: >
+    The scan used REPLACE_ME. Findings are organised under the Scan meta-concept
+    and each host (or system) with category subsections for Networks, Applications,
+    Environment, and Vulnerabilities when present. This report follows that hierarchy;
+    the appendix lists every nugget value.
+  # relation_deferral: >
+  #   Cross-host relations are summarised in the Graph pane; narrative focuses on containment.
+
+# Optional seed traceability
+# seed_docs:
+#   - .seed/REPLACE_ME.md

@@ -10,7 +10,10 @@ description: Explore, formally examine, and profile CLI OSINT tools for SpiderFe
 **Driving doc:** `.seed/04_Driving and Integrating_CLI_Apps.md`  
 **Corpus index:** `.docs/docs-for-cli-tools/corpus_index.json`  
 **Harvest runner:** `.seed/scripts/cli_corpus/harvest.py`  
-**Tool manifests:** `.seed/scripts/cli_corpus/manifests/<tool>.yaml`
+**Tool manifests:** `.seed/scripts/cli_corpus/manifests/<tool>.yaml`  
+**New-tool onboarding (start here):** `.seed/scripts/cli_corpus/ONBOARDING.md`  
+**Graph/narrative rules:** `.cursor/rules/proj-07-cli-graph-rules-engine.mdc`  
+**Architecture guide:** `.docs/docs-for-cli-tools/SPEC004_SYSTEM_GUIDE.md`
 
 ## Phases (per tool)
 
@@ -18,9 +21,10 @@ description: Explore, formally examine, and profile CLI OSINT tools for SpiderFe
 2. **Formal examination plan** — named scenarios, targets, expected data types; every matrix row mapped to a scenario or documented limitation.
 3. **Strategy skill** — `.strategy/<tool>_strategy.skill` (complements `.cursor/skills/<tool>/`).
 4. **CLI help capture** — `.docs/docs-for-cli-tools/cli_help_text/<tool>_cli_help_text.md`.
-5. **Formal examination** — run `harvest.py`; outputs under `app_examination_docs/<tool>/`.
-6. **Nugget proposal** — `nugget_structure/<tool>_nugget_graph_structure.md` + per-scenario `*_proposed_nuggets_edges.json` + `*_description.md` narratives.
-7. **Operator review** — `*_review.status.json` → `approved` | `rejected`; `corpus_index.json` → `complete` on sign-off.
+5. **Adapter + YAML** — copy `adapters/_template` + `rules/_template`; implement four-output API; wire `harvest.py` `ADAPTER_TOOLS` (see ONBOARDING.md). **No new `*_to_graph.py`.**
+6. **Formal examination** — run `harvest.py`; outputs under `app_examination_docs/<tool>/` plus `nugget_structure/` graph + narrative.
+7. **Nugget / narrative proposal** — tool structure MD + per-scenario graph JSON + §4.3 description MD from the **shared narrative engine**.
+8. **Operator review** — CLI Profiling four panes; `*_review.status.json` → `approved` | `rejected`; `corpus_index.json` → `complete` on sign-off.
 
 **Excluded:** Aircrack-ng (hardware pending).
 
@@ -30,6 +34,7 @@ description: Explore, formally examine, and profile CLI OSINT tools for SpiderFe
 - New archetypes go in `nuggets_extension.json` only; match TypeQL when promoting.
 - Resolve `nugget_type` / colour / description from catalogue — do not guess (e.g. `NETWORKS` → `CATEGORY`).
 - Instance ids: `uuid5(ONTOLOGY_NAMESPACE, nugget_data)`; one node per `(nugget_id, nugget_data)`.
+- **IPs:** `core.ip_classify.classify_ip` only — never map IPv6 literals to `IP_ADDRESS`.
 
 ## Exploration discipline (weakness remediated)
 
@@ -52,6 +57,8 @@ Default commands and single targets are **insufficient**. Before formal runs:
 6. **Text-only isolation:** run `cls` / `Clear-Host` / `clear` before each examination command; one scenario → one capture; structured JSON must match the text (`scan_tries` = TUI frames or single parsable dump; `empty_scans` = frames with no host table rows).
 7. **Never truncate** stdout/stderr in capture commands; include `exit_status` and stderr in structured artifacts when present.
 8. **Errors are scenarios:** auth, dependency, invalid target, and network failures get full text + structured captures, not log-only notes.
+9. **JSONL → single JSON bundle** (`schema` + `records[]`); never `structured_ext: jsonl`.
+10. **Four UI artifacts** required: Text, Structured, Graph, Markdown (proj-07). Regenerate graph+MD with `backfill_adapter_four_outputs.py` when engine changes without re-scanning.
 
 ## Targets
 
@@ -79,6 +86,10 @@ Directory: `.docs/docs-for-cli-tools/app_examination_docs/<tool>/`
 
 Nugget drafts: `.docs/docs-for-cli-tools/nugget_structure/`
 
+- `<tool>_<scenario_id>_proposed_nuggets_edges.json`
+- `<tool>_<scenario_id>_proposed_nuggets_edges_description.md` — §4.3 narrative (shared engine; type-only Mermaid in body)
+- `<tool>_nugget_graph_structure.md` — tool-level structure doc
+
 ## Running examinations
 
 ```bash
@@ -90,6 +101,9 @@ python .seed/scripts/cli_corpus/harvest.py --tool nmap
 
 # Dry run
 python .seed/scripts/cli_corpus/harvest.py --tool nmap --dry-run
+
+# Regenerate graph + narrative from existing structured (no CLI re-run)
+python .seed/scripts/cli_corpus/backfill_adapter_four_outputs.py --tool nmap
 ```
 
 ## Operator review UI
@@ -99,6 +113,7 @@ Widget tab **CLI Profiling** (`spiderfeet-widget`) + API `GET /api/v1/cli-corpus
 - **Scenarios:** one API row per scan command (`/tools/{tool}/scenarios/{scenario_key}`), not per file type.
 - **Bundles:** `app_examination_docs/<tool>/scenarios/<key>/` with `output_text.txt`, `output_structured.*`, `proposed_nuggets_edges.json`, `nugget_graph_structure.md`.
 - **Legacy numbered exams:** pairs like `foo_xml` + `foo_text` are one scenario; consolidate into scenario bundles during examination.
+- Confirm **T / S / G / MD** badges before claiming complete. Text-only pairs without graph need `graph_deferred` or derived outputs.
 
 **Data Viewer (Structured tab):** embed [json-yaml-xml-csv-widget](https://github.com/brettforbes/json-yaml-xml-csv-widget) via `DataViewerHost` — see `@spiderfeet-widget/.docs/data-viewer-embed.md`. Dev URL `http://localhost:3000/widget` (`SPIDERFEET_DATA_VIEWER_URL` / `data-data-viewer-url` on `#widget-root`). Pass `filename` + content; bridge sends `set-mode` then `set` with inferred format.
 
@@ -108,20 +123,30 @@ Approve/Reject updates `review.status.json` in scenario bundle (or legacy `*_rev
 
 Every examination produces a **scan head** node plus discovered entities linked by:
 
-- `has` — entity → attribute
-- `contains` — entity → entity (transitive modelling allowed)
-- `listens on` — service → port
+- `contains` — entity → entity / category containment
+- `listens-to` — service → port (canonical spelling)
 - `had` — entity → descriptor (e.g. MAC → vendor)
 
-Emit `nodes[]` and `edges[]`; scan owns discoveries via `contains`. Use `graph_builder.py` for catalogue lookup, uuid5 ids, deduplication, and `validate_graph()`. See [v2-graph-rules.md](references/v2-graph-rules.md).
+Emit `nodes[]` and `edges[]`; scan owns discoveries via `contains`. Use `core.graph_builder` for catalogue lookup, uuid5 ids, deduplication, and `validate_graph()`. Prefer `adapters/` + `rules/` over legacy converters. See [v2-graph-rules.md](references/v2-graph-rules.md) and proj-07.
+
+## Narrative contract
+
+Follow ontology §4.3 and proj-07 narrative quality bar:
+
+- Meta-concepts (Scan → Host/System/CDN → Trace) with category subsections
+- Prose + **type-relation Mermaid** (no value labels) + optional tables
+- Full appendix; `validate_narrative_coverage`
+- Factual introduction (tool + hierarchy guide)
 
 ## Tool order
 
 **Nmap pilot:** complete (2026-06-26) — see `.docs/docs-for-cli-tools/nmap_pilot_signoff.md`.
 
-**Netdiscover:** complete (2026-06-29) — five windows-lan scenarios; reference implementation for text-only + `graph_builder` pattern.
+**Netdiscover:** complete (2026-06-29) — five windows-lan scenarios; reference for text_native + narrative quality.
 
-Next tools: follow `corpus_index.json` priority after exploration gate passes.
+**SPEC-004 adapters:** nmap, netdiscover, nerva, pius, subfinder, httpx, katana, nuclei — patterns to copy.
+
+Next tools: follow `corpus_index.json` priority after exploration gate passes; onboard via `ONBOARDING.md`.
 
 ## References
 
@@ -132,6 +157,7 @@ Next tools: follow `corpus_index.json` priority after exploration gate passes.
 | [references/examination-checklist.md](references/examination-checklist.md) | Per-tool checklist |
 | [references/exploration-examination-lessons.md](references/exploration-examination-lessons.md) | Nuclei/Pius lessons; target taxonomy; harvest pitfalls |
 | [references/evidence-layout.md](references/evidence-layout.md) | File naming + scenario bundles |
+| `../../ONBOARDING.md` (cli_corpus) | End-to-end new-tool checklist |
 | `@spiderfeet-widget/.docs/data-viewer-embed.md` | Data Viewer host integration |
 
 Per-tool skills: `.cursor/skills/<tool>/SKILL.md` and Zero-to-Hero docs under `.docs/docs-for-cli-tools/`.
