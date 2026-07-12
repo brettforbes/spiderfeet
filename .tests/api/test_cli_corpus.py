@@ -91,6 +91,30 @@ def test_cli_corpus_scenario_detail_host_discovery(api_client: TestClient):
     assert body["scenario_key"] == "host_discovery_permissive"
     assert body.get("output_text") or body.get("structured")
     assert "graph_description_markdown" in body
+    assert body["graph_description_markdown"]
+    assert body["artifacts"]["has_markdown"] is True
+
+
+def test_cli_corpus_nerva_json_scenario_markdown_by_scenario_id(api_client: TestClient):
+    """Detail view must resolve MD when files use full scenario_id (e.g. *_json suffix)."""
+    response = api_client.get(
+        "/api/v1/cli-corpus/tools/nerva/scenarios/tcp_http_rich"
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["artifacts"]["has_markdown"] is True
+    assert body["graph_description_markdown"]
+    assert "Nerva" in body["graph_description_markdown"] or "nerva" in body["graph_description_markdown"].lower()
+
+
+def test_cli_corpus_netdiscover_text_scenario_markdown(api_client: TestClient):
+    response = api_client.get(
+        "/api/v1/cli-corpus/tools/netdiscover/scenarios/local_subnet_active"
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["artifacts"]["has_markdown"] is True
+    assert body["graph_description_markdown"]
 
 
 def test_cli_corpus_tool_graph_structure(api_client: TestClient):

@@ -261,9 +261,7 @@ def list_scenarios(tool_id: str) -> List[Dict[str, Any]]:
         )
         has_text = any((tool_dir / f"{eid}_output_text.txt").is_file() for eid, _ in members)
         graph_path = _resolve_graph_path(tool_id, key, sid)
-        md_path = _NUGGET_ROOT / f"{tool_id}_{sid}_proposed_nuggets_edges_description.md"
-        if not md_path.is_file():
-            md_path = _NUGGET_ROOT / f"{tool_id}_{key}_proposed_nuggets_edges_description.md"
+        md_path = _resolve_markdown_path(tool_id, key, sid)
         rows.append(
             {
                 "scenario_key": key,
@@ -276,8 +274,8 @@ def list_scenarios(tool_id: str) -> List[Dict[str, Any]]:
                 "has_text": has_text,
                 "has_structured": has_structured,
                 "has_graph": graph_path.is_file(),
-                "has_markdown": md_path.is_file(),
-                "complete": has_text and has_structured and graph_path.is_file() and md_path.is_file(),
+                "has_markdown": md_path is not None,
+                "complete": has_text and has_structured and graph_path.is_file() and md_path is not None,
             }
         )
     return rows
@@ -305,6 +303,24 @@ def _resolve_graph_path(
         if path.is_file():
             return path
     return candidates[0]
+
+
+def _resolve_markdown_path(
+    tool_id: str, scenario_key: str, scenario_id: str | None = None
+) -> Path | None:
+    """Resolve narrative Markdown using the same candidate order as graph paths."""
+    candidates: list[Path] = []
+    if scenario_id:
+        candidates.append(
+            _NUGGET_ROOT / f"{tool_id}_{scenario_id}_proposed_nuggets_edges_description.md"
+        )
+    candidates.append(
+        _NUGGET_ROOT / f"{tool_id}_{scenario_key}_proposed_nuggets_edges_description.md"
+    )
+    for path in candidates:
+        if path.is_file():
+            return path
+    return None
 
 
 def _graph_for_scenario(
@@ -338,15 +354,18 @@ def get_tool_graph_structure(tool_id: str) -> Optional[Dict[str, str]]:
     }
 
 
-def _scenario_graph_description(tool_id: str, scenario_key: str, bundle_dir: Path) -> Optional[str]:
+def _scenario_graph_description(
+    tool_id: str,
+    scenario_key: str,
+    bundle_dir: Path,
+    scenario_id: str | None = None,
+) -> Optional[str]:
     bundle_md = bundle_dir / "proposed_nuggets_edges_description.md"
     if bundle_md.is_file():
         return _read_text(bundle_md)
-    for candidate in (
-        _NUGGET_ROOT / f"{tool_id}_{scenario_key}_proposed_nuggets_edges_description.md",
-    ):
-        if candidate.is_file():
-            return _read_text(candidate)
+    md_path = _resolve_markdown_path(tool_id, scenario_key, scenario_id)
+    if md_path:
+        return _read_text(md_path)
     return None
 
 
@@ -381,7 +400,10 @@ def _get_scenario_from_bundle(tool_id: str, scenario_key: str, bundle_dir: Path)
         }
 
     flags = _artifact_flags(bundle_dir)
-    markdown = _scenario_graph_description(tool_id, scenario_key, bundle_dir)
+    scenario_id = manifest.get("scenario_id") or scenario_key
+    markdown = _scenario_graph_description(
+        tool_id, scenario_key, bundle_dir, scenario_id
+    )
     flags["has_markdown"] = markdown is not None
     return {
         "tool_id": tool_id,
@@ -392,7 +414,9 @@ def _get_scenario_from_bundle(tool_id: str, scenario_key: str, bundle_dir: Path)
         "command": _read_text(command_path) if command_path.is_file() else "",
         "output_text": _read_text(text_path) if text_path.is_file() else "",
         "structured": structured,
-        "graph_proposal": _graph_for_scenario(tool_id, scenario_key, bundle_dir),
+        "graph_proposal": _graph_for_scenario(
+            tool_id, scenario_key, bundle_dir, scenario_id
+        ),
         "graph_description_markdown": markdown,
         "markdown": markdown,
         "artifacts": flags,
@@ -474,7 +498,12 @@ def _merge_legacy_scenario(
     graph = _graph_for_scenario(
         tool_id, scenario_key, bundle_dir, primary_manifest.get("scenario_id")
     )
-    markdown = _scenario_graph_description(tool_id, scenario_key, bundle_dir)
+    markdown = _scenario_graph_description(
+        tool_id,
+        scenario_key,
+        bundle_dir,
+        primary_manifest.get("scenario_id"),
+    )
     flags = {
         "has_text": bool(text_content),
         "has_structured": structured is not None,
