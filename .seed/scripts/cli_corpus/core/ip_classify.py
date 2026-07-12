@@ -70,3 +70,19 @@ def assert_ip_nugget(value: str, nugget_id: str, *, role: str = "host") -> None:
         raise ValueError(
             f"IP {value!r} should use nugget_id {expected!r}, not {nugget_id!r} (role={role})"
         )
+
+
+def ip_nugget_node(
+    value: str,
+    *,
+    role: str = "host",
+    description: str = "IP Address",
+    **kwargs: Any,
+) -> dict[str, Any]:
+    """Build a catalogue-backed nugget node for an IP literal."""
+    from .graph_builder import nugget_node
+
+    nugget_id = classify_ip(value, role=role)
+    if not nugget_id:
+        raise ValueError(f"Not a classifiable IP address: {value!r}")
+    return nugget_node(nugget_id, value, description=description, **kwargs)
