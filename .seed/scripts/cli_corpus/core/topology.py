@@ -6,6 +6,7 @@ from collections.abc import Iterable
 from typing import Any
 
 from .graph_builder import GraphBuilder, nugget_node
+from .ip_classify import ip_nugget_node
 
 
 def add_scan_head(
@@ -35,7 +36,7 @@ def add_system_l2(
     """Create the Netdiscover-style SYSTEM -> NETWORKS -> IP/MAC shape."""
     system_node = builder.add_node(nugget_node("SYSTEM", system, description="System"))
     networks = builder.add_node(nugget_node("NETWORKS", f"networks:{system}"))
-    ip_node = builder.add_node(nugget_node("IP_ADDRESS", ip_address, description="IP Address"))
+    ip_node = builder.add_node(ip_nugget_node(ip_address, description="IP Address"))
 
     builder.add_edge(scan_id, system_node["id"], "contains")
     builder.add_edge(system_node["id"], networks["id"], "contains")
@@ -68,7 +69,7 @@ def add_host_networks_port_service(
     """Create HOST -> NETWORKS/APPLICATIONS -> transport/port/service shape."""
     host_node = builder.add_node(nugget_node("HOST", host, description="Host"))
     networks = builder.add_node(nugget_node("NETWORKS", f"networks:{host}"))
-    ip_node = builder.add_node(nugget_node("IP_ADDRESS", ip_address, description="IP Address"))
+    ip_node = builder.add_node(ip_nugget_node(ip_address, description="IP Address"))
     transport_node = builder.add_node(nugget_node("TRANSPORT", transport, description="Transport Protocol"))
     port_node = builder.add_node(nugget_node("PORT", str(port), nugget_type="SUBENTITY", description="Network Port"))
     protocol_node = builder.add_node(
