@@ -1,12 +1,12 @@
 {
   "nodes": [
     {
-      "id": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
-      "nugget_instance_id": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "id": "SCAN_RECORD--87ce0d65-55c9-5b6e-9038-0f2b8745292c",
+      "nugget_instance_id": "SCAN_RECORD--87ce0d65-55c9-5b6e-9038-0f2b8745292c",
       "nugget_id": "SCAN_RECORD",
       "nugget_type": "ENTITY",
-      "nugget_description": "Katana crawl scan",
-      "nugget_data": "venturecapitalopportunitiesfund.com.au",
+      "nugget_description": "Scan Record",
+      "nugget_data": "katana:venturecapitalopportunitiesfund.com.au:katana -list .docs/docs-for-cli-tools/exploration_scratch/katana/urls/from_httpx_vcof_sparse_urls.txt -silent -jsonl -o .docs/docs-for-cli-tools/exploration_scratch/katana/exams/from_httpx_vcof_sparse.jsonl -depth 3 -c 5 -timeout 15 -fs fqdn -ct 3m",
       "nugget_colour": "#3B82F6"
     },
     {
@@ -19,6 +19,69 @@
       "nugget_colour": "#F59E0B"
     },
     {
+      "id": "SCAN_TARGET--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_instance_id": "SCAN_TARGET--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "venturecapitalopportunitiesfund.com.au",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_CRAWL_PROFILE--7a35e1b0-97a7-5760-ada8-638f62260f7c",
+      "nugget_instance_id": "SCAN_CRAWL_PROFILE--7a35e1b0-97a7-5760-ada8-638f62260f7c",
+      "nugget_id": "SCAN_CRAWL_PROFILE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Crawl Profile",
+      "nugget_data": "depth-3,fqdn-scope,concurrency-5,timeout-15,crawl-duration-3m",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_URL_INPUT_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "nugget_instance_id": "SCAN_URL_INPUT_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "nugget_id": "SCAN_URL_INPUT_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan URL Input Count",
+      "nugget_data": "1",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_START--65a48700-af57-5994-a0a8-2239cc830041",
+      "nugget_instance_id": "SCAN_START--65a48700-af57-5994-a0a8-2239cc830041",
+      "nugget_id": "SCAN_START",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Start",
+      "nugget_data": "2026-07-06T11:25:46.218632+00:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_ELAPSED--4a6436bf-d2a6-5462-9e89-9ae49f647123",
+      "nugget_instance_id": "SCAN_ELAPSED--4a6436bf-d2a6-5462-9e89-9ae49f647123",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_data": "705.719",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_EXIT_STATUS--69707aff-aa80-5cdc-a661-ccc54fd1773d",
+      "nugget_instance_id": "SCAN_EXIT_STATUS--69707aff-aa80-5cdc-a661-ccc54fd1773d",
+      "nugget_id": "SCAN_EXIT_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Exit Status",
+      "nugget_data": "124",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--cdb5bee9-96e3-5642-8fb8-84d79069bc9e",
+      "nugget_instance_id": "SCAN_TOOL--cdb5bee9-96e3-5642-8fb8-84d79069bc9e",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "katana",
+      "nugget_colour": "#F59E0B"
+    },
+    {
       "id": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
       "nugget_instance_id": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
       "nugget_id": "DOMAIN_NAME",
@@ -26,18 +89,67 @@
       "nugget_description": "Domain Name",
       "nugget_data": "venturecapitalopportunitiesfund.com.au",
       "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "UPSTREAM_SCENARIO_ID--fb560f0f-84f5-5ad0-95dc-7b10495e463a",
+      "nugget_instance_id": "UPSTREAM_SCENARIO_ID--fb560f0f-84f5-5ad0-95dc-7b10495e463a",
+      "nugget_id": "UPSTREAM_SCENARIO_ID",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Upstream Scenario Identifier",
+      "nugget_data": "from_subfinder_vcof_sparse",
+      "nugget_colour": "#F59E0B"
     }
   ],
   "edges": [
     {
-      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "source": "SCAN_RECORD--87ce0d65-55c9-5b6e-9038-0f2b8745292c",
       "target": "SCAN_CLI--239cf014-4654-5706-b8eb-dc207c5cb8b5",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "source": "SCAN_RECORD--87ce0d65-55c9-5b6e-9038-0f2b8745292c",
+      "target": "SCAN_TARGET--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--87ce0d65-55c9-5b6e-9038-0f2b8745292c",
+      "target": "SCAN_CRAWL_PROFILE--7a35e1b0-97a7-5760-ada8-638f62260f7c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--87ce0d65-55c9-5b6e-9038-0f2b8745292c",
+      "target": "SCAN_URL_INPUT_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--87ce0d65-55c9-5b6e-9038-0f2b8745292c",
+      "target": "SCAN_START--65a48700-af57-5994-a0a8-2239cc830041",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--87ce0d65-55c9-5b6e-9038-0f2b8745292c",
+      "target": "SCAN_ELAPSED--4a6436bf-d2a6-5462-9e89-9ae49f647123",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--87ce0d65-55c9-5b6e-9038-0f2b8745292c",
+      "target": "SCAN_EXIT_STATUS--69707aff-aa80-5cdc-a661-ccc54fd1773d",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--87ce0d65-55c9-5b6e-9038-0f2b8745292c",
+      "target": "SCAN_TOOL--cdb5bee9-96e3-5642-8fb8-84d79069bc9e",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--87ce0d65-55c9-5b6e-9038-0f2b8745292c",
       "target": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
       "relation": "contains"
+    },
+    {
+      "source": "SCAN_RECORD--87ce0d65-55c9-5b6e-9038-0f2b8745292c",
+      "target": "UPSTREAM_SCENARIO_ID--fb560f0f-84f5-5ad0-95dc-7b10495e463a",
+      "relation": "had"
     }
   ]
 }

@@ -1,429 +1,987 @@
 {
   "nodes": [
     {
-      "id": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "nugget_instance_id": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
+      "id": "SCAN_RECORD--91704a2a-16eb-5e2d-a482-58d66999dae0",
+      "nugget_instance_id": "SCAN_RECORD--91704a2a-16eb-5e2d-a482-58d66999dae0",
       "nugget_id": "SCAN_RECORD",
       "nugget_type": "ENTITY",
       "nugget_description": "Scan Record",
-      "nugget_data": "The Upside Pty Ltd"
+      "nugget_data": "pius:The Upside Pty Ltd:/mnt/c/projects/spiderfeet/.tools/pius run --org \"The Upside Pty Ltd\" --domain theupside.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "SCAN_CLI--6962fc1a-50e7-5edc-8289-e7396871572c",
-      "nugget_instance_id": "SCAN_CLI--6962fc1a-50e7-5edc-8289-e7396871572c",
+      "id": "SCAN_CLI--4caf4b00-dcb2-5d6d-98a4-c92372ac2165",
+      "nugget_instance_id": "SCAN_CLI--4caf4b00-dcb2-5d6d-98a4-c92372ac2165",
       "nugget_id": "SCAN_CLI",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan CLI",
-      "nugget_data": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"The Upside Pty Ltd\" --domain theupside.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson"
+      "nugget_data": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"The Upside Pty Ltd\" --domain theupside.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "COMPANY_NAME--dfbfaaa2-7f38-5949-ba88-b8110e9ed3d3",
-      "nugget_instance_id": "COMPANY_NAME--dfbfaaa2-7f38-5949-ba88-b8110e9ed3d3",
+      "id": "SCAN_TARGET--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "nugget_instance_id": "SCAN_TARGET--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "theupside.com.au",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TARGET_ORG--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "nugget_instance_id": "SCAN_TARGET_ORG--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "nugget_id": "SCAN_TARGET_ORG",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target Organization",
+      "nugget_data": "The Upside Pty Ltd",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_START--85c019e6-fb12-57ab-8163-0c7fb6a5ddee",
+      "nugget_instance_id": "SCAN_START--85c019e6-fb12-57ab-8163-0c7fb6a5ddee",
+      "nugget_id": "SCAN_START",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Start",
+      "nugget_data": "2026-07-05T13:10:54.341348+00:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_ELAPSED--60b4067c-8b09-54dd-b415-bd9c51d619f5",
+      "nugget_instance_id": "SCAN_ELAPSED--60b4067c-8b09-54dd-b415-bd9c51d619f5",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_data": "16.125",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_instance_id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_id": "SCAN_EXIT_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Exit Status",
+      "nugget_data": "0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--3c0d7a10-a0bb-5dd4-9a16-549a2e2ad8b9",
+      "nugget_instance_id": "SCAN_TOOL--3c0d7a10-a0bb-5dd4-9a16-549a2e2ad8b9",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "pius",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "nugget_instance_id": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
       "nugget_id": "COMPANY_NAME",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Organization",
-      "nugget_data": "The Upside Pty Ltd"
-    },
-    {
-      "id": "INTERNET_NAME--9d4e4da7-361b-51a8-b87a-ae3cc6cbd227",
-      "nugget_instance_id": "INTERNET_NAME--9d4e4da7-361b-51a8-b87a-ae3cc6cbd227",
-      "nugget_id": "INTERNET_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "theupside.com.au"
+      "nugget_description": "Company Name",
+      "nugget_data": "The Upside Pty Ltd",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--9084ad40-1083-5165-85ef-51c3c414dc3a",
-      "nugget_instance_id": "INTERNET_NAME--9084ad40-1083-5165-85ef-51c3c414dc3a",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_REGISTRAR--01e0f41a-7650-5f18-91c1-f41f548c185f",
+      "nugget_instance_id": "DOMAIN_REGISTRAR--01e0f41a-7650-5f18-91c1-f41f548c185f",
+      "nugget_id": "DOMAIN_REGISTRAR",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "www.theupside.com.au"
+      "nugget_description": "Domain Registrar",
+      "nugget_data": ".au Domain Administration Limited",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--a05a5246-9764-5071-a1b7-0db2e003a9ed",
-      "nugget_instance_id": "INTERNET_NAME--a05a5246-9764-5071-a1b7-0db2e003a9ed",
-      "nugget_id": "INTERNET_NAME",
+      "id": "CANDIDATE_ENTITY--11e030cc-40bd-5c58-a2d2-4a774d9bfa30",
+      "nugget_instance_id": "CANDIDATE_ENTITY--11e030cc-40bd-5c58-a2d2-4a774d9bfa30",
+      "nugget_id": "CANDIDATE_ENTITY",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "track.theupside.com.au"
+      "nugget_description": "Unresolved Research Lead",
+      "nugget_data": "CEO",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
+      "id": "PRESEED_TYPE--c5fbaff7-e90c-54ec-bf61-5f94c8c71eff",
+      "nugget_instance_id": "PRESEED_TYPE--c5fbaff7-e90c-54ec-bf61-5f94c8c71eff",
+      "nugget_id": "PRESEED_TYPE",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
+      "nugget_description": "Preseed Record Type",
+      "nugget_data": "whois+name",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "INTERNET_NAME--5a1d0252-9b10-5d8d-a0af-71187804de24",
-      "nugget_instance_id": "INTERNET_NAME--5a1d0252-9b10-5d8d-a0af-71187804de24",
-      "nugget_id": "INTERNET_NAME",
+      "id": "IS_PLACEHOLDER--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_instance_id": "IS_PLACEHOLDER--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_id": "IS_PLACEHOLDER",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Placeholder Identity Flag",
+      "nugget_data": "true",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NEEDS_REVIEW--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_instance_id": "NEEDS_REVIEW--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_id": "NEEDS_REVIEW",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Needs Human Review",
+      "nugget_data": "true",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LEADS--4094034b-5d0e-509d-8bb3-10d9bcf7d538",
+      "nugget_instance_id": "LEADS--4094034b-5d0e-509d-8bb3-10d9bcf7d538",
+      "nugget_id": "LEADS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Research Leads Category",
+      "nugget_data": "LEADS",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "nugget_instance_id": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "nugget_id": "REVIEW_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Review Status",
+      "nugget_data": "confirmed",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "nugget_instance_id": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "k8s.theupside.com.au"
+      "nugget_description": "Domain Name",
+      "nugget_data": "theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
+      "id": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "nugget_instance_id": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "nugget_id": "DISCOVERY_METHOD",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
+      "nugget_description": "Discovery Method",
+      "nugget_data": "certificate-transparency",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "INTERNET_NAME--fe3a7475-976d-596a-b429-bc4de525b086",
-      "nugget_instance_id": "INTERNET_NAME--fe3a7475-976d-596a-b429-bc4de525b086",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME_PARENT--65d1ca44-2a40-5293-ba91-fa4dbfd68b1f",
+      "nugget_instance_id": "DOMAIN_NAME_PARENT--65d1ca44-2a40-5293-ba91-fa4dbfd68b1f",
+      "nugget_id": "DOMAIN_NAME_PARENT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Domain Name (Parent)",
+      "nugget_data": "com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "nugget_instance_id": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "nugget_id": "DOMAINS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Domains Category",
+      "nugget_data": "DOMAINS",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "DOMAIN_NAME--e1058b4f-10a2-5f3a-8cf9-6516fd31c241",
+      "nugget_instance_id": "DOMAIN_NAME--e1058b4f-10a2-5f3a-8cf9-6516fd31c241",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "info.theupside.com.au"
+      "nugget_description": "Domain Name",
+      "nugget_data": "www.theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
+      "id": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "nugget_instance_id": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "nugget_id": "DOMAIN_NAME_PARENT",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
+      "nugget_description": "Domain Name (Parent)",
+      "nugget_data": "theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "INTERNET_NAME--63b21cc7-87ba-5e4e-b6af-d69ff916b576",
-      "nugget_instance_id": "INTERNET_NAME--63b21cc7-87ba-5e4e-b6af-d69ff916b576",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "nugget_instance_id": "DOMAIN_NAME--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "spf.theupside.com.au"
+      "nugget_description": "Domain Name",
+      "nugget_data": "track.theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--d0edd771-5edd-52d1-8242-ec7e2ccdffaa",
-      "nugget_instance_id": "INTERNET_NAME--d0edd771-5edd-52d1-8242-ec7e2ccdffaa",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "nugget_instance_id": "DOMAIN_NAME--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "news.theupside.com.au"
+      "nugget_description": "Domain Name",
+      "nugget_data": "k8s.theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--6f822e2d-10cc-57a6-88ed-3660fd993231",
-      "nugget_instance_id": "INTERNET_NAME--6f822e2d-10cc-57a6-88ed-3660fd993231",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "nugget_instance_id": "DOMAIN_NAME--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "email.theupside.com.au"
+      "nugget_description": "Domain Name",
+      "nugget_data": "info.theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--0629cf14-7a90-5a99-8fcd-7bad07042dc9",
-      "nugget_instance_id": "INTERNET_NAME--0629cf14-7a90-5a99-8fcd-7bad07042dc9",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "nugget_instance_id": "DOMAIN_NAME--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "newsletter.theupside.com.au"
+      "nugget_description": "Domain Name",
+      "nugget_data": "spf.theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--a8283c8a-d9c7-5e93-8f83-1904fa55cd00",
-      "nugget_instance_id": "INTERNET_NAME--a8283c8a-d9c7-5e93-8f83-1904fa55cd00",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "nugget_instance_id": "DOMAIN_NAME--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "test.theupside.com.au"
+      "nugget_description": "Domain Name",
+      "nugget_data": "news.theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--69e802b1-5e44-55bf-92f3-c89582d2ebe6",
-      "nugget_instance_id": "INTERNET_NAME--69e802b1-5e44-55bf-92f3-c89582d2ebe6",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--483fc780-9a30-5250-a578-874234ed423f",
+      "nugget_instance_id": "DOMAIN_NAME--483fc780-9a30-5250-a578-874234ed423f",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "mail.theupside.com.au"
+      "nugget_description": "Domain Name",
+      "nugget_data": "email.theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--6ca6da09-2e1d-5c24-b1dd-f2ccba8f920c",
-      "nugget_instance_id": "INTERNET_NAME--6ca6da09-2e1d-5c24-b1dd-f2ccba8f920c",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "nugget_instance_id": "DOMAIN_NAME--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "e.theupside.com.au"
+      "nugget_description": "Domain Name",
+      "nugget_data": "newsletter.theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--b30b8622-12a0-564b-9b3a-1448c81d49ba",
-      "nugget_instance_id": "INTERNET_NAME--b30b8622-12a0-564b-9b3a-1448c81d49ba",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--576a882e-f8d8-51ee-9066-e0a983145021",
+      "nugget_instance_id": "DOMAIN_NAME--576a882e-f8d8-51ee-9066-e0a983145021",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "aws.theupside.com.au"
+      "nugget_description": "Domain Name",
+      "nugget_data": "test.theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--d7b6be7c-5cff-53bf-8900-dbba4007d20e",
-      "nugget_instance_id": "INTERNET_NAME--d7b6be7c-5cff-53bf-8900-dbba4007d20e",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "nugget_instance_id": "DOMAIN_NAME--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "dev.theupside.com.au"
+      "nugget_description": "Domain Name",
+      "nugget_data": "mail.theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--ecce903f-0a2b-54a4-a63b-4c77a26c10e8",
-      "nugget_instance_id": "INTERNET_NAME--ecce903f-0a2b-54a4-a63b-4c77a26c10e8",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "nugget_instance_id": "DOMAIN_NAME--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "cfjump.theupside.com.au"
+      "nugget_description": "Domain Name",
+      "nugget_data": "e.theupside.com.au",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
+      "id": "DOMAIN_NAME--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "nugget_instance_id": "DOMAIN_NAME--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "aws.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "DOMAIN_NAME--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "nugget_instance_id": "DOMAIN_NAME--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "dev.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "DOMAIN_NAME--e7cc4c87-6daa-55f2-b576-fea5d962916d",
+      "nugget_instance_id": "DOMAIN_NAME--e7cc4c87-6daa-55f2-b576-fea5d962916d",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "cfjump.theupside.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_instance_id": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_id": "IS_WILDCARD_DNS",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
+      "nugget_description": "Wildcard DNS Detected",
+      "nugget_data": "true",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "nugget_instance_id": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "nugget_id": "WILDCARD_IP_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Wildcard DNS IP Count",
+      "nugget_data": "1",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_instance_id": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_id": "SUBDOMAIN_ENUMERATION_SUPPRESSED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Subdomain Enumeration Suppressed",
+      "nugget_data": "true",
+      "nugget_colour": "#F59E0B"
     }
   ],
   "edges": [
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "SCAN_CLI--6962fc1a-50e7-5edc-8289-e7396871572c",
+      "source": "SCAN_RECORD--91704a2a-16eb-5e2d-a482-58d66999dae0",
+      "target": "SCAN_CLI--4caf4b00-dcb2-5d6d-98a4-c92372ac2165",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "COMPANY_NAME--dfbfaaa2-7f38-5949-ba88-b8110e9ed3d3",
+      "source": "SCAN_RECORD--91704a2a-16eb-5e2d-a482-58d66999dae0",
+      "target": "SCAN_TARGET--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--9d4e4da7-361b-51a8-b87a-ae3cc6cbd227",
+      "source": "SCAN_RECORD--91704a2a-16eb-5e2d-a482-58d66999dae0",
+      "target": "SCAN_TARGET_ORG--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--91704a2a-16eb-5e2d-a482-58d66999dae0",
+      "target": "SCAN_START--85c019e6-fb12-57ab-8163-0c7fb6a5ddee",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--91704a2a-16eb-5e2d-a482-58d66999dae0",
+      "target": "SCAN_ELAPSED--60b4067c-8b09-54dd-b415-bd9c51d619f5",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--91704a2a-16eb-5e2d-a482-58d66999dae0",
+      "target": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--91704a2a-16eb-5e2d-a482-58d66999dae0",
+      "target": "SCAN_TOOL--3c0d7a10-a0bb-5dd4-9a16-549a2e2ad8b9",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--91704a2a-16eb-5e2d-a482-58d66999dae0",
+      "target": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
       "relation": "contains"
     },
     {
-      "source": "INTERNET_NAME--9d4e4da7-361b-51a8-b87a-ae3cc6cbd227",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "relation": "had"
-    },
-    {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--9084ad40-1083-5165-85ef-51c3c414dc3a",
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_REGISTRAR--01e0f41a-7650-5f18-91c1-f41f548c185f",
       "relation": "contains"
     },
     {
-      "source": "INTERNET_NAME--9084ad40-1083-5165-85ef-51c3c414dc3a",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "CANDIDATE_ENTITY--11e030cc-40bd-5c58-a2d2-4a774d9bfa30",
+      "target": "PRESEED_TYPE--c5fbaff7-e90c-54ec-bf61-5f94c8c71eff",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--a05a5246-9764-5071-a1b7-0db2e003a9ed",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--a05a5246-9764-5071-a1b7-0db2e003a9ed",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "CANDIDATE_ENTITY--11e030cc-40bd-5c58-a2d2-4a774d9bfa30",
+      "target": "IS_PLACEHOLDER--a26b45b4-3bde-573b-a335-b2284e4ae643",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--5a1d0252-9b10-5d8d-a0af-71187804de24",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--5a1d0252-9b10-5d8d-a0af-71187804de24",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "CANDIDATE_ENTITY--11e030cc-40bd-5c58-a2d2-4a774d9bfa30",
+      "target": "NEEDS_REVIEW--a26b45b4-3bde-573b-a335-b2284e4ae643",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--fe3a7475-976d-596a-b429-bc4de525b086",
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "LEADS--4094034b-5d0e-509d-8bb3-10d9bcf7d538",
       "relation": "contains"
     },
     {
-      "source": "INTERNET_NAME--fe3a7475-976d-596a-b429-bc4de525b086",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "LEADS--4094034b-5d0e-509d-8bb3-10d9bcf7d538",
+      "target": "CANDIDATE_ENTITY--11e030cc-40bd-5c58-a2d2-4a774d9bfa30",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "CANDIDATE_ENTITY--11e030cc-40bd-5c58-a2d2-4a774d9bfa30",
+      "relation": "contains"
+    },
+    {
+      "source": "CANDIDATE_ENTITY--11e030cc-40bd-5c58-a2d2-4a774d9bfa30",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--63b21cc7-87ba-5e4e-b6af-d69ff916b576",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--63b21cc7-87ba-5e4e-b6af-d69ff916b576",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--d0edd771-5edd-52d1-8242-ec7e2ccdffaa",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--d0edd771-5edd-52d1-8242-ec7e2ccdffaa",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "DOMAIN_NAME_PARENT--65d1ca44-2a40-5293-ba91-fa4dbfd68b1f",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--6f822e2d-10cc-57a6-88ed-3660fd993231",
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
       "relation": "contains"
     },
     {
-      "source": "INTERNET_NAME--6f822e2d-10cc-57a6-88ed-3660fd993231",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--0629cf14-7a90-5a99-8fcd-7bad07042dc9",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--0629cf14-7a90-5a99-8fcd-7bad07042dc9",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "DOMAIN_NAME--e1058b4f-10a2-5f3a-8cf9-6516fd31c241",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--a8283c8a-d9c7-5e93-8f83-1904fa55cd00",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--a8283c8a-d9c7-5e93-8f83-1904fa55cd00",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "DOMAIN_NAME--e1058b4f-10a2-5f3a-8cf9-6516fd31c241",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--69e802b1-5e44-55bf-92f3-c89582d2ebe6",
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--e1058b4f-10a2-5f3a-8cf9-6516fd31c241",
       "relation": "contains"
     },
     {
-      "source": "INTERNET_NAME--69e802b1-5e44-55bf-92f3-c89582d2ebe6",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--e1058b4f-10a2-5f3a-8cf9-6516fd31c241",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e1058b4f-10a2-5f3a-8cf9-6516fd31c241",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--6ca6da09-2e1d-5c24-b1dd-f2ccba8f920c",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--6ca6da09-2e1d-5c24-b1dd-f2ccba8f920c",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "DOMAIN_NAME--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--b30b8622-12a0-564b-9b3a-1448c81d49ba",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--b30b8622-12a0-564b-9b3a-1448c81d49ba",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "DOMAIN_NAME--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--d7b6be7c-5cff-53bf-8900-dbba4007d20e",
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--903ebc0e-25a7-5c99-9750-1f65cac2122e",
       "relation": "contains"
     },
     {
-      "source": "INTERNET_NAME--d7b6be7c-5cff-53bf-8900-dbba4007d20e",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--24aa3077-fb9d-5631-9a80-f0b67baa9b59",
-      "target": "INTERNET_NAME--ecce903f-0a2b-54a4-a63b-4c77a26c10e8",
+      "source": "DOMAIN_NAME--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
       "relation": "contains"
     },
     {
-      "source": "INTERNET_NAME--ecce903f-0a2b-54a4-a63b-4c77a26c10e8",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--483fc780-9a30-5250-a578-874234ed423f",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--483fc780-9a30-5250-a578-874234ed423f",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--483fc780-9a30-5250-a578-874234ed423f",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--483fc780-9a30-5250-a578-874234ed423f",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--483fc780-9a30-5250-a578-874234ed423f",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--576a882e-f8d8-51ee-9066-e0a983145021",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--576a882e-f8d8-51ee-9066-e0a983145021",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--576a882e-f8d8-51ee-9066-e0a983145021",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--576a882e-f8d8-51ee-9066-e0a983145021",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--576a882e-f8d8-51ee-9066-e0a983145021",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--e7cc4c87-6daa-55f2-b576-fea5d962916d",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--e7cc4c87-6daa-55f2-b576-fea5d962916d",
+      "target": "DOMAIN_NAME_PARENT--689ae9cb-5045-554d-bfbb-e40bb8ca706d",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--e7cc4c87-6daa-55f2-b576-fea5d962916d",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--5e3ecd2a-f6f1-5b97-b501-d16ccd633f67",
+      "target": "DOMAIN_NAME--e7cc4c87-6daa-55f2-b576-fea5d962916d",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--e7cc4c87-6daa-55f2-b576-fea5d962916d",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "target": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "target": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--276d5cac-8f01-50fe-b899-bee404bb86e0",
+      "target": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "target": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "target": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--7f47f4c1-74bf-5a0d-a61e-d77f124910e3",
+      "target": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "target": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "target": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--bec9a7e3-2650-5fb1-9429-eeaac3b4cb98",
+      "target": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "target": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "target": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--6deb4c97-a80d-59a6-98dd-a8d88523eaf2",
+      "target": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "target": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "target": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--903ebc0e-25a7-5c99-9750-1f65cac2122e",
+      "target": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--576a882e-f8d8-51ee-9066-e0a983145021",
+      "target": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--576a882e-f8d8-51ee-9066-e0a983145021",
+      "target": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--576a882e-f8d8-51ee-9066-e0a983145021",
+      "target": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "target": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "target": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--ac790c3d-7ac6-5bfb-9bc1-9255029b592b",
+      "target": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "target": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "target": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--7b1981b3-e413-594b-a268-2217f1324cf9",
+      "target": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "target": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "target": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--15fcfd32-0d35-5671-8c9b-fb2a4e782232",
+      "target": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "target": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "target": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--5db00720-82bb-5168-a73c-3d66acf171ff",
+      "target": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "target": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "target": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--738ce69a-81fe-5047-9809-ebe2261f3046",
+      "target": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--483fc780-9a30-5250-a578-874234ed423f",
+      "target": "IS_WILDCARD_DNS--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--483fc780-9a30-5250-a578-874234ed423f",
+      "target": "WILDCARD_IP_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--483fc780-9a30-5250-a578-874234ed423f",
+      "target": "SUBDOMAIN_ENUMERATION_SUPPRESSED--a26b45b4-3bde-573b-a335-b2284e4ae643",
       "relation": "had"
     }
   ]

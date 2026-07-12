@@ -1,0 +1,588 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--3a56e6b2-e2ba-586a-93c3-3297d9f903c0",
+      "nugget_instance_id": "SCAN_RECORD--3a56e6b2-e2ba-586a-93c3-3297d9f903c0",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Scan Record",
+      "nugget_data": "nmap:192.168.1.0/24:Fri Jun 26 04:00:30 2026",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SCAN_CLI--077e54cf-486d-54ad-9145-38663a858f3d",
+      "nugget_instance_id": "SCAN_CLI--077e54cf-486d-54ad-9145-38663a858f3d",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "nmap -sT -T3 --top-ports 100 --open -oX - 192.168.1.0/24",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
+      "nugget_instance_id": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
+      "nugget_id": "SCAN_VERSION",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Version",
+      "nugget_data": "7.80",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_START--f4c1e55f-f479-5ac2-8628-fc5286dd009f",
+      "nugget_instance_id": "SCAN_START--f4c1e55f-f479-5ac2-8628-fc5286dd009f",
+      "nugget_id": "SCAN_START",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Start",
+      "nugget_data": "Fri Jun 26 04:00:30 2026",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TARGET--838aa640-4263-5822-97a4-f346da0e421a",
+      "nugget_instance_id": "SCAN_TARGET--838aa640-4263-5822-97a4-f346da0e421a",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "192.168.1.0/24",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_SUMMARY--6200c268-fa7a-59b4-9ad4-f5593633d72e",
+      "nugget_instance_id": "SCAN_SUMMARY--6200c268-fa7a-59b4-9ad4-f5593633d72e",
+      "nugget_id": "SCAN_SUMMARY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Summary",
+      "nugget_data": "Nmap done at Fri Jun 26 04:00:52 2026; 256 IP addresses (2 hosts up) scanned in 21.75 seconds",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_ELAPSED--4a921e0e-96f2-5520-82ad-9f8b80bebadb",
+      "nugget_instance_id": "SCAN_ELAPSED--4a921e0e-96f2-5520-82ad-9f8b80bebadb",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_data": "21.75",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "nugget_instance_id": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "nmap",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "HOST--22dbd18e-7ada-510f-ac90-adb93d3351a1",
+      "nugget_instance_id": "HOST--22dbd18e-7ada-510f-ac90-adb93d3351a1",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
+      "nugget_data": "192.168.1.9",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
+      "nugget_instance_id": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
+      "nugget_id": "HOST_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Host Status",
+      "nugget_data": "up",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "HOST_STATUS_REASON--17f859b8-e506-5e50-8913-fe2c57005a2b",
+      "nugget_instance_id": "HOST_STATUS_REASON--17f859b8-e506-5e50-8913-fe2c57005a2b",
+      "nugget_id": "HOST_STATUS_REASON",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Host Status Reason",
+      "nugget_data": "localhost-response",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "INTERNET_NAME--a19e700c-9608-564b-9224-6096190f6bc6",
+      "nugget_instance_id": "INTERNET_NAME--a19e700c-9608-564b-9224-6096190f6bc6",
+      "nugget_id": "INTERNET_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Internet Name",
+      "nugget_data": "host.docker.internal",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NETWORKS--74de94dd-63d4-546e-b08a-897c625819cb",
+      "nugget_instance_id": "NETWORKS--74de94dd-63d4-546e-b08a-897c625819cb",
+      "nugget_id": "NETWORKS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Networks Category",
+      "nugget_data": "networks:192.168.1.9",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "IP_ADDRESS--22dbd18e-7ada-510f-ac90-adb93d3351a1",
+      "nugget_instance_id": "IP_ADDRESS--22dbd18e-7ada-510f-ac90-adb93d3351a1",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "192.168.1.9",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "APPLICATIONS--0e7472d9-64a8-5461-ba76-45d75f31cbf9",
+      "nugget_instance_id": "APPLICATIONS--0e7472d9-64a8-5461-ba76-45d75f31cbf9",
+      "nugget_id": "APPLICATIONS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Applications Category",
+      "nugget_data": "applications:192.168.1.9",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_instance_id": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_id": "TRANSPORT",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Transport Protocol",
+      "nugget_data": "tcp",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "PORT--bbee74a0-1e60-5902-a2df-a89e17e1ada6",
+      "nugget_instance_id": "PORT--bbee74a0-1e60-5902-a2df-a89e17e1ada6",
+      "nugget_id": "PORT",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Network Port",
+      "nugget_data": "135",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "nugget_instance_id": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "nugget_id": "PORT_STATE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Port State",
+      "nugget_data": "open",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PORT_STATE_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
+      "nugget_instance_id": "PORT_STATE_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
+      "nugget_id": "PORT_STATE_REASON",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Port State Reason",
+      "nugget_data": "syn-ack",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_instance_id": "PORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_id": "PORT_PROTOCOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Port Protocol",
+      "nugget_data": "tcp",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SERVICE--34b584e8-7816-54cb-814c-d040b37f3a4c",
+      "nugget_instance_id": "SERVICE--34b584e8-7816-54cb-814c-d040b37f3a4c",
+      "nugget_id": "SERVICE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Network Service",
+      "nugget_data": "msrpc",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "PORT--9e1238f6-107d-5679-8ba1-c1cf54900ded",
+      "nugget_instance_id": "PORT--9e1238f6-107d-5679-8ba1-c1cf54900ded",
+      "nugget_id": "PORT",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Network Port",
+      "nugget_data": "139",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SERVICE--143953a8-a144-5d9a-9d84-84b513e0df08",
+      "nugget_instance_id": "SERVICE--143953a8-a144-5d9a-9d84-84b513e0df08",
+      "nugget_id": "SERVICE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Network Service",
+      "nugget_data": "netbios-ssn",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "PORT--98fab27c-f599-5e76-a5b2-1150576b4f7f",
+      "nugget_instance_id": "PORT--98fab27c-f599-5e76-a5b2-1150576b4f7f",
+      "nugget_id": "PORT",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Network Port",
+      "nugget_data": "445",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SERVICE--886f849c-6374-5963-abbd-23a119257536",
+      "nugget_instance_id": "SERVICE--886f849c-6374-5963-abbd-23a119257536",
+      "nugget_id": "SERVICE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Network Service",
+      "nugget_data": "microsoft-ds",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "PORT--57d18f27-9116-5136-8917-9e655b82313f",
+      "nugget_instance_id": "PORT--57d18f27-9116-5136-8917-9e655b82313f",
+      "nugget_id": "PORT",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Network Port",
+      "nugget_data": "3000",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SERVICE--f1c114ee-768a-54d0-8886-4ecf2a699399",
+      "nugget_instance_id": "SERVICE--f1c114ee-768a-54d0-8886-4ecf2a699399",
+      "nugget_id": "SERVICE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Network Service",
+      "nugget_data": "ppp",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "PORT--5eec40a1-477d-5a41-8559-f774261c6fad",
+      "nugget_instance_id": "PORT--5eec40a1-477d-5a41-8559-f774261c6fad",
+      "nugget_id": "PORT",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Network Port",
+      "nugget_data": "8000",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SERVICE--9b8a4cf5-793b-53d5-b0bd-1c389526562a",
+      "nugget_instance_id": "SERVICE--9b8a4cf5-793b-53d5-b0bd-1c389526562a",
+      "nugget_id": "SERVICE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Network Service",
+      "nugget_data": "http-alt",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HOST--75b88003-a414-59f8-a8aa-e2e94bc8c2b0",
+      "nugget_instance_id": "HOST--75b88003-a414-59f8-a8aa-e2e94bc8c2b0",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
+      "nugget_data": "192.168.1.11",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NETWORKS--797cb08d-a2e0-528b-bcca-14f8f9e6a62b",
+      "nugget_instance_id": "NETWORKS--797cb08d-a2e0-528b-bcca-14f8f9e6a62b",
+      "nugget_id": "NETWORKS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Networks Category",
+      "nugget_data": "networks:192.168.1.11",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "IP_ADDRESS--75b88003-a414-59f8-a8aa-e2e94bc8c2b0",
+      "nugget_instance_id": "IP_ADDRESS--75b88003-a414-59f8-a8aa-e2e94bc8c2b0",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "192.168.1.11",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "APPLICATIONS--8bf1c121-7390-5c13-819e-06052209629a",
+      "nugget_instance_id": "APPLICATIONS--8bf1c121-7390-5c13-819e-06052209629a",
+      "nugget_id": "APPLICATIONS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Applications Category",
+      "nugget_data": "applications:192.168.1.11",
+      "nugget_colour": "#14B8A6"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--3a56e6b2-e2ba-586a-93c3-3297d9f903c0",
+      "target": "SCAN_CLI--077e54cf-486d-54ad-9145-38663a858f3d",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--3a56e6b2-e2ba-586a-93c3-3297d9f903c0",
+      "target": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--3a56e6b2-e2ba-586a-93c3-3297d9f903c0",
+      "target": "SCAN_START--f4c1e55f-f479-5ac2-8628-fc5286dd009f",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--3a56e6b2-e2ba-586a-93c3-3297d9f903c0",
+      "target": "SCAN_TARGET--838aa640-4263-5822-97a4-f346da0e421a",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--3a56e6b2-e2ba-586a-93c3-3297d9f903c0",
+      "target": "SCAN_SUMMARY--6200c268-fa7a-59b4-9ad4-f5593633d72e",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--3a56e6b2-e2ba-586a-93c3-3297d9f903c0",
+      "target": "SCAN_ELAPSED--4a921e0e-96f2-5520-82ad-9f8b80bebadb",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--3a56e6b2-e2ba-586a-93c3-3297d9f903c0",
+      "target": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--3a56e6b2-e2ba-586a-93c3-3297d9f903c0",
+      "target": "HOST--22dbd18e-7ada-510f-ac90-adb93d3351a1",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--22dbd18e-7ada-510f-ac90-adb93d3351a1",
+      "target": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--22dbd18e-7ada-510f-ac90-adb93d3351a1",
+      "target": "HOST_STATUS_REASON--17f859b8-e506-5e50-8913-fe2c57005a2b",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--22dbd18e-7ada-510f-ac90-adb93d3351a1",
+      "target": "INTERNET_NAME--a19e700c-9608-564b-9224-6096190f6bc6",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--22dbd18e-7ada-510f-ac90-adb93d3351a1",
+      "target": "NETWORKS--74de94dd-63d4-546e-b08a-897c625819cb",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--74de94dd-63d4-546e-b08a-897c625819cb",
+      "target": "IP_ADDRESS--22dbd18e-7ada-510f-ac90-adb93d3351a1",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--22dbd18e-7ada-510f-ac90-adb93d3351a1",
+      "target": "APPLICATIONS--0e7472d9-64a8-5461-ba76-45d75f31cbf9",
+      "relation": "contains"
+    },
+    {
+      "source": "IP_ADDRESS--22dbd18e-7ada-510f-ac90-adb93d3351a1",
+      "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "contains"
+    },
+    {
+      "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "target": "PORT--bbee74a0-1e60-5902-a2df-a89e17e1ada6",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--bbee74a0-1e60-5902-a2df-a89e17e1ada6",
+      "target": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--bbee74a0-1e60-5902-a2df-a89e17e1ada6",
+      "target": "PORT_STATE_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--bbee74a0-1e60-5902-a2df-a89e17e1ada6",
+      "target": "PORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "APPLICATIONS--0e7472d9-64a8-5461-ba76-45d75f31cbf9",
+      "target": "SERVICE--34b584e8-7816-54cb-814c-d040b37f3a4c",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--34b584e8-7816-54cb-814c-d040b37f3a4c",
+      "target": "PORT--bbee74a0-1e60-5902-a2df-a89e17e1ada6",
+      "relation": "listens-to"
+    },
+    {
+      "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "target": "PORT--9e1238f6-107d-5679-8ba1-c1cf54900ded",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--9e1238f6-107d-5679-8ba1-c1cf54900ded",
+      "target": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--9e1238f6-107d-5679-8ba1-c1cf54900ded",
+      "target": "PORT_STATE_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--9e1238f6-107d-5679-8ba1-c1cf54900ded",
+      "target": "PORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "APPLICATIONS--0e7472d9-64a8-5461-ba76-45d75f31cbf9",
+      "target": "SERVICE--143953a8-a144-5d9a-9d84-84b513e0df08",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--143953a8-a144-5d9a-9d84-84b513e0df08",
+      "target": "PORT--9e1238f6-107d-5679-8ba1-c1cf54900ded",
+      "relation": "listens-to"
+    },
+    {
+      "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "target": "PORT--98fab27c-f599-5e76-a5b2-1150576b4f7f",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--98fab27c-f599-5e76-a5b2-1150576b4f7f",
+      "target": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--98fab27c-f599-5e76-a5b2-1150576b4f7f",
+      "target": "PORT_STATE_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--98fab27c-f599-5e76-a5b2-1150576b4f7f",
+      "target": "PORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "APPLICATIONS--0e7472d9-64a8-5461-ba76-45d75f31cbf9",
+      "target": "SERVICE--886f849c-6374-5963-abbd-23a119257536",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--886f849c-6374-5963-abbd-23a119257536",
+      "target": "PORT--98fab27c-f599-5e76-a5b2-1150576b4f7f",
+      "relation": "listens-to"
+    },
+    {
+      "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "target": "PORT--57d18f27-9116-5136-8917-9e655b82313f",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--57d18f27-9116-5136-8917-9e655b82313f",
+      "target": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--57d18f27-9116-5136-8917-9e655b82313f",
+      "target": "PORT_STATE_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--57d18f27-9116-5136-8917-9e655b82313f",
+      "target": "PORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "APPLICATIONS--0e7472d9-64a8-5461-ba76-45d75f31cbf9",
+      "target": "SERVICE--f1c114ee-768a-54d0-8886-4ecf2a699399",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--f1c114ee-768a-54d0-8886-4ecf2a699399",
+      "target": "PORT--57d18f27-9116-5136-8917-9e655b82313f",
+      "relation": "listens-to"
+    },
+    {
+      "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "target": "PORT--5eec40a1-477d-5a41-8559-f774261c6fad",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--5eec40a1-477d-5a41-8559-f774261c6fad",
+      "target": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--5eec40a1-477d-5a41-8559-f774261c6fad",
+      "target": "PORT_STATE_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
+      "relation": "had"
+    },
+    {
+      "source": "PORT--5eec40a1-477d-5a41-8559-f774261c6fad",
+      "target": "PORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "APPLICATIONS--0e7472d9-64a8-5461-ba76-45d75f31cbf9",
+      "target": "SERVICE--9b8a4cf5-793b-53d5-b0bd-1c389526562a",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--9b8a4cf5-793b-53d5-b0bd-1c389526562a",
+      "target": "PORT--5eec40a1-477d-5a41-8559-f774261c6fad",
+      "relation": "listens-to"
+    },
+    {
+      "source": "SCAN_RECORD--3a56e6b2-e2ba-586a-93c3-3297d9f903c0",
+      "target": "HOST--75b88003-a414-59f8-a8aa-e2e94bc8c2b0",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--75b88003-a414-59f8-a8aa-e2e94bc8c2b0",
+      "target": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--75b88003-a414-59f8-a8aa-e2e94bc8c2b0",
+      "target": "HOST_STATUS_REASON--17f859b8-e506-5e50-8913-fe2c57005a2b",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--75b88003-a414-59f8-a8aa-e2e94bc8c2b0",
+      "target": "NETWORKS--797cb08d-a2e0-528b-bcca-14f8f9e6a62b",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--797cb08d-a2e0-528b-bcca-14f8f9e6a62b",
+      "target": "IP_ADDRESS--75b88003-a414-59f8-a8aa-e2e94bc8c2b0",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--75b88003-a414-59f8-a8aa-e2e94bc8c2b0",
+      "target": "APPLICATIONS--8bf1c121-7390-5c13-819e-06052209629a",
+      "relation": "contains"
+    },
+    {
+      "source": "IP_ADDRESS--75b88003-a414-59f8-a8aa-e2e94bc8c2b0",
+      "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "contains"
+    },
+    {
+      "source": "APPLICATIONS--8bf1c121-7390-5c13-819e-06052209629a",
+      "target": "SERVICE--34b584e8-7816-54cb-814c-d040b37f3a4c",
+      "relation": "contains"
+    },
+    {
+      "source": "APPLICATIONS--8bf1c121-7390-5c13-819e-06052209629a",
+      "target": "SERVICE--143953a8-a144-5d9a-9d84-84b513e0df08",
+      "relation": "contains"
+    },
+    {
+      "source": "APPLICATIONS--8bf1c121-7390-5c13-819e-06052209629a",
+      "target": "SERVICE--886f849c-6374-5963-abbd-23a119257536",
+      "relation": "contains"
+    },
+    {
+      "source": "APPLICATIONS--8bf1c121-7390-5c13-819e-06052209629a",
+      "target": "SERVICE--f1c114ee-768a-54d0-8886-4ecf2a699399",
+      "relation": "contains"
+    },
+    {
+      "source": "APPLICATIONS--8bf1c121-7390-5c13-819e-06052209629a",
+      "target": "SERVICE--9b8a4cf5-793b-53d5-b0bd-1c389526562a",
+      "relation": "contains"
+    }
+  ]
+}

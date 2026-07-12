@@ -54,3 +54,14 @@ def test_assert_ip_nugget_passes_for_correct_id() -> None:
 def test_assert_ip_nugget_raises_for_ipv6_mislabel() -> None:
     with pytest.raises(ValueError, match="IPV6_ADDRESS"):
         assert_ip_nugget("2001:db8::1", "IP_ADDRESS")
+
+
+def test_ip_nugget_node_emits_ipv6_entity() -> None:
+    from core.graph_builder import GraphBuilder
+
+    builder = GraphBuilder()
+    from core.ip_classify import ip_nugget_node
+
+    node = builder.add_node(ip_nugget_node("2001:db8::1"))
+    assert node["nugget_id"] == "IPV6_ADDRESS"
+    assert node["nugget_data"] == "2001:db8::1"

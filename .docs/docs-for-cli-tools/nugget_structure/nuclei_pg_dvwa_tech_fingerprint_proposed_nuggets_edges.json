@@ -1,0 +1,1178 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--f83f7739-0f25-51a1-ba25-9c5340023556",
+      "nugget_instance_id": "SCAN_RECORD--f83f7739-0f25-51a1-ba25-9c5340023556",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Scan Record",
+      "nugget_data": "nuclei:https://pentest-ground.com:4280:nuclei -u https://pentest-ground.com:4280 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -tags tech -severity info -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/pg_dvwa_tech_fingerprint.jsonl",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SCAN_CLI--e78f0c16-5a59-5f66-be5e-5e9bea75388f",
+      "nugget_instance_id": "SCAN_CLI--e78f0c16-5a59-5f66-be5e-5e9bea75388f",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "nuclei -u https://pentest-ground.com:4280 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -tags tech -severity info -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/pg_dvwa_tech_fingerprint.jsonl",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TARGET--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "nugget_instance_id": "SCAN_TARGET--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "https://pentest-ground.com:4280",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_START--0ec737c4-8614-5b52-8978-f46ae99a1a8b",
+      "nugget_instance_id": "SCAN_START--0ec737c4-8614-5b52-8978-f46ae99a1a8b",
+      "nugget_id": "SCAN_START",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Start",
+      "nugget_data": "2026-07-05T11:58:42.270590+00:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_ELAPSED--38fc49c8-9e23-5171-a356-dda8d347cd5d",
+      "nugget_instance_id": "SCAN_ELAPSED--38fc49c8-9e23-5171-a356-dda8d347cd5d",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_data": "0.0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_instance_id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_id": "SCAN_EXIT_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Exit Status",
+      "nugget_data": "0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_FINDING_COUNT--f815043d-936e-551e-b6ba-64198a3cebc3",
+      "nugget_instance_id": "SCAN_FINDING_COUNT--f815043d-936e-551e-b6ba-64198a3cebc3",
+      "nugget_id": "SCAN_FINDING_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Finding Count",
+      "nugget_data": "4",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--0315df1b-6604-5965-bf7e-aecadb998218",
+      "nugget_instance_id": "SCAN_TOOL--0315df1b-6604-5965-bf7e-aecadb998218",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "nuclei",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "HOST--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "nugget_instance_id": "HOST--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
+      "nugget_data": "https://pentest-ground.com:4280",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "nugget_instance_id": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
+      "nugget_data": "pentest-ground.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SECURITY--0b61c31c-101e-52c6-a074-847c2efb6b9a",
+      "nugget_instance_id": "SECURITY--0b61c31c-101e-52c6-a074-847c2efb6b9a",
+      "nugget_id": "SECURITY",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Security Knowledge Container",
+      "nugget_data": "pentest-ground.com::SECURITY",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "TEMPLATES_USED--89f39de1-1931-5318-8303-d11e600e7b0e",
+      "nugget_instance_id": "TEMPLATES_USED--89f39de1-1931-5318-8303-d11e600e7b0e",
+      "nugget_id": "TEMPLATES_USED",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Templates Used Container",
+      "nugget_data": "pentest-ground.com::TEMPLATES_USED",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "FINDINGS--831a4651-c9b5-52ee-b6b1-97dd36c276e0",
+      "nugget_instance_id": "FINDINGS--831a4651-c9b5-52ee-b6b1-97dd36c276e0",
+      "nugget_id": "FINDINGS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Findings Container",
+      "nugget_data": "pentest-ground.com::FINDINGS",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "NUCLEI_SEVERITY_INFO--b63cae81-48d0-5500-901b-9b9a0e9156f0",
+      "nugget_instance_id": "NUCLEI_SEVERITY_INFO--b63cae81-48d0-5500-901b-9b9a0e9156f0",
+      "nugget_id": "NUCLEI_SEVERITY_INFO",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Nuclei Info Severity Bucket",
+      "nugget_data": "pentest-ground.com::NUCLEI_SEVERITY_INFO",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "nugget_instance_id": "NUCLEI_TEMPLATE--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "nugget_id": "NUCLEI_TEMPLATE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Template",
+      "nugget_data": "nginx-version",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_ID--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_ID--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "nugget_id": "NUCLEI_TEMPLATE_ID",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template ID",
+      "nugget_data": "nginx-version",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_NAME--ff845dcb-03ac-5422-a815-bb535f3151e2",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_NAME--ff845dcb-03ac-5422-a815-bb535f3151e2",
+      "nugget_id": "NUCLEI_TEMPLATE_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Name",
+      "nugget_data": "Nginx version detect",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_PATH--362cba53-bad6-5641-ba9e-582406b556c7",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_PATH--362cba53-bad6-5641-ba9e-582406b556c7",
+      "nugget_id": "NUCLEI_TEMPLATE_PATH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Path",
+      "nugget_data": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\nginx\\nginx-version.yaml",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_AUTHOR--b6c2ef4b-6db0-577b-88dd-9944513f32e6",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_AUTHOR--b6c2ef4b-6db0-577b-88dd-9944513f32e6",
+      "nugget_id": "NUCLEI_TEMPLATE_AUTHOR",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Author",
+      "nugget_data": "philippedelteil, daffainfo",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_TAGS--ad6fc2e8-bb39-554f-beff-4cd661a5412c",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_TAGS--ad6fc2e8-bb39-554f-beff-4cd661a5412c",
+      "nugget_id": "NUCLEI_TEMPLATE_TAGS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Tags",
+      "nugget_data": "tech, nginx, discovery",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_PROTOCOL--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_PROTOCOL--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "nugget_id": "NUCLEI_TEMPLATE_PROTOCOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Protocol",
+      "nugget_data": "http",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "nugget_instance_id": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "nugget_id": "NUCLEI_FINDING",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Finding",
+      "nugget_data": "nginx-version:https://pentest-ground.com:4280:2026-07-05T21:13:28.5772446+10:00",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_MATCHED_AT--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "nugget_instance_id": "NUCLEI_MATCHED_AT--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "nugget_id": "NUCLEI_MATCHED_AT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Matched At",
+      "nugget_data": "https://pentest-ground.com:4280",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING_TIMESTAMP--58d9afe9-845d-57ec-b6d3-e7dd490599e0",
+      "nugget_instance_id": "NUCLEI_FINDING_TIMESTAMP--58d9afe9-845d-57ec-b6d3-e7dd490599e0",
+      "nugget_id": "NUCLEI_FINDING_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding Timestamp",
+      "nugget_data": "2026-07-05T21:13:28.5772446+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING_HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "nugget_instance_id": "NUCLEI_FINDING_HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "nugget_id": "NUCLEI_FINDING_HOST",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding Host",
+      "nugget_data": "pentest-ground.com",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING_IP--62e0c65e-cb70-5dd1-9804-4dbd05d4f024",
+      "nugget_instance_id": "NUCLEI_FINDING_IP--62e0c65e-cb70-5dd1-9804-4dbd05d4f024",
+      "nugget_id": "NUCLEI_FINDING_IP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding IP",
+      "nugget_data": "178.79.134.182",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING_PORT--fd5b6503-b131-5d66-986e-6db37709f783",
+      "nugget_instance_id": "NUCLEI_FINDING_PORT--fd5b6503-b131-5d66-986e-6db37709f783",
+      "nugget_id": "NUCLEI_FINDING_PORT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding Port",
+      "nugget_data": "4280",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING_URL--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "nugget_instance_id": "NUCLEI_FINDING_URL--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "nugget_id": "NUCLEI_FINDING_URL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding URL",
+      "nugget_data": "https://pentest-ground.com:4280",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING_PROTOCOL--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "nugget_instance_id": "NUCLEI_FINDING_PROTOCOL--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "nugget_id": "NUCLEI_FINDING_PROTOCOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding Protocol",
+      "nugget_data": "http",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_MATCHER_STATUS--b36c45d7-9288-5624-a1f4-a56f9e87db07",
+      "nugget_instance_id": "NUCLEI_MATCHER_STATUS--b36c45d7-9288-5624-a1f4-a56f9e87db07",
+      "nugget_id": "NUCLEI_MATCHER_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Matcher Status",
+      "nugget_data": "True",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_EXTRACTED_RESULTS--44dde0bd-575a-5452-9582-42cef45fce71",
+      "nugget_instance_id": "NUCLEI_EXTRACTED_RESULTS--44dde0bd-575a-5452-9582-42cef45fce71",
+      "nugget_id": "NUCLEI_EXTRACTED_RESULTS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Extracted Results",
+      "nugget_data": "nginx/1.31.2",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULNERABILITY--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "nugget_instance_id": "NUCLEI_VULNERABILITY--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "nugget_id": "NUCLEI_VULNERABILITY",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Vulnerability Observation",
+      "nugget_data": "nginx-version:https://pentest-ground.com:4280:2026-07-05T21:13:28.5772446+10:00",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "VULNERABILITY_GENERAL--ff845dcb-03ac-5422-a815-bb535f3151e2",
+      "nugget_instance_id": "VULNERABILITY_GENERAL--ff845dcb-03ac-5422-a815-bb535f3151e2",
+      "nugget_id": "VULNERABILITY_GENERAL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Vulnerability - General",
+      "nugget_data": "Nginx version detect",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_DESCRIPTION--0f19bb03-b693-53e4-9de9-e41f4b799904",
+      "nugget_instance_id": "NUCLEI_VULN_DESCRIPTION--0f19bb03-b693-53e4-9de9-e41f4b799904",
+      "nugget_id": "NUCLEI_VULN_DESCRIPTION",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Description",
+      "nugget_data": "Some nginx servers have the version on the response header. Useful when you need to find specific CVEs on your targets.",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_SEVERITY--a1366663-4a1a-5319-8389-20b6a535684c",
+      "nugget_instance_id": "NUCLEI_VULN_SEVERITY--a1366663-4a1a-5319-8389-20b6a535684c",
+      "nugget_id": "NUCLEI_VULN_SEVERITY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Severity",
+      "nugget_data": "info",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_TAGS--ad6fc2e8-bb39-554f-beff-4cd661a5412c",
+      "nugget_instance_id": "NUCLEI_VULN_TAGS--ad6fc2e8-bb39-554f-beff-4cd661a5412c",
+      "nugget_id": "NUCLEI_VULN_TAGS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Tags",
+      "nugget_data": "tech, nginx, discovery",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SERVICE--93665513-e50c-5dd1-8972-52b3f9400933",
+      "nugget_instance_id": "SERVICE--93665513-e50c-5dd1-8972-52b3f9400933",
+      "nugget_id": "SERVICE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Network Service",
+      "nugget_data": "pentest-ground.com:4280",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE--959bc894-8f25-5bff-af2f-ef8977416999",
+      "nugget_instance_id": "NUCLEI_TEMPLATE--959bc894-8f25-5bff-af2f-ef8977416999",
+      "nugget_id": "NUCLEI_TEMPLATE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Template",
+      "nugget_data": "php-detect",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_ID--959bc894-8f25-5bff-af2f-ef8977416999",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_ID--959bc894-8f25-5bff-af2f-ef8977416999",
+      "nugget_id": "NUCLEI_TEMPLATE_ID",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template ID",
+      "nugget_data": "php-detect",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_NAME--1003a820-6986-58b7-8a68-78bb841da69c",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_NAME--1003a820-6986-58b7-8a68-78bb841da69c",
+      "nugget_id": "NUCLEI_TEMPLATE_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Name",
+      "nugget_data": "PHP Detect",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_PATH--bf9007d7-b35e-598f-98d7-9b7fa123bc45",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_PATH--bf9007d7-b35e-598f-98d7-9b7fa123bc45",
+      "nugget_id": "NUCLEI_TEMPLATE_PATH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Path",
+      "nugget_data": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\php-detect.yaml",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_AUTHOR--5202a82f-c9ee-5edb-a03e-b7c0d9c970cc",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_AUTHOR--5202a82f-c9ee-5edb-a03e-b7c0d9c970cc",
+      "nugget_id": "NUCLEI_TEMPLATE_AUTHOR",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Author",
+      "nugget_data": "y0no",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_TAGS--8ea6d20d-8bfa-5e56-83c4-b04a805b9205",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_TAGS--8ea6d20d-8bfa-5e56-83c4-b04a805b9205",
+      "nugget_id": "NUCLEI_TEMPLATE_TAGS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Tags",
+      "nugget_data": "tech, php, discovery",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "nugget_instance_id": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "nugget_id": "NUCLEI_FINDING",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Finding",
+      "nugget_data": "php-detect:https://pentest-ground.com:4280:2026-07-05T21:13:28.5816208+10:00",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_FINDING_TIMESTAMP--35b8967a-7b16-5f6b-b020-ac2f586f52b1",
+      "nugget_instance_id": "NUCLEI_FINDING_TIMESTAMP--35b8967a-7b16-5f6b-b020-ac2f586f52b1",
+      "nugget_id": "NUCLEI_FINDING_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding Timestamp",
+      "nugget_data": "2026-07-05T21:13:28.5816208+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_EXTRACTED_RESULTS--4b84be45-b33d-5e0b-a727-7e46e37b7c0e",
+      "nugget_instance_id": "NUCLEI_EXTRACTED_RESULTS--4b84be45-b33d-5e0b-a727-7e46e37b7c0e",
+      "nugget_id": "NUCLEI_EXTRACTED_RESULTS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Extracted Results",
+      "nugget_data": "8.5.7",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULNERABILITY--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "nugget_instance_id": "NUCLEI_VULNERABILITY--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "nugget_id": "NUCLEI_VULNERABILITY",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Vulnerability Observation",
+      "nugget_data": "php-detect:https://pentest-ground.com:4280:2026-07-05T21:13:28.5816208+10:00",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "VULNERABILITY_GENERAL--1003a820-6986-58b7-8a68-78bb841da69c",
+      "nugget_instance_id": "VULNERABILITY_GENERAL--1003a820-6986-58b7-8a68-78bb841da69c",
+      "nugget_id": "VULNERABILITY_GENERAL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Vulnerability - General",
+      "nugget_data": "PHP Detect",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_VENDOR--8353282a-c9bc-5e1d-8546-b699efb67c5f",
+      "nugget_instance_id": "NUCLEI_VULN_VENDOR--8353282a-c9bc-5e1d-8546-b699efb67c5f",
+      "nugget_id": "NUCLEI_VULN_VENDOR",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Vendor",
+      "nugget_data": "php",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_PRODUCT--8353282a-c9bc-5e1d-8546-b699efb67c5f",
+      "nugget_instance_id": "NUCLEI_VULN_PRODUCT--8353282a-c9bc-5e1d-8546-b699efb67c5f",
+      "nugget_id": "NUCLEI_VULN_PRODUCT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Product",
+      "nugget_data": "php",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_TAGS--8ea6d20d-8bfa-5e56-83c4-b04a805b9205",
+      "nugget_instance_id": "NUCLEI_VULN_TAGS--8ea6d20d-8bfa-5e56-83c4-b04a805b9205",
+      "nugget_id": "NUCLEI_VULN_TAGS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Tags",
+      "nugget_data": "tech, php, discovery",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_CPE--f36db00a-1a5f-5af7-8e2a-2b2f0ec0e67e",
+      "nugget_instance_id": "NUCLEI_VULN_CPE--f36db00a-1a5f-5af7-8e2a-2b2f0ec0e67e",
+      "nugget_id": "NUCLEI_VULN_CPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability CPE",
+      "nugget_data": "cpe:2.3:a:php:php:*:*:*:*:*:*:*:*",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "nugget_instance_id": "NUCLEI_TEMPLATE--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "nugget_id": "NUCLEI_TEMPLATE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Template",
+      "nugget_data": "tech-detect",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_ID--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_ID--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "nugget_id": "NUCLEI_TEMPLATE_ID",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template ID",
+      "nugget_data": "tech-detect",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_NAME--ed2b81ee-4ee2-5cb7-8e43-f9a29c253df9",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_NAME--ed2b81ee-4ee2-5cb7-8e43-f9a29c253df9",
+      "nugget_id": "NUCLEI_TEMPLATE_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Name",
+      "nugget_data": "Wappalyzer Technology Detection",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_PATH--d8e855ee-e754-582c-840c-9e4258717e8e",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_PATH--d8e855ee-e754-582c-840c-9e4258717e8e",
+      "nugget_id": "NUCLEI_TEMPLATE_PATH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Path",
+      "nugget_data": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\http\\technologies\\tech-detect.yaml",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_AUTHOR--8fe12010-400d-59f7-adae-4df4496c2052",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_AUTHOR--8fe12010-400d-59f7-adae-4df4496c2052",
+      "nugget_id": "NUCLEI_TEMPLATE_AUTHOR",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Author",
+      "nugget_data": "hakluke, righettod, matejsmycka",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_TAGS--36ec8e51-d9c6-5aec-add8-8ceeb78e1cc6",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_TAGS--36ec8e51-d9c6-5aec-add8-8ceeb78e1cc6",
+      "nugget_id": "NUCLEI_TEMPLATE_TAGS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Tags",
+      "nugget_data": "tech, discovery",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "nugget_instance_id": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "nugget_id": "NUCLEI_FINDING",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Finding",
+      "nugget_data": "tech-detect:https://pentest-ground.com:4280:2026-07-05T21:13:46.4923374+10:00",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_FINDING_TIMESTAMP--d514af5e-fd95-5a32-8133-77ceafc0e528",
+      "nugget_instance_id": "NUCLEI_FINDING_TIMESTAMP--d514af5e-fd95-5a32-8133-77ceafc0e528",
+      "nugget_id": "NUCLEI_FINDING_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding Timestamp",
+      "nugget_data": "2026-07-05T21:13:46.4923374+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_MATCHER_NAME--78d3a718-c4ae-5506-aca4-de00e5075459",
+      "nugget_instance_id": "NUCLEI_MATCHER_NAME--78d3a718-c4ae-5506-aca4-de00e5075459",
+      "nugget_id": "NUCLEI_MATCHER_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Matcher Name",
+      "nugget_data": "nginx",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULNERABILITY--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "nugget_instance_id": "NUCLEI_VULNERABILITY--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "nugget_id": "NUCLEI_VULNERABILITY",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Vulnerability Observation",
+      "nugget_data": "tech-detect:https://pentest-ground.com:4280:2026-07-05T21:13:46.4923374+10:00",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "VULNERABILITY_GENERAL--ed2b81ee-4ee2-5cb7-8e43-f9a29c253df9",
+      "nugget_instance_id": "VULNERABILITY_GENERAL--ed2b81ee-4ee2-5cb7-8e43-f9a29c253df9",
+      "nugget_id": "VULNERABILITY_GENERAL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Vulnerability - General",
+      "nugget_data": "Wappalyzer Technology Detection",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_TAGS--36ec8e51-d9c6-5aec-add8-8ceeb78e1cc6",
+      "nugget_instance_id": "NUCLEI_VULN_TAGS--36ec8e51-d9c6-5aec-add8-8ceeb78e1cc6",
+      "nugget_id": "NUCLEI_VULN_TAGS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Tags",
+      "nugget_data": "tech, discovery",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "nugget_instance_id": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "nugget_id": "NUCLEI_FINDING",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Finding",
+      "nugget_data": "tech-detect:https://pentest-ground.com:4280:2026-07-05T21:13:46.4928817+10:00",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_FINDING_TIMESTAMP--b56735fe-486f-5db3-9e5b-f5a5b605aac0",
+      "nugget_instance_id": "NUCLEI_FINDING_TIMESTAMP--b56735fe-486f-5db3-9e5b-f5a5b605aac0",
+      "nugget_id": "NUCLEI_FINDING_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding Timestamp",
+      "nugget_data": "2026-07-05T21:13:46.4928817+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_MATCHER_NAME--8353282a-c9bc-5e1d-8546-b699efb67c5f",
+      "nugget_instance_id": "NUCLEI_MATCHER_NAME--8353282a-c9bc-5e1d-8546-b699efb67c5f",
+      "nugget_id": "NUCLEI_MATCHER_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Matcher Name",
+      "nugget_data": "php",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULNERABILITY--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "nugget_instance_id": "NUCLEI_VULNERABILITY--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "nugget_id": "NUCLEI_VULNERABILITY",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Vulnerability Observation",
+      "nugget_data": "tech-detect:https://pentest-ground.com:4280:2026-07-05T21:13:46.4928817+10:00",
+      "nugget_colour": "#3B82F6"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--f83f7739-0f25-51a1-ba25-9c5340023556",
+      "target": "SCAN_CLI--e78f0c16-5a59-5f66-be5e-5e9bea75388f",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--f83f7739-0f25-51a1-ba25-9c5340023556",
+      "target": "SCAN_TARGET--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--f83f7739-0f25-51a1-ba25-9c5340023556",
+      "target": "SCAN_START--0ec737c4-8614-5b52-8978-f46ae99a1a8b",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--f83f7739-0f25-51a1-ba25-9c5340023556",
+      "target": "SCAN_ELAPSED--38fc49c8-9e23-5171-a356-dda8d347cd5d",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--f83f7739-0f25-51a1-ba25-9c5340023556",
+      "target": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--f83f7739-0f25-51a1-ba25-9c5340023556",
+      "target": "SCAN_FINDING_COUNT--f815043d-936e-551e-b6ba-64198a3cebc3",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--f83f7739-0f25-51a1-ba25-9c5340023556",
+      "target": "SCAN_TOOL--0315df1b-6604-5965-bf7e-aecadb998218",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--f83f7739-0f25-51a1-ba25-9c5340023556",
+      "target": "HOST--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "relation": "contains"
+    },
+    {
+      "source": "SCAN_RECORD--f83f7739-0f25-51a1-ba25-9c5340023556",
+      "target": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "target": "SECURITY--0b61c31c-101e-52c6-a074-847c2efb6b9a",
+      "relation": "contains"
+    },
+    {
+      "source": "SECURITY--0b61c31c-101e-52c6-a074-847c2efb6b9a",
+      "target": "TEMPLATES_USED--89f39de1-1931-5318-8303-d11e600e7b0e",
+      "relation": "contains"
+    },
+    {
+      "source": "SECURITY--0b61c31c-101e-52c6-a074-847c2efb6b9a",
+      "target": "FINDINGS--831a4651-c9b5-52ee-b6b1-97dd36c276e0",
+      "relation": "contains"
+    },
+    {
+      "source": "FINDINGS--831a4651-c9b5-52ee-b6b1-97dd36c276e0",
+      "target": "NUCLEI_SEVERITY_INFO--b63cae81-48d0-5500-901b-9b9a0e9156f0",
+      "relation": "contains"
+    },
+    {
+      "source": "TEMPLATES_USED--89f39de1-1931-5318-8303-d11e600e7b0e",
+      "target": "NUCLEI_TEMPLATE--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "target": "NUCLEI_TEMPLATE_ID--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "target": "NUCLEI_TEMPLATE_NAME--ff845dcb-03ac-5422-a815-bb535f3151e2",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "target": "NUCLEI_TEMPLATE_PATH--362cba53-bad6-5641-ba9e-582406b556c7",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "target": "NUCLEI_TEMPLATE_AUTHOR--b6c2ef4b-6db0-577b-88dd-9944513f32e6",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "target": "NUCLEI_TEMPLATE_TAGS--ad6fc2e8-bb39-554f-beff-4cd661a5412c",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "target": "NUCLEI_TEMPLATE_PROTOCOL--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_SEVERITY_INFO--b63cae81-48d0-5500-901b-9b9a0e9156f0",
+      "target": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_TEMPLATE_ID--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_MATCHED_AT--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_FINDING_TIMESTAMP--58d9afe9-845d-57ec-b6d3-e7dd490599e0",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_FINDING_HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_FINDING_IP--62e0c65e-cb70-5dd1-9804-4dbd05d4f024",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_FINDING_PORT--fd5b6503-b131-5d66-986e-6db37709f783",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_FINDING_URL--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_FINDING_PROTOCOL--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_MATCHER_STATUS--b36c45d7-9288-5624-a1f4-a56f9e87db07",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_EXTRACTED_RESULTS--44dde0bd-575a-5452-9582-42cef45fce71",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_VULNERABILITY--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "VULNERABILITY_GENERAL--ff845dcb-03ac-5422-a815-bb535f3151e2",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_VULN_DESCRIPTION--0f19bb03-b693-53e4-9de9-e41f4b799904",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_VULN_SEVERITY--a1366663-4a1a-5319-8389-20b6a535684c",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_VULN_TAGS--ad6fc2e8-bb39-554f-beff-4cd661a5412c",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "target": "NUCLEI_TEMPLATE--93d06763-3542-59d9-9d78-7c24fa10b347",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "target": "SERVICE--93665513-e50c-5dd1-8972-52b3f9400933",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--93665513-e50c-5dd1-8972-52b3f9400933",
+      "target": "NUCLEI_FINDING_PORT--fd5b6503-b131-5d66-986e-6db37709f783",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--93665513-e50c-5dd1-8972-52b3f9400933",
+      "target": "NUCLEI_VULNERABILITY--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "target": "NUCLEI_VULNERABILITY--dea63055-12c1-59d4-a93a-2d9c240d3ddd",
+      "relation": "had"
+    },
+    {
+      "source": "TEMPLATES_USED--89f39de1-1931-5318-8303-d11e600e7b0e",
+      "target": "NUCLEI_TEMPLATE--959bc894-8f25-5bff-af2f-ef8977416999",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--959bc894-8f25-5bff-af2f-ef8977416999",
+      "target": "NUCLEI_TEMPLATE_ID--959bc894-8f25-5bff-af2f-ef8977416999",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--959bc894-8f25-5bff-af2f-ef8977416999",
+      "target": "NUCLEI_TEMPLATE_NAME--1003a820-6986-58b7-8a68-78bb841da69c",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--959bc894-8f25-5bff-af2f-ef8977416999",
+      "target": "NUCLEI_TEMPLATE_PATH--bf9007d7-b35e-598f-98d7-9b7fa123bc45",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--959bc894-8f25-5bff-af2f-ef8977416999",
+      "target": "NUCLEI_TEMPLATE_AUTHOR--5202a82f-c9ee-5edb-a03e-b7c0d9c970cc",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--959bc894-8f25-5bff-af2f-ef8977416999",
+      "target": "NUCLEI_TEMPLATE_TAGS--8ea6d20d-8bfa-5e56-83c4-b04a805b9205",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--959bc894-8f25-5bff-af2f-ef8977416999",
+      "target": "NUCLEI_TEMPLATE_PROTOCOL--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_SEVERITY_INFO--b63cae81-48d0-5500-901b-9b9a0e9156f0",
+      "target": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_TEMPLATE_ID--959bc894-8f25-5bff-af2f-ef8977416999",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_MATCHED_AT--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_FINDING_TIMESTAMP--35b8967a-7b16-5f6b-b020-ac2f586f52b1",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_FINDING_HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_FINDING_IP--62e0c65e-cb70-5dd1-9804-4dbd05d4f024",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_FINDING_PORT--fd5b6503-b131-5d66-986e-6db37709f783",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_FINDING_URL--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_FINDING_PROTOCOL--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_MATCHER_STATUS--b36c45d7-9288-5624-a1f4-a56f9e87db07",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_EXTRACTED_RESULTS--4b84be45-b33d-5e0b-a727-7e46e37b7c0e",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_VULNERABILITY--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "VULNERABILITY_GENERAL--1003a820-6986-58b7-8a68-78bb841da69c",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_VULN_SEVERITY--a1366663-4a1a-5319-8389-20b6a535684c",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_VULN_VENDOR--8353282a-c9bc-5e1d-8546-b699efb67c5f",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_VULN_PRODUCT--8353282a-c9bc-5e1d-8546-b699efb67c5f",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_VULN_TAGS--8ea6d20d-8bfa-5e56-83c4-b04a805b9205",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_VULN_CPE--f36db00a-1a5f-5af7-8e2a-2b2f0ec0e67e",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "target": "NUCLEI_TEMPLATE--959bc894-8f25-5bff-af2f-ef8977416999",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--93665513-e50c-5dd1-8972-52b3f9400933",
+      "target": "NUCLEI_VULNERABILITY--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "target": "NUCLEI_VULNERABILITY--d02ea170-62aa-590e-8dfc-f023bb9e209b",
+      "relation": "had"
+    },
+    {
+      "source": "TEMPLATES_USED--89f39de1-1931-5318-8303-d11e600e7b0e",
+      "target": "NUCLEI_TEMPLATE--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "target": "NUCLEI_TEMPLATE_ID--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "target": "NUCLEI_TEMPLATE_NAME--ed2b81ee-4ee2-5cb7-8e43-f9a29c253df9",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "target": "NUCLEI_TEMPLATE_PATH--d8e855ee-e754-582c-840c-9e4258717e8e",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "target": "NUCLEI_TEMPLATE_AUTHOR--8fe12010-400d-59f7-adae-4df4496c2052",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "target": "NUCLEI_TEMPLATE_TAGS--36ec8e51-d9c6-5aec-add8-8ceeb78e1cc6",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "target": "NUCLEI_TEMPLATE_PROTOCOL--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_SEVERITY_INFO--b63cae81-48d0-5500-901b-9b9a0e9156f0",
+      "target": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_TEMPLATE_ID--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_MATCHED_AT--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_FINDING_TIMESTAMP--d514af5e-fd95-5a32-8133-77ceafc0e528",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_FINDING_HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_FINDING_IP--62e0c65e-cb70-5dd1-9804-4dbd05d4f024",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_FINDING_PORT--fd5b6503-b131-5d66-986e-6db37709f783",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_FINDING_URL--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_FINDING_PROTOCOL--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_MATCHER_NAME--78d3a718-c4ae-5506-aca4-de00e5075459",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_MATCHER_STATUS--b36c45d7-9288-5624-a1f4-a56f9e87db07",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_VULNERABILITY--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "VULNERABILITY_GENERAL--ed2b81ee-4ee2-5cb7-8e43-f9a29c253df9",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_VULN_SEVERITY--a1366663-4a1a-5319-8389-20b6a535684c",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_VULN_TAGS--36ec8e51-d9c6-5aec-add8-8ceeb78e1cc6",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "target": "NUCLEI_TEMPLATE--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--93665513-e50c-5dd1-8972-52b3f9400933",
+      "target": "NUCLEI_VULNERABILITY--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "target": "NUCLEI_VULNERABILITY--3cb98f5a-d5a6-5bec-b00d-f6ad1df6bd43",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_SEVERITY_INFO--b63cae81-48d0-5500-901b-9b9a0e9156f0",
+      "target": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_TEMPLATE_ID--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_MATCHED_AT--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_FINDING_TIMESTAMP--b56735fe-486f-5db3-9e5b-f5a5b605aac0",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_FINDING_HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_FINDING_IP--62e0c65e-cb70-5dd1-9804-4dbd05d4f024",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_FINDING_PORT--fd5b6503-b131-5d66-986e-6db37709f783",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_FINDING_URL--087a3f7b-0648-54a2-955d-e35b2aaaca25",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_FINDING_PROTOCOL--89f612eb-7588-5ef9-bbb4-04306402e094",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_MATCHER_NAME--8353282a-c9bc-5e1d-8546-b699efb67c5f",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_MATCHER_STATUS--b36c45d7-9288-5624-a1f4-a56f9e87db07",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_VULNERABILITY--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "VULNERABILITY_GENERAL--ed2b81ee-4ee2-5cb7-8e43-f9a29c253df9",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_VULN_SEVERITY--a1366663-4a1a-5319-8389-20b6a535684c",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_VULN_TAGS--36ec8e51-d9c6-5aec-add8-8ceeb78e1cc6",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "target": "NUCLEI_TEMPLATE--c08c8c3d-ec61-5927-aea3-3d4c89055870",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--93665513-e50c-5dd1-8972-52b3f9400933",
+      "target": "NUCLEI_VULNERABILITY--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "target": "NUCLEI_VULNERABILITY--d03578b1-3553-50fd-b624-0d04c829b4be",
+      "relation": "had"
+    }
+  ]
+}

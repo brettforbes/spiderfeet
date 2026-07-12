@@ -1,12 +1,12 @@
 {
   "nodes": [
     {
-      "id": "SCAN_RECORD--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "nugget_instance_id": "SCAN_RECORD--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "id": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "nugget_instance_id": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
       "nugget_id": "SCAN_RECORD",
       "nugget_type": "ENTITY",
-      "nugget_description": "httpx probe scan",
-      "nugget_data": "squarepeg.vc",
+      "nugget_description": "Scan Record",
+      "nugget_data": "httpx:squarepeg.vc:httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_squarepeg_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_squarepeg.jsonl -silent -threads 15 -timeout 15 -rate-limit 30",
       "nugget_colour": "#3B82F6"
     },
     {
@@ -19,6 +19,69 @@
       "nugget_colour": "#F59E0B"
     },
     {
+      "id": "SCAN_TARGET--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "nugget_instance_id": "SCAN_TARGET--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "squarepeg.vc",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_PROBE_PROFILE--14b8ffde-d141-5e58-a057-514b7d879f21",
+      "nugget_instance_id": "SCAN_PROBE_PROFILE--14b8ffde-d141-5e58-a057-514b7d879f21",
+      "nugget_id": "SCAN_PROBE_PROFILE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Probe Profile",
+      "nugget_data": "status-code,title,tech-detect,server,cdn,ip",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_HOST_INPUT_COUNT--aa137456-6009-5e12-9c7a-92289321d974",
+      "nugget_instance_id": "SCAN_HOST_INPUT_COUNT--aa137456-6009-5e12-9c7a-92289321d974",
+      "nugget_id": "SCAN_HOST_INPUT_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Host Input Count",
+      "nugget_data": "7",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_START--d19df2b5-1326-5258-9fe3-c2bc6bf38afa",
+      "nugget_instance_id": "SCAN_START--d19df2b5-1326-5258-9fe3-c2bc6bf38afa",
+      "nugget_id": "SCAN_START",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Start",
+      "nugget_data": "2026-07-05T16:04:57.955640+00:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_ELAPSED--5c90cffd-64f9-5470-97f6-d378b6eb11c7",
+      "nugget_instance_id": "SCAN_ELAPSED--5c90cffd-64f9-5470-97f6-d378b6eb11c7",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_data": "3.078",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_instance_id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_id": "SCAN_EXIT_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Exit Status",
+      "nugget_data": "0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--22134581-e219-550e-965c-923d13a2ec34",
+      "nugget_instance_id": "SCAN_TOOL--22134581-e219-550e-965c-923d13a2ec34",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "httpx",
+      "nugget_colour": "#F59E0B"
+    },
+    {
       "id": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
       "nugget_instance_id": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
       "nugget_id": "DOMAIN_NAME",
@@ -28,645 +91,1961 @@
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "LINKED_URL_INTERNAL--d089aef6-259f-58bc-b719-a4c3baad006c",
-      "nugget_instance_id": "LINKED_URL_INTERNAL--d089aef6-259f-58bc-b719-a4c3baad006c",
-      "nugget_id": "LINKED_URL_INTERNAL",
-      "nugget_type": "SUBENTITY",
-      "nugget_description": "Linked URL - Internal",
-      "nugget_data": "https://static.squarepeg.vc",
-      "nugget_colour": "#F97316"
+      "id": "UPSTREAM_SCENARIO_ID--8e0e971d-4f4b-54af-8fed-0d0e4e158d06",
+      "nugget_instance_id": "UPSTREAM_SCENARIO_ID--8e0e971d-4f4b-54af-8fed-0d0e4e158d06",
+      "nugget_id": "UPSTREAM_SCENARIO_ID",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Upstream Scenario Identifier",
+      "nugget_data": "corporate_squarepeg_passive_cs",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "INTERNET_NAME--797b6acd-a0fc-51dc-8655-861ccec41df4",
-      "nugget_instance_id": "INTERNET_NAME--797b6acd-a0fc-51dc-8655-861ccec41df4",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--f9010c97-49ba-5c9c-a21c-98b223269b90",
+      "nugget_instance_id": "DOMAIN_NAME--f9010c97-49ba-5c9c-a21c-98b223269b90",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
+      "nugget_data": "static.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "nugget_instance_id": "HTTP_LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "nugget_id": "HTTP_LIVENESS_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Liveness Status",
+      "nugget_data": "confirmed",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "CDN--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "nugget_instance_id": "CDN--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "nugget_id": "CDN",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Content Delivery Network Edge",
       "nugget_data": "172.67.212.142",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
-      "nugget_instance_id": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
-      "nugget_id": "HTTP_CODE",
-      "nugget_type": "DATA",
-      "nugget_description": "HTTP Status Code",
-      "nugget_data": "403",
-      "nugget_colour": "#14B8A6"
-    },
-    {
-      "id": "WEBSERVER_BANNER--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "nugget_instance_id": "WEBSERVER_BANNER--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "nugget_id": "WEBSERVER_BANNER",
-      "nugget_type": "DATA",
-      "nugget_description": "Web Server",
+      "id": "CDN_NAME--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "nugget_instance_id": "CDN_NAME--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "nugget_id": "CDN_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "CDN Name",
       "nugget_data": "cloudflare",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "CDN_TYPE--fd79e006-c138-5a9a-9df8-343224fcc58f",
+      "nugget_instance_id": "CDN_TYPE--fd79e006-c138-5a9a-9df8-343224fcc58f",
+      "nugget_id": "CDN_TYPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "CDN Type",
+      "nugget_data": "waf",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "nugget_instance_id": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "nugget_id": "NETWORKS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Networks Category",
+      "nugget_data": "NETWORKS",
       "nugget_colour": "#14B8A6"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--cf40919d-939d-5bcb-9dc3-afd355521a04",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--cf40919d-939d-5bcb-9dc3-afd355521a04",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "Amazon Web Services",
-      "nugget_colour": "#F59E0B"
-    },
-    {
-      "id": "WEBSERVER_TECHNOLOGY--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "Cloudflare",
-      "nugget_colour": "#F59E0B"
-    },
-    {
-      "id": "WEBSERVER_TECHNOLOGY--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "HTTP/3",
-      "nugget_colour": "#F59E0B"
-    },
-    {
-      "id": "PROVIDER_HOSTING--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "nugget_instance_id": "PROVIDER_HOSTING--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "nugget_id": "PROVIDER_HOSTING",
+      "id": "IP_ADDRESS--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "nugget_instance_id": "IP_ADDRESS--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "nugget_id": "IP_ADDRESS",
       "nugget_type": "ENTITY",
-      "nugget_description": "Hosting Provider",
-      "nugget_data": "cloudflare",
+      "nugget_description": "IP Address",
+      "nugget_data": "172.67.212.142",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "LINKED_URL_INTERNAL--ded93c13-c219-594e-8623-43b0bdbb16e2",
-      "nugget_instance_id": "LINKED_URL_INTERNAL--ded93c13-c219-594e-8623-43b0bdbb16e2",
-      "nugget_id": "LINKED_URL_INTERNAL",
-      "nugget_type": "SUBENTITY",
-      "nugget_description": "Linked URL - Internal",
-      "nugget_data": "https://data.squarepeg.vc",
-      "nugget_colour": "#F97316"
+      "id": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_instance_id": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_id": "TRANSPORT",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Transport Protocol",
+      "nugget_data": "tcp",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
-      "nugget_instance_id": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
-      "nugget_id": "HTTP_CODE",
-      "nugget_type": "DATA",
-      "nugget_description": "HTTP Status Code",
-      "nugget_data": "200",
-      "nugget_colour": "#14B8A6"
-    },
-    {
-      "id": "WEBSERVER_TECHNOLOGY--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "id": "TRANSPORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_instance_id": "TRANSPORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_id": "TRANSPORT_PROTOCOL",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "HSTS",
+      "nugget_description": "Transport Protocol",
+      "nugget_data": "tcp",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "LINKED_URL_INTERNAL--638f530f-4aad-5e31-92f0-e34912de9a40",
-      "nugget_instance_id": "LINKED_URL_INTERNAL--638f530f-4aad-5e31-92f0-e34912de9a40",
-      "nugget_id": "LINKED_URL_INTERNAL",
+      "id": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "nugget_instance_id": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "nugget_id": "PORT",
       "nugget_type": "SUBENTITY",
-      "nugget_description": "Linked URL - Internal",
-      "nugget_data": "https://email.foundersummit2026.squarepeg.vc",
+      "nugget_description": "Network Port",
+      "nugget_data": "443",
       "nugget_colour": "#F97316"
     },
     {
-      "id": "INTERNET_NAME--650e8289-7819-5085-bb4c-eba87c0712e4",
-      "nugget_instance_id": "INTERNET_NAME--650e8289-7819-5085-bb4c-eba87c0712e4",
-      "nugget_id": "INTERNET_NAME",
+      "id": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "nugget_instance_id": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "nugget_id": "PORT_STATE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Port State",
+      "nugget_data": "open",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "nugget_instance_id": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "nugget_id": "APPLICATIONS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Applications Category",
+      "nugget_data": "APPLICATIONS",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "nugget_instance_id": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "nugget_id": "SERVICE",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Network Service",
+      "nugget_data": "https",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_STATUS_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "nugget_instance_id": "HTTP_STATUS_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "nugget_id": "HTTP_STATUS_CODE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Status Code",
+      "nugget_data": "403",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "CONTENT_TYPE--1a38a8de-3a70-521e-99b7-701e3e9774fa",
+      "nugget_instance_id": "CONTENT_TYPE--1a38a8de-3a70-521e-99b7-701e3e9774fa",
+      "nugget_id": "CONTENT_TYPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Content Type",
+      "nugget_data": "application/xml",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "CONTENT_LENGTH--167fb89d-e4e4-5dd4-a8ff-4f29510daf26",
+      "nugget_instance_id": "CONTENT_LENGTH--167fb89d-e4e4-5dd4-a8ff-4f29510daf26",
+      "nugget_id": "CONTENT_LENGTH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Content Length",
+      "nugget_data": "263",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "HTTP_METHOD--415137ec-cbb7-5a6a-a3ea-99224b2a3158",
+      "nugget_instance_id": "HTTP_METHOD--415137ec-cbb7-5a6a-a3ea-99224b2a3158",
+      "nugget_id": "HTTP_METHOD",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Method",
+      "nugget_data": "GET",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "HTTP_PATH--04e32488-8c9b-5cb8-9400-70c4e962cad5",
+      "nugget_instance_id": "HTTP_PATH--04e32488-8c9b-5cb8-9400-70c4e962cad5",
+      "nugget_id": "HTTP_PATH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Path",
+      "nugget_data": "/",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "RESPONSE_TIME_MS--1f414cf1-9419-5108-9c5a-2d686521570c",
+      "nugget_instance_id": "RESPONSE_TIME_MS--1f414cf1-9419-5108-9c5a-2d686521570c",
+      "nugget_id": "RESPONSE_TIME_MS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Response Time Milliseconds",
+      "nugget_data": "109.0168ms",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WORD_COUNT--f815043d-936e-551e-b6ba-64198a3cebc3",
+      "nugget_instance_id": "WORD_COUNT--f815043d-936e-551e-b6ba-64198a3cebc3",
+      "nugget_id": "WORD_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Word Count",
+      "nugget_data": "4",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LINE_COUNT--9779767f-44f2-5215-8820-bda646e3bbc1",
+      "nugget_instance_id": "LINE_COUNT--9779767f-44f2-5215-8820-bda646e3bbc1",
+      "nugget_id": "LINE_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Line Count",
+      "nugget_data": "2",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PROBE_FAILED--85b99c0c-9b97-537b-beff-05806734cc9f",
+      "nugget_instance_id": "PROBE_FAILED--85b99c0c-9b97-537b-beff-05806734cc9f",
+      "nugget_id": "PROBE_FAILED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Probe Failed",
+      "nugget_data": "False",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PROBE_TIMESTAMP--adc1d740-eb35-5e3b-853e-d3792e81d9e7",
+      "nugget_instance_id": "PROBE_TIMESTAMP--adc1d740-eb35-5e3b-853e-d3792e81d9e7",
+      "nugget_id": "PROBE_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Probe Timestamp",
+      "nugget_data": "2026-07-06T02:04:59.7316984+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PAGE_TYPE--1726c804-9aac-5386-bf34-4ace1634de76",
+      "nugget_instance_id": "PAGE_TYPE--1726c804-9aac-5386-bf34-4ace1634de76",
+      "nugget_id": "PAGE_TYPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Page Type",
+      "nugget_data": "login",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PAGE_HASH--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_instance_id": "PAGE_HASH--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_id": "PAGE_HASH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Page Hash",
+      "nugget_data": "0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SOFTWARE_USED--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "nugget_instance_id": "SOFTWARE_USED--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "cloudflare",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SOFTWARE_USED--cf40919d-939d-5bcb-9dc3-afd355521a04",
+      "nugget_instance_id": "SOFTWARE_USED--cf40919d-939d-5bcb-9dc3-afd355521a04",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "Amazon Web Services",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SOFTWARE_USED--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
+      "nugget_instance_id": "SOFTWARE_USED--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "Cloudflare",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SOFTWARE_USED--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
+      "nugget_instance_id": "SOFTWARE_USED--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "HTTP/3",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "PROBE_CONNECTED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_instance_id": "PROBE_CONNECTED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_id": "PROBE_CONNECTED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Probe Connected Address",
+      "nugget_data": "true",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "IP_ADDRESS--f0e1c581-9e3f-57ab-9594-e60699770e7c",
+      "nugget_instance_id": "IP_ADDRESS--f0e1c581-9e3f-57ab-9594-e60699770e7c",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "104.21.85.245",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
+      "nugget_instance_id": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
+      "nugget_id": "PROBE_CONNECTED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Probe Connected Address",
+      "nugget_data": "false",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "nugget_instance_id": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "data.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_STATUS_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "nugget_instance_id": "HTTP_STATUS_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "nugget_id": "HTTP_STATUS_CODE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Status Code",
+      "nugget_data": "200",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "HTTP_TITLE--87b89d64-95f7-5db9-a05f-c482d7fc5a54",
+      "nugget_instance_id": "HTTP_TITLE--87b89d64-95f7-5db9-a05f-c482d7fc5a54",
+      "nugget_id": "HTTP_TITLE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Title",
+      "nugget_data": "Metabase",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "CONTENT_TYPE--8c1d2b72-96e2-53ed-8e85-c86ea66b5528",
+      "nugget_instance_id": "CONTENT_TYPE--8c1d2b72-96e2-53ed-8e85-c86ea66b5528",
+      "nugget_id": "CONTENT_TYPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Content Type",
+      "nugget_data": "text/html",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "CONTENT_LENGTH--a55928fa-f0d2-5e68-a028-913587154d99",
+      "nugget_instance_id": "CONTENT_LENGTH--a55928fa-f0d2-5e68-a028-913587154d99",
+      "nugget_id": "CONTENT_LENGTH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Content Length",
+      "nugget_data": "88075",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "RESPONSE_TIME_MS--5e9a9c72-9672-5667-9af4-e1ae38708ea2",
+      "nugget_instance_id": "RESPONSE_TIME_MS--5e9a9c72-9672-5667-9af4-e1ae38708ea2",
+      "nugget_id": "RESPONSE_TIME_MS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Response Time Milliseconds",
+      "nugget_data": "136.3013ms",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WORD_COUNT--84b734ef-b96c-503a-8d55-bd637f90dd51",
+      "nugget_instance_id": "WORD_COUNT--84b734ef-b96c-503a-8d55-bd637f90dd51",
+      "nugget_id": "WORD_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Word Count",
+      "nugget_data": "4021",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LINE_COUNT--fae3d3b1-84d2-58b0-bcea-93fb110cd8dd",
+      "nugget_instance_id": "LINE_COUNT--fae3d3b1-84d2-58b0-bcea-93fb110cd8dd",
+      "nugget_id": "LINE_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Line Count",
+      "nugget_data": "42",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PROBE_TIMESTAMP--37881631-43bf-5d9e-bdcf-25ab9895745f",
+      "nugget_instance_id": "PROBE_TIMESTAMP--37881631-43bf-5d9e-bdcf-25ab9895745f",
+      "nugget_id": "PROBE_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Probe Timestamp",
+      "nugget_data": "2026-07-06T02:04:59.9380828+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PAGE_TYPE--46db2c4f-db82-5c36-93fc-1d1e97792f90",
+      "nugget_instance_id": "PAGE_TYPE--46db2c4f-db82-5c36-93fc-1d1e97792f90",
+      "nugget_id": "PAGE_TYPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Page Type",
+      "nugget_data": "other",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SOFTWARE_USED--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
+      "nugget_instance_id": "SOFTWARE_USED--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "HSTS",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "nugget_instance_id": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "email.foundersummit2026.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "CDN--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "nugget_instance_id": "CDN--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "nugget_id": "CDN",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Content Delivery Network Edge",
       "nugget_data": "34.111.99.212",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "HTTP_CODE--b9b83c04-8fd5-50d4-a913-1c409d3b5581",
-      "nugget_instance_id": "HTTP_CODE--b9b83c04-8fd5-50d4-a913-1c409d3b5581",
-      "nugget_id": "HTTP_CODE",
-      "nugget_type": "DATA",
-      "nugget_description": "HTTP Status Code",
-      "nugget_data": "404",
-      "nugget_colour": "#14B8A6"
+      "id": "CDN_NAME--ead38395-7e4f-5b69-aa0a-d4bb33b26b8c",
+      "nugget_instance_id": "CDN_NAME--ead38395-7e4f-5b69-aa0a-d4bb33b26b8c",
+      "nugget_id": "CDN_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "CDN Name",
+      "nugget_data": "google",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "PROVIDER_HOSTING--ead38395-7e4f-5b69-aa0a-d4bb33b26b8c",
-      "nugget_instance_id": "PROVIDER_HOSTING--ead38395-7e4f-5b69-aa0a-d4bb33b26b8c",
-      "nugget_id": "PROVIDER_HOSTING",
+      "id": "CDN_TYPE--f1a70dde-e728-57b6-b954-e08273221773",
+      "nugget_instance_id": "CDN_TYPE--f1a70dde-e728-57b6-b954-e08273221773",
+      "nugget_id": "CDN_TYPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "CDN Type",
+      "nugget_data": "cdn",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "IP_ADDRESS--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "nugget_instance_id": "IP_ADDRESS--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "nugget_id": "IP_ADDRESS",
       "nugget_type": "ENTITY",
-      "nugget_description": "Hosting Provider",
-      "nugget_data": "google",
+      "nugget_description": "IP Address",
+      "nugget_data": "34.111.99.212",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "LINKED_URL_INTERNAL--b6cc27d4-d12f-51ce-b635-408dcdc5431e",
-      "nugget_instance_id": "LINKED_URL_INTERNAL--b6cc27d4-d12f-51ce-b635-408dcdc5431e",
-      "nugget_id": "LINKED_URL_INTERNAL",
-      "nugget_type": "SUBENTITY",
-      "nugget_description": "Linked URL - Internal",
-      "nugget_data": "https://helix.squarepeg.vc",
-      "nugget_colour": "#F97316"
+      "id": "HTTP_STATUS_CODE--b9b83c04-8fd5-50d4-a913-1c409d3b5581",
+      "nugget_instance_id": "HTTP_STATUS_CODE--b9b83c04-8fd5-50d4-a913-1c409d3b5581",
+      "nugget_id": "HTTP_STATUS_CODE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Status Code",
+      "nugget_data": "404",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "INTERNET_NAME--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
-      "nugget_instance_id": "INTERNET_NAME--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
-      "nugget_id": "INTERNET_NAME",
+      "id": "CONTENT_TYPE--c1893018-e105-51a6-bbb7-b65e913e7038",
+      "nugget_instance_id": "CONTENT_TYPE--c1893018-e105-51a6-bbb7-b65e913e7038",
+      "nugget_id": "CONTENT_TYPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Content Type",
+      "nugget_data": "text/plain",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "CONTENT_LENGTH--6102baef-2981-5d81-b525-70a6bdcab9ef",
+      "nugget_instance_id": "CONTENT_LENGTH--6102baef-2981-5d81-b525-70a6bdcab9ef",
+      "nugget_id": "CONTENT_LENGTH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Content Length",
+      "nugget_data": "19",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "RESPONSE_TIME_MS--5ca12007-b6c0-57d6-95e1-8480b55b19bc",
+      "nugget_instance_id": "RESPONSE_TIME_MS--5ca12007-b6c0-57d6-95e1-8480b55b19bc",
+      "nugget_id": "RESPONSE_TIME_MS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Response Time Milliseconds",
+      "nugget_data": "698.9005ms",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LINE_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "nugget_instance_id": "LINE_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "nugget_id": "LINE_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Line Count",
+      "nugget_data": "1",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PROBE_TIMESTAMP--14aafdac-3a96-5033-b696-15963efe53f2",
+      "nugget_instance_id": "PROBE_TIMESTAMP--14aafdac-3a96-5033-b696-15963efe53f2",
+      "nugget_id": "PROBE_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Probe Timestamp",
+      "nugget_data": "2026-07-06T02:05:00.321662+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PAGE_TYPE--ca17d81e-e09b-5f3b-9747-d2f73e55d9cf",
+      "nugget_instance_id": "PAGE_TYPE--ca17d81e-e09b-5f3b-9747-d2f73e55d9cf",
+      "nugget_id": "PAGE_TYPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Page Type",
+      "nugget_data": "error",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "IS_ERROR_PAGE--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_instance_id": "IS_ERROR_PAGE--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_id": "IS_ERROR_PAGE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Is Error Page",
+      "nugget_data": "true",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--ea2789cc-9423-58e2-a41c-517e99e1c757",
+      "nugget_instance_id": "DOMAIN_NAME--ea2789cc-9423-58e2-a41c-517e99e1c757",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
+      "nugget_data": "eu.mailgun.org",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "CNAME_TARGET--ea2789cc-9423-58e2-a41c-517e99e1c757",
+      "nugget_instance_id": "CNAME_TARGET--ea2789cc-9423-58e2-a41c-517e99e1c757",
+      "nugget_id": "CNAME_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "CNAME Target",
+      "nugget_data": "eu.mailgun.org",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "nugget_instance_id": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "helix.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "CDN--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "nugget_instance_id": "CDN--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "nugget_id": "CDN",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Content Delivery Network Edge",
       "nugget_data": "3.169.183.79",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "WEBSERVER_BANNER--0f4132fb-975a-555a-9666-5d8eb95cb697",
-      "nugget_instance_id": "WEBSERVER_BANNER--0f4132fb-975a-555a-9666-5d8eb95cb697",
-      "nugget_id": "WEBSERVER_BANNER",
-      "nugget_type": "DATA",
-      "nugget_description": "Web Server",
-      "nugget_data": "AmazonS3",
-      "nugget_colour": "#14B8A6"
-    },
-    {
-      "id": "WEBSERVER_TECHNOLOGY--1b4b7345-6a98-574d-9e73-747e8f0a6904",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--1b4b7345-6a98-574d-9e73-747e8f0a6904",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "id": "CDN_NAME--8f33a91c-9b17-5d03-8c9a-b34a69767235",
+      "nugget_instance_id": "CDN_NAME--8f33a91c-9b17-5d03-8c9a-b34a69767235",
+      "nugget_id": "CDN_NAME",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "Amazon CloudFront",
-      "nugget_colour": "#F59E0B"
-    },
-    {
-      "id": "WEBSERVER_TECHNOLOGY--ee6c70c1-af1a-518e-9edd-841930987be2",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--ee6c70c1-af1a-518e-9edd-841930987be2",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "Amazon S3",
-      "nugget_colour": "#F59E0B"
-    },
-    {
-      "id": "PROVIDER_HOSTING--8f33a91c-9b17-5d03-8c9a-b34a69767235",
-      "nugget_instance_id": "PROVIDER_HOSTING--8f33a91c-9b17-5d03-8c9a-b34a69767235",
-      "nugget_id": "PROVIDER_HOSTING",
-      "nugget_type": "ENTITY",
-      "nugget_description": "Hosting Provider",
+      "nugget_description": "CDN Name",
       "nugget_data": "cloudfront",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "IP_ADDRESS--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "nugget_instance_id": "IP_ADDRESS--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "3.169.183.79",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "LINKED_URL_INTERNAL--34ffb410-1c50-537f-8d2f-4de5f406b789",
-      "nugget_instance_id": "LINKED_URL_INTERNAL--34ffb410-1c50-537f-8d2f-4de5f406b789",
-      "nugget_id": "LINKED_URL_INTERNAL",
+      "id": "HTTP_TITLE--c3e722db-956a-50a2-b639-ac6e7f41cb79",
+      "nugget_instance_id": "HTTP_TITLE--c3e722db-956a-50a2-b639-ac6e7f41cb79",
+      "nugget_id": "HTTP_TITLE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Title",
+      "nugget_data": "Helix Library",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "CONTENT_LENGTH--61efa00a-9300-5af7-a09e-4df3ec5ebbb2",
+      "nugget_instance_id": "CONTENT_LENGTH--61efa00a-9300-5af7-a09e-4df3ec5ebbb2",
+      "nugget_id": "CONTENT_LENGTH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Content Length",
+      "nugget_data": "50394",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "RESPONSE_TIME_MS--66bfa03a-943b-5c57-82b9-a17c824e627c",
+      "nugget_instance_id": "RESPONSE_TIME_MS--66bfa03a-943b-5c57-82b9-a17c824e627c",
+      "nugget_id": "RESPONSE_TIME_MS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Response Time Milliseconds",
+      "nugget_data": "859.7355ms",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WORD_COUNT--9ca1a9d3-8c79-53de-8232-46d7d36ffa97",
+      "nugget_instance_id": "WORD_COUNT--9ca1a9d3-8c79-53de-8232-46d7d36ffa97",
+      "nugget_id": "WORD_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Word Count",
+      "nugget_data": "19532",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LINE_COUNT--08b71a44-57d4-5897-b230-d42433b0a588",
+      "nugget_instance_id": "LINE_COUNT--08b71a44-57d4-5897-b230-d42433b0a588",
+      "nugget_id": "LINE_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Line Count",
+      "nugget_data": "1270",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PROBE_TIMESTAMP--a6d398d1-deb9-59de-9a26-e0d3cdb1e2ad",
+      "nugget_instance_id": "PROBE_TIMESTAMP--a6d398d1-deb9-59de-9a26-e0d3cdb1e2ad",
+      "nugget_id": "PROBE_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Probe Timestamp",
+      "nugget_data": "2026-07-06T02:05:00.699069+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SOFTWARE_USED--0f4132fb-975a-555a-9666-5d8eb95cb697",
+      "nugget_instance_id": "SOFTWARE_USED--0f4132fb-975a-555a-9666-5d8eb95cb697",
+      "nugget_id": "SOFTWARE_USED",
       "nugget_type": "SUBENTITY",
-      "nugget_description": "Linked URL - Internal",
-      "nugget_data": "https://foundersummit2026.squarepeg.vc",
+      "nugget_description": "Software Used",
+      "nugget_data": "AmazonS3",
       "nugget_colour": "#F97316"
     },
     {
-      "id": "INTERNET_NAME--1aca7381-89d3-54c7-8075-99ad583ef597",
-      "nugget_instance_id": "INTERNET_NAME--1aca7381-89d3-54c7-8075-99ad583ef597",
-      "nugget_id": "INTERNET_NAME",
+      "id": "SOFTWARE_USED--1b4b7345-6a98-574d-9e73-747e8f0a6904",
+      "nugget_instance_id": "SOFTWARE_USED--1b4b7345-6a98-574d-9e73-747e8f0a6904",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "Amazon CloudFront",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SOFTWARE_USED--ee6c70c1-af1a-518e-9edd-841930987be2",
+      "nugget_instance_id": "SOFTWARE_USED--ee6c70c1-af1a-518e-9edd-841930987be2",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "Amazon S3",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "DOMAIN_NAME--7b6a5427-524d-551b-b7a7-ec34ba927e53",
+      "nugget_instance_id": "DOMAIN_NAME--7b6a5427-524d-551b-b7a7-ec34ba927e53",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
+      "nugget_data": "d2rqjm78y4sxx.cloudfront.net",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "CNAME_TARGET--7b6a5427-524d-551b-b7a7-ec34ba927e53",
+      "nugget_instance_id": "CNAME_TARGET--7b6a5427-524d-551b-b7a7-ec34ba927e53",
+      "nugget_id": "CNAME_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "CNAME Target",
+      "nugget_data": "d2rqjm78y4sxx.cloudfront.net",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "IP_ADDRESS--46bb88e5-28fe-5264-858d-10977fceb9f0",
+      "nugget_instance_id": "IP_ADDRESS--46bb88e5-28fe-5264-858d-10977fceb9f0",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "3.169.183.60",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "IP_ADDRESS--8491a887-b699-579d-ac41-45b5b66e1884",
+      "nugget_instance_id": "IP_ADDRESS--8491a887-b699-579d-ac41-45b5b66e1884",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "3.169.183.88",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "IP_ADDRESS--850f8274-f846-550f-92c4-d1a7f2878f9e",
+      "nugget_instance_id": "IP_ADDRESS--850f8274-f846-550f-92c4-d1a7f2878f9e",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "3.169.183.3",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "nugget_instance_id": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "foundersummit2026.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HOST--1aca7381-89d3-54c7-8075-99ad583ef597",
+      "nugget_instance_id": "HOST--1aca7381-89d3-54c7-8075-99ad583ef597",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
       "nugget_data": "54.38.64.116",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--86087acc-9334-5e59-892d-3ca42bac35fe",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--86087acc-9334-5e59-892d-3ca42bac35fe",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "id": "IP_ADDRESS--1aca7381-89d3-54c7-8075-99ad583ef597",
+      "nugget_instance_id": "IP_ADDRESS--1aca7381-89d3-54c7-8075-99ad583ef597",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "54.38.64.116",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_TITLE--f01fb4f5-143b-565c-be48-0be25becb5ab",
+      "nugget_instance_id": "HTTP_TITLE--f01fb4f5-143b-565c-be48-0be25becb5ab",
+      "nugget_id": "HTTP_TITLE",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "React",
+      "nugget_description": "HTTP Title",
+      "nugget_data": "Site d'inscription",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "nugget_instance_id": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "nugget_id": "LINKED_URL_INTERNAL",
+      "id": "CONTENT_LENGTH--5d56f6bb-08b4-55ca-967c-e101cd2b028f",
+      "nugget_instance_id": "CONTENT_LENGTH--5d56f6bb-08b4-55ca-967c-e101cd2b028f",
+      "nugget_id": "CONTENT_LENGTH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Content Length",
+      "nugget_data": "8896",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "RESPONSE_TIME_MS--353ac1ba-5948-55d7-8e70-117ff58dd8b5",
+      "nugget_instance_id": "RESPONSE_TIME_MS--353ac1ba-5948-55d7-8e70-117ff58dd8b5",
+      "nugget_id": "RESPONSE_TIME_MS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Response Time Milliseconds",
+      "nugget_data": "1.0766287s",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WORD_COUNT--cf753255-2962-54ee-806e-92ad70fb7191",
+      "nugget_instance_id": "WORD_COUNT--cf753255-2962-54ee-806e-92ad70fb7191",
+      "nugget_id": "WORD_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Word Count",
+      "nugget_data": "258",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LINE_COUNT--9180f4cb-97dd-56c0-8ed7-e864017a3d7d",
+      "nugget_instance_id": "LINE_COUNT--9180f4cb-97dd-56c0-8ed7-e864017a3d7d",
+      "nugget_id": "LINE_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Line Count",
+      "nugget_data": "52",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PROBE_TIMESTAMP--11138ca8-79f6-507e-bd60-ce7487df3362",
+      "nugget_instance_id": "PROBE_TIMESTAMP--11138ca8-79f6-507e-bd60-ce7487df3362",
+      "nugget_id": "PROBE_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Probe Timestamp",
+      "nugget_data": "2026-07-06T02:05:00.7364568+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PAGE_TYPE--bbcbdad7-83d6-5875-a2b8-68e37c02b22e",
+      "nugget_instance_id": "PAGE_TYPE--bbcbdad7-83d6-5875-a2b8-68e37c02b22e",
+      "nugget_id": "PAGE_TYPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Page Type",
+      "nugget_data": "nonerror",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SOFTWARE_USED--86087acc-9334-5e59-892d-3ca42bac35fe",
+      "nugget_instance_id": "SOFTWARE_USED--86087acc-9334-5e59-892d-3ca42bac35fe",
+      "nugget_id": "SOFTWARE_USED",
       "nugget_type": "SUBENTITY",
-      "nugget_description": "Linked URL - Internal",
-      "nugget_data": "https://www.squarepeg.vc",
+      "nugget_description": "Software Used",
+      "nugget_data": "React",
       "nugget_colour": "#F97316"
     },
     {
-      "id": "INTERNET_NAME--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
-      "nugget_instance_id": "INTERNET_NAME--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "nugget_instance_id": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
+      "nugget_data": "www.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HOST--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
+      "nugget_instance_id": "HOST--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
       "nugget_data": "198.202.211.1",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--d1bd88b1-bf35-5767-9124-79e660735207",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--d1bd88b1-bf35-5767-9124-79e660735207",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "id": "IP_ADDRESS--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
+      "nugget_instance_id": "IP_ADDRESS--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "198.202.211.1",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_TITLE--457b21ae-a92a-5ff6-8ae0-a1d1a8970c9f",
+      "nugget_instance_id": "HTTP_TITLE--457b21ae-a92a-5ff6-8ae0-a1d1a8970c9f",
+      "nugget_id": "HTTP_TITLE",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "Campaign Monitor",
+      "nugget_description": "HTTP Title",
+      "nugget_data": "Square Peg: Helping founders from our corner of the world shape the future",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--10e67b65-4d7a-56ab-8a10-58222a965f29",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--10e67b65-4d7a-56ab-8a10-58222a965f29",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "id": "CONTENT_LENGTH--2eb18335-47d2-5e2f-923a-8257ac8016a9",
+      "nugget_instance_id": "CONTENT_LENGTH--2eb18335-47d2-5e2f-923a-8257ac8016a9",
+      "nugget_id": "CONTENT_LENGTH",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "Unpkg",
+      "nugget_description": "Content Length",
+      "nugget_data": "87509",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--09ce37d5-5cf6-50c2-af89-1587873cbb3f",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--09ce37d5-5cf6-50c2-af89-1587873cbb3f",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "id": "RESPONSE_TIME_MS--a6c9ceec-41de-523c-9d48-e7de4dafc5ff",
+      "nugget_instance_id": "RESPONSE_TIME_MS--a6c9ceec-41de-523c-9d48-e7de4dafc5ff",
+      "nugget_id": "RESPONSE_TIME_MS",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "cdnjs",
+      "nugget_description": "Response Time Milliseconds",
+      "nugget_data": "303.7744ms",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--e61d90dd-149b-584b-8a21-a5903e1ad488",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--e61d90dd-149b-584b-8a21-a5903e1ad488",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "id": "WORD_COUNT--f2079736-9aa3-5d7a-b6f0-e255fc129f4c",
+      "nugget_instance_id": "WORD_COUNT--f2079736-9aa3-5d7a-b6f0-e255fc129f4c",
+      "nugget_id": "WORD_COUNT",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "jQuery",
+      "nugget_description": "Word Count",
+      "nugget_data": "6305",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--1226e343-283b-59e1-b5e6-c5bfd3abcc98",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--1226e343-283b-59e1-b5e6-c5bfd3abcc98",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "id": "LINE_COUNT--4847d7a8-55a7-5974-bcb3-a55c1abeb864",
+      "nugget_instance_id": "LINE_COUNT--4847d7a8-55a7-5974-bcb3-a55c1abeb864",
+      "nugget_id": "LINE_COUNT",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "jQuery UI",
+      "nugget_description": "Line Count",
+      "nugget_data": "831",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--2f0d3719-948f-5f9a-97a4-e90110218a46",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--2f0d3719-948f-5f9a-97a4-e90110218a46",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "id": "PROBE_TIMESTAMP--efefd49b-f9c7-5bc5-8910-dde0093445d2",
+      "nugget_instance_id": "PROBE_TIMESTAMP--efefd49b-f9c7-5bc5-8910-dde0093445d2",
+      "nugget_id": "PROBE_TIMESTAMP",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "jsDelivr",
+      "nugget_description": "Probe Timestamp",
+      "nugget_data": "2026-07-06T02:05:00.7911387+10:00",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "LINKED_URL_INTERNAL--c331d7d7-5dd7-54a2-b212-a419b9ac9d11",
-      "nugget_instance_id": "LINKED_URL_INTERNAL--c331d7d7-5dd7-54a2-b212-a419b9ac9d11",
-      "nugget_id": "LINKED_URL_INTERNAL",
+      "id": "SOFTWARE_USED--d1bd88b1-bf35-5767-9124-79e660735207",
+      "nugget_instance_id": "SOFTWARE_USED--d1bd88b1-bf35-5767-9124-79e660735207",
+      "nugget_id": "SOFTWARE_USED",
       "nugget_type": "SUBENTITY",
-      "nugget_description": "Linked URL - Internal",
-      "nugget_data": "https://plus.squarepeg.vc",
+      "nugget_description": "Software Used",
+      "nugget_data": "Campaign Monitor",
       "nugget_colour": "#F97316"
     },
     {
-      "id": "INTERNET_NAME--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
-      "nugget_instance_id": "INTERNET_NAME--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
-      "nugget_id": "INTERNET_NAME",
+      "id": "SOFTWARE_USED--10e67b65-4d7a-56ab-8a10-58222a965f29",
+      "nugget_instance_id": "SOFTWARE_USED--10e67b65-4d7a-56ab-8a10-58222a965f29",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "Unpkg",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SOFTWARE_USED--09ce37d5-5cf6-50c2-af89-1587873cbb3f",
+      "nugget_instance_id": "SOFTWARE_USED--09ce37d5-5cf6-50c2-af89-1587873cbb3f",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "cdnjs",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SOFTWARE_USED--e61d90dd-149b-584b-8a21-a5903e1ad488",
+      "nugget_instance_id": "SOFTWARE_USED--e61d90dd-149b-584b-8a21-a5903e1ad488",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "jQuery",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SOFTWARE_USED--1226e343-283b-59e1-b5e6-c5bfd3abcc98",
+      "nugget_instance_id": "SOFTWARE_USED--1226e343-283b-59e1-b5e6-c5bfd3abcc98",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "jQuery UI",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SOFTWARE_USED--2f0d3719-948f-5f9a-97a4-e90110218a46",
+      "nugget_instance_id": "SOFTWARE_USED--2f0d3719-948f-5f9a-97a4-e90110218a46",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "jsDelivr",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "DOMAIN_NAME--88e8919e-372f-5395-a59b-2c19d94cc392",
+      "nugget_instance_id": "DOMAIN_NAME--88e8919e-372f-5395-a59b-2c19d94cc392",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
+      "nugget_data": "cdn.webflow.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "CNAME_TARGET--88e8919e-372f-5395-a59b-2c19d94cc392",
+      "nugget_instance_id": "CNAME_TARGET--88e8919e-372f-5395-a59b-2c19d94cc392",
+      "nugget_id": "CNAME_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "CNAME Target",
+      "nugget_data": "cdn.webflow.com",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--0c954cb4-b94c-59b2-b601-3d980be6536f",
+      "nugget_instance_id": "DOMAIN_NAME--0c954cb4-b94c-59b2-b601-3d980be6536f",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "plus.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "CDN--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "nugget_instance_id": "CDN--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "nugget_id": "CDN",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Content Delivery Network Edge",
       "nugget_data": "104.18.5.54",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--ea3da848-08a8-58c4-9ed6-6598774b287a",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--ea3da848-08a8-58c4-9ed6-6598774b287a",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "id": "IP_ADDRESS--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "nugget_instance_id": "IP_ADDRESS--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "104.18.5.54",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_TITLE--0e0c3b96-7706-5dfd-afab-0a6b48ce16d8",
+      "nugget_instance_id": "HTTP_TITLE--0e0c3b96-7706-5dfd-afab-0a6b48ce16d8",
+      "nugget_id": "HTTP_TITLE",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
+      "nugget_description": "HTTP Title",
+      "nugget_data": "Proven",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "CONTENT_LENGTH--1fe4d03e-ea2c-5901-aae1-bef405b6dcae",
+      "nugget_instance_id": "CONTENT_LENGTH--1fe4d03e-ea2c-5901-aae1-bef405b6dcae",
+      "nugget_id": "CONTENT_LENGTH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Content Length",
+      "nugget_data": "112872",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "RESPONSE_TIME_MS--e6b538ac-94bb-53aa-9921-eb31b2d01374",
+      "nugget_instance_id": "RESPONSE_TIME_MS--e6b538ac-94bb-53aa-9921-eb31b2d01374",
+      "nugget_id": "RESPONSE_TIME_MS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Response Time Milliseconds",
+      "nugget_data": "1.0689057s",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WORD_COUNT--62828731-a856-5044-bdcb-32679dd5db18",
+      "nugget_instance_id": "WORD_COUNT--62828731-a856-5044-bdcb-32679dd5db18",
+      "nugget_id": "WORD_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Word Count",
+      "nugget_data": "3342",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LINE_COUNT--fc5a41c2-1516-5462-9bf5-b0dd4b8dc1c1",
+      "nugget_instance_id": "LINE_COUNT--fc5a41c2-1516-5462-9bf5-b0dd4b8dc1c1",
+      "nugget_id": "LINE_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Line Count",
+      "nugget_data": "18",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PROBE_TIMESTAMP--f59d6393-9395-5894-bbd7-fa8b414a3c79",
+      "nugget_instance_id": "PROBE_TIMESTAMP--f59d6393-9395-5894-bbd7-fa8b414a3c79",
+      "nugget_id": "PROBE_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Probe Timestamp",
+      "nugget_data": "2026-07-06T02:05:00.9782699+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SOFTWARE_USED--ea3da848-08a8-58c4-9ed6-6598774b287a",
+      "nugget_instance_id": "SOFTWARE_USED--ea3da848-08a8-58c4-9ed6-6598774b287a",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
       "nugget_data": "Google Tag Manager",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "DOMAIN_NAME--af7760e1-ce27-5bc6-9d1f-c81c626200f6",
+      "nugget_instance_id": "DOMAIN_NAME--af7760e1-ce27-5bc6-9d1f-c81c626200f6",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "default-proxy-fallback.getproven.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "CNAME_TARGET--af7760e1-ce27-5bc6-9d1f-c81c626200f6",
+      "nugget_instance_id": "CNAME_TARGET--af7760e1-ce27-5bc6-9d1f-c81c626200f6",
+      "nugget_id": "CNAME_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "CNAME Target",
+      "nugget_data": "default-proxy-fallback.getproven.com",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "IP_ADDRESS--68acdd3a-164a-533a-ac17-ddf402d8a8ba",
+      "nugget_instance_id": "IP_ADDRESS--68acdd3a-164a-533a-ac17-ddf402d8a8ba",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "104.18.4.54",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_LIVENESS_STATUS--4866e2fd-4558-53cd-a7bd-6cd9208329ad",
+      "nugget_instance_id": "HTTP_LIVENESS_STATUS--4866e2fd-4558-53cd-a7bd-6cd9208329ad",
+      "nugget_id": "HTTP_LIVENESS_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Liveness Status",
+      "nugget_data": "unconfirmed",
       "nugget_colour": "#F59E0B"
     }
   ],
   "edges": [
     {
-      "source": "SCAN_RECORD--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
       "target": "SCAN_CLI--946af47e-dd76-53e6-a3ba-f4bf00ad384f",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "SCAN_TARGET--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "SCAN_PROBE_PROFILE--14b8ffde-d141-5e58-a057-514b7d879f21",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "SCAN_HOST_INPUT_COUNT--aa137456-6009-5e12-9c7a-92289321d974",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "SCAN_START--d19df2b5-1326-5258-9fe3-c2bc6bf38afa",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "SCAN_ELAPSED--5c90cffd-64f9-5470-97f6-d378b6eb11c7",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "SCAN_TOOL--22134581-e219-550e-965c-923d13a2ec34",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
       "target": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
       "relation": "contains"
     },
     {
-      "source": "SCAN_RECORD--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "LINKED_URL_INTERNAL--d089aef6-259f-58bc-b719-a4c3baad006c",
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "UPSTREAM_SCENARIO_ID--8e0e971d-4f4b-54af-8fed-0d0e4e158d06",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "DOMAIN_NAME--f9010c97-49ba-5c9c-a21c-98b223269b90",
       "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--f9010c97-49ba-5c9c-a21c-98b223269b90",
+      "target": "HTTP_LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "CDN--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--f9010c97-49ba-5c9c-a21c-98b223269b90",
+      "target": "CDN--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "target": "CDN_NAME--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "target": "CDN_TYPE--fd79e006-c138-5a9a-9df8-343224fcc58f",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "target": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "target": "IP_ADDRESS--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "relation": "contains"
+    },
+    {
+      "source": "IP_ADDRESS--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "contains"
+    },
+    {
+      "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "target": "TRANSPORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "target": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "target": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "target": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "relation": "contains"
+    },
+    {
+      "source": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "target": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "relation": "listens-to"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_STATUS_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "CONTENT_TYPE--1a38a8de-3a70-521e-99b7-701e3e9774fa",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "CONTENT_LENGTH--167fb89d-e4e4-5dd4-a8ff-4f29510daf26",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_METHOD--415137ec-cbb7-5a6a-a3ea-99224b2a3158",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_PATH--04e32488-8c9b-5cb8-9400-70c4e962cad5",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "RESPONSE_TIME_MS--1f414cf1-9419-5108-9c5a-2d686521570c",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "WORD_COUNT--f815043d-936e-551e-b6ba-64198a3cebc3",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "LINE_COUNT--9779767f-44f2-5215-8820-bda646e3bbc1",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PROBE_FAILED--85b99c0c-9b97-537b-beff-05806734cc9f",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PROBE_TIMESTAMP--adc1d740-eb35-5e3b-853e-d3792e81d9e7",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PAGE_TYPE--1726c804-9aac-5386-bf34-4ace1634de76",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PAGE_HASH--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--cf40919d-939d-5bcb-9dc3-afd355521a04",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--f9010c97-49ba-5c9c-a21c-98b223269b90",
+      "target": "IP_ADDRESS--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "target": "PROBE_CONNECTED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--f9010c97-49ba-5c9c-a21c-98b223269b90",
+      "target": "IP_ADDRESS--f0e1c581-9e3f-57ab-9594-e60699770e7c",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--f0e1c581-9e3f-57ab-9594-e60699770e7c",
+      "target": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "target": "HTTP_LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "target": "CDN--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_STATUS_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_TITLE--87b89d64-95f7-5db9-a05f-c482d7fc5a54",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "CONTENT_TYPE--8c1d2b72-96e2-53ed-8e85-c86ea66b5528",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "CONTENT_LENGTH--a55928fa-f0d2-5e68-a028-913587154d99",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "RESPONSE_TIME_MS--5e9a9c72-9672-5667-9af4-e1ae38708ea2",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "WORD_COUNT--84b734ef-b96c-503a-8d55-bd637f90dd51",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "LINE_COUNT--fae3d3b1-84d2-58b0-bcea-93fb110cd8dd",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PROBE_TIMESTAMP--37881631-43bf-5d9e-bdcf-25ab9895745f",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PAGE_TYPE--46db2c4f-db82-5c36-93fc-1d1e97792f90",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "target": "IP_ADDRESS--797b6acd-a0fc-51dc-8655-861ccec41df4",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "target": "IP_ADDRESS--f0e1c581-9e3f-57ab-9594-e60699770e7c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "target": "HTTP_LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "CDN--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "target": "CDN--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "target": "CDN_NAME--ead38395-7e4f-5b69-aa0a-d4bb33b26b8c",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "target": "CDN_TYPE--f1a70dde-e728-57b6-b954-e08273221773",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "target": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "target": "IP_ADDRESS--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "relation": "contains"
+    },
+    {
+      "source": "IP_ADDRESS--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "contains"
+    },
+    {
+      "source": "CDN--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "target": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_STATUS_CODE--b9b83c04-8fd5-50d4-a913-1c409d3b5581",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "CONTENT_TYPE--c1893018-e105-51a6-bbb7-b65e913e7038",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "CONTENT_LENGTH--6102baef-2981-5d81-b525-70a6bdcab9ef",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "RESPONSE_TIME_MS--5ca12007-b6c0-57d6-95e1-8480b55b19bc",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "LINE_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PROBE_TIMESTAMP--14aafdac-3a96-5033-b696-15963efe53f2",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PAGE_TYPE--ca17d81e-e09b-5f3b-9747-d2f73e55d9cf",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "IS_ERROR_PAGE--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "target": "DOMAIN_NAME--ea2789cc-9423-58e2-a41c-517e99e1c757",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "target": "CNAME_TARGET--ea2789cc-9423-58e2-a41c-517e99e1c757",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "target": "IP_ADDRESS--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--650e8289-7819-5085-bb4c-eba87c0712e4",
+      "target": "PROBE_CONNECTED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "target": "HTTP_LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "CDN--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "target": "CDN--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "target": "CDN_NAME--8f33a91c-9b17-5d03-8c9a-b34a69767235",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "target": "CDN_TYPE--f1a70dde-e728-57b6-b954-e08273221773",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "target": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "target": "IP_ADDRESS--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "relation": "contains"
+    },
+    {
+      "source": "IP_ADDRESS--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "contains"
+    },
+    {
+      "source": "CDN--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "target": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_TITLE--c3e722db-956a-50a2-b639-ac6e7f41cb79",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "CONTENT_LENGTH--61efa00a-9300-5af7-a09e-4df3ec5ebbb2",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "RESPONSE_TIME_MS--66bfa03a-943b-5c57-82b9-a17c824e627c",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "WORD_COUNT--9ca1a9d3-8c79-53de-8232-46d7d36ffa97",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "LINE_COUNT--08b71a44-57d4-5897-b230-d42433b0a588",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PROBE_TIMESTAMP--a6d398d1-deb9-59de-9a26-e0d3cdb1e2ad",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--0f4132fb-975a-555a-9666-5d8eb95cb697",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--1b4b7345-6a98-574d-9e73-747e8f0a6904",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--ee6c70c1-af1a-518e-9edd-841930987be2",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "target": "DOMAIN_NAME--7b6a5427-524d-551b-b7a7-ec34ba927e53",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "target": "CNAME_TARGET--7b6a5427-524d-551b-b7a7-ec34ba927e53",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "target": "IP_ADDRESS--46bb88e5-28fe-5264-858d-10977fceb9f0",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--46bb88e5-28fe-5264-858d-10977fceb9f0",
+      "target": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "target": "IP_ADDRESS--8491a887-b699-579d-ac41-45b5b66e1884",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--8491a887-b699-579d-ac41-45b5b66e1884",
+      "target": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "target": "IP_ADDRESS--850f8274-f846-550f-92c4-d1a7f2878f9e",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--850f8274-f846-550f-92c4-d1a7f2878f9e",
+      "target": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "target": "IP_ADDRESS--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
+      "target": "PROBE_CONNECTED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "target": "HTTP_LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "HOST--1aca7381-89d3-54c7-8075-99ad583ef597",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "target": "HOST--1aca7381-89d3-54c7-8075-99ad583ef597",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--1aca7381-89d3-54c7-8075-99ad583ef597",
+      "target": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "target": "IP_ADDRESS--1aca7381-89d3-54c7-8075-99ad583ef597",
+      "relation": "contains"
+    },
+    {
+      "source": "IP_ADDRESS--1aca7381-89d3-54c7-8075-99ad583ef597",
+      "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--1aca7381-89d3-54c7-8075-99ad583ef597",
+      "target": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_TITLE--f01fb4f5-143b-565c-be48-0be25becb5ab",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "CONTENT_LENGTH--5d56f6bb-08b4-55ca-967c-e101cd2b028f",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "RESPONSE_TIME_MS--353ac1ba-5948-55d7-8e70-117ff58dd8b5",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "WORD_COUNT--cf753255-2962-54ee-806e-92ad70fb7191",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "LINE_COUNT--9180f4cb-97dd-56c0-8ed7-e864017a3d7d",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PROBE_TIMESTAMP--11138ca8-79f6-507e-bd60-ce7487df3362",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PAGE_TYPE--bbcbdad7-83d6-5875-a2b8-68e37c02b22e",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--86087acc-9334-5e59-892d-3ca42bac35fe",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "target": "IP_ADDRESS--1aca7381-89d3-54c7-8075-99ad583ef597",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--1aca7381-89d3-54c7-8075-99ad583ef597",
+      "target": "PROBE_CONNECTED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "target": "HTTP_LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "HOST--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "target": "HOST--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
+      "target": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "target": "IP_ADDRESS--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
+      "relation": "contains"
+    },
+    {
+      "source": "IP_ADDRESS--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
+      "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
+      "target": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_TITLE--457b21ae-a92a-5ff6-8ae0-a1d1a8970c9f",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "CONTENT_LENGTH--2eb18335-47d2-5e2f-923a-8257ac8016a9",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "RESPONSE_TIME_MS--a6c9ceec-41de-523c-9d48-e7de4dafc5ff",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "WORD_COUNT--f2079736-9aa3-5d7a-b6f0-e255fc129f4c",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "LINE_COUNT--4847d7a8-55a7-5974-bcb3-a55c1abeb864",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PROBE_TIMESTAMP--efefd49b-f9c7-5bc5-8910-dde0093445d2",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--d1bd88b1-bf35-5767-9124-79e660735207",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--10e67b65-4d7a-56ab-8a10-58222a965f29",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--09ce37d5-5cf6-50c2-af89-1587873cbb3f",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--e61d90dd-149b-584b-8a21-a5903e1ad488",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--1226e343-283b-59e1-b5e6-c5bfd3abcc98",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--2f0d3719-948f-5f9a-97a4-e90110218a46",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "target": "DOMAIN_NAME--88e8919e-372f-5395-a59b-2c19d94cc392",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "target": "CNAME_TARGET--88e8919e-372f-5395-a59b-2c19d94cc392",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "target": "IP_ADDRESS--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
+      "target": "PROBE_CONNECTED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "DOMAIN_NAME--0c954cb4-b94c-59b2-b601-3d980be6536f",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--0c954cb4-b94c-59b2-b601-3d980be6536f",
+      "target": "HTTP_LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--bc296096-d8fc-527c-a0da-cae174cfdb88",
+      "target": "CDN--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--0c954cb4-b94c-59b2-b601-3d980be6536f",
+      "target": "CDN--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "target": "CDN_NAME--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "target": "CDN_TYPE--fd79e006-c138-5a9a-9df8-343224fcc58f",
+      "relation": "had"
+    },
+    {
+      "source": "CDN--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "target": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "target": "IP_ADDRESS--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "relation": "contains"
+    },
+    {
+      "source": "IP_ADDRESS--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "contains"
+    },
+    {
+      "source": "CDN--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "target": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_TITLE--0e0c3b96-7706-5dfd-afab-0a6b48ce16d8",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "CONTENT_LENGTH--1fe4d03e-ea2c-5901-aae1-bef405b6dcae",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "RESPONSE_TIME_MS--e6b538ac-94bb-53aa-9921-eb31b2d01374",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "WORD_COUNT--62828731-a856-5044-bdcb-32679dd5db18",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "LINE_COUNT--fc5a41c2-1516-5462-9bf5-b0dd4b8dc1c1",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PROBE_TIMESTAMP--f59d6393-9395-5894-bbd7-fa8b414a3c79",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--ea3da848-08a8-58c4-9ed6-6598774b287a",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--0c954cb4-b94c-59b2-b601-3d980be6536f",
+      "target": "DOMAIN_NAME--af7760e1-ce27-5bc6-9d1f-c81c626200f6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--0c954cb4-b94c-59b2-b601-3d980be6536f",
+      "target": "CNAME_TARGET--af7760e1-ce27-5bc6-9d1f-c81c626200f6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--0c954cb4-b94c-59b2-b601-3d980be6536f",
+      "target": "IP_ADDRESS--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
+      "target": "PROBE_CONNECTED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--0c954cb4-b94c-59b2-b601-3d980be6536f",
+      "target": "IP_ADDRESS--68acdd3a-164a-533a-ac17-ddf402d8a8ba",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--68acdd3a-164a-533a-ac17-ddf402d8a8ba",
+      "target": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
+      "relation": "had"
     },
     {
       "source": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "INTERNET_NAME--797b6acd-a0fc-51dc-8655-861ccec41df4",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d089aef6-259f-58bc-b719-a4c3baad006c",
-      "target": "INTERNET_NAME--797b6acd-a0fc-51dc-8655-861ccec41df4",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d089aef6-259f-58bc-b719-a4c3baad006c",
-      "target": "HTTP_CODE--7b7ce921-b086-5b46-9886-87452c13cc02",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d089aef6-259f-58bc-b719-a4c3baad006c",
-      "target": "WEBSERVER_BANNER--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d089aef6-259f-58bc-b719-a4c3baad006c",
-      "target": "WEBSERVER_TECHNOLOGY--cf40919d-939d-5bcb-9dc3-afd355521a04",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d089aef6-259f-58bc-b719-a4c3baad006c",
-      "target": "WEBSERVER_TECHNOLOGY--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d089aef6-259f-58bc-b719-a4c3baad006c",
-      "target": "WEBSERVER_TECHNOLOGY--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d089aef6-259f-58bc-b719-a4c3baad006c",
-      "target": "PROVIDER_HOSTING--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "relation": "had"
-    },
-    {
-      "source": "SCAN_RECORD--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "LINKED_URL_INTERNAL--ded93c13-c219-594e-8623-43b0bdbb16e2",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--ded93c13-c219-594e-8623-43b0bdbb16e2",
-      "target": "INTERNET_NAME--797b6acd-a0fc-51dc-8655-861ccec41df4",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--ded93c13-c219-594e-8623-43b0bdbb16e2",
-      "target": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--ded93c13-c219-594e-8623-43b0bdbb16e2",
-      "target": "WEBSERVER_BANNER--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--ded93c13-c219-594e-8623-43b0bdbb16e2",
-      "target": "WEBSERVER_TECHNOLOGY--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--ded93c13-c219-594e-8623-43b0bdbb16e2",
-      "target": "WEBSERVER_TECHNOLOGY--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--ded93c13-c219-594e-8623-43b0bdbb16e2",
-      "target": "WEBSERVER_TECHNOLOGY--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--ded93c13-c219-594e-8623-43b0bdbb16e2",
-      "target": "PROVIDER_HOSTING--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "relation": "had"
-    },
-    {
-      "source": "SCAN_RECORD--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "LINKED_URL_INTERNAL--638f530f-4aad-5e31-92f0-e34912de9a40",
-      "relation": "contains"
-    },
-    {
-      "source": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "INTERNET_NAME--650e8289-7819-5085-bb4c-eba87c0712e4",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--638f530f-4aad-5e31-92f0-e34912de9a40",
-      "target": "INTERNET_NAME--650e8289-7819-5085-bb4c-eba87c0712e4",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--638f530f-4aad-5e31-92f0-e34912de9a40",
-      "target": "HTTP_CODE--b9b83c04-8fd5-50d4-a913-1c409d3b5581",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--638f530f-4aad-5e31-92f0-e34912de9a40",
-      "target": "PROVIDER_HOSTING--ead38395-7e4f-5b69-aa0a-d4bb33b26b8c",
-      "relation": "had"
-    },
-    {
-      "source": "SCAN_RECORD--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "LINKED_URL_INTERNAL--b6cc27d4-d12f-51ce-b635-408dcdc5431e",
-      "relation": "contains"
-    },
-    {
-      "source": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "INTERNET_NAME--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--b6cc27d4-d12f-51ce-b635-408dcdc5431e",
-      "target": "INTERNET_NAME--b295cece-27d7-5ad2-8939-1fcbb5ba3bba",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--b6cc27d4-d12f-51ce-b635-408dcdc5431e",
-      "target": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--b6cc27d4-d12f-51ce-b635-408dcdc5431e",
-      "target": "WEBSERVER_BANNER--0f4132fb-975a-555a-9666-5d8eb95cb697",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--b6cc27d4-d12f-51ce-b635-408dcdc5431e",
-      "target": "WEBSERVER_TECHNOLOGY--1b4b7345-6a98-574d-9e73-747e8f0a6904",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--b6cc27d4-d12f-51ce-b635-408dcdc5431e",
-      "target": "WEBSERVER_TECHNOLOGY--ee6c70c1-af1a-518e-9edd-841930987be2",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--b6cc27d4-d12f-51ce-b635-408dcdc5431e",
-      "target": "WEBSERVER_TECHNOLOGY--cf40919d-939d-5bcb-9dc3-afd355521a04",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--b6cc27d4-d12f-51ce-b635-408dcdc5431e",
-      "target": "WEBSERVER_TECHNOLOGY--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--b6cc27d4-d12f-51ce-b635-408dcdc5431e",
-      "target": "PROVIDER_HOSTING--8f33a91c-9b17-5d03-8c9a-b34a69767235",
-      "relation": "had"
-    },
-    {
-      "source": "SCAN_RECORD--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "LINKED_URL_INTERNAL--34ffb410-1c50-537f-8d2f-4de5f406b789",
-      "relation": "contains"
-    },
-    {
-      "source": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "INTERNET_NAME--1aca7381-89d3-54c7-8075-99ad583ef597",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--34ffb410-1c50-537f-8d2f-4de5f406b789",
-      "target": "INTERNET_NAME--1aca7381-89d3-54c7-8075-99ad583ef597",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--34ffb410-1c50-537f-8d2f-4de5f406b789",
-      "target": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--34ffb410-1c50-537f-8d2f-4de5f406b789",
-      "target": "WEBSERVER_TECHNOLOGY--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--34ffb410-1c50-537f-8d2f-4de5f406b789",
-      "target": "WEBSERVER_TECHNOLOGY--86087acc-9334-5e59-892d-3ca42bac35fe",
-      "relation": "had"
-    },
-    {
-      "source": "SCAN_RECORD--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "relation": "contains"
-    },
-    {
-      "source": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "INTERNET_NAME--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "target": "INTERNET_NAME--c0bfbf29-3da9-5bbf-ab5d-420404c98ae1",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "target": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "target": "WEBSERVER_BANNER--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "target": "WEBSERVER_TECHNOLOGY--d1bd88b1-bf35-5767-9124-79e660735207",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "target": "WEBSERVER_TECHNOLOGY--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "target": "WEBSERVER_TECHNOLOGY--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "target": "WEBSERVER_TECHNOLOGY--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "target": "WEBSERVER_TECHNOLOGY--10e67b65-4d7a-56ab-8a10-58222a965f29",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "target": "WEBSERVER_TECHNOLOGY--09ce37d5-5cf6-50c2-af89-1587873cbb3f",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "target": "WEBSERVER_TECHNOLOGY--e61d90dd-149b-584b-8a21-a5903e1ad488",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "target": "WEBSERVER_TECHNOLOGY--1226e343-283b-59e1-b5e6-c5bfd3abcc98",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--74616e49-b2ed-5b3f-b139-0c441b7a2b3a",
-      "target": "WEBSERVER_TECHNOLOGY--2f0d3719-948f-5f9a-97a4-e90110218a46",
-      "relation": "had"
-    },
-    {
-      "source": "SCAN_RECORD--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "LINKED_URL_INTERNAL--c331d7d7-5dd7-54a2-b212-a419b9ac9d11",
-      "relation": "contains"
-    },
-    {
-      "source": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
-      "target": "INTERNET_NAME--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--c331d7d7-5dd7-54a2-b212-a419b9ac9d11",
-      "target": "INTERNET_NAME--b37e2bcc-ea50-58f3-9117-25bce7c2d9c5",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--c331d7d7-5dd7-54a2-b212-a419b9ac9d11",
-      "target": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--c331d7d7-5dd7-54a2-b212-a419b9ac9d11",
-      "target": "WEBSERVER_BANNER--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--c331d7d7-5dd7-54a2-b212-a419b9ac9d11",
-      "target": "WEBSERVER_TECHNOLOGY--1b4b7345-6a98-574d-9e73-747e8f0a6904",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--c331d7d7-5dd7-54a2-b212-a419b9ac9d11",
-      "target": "WEBSERVER_TECHNOLOGY--cf40919d-939d-5bcb-9dc3-afd355521a04",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--c331d7d7-5dd7-54a2-b212-a419b9ac9d11",
-      "target": "WEBSERVER_TECHNOLOGY--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--c331d7d7-5dd7-54a2-b212-a419b9ac9d11",
-      "target": "WEBSERVER_TECHNOLOGY--ea3da848-08a8-58c4-9ed6-6598774b287a",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--c331d7d7-5dd7-54a2-b212-a419b9ac9d11",
-      "target": "WEBSERVER_TECHNOLOGY--f9a1e584-2ca4-5762-9a13-c1dea98dafac",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--c331d7d7-5dd7-54a2-b212-a419b9ac9d11",
-      "target": "PROVIDER_HOSTING--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "target": "HTTP_LIVENESS_STATUS--4866e2fd-4558-53cd-a7bd-6cd9208329ad",
       "relation": "had"
     }
   ]

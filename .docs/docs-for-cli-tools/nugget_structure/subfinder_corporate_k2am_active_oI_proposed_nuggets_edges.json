@@ -1,12 +1,12 @@
 {
   "nodes": [
     {
-      "id": "SCAN_RECORD--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "nugget_instance_id": "SCAN_RECORD--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "id": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "nugget_instance_id": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
       "nugget_id": "SCAN_RECORD",
       "nugget_type": "ENTITY",
-      "nugget_description": "Subfinder scan",
-      "nugget_data": "k2am.com.au",
+      "nugget_description": "Scan Record",
+      "nugget_data": "subfinder:k2am.com.au:subfinder -d k2am.com.au -active -oJ -oI -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_k2am_active_oI.jsonl -silent",
       "nugget_colour": "#3B82F6"
     },
     {
@@ -19,6 +19,60 @@
       "nugget_colour": "#F59E0B"
     },
     {
+      "id": "SCAN_TARGET--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "nugget_instance_id": "SCAN_TARGET--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "k2am.com.au",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "nugget_instance_id": "SCAN_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "nugget_id": "SCAN_MODE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Enumeration Mode",
+      "nugget_data": "active",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_START--e0b5a9a7-2c15-570d-9613-3a5ee2bd0c5d",
+      "nugget_instance_id": "SCAN_START--e0b5a9a7-2c15-570d-9613-3a5ee2bd0c5d",
+      "nugget_id": "SCAN_START",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Start",
+      "nugget_data": "2026-07-05T14:25:16.558422+00:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_ELAPSED--21099526-d5b6-54be-ae1b-22581bcd0251",
+      "nugget_instance_id": "SCAN_ELAPSED--21099526-d5b6-54be-ae1b-22581bcd0251",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_data": "23.187",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_instance_id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_id": "SCAN_EXIT_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Exit Status",
+      "nugget_data": "0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--87568d3d-9c7e-53d4-b77b-d20a357a8202",
+      "nugget_instance_id": "SCAN_TOOL--87568d3d-9c7e-53d4-b77b-d20a357a8202",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "subfinder",
+      "nugget_colour": "#F59E0B"
+    },
+    {
       "id": "DOMAIN_NAME--ca6b7112-0a9c-5259-b578-03c55153011c",
       "nugget_instance_id": "DOMAIN_NAME--ca6b7112-0a9c-5259-b578-03c55153011c",
       "nugget_id": "DOMAIN_NAME",
@@ -28,22 +82,49 @@
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "INTERNET_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
-      "nugget_instance_id": "INTERNET_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME_PARENT--65d1ca44-2a40-5293-ba91-fa4dbfd68b1f",
+      "nugget_instance_id": "DOMAIN_NAME_PARENT--65d1ca44-2a40-5293-ba91-fa4dbfd68b1f",
+      "nugget_id": "DOMAIN_NAME_PARENT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Domain Name (Parent)",
+      "nugget_data": "com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "DOMAIN_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
+      "nugget_instance_id": "DOMAIN_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
       "nugget_data": "ksm.k2am.com.au",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
-      "nugget_instance_id": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
-      "nugget_id": "RAW_DNS_RECORDS",
+      "id": "DOMAIN_NAME_PARENT--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "nugget_instance_id": "DOMAIN_NAME_PARENT--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "nugget_id": "DOMAIN_NAME_PARENT",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Passive sources",
+      "nugget_description": "Domain Name (Parent)",
+      "nugget_data": "k2am.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "DISCOVERY_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "nugget_instance_id": "DISCOVERY_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "nugget_id": "DISCOVERY_MODE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Discovery Mode",
+      "nugget_data": "active",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DISCOVERY_SOURCE--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "nugget_instance_id": "DISCOVERY_SOURCE--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "nugget_id": "DISCOVERY_SOURCE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Discovery Source",
       "nugget_data": "crtsh",
-      "nugget_colour": "#14B8A6"
+      "nugget_colour": "#F59E0B"
     },
     {
       "id": "IP_ADDRESS--10fa44ec-5364-56ec-a942-906b11d46b81",
@@ -55,31 +136,49 @@
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "INTERNET_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
-      "nugget_instance_id": "INTERNET_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
-      "nugget_id": "INTERNET_NAME",
+      "id": "LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "nugget_instance_id": "LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "nugget_id": "LIVENESS_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Liveness Status",
+      "nugget_data": "confirmed",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "CDN_REVIEW_NEEDED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_instance_id": "CDN_REVIEW_NEEDED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "nugget_id": "CDN_REVIEW_NEEDED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "CDN Review Needed",
+      "nugget_data": "true",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
+      "nugget_instance_id": "DOMAIN_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
       "nugget_data": "kii.k2am.com.au",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "INTERNET_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
-      "nugget_instance_id": "INTERNET_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
+      "nugget_instance_id": "DOMAIN_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
       "nugget_data": "owa.k2am.com.au",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
-      "nugget_instance_id": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
-      "nugget_id": "RAW_DNS_RECORDS",
+      "id": "DISCOVERY_SOURCE--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "nugget_instance_id": "DISCOVERY_SOURCE--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "nugget_id": "DISCOVERY_SOURCE",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Passive sources",
+      "nugget_description": "Discovery Source",
       "nugget_data": "hackertarget",
-      "nugget_colour": "#14B8A6"
+      "nugget_colour": "#F59E0B"
     },
     {
       "id": "IP_ADDRESS--8daa6620-ac01-5272-978b-d39c4356da6c",
@@ -91,11 +190,11 @@
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "INTERNET_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
-      "nugget_instance_id": "INTERNET_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
+      "nugget_instance_id": "DOMAIN_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
       "nugget_data": "link.k2am.com.au",
       "nugget_colour": "#3B82F6"
     },
@@ -109,11 +208,11 @@
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "INTERNET_NAME--07beed61-3bda-5862-a357-918d672cf30a",
-      "nugget_instance_id": "INTERNET_NAME--07beed61-3bda-5862-a357-918d672cf30a",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--07beed61-3bda-5862-a357-918d672cf30a",
+      "nugget_instance_id": "DOMAIN_NAME--07beed61-3bda-5862-a357-918d672cf30a",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
       "nugget_data": "smtp1.k2am.com.au",
       "nugget_colour": "#3B82F6"
     },
@@ -127,20 +226,20 @@
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "INTERNET_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
-      "nugget_instance_id": "INTERNET_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
+      "nugget_instance_id": "DOMAIN_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
       "nugget_data": "smtp2.k2am.com.au",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "INTERNET_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
-      "nugget_instance_id": "INTERNET_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
+      "nugget_instance_id": "DOMAIN_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
       "nugget_data": "www.k2am.com.au",
       "nugget_colour": "#3B82F6"
     },
@@ -154,185 +253,329 @@
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "INTERNET_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
-      "nugget_instance_id": "INTERNET_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
+      "nugget_instance_id": "DOMAIN_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
       "nugget_data": "mail.k2am.com.au",
       "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LIVENESS_STATUS--4866e2fd-4558-53cd-a7bd-6cd9208329ad",
+      "nugget_instance_id": "LIVENESS_STATUS--4866e2fd-4558-53cd-a7bd-6cd9208329ad",
+      "nugget_id": "LIVENESS_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Liveness Status",
+      "nugget_data": "unconfirmed",
+      "nugget_colour": "#F59E0B"
     }
   ],
   "edges": [
     {
-      "source": "SCAN_RECORD--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
       "target": "SCAN_CLI--f85e25ca-128d-5a69-963c-d4e3a3d82728",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "SCAN_TARGET--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "SCAN_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "SCAN_START--e0b5a9a7-2c15-570d-9613-3a5ee2bd0c5d",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "SCAN_ELAPSED--21099526-d5b6-54be-ae1b-22581bcd0251",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "SCAN_TOOL--87568d3d-9c7e-53d4-b77b-d20a357a8202",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
       "target": "DOMAIN_NAME--ca6b7112-0a9c-5259-b578-03c55153011c",
       "relation": "contains"
     },
     {
-      "source": "SCAN_RECORD--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
-      "relation": "contains"
-    },
-    {
       "source": "DOMAIN_NAME--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
-      "target": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "target": "DOMAIN_NAME_PARENT--65d1ca44-2a40-5293-ba91-fa4dbfd68b1f",
       "relation": "had"
     },
     {
-      "source": "INTERNET_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "DOMAIN_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
+      "target": "DOMAIN_NAME_PARENT--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
+      "target": "DISCOVERY_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
+      "target": "DISCOVERY_SOURCE--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
       "target": "IP_ADDRESS--10fa44ec-5364-56ec-a942-906b11d46b81",
-      "relation": "contains"
-    },
-    {
-      "source": "SCAN_RECORD--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
-      "relation": "contains"
-    },
-    {
-      "source": "DOMAIN_NAME--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
-      "target": "RAW_DNS_RECORDS--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
       "relation": "had"
     },
     {
-      "source": "INTERNET_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
+      "source": "DOMAIN_NAME--d2d07e2b-3a09-5980-bd2c-7ef139d18c14",
+      "target": "LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--10fa44ec-5364-56ec-a942-906b11d46b81",
+      "target": "CDN_REVIEW_NEEDED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "DOMAIN_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
+      "target": "DOMAIN_NAME_PARENT--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
+      "target": "DISCOVERY_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
+      "target": "DISCOVERY_SOURCE--1f213fed-e279-51b4-9b1d-7180cf6d0e12",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
       "target": "IP_ADDRESS--10fa44ec-5364-56ec-a942-906b11d46b81",
-      "relation": "contains"
-    },
-    {
-      "source": "SCAN_RECORD--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
-      "relation": "contains"
-    },
-    {
-      "source": "DOMAIN_NAME--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
-      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
       "relation": "had"
     },
     {
-      "source": "INTERNET_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
+      "source": "DOMAIN_NAME--1678066b-4f3c-5a55-9aed-1a2c6c7c2fb7",
+      "target": "LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "DOMAIN_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
+      "target": "DOMAIN_NAME_PARENT--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
+      "target": "DISCOVERY_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
+      "target": "DISCOVERY_SOURCE--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
       "target": "IP_ADDRESS--8daa6620-ac01-5272-978b-d39c4356da6c",
-      "relation": "contains"
-    },
-    {
-      "source": "SCAN_RECORD--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
-      "relation": "contains"
-    },
-    {
-      "source": "DOMAIN_NAME--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
-      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
       "relation": "had"
     },
     {
-      "source": "INTERNET_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
+      "source": "DOMAIN_NAME--1fb1783d-9452-5e89-ab3a-47ce19d4021f",
+      "target": "LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--8daa6620-ac01-5272-978b-d39c4356da6c",
+      "target": "CDN_REVIEW_NEEDED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "DOMAIN_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
+      "target": "DOMAIN_NAME_PARENT--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
+      "target": "DISCOVERY_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
+      "target": "DISCOVERY_SOURCE--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
       "target": "IP_ADDRESS--65b28797-d245-5b14-bb67-1039dc7b8b48",
-      "relation": "contains"
-    },
-    {
-      "source": "SCAN_RECORD--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--07beed61-3bda-5862-a357-918d672cf30a",
-      "relation": "contains"
-    },
-    {
-      "source": "DOMAIN_NAME--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--07beed61-3bda-5862-a357-918d672cf30a",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--07beed61-3bda-5862-a357-918d672cf30a",
-      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
       "relation": "had"
     },
     {
-      "source": "INTERNET_NAME--07beed61-3bda-5862-a357-918d672cf30a",
+      "source": "DOMAIN_NAME--a83b5a3c-27c9-5d61-af35-3b4838730edb",
+      "target": "LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "DOMAIN_NAME--07beed61-3bda-5862-a357-918d672cf30a",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--07beed61-3bda-5862-a357-918d672cf30a",
+      "target": "DOMAIN_NAME_PARENT--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--07beed61-3bda-5862-a357-918d672cf30a",
+      "target": "DISCOVERY_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--07beed61-3bda-5862-a357-918d672cf30a",
+      "target": "DISCOVERY_SOURCE--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--07beed61-3bda-5862-a357-918d672cf30a",
       "target": "IP_ADDRESS--c1318cd7-16eb-531f-bf1b-d5b40ce02353",
-      "relation": "contains"
-    },
-    {
-      "source": "SCAN_RECORD--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
-      "relation": "contains"
-    },
-    {
-      "source": "DOMAIN_NAME--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
-      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
       "relation": "had"
     },
     {
-      "source": "INTERNET_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
+      "source": "DOMAIN_NAME--07beed61-3bda-5862-a357-918d672cf30a",
+      "target": "LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--c1318cd7-16eb-531f-bf1b-d5b40ce02353",
+      "target": "CDN_REVIEW_NEEDED--a26b45b4-3bde-573b-a335-b2284e4ae643",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "DOMAIN_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
+      "target": "DOMAIN_NAME_PARENT--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
+      "target": "DISCOVERY_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
+      "target": "DISCOVERY_SOURCE--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
       "target": "IP_ADDRESS--8daa6620-ac01-5272-978b-d39c4356da6c",
-      "relation": "contains"
-    },
-    {
-      "source": "SCAN_RECORD--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
-      "relation": "contains"
-    },
-    {
-      "source": "DOMAIN_NAME--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
-      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
       "relation": "had"
     },
     {
-      "source": "INTERNET_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
+      "source": "DOMAIN_NAME--b7b30747-2816-576b-80d1-e10aa26e9e5c",
+      "target": "LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "DOMAIN_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
+      "target": "DOMAIN_NAME_PARENT--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
+      "target": "DISCOVERY_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
+      "target": "DISCOVERY_SOURCE--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
       "target": "IP_ADDRESS--b42b4ed9-37d1-5545-890a-863d0a25f983",
-      "relation": "contains"
-    },
-    {
-      "source": "SCAN_RECORD--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
-      "relation": "contains"
-    },
-    {
-      "source": "DOMAIN_NAME--ca6b7112-0a9c-5259-b578-03c55153011c",
-      "target": "INTERNET_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
-      "target": "RAW_DNS_RECORDS--dc904c8e-d721-5196-8478-7b9de24341a8",
       "relation": "had"
     },
     {
-      "source": "INTERNET_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
-      "target": "IP_ADDRESS--c1318cd7-16eb-531f-bf1b-d5b40ce02353",
+      "source": "DOMAIN_NAME--7841c62a-381b-50b1-b579-27cfb5943f3c",
+      "target": "LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9812757a-d9b0-5cde-a21b-f3708b5a6f6a",
+      "target": "DOMAIN_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
       "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
+      "target": "DOMAIN_NAME_PARENT--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
+      "target": "DISCOVERY_MODE--a7ca68ba-c282-5da1-ab54-684a9b1a0024",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
+      "target": "DISCOVERY_SOURCE--dc904c8e-d721-5196-8478-7b9de24341a8",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
+      "target": "IP_ADDRESS--c1318cd7-16eb-531f-bf1b-d5b40ce02353",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--d7bb3044-36b0-5322-801d-9db594af3e5b",
+      "target": "LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--ca6b7112-0a9c-5259-b578-03c55153011c",
+      "target": "LIVENESS_STATUS--4866e2fd-4558-53cd-a7bd-6cd9208329ad",
+      "relation": "had"
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
   "nodes": [
     {
-      "id": "SCAN_RECORD--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
-      "nugget_instance_id": "SCAN_RECORD--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "id": "SCAN_RECORD--89fd87b8-d23f-510a-9a62-236682626e12",
+      "nugget_instance_id": "SCAN_RECORD--89fd87b8-d23f-510a-9a62-236682626e12",
       "nugget_id": "SCAN_RECORD",
       "nugget_type": "ENTITY",
-      "nugget_description": "Subfinder scan",
-      "nugget_data": "not-a-real-domain-xyzzy.invalid",
+      "nugget_description": "Scan Record",
+      "nugget_data": "subfinder:not-a-real-domain-xyzzy.invalid:subfinder -d not-a-real-domain-xyzzy.invalid -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/invalid_domain_clean_miss.jsonl -silent",
       "nugget_colour": "#3B82F6"
     },
     {
@@ -19,6 +19,60 @@
       "nugget_colour": "#F59E0B"
     },
     {
+      "id": "SCAN_TARGET--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "nugget_instance_id": "SCAN_TARGET--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "not-a-real-domain-xyzzy.invalid",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_MODE--34db4763-a7b7-5bc9-b1b2-0af29ec33515",
+      "nugget_instance_id": "SCAN_MODE--34db4763-a7b7-5bc9-b1b2-0af29ec33515",
+      "nugget_id": "SCAN_MODE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Enumeration Mode",
+      "nugget_data": "passive",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_START--b98305c5-d58b-58bf-b762-0c650af25367",
+      "nugget_instance_id": "SCAN_START--b98305c5-d58b-58bf-b762-0c650af25367",
+      "nugget_id": "SCAN_START",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Start",
+      "nugget_data": "2026-07-05T14:26:26.453039+00:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_ELAPSED--cda337d8-5a10-51ba-8061-bd5d086b7c06",
+      "nugget_instance_id": "SCAN_ELAPSED--cda337d8-5a10-51ba-8061-bd5d086b7c06",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_data": "24.594",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_instance_id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_id": "SCAN_EXIT_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Exit Status",
+      "nugget_data": "0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--87568d3d-9c7e-53d4-b77b-d20a357a8202",
+      "nugget_instance_id": "SCAN_TOOL--87568d3d-9c7e-53d4-b77b-d20a357a8202",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "subfinder",
+      "nugget_colour": "#F59E0B"
+    },
+    {
       "id": "DOMAIN_NAME--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
       "nugget_instance_id": "DOMAIN_NAME--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
       "nugget_id": "DOMAIN_NAME",
@@ -26,18 +80,62 @@
       "nugget_description": "Domain Name",
       "nugget_data": "not-a-real-domain-xyzzy.invalid",
       "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "LIVENESS_STATUS--4866e2fd-4558-53cd-a7bd-6cd9208329ad",
+      "nugget_instance_id": "LIVENESS_STATUS--4866e2fd-4558-53cd-a7bd-6cd9208329ad",
+      "nugget_id": "LIVENESS_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Liveness Status",
+      "nugget_data": "unconfirmed",
+      "nugget_colour": "#F59E0B"
     }
   ],
   "edges": [
     {
-      "source": "SCAN_RECORD--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "source": "SCAN_RECORD--89fd87b8-d23f-510a-9a62-236682626e12",
       "target": "SCAN_CLI--e000ae0a-f805-542e-9d52-46502087beee",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "source": "SCAN_RECORD--89fd87b8-d23f-510a-9a62-236682626e12",
+      "target": "SCAN_TARGET--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--89fd87b8-d23f-510a-9a62-236682626e12",
+      "target": "SCAN_MODE--34db4763-a7b7-5bc9-b1b2-0af29ec33515",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--89fd87b8-d23f-510a-9a62-236682626e12",
+      "target": "SCAN_START--b98305c5-d58b-58bf-b762-0c650af25367",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--89fd87b8-d23f-510a-9a62-236682626e12",
+      "target": "SCAN_ELAPSED--cda337d8-5a10-51ba-8061-bd5d086b7c06",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--89fd87b8-d23f-510a-9a62-236682626e12",
+      "target": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--89fd87b8-d23f-510a-9a62-236682626e12",
+      "target": "SCAN_TOOL--87568d3d-9c7e-53d4-b77b-d20a357a8202",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--89fd87b8-d23f-510a-9a62-236682626e12",
       "target": "DOMAIN_NAME--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
       "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--20ee45d9-5c8a-5e88-b50f-d8cd17050de7",
+      "target": "LIVENESS_STATUS--4866e2fd-4558-53cd-a7bd-6cd9208329ad",
+      "relation": "had"
     }
   ]
 }
