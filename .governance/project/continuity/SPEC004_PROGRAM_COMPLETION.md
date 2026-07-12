@@ -48,6 +48,7 @@ Last run: **65 passed** (develop @ `72239686`, full SPEC-004 bundle including Ep
 ## Residual / follow-up
 
 - Operator visual sign-off on checklist before **byte-locked** graph/narrative fixtures
+- **SPEC-005 refinement (active):** narrative engine v2 + shared IPv4/IPv6 classification — plan `.governance/project/SPEC005_AGENT_PLAN.md` · index `.governance/project/SPEC005_ISSUE_INDEX.md`
 - Epic E: per-module `sfp_tool_*` rewrites (one issue per module under #723)
 - TypeQL promotion for `nuggets_extension.json` entries (A4 follow-up)
 
