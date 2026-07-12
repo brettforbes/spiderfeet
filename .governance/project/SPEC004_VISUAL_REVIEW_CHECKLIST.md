@@ -58,7 +58,12 @@ python -m pytest .tests/test_spec004_narrative_coverage.py .tests/test_harvest_a
 
 | ID | Tool | Area (engine / YAML / phrasing / nugget_id) | Observation | GitHub issue | Status |
 |----|------|---------------------------------------------|-------------|--------------|--------|
-| VR-001 | | | | | open |
+| VR-001 | all | UI resolution | Format-suffixed scenario keys may hide existing graph/MD | [#964](https://github.com/brettforbes/spiderfeet/issues/964) (G1) | open |
+| VR-002 | all | nugget_id | IPv6 literals incorrectly mapped as `IP_ADDRESS` | [#959](https://github.com/brettforbes/spiderfeet/issues/959) (Epic H) | open |
+| VR-003 | all | engine / YAML | Stub narratives for non-nmap/netdiscover tools; need §4.3 v2 | [#960](https://github.com/brettforbes/spiderfeet/issues/960) (Epic I) | open |
+| VR-004 | nerva / pius | missing artifacts | Text-only scenarios lack graph/MD | [#965](https://github.com/brettforbes/spiderfeet/issues/965) (G2) | open |
+
+Program plan: `.governance/project/SPEC005_AGENT_PLAN.md` · Index: `.governance/project/SPEC005_ISSUE_INDEX.md`
 
 Add rows as needed. Do not collapse unrelated gaps into one vague item.
 
@@ -78,6 +83,7 @@ with evidence paths. Golden fixture work may then proceed under Phase 4 issues.
 ## Related artifacts
 
 - Issue index: `.governance/project/SPEC004_ISSUE_INDEX.md`
+- **Refinement program:** `.governance/project/SPEC005_ISSUE_INDEX.md` · `.governance/specs/SPEC-005-narrative-v2-ip-classify.md`
 - Adapter onboarding: `.seed/scripts/cli_corpus/ONBOARDING.md`
 - Narrative coverage tests: `.tests/test_spec004_narrative_coverage.py`
 - Harvest adapter dispatch: `.tests/test_harvest_adapter_dispatch.py`

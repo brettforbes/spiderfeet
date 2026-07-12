@@ -1,5 +1,5 @@
 ---
-description: Hybrid CLI structured→graph→narrative rules engine — four outputs, YAML packs, adapter boundaries
+description: Hybrid CLI structured→graph→narrative rules engine — four outputs, YAML packs, adapter boundaries, narrative quality
 globs:
   - ".seed/scripts/cli_corpus/**"
   - ".seed/06B*.md"
@@ -10,46 +10,72 @@ globs:
   - ".seed/11*.md"
   - ".seed/14_Business_Rules_for_Converting_Structured_Data_to_Graph.md"
   - ".governance/specs/SPEC-004-cli-graph-rules-engine.md"
+  - ".governance/specs/SPEC-005-narrative-v2-ip-classify.md"
   - ".governance/project/SPEC004*.md"
+  - ".governance/project/SPEC005*.md"
   - ".docs/docs-for-cli-tools/**"
   - ".tests/test_*graph*"
   - ".tests/test_narrative*"
+  - ".tests/test_ip_classify*"
   - "modules/sfp_tool_*.py"
   - "modules/sfp_*.py"
 alwaysApply: false
 ---
 
-# Project: CLI Graph Rules Engine (SPEC-004)
+# Project: CLI Graph Rules Engine (SPEC-004 / SPEC-005)
 
-**Spec:** `.governance/specs/SPEC-004-cli-graph-rules-engine.md`  
+**Specs:** `.governance/specs/SPEC-004-cli-graph-rules-engine.md`, `.governance/specs/SPEC-005-narrative-v2-ip-classify.md`  
 **Overview:** `.seed/14_Business_Rules_for_Converting_Structured_Data_to_Graph.md`  
-**Ontology:** `.cursor/rules/proj-05-spiderfeet-nugget-ontology.mdc`  
-**Profiling:** `.cursor/rules/proj-06-spiderfeet-cli-app-exercising.mdc`
+**Ontology:** `.cursor/rules/proj-05-spiderfeet-nugget-ontology.mdc` · `.seed/05_Onotology_for_Nuggets.md` §4  
+**Profiling / explore→examine:** `.cursor/rules/proj-06-spiderfeet-cli-app-exercising.mdc`  
+**Onboard a new tool:** `.seed/scripts/cli_corpus/ONBOARDING.md`  
+**Operator guide:** `.docs/docs-for-cli-tools/SPEC004_SYSTEM_GUIDE.md`
+
+## Design law (80 / 20)
+
+| Share | Where | What |
+|-------|--------|------|
+| ~80% | `rules/` YAML + `core/` | Field→nugget maps, topology, IP classify, correlation lists, narrative sections, Mermaid type templates, phrasing |
+| ~20% | `adapters/<tool>/` | Parse/normalize, TextFSM, harvest quirks, **cited** hooks the seed docs require |
+
+Do **not** write a new full `*_to_graph.py` mapper. Copy `rules/_template/` + `adapters/_template/`, then thin the adapter.
 
 ## Four outputs (mandatory)
 
 Every formal examination / harvest-complete tool must emit:
 
 1. **Text** — summary or native stdout  
-2. **Structured** — single-root JSON or XML  
+2. **Structured** — single-root JSON or XML (never raw `.jsonl` as the Structured pane file)  
 3. **Graph** — `nodes[]` + `edges[]` under the common ontology  
-4. **Markdown Report** — narrative + appendix of every field/node/edge  
+4. **Markdown Report** — §4.3 narrative (meta-concepts → categories → appendix)
+
+Harvest path for adapter tools: `adapters.<tool>.build_outputs` → writes examination files **and**
+
+```text
+nugget_structure/<tool>_<scenario_id>_proposed_nuggets_edges.json
+nugget_structure/<tool>_<scenario_id>_proposed_nuggets_edges_description.md
+```
+
+Use the **full** `scenario_id` in filenames (including `_xml` / `_json` / `_text` when that is the exam id). UI/API may also try stripped keys — keep both resolvable (SPEC-005 G1).
 
 ## Capture families
 
 Declare exactly one per adapter:
 
-- `structured_native` — normalize tool JSON/XML; **must** produce Text pane content (derived or paired).  
+- `structured_native` — normalize tool JSON/XML/JSONL→bundle; **must** derive or pair Text.  
 - `text_native` — keep native text; **must** produce Structured via TextFSM (or equivalent).
+
+Paired modes (tool cannot emit both at once): two scenarios (machine + TUI). Text-only without a derived graph must set `graph_deferred: true` + reason — never silent empty Graph/Markdown panes.
 
 ## Where logic may live
 
 | Location | Allowed | Forbidden |
 |----------|---------|-----------|
-| `adapters/<tool>/` | CLI invoke, parse/normalize, TextFSM, derived text, harvest quirks, **cited** `hooks.py` | Full field→`nugget_id` maps when YAML can express them; new UUID schemes; new relation names |
-| `rules/` | Mapping YAML, topology templates, narrative profiles, correlation thresholds, CDN/ASN lists, validation | Tool subprocess / TextFSM parsing |
-| `core/` | Shared engine, identity, validation, narrative builder, correlation engine | Tool-specific field paths |
-| `modules/sfp_*` (second push) | abuse.ch-shaped meta/opts/events + call adapter | Reimplement rule engine or mapping packs |
+| `adapters/<tool>/` | CLI invoke, parse/normalize, TextFSM, derived text, harvest quirks, **cited** `hooks.py`, thin `to_*` wrappers | Full field→`nugget_id` maps when YAML can express them; inline narrative stubs when shared engine exists; hard-coded IPv4/IPv6 regexes; new UUID schemes; new relation names |
+| `rules/<tool>/` | `mapping.yaml`, `narrative.yaml` | Tool subprocess / TextFSM parsing |
+| `rules/_shared/` | Relations, scan head, topology templates, validation, CDN/ASN lists, **IP patterns**, **narrative_v2** meta-concepts | Tool-specific field paths |
+| `core/` | `graph_builder`, `rule_engine`, `topology`, `ip_classify`, correlation, narrative engine | Tool-specific JSON paths |
+| `modules/sfp_*` (second push) | Thin meta/opts/events + call adapter / `sfp_adapter_bridge` | Reimplement rule engine or mapping packs |
 
 ## Identity
 
@@ -61,6 +87,18 @@ nugget_id--{uuid5(ONTOLOGY_NAMESPACE, nugget_data)}
 
 Do not add alternate `_uid` helpers.
 
+## IP addresses (mandatory shared classifier)
+
+All IP node creation (topology + adapter hooks) must go through `core.ip_classify.classify_ip` (SPEC-005), driven by `rules/_shared/ip_patterns.yaml`:
+
+| Role | IPv4 | IPv6 |
+|------|------|------|
+| host | `IP_ADDRESS` | `IPV6_ADDRESS` |
+| internal | `INTERNAL_IP_ADDRESS` | `IPV6_ADDRESS` (until catalogue adds INTERNAL_IPV6) |
+| affiliate | `AFFILIATE_IPADDR` | `AFFILIATE_IPV6_ADDRESS` |
+
+Fast gate: dots → IPv4 path; colons → IPv6 path; then YAML regex confirm. Never emit `IP_ADDRESS` for a colon-form literal.
+
 ## Hooks gate
 
 Every function in `hooks.py` must cite a seed rule id in its docstring (e.g. `06B N0`, `07 A1`, `07B N1`, `11B …`).
@@ -68,6 +106,38 @@ Every function in `hooks.py` must cite a seed rule id in its docstring (e.g. `06
 ## Relations
 
 Default allowed edges: `contains`, `had`, `listens-to` (see proj-05). New relations require seed doc + SPEC update before use.
+
+## Narrative quality bar (§4.3 + SPEC-005)
+
+Reference shape: nmap / netdiscover `*_proposed_nuggets_edges_description.md` (improve Introduction only).
+
+Every tool’s Markdown report must be produced by the **shared narrative engine** (not a bullet-list stub). Structure:
+
+1. **Title** + **Introduction** — factual: tool used + ontology hierarchy guide (types / containment), not marketing fluff  
+2. **Meta-concept sections** — Scan; then Host / System / CDN / org as applicable; Trace last  
+3. **Category subsections** under host/system — ENVIRONMENT, NETWORKS, APPLICATIONS, VULNERABILITIES (and tool-specific categories such as SECURITY when seeded)  
+4. Per section/subsection, in order:  
+   - short **prose** connecting values into a simple story  
+   - **Mermaid of nugget types + relations only** (no literal IP/URL/hostname values on nodes)  
+   - optional **table** when rows are comparable  
+5. **Conclusion**  
+6. **Appendix** — full inventory of every node value and edge (table preferred); must pass `validate_narrative_coverage`  
+7. **Footer** — OS-Intel Scan + scan date  
+
+`rules/<tool>/narrative.yaml` keys (`host_nugget_id`, sections / meta_concepts, phrasing, `include_trace`, `include_appendix`) must be **consumed** by the engine — no dead YAML.
+
+## Adapter public API (fixed)
+
+```text
+CAPTURE_FAMILY
+to_structured(...)
+to_text(...)
+to_graph(...)
+to_narrative(...)   # thin: render_narrative(graph, tool=..., profile=...)
+build_outputs(...)  # returns text, structured, structured_json, graph, markdown_report
+```
+
+Wire the tool into `harvest.py` `ADAPTER_TOOLS` (and structured-native set when applicable).
 
 ## Nerva / Nuclei seeds
 
@@ -77,19 +147,24 @@ Default allowed edges: `contains`, `had`, `listens-to` (see proj-05). New relati
 
 ## Review vs goldens
 
-Do **not** lock golden graph/narrative byte fixtures until operator visual review (SPEC R4-01-08). Prefer structural tests (connectivity, coverage) during migration.
+Do **not** lock golden graph/narrative byte fixtures until operator visual review (SPEC-004 R4-01-08 / SPEC-005 K1). Prefer structural tests (connectivity, coverage, IP classify) during migration.
 
 ## Onboarding checklist (new CLI app)
 
-1. Capture family declared  
-2. Intermediate structured schema  
-3. `rules/<tool>/` mapping (+ narrative)  
-4. Optional cited hooks  
-5. Four artifacts via harvest  
-6. `*_nugget_graph_structure.md` + `_Current_Ontology.md` section  
-7. Visual review  
-8. Golden tests only after review sign-off  
+Follow `.seed/scripts/cli_corpus/ONBOARDING.md` end-to-end. Short form:
+
+1. Explore → semantic outcome matrix (proj-06) — no harvest until rows classified  
+2. Capture family + intermediate structured schema  
+3. Seed doc (if new ontology rules) + `rules/<tool>/mapping.yaml` + `narrative.yaml`  
+4. Optional cited `hooks.py`; reuse `core/topology` + `classify_ip`  
+5. Adapter four-output API; harvest wiring  
+6. Strategy skill + help text + corpus_index entry  
+7. Formal harvest; regenerate graph+MD via adapter/backfill  
+8. `nugget_structure/<tool>_nugget_graph_structure.md` + ontology notes  
+9. Operator visual review in CLI Profiling (T/S/G/MD)  
+10. Structural tests; byte goldens only after sign-off  
+11. Second push: thin `sfp_tool_*` via bridge — not in the first PR  
 
 ## Second push
 
-`sfp_<app>` modules come **after** goldens (SPEC R4-01-09). First-wave PRs must not rewrite production modules unless the issue is under Epic E.
+`sfp_<app>` modules come **after** goldens (SPEC-004 R4-01-09). Pattern: `.governance/project/SPEC004_SFP_THIN_WRAPPER_PATTERN.md`. First-wave PRs must not rewrite production modules unless the issue is under that epic.

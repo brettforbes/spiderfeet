@@ -93,7 +93,7 @@ Do not store raw `.jsonl` / NDJSON as the examination structured artifact. The C
 
 **Empty findings are valid:** `records: []` with scan metadata is a complete structured artifact for clean-miss scenarios (e.g. obscure org, sparse target).
 
-**Backfill without re-run:** `backfill_nerva_structured_scan.py`, `backfill_pius_structured.py`.
+**Backfill without re-run:** `backfill_adapter_four_outputs.py` (preferred — regenerates graph + narrative from existing structured files); legacy `backfill_nerva_structured_scan.py`, `backfill_pius_structured.py` for older bundle shapes only.
 
 - Capture errors and empty/clean-miss behavior as first-class scenarios with text and structured representations.
 - **Errors in structured artifacts:** Include `exit_status`, stderr (when non-empty), and scan-level error fields in structured JSON/XML — not only in text. Error scenarios are incomplete if structured output omits the failure shape.
@@ -109,8 +109,9 @@ For each scenario bundle, verify:
 1. **Structured** — file parses in Data Viewer (single JSON/XML root); for bundles, `records` length matches `record_count` / header line count.
 2. **Text** — human-readable body is not only progress banners; derived or native finding lines present when `records` is non-empty.
 3. **Alignment** — text line count equals `len(records)` for JSON-bundle tools; netdiscover text/JSON alignment per `verify_text_structured_alignment`.
-4. **Graph** — `*_proposed_nuggets_edges.json` generated from structured artifact; no orphan nodes.
-5. **Manifest** — `structured_kind: json`, path ends in `_output_structured.json` for bundle tools (not `.jsonl`).
+4. **Graph** — `nugget_structure/<tool>_<scenario_id>_proposed_nuggets_edges.json` generated from structured artifact; no orphan nodes; IPs classified via `classify_ip`.
+5. **Markdown** — matching `*_proposed_nuggets_edges_description.md` from the shared narrative engine; appendix covers every node value; CLI Profiling shows the MD badge.
+6. **Manifest** — `structured_kind: json`, path ends in `_output_structured.json` for bundle tools (not `.jsonl`). Text-only without graph must declare `graph_deferred` + reason.
 
 ## Scenario Coverage
 
@@ -124,25 +125,49 @@ For each scenario bundle, verify:
 Review the foundation described here to convert the structured artifact to nugget graph JSON (nodes and edges arrays).
 
 - Derive the nugget graph from the structured artifact, even when the structured artifact was parsed from text. The nugget graph is the primary ontology input for the SpiderFeet tool.
-- **SPEC-004:** Prefer `adapters/<tool>/` + declarative `rules/<tool>/` YAML + shared `core/` / `graph_builder` over new hardcoded `*_to_graph.py` mappers. Follow `.cursor/rules/proj-07-cli-graph-rules-engine.mdc`. Legacy nmap/netdiscover converters are migration sources, not the pattern to copy.
-- Use shared `graph_builder` (`load_nugget_templates`, `nugget_node`, `GraphBuilder`, `validate_graph`) for all new tool graph generators.
+- **Mandatory path (SPEC-004 / SPEC-005):** `adapters/<tool>/` + `rules/<tool>/*.yaml` + shared `core/` — follow `.cursor/rules/proj-07-cli-graph-rules-engine.mdc`. Do **not** add new hardcoded `*_to_graph.py` mappers. Onboard via `.seed/scripts/cli_corpus/ONBOARDING.md`.
+- Use shared `graph_builder` (`load_nugget_templates`, `nugget_node`, `GraphBuilder`, `validate_graph`) and `core.topology` helpers for scan/host/system stacks.
+- **IP literals:** create address nodes only via `core.ip_classify.classify_ip` (IPv4 vs IPv6 → correct nugget ids). Never hardcode `IP_ADDRESS` for colon-form values.
 - Keep raw text as review evidence and as a template source for derived text, not as the primary ontology input.
-- Create a tool-level markdown document: `nugget_structure/<tool>_nugget_graph_structure.md` (scenario table, field mapping, Mermaid patterns) for the Profiling **Structure** button.
-- Create a per-scenario narrative markdown: `nugget_structure/<tool>_<scenario>_proposed_nuggets_edges_description.md` per `.seed/05_Onotology_for_Nuggets.md` §4.3 (scan → hosts → trace → appendix).
+- Create a tool-level markdown document: `nugget_structure/<tool>_nugget_graph_structure.md` (scenario table, field mapping, Mermaid **type** patterns) for the Profiling **Structure** button.
+- Create per-scenario narrative markdown via the **shared narrative engine** (not adapter stub lists): `nugget_structure/<tool>_<scenario_id>_proposed_nuggets_edges_description.md` per `.seed/05_Onotology_for_Nuggets.md` §4.3.
 - Do not mark a tool's output model complete while any observed field, object type, error shape, or output mode is unmapped, intentionally ignored, or captured as a follow-up gap.
+
+## Narrative report quality (mandatory)
+
+Quality bar: existing **nmap** / **netdiscover** description docs (factual Introduction + meta-concept sections). Stub bullet-list reports are incomplete.
+
+Each description must include:
+
+1. Factual **Introduction** (tool + ontology hierarchy guide for the report layout)
+2. **Meta-concept** sections (Scan → Host/System/CDN/org → Trace)
+3. **Category** subsections where categories exist
+4. Per section: prose story of values → **type-relation Mermaid** (no value labels) → optional table
+5. Full **appendix** of every node/edge value (`validate_narrative_coverage`)
+
+Prefer YAML in `rules/<tool>/narrative.yaml` + shared `rules/_shared/narrative_v2.yaml` over per-tool prose generators. See proj-07 narrative quality bar and SPEC-005.
 
 ## Graph connectivity
 
-- Instance ids: `uuid5(ontology_seed, nugget_data)` prefixed by `nugget_id` (see nmap/netdiscover `graph_builder.py`).
+- Instance ids: `uuid5(ontology_seed, nugget_data)` prefixed by `nugget_id` via shared `graph_builder` only.
 - Exactly one node per `(nugget_id, nugget_data)`; repeated values reuse the same node and link via edges.
 - Every node in proposed `nodes[]` must appear in at least one `edges[]` entry; orphan nuggets are invalid.
 - Descriptors attach to their owning entity via `had` (e.g. many `MAC_ADDRESS` → `had` → one shared `MAC_VENDOR` when vendor data matches).
 - Graph builders must validate connectivity and uniqueness before writing examination graph artifacts.
 
+## UI / artifact completeness
+
+Formal examination is incomplete until the CLI Profiling UI can show **Text, Structured, Graph, Markdown** for every non-deferred scenario.
+
+- Name graph/MD files with the **full** `scenario_id` used in the manifest.
+- After engine changes, regenerate without re-scanning when possible: `python .seed/scripts/cli_corpus/backfill_adapter_four_outputs.py --tool <tool>`.
+- Paired text-only scenarios: derive structured→graph→narrative, **or** set `graph_deferred: true` with an explicit reason — never leave Graph/MD silently empty.
+- Confirm badges in CLI Profiling (`has_graph` / `has_markdown`) before claiming harvest complete.
+
 ## Handoff
 
 For each tool, leave a concise strategy describing how to produce rich, sparse, and error outputs; where the help text is captured; which scenario set proves the output surface is covered; and a completed semantic outcome matrix. Document proven tool limits (e.g. Nuclei app-logic vs CVE templates, OOB/Interactsh dependencies) in the strategy skill or examination plan. On operator approval: set all `review_status` / `*_review.status.json` to `approved`, update `corpus_index.json` phase to `complete`, and add `<tool>_pilot_signoff.md` when pilot criteria are met.
 
-## Nugget graph / narrative (SPEC-004)
+## Nugget graph / narrative (SPEC-004 / SPEC-005)
 
-Formal examination is incomplete until four UI artifacts exist (Text, Structured, Graph, Markdown Report) per `.cursor/rules/proj-07-cli-graph-rules-engine.mdc`. Prefer declarative `rules/` packs over embedding mapping logic in harvest converters. Do not invent Nexus. Nerva requires both `.seed/07_Nerva_Scan_Record_Host_Correlation_Rulesets.md` and `.seed/07B_Nerva_Ontology_Rules.md`.
+Formal examination is incomplete until four UI artifacts exist (Text, Structured, Graph, Markdown Report) per `.cursor/rules/proj-07-cli-graph-rules-engine.mdc`. Prefer declarative `rules/` packs and shared `core/` over embedding mapping or narrative logic in harvest converters. Do not invent Nexus. Nerva requires both `.seed/07_Nerva_Scan_Record_Host_Correlation_Rulesets.md` and `.seed/07B_Nerva_Ontology_Rules.md`. New-tool onboarding: `.seed/scripts/cli_corpus/ONBOARDING.md`.

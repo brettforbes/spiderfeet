@@ -1,14 +1,25 @@
 # Tool mapping pack template
 # Copy to rules/<tool>/mapping.yaml and fill.
+# Rules: .cursor/rules/proj-07-cli-graph-rules-engine.mdc · ONBOARDING.md
 
 tool: REPLACE_ME
 capture_family: structured_native  # or text_native
 seed_docs:
   - .seed/REPLACE_ME.md
 
-# Example field mapping entries (engine schema finalized in story B1):
+# Prefer existing nugget_id values from nuggets.json / nuggets_extension.json.
+# IP fields: emit raw address strings; adapters/topology must call classify_ip
+# (do not assume IPv4-only IP_ADDRESS).
+
+# Example (engine may use path mappings and/or topology templates):
 # mappings:
 #   - path: records[*].ip
-#     nugget_id: IP_ADDRESS
+#     nugget_id: auto:ip          # or rely on hooks calling classify_ip(role=host)
 #     parent: NETWORKS
 #     relation: contains
+#   - path: records[*].host
+#     nugget_id: INTERNET_NAME
+#     parent: HOST
+#     relation: had
+
+# Reuse rules/_shared topology templates where possible (scan_head, host stack, system_l2).
