@@ -16,30 +16,47 @@ Canonical design:
 cli_workflow/
   schema/workflow_v1.schema.json
   schema/gse_v1.schema.json
-  core/          # loader, GSE, context merge, normalize
-  runtime/       # executor (Epic S)
-  tools/         # CLI drivers (Epic T)
-  cli.py         # validate / gse-eval
+  core/          # loader, GSE, context merge, variables, models
+  runtime/       # executor, tempfile manager
+  tools/         # driver registry + FixtureDriver for dry-run
+  fixtures/      # invalid workflows + dry-run graph map
+  cli.py         # validate | gse-eval | dry-run
 ```
 
 ## Commands
 
-From repo root (Poetry env):
+From repo root:
 
-```bash
-# Ensure .seed/scripts is on PYTHONPATH
-set PYTHONPATH=.seed/scripts   # Windows PowerShell: $env:PYTHONPATH=".seed/scripts"
+```powershell
+$env:PYTHONPATH = ".seed/scripts"
 
+# Validate workflow YAML + GSE bindings
 poetry run python -m cli_workflow.cli validate .seed/12A_Workflow_YAML_Example.yaml
+
+# Dry-run 12A using corpus scan graphs (no live CLI)
+poetry run python -m cli_workflow.cli dry-run `
+  --workflow .seed/12A_Workflow_YAML_Example.yaml `
+  --fixtures .seed/scripts/cli_workflow/fixtures/dry_run_12a_graphs.yaml `
+  --repo-root .
 ```
 
-## Foundation already landed
+## Tool drivers (T2 pattern)
 
-- JSON Schemas for workflow + GSE
-- GSE evaluator (`for_each` + product join, where/related, union)
-- Workflow loader + DAG wave computation + adapter allow-list
-- Context graph merge (unique nodes/edges)
-- Hostname normalize helper
+- `tools/registry.py` maps `tool.<adapter_id>` → driver.
+- `FixtureDriver` loads a prebuilt scan graph for CI/dry-run (no binary required).
+- Live CLI drivers call SPEC-004 adapters after capture — implement per tool in Epic T.
+
+## Adding a driver
+
+1. Implement `ToolDriver` with `tool_id` and `run(argv, input_path=, output_path=)`.
+2. `register(driver)` in module init or factory.
+3. Workflow step `uses: tool.<id>` must match `ADAPTER_TOOLS` in `core/loader.py`.
+
+## Tests
+
+```bash
+poetry run pytest .tests/test_cli_workflow_*.py -q
+```
 
 ## Do not
 
