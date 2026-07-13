@@ -1,0 +1,23 @@
+apiVersion: spiderfeet.workflow/v0
+kind: Workflow
+id: workflow--00000000-0000-4000-8000-000000000001
+info:
+  name: Invalid apiVersion
+  description: Must fail schema validation (wrong apiVersion).
+inputs:
+  targets:
+    type: string_list
+steps:
+  - id: only_step
+    uses: tool.subfinder
+    input:
+      type: string_list
+      from: $workflow.inputs.targets
+    config:
+      argv: ["-d", "example.com"]
+      files:
+        input: { mode: none }
+        output: { mode: auto, format: jsonl }
+      capture:
+        family: structured_native
+        adapter: subfinder
