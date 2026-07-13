@@ -6,7 +6,15 @@
 
 ## Program status
 
-Epics P–U implementation landed on `develop` via issue-scoped PRs (#1035+).
+## Landing record
+
+| Range | Method |
+|-------|--------|
+| #1015 P0, #1016 P1 | PRs #1034, #1035 |
+| #1033 foundation | PR #1033 |
+| #1017–#1032 (P2–U2) | Direct commits on `develop` (`f31a8ec3`…`e3880763`) — batch automation failed to create feature branches; evidence on each issue comment |
+
+Prefer PR-per-issue for future SPEC-007 follow-ups (live CLI drivers, Langium, etc.).
 
 | Layer | Status |
 |-------|--------|
