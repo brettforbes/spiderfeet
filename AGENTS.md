@@ -13,6 +13,7 @@ Governed SpiderFeet fork. Read this before doing substantive work.
 | Active spec (CLI graph rules) | `.governance/specs/SPEC-004-cli-graph-rules-engine.md` |
 | Active spec (narrative v2 + IP classify) | `.governance/specs/SPEC-005-narrative-v2-ip-classify.md` |
 | Active spec (Structure docs + ontology) | `.governance/specs/SPEC-006-tool-structure-docs-ontology.md` |
+| Active spec (CLI workflow DSL) | `.governance/specs/SPEC-007-cli-workflow-dsl.md` |
 | Project rules | `.cursor/rules/proj-*.mdc` (subset also under `.governance/project/rules/`) |
 | Stage plan | `.seed/02_stage_by_stage_reengineer.md` |
 | Backlog | `.governance/project/BACKLOG.md` |
@@ -32,6 +33,7 @@ Governed SpiderFeet fork. Read this before doing substantive work.
 - **SPEC-004 structured→graph→narrative (complete):** spec `.governance/specs/SPEC-004-cli-graph-rules-engine.md` · rule `.cursor/rules/proj-07-cli-graph-rules-engine.mdc` · issue index `.governance/project/SPEC004_ISSUE_INDEX.md` · handoff `.governance/project/continuity/SPEC004_PROGRAM_COMPLETION.md` · four UI outputs (Text, Structured, Graph, Markdown Report)
 - **SPEC-005 narrative v2 + IP classify (active refinement):** spec `.governance/specs/SPEC-005-narrative-v2-ip-classify.md` · agent plan `.governance/project/SPEC005_AGENT_PLAN.md` · issue index `.governance/project/SPEC005_ISSUE_INDEX.md` · system guide `.docs/docs-for-cli-tools/SPEC004_SYSTEM_GUIDE.md`
 - **SPEC-006 tool Structure docs + unified ontology (active):** spec `.governance/specs/SPEC-006-tool-structure-docs-ontology.md` · agent plan `.governance/project/SPEC006_AGENT_PLAN.md` · quality bar `.governance/project/SPEC006_STRUCTURE_QUALITY_BAR.md` · issue index `.governance/project/SPEC006_ISSUE_INDEX.md` · gold example `nugget_structure/nmap_nugget_graph_structure.md` · compose target `_Current_Ontology.md`
+- **SPEC-007 CLI workflow DSL + GSE (active foundation):** spec `.governance/specs/SPEC-007-cli-workflow-dsl.md` · agent plan `.governance/project/SPEC007_AGENT_PLAN.md` · issue index `.governance/project/SPEC007_ISSUE_INDEX.md` · seed `.seed/12A_Workflow_YAML_Example.yaml` · `.seed/12B_Workflow_DSL_Description.md` · `.seed/12C_Graph_Select_Language.md` · package `.seed/scripts/cli_workflow/`
 - **Widget Data Viewer embed:** `@spiderfeet-widget/.docs/data-viewer-embed.md` (Structured tabs, postMessage contract)
 
 ## Stage 4 — Tests corpus (read before seed or Tests work)
