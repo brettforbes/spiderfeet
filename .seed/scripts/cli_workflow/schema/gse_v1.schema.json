@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spiderfeet.local/schemas/gse_v1.schema.json",
+  "title": "SpiderFeet Graph Select Language v1",
+  "description": "Binding object for workflow output variables. See .seed/12C_Graph_Select_Language.md",
+  "oneOf": [
+    { "$ref": "#/$defs/selectBinding" },
+    { "$ref": "#/$defs/unionBinding" },
+    { "$ref": "#/$defs/fromVarBinding" },
+    { "$ref": "#/$defs/literalBinding" }
+  ],
+  "$defs": {
+    "stringListType": {
+      "type": "string",
+      "const": "string_list"
+    },
+    "nodeMatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nugget_id": { "type": "string", "minLength": 1 },
+        "nugget_id_in": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        },
+        "nugget_data_equals": { "type": "string" },
+        "nugget_data_regex": { "type": "string" },
+        "where": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/wherePred" }
+        }
+      }
+    },
+    "relatedPred": {
+      "type": "object",
+      "required": ["direction", "relation"],
+      "additionalProperties": false,
+      "properties": {
+        "direction": { "enum": ["out", "in"] },
+        "relation": { "enum": ["contains", "had", "listens-to"] },
+        "transitive": { "type": "boolean", "default": false },
+        "nugget_id": { "type": "string" },
+        "nugget_id_in": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      }
+    },
+    "wherePred": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["related"],
+          "additionalProperties": false,
+          "properties": {
+            "related": { "$ref": "#/$defs/relatedPred" }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["not"],
+          "additionalProperties": false,
+          "properties": {
+            "not": {
+              "type": "object",
+              "required": ["related"],
+              "additionalProperties": false,
+              "properties": {
+                "related": { "$ref": "#/$defs/relatedPred" }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["attr"],
+          "additionalProperties": false,
+          "properties": {
+            "attr": {
+              "type": "object",
+              "required": ["field", "op", "value"],
+              "additionalProperties": false,
+              "properties": {
+                "field": { "enum": ["nugget_data", "nugget_id"] },
+                "op": { "enum": ["eq", "regex"] },
+                "value": { "type": "string" }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "alongSpec": {
+      "type": "object",
+      "required": ["relation"],
+      "additionalProperties": false,
+      "properties": {
+        "relation": { "enum": ["contains", "had", "listens-to"] },
+        "transitive": { "type": "boolean", "default": false },
+        "direction": { "enum": ["out", "in"], "default": "out" }
+      }
+    },
+    "collectItem": {
+      "type": "object",
+      "required": ["as", "reachable_from", "along", "nodes", "project"],
+      "additionalProperties": false,
+      "properties": {
+        "as": { "type": "string", "minLength": 1 },
+        "reachable_from": { "type": "string", "minLength": 1 },
+        "along": { "$ref": "#/$defs/alongSpec" },
+        "nodes": { "$ref": "#/$defs/nodeMatch" },
+        "project": { "enum": ["nugget_data", "nugget_id"] }
+      }
+    },
+    "emitSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "product": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "join": { "type": "string" },
+        "format": { "type": "string" },
+        "values": { "type": "string" }
+      }
+    },
+    "forEachSpec": {
+      "type": "object",
+      "required": ["as", "nodes"],
+      "additionalProperties": false,
+      "properties": {
+        "as": { "type": "string", "minLength": 1 },
+        "nodes": { "$ref": "#/$defs/nodeMatch" },
+        "collect": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/collectItem" }
+        },
+        "emit": { "$ref": "#/$defs/emitSpec" },
+        "for_each": { "$ref": "#/$defs/forEachSpec" }
+      }
+    },
+    "selectBody": {
+      "type": "object",
+      "required": ["source"],
+      "additionalProperties": false,
+      "properties": {
+        "source": { "type": "string", "minLength": 1 },
+        "nodes": { "$ref": "#/$defs/nodeMatch" },
+        "for_each": { "$ref": "#/$defs/forEachSpec" },
+        "project": { "enum": ["nugget_data", "nugget_id"] },
+        "distinct": { "type": "boolean", "default": true }
+      }
+    },
+    "selectBinding": {
+      "type": "object",
+      "required": ["type", "select"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "$ref": "#/$defs/stringListType" },
+        "select": { "$ref": "#/$defs/selectBody" }
+      }
+    },
+    "unionBinding": {
+      "type": "object",
+      "required": ["type", "union"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "$ref": "#/$defs/stringListType" },
+        "union": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "distinct": { "type": "boolean", "default": true }
+      }
+    },
+    "fromVarBinding": {
+      "type": "object",
+      "required": ["type", "from_var"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "$ref": "#/$defs/stringListType" },
+        "from_var": { "type": "string", "minLength": 1 }
+      }
+    },
+    "literalBinding": {
+      "type": "object",
+      "required": ["type", "literal"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "$ref": "#/$defs/stringListType" },
+        "literal": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}
