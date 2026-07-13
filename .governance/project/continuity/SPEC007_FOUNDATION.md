@@ -1,34 +1,33 @@
-# SPEC-007 foundation bootstrap (2026-07-13)
+# SPEC-007 foundation handoff (2026-07-13)
 
 **Spec:** `.governance/specs/SPEC-007-cli-workflow-dsl.md`  
 **Plan:** `.governance/project/SPEC007_AGENT_PLAN.md`  
-**Issues:** `.governance/project/SPEC007_ISSUE_INDEX.md` (#1009–#1032)
+**Issues:** `.governance/project/SPEC007_ISSUE_INDEX.md`
 
-## What landed in this bootstrap
+## Program status
 
-| Artifact | Path |
-|----------|------|
-| Example workflow (v1) | `.seed/12A_Workflow_YAML_Example.yaml` |
-| DSL logic master | `.seed/12B_Workflow_DSL_Description.md` |
-| Graph Select Language | `.seed/12C_Graph_Select_Language.md` |
-| Sketch gap notes | `.governance/project/SPEC007_SKETCH_GAP_NOTES.md` |
-| Package | `.seed/scripts/cli_workflow/` |
-| Schemas | `schema/workflow_v1.schema.json`, `schema/gse_v1.schema.json` |
-| GSE + loader + context merge | `core/*` |
-| Foundation tests | `.tests/test_cli_workflow_foundation.py` (**6 passed**) |
+Epics P–U implementation landed on `develop` via issue-scoped PRs (#1035+).
 
-## Verify
+| Layer | Status |
+|-------|--------|
+| P0 sketch gap notes | Complete #1015 |
+| P1 workflow schema tests | Complete #1016 |
+| P2 GSE schema tests | Complete #1017 |
+| Q1–Q3 GSE engine + corpus fixtures | Complete #1018–#1020 |
+| R1–R3 loader / DAG / variables | Complete #1021–#1023 |
+| S1–S4 runtime + dry-run CLI | Complete #1024–#1027 |
+| T1–T3 registry + dry E2E 12A | Complete #1028–#1030 |
+| U1–U2 README + handoff | Complete #1031–#1032 |
 
-```bash
-$env:PYTHONPATH=".seed/scripts"   # PowerShell
-poetry run pytest .tests/test_cli_workflow_foundation.py -q
+## Verify bundle
+
+```powershell
+$env:PYTHONPATH = ".seed/scripts"
+poetry run pytest .tests/test_cli_workflow_*.py .tests/test_spec007_sketch_gap_notes.py -q
 poetry run python -m cli_workflow.cli validate .seed/12A_Workflow_YAML_Example.yaml
+poetry run python -m cli_workflow.cli dry-run --workflow .seed/12A_Workflow_YAML_Example.yaml --fixtures .seed/scripts/cli_workflow/fixtures/dry_run_12a_graphs.yaml --repo-root .
 ```
 
-## Next agent pickup
+## Deferred (not SPEC-007)
 
-Start at **P0 #1015** (or harden P1/P2/Q* against the already-landed stubs). Follow `SPEC007_AGENT_PLAN.md` order. Do **not** redesign GSE.
-
-## Explicitly deferred
-
-Langium, Monaco, visualisation, AST sync, context force-graph UI, `sfp_*` EVENT rewrite.
+Langium grammar, Monaco editor, workflow visualisation, AST↔diagram sync, context force-graph UI, live CLI drivers for all tools, `sfp_*` EVENT rewrite.
