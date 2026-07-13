@@ -27,12 +27,14 @@ flowchart TD
   scan["SCAN_RECORD"]
   endpoint["Endpoint entity"]
   cat["Category nuggets"]
+  fact["Component nuggets"]
   desc["Descriptor nuggets"]
   scan -->|contains| endpoint
-  scan -->|had| desc
   endpoint -->|contains| cat
+  cat -->|contains| fact
+  scan -->|had| desc
+  fact -->|had| desc
   endpoint -->|had| desc
-  cat -->|contains| desc
 ```
 
 | Layer | Role | Shared across tools |
@@ -40,7 +42,8 @@ flowchart TD
 | **Scan head** | One `SCAN_RECORD` per examination run; tool-specific metadata as `had` descriptors | Always |
 | **Endpoint** | `SYSTEM`, `HOST`, `DEVICE`, `MOBILE`, `SERVER`, `CDN`, `DOMAIN_NAME`, `COMPANY_NAME`, … | Variant per evidence |
 | **Categories** | `NETWORKS`, `APPLICATIONS`, `ENVIRONMENT`, `VULNERABILITIES`, `SECURITY`, … | As evidence allows |
-| **Facts** | Descriptor nuggets linked via `had` or nested `contains` | As evidence allows |
+| **Components** | `PORT`, `SERVICE`, `SSH_KEY`, `HTTP_STATUS_CODE`, `WEBSERVER_TECHNOLOGY`, … | As evidence allows |
+| **Properties** | Descriptor nuggets linked via `had` or nested `contains` | As evidence allows |
 
 **Composition rule:** later scans **add** nodes and edges to the same investigation; they do not define a parallel ontology.
 
