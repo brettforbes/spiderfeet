@@ -1,0 +1,249 @@
+{
+  "tool_id": "nerva",
+  "generated_from": ".docs/docs-for-cli-tools/Nerva-CLI-Options.md",
+  "generated_at": "2026-07-27T13:27:42+00:00",
+  "groups": [
+    "Target Specification",
+    "General",
+    "Target Specification",
+    "Examples"
+  ],
+  "flags": [
+    {
+      "id": "target",
+      "flag": null,
+      "aliases": [],
+      "label": "Target",
+      "description": "Host, IP, hostname, CIDR, URL, or range to scan",
+      "type": "string",
+      "default": null,
+      "required": true,
+      "choices": null,
+      "group": "Target Specification",
+      "placeholder": "scanme.nmap.org",
+      "advanced": false
+    },
+    {
+      "id": "auto_save",
+      "flag": "--auto-save",
+      "aliases": [],
+      "label": "Auto Save",
+      "description": "auto-save interval (number of targets)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "capabilities",
+      "flag": "--capabilities",
+      "aliases": [
+        "-c"
+      ],
+      "label": "Capabilities",
+      "description": "list available capabilities and exit --csv                 output format in csv --dns-order string    DNS resolution order: p, l, lp, pl (default \"lp\")",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fast",
+      "flag": "--fast",
+      "aliases": [
+        "-f"
+      ],
+      "label": "Fast",
+      "description": "fast mode",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "help",
+      "flag": "--help",
+      "aliases": [
+        "-h"
+      ],
+      "label": "Help",
+      "description": "help for nerva --json                output format in json",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "list",
+      "flag": "--list",
+      "aliases": [
+        "-l"
+      ],
+      "label": "List",
+      "description": "input file containing targets",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "max_host_conn",
+      "flag": "--max-host-conn",
+      "aliases": [
+        "-H"
+      ],
+      "label": "Max Host Conn",
+      "description": "max concurrent connections per host IP (0=unlimited) --misconfigs          enable security misconfiguration detection",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "output",
+      "flag": "--output",
+      "aliases": [
+        "-o"
+      ],
+      "label": "Output",
+      "description": "output file --proxy string        proxy URL (e.g. socks5://127.0.0.1:1080) --proxy-auth string   socks5 proxy authentication (username:password)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rate_limit",
+      "flag": "--rate-limit",
+      "aliases": [
+        "-R"
+      ],
+      "label": "Rate Limit",
+      "description": "max scans per second (0=unlimited)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sctp",
+      "flag": "--sctp",
+      "aliases": [
+        "-S"
+      ],
+      "label": "Sctp",
+      "description": "run SCTP plugins (Linux only)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "targets",
+      "flag": "--targets",
+      "aliases": [
+        "-t"
+      ],
+      "label": "Targets",
+      "description": "target or comma separated target list",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "timeout",
+      "flag": "--timeout",
+      "aliases": [
+        "-w"
+      ],
+      "label": "Timeout",
+      "description": "timeout (milliseconds) (default 2000)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "udp",
+      "flag": "--udp",
+      "aliases": [
+        "-U"
+      ],
+      "label": "Udp",
+      "description": "run UDP plugins",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "verbose",
+      "flag": "--verbose",
+      "aliases": [
+        "-v"
+      ],
+      "label": "Verbose",
+      "description": "verbose mode",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "workers",
+      "flag": "--workers",
+      "aliases": [
+        "-W"
+      ],
+      "label": "Workers",
+      "description": "number of concurrent scan workers (default 50)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Examples",
+      "placeholder": null,
+      "advanced": true
+    }
+  ]
+}

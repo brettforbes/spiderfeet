@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from spiderfeet.api.bootstrap import REPO_ROOT
+from spiderfeet.api.services import content as content_service
 
 _CLI_DOCS = REPO_ROOT / ".docs" / "docs-for-cli-tools"
 _CORPUS_INDEX = _CLI_DOCS / "corpus_index.json"
@@ -358,12 +359,22 @@ def _graph_for_scenario(
 
 
 def _tool_graph_structure_path(tool_id: str) -> Path:
+    bundle = REPO_ROOT / "modules_v2" / "content" / tool_id / "graph_structure.md"
+    if bundle.is_file():
+        return bundle
     return _NUGGET_ROOT / f"{tool_id}_nugget_graph_structure.md"
 
 
 def get_tool_graph_structure(tool_id: str) -> Optional[Dict[str, str]]:
     _safe_tool_dir(tool_id)
-    md_path = _tool_graph_structure_path(tool_id)
+    platform_md = content_service.get_graph_structure_markdown(tool_id)
+    if platform_md:
+        return {
+            "tool_id": tool_id,
+            "filename": "graph_structure.md",
+            "markdown": platform_md,
+        }
+    md_path = _NUGGET_ROOT / f"{tool_id}_nugget_graph_structure.md"
     if not md_path.is_file():
         return None
     return {
@@ -424,7 +435,7 @@ def _get_scenario_from_bundle(tool_id: str, scenario_key: str, bundle_dir: Path)
         tool_id, scenario_key, bundle_dir, scenario_id
     )
     flags["has_markdown"] = markdown is not None
-    return {
+    payload = {
         "tool_id": tool_id,
         "scenario_key": scenario_key,
         "exam_id": (manifest.get("legacy_exam_ids") or [None])[0],
@@ -442,6 +453,10 @@ def _get_scenario_from_bundle(tool_id: str, scenario_key: str, bundle_dir: Path)
         **_graph_deferred_fields(manifest),
         "complete": _scenario_complete(flags, manifest),
     }
+    links = content_service.content_links_for_tool(tool_id)
+    if links:
+        payload["content_links"] = links
+    return payload
 
 
 def _structured_file_legacy(tool_dir: Path, exam_id: int, manifest: Dict[str, Any]) -> Optional[Path]:
@@ -546,6 +561,11 @@ def _merge_legacy_scenario(
         "artifacts": flags,
         **_graph_deferred_fields(primary_manifest),
         "complete": _scenario_complete(flags, primary_manifest),
+        **(
+            {"content_links": content_service.content_links_for_tool(tool_id)}
+            if content_service.content_links_for_tool(tool_id)
+            else {}
+        ),
     }
 
 

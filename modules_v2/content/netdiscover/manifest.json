@@ -1,0 +1,13 @@
+{
+  "tool_id": "netdiscover",
+  "display_name": "Netdiscover",
+  "kind": "cli",
+  "category": "network_discovery",
+  "executable": "netdiscover",
+  "content_version": 1,
+  "source_docs": {
+    "options": ".docs/docs-for-cli-tools/NetDiscover-CLI-Options.md",
+    "zero_to_hero": ".docs/docs-for-cli-tools/NetDiscover-Zero-to-Hero.md",
+    "graph_structure": ".docs/docs-for-cli-tools/nugget_structure/netdiscover_nugget_graph_structure.md"
+  }
+}

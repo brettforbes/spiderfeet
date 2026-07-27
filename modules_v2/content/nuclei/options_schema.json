@@ -1,0 +1,3061 @@
+{
+  "tool_id": "nuclei",
+  "generated_from": ".docs/docs-for-cli-tools/Nuclei-CLI-Options.md",
+  "generated_at": "2026-07-27T13:27:43+00:00",
+  "groups": [
+    "General",
+    "Target",
+    "Target-Format",
+    "Templates",
+    "Filtering",
+    "Output",
+    "Configurations",
+    "Interactsh",
+    "Fuzzing",
+    "Uncover",
+    "Rate-Limit",
+    "Optimizations",
+    "Headless",
+    "Debug",
+    "Update",
+    "Honeypot",
+    "Statistics",
+    "Cloud",
+    "Authentication",
+    "Examples"
+  ],
+  "flags": [
+    {
+      "id": "u",
+      "flag": "-u",
+      "aliases": [
+        "-target"
+      ],
+      "label": "U",
+      "description": "target URLs/hosts to scan",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Target",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "l",
+      "flag": "-l",
+      "aliases": [
+        "-list"
+      ],
+      "label": "L",
+      "description": "path to file containing a list of target URLs/hosts to scan (one per line)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Target",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "targets_inline",
+      "flag": "-targets-inline",
+      "aliases": [],
+      "label": "Targets Inline",
+      "description": "inline multiline target list (for use in template profiles)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Target",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "eh",
+      "flag": "-eh",
+      "aliases": [
+        "-exclude-hosts"
+      ],
+      "label": "Eh",
+      "description": "hosts to exclude to scan from the input list (ip, cidr, hostname)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Target",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "resume",
+      "flag": "-resume",
+      "aliases": [],
+      "label": "Resume",
+      "description": "resume scan from and save to specified file (clustering will be disabled)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Target",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sa",
+      "flag": "-sa",
+      "aliases": [
+        "-scan-all-ips"
+      ],
+      "label": "Sa",
+      "description": "scan all the IP's associated with dns record",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Target",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "iv",
+      "flag": "-iv",
+      "aliases": [
+        "-ip-version"
+      ],
+      "label": "Iv",
+      "description": "IP version to scan of hostname (4,6) - (default 4)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Target",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "im",
+      "flag": "-im",
+      "aliases": [
+        "-input-mode"
+      ],
+      "label": "Im",
+      "description": "mode of input file (list, burp, jsonl, yaml, openapi, swagger) (default \"list\")",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Target-Format",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ro",
+      "flag": "-ro",
+      "aliases": [
+        "-required-only"
+      ],
+      "label": "Ro",
+      "description": "use only required fields in input format when generating requests",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Target-Format",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sfv",
+      "flag": "-sfv",
+      "aliases": [
+        "-skip-format-validation"
+      ],
+      "label": "Sfv",
+      "description": "skip format validation (like missing vars) when parsing input file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Target-Format",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "vtt",
+      "flag": "-vtt",
+      "aliases": [
+        "-vars-text-templating"
+      ],
+      "label": "Vtt",
+      "description": "enable text templating for vars in input file (only for yaml input mode)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Target-Format",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "vfp",
+      "flag": "-vfp",
+      "aliases": [
+        "-var-file-paths"
+      ],
+      "label": "Vfp",
+      "description": "list of yaml file contained vars to inject into yaml input",
+      "type": "path",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Target-Format",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nt",
+      "flag": "-nt",
+      "aliases": [
+        "-new-templates"
+      ],
+      "label": "Nt",
+      "description": "run only new templates added in latest nuclei-templates release",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ntv",
+      "flag": "-ntv",
+      "aliases": [
+        "-new-templates-version"
+      ],
+      "label": "Ntv",
+      "description": "run new templates added in specific version",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "as",
+      "flag": "-as",
+      "aliases": [
+        "-automatic-scan"
+      ],
+      "label": "As",
+      "description": "automatic web scan using wappalyzer technology detection to tags mapping",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "t",
+      "flag": "-t",
+      "aliases": [
+        "-templates"
+      ],
+      "label": "T",
+      "description": "list of template or template directory to run (comma-separated, file)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "turl",
+      "flag": "-turl",
+      "aliases": [
+        "-template-url"
+      ],
+      "label": "Turl",
+      "description": "template url or list containing template urls to run (comma-separated, file)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ai",
+      "flag": "-ai",
+      "aliases": [
+        "-prompt"
+      ],
+      "label": "Ai",
+      "description": "generate and run template using ai prompt",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "w",
+      "flag": "-w",
+      "aliases": [
+        "-workflows"
+      ],
+      "label": "W",
+      "description": "list of workflow or workflow directory to run (comma-separated, file)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "wurl",
+      "flag": "-wurl",
+      "aliases": [
+        "-workflow-url"
+      ],
+      "label": "Wurl",
+      "description": "workflow url or list containing workflow urls to run (comma-separated, file)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "validate",
+      "flag": "-validate",
+      "aliases": [],
+      "label": "Validate",
+      "description": "validate the passed templates to nuclei",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nss",
+      "flag": "-nss",
+      "aliases": [
+        "-no-strict-syntax"
+      ],
+      "label": "Nss",
+      "description": "disable strict syntax check on templates",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "td",
+      "flag": "-td",
+      "aliases": [
+        "-template-display"
+      ],
+      "label": "Td",
+      "description": "displays the templates content",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tl",
+      "flag": "-tl",
+      "aliases": [],
+      "label": "Tl",
+      "description": "list all templates matching current filters",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tgl",
+      "flag": "-tgl",
+      "aliases": [],
+      "label": "Tgl",
+      "description": "list all available tags",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sign",
+      "flag": "-sign",
+      "aliases": [],
+      "label": "Sign",
+      "description": "signs the templates with the private key defined in NUCLEI_SIGNATURE_PRIVATE_KEY env variable",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "code",
+      "flag": "-code",
+      "aliases": [],
+      "label": "Code",
+      "description": "enable loading code protocol-based templates",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dut",
+      "flag": "-dut",
+      "aliases": [
+        "-disable-unsigned-templates"
+      ],
+      "label": "Dut",
+      "description": "disable running unsigned templates or templates with mismatched signature",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "esc",
+      "flag": "-esc",
+      "aliases": [
+        "-enable-self-contained"
+      ],
+      "label": "Esc",
+      "description": "enable loading self-contained templates",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "egm",
+      "flag": "-egm",
+      "aliases": [
+        "-enable-global-matchers"
+      ],
+      "label": "Egm",
+      "description": "enable loading global matchers templates",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "file",
+      "flag": "-file",
+      "aliases": [],
+      "label": "File",
+      "description": "enable loading file templates",
+      "type": "path",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Templates",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "a",
+      "flag": "-a",
+      "aliases": [
+        "-author"
+      ],
+      "label": "A",
+      "description": "templates to run based on authors (comma-separated, file)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tags",
+      "flag": "-tags",
+      "aliases": [],
+      "label": "Tags",
+      "description": "templates to run based on tags (comma-separated, file)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "etags",
+      "flag": "-etags",
+      "aliases": [
+        "-exclude-tags"
+      ],
+      "label": "Etags",
+      "description": "templates to exclude based on tags (comma-separated, file)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "itags",
+      "flag": "-itags",
+      "aliases": [
+        "-include-tags"
+      ],
+      "label": "Itags",
+      "description": "tags to be executed even if they are excluded either by default or configuration",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "id",
+      "flag": "-id",
+      "aliases": [
+        "-template-id"
+      ],
+      "label": "Id",
+      "description": "templates to run based on template ids (comma-separated, file, allow-wildcard)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "eid",
+      "flag": "-eid",
+      "aliases": [
+        "-exclude-id"
+      ],
+      "label": "Eid",
+      "description": "templates to exclude based on template ids (comma-separated, file)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "it",
+      "flag": "-it",
+      "aliases": [
+        "-include-templates"
+      ],
+      "label": "It",
+      "description": "path to template file or directory to be executed even if they are excluded either by default or configuration",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "et",
+      "flag": "-et",
+      "aliases": [
+        "-exclude-templates"
+      ],
+      "label": "Et",
+      "description": "path to template file or directory to exclude (comma-separated, file)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "em",
+      "flag": "-em",
+      "aliases": [
+        "-exclude-matchers"
+      ],
+      "label": "Em",
+      "description": "template matchers to exclude in result",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "s",
+      "flag": "-s",
+      "aliases": [
+        "-severity"
+      ],
+      "label": "S",
+      "description": "info, low, medium, high, critical, unknown",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "es",
+      "flag": "-es",
+      "aliases": [
+        "-exclude-severity"
+      ],
+      "label": "Es",
+      "description": "info, low, medium, high, critical, unknown",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pt",
+      "flag": "-pt",
+      "aliases": [
+        "-type"
+      ],
+      "label": "Pt",
+      "description": "dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ept",
+      "flag": "-ept",
+      "aliases": [
+        "-exclude-type"
+      ],
+      "label": "Ept",
+      "description": "dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tc",
+      "flag": "-tc",
+      "aliases": [
+        "-template-condition"
+      ],
+      "label": "Tc",
+      "description": "templates to run based on expression condition",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filtering",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "o",
+      "flag": "-o",
+      "aliases": [
+        "-output"
+      ],
+      "label": "O",
+      "description": "output file to write found issues/vulnerabilities",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sresp",
+      "flag": "-sresp",
+      "aliases": [
+        "-store-resp"
+      ],
+      "label": "Sresp",
+      "description": "store all request/response passed through nuclei to output directory",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "srd",
+      "flag": "-srd",
+      "aliases": [
+        "-store-resp-dir"
+      ],
+      "label": "Srd",
+      "description": "store all request/response passed through nuclei to custom directory (default \"output\")",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "silent",
+      "flag": "-silent",
+      "aliases": [],
+      "label": "Silent",
+      "description": "display findings only",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nc",
+      "flag": "-nc",
+      "aliases": [
+        "-no-color"
+      ],
+      "label": "Nc",
+      "description": "disable output content coloring (ANSI escape codes)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "j",
+      "flag": "-j",
+      "aliases": [
+        "-jsonl"
+      ],
+      "label": "J",
+      "description": "write output in JSONL(ines) format",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "irr",
+      "flag": "-irr",
+      "aliases": [
+        "-include-rr -omit-raw"
+      ],
+      "label": "Irr",
+      "description": "include request/response pairs in the JSON, JSONL, and Markdown outputs (for findings only) [DEPRECATED use -omit-raw] (default true)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "or",
+      "flag": "-or",
+      "aliases": [
+        "-omit-raw"
+      ],
+      "label": "Or",
+      "description": "omit request/response pairs in the JSON, JSONL, Markdown, and PDF outputs (for findings only)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ot",
+      "flag": "-ot",
+      "aliases": [
+        "-omit-template"
+      ],
+      "label": "Ot",
+      "description": "omit encoded template in the JSON, JSONL output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nm",
+      "flag": "-nm",
+      "aliases": [
+        "-no-meta"
+      ],
+      "label": "Nm",
+      "description": "disable printing result metadata in cli output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ts",
+      "flag": "-ts",
+      "aliases": [
+        "-timestamp"
+      ],
+      "label": "Ts",
+      "description": "enables printing timestamp in cli output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rdb",
+      "flag": "-rdb",
+      "aliases": [
+        "-report-db"
+      ],
+      "label": "Rdb",
+      "description": "nuclei reporting database (always use this to persist report data)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ms",
+      "flag": "-ms",
+      "aliases": [
+        "-matcher-status"
+      ],
+      "label": "Ms",
+      "description": "display match failure status",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "me",
+      "flag": "-me",
+      "aliases": [
+        "-markdown-export"
+      ],
+      "label": "Me",
+      "description": "directory to export results in markdown format",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "se",
+      "flag": "-se",
+      "aliases": [
+        "-sarif-export"
+      ],
+      "label": "Se",
+      "description": "file to export results in SARIF format",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "je",
+      "flag": "-je",
+      "aliases": [
+        "-json-export"
+      ],
+      "label": "Je",
+      "description": "file to export results in JSON format",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "jle",
+      "flag": "-jle",
+      "aliases": [
+        "-jsonl-export"
+      ],
+      "label": "Jle",
+      "description": "file to export results in JSONL(ine) format",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pe",
+      "flag": "-pe",
+      "aliases": [
+        "-pdf-export"
+      ],
+      "label": "Pe",
+      "description": "file to export results in PDF format",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rd",
+      "flag": "-rd",
+      "aliases": [
+        "-redact"
+      ],
+      "label": "Rd",
+      "description": "redact given list of keys from query parameter, request header and body",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "config",
+      "flag": "-config",
+      "aliases": [],
+      "label": "Config",
+      "description": "path to the nuclei configuration file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tp",
+      "flag": "-tp",
+      "aliases": [
+        "-profile"
+      ],
+      "label": "Tp",
+      "description": "template profile config file to run",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tpl",
+      "flag": "-tpl",
+      "aliases": [
+        "-profile-list"
+      ],
+      "label": "Tpl",
+      "description": "list community template profiles",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fr",
+      "flag": "-fr",
+      "aliases": [
+        "-follow-redirects"
+      ],
+      "label": "Fr",
+      "description": "enable following redirects for http templates",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fhr",
+      "flag": "-fhr",
+      "aliases": [
+        "-follow-host-redirects"
+      ],
+      "label": "Fhr",
+      "description": "follow redirects on the same host",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mr",
+      "flag": "-mr",
+      "aliases": [
+        "-max-redirects"
+      ],
+      "label": "Mr",
+      "description": "max number of redirects to follow for http templates (default 10)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dr",
+      "flag": "-dr",
+      "aliases": [
+        "-disable-redirects"
+      ],
+      "label": "Dr",
+      "description": "disable redirects for http templates",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rc",
+      "flag": "-rc",
+      "aliases": [
+        "-report-config"
+      ],
+      "label": "Rc",
+      "description": "nuclei reporting module configuration file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "h",
+      "flag": "-H",
+      "aliases": [
+        "-header"
+      ],
+      "label": "H",
+      "description": "value format (cli, file)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "v",
+      "flag": "-V",
+      "aliases": [
+        "-var"
+      ],
+      "label": "V",
+      "description": "custom vars in key=value format",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "r",
+      "flag": "-r",
+      "aliases": [
+        "-resolvers"
+      ],
+      "label": "R",
+      "description": "file containing resolver list for nuclei",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sr",
+      "flag": "-sr",
+      "aliases": [
+        "-system-resolvers"
+      ],
+      "label": "Sr",
+      "description": "use system DNS resolving as error fallback",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dc",
+      "flag": "-dc",
+      "aliases": [
+        "-disable-clustering"
+      ],
+      "label": "Dc",
+      "description": "disable clustering of requests",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "passive",
+      "flag": "-passive",
+      "aliases": [],
+      "label": "Passive",
+      "description": "enable passive HTTP response processing mode",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fh2",
+      "flag": "-fh2",
+      "aliases": [
+        "-force-http2"
+      ],
+      "label": "Fh2",
+      "description": "force http2 connection on requests",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ev",
+      "flag": "-ev",
+      "aliases": [
+        "-env-vars"
+      ],
+      "label": "Ev",
+      "description": "enable environment variables to be used in template",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cc",
+      "flag": "-cc",
+      "aliases": [
+        "-client-cert"
+      ],
+      "label": "Cc",
+      "description": "client certificate file (PEM-encoded) used for authenticating against scanned hosts",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ck",
+      "flag": "-ck",
+      "aliases": [
+        "-client-key"
+      ],
+      "label": "Ck",
+      "description": "client key file (PEM-encoded) used for authenticating against scanned hosts",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ca",
+      "flag": "-ca",
+      "aliases": [
+        "-client-ca"
+      ],
+      "label": "Ca",
+      "description": "client certificate authority file (PEM-encoded) used for authenticating against scanned hosts",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sml",
+      "flag": "-sml",
+      "aliases": [
+        "-show-match-line"
+      ],
+      "label": "Sml",
+      "description": "show match lines for file templates, works with extractors only",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ztls",
+      "flag": "-ztls",
+      "aliases": [],
+      "label": "Ztls",
+      "description": "use ztls library with autofallback to standard one for tls13 [Deprecated] autofallback to ztls is enabled by default",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sni",
+      "flag": "-sni",
+      "aliases": [],
+      "label": "Sni",
+      "description": "input domain name)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dka",
+      "flag": "-dka",
+      "aliases": [
+        "-dialer-keep-alive"
+      ],
+      "label": "Dka",
+      "description": "keep-alive duration for network requests.",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "lfa",
+      "flag": "-lfa",
+      "aliases": [
+        "-allow-local-file-access"
+      ],
+      "label": "Lfa",
+      "description": "allows file (payload) access anywhere on the system",
+      "type": "path",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "lna",
+      "flag": "-lna",
+      "aliases": [
+        "-restrict-local-network-access"
+      ],
+      "label": "Lna",
+      "description": "blocks connections to the local / private network",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "i",
+      "flag": "-i",
+      "aliases": [
+        "-interface"
+      ],
+      "label": "I",
+      "description": "network interface to use for network scan",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "at",
+      "flag": "-at",
+      "aliases": [
+        "-attack-type"
+      ],
+      "label": "At",
+      "description": "type of payload combinations to perform (batteringram,pitchfork,clusterbomb)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sip",
+      "flag": "-sip",
+      "aliases": [
+        "-source-ip"
+      ],
+      "label": "Sip",
+      "description": "source ip address to use for network scan",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rsr",
+      "flag": "-rsr",
+      "aliases": [
+        "-response-size-read"
+      ],
+      "label": "Rsr",
+      "description": "max response size to read in bytes",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rss",
+      "flag": "-rss",
+      "aliases": [
+        "-response-size-save"
+      ],
+      "label": "Rss",
+      "description": "max response size to read in bytes (default 1048576)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "reset",
+      "flag": "-reset",
+      "aliases": [],
+      "label": "Reset",
+      "description": "reset removes all nuclei configuration and data files (including nuclei-templates)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tlsi",
+      "flag": "-tlsi",
+      "aliases": [
+        "-tls-impersonate"
+      ],
+      "label": "Tlsi",
+      "description": "enable experimental client hello (ja3) tls randomization",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hae",
+      "flag": "-hae",
+      "aliases": [
+        "-http-api-endpoint"
+      ],
+      "label": "Hae",
+      "description": "experimental http api endpoint",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "iserver",
+      "flag": "-iserver",
+      "aliases": [
+        "-interactsh-server"
+      ],
+      "label": "Iserver",
+      "description": "oast.pro,oast.live,oast.site,oast.online,oast.fun,oast.me)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Interactsh",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "itoken",
+      "flag": "-itoken",
+      "aliases": [
+        "-interactsh-token"
+      ],
+      "label": "Itoken",
+      "description": "authentication token for self-hosted interactsh server",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Interactsh",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "interactions_cache_size",
+      "flag": "-interactions-cache-size",
+      "aliases": [],
+      "label": "Interactions Cache Size",
+      "description": "number of requests to keep in the interactions cache (default 5000)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Interactsh",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "interactions_eviction",
+      "flag": "-interactions-eviction",
+      "aliases": [],
+      "label": "Interactions Eviction",
+      "description": "number of seconds to wait before evicting requests from cache (default 60)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Interactsh",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "interactions_poll_duration",
+      "flag": "-interactions-poll-duration",
+      "aliases": [],
+      "label": "Interactions Poll Duration",
+      "description": "number of seconds to wait before each interaction poll request (default 5)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Interactsh",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "interactions_cooldown_period",
+      "flag": "-interactions-cooldown-period",
+      "aliases": [],
+      "label": "Interactions Cooldown Period",
+      "description": "extra time for interaction polling before exiting (default 5)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Interactsh",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ni",
+      "flag": "-ni",
+      "aliases": [
+        "-no-interactsh"
+      ],
+      "label": "Ni",
+      "description": "disable interactsh server for OAST testing, exclude OAST based templates",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Interactsh",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ft",
+      "flag": "-ft",
+      "aliases": [
+        "-fuzzing-type"
+      ],
+      "label": "Ft",
+      "description": "overrides fuzzing type set in template (replace, prefix, postfix, infix)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fm",
+      "flag": "-fm",
+      "aliases": [
+        "-fuzzing-mode"
+      ],
+      "label": "Fm",
+      "description": "overrides fuzzing mode set in template (multiple, single)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fuzz_enable_loading_fuzzing_templates_deprecated",
+      "flag": "-fuzz                               enable loading fuzzing templates (Deprecated",
+      "aliases": [],
+      "label": "Fuzz                               Enable Loading Fuzzing Templates (Deprecated",
+      "description": "use -dast instead)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dast",
+      "flag": "-dast",
+      "aliases": [],
+      "label": "Dast",
+      "description": "enable / run dast (fuzz) nuclei templates",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dts",
+      "flag": "-dts",
+      "aliases": [
+        "-dast-server"
+      ],
+      "label": "Dts",
+      "description": "enable dast server mode (live fuzzing)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dtr",
+      "flag": "-dtr",
+      "aliases": [
+        "-dast-report"
+      ],
+      "label": "Dtr",
+      "description": "write dast scan report to file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dtst",
+      "flag": "-dtst",
+      "aliases": [
+        "-dast-server-token"
+      ],
+      "label": "Dtst",
+      "description": "dast server token (optional)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dtsa",
+      "flag": "-dtsa",
+      "aliases": [
+        "-dast-server-address"
+      ],
+      "label": "Dtsa",
+      "description": "9055\")",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dfp",
+      "flag": "-dfp",
+      "aliases": [
+        "-display-fuzz-points"
+      ],
+      "label": "Dfp",
+      "description": "display fuzz points in the output for debugging",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fuzz_param_frequency",
+      "flag": "-fuzz-param-frequency",
+      "aliases": [],
+      "label": "Fuzz Param Frequency",
+      "description": "frequency of uninteresting parameters for fuzzing before skipping (default 10)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fa",
+      "flag": "-fa",
+      "aliases": [
+        "-fuzz-aggression"
+      ],
+      "label": "Fa",
+      "description": "fuzzing aggression level controls payload count for fuzz (low, medium, high) (default \"low\")",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cs",
+      "flag": "-cs",
+      "aliases": [
+        "-fuzz-scope"
+      ],
+      "label": "Cs",
+      "description": "in scope url regex to be followed by fuzzer",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cos",
+      "flag": "-cos",
+      "aliases": [
+        "-fuzz-out-scope"
+      ],
+      "label": "Cos",
+      "description": "out of scope url regex to be excluded by fuzzer",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Fuzzing",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "uc",
+      "flag": "-uc",
+      "aliases": [
+        "-uncover"
+      ],
+      "label": "Uc",
+      "description": "enable uncover engine",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Uncover",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "uq",
+      "flag": "-uq",
+      "aliases": [
+        "-uncover-query"
+      ],
+      "label": "Uq",
+      "description": "uncover search query",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Uncover",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ue",
+      "flag": "-ue",
+      "aliases": [
+        "-uncover-engine"
+      ],
+      "label": "Ue",
+      "description": "uncover search engine (shodan,censys,fofa,shodan-idb,quake,hunter,zoomeye,netlas,criminalip,publicwww,hunterhow,google,odin,binaryedge,onyphe,driftnet,greynoise) (default shodan)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Uncover",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "uf",
+      "flag": "-uf",
+      "aliases": [
+        "-uncover-field"
+      ],
+      "label": "Uf",
+      "description": "port\")",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Uncover",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ul",
+      "flag": "-ul",
+      "aliases": [
+        "-uncover-limit"
+      ],
+      "label": "Ul",
+      "description": "uncover results to return (default 100)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Uncover",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ur",
+      "flag": "-ur",
+      "aliases": [
+        "-uncover-ratelimit"
+      ],
+      "label": "Ur",
+      "description": "override ratelimit of engines with unknown ratelimit (default 60 req/min) (default 60)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Uncover",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rl",
+      "flag": "-rl",
+      "aliases": [
+        "-rate-limit"
+      ],
+      "label": "Rl",
+      "description": "maximum number of requests to send per second (default 150)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rld",
+      "flag": "-rld",
+      "aliases": [
+        "-rate-limit-duration"
+      ],
+      "label": "Rld",
+      "description": "maximum number of requests to send per second (default 1s)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rlm",
+      "flag": "-rlm",
+      "aliases": [
+        "-rate-limit-minute"
+      ],
+      "label": "Rlm",
+      "description": "maximum number of requests to send per minute (DEPRECATED)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "bs",
+      "flag": "-bs",
+      "aliases": [
+        "-bulk-size"
+      ],
+      "label": "Bs",
+      "description": "maximum number of hosts to be analyzed in parallel per template (default 25)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "c",
+      "flag": "-c",
+      "aliases": [
+        "-concurrency"
+      ],
+      "label": "C",
+      "description": "maximum number of templates to be executed in parallel (default 25)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hbs",
+      "flag": "-hbs",
+      "aliases": [
+        "-headless-bulk-size"
+      ],
+      "label": "Hbs",
+      "description": "maximum number of headless hosts to be analyzed in parallel per template (default 10)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "headc",
+      "flag": "-headc",
+      "aliases": [
+        "-headless-concurrency"
+      ],
+      "label": "Headc",
+      "description": "maximum number of headless templates to be executed in parallel (default 10)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "jsc",
+      "flag": "-jsc",
+      "aliases": [
+        "-js-concurrency"
+      ],
+      "label": "Jsc",
+      "description": "maximum number of javascript runtimes to be executed in parallel (default 120)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pc",
+      "flag": "-pc",
+      "aliases": [
+        "-payload-concurrency"
+      ],
+      "label": "Pc",
+      "description": "max payload concurrency for each template (default 25)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "prc",
+      "flag": "-prc",
+      "aliases": [
+        "-probe-concurrency"
+      ],
+      "label": "Prc",
+      "description": "http probe concurrency with httpx (default 50)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tlc",
+      "flag": "-tlc",
+      "aliases": [
+        "-template-loading-concurrency"
+      ],
+      "label": "Tlc",
+      "description": "maximum number of concurrent template loading operations (default 50)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "timeout",
+      "flag": "-timeout",
+      "aliases": [],
+      "label": "Timeout",
+      "description": "time to wait in seconds before timeout (default 10)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "retries",
+      "flag": "-retries",
+      "aliases": [],
+      "label": "Retries",
+      "description": "number of times to retry a failed request (default 1)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ldp",
+      "flag": "-ldp",
+      "aliases": [
+        "-leave-default-ports       leave default HTTP/HTTPS ports (eg. host"
+      ],
+      "label": "Ldp",
+      "description": "80,host:443)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mhe",
+      "flag": "-mhe",
+      "aliases": [
+        "-max-host-error"
+      ],
+      "label": "Mhe",
+      "description": "max errors for a host before skipping from scan (default 30)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "te",
+      "flag": "-te",
+      "aliases": [
+        "-track-error"
+      ],
+      "label": "Te",
+      "description": "adds given error to max-host-error watchlist (standard, file)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nmhe",
+      "flag": "-nmhe",
+      "aliases": [
+        "-no-mhe"
+      ],
+      "label": "Nmhe",
+      "description": "disable skipping host from scan based on errors",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "project",
+      "flag": "-project",
+      "aliases": [],
+      "label": "Project",
+      "description": "use a project folder to avoid sending same request multiple times",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "project_path",
+      "flag": "-project-path",
+      "aliases": [],
+      "label": "Project Path",
+      "description": "\\\\Users\\\\brett\\\\AppData\\\\Local\\\\Temp\")",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "spm",
+      "flag": "-spm",
+      "aliases": [
+        "-stop-at-first-match"
+      ],
+      "label": "Spm",
+      "description": "stop processing HTTP requests after the first match (may break template/workflow logic)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "stream",
+      "flag": "-stream",
+      "aliases": [],
+      "label": "Stream",
+      "description": "stream mode - start elaborating without sorting the input",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ss",
+      "flag": "-ss",
+      "aliases": [
+        "-scan-strategy"
+      ],
+      "label": "Ss",
+      "description": "strategy to use while scanning(auto/host-spray/template-spray) (default auto)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "irt",
+      "flag": "-irt",
+      "aliases": [
+        "-input-read-timeout"
+      ],
+      "label": "Irt",
+      "description": "timeout on input read (default 3m0s)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nh",
+      "flag": "-nh",
+      "aliases": [
+        "-no-httpx"
+      ],
+      "label": "Nh",
+      "description": "disable httpx probing for non-url input",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "no_stdin",
+      "flag": "-no-stdin",
+      "aliases": [],
+      "label": "No Stdin",
+      "description": "disable stdin processing",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "headless",
+      "flag": "-headless",
+      "aliases": [],
+      "label": "Headless",
+      "description": "enable templates that require headless browser support (root user on Linux will disable sandbox)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "page_timeout",
+      "flag": "-page-timeout",
+      "aliases": [],
+      "label": "Page Timeout",
+      "description": "seconds to wait for each page in headless mode (default 20)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sb",
+      "flag": "-sb",
+      "aliases": [
+        "-show-browser"
+      ],
+      "label": "Sb",
+      "description": "show the browser on the screen when running templates with headless mode",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ho",
+      "flag": "-ho",
+      "aliases": [
+        "-headless-options"
+      ],
+      "label": "Ho",
+      "description": "start headless chrome with additional options",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sc",
+      "flag": "-sc",
+      "aliases": [
+        "-system-chrome"
+      ],
+      "label": "Sc",
+      "description": "use local installed Chrome browser instead of nuclei installed",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cdpe",
+      "flag": "-cdpe",
+      "aliases": [
+        "-cdp-endpoint"
+      ],
+      "label": "Cdpe",
+      "description": "use remote browser via Chrome DevTools Protocol (CDP) endpoint",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "lha",
+      "flag": "-lha",
+      "aliases": [
+        "-list-headless-action"
+      ],
+      "label": "Lha",
+      "description": "list available headless actions",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "debug",
+      "flag": "-debug",
+      "aliases": [],
+      "label": "Debug",
+      "description": "show all requests and responses",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dreq",
+      "flag": "-dreq",
+      "aliases": [
+        "-debug-req"
+      ],
+      "label": "Dreq",
+      "description": "show all sent requests",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dresp",
+      "flag": "-dresp",
+      "aliases": [
+        "-debug-resp"
+      ],
+      "label": "Dresp",
+      "description": "show all received responses",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "p",
+      "flag": "-p",
+      "aliases": [
+        "-proxy"
+      ],
+      "label": "P",
+      "description": "list of http/socks5 proxy to use (comma separated or file input)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pi",
+      "flag": "-pi",
+      "aliases": [
+        "-proxy-internal"
+      ],
+      "label": "Pi",
+      "description": "proxy all internal requests",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ldf",
+      "flag": "-ldf",
+      "aliases": [
+        "-list-dsl-function"
+      ],
+      "label": "Ldf",
+      "description": "list all supported DSL function signatures",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tlog",
+      "flag": "-tlog",
+      "aliases": [
+        "-trace-log"
+      ],
+      "label": "Tlog",
+      "description": "file to write sent requests trace log",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "elog",
+      "flag": "-elog",
+      "aliases": [
+        "-error-log"
+      ],
+      "label": "Elog",
+      "description": "file to write sent requests error log",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "version",
+      "flag": "-version",
+      "aliases": [],
+      "label": "Version",
+      "description": "show nuclei version",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hm",
+      "flag": "-hm",
+      "aliases": [
+        "-hang-monitor"
+      ],
+      "label": "Hm",
+      "description": "enable nuclei hang monitoring",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "v",
+      "flag": "-v",
+      "aliases": [
+        "-verbose"
+      ],
+      "label": "V",
+      "description": "show verbose output",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "profile_mem",
+      "flag": "-profile-mem",
+      "aliases": [],
+      "label": "Profile Mem",
+      "description": "generate memory (heap) profile & trace files",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "vv",
+      "flag": "-vv",
+      "aliases": [],
+      "label": "Vv",
+      "description": "display templates loaded for scan",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "svd",
+      "flag": "-svd",
+      "aliases": [
+        "-show-var-dump"
+      ],
+      "label": "Svd",
+      "description": "show variables dump for debugging",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "vdl",
+      "flag": "-vdl",
+      "aliases": [
+        "-var-dump-limit"
+      ],
+      "label": "Vdl",
+      "description": "limit the number of characters displayed in var dump (default 255)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ep",
+      "flag": "-ep",
+      "aliases": [
+        "-enable-pprof"
+      ],
+      "label": "Ep",
+      "description": "enable pprof debugging server",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tv",
+      "flag": "-tv",
+      "aliases": [
+        "-templates-version"
+      ],
+      "label": "Tv",
+      "description": "shows the version of the installed nuclei-templates",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hc",
+      "flag": "-hc",
+      "aliases": [
+        "-health-check"
+      ],
+      "label": "Hc",
+      "description": "run diagnostic check up",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "up",
+      "flag": "-up",
+      "aliases": [
+        "-update"
+      ],
+      "label": "Up",
+      "description": "update nuclei engine to the latest released version",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Update",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ut",
+      "flag": "-ut",
+      "aliases": [
+        "-update-templates"
+      ],
+      "label": "Ut",
+      "description": "update nuclei-templates to latest released version",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Update",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ud",
+      "flag": "-ud",
+      "aliases": [
+        "-update-template-dir"
+      ],
+      "label": "Ud",
+      "description": "custom directory to install / update nuclei-templates",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Update",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "duc",
+      "flag": "-duc",
+      "aliases": [
+        "-disable-update-check"
+      ],
+      "label": "Duc",
+      "description": "disable automatic nuclei/templates update check",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Update",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hpd",
+      "flag": "-hpd",
+      "aliases": [
+        "-honeypot-detect"
+      ],
+      "label": "Hpd",
+      "description": "detect potential honeypot hosts based on match concentration",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Honeypot",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hpt",
+      "flag": "-hpt",
+      "aliases": [
+        "-honeypot-threshold"
+      ],
+      "label": "Hpt",
+      "description": "number of distinct template IDs required to flag a honeypot host (default 15)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Honeypot",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "shp",
+      "flag": "-shp",
+      "aliases": [
+        "-suppress-honeypot"
+      ],
+      "label": "Shp",
+      "description": "suppress output for flagged honeypot hosts",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Honeypot",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "stats",
+      "flag": "-stats",
+      "aliases": [],
+      "label": "Stats",
+      "description": "display statistics about the running scan",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Statistics",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sj",
+      "flag": "-sj",
+      "aliases": [
+        "-stats-json"
+      ],
+      "label": "Sj",
+      "description": "display statistics in JSONL(ines) format",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Statistics",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "si",
+      "flag": "-si",
+      "aliases": [
+        "-stats-interval"
+      ],
+      "label": "Si",
+      "description": "number of seconds to wait between showing a statistics update (default 5)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Statistics",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mp",
+      "flag": "-mp",
+      "aliases": [
+        "-metrics-port"
+      ],
+      "label": "Mp",
+      "description": "port to expose nuclei metrics on (default 9092)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Statistics",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hps",
+      "flag": "-hps",
+      "aliases": [
+        "-http-stats"
+      ],
+      "label": "Hps",
+      "description": "enable http status capturing (experimental)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Statistics",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "auth",
+      "flag": "-auth",
+      "aliases": [],
+      "label": "Auth",
+      "description": "configure projectdiscovery cloud (pdcp) api key (default true)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tid",
+      "flag": "-tid",
+      "aliases": [
+        "-team-id"
+      ],
+      "label": "Tid",
+      "description": "upload scan results to given team id (optional) (default \"none\")",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cup",
+      "flag": "-cup",
+      "aliases": [
+        "-cloud-upload"
+      ],
+      "label": "Cup",
+      "description": "upload scan results to pdcp dashboard [DEPRECATED use -dashboard]",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sid",
+      "flag": "-sid",
+      "aliases": [
+        "-scan-id"
+      ],
+      "label": "Sid",
+      "description": "upload scan results to existing scan id (optional)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sname",
+      "flag": "-sname",
+      "aliases": [
+        "-scan-name"
+      ],
+      "label": "Sname",
+      "description": "scan name to set (optional)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pd",
+      "flag": "-pd",
+      "aliases": [
+        "-dashboard"
+      ],
+      "label": "Pd",
+      "description": "upload / view nuclei results in projectdiscovery cloud (pdcp) UI dashboard",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pdu",
+      "flag": "-pdu",
+      "aliases": [
+        "-dashboard-upload"
+      ],
+      "label": "Pdu",
+      "description": "upload / view nuclei results file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sf",
+      "flag": "-sf",
+      "aliases": [
+        "-secret-file"
+      ],
+      "label": "Sf",
+      "description": "path to config file containing secrets for nuclei authenticated scan",
+      "type": "path",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Authentication",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ps",
+      "flag": "-ps",
+      "aliases": [
+        "-prefetch-secrets"
+      ],
+      "label": "Ps",
+      "description": "prefetch secrets from the secrets file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Authentication",
+      "placeholder": null,
+      "advanced": true
+    }
+  ]
+}

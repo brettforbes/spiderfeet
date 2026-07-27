@@ -1,0 +1,523 @@
+{
+  "tool_id": "subfinder",
+  "generated_from": ".docs/docs-for-cli-tools/SubFinder-CLI-Options.md",
+  "generated_at": "2026-07-27T13:27:43+00:00",
+  "groups": [
+    "General",
+    "Input",
+    "Source",
+    "Filter",
+    "Rate-Limit",
+    "Update",
+    "Output",
+    "Configuration",
+    "Debug",
+    "Optimization"
+  ],
+  "flags": [
+    {
+      "id": "d",
+      "flag": "-d",
+      "aliases": [
+        "-domain"
+      ],
+      "label": "D",
+      "description": "domains to find subdomains for",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Input",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dl",
+      "flag": "-dL",
+      "aliases": [
+        "-list"
+      ],
+      "label": "Dl",
+      "description": "file containing list of domains for subdomain discovery",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Input",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "s",
+      "flag": "-s",
+      "aliases": [
+        "-sources"
+      ],
+      "label": "S",
+      "description": "specific sources to use for discovery (-s crtsh,github). Use -ls to display all available sources.",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Source",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "recursive",
+      "flag": "-recursive",
+      "aliases": [],
+      "label": "Recursive",
+      "description": "use only sources that can handle subdomains recursively rather than both recursive and non-recursive sources",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Source",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "all",
+      "flag": "-all",
+      "aliases": [],
+      "label": "All",
+      "description": "use all sources for enumeration (slow)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Source",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "es",
+      "flag": "-es",
+      "aliases": [
+        "-exclude-sources"
+      ],
+      "label": "Es",
+      "description": "sources to exclude from enumeration (-es alienvault,zoomeyeapi)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Source",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "m",
+      "flag": "-m",
+      "aliases": [
+        "-match"
+      ],
+      "label": "M",
+      "description": "subdomain or list of subdomain to match (file or comma separated)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "f",
+      "flag": "-f",
+      "aliases": [
+        "-filter"
+      ],
+      "label": "F",
+      "description": "subdomain or list of subdomain to filter (file or comma separated)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rl",
+      "flag": "-rl",
+      "aliases": [
+        "-rate-limit"
+      ],
+      "label": "Rl",
+      "description": "maximum number of http requests to send per second (global)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rls",
+      "flag": "-rls",
+      "aliases": [
+        "-rate-limits"
+      ],
+      "label": "Rls",
+      "description": "maximum number of http requests to send per second for providers in key=value format (-rls hackertarget=10/m) (default [\"github=30/m\", \"fullhunt=60/m\", \"robtex=18446744073709551615/ms\", \"securitytrails=1/s\", \"shodan=1/s\", \"virustotal=4/m\", \"hackertarget=2/s\", \"waybackarchive=15/m\", \"whoisxmlapi=50/s\", \"securitytrails=2/s\", \"sitedossier=8/m\", \"netlas=1/s\", \"github=83/m\", \"hudsonrock=5/s\"])",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "t",
+      "flag": "-t",
+      "aliases": [],
+      "label": "T",
+      "description": "number of concurrent goroutines for resolving (-active only) (default 10)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "up",
+      "flag": "-up",
+      "aliases": [
+        "-update"
+      ],
+      "label": "Up",
+      "description": "update subfinder to latest version",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Update",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "duc",
+      "flag": "-duc",
+      "aliases": [
+        "-disable-update-check"
+      ],
+      "label": "Duc",
+      "description": "disable automatic subfinder update check",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Update",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "o",
+      "flag": "-o",
+      "aliases": [
+        "-output"
+      ],
+      "label": "O",
+      "description": "file to write output to",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "oj",
+      "flag": "-oJ",
+      "aliases": [
+        "-json"
+      ],
+      "label": "Oj",
+      "description": "write output in JSONL(ines) format",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "od",
+      "flag": "-oD",
+      "aliases": [
+        "-output-dir"
+      ],
+      "label": "Od",
+      "description": "directory to write output (-dL only)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cs",
+      "flag": "-cs",
+      "aliases": [
+        "-collect-sources"
+      ],
+      "label": "Cs",
+      "description": "include all sources in the output (-json only)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "oi",
+      "flag": "-oI",
+      "aliases": [
+        "-ip"
+      ],
+      "label": "Oi",
+      "description": "include host IP in output (-active only)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "config",
+      "flag": "-config",
+      "aliases": [],
+      "label": "Config",
+      "description": "\\\\Users\\\\brett\\\\AppData\\\\Roaming\\\\subfinder\\\\config.yaml\")",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pc",
+      "flag": "-pc",
+      "aliases": [
+        "-provider-config"
+      ],
+      "label": "Pc",
+      "description": "\\\\Users\\\\brett\\\\AppData\\\\Roaming\\\\subfinder\\\\provider-config.yaml\")",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "r",
+      "flag": "-r",
+      "aliases": [],
+      "label": "R",
+      "description": "comma separated list of resolvers to use",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rl",
+      "flag": "-rL",
+      "aliases": [
+        "-rlist"
+      ],
+      "label": "Rl",
+      "description": "file containing list of resolvers to use",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nw",
+      "flag": "-nW",
+      "aliases": [
+        "-active"
+      ],
+      "label": "Nw",
+      "description": "display active subdomains only",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "proxy",
+      "flag": "-proxy",
+      "aliases": [],
+      "label": "Proxy",
+      "description": "http proxy to use with subfinder",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ei",
+      "flag": "-ei",
+      "aliases": [
+        "-exclude-ip"
+      ],
+      "label": "Ei",
+      "description": "exclude IPs from the list of domains",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "silent",
+      "flag": "-silent",
+      "aliases": [],
+      "label": "Silent",
+      "description": "show only subdomains in output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "version",
+      "flag": "-version",
+      "aliases": [],
+      "label": "Version",
+      "description": "show version of subfinder",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "v",
+      "flag": "-v",
+      "aliases": [],
+      "label": "V",
+      "description": "show verbose output",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nc",
+      "flag": "-nc",
+      "aliases": [
+        "-no-color"
+      ],
+      "label": "Nc",
+      "description": "disable color in output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ls",
+      "flag": "-ls",
+      "aliases": [
+        "-list-sources"
+      ],
+      "label": "Ls",
+      "description": "list all available sources",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "stats",
+      "flag": "-stats",
+      "aliases": [],
+      "label": "Stats",
+      "description": "report source statistics",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "timeout",
+      "flag": "-timeout",
+      "aliases": [],
+      "label": "Timeout",
+      "description": "seconds to wait before timing out (default 30)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimization",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "max_time",
+      "flag": "-max-time",
+      "aliases": [],
+      "label": "Max Time",
+      "description": "minutes to wait for enumeration results (default 10)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimization",
+      "placeholder": null,
+      "advanced": true
+    }
+  ]
+}

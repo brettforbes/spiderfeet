@@ -1,0 +1,13 @@
+{
+  "tool_id": "nerva",
+  "display_name": "Nerva",
+  "kind": "cli",
+  "category": "service_fingerprint",
+  "executable": "nerva",
+  "content_version": 1,
+  "source_docs": {
+    "options": ".docs/docs-for-cli-tools/Nerva-CLI-Options.md",
+    "zero_to_hero": ".docs/docs-for-cli-tools/Nerva-Zero-to-Hero.md",
+    "graph_structure": ".docs/docs-for-cli-tools/nugget_structure/nerva_nugget_graph_structure.md"
+  }
+}
