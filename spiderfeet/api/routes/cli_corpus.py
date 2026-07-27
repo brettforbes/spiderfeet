@@ -75,6 +75,7 @@ class CliCorpusScenarioDetail(BaseModel):
     graph_deferred: bool = False
     graph_deferred_reason: str | None = None
     complete: bool = False
+    content_links: dict[str, str] | None = None
 
 
 class CliCorpusMarkdownDocument(BaseModel):

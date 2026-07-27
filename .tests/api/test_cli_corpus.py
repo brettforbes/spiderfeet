@@ -122,7 +122,7 @@ def test_cli_corpus_tool_graph_structure(api_client: TestClient):
     assert response.status_code == 200
     body = response.json()
     assert body["tool_id"] == "nmap"
-    assert body["filename"] == "nmap_nugget_graph_structure.md"
+    assert body["filename"] in ("nmap_nugget_graph_structure.md", "graph_structure.md")
     assert "markdown" in body
 
 

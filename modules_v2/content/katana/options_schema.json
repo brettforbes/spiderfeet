@@ -1,0 +1,1471 @@
+{
+  "tool_id": "katana",
+  "generated_from": ".docs/docs-for-cli-tools/katana-CLI-Options.md",
+  "generated_at": "2026-07-27T13:27:43+00:00",
+  "groups": [
+    "General",
+    "Input",
+    "Configuration",
+    "Debug",
+    "Headless",
+    "Scope",
+    "Filter",
+    "Rate-Limit",
+    "Update",
+    "Output"
+  ],
+  "flags": [
+    {
+      "id": "u",
+      "flag": "-u",
+      "aliases": [
+        "-list"
+      ],
+      "label": "U",
+      "description": "target url / list to crawl",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Input",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "resume",
+      "flag": "-resume",
+      "aliases": [],
+      "label": "Resume",
+      "description": "resume scan using resume.cfg",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Input",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "e",
+      "flag": "-e",
+      "aliases": [
+        "-exclude"
+      ],
+      "label": "E",
+      "description": "exclude host matching specified filter ('cdn', 'private-ips', cidr, ip, regex)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Input",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "r",
+      "flag": "-r",
+      "aliases": [
+        "-resolvers"
+      ],
+      "label": "R",
+      "description": "list of custom resolver (file or comma separated)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "d",
+      "flag": "-d",
+      "aliases": [
+        "-depth"
+      ],
+      "label": "D",
+      "description": "maximum depth to crawl (default 3)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "jc",
+      "flag": "-jc",
+      "aliases": [
+        "-js-crawl"
+      ],
+      "label": "Jc",
+      "description": "enable endpoint parsing / crawling in javascript file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "jsl",
+      "flag": "-jsl",
+      "aliases": [
+        "-jsluice"
+      ],
+      "label": "Jsl",
+      "description": "enable jsluice parsing in javascript file (memory intensive)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ct",
+      "flag": "-ct",
+      "aliases": [
+        "-crawl-duration"
+      ],
+      "label": "Ct",
+      "description": "maximum duration to crawl the target for (s, m, h, d) (default s)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "kf",
+      "flag": "-kf",
+      "aliases": [
+        "-known-files"
+      ],
+      "label": "Kf",
+      "description": "enable crawling of known files (all,robotstxt,sitemapxml), a minimum depth of 3 is required to ensure all known files are properly crawled.",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mrs",
+      "flag": "-mrs",
+      "aliases": [
+        "-max-response-size"
+      ],
+      "label": "Mrs",
+      "description": "maximum response size to read (default 4194304)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "timeout",
+      "flag": "-timeout",
+      "aliases": [],
+      "label": "Timeout",
+      "description": "time to wait for request in seconds (default 10)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "time_stable",
+      "flag": "-time-stable",
+      "aliases": [],
+      "label": "Time Stable",
+      "description": "time to wait until the page is stable in seconds (default 1)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "aff",
+      "flag": "-aff",
+      "aliases": [
+        "-automatic-form-fill"
+      ],
+      "label": "Aff",
+      "description": "enable automatic form filling (experimental)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fx",
+      "flag": "-fx",
+      "aliases": [
+        "-form-extraction"
+      ],
+      "label": "Fx",
+      "description": "extract form, input, textarea & select elements in jsonl output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "retry",
+      "flag": "-retry",
+      "aliases": [],
+      "label": "Retry",
+      "description": "number of times to retry the request (default 1)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "proxy",
+      "flag": "-proxy",
+      "aliases": [],
+      "label": "Proxy",
+      "description": "http/socks5 proxy to use",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "td",
+      "flag": "-td",
+      "aliases": [
+        "-tech-detect"
+      ],
+      "label": "Td",
+      "description": "enable technology detection",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "h",
+      "flag": "-H",
+      "aliases": [
+        "-headers"
+      ],
+      "label": "H",
+      "description": "value format (file)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "config",
+      "flag": "-config",
+      "aliases": [],
+      "label": "Config",
+      "description": "path to the katana configuration file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fc",
+      "flag": "-fc",
+      "aliases": [
+        "-form-config"
+      ],
+      "label": "Fc",
+      "description": "path to custom form configuration file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "flc",
+      "flag": "-flc",
+      "aliases": [
+        "-field-config"
+      ],
+      "label": "Flc",
+      "description": "path to custom field configuration file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "s",
+      "flag": "-s",
+      "aliases": [
+        "-strategy"
+      ],
+      "label": "S",
+      "description": "Visit strategy (depth-first, breadth-first) (default \"depth-first\")",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "iqp",
+      "flag": "-iqp",
+      "aliases": [
+        "-ignore-query-params"
+      ],
+      "label": "Iqp",
+      "description": "Ignore crawling same path with different query-param values",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fsu",
+      "flag": "-fsu",
+      "aliases": [
+        "-filter-similar"
+      ],
+      "label": "Fsu",
+      "description": "filter crawling of similar looking URLs (e.g., /users/123 and /users/456)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fst",
+      "flag": "-fst",
+      "aliases": [
+        "-filter-similar-threshold"
+      ],
+      "label": "Fst",
+      "description": "number of distinct values before a path position is treated as parameter (default 10) (default 10)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tlsi",
+      "flag": "-tlsi",
+      "aliases": [
+        "-tls-impersonate"
+      ],
+      "label": "Tlsi",
+      "description": "enable experimental client hello (ja3) tls randomization",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dr",
+      "flag": "-dr",
+      "aliases": [
+        "-disable-redirects"
+      ],
+      "label": "Dr",
+      "description": "disable following redirects (default false)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pc",
+      "flag": "-pc",
+      "aliases": [
+        "-path-climb"
+      ],
+      "label": "Pc",
+      "description": "enable path climb (auto crawl parent paths)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "kb",
+      "flag": "-kb",
+      "aliases": [
+        "-knowledge-base"
+      ],
+      "label": "Kb",
+      "description": "enable knowledge base classification",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mdp",
+      "flag": "-mdp",
+      "aliases": [
+        "-max-domain-pages"
+      ],
+      "label": "Mdp",
+      "description": "maximum number of pages to crawl per domain (default unlimited)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configuration",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "health_check",
+      "flag": "-health-check",
+      "aliases": [
+        "-hc"
+      ],
+      "label": "Health Check",
+      "description": "run diagnostic check up",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "elog",
+      "flag": "-elog",
+      "aliases": [
+        "-error-log"
+      ],
+      "label": "Elog",
+      "description": "file to write sent requests error log",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pprof_server",
+      "flag": "-pprof-server",
+      "aliases": [],
+      "label": "Pprof Server",
+      "description": "enable pprof server",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hl",
+      "flag": "-hl",
+      "aliases": [
+        "-headless"
+      ],
+      "label": "Hl",
+      "description": "enable headless crawling (experimental)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hh",
+      "flag": "-hh",
+      "aliases": [
+        "-hybrid"
+      ],
+      "label": "Hh",
+      "description": "enable headless hybrid crawling (experimental)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sc",
+      "flag": "-sc",
+      "aliases": [
+        "-system-chrome"
+      ],
+      "label": "Sc",
+      "description": "use local installed chrome browser instead of katana installed",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sb",
+      "flag": "-sb",
+      "aliases": [
+        "-show-browser"
+      ],
+      "label": "Sb",
+      "description": "show the browser on the screen with headless mode",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ho",
+      "flag": "-ho",
+      "aliases": [
+        "-headless-options"
+      ],
+      "label": "Ho",
+      "description": "start headless chrome with additional options",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nos",
+      "flag": "-nos",
+      "aliases": [
+        "-no-sandbox"
+      ],
+      "label": "Nos",
+      "description": "start headless chrome in --no-sandbox mode",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cdd",
+      "flag": "-cdd",
+      "aliases": [
+        "-chrome-data-dir"
+      ],
+      "label": "Cdd",
+      "description": "path to store chrome browser data",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "scp",
+      "flag": "-scp",
+      "aliases": [
+        "-system-chrome-path"
+      ],
+      "label": "Scp",
+      "description": "use specified chrome browser for headless crawling",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "noi",
+      "flag": "-noi",
+      "aliases": [
+        "-no-incognito"
+      ],
+      "label": "Noi",
+      "description": "start headless chrome without incognito mode",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cwu",
+      "flag": "-cwu",
+      "aliases": [
+        "-chrome-ws-url"
+      ],
+      "label": "Cwu",
+      "description": "use chrome browser instance launched elsewhere with the debugger listening at this URL",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "xhr",
+      "flag": "-xhr",
+      "aliases": [
+        "-xhr-extraction"
+      ],
+      "label": "Xhr",
+      "description": "extract xhr request url,method in jsonl output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mfc",
+      "flag": "-mfc",
+      "aliases": [
+        "-max-failure-count"
+      ],
+      "label": "Mfc",
+      "description": "maximum number of consecutive action failures before stopping (default 10)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ed",
+      "flag": "-ed",
+      "aliases": [
+        "-enable-diagnostics"
+      ],
+      "label": "Ed",
+      "description": "enable diagnostics",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pls",
+      "flag": "-pls",
+      "aliases": [
+        "-page-load-strategy"
+      ],
+      "label": "Pls",
+      "description": "page load strategy (heuristic, load, domcontentloaded, networkidle, none) (default \"heuristic\")",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "dwt",
+      "flag": "-dwt",
+      "aliases": [
+        "-dom-wait-time"
+      ],
+      "label": "Dwt",
+      "description": "time in seconds to wait after page load when using domcontentloaded strategy (default 5)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "csp",
+      "flag": "-csp",
+      "aliases": [
+        "-captcha-solver-provider"
+      ],
+      "label": "Csp",
+      "description": "captcha solver provider (e.g. capsolver)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "csk",
+      "flag": "-csk",
+      "aliases": [
+        "-captcha-solver-key"
+      ],
+      "label": "Csk",
+      "description": "captcha solver provider api key",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "al",
+      "flag": "-al",
+      "aliases": [
+        "-auto-login"
+      ],
+      "label": "Al",
+      "description": "password (headless only)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cs",
+      "flag": "-cs",
+      "aliases": [
+        "-crawl-scope"
+      ],
+      "label": "Cs",
+      "description": "in scope url regex to be followed by crawler",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Scope",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cos",
+      "flag": "-cos",
+      "aliases": [
+        "-crawl-out-scope"
+      ],
+      "label": "Cos",
+      "description": "out of scope url regex to be excluded by crawler",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Scope",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fs",
+      "flag": "-fs",
+      "aliases": [
+        "-field-scope"
+      ],
+      "label": "Fs",
+      "description": "pre-defined scope field (dn,rdn,fqdn) or custom regex (e.g., '(company-staging.io|company.com)') (default \"rdn\")",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Scope",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ns",
+      "flag": "-ns",
+      "aliases": [
+        "-no-scope"
+      ],
+      "label": "Ns",
+      "description": "disables host based default scope",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Scope",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "do",
+      "flag": "-do",
+      "aliases": [
+        "-display-out-scope"
+      ],
+      "label": "Do",
+      "description": "display external endpoint from scoped crawling",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Scope",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mr",
+      "flag": "-mr",
+      "aliases": [
+        "-match-regex"
+      ],
+      "label": "Mr",
+      "description": "regex or list of regex to match on output url (cli, file)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fr",
+      "flag": "-fr",
+      "aliases": [
+        "-filter-regex"
+      ],
+      "label": "Fr",
+      "description": "regex or list of regex to filter on output url (cli, file)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "f",
+      "flag": "-f",
+      "aliases": [
+        "-field"
+      ],
+      "label": "F",
+      "description": "use -output-template instead)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sf",
+      "flag": "-sf",
+      "aliases": [
+        "-store-field"
+      ],
+      "label": "Sf",
+      "description": "field to store in per-host output (url,path,fqdn,rdn,rurl,qurl,qpath,file,ufile,key,value,kv,dir,udir)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "em",
+      "flag": "-em",
+      "aliases": [
+        "-extension-match"
+      ],
+      "label": "Em",
+      "description": "match output for given extension (eg, -em php,html,js,none)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ef",
+      "flag": "-ef",
+      "aliases": [
+        "-extension-filter"
+      ],
+      "label": "Ef",
+      "description": "filter output for given extension (eg, -ef png,css)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ndef",
+      "flag": "-ndef",
+      "aliases": [
+        "-no-default-ext-filter"
+      ],
+      "label": "Ndef",
+      "description": "remove default extensions from the filter list",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mdc",
+      "flag": "-mdc",
+      "aliases": [
+        "-match-condition"
+      ],
+      "label": "Mdc",
+      "description": "match response with dsl based condition",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fdc",
+      "flag": "-fdc",
+      "aliases": [
+        "-filter-condition"
+      ],
+      "label": "Fdc",
+      "description": "filter response with dsl based condition",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "duf",
+      "flag": "-duf",
+      "aliases": [
+        "-disable-unique-filter"
+      ],
+      "label": "Duf",
+      "description": "disable duplicate content filtering",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fpt",
+      "flag": "-fpt",
+      "aliases": [
+        "-filter-page-type"
+      ],
+      "label": "Fpt",
+      "description": "filter response with page type (e.g. error,captcha,parked)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filter",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "c",
+      "flag": "-c",
+      "aliases": [
+        "-concurrency"
+      ],
+      "label": "C",
+      "description": "number of concurrent fetchers to use (default 10)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "p",
+      "flag": "-p",
+      "aliases": [
+        "-parallelism"
+      ],
+      "label": "P",
+      "description": "number of concurrent inputs to process (default 10)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rd",
+      "flag": "-rd",
+      "aliases": [
+        "-delay"
+      ],
+      "label": "Rd",
+      "description": "request delay between each request in seconds",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rl",
+      "flag": "-rl",
+      "aliases": [
+        "-rate-limit"
+      ],
+      "label": "Rl",
+      "description": "maximum requests to send per second (default 150)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rlm",
+      "flag": "-rlm",
+      "aliases": [
+        "-rate-limit-minute"
+      ],
+      "label": "Rlm",
+      "description": "maximum number of requests to send per minute",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hrl",
+      "flag": "-hrl",
+      "aliases": [
+        "-host-rate-limit"
+      ],
+      "label": "Hrl",
+      "description": "maximum requests to send per second per host",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hrlm",
+      "flag": "-hrlm",
+      "aliases": [
+        "-host-rate-limit-minute"
+      ],
+      "label": "Hrlm",
+      "description": "maximum number of requests to send per minute per host",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "up",
+      "flag": "-up",
+      "aliases": [
+        "-update"
+      ],
+      "label": "Up",
+      "description": "update katana to latest version",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Update",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "duc",
+      "flag": "-duc",
+      "aliases": [
+        "-disable-update-check"
+      ],
+      "label": "Duc",
+      "description": "disable automatic katana update check",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Update",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "o",
+      "flag": "-o",
+      "aliases": [
+        "-output"
+      ],
+      "label": "O",
+      "description": "file to write output to",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ot",
+      "flag": "-ot",
+      "aliases": [
+        "-output-template"
+      ],
+      "label": "Ot",
+      "description": "custom output template",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sr",
+      "flag": "-sr",
+      "aliases": [
+        "-store-response"
+      ],
+      "label": "Sr",
+      "description": "store http requests/responses",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "srd",
+      "flag": "-srd",
+      "aliases": [
+        "-store-response-dir"
+      ],
+      "label": "Srd",
+      "description": "store http requests/responses to custom directory",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ncb",
+      "flag": "-ncb",
+      "aliases": [
+        "-no-clobber"
+      ],
+      "label": "Ncb",
+      "description": "do not overwrite output file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sfd",
+      "flag": "-sfd",
+      "aliases": [
+        "-store-field-dir"
+      ],
+      "label": "Sfd",
+      "description": "store per-host field to custom directory",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "or",
+      "flag": "-or",
+      "aliases": [
+        "-omit-raw"
+      ],
+      "label": "Or",
+      "description": "omit raw requests/responses from jsonl output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ob",
+      "flag": "-ob",
+      "aliases": [
+        "-omit-body"
+      ],
+      "label": "Ob",
+      "description": "omit response body from jsonl output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "lof",
+      "flag": "-lof",
+      "aliases": [
+        "-list-output-fields"
+      ],
+      "label": "Lof",
+      "description": "list of fields to output in jsonl format",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "eof",
+      "flag": "-eof",
+      "aliases": [
+        "-exclude-output-fields"
+      ],
+      "label": "Eof",
+      "description": "exclude fields from jsonl output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "j",
+      "flag": "-j",
+      "aliases": [
+        "-jsonl"
+      ],
+      "label": "J",
+      "description": "write output in jsonl format",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nc",
+      "flag": "-nc",
+      "aliases": [
+        "-no-color"
+      ],
+      "label": "Nc",
+      "description": "disable output content coloring (ANSI escape codes)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "silent",
+      "flag": "-silent",
+      "aliases": [],
+      "label": "Silent",
+      "description": "display output only",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "v",
+      "flag": "-v",
+      "aliases": [
+        "-verbose"
+      ],
+      "label": "V",
+      "description": "display verbose output",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "debug",
+      "flag": "-debug",
+      "aliases": [],
+      "label": "Debug",
+      "description": "display debug output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "version",
+      "flag": "-version",
+      "aliases": [],
+      "label": "Version",
+      "description": "display project version",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    }
+  ]
+}

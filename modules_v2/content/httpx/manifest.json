@@ -1,0 +1,13 @@
+{
+  "tool_id": "httpx",
+  "display_name": "Httpx",
+  "kind": "cli",
+  "category": "http_probe",
+  "executable": "httpx",
+  "content_version": 1,
+  "source_docs": {
+    "options": ".docs/docs-for-cli-tools/Httpx-CLI-Options.md",
+    "zero_to_hero": ".docs/docs-for-cli-tools/Httpx-Zero-to-Hero.md",
+    "graph_structure": ".docs/docs-for-cli-tools/nugget_structure/httpx_nugget_graph_structure.md"
+  }
+}

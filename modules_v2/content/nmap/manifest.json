@@ -1,0 +1,13 @@
+{
+  "tool_id": "nmap",
+  "display_name": "Nmap",
+  "kind": "cli",
+  "category": "network_scanner",
+  "executable": "nmap",
+  "content_version": 1,
+  "source_docs": {
+    "options": ".docs/docs-for-cli-tools/NMAP-CLI-Options.md",
+    "zero_to_hero": ".docs/docs-for-cli-tools/NMAP-Zero-to-Hero.md",
+    "graph_structure": ".docs/docs-for-cli-tools/nugget_structure/nmap_nugget_graph_structure.md"
+  }
+}

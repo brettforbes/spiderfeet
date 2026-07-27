@@ -1,0 +1,2186 @@
+{
+  "tool_id": "httpx",
+  "generated_from": ".docs/docs-for-cli-tools/Httpx-CLI-Options.md",
+  "generated_at": "2026-07-27T13:27:43+00:00",
+  "groups": [
+    "General",
+    "Input",
+    "Probes",
+    "Headless",
+    "Matchers",
+    "Extractor",
+    "Filters",
+    "Rate-Limit",
+    "Miscellaneous",
+    "Update",
+    "Output",
+    "Configurations",
+    "Debug",
+    "Optimizations",
+    "Cloud"
+  ],
+  "flags": [
+    {
+      "id": "l",
+      "flag": "-l",
+      "aliases": [
+        "-list"
+      ],
+      "label": "L",
+      "description": "input file containing list of hosts to process",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Input",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rr",
+      "flag": "-rr",
+      "aliases": [
+        "-request"
+      ],
+      "label": "Rr",
+      "description": "file containing raw request",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Input",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "u",
+      "flag": "-u",
+      "aliases": [
+        "-target"
+      ],
+      "label": "U",
+      "description": "input target host(s) to probe",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Input",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sc",
+      "flag": "-sc",
+      "aliases": [
+        "-status-code"
+      ],
+      "label": "Sc",
+      "description": "display response status-code",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cl",
+      "flag": "-cl",
+      "aliases": [
+        "-content-length"
+      ],
+      "label": "Cl",
+      "description": "display response content-length",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ct",
+      "flag": "-ct",
+      "aliases": [
+        "-content-type"
+      ],
+      "label": "Ct",
+      "description": "display response content-type",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "location",
+      "flag": "-location",
+      "aliases": [],
+      "label": "Location",
+      "description": "display response redirect location",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "favicon",
+      "flag": "-favicon",
+      "aliases": [],
+      "label": "Favicon",
+      "description": "display mmh3 hash for '/favicon.ico' file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hash",
+      "flag": "-hash",
+      "aliases": [],
+      "label": "Hash",
+      "description": "md5,mmh3,simhash,sha1,sha256,sha512)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "jarm",
+      "flag": "-jarm",
+      "aliases": [],
+      "label": "Jarm",
+      "description": "display jarm fingerprint hash",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rt",
+      "flag": "-rt",
+      "aliases": [
+        "-response-time"
+      ],
+      "label": "Rt",
+      "description": "display response time",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "lc",
+      "flag": "-lc",
+      "aliases": [
+        "-line-count"
+      ],
+      "label": "Lc",
+      "description": "display response body line count",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "wc",
+      "flag": "-wc",
+      "aliases": [
+        "-word-count"
+      ],
+      "label": "Wc",
+      "description": "display response body word count",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "title",
+      "flag": "-title",
+      "aliases": [],
+      "label": "Title",
+      "description": "display page title",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "bp",
+      "flag": "-bp",
+      "aliases": [
+        "-body-preview"
+      ],
+      "label": "Bp",
+      "description": "display first N characters of response body (default 100)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "server",
+      "flag": "-server",
+      "aliases": [
+        "-web-server"
+      ],
+      "label": "Server",
+      "description": "display server name",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "td",
+      "flag": "-td",
+      "aliases": [
+        "-tech-detect"
+      ],
+      "label": "Td",
+      "description": "display technology in use based on wappalyzer dataset",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "method",
+      "flag": "-method",
+      "aliases": [],
+      "label": "Method",
+      "description": "display http request method",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "websocket",
+      "flag": "-websocket",
+      "aliases": [],
+      "label": "Websocket",
+      "description": "display server using websocket",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ip",
+      "flag": "-ip",
+      "aliases": [],
+      "label": "Ip",
+      "description": "display host ip",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cname",
+      "flag": "-cname",
+      "aliases": [],
+      "label": "Cname",
+      "description": "display host cname",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "extract_fqdn",
+      "flag": "-extract-fqdn",
+      "aliases": [
+        "-efqdn"
+      ],
+      "label": "Extract Fqdn",
+      "description": "get domain and subdomains from response body and header in jsonl/csv output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "asn",
+      "flag": "-asn",
+      "aliases": [],
+      "label": "Asn",
+      "description": "display host asn information",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "cdn",
+      "flag": "-cdn",
+      "aliases": [],
+      "label": "Cdn",
+      "description": "display cdn/waf in use (default true)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "probe",
+      "flag": "-probe",
+      "aliases": [],
+      "label": "Probe",
+      "description": "display probe status",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Probes",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ss",
+      "flag": "-ss",
+      "aliases": [
+        "-screenshot"
+      ],
+      "label": "Ss",
+      "description": "enable saving screenshot of the page using headless browser",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "system_chrome",
+      "flag": "-system-chrome",
+      "aliases": [],
+      "label": "System Chrome",
+      "description": "enable using local installed chrome for screenshot",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ho",
+      "flag": "-ho",
+      "aliases": [
+        "-headless-options"
+      ],
+      "label": "Ho",
+      "description": "start headless chrome with additional options",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "esb",
+      "flag": "-esb",
+      "aliases": [
+        "-exclude-screenshot-bytes"
+      ],
+      "label": "Esb",
+      "description": "enable excluding screenshot bytes from json output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ehb",
+      "flag": "-ehb",
+      "aliases": [
+        "-exclude-headless-body"
+      ],
+      "label": "Ehb",
+      "description": "enable excluding headless header from json output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "st",
+      "flag": "-st",
+      "aliases": [
+        "-screenshot-timeout"
+      ],
+      "label": "St",
+      "description": "set timeout for screenshot in seconds (default 10s)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sid",
+      "flag": "-sid",
+      "aliases": [
+        "-screenshot-idle"
+      ],
+      "label": "Sid",
+      "description": "set idle time before taking screenshot in seconds (default 1s)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Headless",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mc",
+      "flag": "-mc",
+      "aliases": [
+        "-match-code"
+      ],
+      "label": "Mc",
+      "description": "match response with specified status code (-mc 200,302)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Matchers",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ml",
+      "flag": "-ml",
+      "aliases": [
+        "-match-length"
+      ],
+      "label": "Ml",
+      "description": "match response with specified content length (-ml 100,102)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Matchers",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mlc",
+      "flag": "-mlc",
+      "aliases": [
+        "-match-line-count"
+      ],
+      "label": "Mlc",
+      "description": "match response body with specified line count (-mlc 423,532)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Matchers",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mwc",
+      "flag": "-mwc",
+      "aliases": [
+        "-match-word-count"
+      ],
+      "label": "Mwc",
+      "description": "match response body with specified word count (-mwc 43,55)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Matchers",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mfc",
+      "flag": "-mfc",
+      "aliases": [
+        "-match-favicon"
+      ],
+      "label": "Mfc",
+      "description": "match response with specified favicon hash (-mfc 1494302000)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Matchers",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ms",
+      "flag": "-ms",
+      "aliases": [
+        "-match-string"
+      ],
+      "label": "Ms",
+      "description": "match response with specified string (-ms admin)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Matchers",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mr",
+      "flag": "-mr",
+      "aliases": [
+        "-match-regex"
+      ],
+      "label": "Mr",
+      "description": "match response with specified regex (-mr admin)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Matchers",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mcdn",
+      "flag": "-mcdn",
+      "aliases": [
+        "-match-cdn"
+      ],
+      "label": "Mcdn",
+      "description": "match host with specified cdn provider (cloudfront, fastly, google)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Matchers",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mrt",
+      "flag": "-mrt",
+      "aliases": [
+        "-match-response-time"
+      ],
+      "label": "Mrt",
+      "description": "match response with specified response time in seconds (-mrt '< 1')",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Matchers",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "mdc",
+      "flag": "-mdc",
+      "aliases": [
+        "-match-condition"
+      ],
+      "label": "Mdc",
+      "description": "match response with dsl expression condition",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Matchers",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "er",
+      "flag": "-er",
+      "aliases": [
+        "-extract-regex"
+      ],
+      "label": "Er",
+      "description": "display response content with matched regex",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Extractor",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ep",
+      "flag": "-ep",
+      "aliases": [
+        "-extract-preset"
+      ],
+      "label": "Ep",
+      "description": "display response content matched by a pre-defined regex (url,ipv4,mail)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Extractor",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fc",
+      "flag": "-fc",
+      "aliases": [
+        "-filter-code"
+      ],
+      "label": "Fc",
+      "description": "filter response with specified status code (-fc 403,401)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fep",
+      "flag": "-fep",
+      "aliases": [
+        "-filter-error-page"
+      ],
+      "label": "Fep",
+      "description": "filter response with ML based error page detection",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fd",
+      "flag": "-fd",
+      "aliases": [
+        "-filter-duplicates"
+      ],
+      "label": "Fd",
+      "description": "filter out near-duplicate responses (only first response is retained)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fl",
+      "flag": "-fl",
+      "aliases": [
+        "-filter-length"
+      ],
+      "label": "Fl",
+      "description": "filter response with specified content length (-fl 23,33)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "flc",
+      "flag": "-flc",
+      "aliases": [
+        "-filter-line-count"
+      ],
+      "label": "Flc",
+      "description": "filter response body with specified line count (-flc 423,532)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fwc",
+      "flag": "-fwc",
+      "aliases": [
+        "-filter-word-count"
+      ],
+      "label": "Fwc",
+      "description": "filter response body with specified word count (-fwc 423,532)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ffc",
+      "flag": "-ffc",
+      "aliases": [
+        "-filter-favicon"
+      ],
+      "label": "Ffc",
+      "description": "filter response with specified favicon hash (-ffc 1494302000)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fs",
+      "flag": "-fs",
+      "aliases": [
+        "-filter-string"
+      ],
+      "label": "Fs",
+      "description": "filter response with specified string (-fs admin)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fe",
+      "flag": "-fe",
+      "aliases": [
+        "-filter-regex"
+      ],
+      "label": "Fe",
+      "description": "filter response with specified regex (-fe admin)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fcdn",
+      "flag": "-fcdn",
+      "aliases": [
+        "-filter-cdn"
+      ],
+      "label": "Fcdn",
+      "description": "filter host with specified cdn provider (cloudfront, fastly, google)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "frt",
+      "flag": "-frt",
+      "aliases": [
+        "-filter-response-time"
+      ],
+      "label": "Frt",
+      "description": "filter response with specified response time in seconds (-frt '> 1')",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fdc",
+      "flag": "-fdc",
+      "aliases": [
+        "-filter-condition"
+      ],
+      "label": "Fdc",
+      "description": "filter response with dsl expression condition",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "strip_strips_all_tags_in_response_supported_formats",
+      "flag": "-strip                              strips all tags in response. supported formats",
+      "aliases": [],
+      "label": "Strip                              Strips All Tags In Response. Supported Formats",
+      "description": "html,xml (default html)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Filters",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "t",
+      "flag": "-t",
+      "aliases": [
+        "-threads"
+      ],
+      "label": "T",
+      "description": "number of threads to use (default 50)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rl",
+      "flag": "-rl",
+      "aliases": [
+        "-rate-limit"
+      ],
+      "label": "Rl",
+      "description": "maximum requests to send per second (default 150)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rlm",
+      "flag": "-rlm",
+      "aliases": [
+        "-rate-limit-minute"
+      ],
+      "label": "Rlm",
+      "description": "maximum number of requests to send per minute",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Rate-Limit",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pa",
+      "flag": "-pa",
+      "aliases": [
+        "-probe-all-ips"
+      ],
+      "label": "Pa",
+      "description": "probe all the ips associated with same host",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Miscellaneous",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "p",
+      "flag": "-p",
+      "aliases": [
+        "-ports"
+      ],
+      "label": "P",
+      "description": "eg http:1,2-10,11,https:80)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Miscellaneous",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "path",
+      "flag": "-path",
+      "aliases": [],
+      "label": "Path",
+      "description": "path or list of paths to probe (comma-separated, file)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Miscellaneous",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tls_probe",
+      "flag": "-tls-probe",
+      "aliases": [],
+      "label": "Tls Probe",
+      "description": "send http probes on the extracted TLS domains (dns_name)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Miscellaneous",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "csp_probe",
+      "flag": "-csp-probe",
+      "aliases": [],
+      "label": "Csp Probe",
+      "description": "send http probes on the extracted CSP domains",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Miscellaneous",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tls_grab",
+      "flag": "-tls-grab",
+      "aliases": [],
+      "label": "Tls Grab",
+      "description": "perform TLS(SSL) data grabbing",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Miscellaneous",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pipeline",
+      "flag": "-pipeline",
+      "aliases": [],
+      "label": "Pipeline",
+      "description": "probe and display server supporting HTTP1.1 pipeline",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Miscellaneous",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "http2",
+      "flag": "-http2",
+      "aliases": [],
+      "label": "Http2",
+      "description": "probe and display server supporting HTTP2",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Miscellaneous",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "vhost",
+      "flag": "-vhost",
+      "aliases": [],
+      "label": "Vhost",
+      "description": "probe and display server supporting VHOST",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Miscellaneous",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ldv",
+      "flag": "-ldv",
+      "aliases": [
+        "-list-dsl-variables"
+      ],
+      "label": "Ldv",
+      "description": "list json output field keys name that support dsl matcher/filter",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Miscellaneous",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "up",
+      "flag": "-up",
+      "aliases": [
+        "-update"
+      ],
+      "label": "Up",
+      "description": "update httpx to latest version",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Update",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "duc",
+      "flag": "-duc",
+      "aliases": [
+        "-disable-update-check"
+      ],
+      "label": "Duc",
+      "description": "disable automatic httpx update check",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Update",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "o",
+      "flag": "-o",
+      "aliases": [
+        "-output"
+      ],
+      "label": "O",
+      "description": "file to write output results",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "oa",
+      "flag": "-oa",
+      "aliases": [
+        "-output-all"
+      ],
+      "label": "Oa",
+      "description": "filename to write output results in all formats",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sr",
+      "flag": "-sr",
+      "aliases": [
+        "-store-response"
+      ],
+      "label": "Sr",
+      "description": "store http response to output directory",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "srd",
+      "flag": "-srd",
+      "aliases": [
+        "-store-response-dir"
+      ],
+      "label": "Srd",
+      "description": "store http response to custom directory",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ob",
+      "flag": "-ob",
+      "aliases": [
+        "-omit-body"
+      ],
+      "label": "Ob",
+      "description": "omit response body in output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "csv",
+      "flag": "-csv",
+      "aliases": [],
+      "label": "Csv",
+      "description": "store output in csv format",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "csvo",
+      "flag": "-csvo",
+      "aliases": [
+        "-csv-output-encoding"
+      ],
+      "label": "Csvo",
+      "description": "define output encoding",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "j",
+      "flag": "-j",
+      "aliases": [
+        "-json"
+      ],
+      "label": "J",
+      "description": "store output in JSONL(ines) format",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "irh",
+      "flag": "-irh",
+      "aliases": [
+        "-include-response-header"
+      ],
+      "label": "Irh",
+      "description": "include http response (headers) in JSON output (-json only)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "irr",
+      "flag": "-irr",
+      "aliases": [
+        "-include-response"
+      ],
+      "label": "Irr",
+      "description": "include http request/response (headers + body) in JSON output (-json only)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "irrb",
+      "flag": "-irrb",
+      "aliases": [
+        "-include-response-base64"
+      ],
+      "label": "Irrb",
+      "description": "include base64 encoded http request/response in JSON output (-json only)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "include_chain",
+      "flag": "-include-chain",
+      "aliases": [],
+      "label": "Include Chain",
+      "description": "include redirect http chain in JSON output (-json only)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "store_chain",
+      "flag": "-store-chain",
+      "aliases": [],
+      "label": "Store Chain",
+      "description": "include http redirect chain in responses (-sr only)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "svrc",
+      "flag": "-svrc",
+      "aliases": [
+        "-store-vision-recon-cluster"
+      ],
+      "label": "Svrc",
+      "description": "include visual recon clusters (-ss and -sr only)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pr",
+      "flag": "-pr",
+      "aliases": [
+        "-protocol"
+      ],
+      "label": "Pr",
+      "description": "protocol to use (unknown, http11)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fepp",
+      "flag": "-fepp",
+      "aliases": [
+        "-filter-error-page-path"
+      ],
+      "label": "Fepp",
+      "description": "path to store filtered error pages (default \"filtered_error_page.json\")",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Output",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "config",
+      "flag": "-config",
+      "aliases": [],
+      "label": "Config",
+      "description": "path to the httpx configuration file (default $HOME/.config/httpx/config.yaml)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "r",
+      "flag": "-r",
+      "aliases": [
+        "-resolvers"
+      ],
+      "label": "R",
+      "description": "list of custom resolver (file or comma separated)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "allow",
+      "flag": "-allow",
+      "aliases": [],
+      "label": "Allow",
+      "description": "allowed list of IP/CIDR's to process (file or comma separated)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "deny",
+      "flag": "-deny",
+      "aliases": [],
+      "label": "Deny",
+      "description": "denied list of IP/CIDR's to process (file or comma separated)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sni",
+      "flag": "-sni",
+      "aliases": [
+        "-sni-name"
+      ],
+      "label": "Sni",
+      "description": "custom TLS SNI name",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "random_agent",
+      "flag": "-random-agent",
+      "aliases": [],
+      "label": "Random Agent",
+      "description": "enable Random User-Agent to use (default true)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "h",
+      "flag": "-H",
+      "aliases": [
+        "-header"
+      ],
+      "label": "H",
+      "description": "custom http headers to send with request",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "http_proxy",
+      "flag": "-http-proxy",
+      "aliases": [
+        "-proxy"
+      ],
+      "label": "Http Proxy",
+      "description": "//127.0.0.1:8080)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "unsafe",
+      "flag": "-unsafe",
+      "aliases": [],
+      "label": "Unsafe",
+      "description": "send raw requests skipping golang normalization",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "resume",
+      "flag": "-resume",
+      "aliases": [],
+      "label": "Resume",
+      "description": "resume scan using resume.cfg",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fr",
+      "flag": "-fr",
+      "aliases": [
+        "-follow-redirects"
+      ],
+      "label": "Fr",
+      "description": "follow http redirects",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "maxr",
+      "flag": "-maxr",
+      "aliases": [
+        "-max-redirects"
+      ],
+      "label": "Maxr",
+      "description": "max number of redirects to follow per host (default 10)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "fhr",
+      "flag": "-fhr",
+      "aliases": [
+        "-follow-host-redirects"
+      ],
+      "label": "Fhr",
+      "description": "follow redirects on the same host",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rhsts",
+      "flag": "-rhsts",
+      "aliases": [
+        "-respect-hsts"
+      ],
+      "label": "Rhsts",
+      "description": "respect HSTS response headers for redirect requests",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "vhost_input",
+      "flag": "-vhost-input",
+      "aliases": [],
+      "label": "Vhost Input",
+      "description": "get a list of vhosts as input",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "x",
+      "flag": "-x",
+      "aliases": [],
+      "label": "X",
+      "description": "request methods to probe, use 'all' to probe all HTTP methods",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "body",
+      "flag": "-body",
+      "aliases": [],
+      "label": "Body",
+      "description": "post body to include in http request",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "s",
+      "flag": "-s",
+      "aliases": [
+        "-stream"
+      ],
+      "label": "S",
+      "description": "stream mode - start elaborating input targets without sorting",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "sd",
+      "flag": "-sd",
+      "aliases": [
+        "-skip-dedupe"
+      ],
+      "label": "Sd",
+      "description": "disable dedupe input items (only used with stream mode)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ldp",
+      "flag": "-ldp",
+      "aliases": [
+        "-leave-default-ports       leave default http/https ports in host header (eg. http"
+      ],
+      "label": "Ldp",
+      "description": "//host:80 - https://host:443",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ztls",
+      "flag": "-ztls",
+      "aliases": [],
+      "label": "Ztls",
+      "description": "use ztls library with autofallback to standard one for tls13",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "no_decode",
+      "flag": "-no-decode",
+      "aliases": [],
+      "label": "No Decode",
+      "description": "avoid decoding body",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tlsi",
+      "flag": "-tlsi",
+      "aliases": [
+        "-tls-impersonate"
+      ],
+      "label": "Tlsi",
+      "description": "enable experimental client hello (ja3) tls randomization",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "no_stdin",
+      "flag": "-no-stdin",
+      "aliases": [],
+      "label": "No Stdin",
+      "description": "Disable Stdin processing",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "hae",
+      "flag": "-hae",
+      "aliases": [
+        "-http-api-endpoint"
+      ],
+      "label": "Hae",
+      "description": "experimental http api endpoint",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Configurations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "health_check",
+      "flag": "-health-check",
+      "aliases": [
+        "-hc"
+      ],
+      "label": "Health Check",
+      "description": "run diagnostic check up",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "debug",
+      "flag": "-debug",
+      "aliases": [],
+      "label": "Debug",
+      "description": "display request/response content in cli",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "debug_req",
+      "flag": "-debug-req",
+      "aliases": [],
+      "label": "Debug Req",
+      "description": "display request content in cli",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "debug_resp",
+      "flag": "-debug-resp",
+      "aliases": [],
+      "label": "Debug Resp",
+      "description": "display response content in cli",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "version",
+      "flag": "-version",
+      "aliases": [],
+      "label": "Version",
+      "description": "display httpx version",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "stats",
+      "flag": "-stats",
+      "aliases": [],
+      "label": "Stats",
+      "description": "display scan statistic",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "profile_mem",
+      "flag": "-profile-mem",
+      "aliases": [],
+      "label": "Profile Mem",
+      "description": "optional httpx memory profile dump file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "silent",
+      "flag": "-silent",
+      "aliases": [],
+      "label": "Silent",
+      "description": "silent mode",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "v",
+      "flag": "-v",
+      "aliases": [
+        "-verbose"
+      ],
+      "label": "V",
+      "description": "verbose mode",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "si",
+      "flag": "-si",
+      "aliases": [
+        "-stats-interval"
+      ],
+      "label": "Si",
+      "description": "5)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nc",
+      "flag": "-nc",
+      "aliases": [
+        "-no-color"
+      ],
+      "label": "Nc",
+      "description": "disable colors in cli output",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tr",
+      "flag": "-tr",
+      "aliases": [
+        "-trace"
+      ],
+      "label": "Tr",
+      "description": "trace",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Debug",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nf",
+      "flag": "-nf",
+      "aliases": [
+        "-no-fallback"
+      ],
+      "label": "Nf",
+      "description": "display both probed protocol (HTTPS and HTTP)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "nfs",
+      "flag": "-nfs",
+      "aliases": [
+        "-no-fallback-scheme"
+      ],
+      "label": "Nfs",
+      "description": "probe with protocol scheme specified in input",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "maxhr",
+      "flag": "-maxhr",
+      "aliases": [
+        "-max-host-error"
+      ],
+      "label": "Maxhr",
+      "description": "max error count per host before skipping remaining path/s (default 30)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "e",
+      "flag": "-e",
+      "aliases": [
+        "-exclude"
+      ],
+      "label": "E",
+      "description": "exclude host matching specified filter ('cdn', 'private-ips', cidr, ip, regex)",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "retries",
+      "flag": "-retries",
+      "aliases": [],
+      "label": "Retries",
+      "description": "number of retries",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "timeout",
+      "flag": "-timeout",
+      "aliases": [],
+      "label": "Timeout",
+      "description": "timeout in seconds (default 10)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "delay",
+      "flag": "-delay",
+      "aliases": [],
+      "label": "Delay",
+      "description": "200ms, 1s) (default -1ns)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rsts",
+      "flag": "-rsts",
+      "aliases": [
+        "-response-size-to-save"
+      ],
+      "label": "Rsts",
+      "description": "max response size to save in bytes (default 2147483647)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "rstr",
+      "flag": "-rstr",
+      "aliases": [
+        "-response-size-to-read"
+      ],
+      "label": "Rstr",
+      "description": "max response size to read in bytes (default 2147483647)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Optimizations",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "auth",
+      "flag": "-auth",
+      "aliases": [],
+      "label": "Auth",
+      "description": "configure projectdiscovery cloud (pdcp) api key (default true)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "ac",
+      "flag": "-ac",
+      "aliases": [
+        "-auth-config"
+      ],
+      "label": "Ac",
+      "description": "configure projectdiscovery cloud (pdcp) api key credential file",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pd",
+      "flag": "-pd",
+      "aliases": [
+        "-dashboard"
+      ],
+      "label": "Pd",
+      "description": "upload / view output in projectdiscovery cloud (pdcp) UI dashboard",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "tid",
+      "flag": "-tid",
+      "aliases": [
+        "-team-id"
+      ],
+      "label": "Tid",
+      "description": "upload asset results to given team id (optional)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "aid",
+      "flag": "-aid",
+      "aliases": [
+        "-asset-id"
+      ],
+      "label": "Aid",
+      "description": "upload new assets to existing asset id (optional)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "aname",
+      "flag": "-aname",
+      "aliases": [
+        "-asset-name"
+      ],
+      "label": "Aname",
+      "description": "assets group name to set (optional)",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    },
+    {
+      "id": "pdu",
+      "flag": "-pdu",
+      "aliases": [
+        "-dashboard-upload"
+      ],
+      "label": "Pdu",
+      "description": "upload httpx output file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "choices": null,
+      "group": "Cloud",
+      "placeholder": null,
+      "advanced": true
+    }
+  ]
+}

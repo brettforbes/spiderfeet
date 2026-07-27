@@ -198,6 +198,28 @@ nugget_structure/<tool>_nugget_graph_structure.md
 
 **SPEC-006:** Tool Structure docs must match the Nmap gold bar (`.governance/project/SPEC006_STRUCTURE_QUALITY_BAR.md`). Prefer `rules/<tool>/structure.yaml` + `render_structure_docs.py` once Epic M lands — see `.governance/project/SPEC006_AGENT_PLAN.md`. Also update composed ontology `.docs/docs-for-cli-tools/_Current_Ontology.md` when a new sub-graph lands.
 
+### SPEC-008 content bundle (required before operator review)
+
+Formal examination and onboarding are **incomplete** without a content-platform bundle under `modules_v2/content/<tool_id>/` per `.governance/project/SPEC008_CONTENT_CONTRACT.md`:
+
+```text
+modules_v2/content/<tool_id>/
+  manifest.json
+  options.md
+  options_schema.json
+  zero_to_hero.md
+  graph_structure.md
+```
+
+Generate/backfill:
+
+```bash
+python .seed/scripts/cli_corpus/backfill_content_bundles.py --tool <tool>
+python .seed/scripts/cli_corpus/generate_options_schema.py --tool <tool> --check
+```
+
+Resolve every entry in `options_schema.review.md` before marking the bundle Pass. Content is served by `GET /api/v1/content/*` (SPEC-008 R8-04).
+
 4. If graph/MD missing after an engine change but structured exists:
 
 ```bash
