@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-For **force-directed graphs**, use `references/force-graphs.md` and `assets/js/viz.force.js` (`Viz.ForceGraph`).
+For **force-directed graphs in SpiderFeet**, use `Viz.CanvasGraph` (`spiderfeet-widget` / SPEC-009). The SVG `Viz.ForceGraph` teaching sample in `assets/js/viz.force.js` / `references/force-graphs.md` is legacy only.
 
 ---
 

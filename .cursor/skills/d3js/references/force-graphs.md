@@ -1,6 +1,8 @@
 # Force-directed graph variants (D3 v7, vanilla JS)
 
-All examples assume `Viz.ForceGraph.create()` or the same simulation API. Nodes need `id`; links use `source`/`target` as ids or objects after `forceLink` runs.
+**Current SpiderFeet engine:** `Viz.CanvasGraph` (canvas + Web Worker) in `spiderfeet-widget` — SPEC-009.
+
+The examples below assume a classic SVG `Viz.ForceGraph.create()` teaching API (skill assets). Prefer CanvasGraph for production Maps / CLI Scan graphs. Nodes need `id`; links use `source`/`target` as ids or objects after `forceLink` runs.
 
 ## Shared render loop
 
