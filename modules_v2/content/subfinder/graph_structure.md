@@ -25,7 +25,7 @@ flowchart TD
 
 ## Subdomain enumeration tree
 
-Each JSONL host becomes a DOMAIN_NAME under the scan. Passive mode leaves liveness unconfirmed; active mode with IP attaches IP_ADDRESS via had on the domain node.
+Each JSONL host becomes a DOMAIN_NAME under the scan. Passive mode leaves liveness unconfirmed; active mode with IP attaches IPV4_ADDRESS via had on the domain node.
 
 ```mermaid
 flowchart TD
@@ -36,7 +36,7 @@ flowchart TD
   discovery_mode_5["DISCOVERY_MODE"]
   discovery_source_6["DISCOVERY_SOURCE"]
   liveness_status_7["LIVENESS_STATUS"]
-  ip_address_8["IP_ADDRESS"]
+  ip_address_8["IPV4_ADDRESS"]
   scan_record_1 -->|contains| domain_name_2
   domain_name_3 -->|contains| domain_name_4
   domain_name_3 -->|had| discovery_mode_5
@@ -51,7 +51,7 @@ flowchart TD
 
 ## Active resolution with IP
 
-Active enumeration (-active -oI) attaches resolved IP_ADDRESS via had and sets LIVENESS_STATUS to confirmed on the domain node.
+Active enumeration (-active -oI) attaches resolved IPV4_ADDRESS via had and sets LIVENESS_STATUS to confirmed on the domain node.
 
 ```mermaid
 flowchart TD
@@ -62,7 +62,7 @@ flowchart TD
   discovery_mode_5["DISCOVERY_MODE"]
   discovery_source_6["DISCOVERY_SOURCE"]
   liveness_status_7["LIVENESS_STATUS"]
-  ip_address_8["IP_ADDRESS"]
+  ip_address_8["IPV4_ADDRESS"]
   scan_record_1 -->|contains| domain_name_2
   domain_name_3 -->|contains| domain_name_4
   domain_name_3 -->|had| discovery_mode_5
@@ -79,7 +79,7 @@ flowchart TD
 | corporate_squarepeg_passive_cs | Small VC subdomain set |
 | corporate_vcof_sparse_passive | Ultra-sparse single host |
 | corporate_k2am_passive_cs | Hosting-style SME enumeration |
-| corporate_k2am_active_oI | Active mode + IP_ADDRESS had edges |
+| corporate_k2am_active_oI | Active mode + IPV4_ADDRESS had edges |
 | corporate_upside_com_passive_cs | TLD sibling enumeration |
 | enterprise_sbs_passive_cs | Enterprise-scale volume |
 | invalid_domain_clean_miss | SCAN + apex only; empty records[] |
@@ -106,7 +106,7 @@ Canonical vocabulary: `.docs/analysis/nuggets.json` and `.docs/analysis/nuggets_
 | exit_code | SCAN_EXIT_STATUS |  |
 | records[].host | DOMAIN_NAME | scan contains; parent DOMAIN_NAME_PARENT had |
 | records[].sources[] | DISCOVERY_SOURCE | had on domain |
-| records[].ip | IP_ADDRESS | had on domain when active |
+| records[].ip | IPV4_ADDRESS | had on domain when active |
 | records[].mode | DISCOVERY_MODE | had on domain |
 
 ## Review notes

@@ -38,8 +38,8 @@ flowchart LR
   SERVICE -->|listens-to| PORT
   SERVICE -->|had| TLS_ENABLED
   SERVICE -->|had| SERVICE_BANNER
-  NETWORKS -->|contains| IP_ADDRESS
-  IP_ADDRESS -->|contains| TRANSPORT
+  NETWORKS -->|contains| IPV4_ADDRESS
+  IPV4_ADDRESS -->|contains| TRANSPORT
 ```
 
 ## Trace
@@ -55,8 +55,8 @@ _Trace section omitted when no TRACE nodes present._
 - `CLASSIFICATION_RULE_FIRED`: B1+B2: durable identity with non-web port profile
 - `HOST`: scanme.nmap.org:group:1
 - `HOST_CLASSIFICATION`: standard_host
+- `IPV4_ADDRESS`: 45.33.32.156
 - `IPV6_ADDRESS`: 2600:3c01::f03c:91ff:fe18:bb2f
-- `IP_ADDRESS`: 45.33.32.156
 - `NETWORKS`: networks:scanme.nmap.org:group:1
 - `PORT`: 22
 - `SCAN_CLI`: nerva -t scanme.nmap.org:22 --json --misconfigs -w 8000
@@ -91,8 +91,8 @@ _Trace section omitted when no TRACE nodes present._
 - `SERVICE` `listens-to` `PORT`
 - `SERVICE` `had` `TLS_ENABLED`
 - `SERVICE` `had` `SERVICE_BANNER`
-- `NETWORKS` `contains` `IP_ADDRESS`
-- `IP_ADDRESS` `contains` `TRANSPORT`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `contains` `TRANSPORT`
 ---
 
 *OS-Intel Scan*

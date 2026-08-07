@@ -46,8 +46,8 @@ flowchart LR
   SERVICE -->|contains| SOFTWARE_USED
   SOFTWARE_USED -->|had| ORIGIN_FINGERPRINT_SUPPRESSED
   SERVICE -->|contains| CPE_URL
-  NETWORKS -->|contains| IP_ADDRESS
-  IP_ADDRESS -->|contains| TRANSPORT
+  NETWORKS -->|contains| IPV4_ADDRESS
+  IPV4_ADDRESS -->|contains| TRANSPORT
 ```
 
 ## Trace
@@ -68,8 +68,8 @@ _Trace section omitted when no TRACE nodes present._
 - `CPE_URL`: cpe:2.3:o:canonical:ubuntu_linux:*:*:*:*:*:*:*:*
 - `HOST_CLASSIFICATION`: fronted_unknown
 - `HTTP_STATUS_CODE`: 200
+- `IPV4_ADDRESS`: 45.33.32.156
 - `IPV6_ADDRESS`: 2600:3c01::f03c:91ff:fe18:bb2f
-- `IP_ADDRESS`: 45.33.32.156
 - `NETWORKS`: networks:scanme.nmap.org
 - `ORIGIN_FINGERPRINT_SUPPRESSED`: True
 - `ORIGIN_HOST_COUNT`: indeterminate
@@ -121,8 +121,8 @@ _Trace section omitted when no TRACE nodes present._
 - `SERVICE` `contains` `CPE_URL`
 - `SERVICE` `contains` `CPE_URL`
 - `SERVICE` `contains` `CPE_URL`
-- `NETWORKS` `contains` `IP_ADDRESS`
-- `IP_ADDRESS` `contains` `TRANSPORT`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `contains` `TRANSPORT`
 ---
 
 *OS-Intel Scan*

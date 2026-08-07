@@ -640,9 +640,9 @@
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "IP_ADDRESS--2cc94704-b1eb-5604-b431-5fd177e041b5",
-      "nugget_instance_id": "IP_ADDRESS--2cc94704-b1eb-5604-b431-5fd177e041b5",
-      "nugget_id": "IP_ADDRESS",
+      "id": "IPV4_ADDRESS--2cc94704-b1eb-5604-b431-5fd177e041b5",
+      "nugget_instance_id": "IPV4_ADDRESS--2cc94704-b1eb-5604-b431-5fd177e041b5",
+      "nugget_id": "IPV4_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "IP Address",
       "nugget_data": "172.66.43.196",
@@ -667,9 +667,9 @@
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "IP_ADDRESS--6d3800aa-303e-556b-9268-c31a4c3c3134",
-      "nugget_instance_id": "IP_ADDRESS--6d3800aa-303e-556b-9268-c31a4c3c3134",
-      "nugget_id": "IP_ADDRESS",
+      "id": "IPV4_ADDRESS--6d3800aa-303e-556b-9268-c31a4c3c3134",
+      "nugget_instance_id": "IPV4_ADDRESS--6d3800aa-303e-556b-9268-c31a4c3c3134",
+      "nugget_id": "IPV4_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "IP Address",
       "nugget_data": "172.66.40.60",
@@ -1067,11 +1067,11 @@
     },
     {
       "source": "NETWORKS--484fd7da-f3cb-5c05-9de2-41d730a1b3f1",
-      "target": "IP_ADDRESS--2cc94704-b1eb-5604-b431-5fd177e041b5",
+      "target": "IPV4_ADDRESS--2cc94704-b1eb-5604-b431-5fd177e041b5",
       "relation": "contains"
     },
     {
-      "source": "IP_ADDRESS--2cc94704-b1eb-5604-b431-5fd177e041b5",
+      "source": "IPV4_ADDRESS--2cc94704-b1eb-5604-b431-5fd177e041b5",
       "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "relation": "contains"
     },
@@ -1087,11 +1087,11 @@
     },
     {
       "source": "NETWORKS--484fd7da-f3cb-5c05-9de2-41d730a1b3f1",
-      "target": "IP_ADDRESS--6d3800aa-303e-556b-9268-c31a4c3c3134",
+      "target": "IPV4_ADDRESS--6d3800aa-303e-556b-9268-c31a4c3c3134",
       "relation": "contains"
     },
     {
-      "source": "IP_ADDRESS--6d3800aa-303e-556b-9268-c31a4c3c3134",
+      "source": "IPV4_ADDRESS--6d3800aa-303e-556b-9268-c31a4c3c3134",
       "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "relation": "contains"
     },

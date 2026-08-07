@@ -253,9 +253,9 @@
       "nugget_colour": "#F97316"
     },
     {
-      "id": "IP_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
-      "nugget_instance_id": "IP_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
-      "nugget_id": "IP_ADDRESS",
+      "id": "IPV4_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "nugget_instance_id": "IPV4_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "nugget_id": "IPV4_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "IP Address",
       "nugget_data": "45.33.32.156",
@@ -415,11 +415,11 @@
     },
     {
       "source": "NETWORKS--fb930dd0-bca3-5ded-bff0-55e72f55f370",
-      "target": "IP_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "target": "IPV4_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
       "relation": "contains"
     },
     {
-      "source": "IP_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
+      "source": "IPV4_ADDRESS--eec99abe-0fa1-5a70-806c-9f779a46d111",
       "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "relation": "contains"
     }

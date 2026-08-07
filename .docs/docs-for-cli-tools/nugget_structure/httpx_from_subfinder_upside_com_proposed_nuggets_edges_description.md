@@ -31,8 +31,8 @@ flowchart LR
   SCAN_RECORD -->|contains| HOST
   DOMAIN_NAME -->|had| HOST
   HOST -->|contains| NETWORKS
-  NETWORKS -->|contains| IP_ADDRESS
-  IP_ADDRESS -->|contains| TRANSPORT
+  NETWORKS -->|contains| IPV4_ADDRESS
+  IPV4_ADDRESS -->|contains| TRANSPORT
   TRANSPORT -->|had| TRANSPORT_PROTOCOL
   TRANSPORT -->|contains| PORT
   PORT -->|had| PORT_STATE
@@ -51,8 +51,8 @@ flowchart LR
   SERVICE -->|had| PAGE_TYPE
   SERVICE -->|had| PAGE_HASH
   SERVICE -->|contains| SOFTWARE_USED
-  DOMAIN_NAME -->|had| IP_ADDRESS
-  IP_ADDRESS -->|had| PROBE_CONNECTED
+  DOMAIN_NAME -->|had| IPV4_ADDRESS
+  IPV4_ADDRESS -->|had| PROBE_CONNECTED
   SERVICE -->|had| HTTP_TITLE
   SERVICE -->|had| CONTENT_TYPE
   SERVICE -->|had| IS_ERROR_PAGE
@@ -124,15 +124,15 @@ _Trace section omitted when no TRACE nodes present._
 - `HTTP_TITLE`: THE UPSIDE | INTERNATIONAL
 - `HTTP_TITLE`: THE UPSIDE | UK
 - `HTTP_TITLE`: THE UPSIDE | USA
-- `IP_ADDRESS`: 104.18.36.254
-- `IP_ADDRESS`: 104.19.180.3
-- `IP_ADDRESS`: 104.19.181.3
-- `IP_ADDRESS`: 104.21.23.140
-- `IP_ADDRESS`: 13.55.48.164
-- `IP_ADDRESS`: 172.64.151.2
-- `IP_ADDRESS`: 172.67.211.84
-- `IP_ADDRESS`: 217.175.192.21
-- `IP_ADDRESS`: 3.106.48.93
+- `IPV4_ADDRESS`: 104.18.36.254
+- `IPV4_ADDRESS`: 104.19.180.3
+- `IPV4_ADDRESS`: 104.19.181.3
+- `IPV4_ADDRESS`: 104.21.23.140
+- `IPV4_ADDRESS`: 13.55.48.164
+- `IPV4_ADDRESS`: 172.64.151.2
+- `IPV4_ADDRESS`: 172.67.211.84
+- `IPV4_ADDRESS`: 217.175.192.21
+- `IPV4_ADDRESS`: 3.106.48.93
 - `IS_ERROR_PAGE`: true
 - `LINE_COUNT`: 0
 - `LINE_COUNT`: 1
@@ -218,8 +218,8 @@ _Trace section omitted when no TRACE nodes present._
 - `SCAN_RECORD` `contains` `HOST`
 - `DOMAIN_NAME` `had` `HOST`
 - `HOST` `contains` `NETWORKS`
-- `NETWORKS` `contains` `IP_ADDRESS`
-- `IP_ADDRESS` `contains` `TRANSPORT`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `contains` `TRANSPORT`
 - `TRANSPORT` `had` `TRANSPORT_PROTOCOL`
 - `TRANSPORT` `contains` `PORT`
 - `PORT` `had` `PORT_STATE`
@@ -240,17 +240,17 @@ _Trace section omitted when no TRACE nodes present._
 - `SERVICE` `contains` `SOFTWARE_USED`
 - `SERVICE` `contains` `SOFTWARE_USED`
 - `SERVICE` `contains` `SOFTWARE_USED`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `HTTP_LIVENESS_STATUS`
 - `SCAN_RECORD` `contains` `HOST`
 - `DOMAIN_NAME` `had` `HOST`
 - `HOST` `contains` `NETWORKS`
-- `NETWORKS` `contains` `IP_ADDRESS`
-- `IP_ADDRESS` `contains` `TRANSPORT`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `contains` `TRANSPORT`
 - `HOST` `contains` `APPLICATIONS`
 - `SERVICE` `had` `HTTP_STATUS_CODE`
 - `SERVICE` `had` `HTTP_TITLE`
@@ -269,10 +269,10 @@ _Trace section omitted when no TRACE nodes present._
 - `SERVICE` `contains` `SOFTWARE_USED`
 - `DOMAIN_NAME` `had` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `CNAME_TARGET`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `HTTP_LIVENESS_STATUS`
 - `SCAN_RECORD` `contains` `CDN`
@@ -280,8 +280,8 @@ _Trace section omitted when no TRACE nodes present._
 - `CDN` `had` `CDN_NAME`
 - `CDN` `had` `CDN_TYPE`
 - `CDN` `contains` `NETWORKS`
-- `NETWORKS` `contains` `IP_ADDRESS`
-- `IP_ADDRESS` `contains` `TRANSPORT`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `contains` `TRANSPORT`
 - `CDN` `contains` `APPLICATIONS`
 - `SERVICE` `had` `HTTP_STATUS_CODE`
 - `SERVICE` `had` `CONTENT_TYPE`
@@ -297,17 +297,17 @@ _Trace section omitted when no TRACE nodes present._
 - `DOMAIN_NAME` `had` `CNAME_TARGET`
 - `DOMAIN_NAME` `had` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `CNAME_TARGET`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `HTTP_LIVENESS_STATUS`
 - `SCAN_RECORD` `contains` `HOST`
 - `DOMAIN_NAME` `had` `HOST`
 - `HOST` `contains` `NETWORKS`
-- `NETWORKS` `contains` `IP_ADDRESS`
-- `IP_ADDRESS` `contains` `TRANSPORT`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `contains` `TRANSPORT`
 - `HOST` `contains` `APPLICATIONS`
 - `SERVICE` `had` `HTTP_STATUS_CODE`
 - `SERVICE` `had` `HTTP_TITLE`
@@ -322,15 +322,15 @@ _Trace section omitted when no TRACE nodes present._
 - `SERVICE` `contains` `SOFTWARE_USED`
 - `SERVICE` `contains` `SOFTWARE_USED`
 - `SERVICE` `contains` `SOFTWARE_USED`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `HTTP_LIVENESS_STATUS`
 - `DOMAIN_NAME` `had` `HOST`
-- `NETWORKS` `contains` `IP_ADDRESS`
-- `IP_ADDRESS` `contains` `TRANSPORT`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `contains` `TRANSPORT`
 - `SERVICE` `had` `HTTP_TITLE`
 - `SERVICE` `had` `CONTENT_LENGTH`
 - `SERVICE` `had` `RESPONSE_TIME_MS`
@@ -338,23 +338,23 @@ _Trace section omitted when no TRACE nodes present._
 - `SERVICE` `had` `LINE_COUNT`
 - `SERVICE` `had` `PROBE_TIMESTAMP`
 - `SERVICE` `contains` `SOFTWARE_USED`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `HTTP_LIVENESS_STATUS`
 - `SCAN_RECORD` `contains` `HOST`
 - `DOMAIN_NAME` `had` `HOST`
 - `HOST` `contains` `NETWORKS`
-- `NETWORKS` `contains` `IP_ADDRESS`
-- `IP_ADDRESS` `contains` `TRANSPORT`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `contains` `TRANSPORT`
 - `HOST` `contains` `APPLICATIONS`
 - `SERVICE` `had` `HTTP_STATUS_CODE`
 - `SERVICE` `had` `RESPONSE_TIME_MS`
 - `SERVICE` `had` `PROBE_TIMESTAMP`
 - `DOMAIN_NAME` `had` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `CNAME_TARGET`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `HTTP_LIVENESS_STATUS`
 - `SCAN_RECORD` `contains` `CDN`
@@ -369,9 +369,9 @@ _Trace section omitted when no TRACE nodes present._
 - `SERVICE` `had` `WORD_COUNT`
 - `SERVICE` `had` `LINE_COUNT`
 - `SERVICE` `had` `PROBE_TIMESTAMP`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `HTTP_LIVENESS_STATUS`
 - `DOMAIN_NAME` `had` `HOST`
@@ -379,7 +379,7 @@ _Trace section omitted when no TRACE nodes present._
 - `SERVICE` `had` `PROBE_TIMESTAMP`
 - `DOMAIN_NAME` `had` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `CNAME_TARGET`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
 - `DOMAIN_NAME` `had` `HTTP_LIVENESS_STATUS`
 ---
 
