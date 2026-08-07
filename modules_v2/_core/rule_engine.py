@@ -26,7 +26,7 @@ def _load_yaml(path: Path) -> dict[str, Any]:
 
 
 def load_shared_rules(shared_dir: Path) -> dict[str, Any]:
-    """Load optional shared YAML contracts from `rules/_shared/`."""
+    """Load optional shared YAML contracts from `_rules/_shared/`."""
     shared: dict[str, Any] = {}
     if not shared_dir.is_dir():
         return shared

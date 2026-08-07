@@ -1,0 +1,97 @@
+tool: subfinder
+display_name: Subfinder
+seed_docs:
+  - .seed/05_Onotology_for_Nuggets.md
+  - .seed/09_Ontology_For_Subfinder.md
+generator: .seed/scripts/cli_corpus/adapters/subfinder
+artifacts:
+  graph: subfinder_<scenario_id>_proposed_nuggets_edges.json
+  narrative: subfinder_<scenario_id>_proposed_nuggets_edges_description.md
+  output_dir: .docs/docs-for-cli-tools/nugget_structure
+narrative:
+  engine: .seed/scripts/cli_corpus/core/narrative_engine.py
+  method: render_narrative
+patterns:
+  - id: scan_head
+    title: Scan head
+    prose: >
+      SCAN_RECORD carries SCAN_CLI, SCAN_TARGET, SCAN_MODE, timing, and exit descriptors.
+      The seed apex DOMAIN_NAME always links from scan via contains.
+  - id: domain_apex
+    title: Subdomain enumeration tree
+    prose: >
+      Each JSONL host becomes a DOMAIN_NAME under the scan. Passive mode leaves liveness
+      unconfirmed; active mode with IP attaches IPV4_ADDRESS via had on the domain node.
+    bullets:
+      - DISCOVERY_SOURCE and DISCOVERY_MODE descriptors capture passive/active provenance.
+      - DOMAIN_NAME_PARENT derives registrable parent labels per 09 S6.
+      - CDN_REVIEW_NEEDED may attach when multiple hosts share one IP.
+specialty_sections:
+  - title: Active resolution with IP
+    pattern: domain_apex
+    prose: >
+      Active enumeration (-active -oI) attaches resolved IPV4_ADDRESS via had and sets
+      LIVENESS_STATUS to confirmed on the domain node.
+scenarios:
+  - id: corporate_upside_au_passive_cs
+    structures: DOMAIN_NAME apex + passive subdomains + sources
+  - id: corporate_squarepeg_passive_cs
+    structures: Small VC subdomain set
+  - id: corporate_vcof_sparse_passive
+    structures: Ultra-sparse single host
+  - id: corporate_k2am_passive_cs
+    structures: Hosting-style SME enumeration
+  - id: corporate_k2am_active_oI
+    structures: Active mode + IPV4_ADDRESS had edges
+  - id: corporate_upside_com_passive_cs
+    structures: TLD sibling enumeration
+  - id: enterprise_sbs_passive_cs
+    structures: Enterprise-scale volume
+  - id: invalid_domain_clean_miss
+    structures: SCAN + apex only; empty records[]
+field_mapping:
+  - path: command
+    nugget_id: SCAN_CLI
+  - path: target
+    nugget_id: SCAN_TARGET
+  - path: enumeration_mode
+    nugget_id: SCAN_MODE
+  - path: started_at
+    nugget_id: SCAN_START
+  - path: duration_s
+    nugget_id: SCAN_ELAPSED
+  - path: exit_code
+    nugget_id: SCAN_EXIT_STATUS
+  - path: records[].host
+    nugget_id: DOMAIN_NAME
+    notes: scan contains; parent DOMAIN_NAME_PARENT had
+  - path: records[].sources[]
+    nugget_id: DISCOVERY_SOURCE
+    notes: had on domain
+  - path: records[].ip
+    nugget_id: IPV4_ADDRESS
+    notes: had on domain when active
+  - path: records[].mode
+    nugget_id: DISCOVERY_MODE
+    notes: had on domain
+proposed_nuggets:
+  - nugget_id: DOMAIN_NAME
+    type: ENTITY
+    parent: SCAN_RECORD
+    source: host field
+    relation: contains
+  - nugget_id: DISCOVERY_SOURCE
+    type: DESCRIPTOR
+    parent: DOMAIN_NAME
+    source: sources[]
+    relation: had
+  - nugget_id: LIVENESS_STATUS
+    type: DESCRIPTOR
+    parent: DOMAIN_NAME
+    source: passive vs active
+    relation: had
+review_notes:
+  - Duplicate apex host equal to seed is deduplicated by GraphBuilder.
+  - Per-source separate nodes are collapsed to DISCOVERY_SOURCE descriptors.
+  - DNS resolves-to relation is deferred until SPEC-approved; IP uses had on domain.
+cross_link: ../_Current_Ontology.md

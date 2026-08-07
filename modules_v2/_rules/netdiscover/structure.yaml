@@ -1,0 +1,78 @@
+tool: netdiscover
+display_name: Netdiscover
+seed_docs:
+  - .seed/05_Onotology_for_Nuggets.md
+  - .seed/06A_Updates_to_NetDiscover_Cli_App_Profiling copy.md
+generator: .seed/scripts/cli_corpus/adapters/netdiscover
+artifacts:
+  graph: netdiscover_<scenario_id>_proposed_nuggets_edges.json
+  narrative: netdiscover_<scenario_id>_proposed_nuggets_edges_description.md
+  output_dir: .docs/docs-for-cli-tools/nugget_structure
+narrative:
+  engine: .seed/scripts/cli_corpus/core/narrative_engine.py
+  method: render_narrative
+patterns:
+  - id: scan_head
+    title: Scan head
+    prose: >
+      Every graph has one SCAN_RECORD entity with scan descriptors linked via had.
+      Discovered systems link from the scan via contains.
+    bullets:
+      - SCAN_ARGS, SCAN_TIMESTAMP, SCAN_TRIES, SCAN_EMPTY_SCANS, SCAN_DISCOVERED attach via had.
+  - id: system_l2
+    title: System tree (all scenarios)
+    bullets:
+      - NETWORKS is a CATEGORY nugget under SYSTEM.
+      - MAC_VENDOR is a descriptor on MAC_ADDRESS via had; identical vendor strings dedupe.
+      - Instance ids use uuid5(ontology_seed, nugget_data) via graph_builder.nugget_instance_id().
+specialty_sections:
+  - title: Multi-system scan overview
+    pattern: system_l2
+    prose: Rich LAN scenarios attach many SYSTEM nodes to one scan; each expands to its own NETWORKS tree keyed by IPv4.
+    bullets:
+      - Netdiscover examinations do not emit TRACE, APPLICATIONS, ENVIRONMENT, or vulnerability categories.
+scenarios:
+  - id: local_subnet_active_parsable
+    structures: SCAN + 12 SYSTEM; flat parseable output
+    notes: 1 try / 0 empty
+  - id: local_subnet_active_text
+    structures: SCAN + SYSTEM; interactive TUI
+    notes: multi-frame SCAN_TRIES / SCAN_EMPTY_SCANS
+  - id: local_subnet_fast_parsable
+    structures: SCAN + 1 SYSTEM; fast gateway probe
+  - id: passive_snippet_text
+    structures: SCAN + 11 SYSTEM; passive TUI
+    notes: shared MAC_VENDOR for Unknown
+  - id: sparse_subnet_parsable
+    structures: SCAN + 12 SYSTEM; full /24 active rescan
+field_mapping:
+  - path: netdiscover_scan.args
+    nugget_id: SCAN_ARGS
+  - path: netdiscover_scan.start_time
+    nugget_id: SCAN_TIMESTAMP
+  - path: runstats.finished_time.end_time
+    nugget_id: SCAN_END_TIME
+  - path: runstats.finished_time.summary
+    nugget_id: SCAN_SUMMARY
+  - path: exit_status
+    nugget_id: SCAN_EXIT_STATUS
+  - path: runstats.systems.scan_tries
+    nugget_id: SCAN_TRIES
+  - path: runstats.systems.empty_scans
+    nugget_id: SCAN_EMPTY_SCANS
+  - path: runstats.systems.discovered
+    nugget_id: SCAN_DISCOVERED
+  - path: systems[].ipv4
+    nugget_id: SYSTEM, IPV4_ADDRESS
+    notes: scan contains SYSTEM; NETWORKS contains IP
+  - path: systems[].mac
+    nugget_id: MAC_ADDRESS
+    notes: NETWORKS contains MAC
+  - path: systems[].mac_vendor
+    nugget_id: MAC_VENDOR
+    notes: MAC_ADDRESS had MAC_VENDOR
+review_notes:
+  - Relations use ontology vocabulary contains and had only.
+  - Emit SYSTEM (not HOST) when only MAC vendor and IPv4 are known.
+  - Runtime may use Windows LAN simulator when WSL mirrored eth1 is unavailable.
+cross_link: ../_Current_Ontology.md

@@ -9,10 +9,11 @@ from typing import Any
 
 import yaml
 
-_CORPUS_DIR = Path(__file__).resolve().parents[1]
+from .paths import RULES_DIR, SHARED_RULES_DIR
+
 _REPO_ROOT = Path(__file__).resolve().parents[2]
-_SHARED_STRUCTURE = _CORPUS_DIR / "rules" / "_shared" / "structure_v1.yaml"
-_RULES_DIR = _CORPUS_DIR / "rules"
+_SHARED_STRUCTURE = SHARED_RULES_DIR / "structure_v1.yaml"
+_RULES_DIR = RULES_DIR
 _STRUCTURE_OUTPUT_DIR = _REPO_ROOT / ".docs" / "docs-for-cli-tools" / "nugget_structure"
 _ONTOLOGY_PATH = _REPO_ROOT / ".docs" / "docs-for-cli-tools" / "_Current_Ontology.md"
 

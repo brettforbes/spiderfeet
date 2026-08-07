@@ -7,7 +7,7 @@ from typing import Any
 
 
 def load_narrative_profile(path: Path) -> dict[str, Any]:
-    """Load rules/<tool>/narrative.yaml when present."""
+    """Load _rules/<tool>/narrative.yaml when present."""
     import yaml
 
     if not path.is_file():

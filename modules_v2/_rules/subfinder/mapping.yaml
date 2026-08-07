@@ -1,0 +1,31 @@
+tool: subfinder
+capture_family: structured_native
+seed_docs:
+  - .seed/09_Ontology_For_Subfinder.md
+  - .seed/14_Business_Rules_for_Converting_Structured_Data_to_Graph.md
+scan_head:
+  data_path: scan_data
+  fallback: subfinder scan
+hooks:
+  - apply_subfinder_records
+topology_templates:
+  - scan_head
+mappings:
+  - path: command
+    nugget_id: SCAN_CLI
+    relation: had
+  - path: target
+    nugget_id: SCAN_TARGET
+    relation: had
+  - path: enumeration_mode
+    nugget_id: SCAN_MODE
+    relation: had
+  - path: started_at
+    nugget_id: SCAN_START
+    relation: had
+  - path: duration_s
+    nugget_id: SCAN_ELAPSED
+    relation: had
+  - path: exit_code
+    nugget_id: SCAN_EXIT_STATUS
+    relation: had

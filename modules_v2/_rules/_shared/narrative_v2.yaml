@@ -1,0 +1,37 @@
+version: 1
+meta_concepts:
+  scan:
+    nugget_ids: [SCAN_RECORD]
+    heading: Scan
+  host:
+    nugget_ids: [HOST, SYSTEM]
+    heading: Host
+  system:
+    nugget_ids: [HOST, SYSTEM, CDN]
+    heading: System
+  cdn:
+    nugget_ids: [CDN]
+    heading: CDN
+  trace:
+    nugget_ids: [TRACE]
+    heading: Trace
+category_order:
+  - ENVIRONMENT
+  - NETWORKS
+  - APPLICATIONS
+  - VULNERABILITIES
+mermaid:
+  mode: type_relation
+  sanitize: true
+appendix:
+  mode: table
+footer:
+  brand: OS-Intel Scan
+intro:
+  hierarchy_blurb: >-
+    This report follows Scan → Host/System (categories) → Trace → Appendix.
+    Section diagrams show ontology types and relations only; values appear in prose, tables, and the appendix.
+intro_facts:
+  default: >-
+    The scan used {tool_name}. Findings are organised under each host or system's category
+    sections ({categories}). This report follows Scan → Host/System → Trace → Appendix.

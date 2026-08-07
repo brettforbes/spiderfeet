@@ -1,0 +1,27 @@
+tool: netdiscover
+capture_family: text_native
+seed_docs:
+  - .seed/06A_Updates_to_NetDiscover_Cli_App_Profiling copy.md
+  - .seed/14_Business_Rules_for_Converting_Structured_Data_to_Graph.md
+scan_head:
+  data_path: netdiscover_scan.args
+  fallback: netdiscover scan
+topology_templates:
+  - scan_head
+  - system_l2
+mappings:
+  - path: netdiscover_scan.start_time
+    nugget_id: SCAN_TIMESTAMP
+    relation: had
+  - path: netdiscover_scan.exit_status
+    nugget_id: SCAN_EXIT_STATUS
+    relation: had
+  - path: netdiscover_scan.runstats.systems.scan_tries
+    nugget_id: SCAN_TRIES
+    relation: had
+  - path: netdiscover_scan.runstats.systems.empty_scans
+    nugget_id: SCAN_EMPTY_SCANS
+    relation: had
+  - path: netdiscover_scan.runstats.systems.discovered
+    nugget_id: SCAN_DISCOVERED
+    relation: had
