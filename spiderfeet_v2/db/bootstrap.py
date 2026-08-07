@@ -177,6 +177,51 @@ def bootstrap_actual(
     return report
 
 
+def catalogue_seeded(driver: Driver, database: str) -> bool:
+    """True when all 8 sfp-cli-app-* services are present."""
+    return count_cli_services(driver, database) == len(CLI_APP_SERVICES)
+
+
+def needs_actual_bootstrap(
+    cfg: Optional[TypeDBConnectionConfig] = None,
+    *,
+    database: Optional[str] = None,
+) -> bool:
+    """True when spiderfeet-actual is missing, has no schema, or lacks CLI service seeds."""
+    cfg = cfg or load_connection_config()
+    db_name = database or ACTUAL_DATABASE_NAME
+    driver = open_driver(cfg)
+    try:
+        if not driver.databases.contains(db_name):
+            return True
+        if not schema_loaded(driver, db_name):
+            return True
+        return not catalogue_seeded(driver, db_name)
+    finally:
+        driver.close()
+
+
+def ensure_actual_ready(
+    cfg: Optional[TypeDBConnectionConfig] = None,
+    *,
+    database: Optional[str] = None,
+) -> bool:
+    """
+    Idempotently create/seed spiderfeet-actual when DB, schema, or CLI seeds are missing.
+
+    Never resets/drops an existing database. Returns True when bootstrap ran.
+    """
+    cfg = cfg or load_connection_config()
+    if not needs_actual_bootstrap(cfg, database=database):
+        return False
+    report = bootstrap_actual(cfg, database=database, reset=False)
+    if not report.ok:
+        raise RuntimeError(
+            "spiderfeet-actual bootstrap failed: " + "; ".join(report.errors)
+        )
+    return True
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(
         description="Bootstrap spiderfeet-actual TypeDB database (SPEC-010 AI3 / R10-09)"

@@ -2,7 +2,12 @@
 
 from typing import Any
 
-__all__ = ["BootstrapReport", "bootstrap_actual"]
+__all__ = [
+    "BootstrapReport",
+    "bootstrap_actual",
+    "ensure_actual_ready",
+    "needs_actual_bootstrap",
+]
 
 
 def __getattr__(name: str) -> Any:

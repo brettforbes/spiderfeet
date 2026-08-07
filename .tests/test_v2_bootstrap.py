@@ -56,3 +56,55 @@ def test_refuse_reset_actual_without_override(capsys) -> None:
     assert rc == 3
     err = capsys.readouterr().err
     assert "G1" in err or "spiderfeet-actual" in err
+
+
+def test_ensure_actual_ready_create_if_missing() -> None:
+    pytest.importorskip("typedb.driver")
+    from spiderfeet.map.config import TypeDBConfigError, load_connection_config
+    from spiderfeet.map.connection import open_driver, ping
+    from spiderfeet_v2.db.bootstrap import (
+        count_cli_services,
+        ensure_actual_ready,
+        needs_actual_bootstrap,
+        schema_loaded,
+    )
+
+    smoke = "spiderfeet-ai3-ensure"
+    try:
+        cfg = load_connection_config()
+    except TypeDBConfigError as exc:
+        pytest.skip(f"TypeDB config missing: {exc}")
+    if not ping(cfg):
+        pytest.skip("TypeDB server not reachable")
+
+    driver = open_driver(cfg)
+    try:
+        if driver.databases.contains(smoke):
+            driver.databases.get(smoke).delete()
+    finally:
+        driver.close()
+
+    assert needs_actual_bootstrap(cfg, database=smoke) is True
+    assert ensure_actual_ready(cfg, database=smoke) is True
+    assert ensure_actual_ready(cfg, database=smoke) is False  # idempotent
+
+    driver = open_driver(cfg)
+    try:
+        assert schema_loaded(driver, smoke)
+        assert count_cli_services(driver, smoke) == 8
+        if driver.databases.contains(smoke):
+            driver.databases.get(smoke).delete()
+    finally:
+        driver.close()
+
+
+def test_api_startup_bootstraps_both_databases() -> None:
+    """Lifespan helper must call ensure_map_ready and ensure_actual_ready."""
+    import inspect
+
+    from spiderfeet.api import app as api_app
+
+    src = inspect.getsource(api_app._auto_bootstrap_typedb_at_startup)
+    assert "ensure_map_ready" in src
+    assert "ensure_actual_ready" in src
+    assert "ACTUAL_DATABASE_NAME" in src
