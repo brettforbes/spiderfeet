@@ -711,10 +711,10 @@ define
 		owns author, # author of the workflow, e.g. "Modeller"
 		owns created, # time workflow was created
 		owns workflow_yaml, # string description in yaml workflow DSL, to feed to the workflow iFrame widget
-		relates first_step,
-		relates prior_step,
-		relates next_step,
-		relates target,
+		relates first_step @card(0..1), # entry-point step (DAG root; pick lex-first if multi-root)
+		relates prior_step @card(0..), # steps depended-upon (appear in some step's needs)
+		relates next_step @card(0..), # leaf steps (nothing lists them in needs)
+		relates target @card(0..1),
 		plays project:workflow;
 
 	entity target,
