@@ -21,6 +21,12 @@ __all__ = [
     "graphs_equal",
     "JSON_TO_TYPEQL",
     "TYPEQL_TO_JSON",
+    "ProjectionStore",
+    "ProjectionError",
+    "project_json",
+    "workflow_json",
+    "scan_step_json",
+    "meta_subgraph_json",
 ]
 
 
@@ -53,4 +59,15 @@ def __getattr__(name: str) -> Any:
         from spiderfeet_v2.db import subgraph_codec as _codec
 
         return getattr(_codec, name)
+    if name in (
+        "ProjectionStore",
+        "ProjectionError",
+        "project_json",
+        "workflow_json",
+        "scan_step_json",
+        "meta_subgraph_json",
+    ):
+        from spiderfeet_v2.db import projections as _projections
+
+        return getattr(_projections, name)
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

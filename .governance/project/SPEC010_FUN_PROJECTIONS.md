@@ -3,7 +3,7 @@
 **Issue:** [#1073](https://github.com/brettforbes/spiderfeet/issues/1073)  
 **Schema:** `.seed/spiderfeet_v2_semantic.tql` (functions section)  
 **Edge names:** `.governance/project/SPEC010_EDGE_NAMING.md`  
-**Consumer:** AL3 Python wrappers (`spiderfeet_v2/db` projections)
+**Consumer:** AL3 Python wrappers — `spiderfeet_v2/db/projections.py` (`ProjectionStore`, `project_json` / `workflow_json` / `scan_step_json` / `meta_subgraph_json`); tests `spiderfeet_v2/db/tests/test_projections.py`
 
 TypeDB `fun` returns concept/value streams. JSON objects are assembled in the driver layer by collecting these streams into the field maps below.
 
