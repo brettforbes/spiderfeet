@@ -12,6 +12,8 @@ __all__ = [
     "open_driver",
     "ping",
     "driver_session",
+    "CrudStore",
+    "CrudError",
 ]
 
 
@@ -28,4 +30,8 @@ def __getattr__(name: str) -> Any:
         from spiderfeet_v2.db import connection as _connection
 
         return getattr(_connection, name)
+    if name in ("CrudStore", "CrudError"):
+        from spiderfeet_v2.db import crud as _crud
+
+        return getattr(_crud, name)
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
