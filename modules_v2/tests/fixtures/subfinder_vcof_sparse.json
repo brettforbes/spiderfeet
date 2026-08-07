@@ -1,0 +1,27 @@
+{
+  "schema": "subfinder_host_v1",
+  "tool": "subfinder",
+  "scenario": "Ultra-sparse passive enumeration (VC Opportunities Fund)",
+  "scenario_id": "corporate_vcof_sparse_passive",
+  "target": "venturecapitalopportunitiesfund.com.au",
+  "enumeration_mode": "passive",
+  "command": "subfinder -d venturecapitalopportunitiesfund.com.au -oJ -cs -silent",
+  "runtime": "modules_v2",
+  "started_at": "2026-07-05T14:24:30.524396+00:00",
+  "duration_s": 22.312,
+  "exit_code": 0,
+  "host_summary_lines": 1,
+  "text_role": "one line per host: fqdn (sources: …) or fqdn -> ip",
+  "structured_role": "normalized host records in records[]",
+  "records": [
+    {
+      "host": "www.venturecapitalopportunitiesfund.com.au",
+      "input": "venturecapitalopportunitiesfund.com.au",
+      "mode": "passive",
+      "sources": [
+        "crtsh",
+        "hackertarget"
+      ]
+    }
+  ]
+}
