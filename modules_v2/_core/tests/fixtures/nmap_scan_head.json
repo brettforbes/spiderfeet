@@ -1,0 +1,13 @@
+{
+  "schema": "nmap_scan_v1",
+  "scan_data": "nmap:scanme.nmap.org:nmap -sn scanme.nmap.org",
+  "command": "nmap -sn scanme.nmap.org",
+  "version": "Nmap 7.95",
+  "startstr": "Fri Jun 27 12:00:00 2026",
+  "scan_target": "scanme.nmap.org",
+  "finished": {
+    "summary": "Nmap done at Fri Jun 27 12:00:01 2026; 1 IP address (1 host up) scanned in 1.00 seconds",
+    "elapsed": "1.00"
+  },
+  "hosts": []
+}
