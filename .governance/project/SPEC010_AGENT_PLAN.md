@@ -129,7 +129,8 @@ AH is a hard prerequisite — no engine/module work begins until AH4 lands. AI (
 
 ### AI3 — Bootstrap load `spiderfeet-actual` **[G1]**
 **Do:** `spiderfeet_v2/db/bootstrap` loads the reconciled `.tql` into a fresh `spiderfeet-actual` and seeds the 8 `sfp-cli-app-*` services; `--reset` is idempotent. Post the command + no-data-loss confirmation; wait for operator approval comment.
-**Verify:** After approval: `poetry run python -m spiderfeet_v2.db.bootstrap --reset` then a ping/read confirms schema + 8 services present.
+**Verify (pre-gate smoke):** `poetry run pytest .tests/test_v2_bootstrap.py -q` and `--database <scratch> --reset` (CLI refuses `--reset` on `spiderfeet-actual` until G1).
+**Verify (after approval):** `poetry run python -m spiderfeet_v2.db.bootstrap --reset` then `--verify-only`.
 
 ---
 
