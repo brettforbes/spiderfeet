@@ -1300,5 +1300,12 @@
     "nugget_type": "DESCRIPTOR",
     "nugget_icon": "",
     "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "IPV4_ADDRESS",
+    "nugget_description": "IPv4 Address",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_ip_address.svg",
+    "nugget_colour": "#3B82F6"
   }
 ]
