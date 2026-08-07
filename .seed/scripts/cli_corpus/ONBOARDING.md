@@ -109,7 +109,7 @@ In `rules/<tool>/mapping.yaml`:
 - Declare `tool`, `capture_family`, `seed_docs`
 - Map fields → existing `nugget_id` values from `.docs/analysis/nuggets.json` (+ extension) — **reuse before invent**
 - Prefer shared topology templates (`scan_head`, host/system stacks) from `rules/_shared/`
-- Any IP field → will be classified at node creation via `classify_ip` (do not hardcode IPv4-only `IPV4_ADDRESS` for unknown families)
+- Any IP field → will be classified at node creation via `classify_ip` (emits `IPV4_ADDRESS` or `IPV6_ADDRESS`; never hardcode a family)
 
 New archetypes: only `.docs/analysis/nuggets_extension.json` (+ TypeQL when promoting).
 
@@ -239,7 +239,7 @@ python .seed/scripts/cli_corpus/backfill_adapter_four_outputs.py --tool <tool> -
 | Skip empty JSONL as “done” on resume | Force re-run or require stderr sidecar |
 | Silent missing Graph/MD | Fix adapter; never skip structured when available |
 | Text-only scenario when `--json` / ndjson / `-oX` exists | One structured scenario; derive Text at harvest |
-| Hardcoded IPv6 as `IPV4_ADDRESS` | `classify_ip` |
+| Hardcoded address family (`IPV4_ADDRESS` for IPv6 or vice versa) | `classify_ip` |
 | Inline stub narratives | Shared engine + YAML |
 
 ---

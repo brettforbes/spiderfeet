@@ -32,7 +32,7 @@ flowchart TD
   scan_record_1["SCAN_RECORD"]
   host_2["HOST"]
   networks_3["NETWORKS"]
-  ip_address_4["IP_ADDRESS"]
+  ip_address_4["IPV4_ADDRESS"]
   transport_5["TRANSPORT"]
   port_6["PORT"]
   port_state_7["PORT_STATE"]
@@ -64,7 +64,7 @@ flowchart TD
   scan_record_1["SCAN_RECORD"]
   host_2["HOST"]
   networks_3["NETWORKS"]
-  ip_address_4["IP_ADDRESS"]
+  ip_address_4["IPV4_ADDRESS"]
   transport_5["TRANSPORT"]
   port_6["PORT"]
   port_state_7["PORT_STATE"]
@@ -114,7 +114,7 @@ Canonical vocabulary: `.docs/analysis/nuggets.json` and `.docs/analysis/nuggets_
 | duration_s | SCAN_ELAPSED |  |
 | exit_code | SCAN_EXIT_STATUS |  |
 | records[].host | HOST or CDN | correlation engine reclassifies CDN edges |
-| records[].ip | IP_ADDRESS | under NETWORKS via classify_ip |
+| records[].ip | IPV4_ADDRESS | under NETWORKS via classify_ip |
 | records[].port | PORT |  |
 | records[].proto | PORT_PROTOCOL |  |
 | records[].service | SERVICE |  |
