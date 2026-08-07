@@ -43,7 +43,7 @@ rg -c --hidden IP_ADDRESS --glob "!.git/**" --glob "!**/__pycache__/**" --glob "
 | nugget_id | In `nuggets.json` | In `nuggets_extension.json` | AH action |
 |-----------|:-----------------:|:---------------------------:|-----------|
 | `IP_ADDRESS` | yes | no | retire from emitting code; retain in nuggets.json as keep-legacy v1 event type until v1 sunset |
-| `IPV4_ADDRESS` | no | no | **ADD** to nuggets_extension.json (AH1) |
+| `IPV4_ADDRESS` | no | yes (AH1) | Added to nuggets_extension.json — host IPv4 role target |
 | `IPV6_ADDRESS` | yes | no | already present in nuggets.json — reuse |
 | `INTERNAL_IP_ADDRESS` | yes | no | keep (IPv4-internal); note ambiguity vs IPV4 — follow-up if needed |
 | `AFFILIATE_IPADDR` | yes | no | keep-legacy v1 event name (not host classifier role for v2 graphs) |
@@ -266,7 +266,7 @@ Total keep-legacy: **1431** matches in **618** files.
 | `INTERNAL_IP_ADDRESS` | 38 | 31 | keep for now (internal IPv4); optional follow-up to INTERNAL_IPV4_ADDRESS |
 | `AFFILIATE_IPV6_ADDRESS` | 124 | 75 | keep |
 | `IPV6_ADDRESS` | 479 | 160 | keep / already correct for host IPv6 |
-| `IPV4_ADDRESS` | 15 | 3 | add to catalogue (AH1); currently sparse (governance/plan mentions only) |
+| `IPV4_ADDRESS` | (growing) | — | **added to nuggets_extension.json in AH1** |
 
 ## AH story mapping
 
