@@ -1,0 +1,69 @@
+{
+  "schema": "httpx_probe_v1",
+  "tool": "httpx",
+  "scenario": "Web probe on subfinder ultra-sparse host (VC Opportunities Fund)",
+  "scenario_id": "from_subfinder_vcof_sparse",
+  "target": "venturecapitalopportunitiesfund.com.au",
+  "subfinder_scenario": "corporate_vcof_sparse_passive",
+  "probe_profile": "status-code,title,tech-detect,server,cdn,ip",
+  "host_input_count": 1,
+  "command": "httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_vcof_sparse_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_vcof_sparse.jsonl -silent -threads 5 -timeout 15",
+  "runtime": "windows",
+  "started_at": "2026-07-05T16:05:01.072497+00:00",
+  "duration_s": 2.375,
+  "exit_code": 0,
+  "probe_summary_lines": 1,
+  "text_role": "one line per live URL: url [status] [title] server=\u2026 tech=[\u2026]",
+  "structured_role": "full httpx JSONL probe objects in records[]",
+  "records": [
+    {
+      "timestamp": "2026-07-06T02:05:03.3744974+10:00",
+      "port": "443",
+      "url": "https://www.venturecapitalopportunitiesfund.com.au",
+      "input": "www.venturecapitalopportunitiesfund.com.au",
+      "title": "Home - Venture Capital Opportunities Fund",
+      "scheme": "https",
+      "webserver": "cloudflare",
+      "content_type": "text/html",
+      "method": "GET",
+      "host": "2606:4700:20::681a:623",
+      "path": "/",
+      "time": "249.3053ms",
+      "a": [
+        "104.26.6.35",
+        "104.26.7.35",
+        "172.67.68.161"
+      ],
+      "aaaa": [
+        "2606:4700:20::681a:623",
+        "2606:4700:20::ac43:44a1",
+        "2606:4700:20::681a:723"
+      ],
+      "tech": [
+        "Bootstrap:3.3.5",
+        "Cloudflare",
+        "Cloudflare Browser Insights",
+        "Drupal:7",
+        "Google Tag Manager",
+        "HTTP/3",
+        "PHP",
+        "jQuery",
+        "jQuery CDN",
+        "jsDelivr"
+      ],
+      "words": 1779,
+      "lines": 298,
+      "status_code": 200,
+      "content_length": 23244,
+      "failed": false,
+      "knowledgebase": {
+        "PageType": "other",
+        "pHash": 0
+      },
+      "resolvers": [
+        "1.0.0.1:53",
+        "8.8.8.8:53"
+      ]
+    }
+  ]
+}
