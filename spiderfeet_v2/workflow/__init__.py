@@ -1,7 +1,8 @@
-"""Workflow DSL + GSE runtime for SpiderFeet v2 (SPEC-010 AM1 / R10-20).
+"""Workflow DSL + GSE runtime for SpiderFeet v2 (SPEC-010 AM1/AM2).
 
 Ported and extended from ``.seed/scripts/cli_workflow/`` (SPEC-007).
 Canonical authoring shape: ``.seed/12A_Workflow_YAML_Example.yaml``.
+AM2: YAML-DSL ↔ TypeDB conversion via ``typedb_convert``.
 """
 
 from __future__ import annotations
@@ -29,6 +30,16 @@ __all__ = [
     "normalize_list",
     "hostname_from_url",
     "TempFileManager",
+    "WorkflowConvertError",
+    "TypedbWorkflowForms",
+    "yaml_to_typedb_forms",
+    "typedb_forms_to_yaml",
+    "typedb_to_api_json",
+    "persist_workflow_yaml",
+    "load_workflow_yaml",
+    "load_workflow_api_json",
+    "workflows_equal",
+    "dump_canonical_yaml",
 ]
 
 
@@ -69,4 +80,19 @@ def __getattr__(name: str) -> Any:
         from spiderfeet_v2.workflow.tempfile_mgr import TempFileManager
 
         return TempFileManager
+    if name in (
+        "WorkflowConvertError",
+        "TypedbWorkflowForms",
+        "yaml_to_typedb_forms",
+        "typedb_forms_to_yaml",
+        "typedb_to_api_json",
+        "persist_workflow_yaml",
+        "load_workflow_yaml",
+        "load_workflow_api_json",
+        "workflows_equal",
+        "dump_canonical_yaml",
+    ):
+        from spiderfeet_v2.workflow import typedb_convert as _convert
+
+        return getattr(_convert, name)
     raise AttributeError(f"module {__name__!r} has no attribute {name}")
