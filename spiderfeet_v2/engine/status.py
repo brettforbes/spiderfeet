@@ -19,6 +19,7 @@ STATUS_DRY_RUN = "DRY_RUN"  # API-only; never persisted as scan_status
 OUTCOME_SUCCESS = "SUCCESS"
 OUTCOME_ERROR = "ERROR"
 OUTCOME_DRY_RUN = "DRY_RUN"
+OUTCOME_SKIPPED = "SKIPPED"
 
 # Module statuses that count as a successful terminal outcome.
 MODULE_OK = frozenset({"SUCCESS"})

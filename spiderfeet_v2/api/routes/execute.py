@@ -1,7 +1,6 @@
-"""Workflow / step execute routes (R10-24 / R10-27).
+"""Workflow / step execute routes (R10-24 / R10-27 / R10-28).
 
-AO1 wires real single-step orchestration. Full-workflow execute remains a
-stub until AO2.
+AO1 wires single-step orchestration. AO2 wires full-workflow chaining.
 """
 
 from __future__ import annotations
@@ -20,14 +19,9 @@ from spiderfeet_v2.api.schemas import (
 )
 from spiderfeet_v2.db.crud import CrudStore
 from spiderfeet_v2.db.projections import ProjectionStore
-from spiderfeet_v2.engine import OrchestratorError, run_single_step
+from spiderfeet_v2.engine import OrchestratorError, run_single_step, run_workflow
 
 router = APIRouter(tags=["v2-execute"])
-
-_WORKFLOW_STUB_MSG = (
-    "Full-workflow execute accepted as stub — Epic AO2 chains steps by needs, "
-    "threads prior output vars, and accumulates temporary-context exports."
-)
 
 
 def _first_temporary_id(
@@ -46,7 +40,7 @@ def _first_temporary_id(
 @router.post(
     "/workflows/{workflow_id}/execute",
     response_model=ExecuteResponse,
-    status_code=202,
+    status_code=200,
 )
 def execute_workflow(
     workflow_id: str,
@@ -55,18 +49,28 @@ def execute_workflow(
         openapi_examples=EXECUTE_WORKFLOW_OPENAPI_EXAMPLES,
     ),
     store: CrudStore = Depends(get_crud_store),
-) -> ExecuteResponse:
-    """Run a full workflow (stub until AO2)."""
+    projections: ProjectionStore = Depends(get_projection_store),
+) -> Dict[str, Any]:
+    """Run a full workflow: chain by needs, thread vars, accumulate context (R10-28)."""
     if store.get_workflow(workflow_id) is None:
         raise HTTPException(status_code=404, detail="Workflow not found")
     if body.project_id and store.get_project(body.project_id) is None:
         raise HTTPException(status_code=404, detail="Project not found")
-    return ExecuteResponse(
-        status="stub",
-        message=_WORKFLOW_STUB_MSG,
-        workflow_id=workflow_id,
-        orchestrator="pending-ao2",
-    )
+
+    try:
+        result = run_workflow(
+            store,
+            workflow_id=workflow_id,
+            project_id=body.project_id,
+            dry_run=body.dry_run,
+            existing_temporary_subgraph_id=_first_temporary_id(
+                projections, body.project_id
+            ),
+        )
+    except OrchestratorError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    return result.to_api_dict()
 
 
 @router.post(

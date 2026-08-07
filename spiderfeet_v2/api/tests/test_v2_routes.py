@@ -218,12 +218,12 @@ def test_project_context_empty(client):
     assert r.json()["edges"] == []
 
 
-def test_execute_workflow_stub_and_step_dry_run(client):
+def test_execute_workflow_and_step_dry_run(client):
     yaml_doc = """apiVersion: spiderfeet.workflow/v1
 kind: Workflow
 id: workflow--ex
 info:
-  name: ao1-ex
+  name: ao2-ex
 inputs:
   targets:
     type: string_list
@@ -244,9 +244,32 @@ steps:
         - "-oJ"
         - "-silent"
     output:
-      vars: {}
+      vars:
+        all_domains:
+          type: string_list
+          select:
+            source: $step.scan_graph
+            nodes:
+              nugget_id: DOMAIN_NAME
+            project: nugget_data
+            distinct: true
     context:
       export: scan_graph
+  - id: sfp_cli_httpx
+    uses: tool.httpx
+    needs: [sfp_cli_subfinder]
+    input:
+      type: string_list
+      from: $steps.sfp_cli_subfinder.vars.all_domains
+      empty: skip_step
+    config:
+      argv:
+        - "-l"
+        - "$step.files.input"
+        - "-json"
+        - "-silent"
+    context:
+      export: none
 """
     client.post(
         "/api/v1/targets",
@@ -269,9 +292,13 @@ steps:
         "/api/v1/workflows/workflow--ex/execute",
         json={"project_id": "project--ex", "dry_run": True},
     )
-    assert r.status_code == 202, r.text
-    assert r.json()["status"] == "stub"
-    assert r.json()["orchestrator"] == "pending-ao2"
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert body["status"] == "DRY_RUN"
+    assert body["orchestrator"] == "ao2"
+    assert body["waves"] == [["sfp_cli_subfinder"], ["sfp_cli_httpx"]]
+    assert body["step_count"] == 2
+    assert body["steps"][0]["input_values"] == ["example.com"]
 
     r = client.post(
         "/api/v1/workflows/workflow--ex/steps/sfp_cli_subfinder/execute",
