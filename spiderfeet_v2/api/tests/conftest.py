@@ -121,9 +121,42 @@ class FakeCrudStore:
         return [copy.deepcopy(self.projects[k]) for k in sorted(self.projects)]
 
     # --- scan steps ---
+    def create_scan_step(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        sid = data.get("scan_instance_id")
+        if not sid:
+            raise CrudError("scan_instance_id is required")
+        if sid in self.scan_steps:
+            raise CrudError(f"scan_step already exists: {sid}")
+        row = {
+            **data,
+            "consumed_ids": list(data.get("consumed_ids") or []),
+            "produced_ids": list(data.get("produced_ids") or []),
+        }
+        self.scan_steps[sid] = row
+        return copy.deepcopy(row)
+
     def get_scan_step(self, scan_instance_id: str, **_: Any) -> Optional[Dict[str, Any]]:
         row = self.scan_steps.get(scan_instance_id)
         return copy.deepcopy(row) if row else None
+
+    def update_scan_step(
+        self, scan_instance_id: str, data: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        if scan_instance_id not in self.scan_steps:
+            raise CrudError(f"scan_step not found: {scan_instance_id}")
+        self.scan_steps[scan_instance_id].update(data)
+        if "consumed_ids" in data:
+            self.scan_steps[scan_instance_id]["consumed_ids"] = list(
+                data.get("consumed_ids") or []
+            )
+        if "produced_ids" in data:
+            self.scan_steps[scan_instance_id]["produced_ids"] = list(
+                data.get("produced_ids") or []
+            )
+        return copy.deepcopy(self.scan_steps[scan_instance_id])
+
+    def delete_scan_step(self, scan_instance_id: str) -> bool:
+        return self.scan_steps.pop(scan_instance_id, None) is not None
 
     def list_scan_steps(self) -> List[Dict[str, Any]]:
         return [copy.deepcopy(self.scan_steps[k]) for k in sorted(self.scan_steps)]
