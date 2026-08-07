@@ -115,6 +115,7 @@ AH is a hard prerequisite — no engine/module work begins until AH4 lands. AI (
 
 ### AI0 — Edge-naming mapping doc
 **Do:** Document the one canonical mapping between graph-JSON relations (`had`/`contains`/`listens-to`) and TypeQL types (`has_this`/`contains_this`/`listens_to_this`); note the seed §3.2 reconciliation. Land as a short design note referenced by AL2.
+**Artifact:** `.governance/project/SPEC010_EDGE_NAMING.md` (R10-06).
 **Verify:** Note checked in; mapping table complete for all three relations both directions.
 
 ### AI1 — `relates produced`
