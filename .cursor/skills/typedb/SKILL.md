@@ -1324,8 +1324,8 @@ Older Maps schema: `.seed/spiderfeet_map.tql` — do **not** mix v1 `scan-record
 | Nugget root | `nugget` (@abstract) → `category`, `entity_nugget`, `descriptor_nugget`, `data_nugget`, `subentity_nugget`, `root`, `null_value_nugget` |
 | Meta-concepts | `meta_concept` → `system` → (`host`, `cdn`, `mobile`, `device`); also `trace`, `company` |
 | Categories | `networks`, `environment`, `applications` |
-| Subgraph storage | `subgraph` → `scan_result_graph`, `project_context`, `temporary_subgraph` |
-| Scan / workflow | `scan_step`, `workflow`, `project`, `route`, `sequence` |
+| Subgraph storage | `subgraph` → `scan_result_graph`, `project_context`, `temporary_subgraph`, `target_context` |
+| Scan / workflow | `scan_step`, `workflow`, `project`, `route`, `sequence`, `target` |
 | Services | `osint-service` (+ CLI subtypes), `osint-source`, `opts`, `data-source` |
 | Containment walk | schema fun `contains_recursive($container_A: nugget) -> { nugget }` |
 
@@ -1339,6 +1339,7 @@ Every `owns X` requires `attribute X, value …;`. Current groups:
 - **Subgraph keys:** `scan_result_id`, `project_context_id`, `temporary_subgraph_id`
 - **Scan step / UI:** `scan_instance_id`, `step_module_id`, `scan_status`, `scan_nugget_count`, `scan_results_by_type`, `scan_results`, `scan_duration`, `scan_timestamp`, `scan_notes`, `scan_ui_cli_command`, `scan_ui_text_form`, `scan_ui_structured_form`, `scan_ui_structured_form_type`, `scan_ui_graph_form`, `scan_ui_markdown_narrative_form`, `scan_yaml`
 - **Workflow / project:** `workflow_id`, `workflow_yaml`, `author`, `created`, `project_id`, `stix_incident_id`
+- **Target / context:** `target_id`, `target_value`, `target_description`, `target_created`, `target_yaml`, `target_context_id`
 
 Do **not** introduce bare attribute `id` (ambiguous / easy to collide). Use `step_module_id` on `scan_step`.
 

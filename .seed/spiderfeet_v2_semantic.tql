@@ -25,6 +25,10 @@ define
 	relation temporary_subgraph, sub subgraph,
 		owns temporary_subgraph_id @key, # e.g. "temporary-subgraph--0b778a9a-ae9c-4253-883d-32208b75d441"
 		relates project as owner;
+
+	relation target_context, sub subgraph,
+		owns target_context_id @key, # e.g. "target-context--0b778a9a-ae9c-4253-883d-32208b75d441"
+		relates target as owner;
 	
 	####################################
 	# SpiderFeet Nugget Definitions
@@ -715,6 +719,7 @@ define
 		owns target_description, # description of the target, e.g. "The target domain to scan"
 		owns target_created, # time target was created
 		owns target_yaml, # string description in yaml target DSL, to feed to the target iFrame widget
+		plays workflow:target,
 		plays target_context:target;
 
 	#####################################
@@ -811,6 +816,12 @@ define
 	attribute workflow_yaml, value string;
 	attribute project_id, value string;
 	attribute stix_incident_id, value string;
+	attribute target_id, value string;
+	attribute target_value, value string;
+	attribute target_description, value string;
+	attribute target_created, value datetime;
+	attribute target_yaml, value string;
+	attribute target_context_id, value string;
 	attribute created, value datetime;
 
 	#####################################
