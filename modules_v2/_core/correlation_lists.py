@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Any
 
 import yaml
 
-SHARED_RULES_DIR = Path(__file__).resolve().parents[1] / "rules" / "_shared"
+from .paths import SHARED_RULES_DIR
+
 CDN_SIGNATURES_PATH = SHARED_RULES_DIR / "cdn_signatures.yaml"
 EDGE_ASNS_PATH = SHARED_RULES_DIR / "edge_asns.yaml"
 

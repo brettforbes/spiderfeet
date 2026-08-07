@@ -1,0 +1,69 @@
+templates:
+  scan_head:
+    relations:
+      - source: SCAN_RECORD
+        relation: had
+        target: SCAN_CLI
+  system_l2:
+    relations:
+      - source: SCAN_RECORD
+        relation: contains
+        target: SYSTEM
+      - source: SYSTEM
+        relation: contains
+        target: NETWORKS
+      - source: NETWORKS
+        relation: contains
+        target: IPV4_ADDRESS
+      - source: NETWORKS
+        relation: contains
+        target: MAC_ADDRESS
+      - source: MAC_ADDRESS
+        relation: had
+        target: MAC_VENDOR
+  host_networks_port_service:
+    relations:
+      - source: SCAN_RECORD
+        relation: contains
+        target: HOST
+      - source: HOST
+        relation: contains
+        target: NETWORKS
+      - source: NETWORKS
+        relation: contains
+        target: IPV4_ADDRESS
+      - source: NETWORKS
+        relation: contains
+        target: TRANSPORT
+      - source: TRANSPORT
+        relation: contains
+        target: PORT
+      - source: PORT
+        relation: had
+        target: PORT_PROTOCOL
+      - source: HOST
+        relation: contains
+        target: APPLICATIONS
+      - source: APPLICATIONS
+        relation: contains
+        target: SERVICE
+      - source: SERVICE
+        relation: listens-to
+        target: PORT
+  trace_hop_chain:
+    relations:
+      - source: SCAN_RECORD
+        relation: contains
+        target: TRACE
+      - source: TRACE
+        relation: contains
+        target: TRACE_HOP
+      - source: TRACE_HOP
+        relation: had
+        target: HOP_ORDER
+      - source: TRACE_HOP
+        relation: had
+        target: HOP_TTL
+      - source: TRACE_HOP
+        relation: had
+        target: HOP_RTT

@@ -1,0 +1,26 @@
+tool: nerva
+capture_family: structured_native
+seed_docs:
+  - .seed/07_Nerva_Scan_Record_Host_Correlation_Rulesets.md
+  - .seed/07B_Nerva_Ontology_Rules.md
+  - .seed/14_Business_Rules_for_Converting_Structured_Data_to_Graph.md
+scan_head:
+  data_path: scan_data
+  fallback: nerva scan
+hooks:
+  - apply_nerva_records
+topology_templates:
+  - scan_head
+mappings:
+  - path: target
+    nugget_id: SCAN_TARGET
+    relation: had
+  - path: started_at
+    nugget_id: SCAN_START
+    relation: had
+  - path: duration_s
+    nugget_id: SCAN_ELAPSED
+    relation: had
+  - path: exit_code
+    nugget_id: SCAN_EXIT_STATUS
+    relation: had

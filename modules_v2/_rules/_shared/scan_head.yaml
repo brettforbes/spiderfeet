@@ -1,0 +1,3 @@
+default_nugget_id: SCAN_RECORD
+default_cli_nugget_id: SCAN_CLI
+default_relation: had

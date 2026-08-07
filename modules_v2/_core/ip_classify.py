@@ -4,12 +4,13 @@ from __future__ import annotations
 
 import re
 from functools import lru_cache
-from pathlib import Path
 from typing import Any
 
 import yaml
 
-_RULES_PATH = Path(__file__).resolve().parents[1] / "rules" / "_shared" / "ip_patterns.yaml"
+from .paths import SHARED_RULES_DIR
+
+_RULES_PATH = SHARED_RULES_DIR / "ip_patterns.yaml"
 
 
 def _normalize_ip(value: str) -> str:

@@ -1,0 +1,345 @@
+# SPEC-006 shared type-relation Mermaid patterns for Structure docs.
+# Align with rules/_shared/topology_templates.yaml; new patterns need SPEC note.
+version: 1
+
+patterns:
+  scan_head:
+    title: Scan head
+    prose: >
+      Every graph has one SCAN_RECORD entity with scan descriptors (SCAN_CLI, SCAN_TARGET,
+      timing, outcome, …) linked via had. Discovered endpoints link from scan via contains.
+    edges:
+      - source: SCAN_RECORD
+        relation: had
+        target: SCAN_CLI
+      - source: SCAN_RECORD
+        relation: had
+        target: SCAN_TARGET
+      - source: SCAN_RECORD
+        relation: had
+        target: SCAN_START
+
+  system_l2:
+    title: System tree (L2 provisional)
+    prose: >
+      When only L2/L3 identity is known, emit SYSTEM (not HOST). Each system owns a NETWORKS
+      category containing IPv4 and L2 facts; MAC_VENDOR attaches via had on MAC_ADDRESS.
+    edges:
+      - source: SCAN_RECORD
+        relation: contains
+        target: SYSTEM
+      - source: SYSTEM
+        relation: contains
+        target: NETWORKS
+      - source: NETWORKS
+        relation: contains
+        target: IPV4_ADDRESS
+      - source: NETWORKS
+        relation: contains
+        target: MAC_ADDRESS
+      - source: MAC_ADDRESS
+        relation: had
+        target: MAC_VENDOR
+
+  host_networks_port_service:
+    title: Host port and service tree
+    prose: >
+      Qualified HOST scans extend NETWORKS with TRANSPORT and PORT; APPLICATIONS contains
+      SERVICE entities that listens-to their PORT. Port protocol and state are descriptors.
+    edges:
+      - source: SCAN_RECORD
+        relation: contains
+        target: HOST
+      - source: HOST
+        relation: contains
+        target: NETWORKS
+      - source: NETWORKS
+        relation: contains
+        target: IPV4_ADDRESS
+      - source: NETWORKS
+        relation: contains
+        target: TRANSPORT
+      - source: TRANSPORT
+        relation: contains
+        target: PORT
+      - source: PORT
+        relation: had
+        target: PORT_STATE
+      - source: HOST
+        relation: contains
+        target: APPLICATIONS
+      - source: APPLICATIONS
+        relation: contains
+        target: SERVICE
+      - source: SERVICE
+        relation: listens-to
+        target: PORT
+      - source: SERVICE
+        relation: had
+        target: SERVICE_VERSION
+
+  trace_hop_chain:
+    title: Traceroute trace
+    prose: >
+      TRACE sits under the scan with ordered TRACE_HOP nodes; each hop contains a HOST router
+      node. Descriptors include HOP_ORDER, HOP_TTL, and HOP_RTT.
+    edges:
+      - source: SCAN_RECORD
+        relation: contains
+        target: TRACE
+      - source: TRACE
+        relation: contains
+        target: TRACE_HOP
+        source_label: SCAN_RECORD
+        target_label: TRACE_HOP
+      - source: TRACE_HOP
+        relation: had
+        target: HOP_ORDER
+      - source: TRACE_HOP
+        relation: had
+        target: HOP_TTL
+      - source: TRACE_HOP
+        relation: had
+        target: HOP_RTT
+      - source: TRACE_HOP
+        relation: contains
+        target: HOST
+        target_label: HOST hop router
+
+  host_status:
+    title: Host reachability
+    prose: >
+      HOST_STATUS and HOST_STATUS_REASON attach to HOST via had when reachability is reported.
+    edges:
+      - source: SCAN_RECORD
+        relation: contains
+        target: HOST
+      - source: HOST
+        relation: had
+        target: HOST_STATUS
+      - source: HOST
+        relation: had
+        target: HOST_STATUS_REASON
+      - source: HOST
+        relation: contains
+        target: NETWORKS
+      - source: NETWORKS
+        relation: contains
+        target: IPV4_ADDRESS
+
+  os_environment:
+    title: OS fingerprint
+    prose: >
+      ENVIRONMENT category under HOST contains OPERATING_SYSTEM with optional OS_MATCH_ACCURACY.
+    edges:
+      - source: HOST
+        relation: contains
+        target: ENVIRONMENT
+      - source: ENVIRONMENT
+        relation: contains
+        target: OPERATING_SYSTEM
+      - source: OPERATING_SYSTEM
+        relation: had
+        target: OS_MATCH_ACCURACY
+
+  ssh_host_keys:
+    title: SSH service and host keys
+    prose: >
+      When SSH host-key scripts fire, APPLICATIONS contains an SSH SERVICE that listens-to the
+      open PORT and contains key SUBENTITY nodes (RSA, ECDSA, EDDSA, DSA) with SSH_KEY_* descriptors.
+    edges:
+      - source: HOST
+        relation: contains
+        target: APPLICATIONS
+      - source: APPLICATIONS
+        relation: contains
+        target: SERVICE
+        target_label: SERVICE ssh
+      - source: SERVICE
+        relation: listens-to
+        target: PORT
+        target_label: PORT tcp/22
+      - source: PORT
+        relation: had
+        target: PORT_STATE
+      - source: SERVICE
+        relation: contains
+        target: RSA
+      - source: SERVICE
+        relation: contains
+        target: ECDSA
+      - source: RSA
+        relation: had
+        target: SSH_KEY_BITS
+      - source: RSA
+        relation: had
+        target: SSH_KEY_TYPE
+      - source: RSA
+        relation: had
+        target: SSH_KEY_KEY
+
+  domain_apex:
+    title: Domain apex tree
+    prose: >
+      Org-intelligence and DNS tools root at DOMAIN_NAME entities under SCAN_RECORD. Subdomains
+      are sibling DOMAIN_NAME nodes; descriptors capture discovery mode, sources, and liveness.
+    edges:
+      - source: SCAN_RECORD
+        relation: contains
+        target: DOMAIN_NAME
+        target_label: DOMAIN_NAME apex
+      - source: DOMAIN_NAME
+        relation: contains
+        target: DOMAIN_NAME
+        target_label: DOMAIN_NAME subdomain
+      - source: DOMAIN_NAME
+        relation: had
+        target: DISCOVERY_MODE
+      - source: DOMAIN_NAME
+        relation: had
+        target: DISCOVERY_SOURCE
+      - source: DOMAIN_NAME
+        relation: had
+        target: LIVENESS_STATUS
+      - source: DOMAIN_NAME
+        relation: had
+        target: IPV4_ADDRESS
+
+  org_company_tree:
+    title: Organisation company tree
+    prose: >
+      Pius scans contain a COMPANY_NAME root with category buckets (DOMAINS, NETBLOCKS, …)
+      holding INTERNET_NAME and NETBLOCK_OWNER findings plus PIUS_SOURCE descriptors.
+    edges:
+      - source: SCAN_RECORD
+        relation: contains
+        target: COMPANY_NAME
+      - source: COMPANY_NAME
+        relation: contains
+        target: DOMAINS
+        target_label: DOMAINS category
+      - source: COMPANY_NAME
+        relation: contains
+        target: NETBLOCKS
+        target_label: NETBLOCKS category
+      - source: DOMAINS
+        relation: contains
+        target: INTERNET_NAME
+      - source: NETBLOCKS
+        relation: contains
+        target: NETBLOCK_OWNER
+      - source: INTERNET_NAME
+        relation: had
+        target: PIUS_SOURCE
+      - source: NETBLOCK_OWNER
+        relation: had
+        target: PIUS_SOURCE
+
+  web_url_probe:
+    title: Web URL probe tree
+    prose: >
+      httpx attaches LINKED_URL_INTERNAL per live probe under SCAN_RECORD and DOMAIN_NAME apex.
+      HOST or CDN endpoints own NETWORKS port chains and APPLICATIONS SERVICE facts.
+    edges:
+      - source: SCAN_RECORD
+        relation: contains
+        target: DOMAIN_NAME
+        target_label: DOMAIN_NAME apex
+      - source: SCAN_RECORD
+        relation: contains
+        target: LINKED_URL_INTERNAL
+      - source: DOMAIN_NAME
+        relation: contains
+        target: HOST
+      - source: HOST
+        relation: contains
+        target: NETWORKS
+      - source: NETWORKS
+        relation: contains
+        target: IPV4_ADDRESS
+      - source: NETWORKS
+        relation: contains
+        target: TRANSPORT
+      - source: TRANSPORT
+        relation: contains
+        target: PORT
+      - source: HOST
+        relation: contains
+        target: APPLICATIONS
+      - source: APPLICATIONS
+        relation: contains
+        target: SERVICE
+      - source: SERVICE
+        relation: listens-to
+        target: PORT
+      - source: SERVICE
+        relation: had
+        target: HTTP_STATUS_CODE
+      - source: SERVICE
+        relation: had
+        target: WEBSERVER_TECHNOLOGY
+
+  crawl_url_tree:
+    title: Crawl URL tree
+    prose: >
+      Katana extends the web surface with LINKED_URL_INTERNAL nodes under SCAN_RECORD and nests
+      URLs under discovered DOMAIN_NAME hosts within the crawl scope.
+    edges:
+      - source: SCAN_RECORD
+        relation: contains
+        target: DOMAIN_NAME
+        target_label: DOMAIN_NAME apex
+      - source: SCAN_RECORD
+        relation: contains
+        target: LINKED_URL_INTERNAL
+      - source: DOMAIN_NAME
+        relation: contains
+        target: DOMAIN_NAME
+        source_label: DOMAIN_NAME apex
+        target_label: DOMAIN_NAME host
+      - source: DOMAIN_NAME
+        relation: contains
+        target: LINKED_URL_INTERNAL
+        source_label: DOMAIN_NAME host
+        target_label: LINKED_URL_INTERNAL path
+      - source: LINKED_URL_INTERNAL
+        relation: had
+        target: HTTP_METHOD
+      - source: LINKED_URL_INTERNAL
+        relation: had
+        target: HTTP_STATUS_CODE
+
+  vuln_findings:
+    title: Vulnerability findings tree
+    prose: >
+      Nuclei attaches SECURITY under HOST with FINDINGS severity buckets, NUCLEI_FINDING rows,
+      NUCLEI_VULNERABILITY observations, and optional CVE tier descriptors.
+    edges:
+      - source: SCAN_RECORD
+        relation: contains
+        target: HOST
+      - source: HOST
+        relation: contains
+        target: SECURITY
+      - source: SECURITY
+        relation: contains
+        target: FINDINGS
+      - source: SECURITY
+        relation: contains
+        target: TEMPLATES_USED
+      - source: FINDINGS
+        relation: contains
+        target: NUCLEI_SEVERITY_HIGH
+        target_label: NUCLEI_SEVERITY category
+      - source: NUCLEI_SEVERITY_HIGH
+        relation: contains
+        target: NUCLEI_FINDING
+      - source: NUCLEI_FINDING
+        relation: contains
+        target: NUCLEI_VULNERABILITY
+      - source: NUCLEI_VULNERABILITY
+        relation: had
+        target: VULNERABILITY_CVE_HIGH
+      - source: TEMPLATES_USED
+        relation: contains
+        target: NUCLEI_TEMPLATE

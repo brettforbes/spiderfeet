@@ -5,13 +5,10 @@ from __future__ import annotations
 import json
 from collections import Counter
 from functools import lru_cache
-from pathlib import Path
 from typing import Any
 from uuid import NAMESPACE_DNS, uuid5
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-NUGGETS_PATH = REPO_ROOT / ".docs" / "analysis" / "nuggets.json"
-NUGGETS_EXTENSION_PATH = REPO_ROOT / ".docs" / "analysis" / "nuggets_extension.json"
+from .paths import NUGGETS_EXTENSION_PATH, NUGGETS_PATH
 
 # SpiderFeet ontology instance-id seed.
 ONTOLOGY_NAMESPACE = uuid5(NAMESPACE_DNS, "OS Threat, OS Intel Ontology")

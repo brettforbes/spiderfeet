@@ -1,0 +1,158 @@
+schema: cdn_signatures_v1
+version: 1
+source_seed: .seed/07_Nerva_Scan_Record_Host_Correlation_Rulesets.md
+ruleset: C1
+description: >
+  Provider header/banner/technology signatures for Ruleset C fronting detection.
+  Keep vendor-agnostic and updatable — see ONBOARDING.md shared correlation lists.
+
+providers:
+  - vendor: Cloudflare
+    confidence: high
+    server_header_values:
+      - cloudflare
+    header_prefixes:
+      - cf-
+    header_names:
+      - cf-ray
+      - cf-cache-status
+      - cf-apo-via
+      - cf-request-id
+    technology_markers:
+      - Cloudflare
+      - Cloudflare Browser Insights
+
+  - vendor: Fastly
+    confidence: high
+    server_header_values:
+      - fastly
+      - Varnish
+    header_prefixes:
+      - x-fastly-
+      - x-served-by
+    header_names:
+      - x-cache
+      - x-cache-hits
+      - x-served-by
+      - x-timer
+    technology_markers:
+      - Fastly
+
+  - vendor: Akamai
+    confidence: high
+    server_header_values:
+      - AkamaiGHost
+      - AkamaiNetStorage
+    header_prefixes:
+      - x-akamai-
+    header_names:
+      - x-akamai-transformed
+      - x-akamai-request-id
+      - x-akamai-session-info
+    technology_markers:
+      - Akamai
+
+  - vendor: Amazon CloudFront
+    confidence: high
+    header_prefixes:
+      - x-amz-cf-
+    header_names:
+      - x-amz-cf-id
+      - x-amz-cf-pop
+      - via
+    server_header_values:
+      - CloudFront
+    technology_markers:
+      - Amazon CloudFront
+      - CloudFront
+
+  - vendor: Google Cloud CDN
+    confidence: high
+    header_names:
+      - x-goog-
+      - x-cloud-trace-context
+      - via
+    server_header_values:
+      - gws
+      - Google Frontend
+    technology_markers:
+      - Google Cloud CDN
+
+  - vendor: Azure Front Door
+    confidence: high
+    header_prefixes:
+      - x-azure-
+      - x-fd-
+    header_names:
+      - x-azure-ref
+      - x-ms-ref
+    server_header_values:
+      - AzureFrontDoor
+    technology_markers:
+      - Azure Front Door
+
+  - vendor: Vercel
+    confidence: high
+    header_prefixes:
+      - x-vercel-
+    header_names:
+      - x-vercel-id
+      - x-vercel-cache
+    server_header_values:
+      - Vercel
+    technology_markers:
+      - Vercel
+
+  - vendor: Netlify
+    confidence: high
+    header_names:
+      - x-nf-request-id
+      - server
+    server_header_values:
+      - Netlify
+    technology_markers:
+      - Netlify
+
+  - vendor: Sucuri
+    confidence: high
+    header_prefixes:
+      - x-sucuri-
+    header_names:
+      - x-sucuri-id
+      - x-sucuri-cache
+    server_header_values:
+      - Sucuri
+    technology_markers:
+      - Sucuri
+
+  - vendor: Imperva
+    confidence: high
+    header_prefixes:
+      - x-iinfo
+      - x-cdn
+    header_names:
+      - x-iinfo
+      - x-cdn
+    server_header_values:
+      - Imperva
+    technology_markers:
+      - Imperva
+
+  - vendor: StackPath
+    confidence: medium
+    header_names:
+      - x-hw
+      - x-sp-edge
+    server_header_values:
+      - StackPath
+    technology_markers:
+      - StackPath
+
+  - vendor: WP Engine
+    confidence: medium
+    powered_by_patterns:
+      - WPEngine
+    header_names:
+      - x-powered-by
+    technology_markers:
+      - WP Engine

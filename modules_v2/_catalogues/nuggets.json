@@ -1,0 +1,1206 @@
+[
+  {
+    "nugget_id": "ROOT",
+    "nugget_description": "Internal SpiderFeet Root event",
+    "nugget_type": "INTERNAL",
+    "nugget_icon": "icon_root.svg",
+    "nugget_colour": "#8B5CF6"
+  },
+  {
+    "nugget_id": "ACCOUNT_EXTERNAL_OWNED",
+    "nugget_description": "Account on External Site",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_account_external_owned.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "ACCOUNT_EXTERNAL_OWNED_COMPROMISED",
+    "nugget_description": "Hacked Account on External Site",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_account_external_owned_compromised.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "ACCOUNT_EXTERNAL_USER_SHARED_COMPROMISED",
+    "nugget_description": "Hacked User Account on External Site",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_account_external_user_shared_compromised.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "AFFILIATE_EMAILADDR",
+    "nugget_description": "Affiliate - Email Address",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_affiliate_emailaddr.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "AFFILIATE_INTERNET_NAME",
+    "nugget_description": "Affiliate - Internet Name",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_affiliate_internet_name.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "AFFILIATE_INTERNET_NAME_HIJACKABLE",
+    "nugget_description": "Affiliate - Internet Name Hijackable",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_affiliate_internet_name_hijackable.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "AFFILIATE_INTERNET_NAME_UNRESOLVED",
+    "nugget_description": "Affiliate - Internet Name - Unresolved",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_affiliate_internet_name_unresolved.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "AFFILIATE_IPADDR",
+    "nugget_description": "Affiliate - IP Address",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_affiliate_ipaddr.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "AFFILIATE_IPV6_ADDRESS",
+    "nugget_description": "Affiliate - IPv6 Address",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_affiliate_ipv6_address.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "AFFILIATE_WEB_CONTENT",
+    "nugget_description": "Affiliate - Web Content",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_affiliate_web_content.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "AFFILIATE_DOMAIN_NAME",
+    "nugget_description": "Affiliate - Domain Name",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_affiliate_domain_name.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "AFFILIATE_DOMAIN_UNREGISTERED",
+    "nugget_description": "Affiliate - Domain Name Unregistered",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_affiliate_domain_unregistered.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "AFFILIATE_COMPANY_NAME",
+    "nugget_description": "Affiliate - Company Name",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_affiliate_company_name.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "AFFILIATE_DOMAIN_WHOIS",
+    "nugget_description": "Affiliate - Domain Whois",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_affiliate_domain_whois.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "AFFILIATE_DESCRIPTION_CATEGORY",
+    "nugget_description": "Affiliate Description - Category",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_affiliate_description_category.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "AFFILIATE_DESCRIPTION_ABSTRACT",
+    "nugget_description": "Affiliate Description - Abstract",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_affiliate_description_abstract.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "APPSTORE_ENTRY",
+    "nugget_description": "App Store Entry",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_appstore_entry.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "CLOUD_STORAGE_BUCKET",
+    "nugget_description": "Cloud Storage Bucket",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_cloud_storage_bucket.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "CLOUD_STORAGE_BUCKET_OPEN",
+    "nugget_description": "Cloud Storage Bucket Open",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_cloud_storage_bucket_open.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "COMPANY_NAME",
+    "nugget_description": "Company Name",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_company_name.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "CREDIT_CARD_NUMBER",
+    "nugget_description": "Credit Card Number",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_credit_card_number.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "BASE64_DATA",
+    "nugget_description": "Base64-encoded Data",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_base64_data.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "BITCOIN_ADDRESS",
+    "nugget_description": "Bitcoin Address",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_bitcoin_address.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "BITCOIN_BALANCE",
+    "nugget_description": "Bitcoin Balance",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_bitcoin_balance.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "BGP_AS_OWNER",
+    "nugget_description": "BGP AS Ownership",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_bgp_as_owner.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "BGP_AS_MEMBER",
+    "nugget_description": "BGP AS Membership",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_bgp_as_member.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "BLACKLISTED_COHOST",
+    "nugget_description": "Blacklisted Co-Hosted Site",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_blacklisted_cohost.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "BLACKLISTED_INTERNET_NAME",
+    "nugget_description": "Blacklisted Internet Name",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_blacklisted_internet_name.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "BLACKLISTED_AFFILIATE_INTERNET_NAME",
+    "nugget_description": "Blacklisted Affiliate Internet Name",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_blacklisted_affiliate_internet_name.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "BLACKLISTED_IPADDR",
+    "nugget_description": "Blacklisted IP Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_blacklisted_ipaddr.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "BLACKLISTED_AFFILIATE_IPADDR",
+    "nugget_description": "Blacklisted Affiliate IP Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_blacklisted_affiliate_ipaddr.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "BLACKLISTED_SUBNET",
+    "nugget_description": "Blacklisted IP on Same Subnet",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_blacklisted_subnet.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "BLACKLISTED_NETBLOCK",
+    "nugget_description": "Blacklisted IP on Owned Netblock",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_blacklisted_netblock.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "COUNTRY_NAME",
+    "nugget_description": "Country Name",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_country_name.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "CO_HOSTED_SITE",
+    "nugget_description": "Co-Hosted Site",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_co_hosted_site.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "CO_HOSTED_SITE_DOMAIN",
+    "nugget_description": "Co-Hosted Site - Domain Name",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_co_hosted_site_domain.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "CO_HOSTED_SITE_DOMAIN_WHOIS",
+    "nugget_description": "Co-Hosted Site - Domain Whois",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_co_hosted_site_domain_whois.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "DARKNET_MENTION_URL",
+    "nugget_description": "Darknet Mention URL",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_darknet_mention_url.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DARKNET_MENTION_CONTENT",
+    "nugget_description": "Darknet Mention Web Content",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_darknet_mention_content.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "DATE_HUMAN_DOB",
+    "nugget_description": "Date of Birth",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_date_human_dob.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "DEFACED_INTERNET_NAME",
+    "nugget_description": "Defaced",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_defaced_internet_name.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DEFACED_IPADDR",
+    "nugget_description": "Defaced IP Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_defaced_ipaddr.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DEFACED_AFFILIATE_INTERNET_NAME",
+    "nugget_description": "Defaced Affiliate",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_defaced_affiliate_internet_name.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DEFACED_COHOST",
+    "nugget_description": "Defaced Co-Hosted Site",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_defaced_cohost.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DEFACED_AFFILIATE_IPADDR",
+    "nugget_description": "Defaced Affiliate IP Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_defaced_affiliate_ipaddr.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DESCRIPTION_CATEGORY",
+    "nugget_description": "Description - Category",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_description_category.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DESCRIPTION_ABSTRACT",
+    "nugget_description": "Description - Abstract",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_description_abstract.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DEVICE_TYPE",
+    "nugget_description": "Device Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_device_type.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DNS_TEXT",
+    "nugget_description": "DNS TXT Record",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_dns_text.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "DNS_SRV",
+    "nugget_description": "DNS SRV Record",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_dns_srv.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "DNS_SPF",
+    "nugget_description": "DNS SPF Record",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_dns_spf.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "DOMAIN_NAME",
+    "nugget_description": "Domain Name",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_domain_name.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "DOMAIN_NAME_PARENT",
+    "nugget_description": "Domain Name (Parent)",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_domain_name_parent.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "DOMAIN_REGISTRAR",
+    "nugget_description": "Domain Registrar",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_domain_registrar.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "DOMAIN_WHOIS",
+    "nugget_description": "Domain Whois",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_domain_whois.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "EMAILADDR",
+    "nugget_description": "Email Address",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_emailaddr.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "EMAILADDR_COMPROMISED",
+    "nugget_description": "Hacked Email Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_emailaddr_compromised.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "EMAILADDR_DELIVERABLE",
+    "nugget_description": "Deliverable Email Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_emailaddr_deliverable.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "EMAILADDR_DISPOSABLE",
+    "nugget_description": "Disposable Email Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_emailaddr_disposable.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "EMAILADDR_GENERIC",
+    "nugget_description": "Email Address - Generic",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_emailaddr_generic.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "EMAILADDR_UNDELIVERABLE",
+    "nugget_description": "Undeliverable Email Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_emailaddr_undeliverable.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "ERROR_MESSAGE",
+    "nugget_description": "Error Message",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_error_message.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "ETHEREUM_ADDRESS",
+    "nugget_description": "Ethereum Address",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_ethereum_address.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "ETHEREUM_BALANCE",
+    "nugget_description": "Ethereum Balance",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_ethereum_balance.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "GEOINFO",
+    "nugget_description": "Physical Location",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_geoinfo.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HASH",
+    "nugget_description": "Hash",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_hash.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "HASH_COMPROMISED",
+    "nugget_description": "Compromised Password Hash",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_hash_compromised.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "HTTP_CODE",
+    "nugget_description": "HTTP Status Code",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_http_code.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "HUMAN_NAME",
+    "nugget_description": "Human Name",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_human_name.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "IBAN_NUMBER",
+    "nugget_description": "IBAN Number",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_iban_number.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "INTERESTING_FILE",
+    "nugget_description": "Interesting File",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_interesting_file.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "INTERESTING_FILE_HISTORIC",
+    "nugget_description": "Historic Interesting File",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_interesting_file_historic.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "JUNK_FILE",
+    "nugget_description": "Junk File",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_junk_file.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "INTERNAL_IP_ADDRESS",
+    "nugget_description": "IP Address - Internal Network",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_internal_ip_address.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "INTERNET_NAME",
+    "nugget_description": "Internet Name",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_internet_name.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "INTERNET_NAME_UNRESOLVED",
+    "nugget_description": "Internet Name - Unresolved",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_internet_name_unresolved.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "IP_ADDRESS",
+    "nugget_description": "IP Address",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_ip_address.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "IPV6_ADDRESS",
+    "nugget_description": "IPv6 Address",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_ipv6_address.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "LEI",
+    "nugget_description": "Legal Entity Identifier",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_lei.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "JOB_TITLE",
+    "nugget_description": "Job Title",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_job_title.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "LINKED_URL_INTERNAL",
+    "nugget_description": "Linked URL - Internal",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "icon_linked_url_internal.svg",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "LINKED_URL_EXTERNAL",
+    "nugget_description": "Linked URL - External",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "icon_linked_url_external.svg",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "MALICIOUS_ASN",
+    "nugget_description": "Malicious AS",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_malicious_asn.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "MALICIOUS_BITCOIN_ADDRESS",
+    "nugget_description": "Malicious Bitcoin Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_malicious_bitcoin_address.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "MALICIOUS_IPADDR",
+    "nugget_description": "Malicious IP Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_malicious_ipaddr.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "MALICIOUS_COHOST",
+    "nugget_description": "Malicious Co-Hosted Site",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_malicious_cohost.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "MALICIOUS_EMAILADDR",
+    "nugget_description": "Malicious E-mail Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_malicious_emailaddr.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "MALICIOUS_INTERNET_NAME",
+    "nugget_description": "Malicious Internet Name",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_malicious_internet_name.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "MALICIOUS_AFFILIATE_INTERNET_NAME",
+    "nugget_description": "Malicious Affiliate",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_malicious_affiliate_internet_name.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "MALICIOUS_AFFILIATE_IPADDR",
+    "nugget_description": "Malicious Affiliate IP Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_malicious_affiliate_ipaddr.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "MALICIOUS_NETBLOCK",
+    "nugget_description": "Malicious IP on Owned Netblock",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_malicious_netblock.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "MALICIOUS_PHONE_NUMBER",
+    "nugget_description": "Malicious Phone Number",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_malicious_phone_number.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "MALICIOUS_SUBNET",
+    "nugget_description": "Malicious IP on Same Subnet",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_malicious_subnet.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NETBLOCK_OWNER",
+    "nugget_description": "Netblock Ownership",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_netblock_owner.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "NETBLOCKV6_OWNER",
+    "nugget_description": "Netblock IPv6 Ownership",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_netblockv6_owner.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "NETBLOCK_MEMBER",
+    "nugget_description": "Netblock Membership",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_netblock_member.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "NETBLOCKV6_MEMBER",
+    "nugget_description": "Netblock IPv6 Membership",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_netblockv6_member.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "NETBLOCK_WHOIS",
+    "nugget_description": "Netblock Whois",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_netblock_whois.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "OPERATING_SYSTEM",
+    "nugget_description": "Operating System",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_operating_system.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "LEAKSITE_URL",
+    "nugget_description": "Leak Site URL",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_leaksite_url.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "LEAKSITE_CONTENT",
+    "nugget_description": "Leak Site Content",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_leaksite_content.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "PASSWORD_COMPROMISED",
+    "nugget_description": "Compromised Password",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_password_compromised.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "PHONE_NUMBER",
+    "nugget_description": "Phone Number",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_phone_number.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "PHONE_NUMBER_COMPROMISED",
+    "nugget_description": "Phone Number Compromised",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_phone_number_compromised.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PHONE_NUMBER_TYPE",
+    "nugget_description": "Phone Number Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_phone_number_type.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PHYSICAL_ADDRESS",
+    "nugget_description": "Physical Address",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_physical_address.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "PHYSICAL_COORDINATES",
+    "nugget_description": "Physical Coordinates",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_physical_coordinates.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "PGP_KEY",
+    "nugget_description": "PGP Public Key",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_pgp_key.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "PROXY_HOST",
+    "nugget_description": "Proxy Host",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_proxy_host.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PROVIDER_DNS",
+    "nugget_description": "Name Server (DNS NS Records)",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_provider_dns.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "PROVIDER_JAVASCRIPT",
+    "nugget_description": "Externally Hosted Javascript",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_provider_javascript.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "PROVIDER_MAIL",
+    "nugget_description": "Email Gateway (DNS MX Records)",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_provider_mail.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "PROVIDER_HOSTING",
+    "nugget_description": "Hosting Provider",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_provider_hosting.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "PROVIDER_TELCO",
+    "nugget_description": "Telecommunications Provider",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_provider_telco.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "PUBLIC_CODE_REPO",
+    "nugget_description": "Public Code Repository",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_public_code_repo.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "RAW_RIR_DATA",
+    "nugget_description": "Raw Data from RIRs/APIs",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_raw_rir_data.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "RAW_DNS_RECORDS",
+    "nugget_description": "Raw DNS Records",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_raw_dns_records.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "RAW_FILE_META_DATA",
+    "nugget_description": "Raw File Meta Data",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_raw_file_meta_data.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "SEARCH_ENGINE_WEB_CONTENT",
+    "nugget_description": "Search Engine Web Content",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_search_engine_web_content.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "SOCIAL_MEDIA",
+    "nugget_description": "Social Media Presence",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_social_media.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "SIMILAR_ACCOUNT_EXTERNAL",
+    "nugget_description": "Similar Account on External Site",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_similar_account_external.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "SIMILARDOMAIN",
+    "nugget_description": "Similar Domain",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_similardomain.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "SIMILARDOMAIN_WHOIS",
+    "nugget_description": "Similar Domain - Whois",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_similardomain_whois.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "SOFTWARE_USED",
+    "nugget_description": "Software Used",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "icon_software_used.svg",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "SSL_CERTIFICATE_RAW",
+    "nugget_description": "SSL Certificate - Raw Data",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_ssl_certificate_raw.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "SSL_CERTIFICATE_ISSUED",
+    "nugget_description": "SSL Certificate - Issued to",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_ssl_certificate_issued.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "SSL_CERTIFICATE_ISSUER",
+    "nugget_description": "SSL Certificate - Issued by",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_ssl_certificate_issuer.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "SSL_CERTIFICATE_MISMATCH",
+    "nugget_description": "SSL Certificate Host Mismatch",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_ssl_certificate_mismatch.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SSL_CERTIFICATE_EXPIRED",
+    "nugget_description": "SSL Certificate Expired",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_ssl_certificate_expired.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SSL_CERTIFICATE_EXPIRING",
+    "nugget_description": "SSL Certificate Expiring",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_ssl_certificate_expiring.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "TARGET_WEB_CONTENT",
+    "nugget_description": "Web Content",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_target_web_content.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "TARGET_WEB_CONTENT_TYPE",
+    "nugget_description": "Web Content Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_target_web_content_type.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "TARGET_WEB_COOKIE",
+    "nugget_description": "Cookies",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_target_web_cookie.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "TCP_PORT_OPEN",
+    "nugget_description": "Open TCP Port",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "icon_tcp_port_open.svg",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "TCP_PORT_OPEN_BANNER",
+    "nugget_description": "Open TCP Port Banner",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_tcp_port_open_banner.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "TOR_EXIT_NODE",
+    "nugget_description": "TOR Exit Node",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_tor_exit_node.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "UDP_PORT_OPEN",
+    "nugget_description": "Open UDP Port",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "icon_udp_port_open.svg",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "UDP_PORT_OPEN_INFO",
+    "nugget_description": "Open UDP Port Information",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_udp_port_open_info.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "URL_ADBLOCKED_EXTERNAL",
+    "nugget_description": "URL (AdBlocked External)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_adblocked_external.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_ADBLOCKED_INTERNAL",
+    "nugget_description": "URL (AdBlocked Internal)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_adblocked_internal.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_FORM",
+    "nugget_description": "URL (Form)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_form.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_FLASH",
+    "nugget_description": "URL (Uses Flash)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_flash.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_JAVASCRIPT",
+    "nugget_description": "URL (Uses Javascript)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_javascript.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_WEB_FRAMEWORK",
+    "nugget_description": "URL (Uses a Web Framework)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_web_framework.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_JAVA_APPLET",
+    "nugget_description": "URL (Uses Java Applet)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_java_applet.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_STATIC",
+    "nugget_description": "URL (Purely Static)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_static.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_PASSWORD",
+    "nugget_description": "URL (Accepts Passwords)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_password.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_UPLOAD",
+    "nugget_description": "URL (Accepts Uploads)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_upload.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_FORM_HISTORIC",
+    "nugget_description": "Historic URL (Form)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_form_historic.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_FLASH_HISTORIC",
+    "nugget_description": "Historic URL (Uses Flash)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_flash_historic.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_JAVASCRIPT_HISTORIC",
+    "nugget_description": "Historic URL (Uses Javascript)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_javascript_historic.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_WEB_FRAMEWORK_HISTORIC",
+    "nugget_description": "Historic URL (Uses a Web Framework)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_web_framework_historic.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_JAVA_APPLET_HISTORIC",
+    "nugget_description": "Historic URL (Uses Java Applet)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_java_applet_historic.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_STATIC_HISTORIC",
+    "nugget_description": "Historic URL (Purely Static)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_static_historic.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_PASSWORD_HISTORIC",
+    "nugget_description": "Historic URL (Accepts Passwords)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_password_historic.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "URL_UPLOAD_HISTORIC",
+    "nugget_description": "Historic URL (Accepts Uploads)",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_url_upload_historic.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "USERNAME",
+    "nugget_description": "Username",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_username.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "VPN_HOST",
+    "nugget_description": "VPN Host",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_vpn_host.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "VULNERABILITY_DISCLOSURE",
+    "nugget_description": "Vulnerability - Third Party Disclosure",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_vulnerability_disclosure.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "VULNERABILITY_CVE_CRITICAL",
+    "nugget_description": "Vulnerability - CVE Critical",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_vulnerability_cve_critical.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "VULNERABILITY_CVE_HIGH",
+    "nugget_description": "Vulnerability - CVE High",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_vulnerability_cve_high.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "VULNERABILITY_CVE_MEDIUM",
+    "nugget_description": "Vulnerability - CVE Medium",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_vulnerability_cve_medium.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "VULNERABILITY_CVE_LOW",
+    "nugget_description": "Vulnerability - CVE Low",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_vulnerability_cve_low.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "VULNERABILITY_GENERAL",
+    "nugget_description": "Vulnerability - General",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_vulnerability_general.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "WEB_ANALYTICS_ID",
+    "nugget_description": "Web Analytics",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_web_analytics_id.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "WEBSERVER_BANNER",
+    "nugget_description": "Web Server",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_webserver_banner.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "WEBSERVER_HTTPHEADERS",
+    "nugget_description": "HTTP Headers",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_webserver_httpheaders.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "WEBSERVER_STRANGEHEADER",
+    "nugget_description": "Non-Standard HTTP Header",
+    "nugget_type": "DATA",
+    "nugget_icon": "icon_webserver_strangeheader.svg",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "WEBSERVER_TECHNOLOGY",
+    "nugget_description": "Web Technology",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_webserver_technology.svg",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "WIFI_ACCESS_POINT",
+    "nugget_description": "WiFi Access Point Nearby",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_wifi_access_point.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "WIKIPEDIA_PAGE_EDIT",
+    "nugget_description": "Wikipedia Page Edit",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "icon_wikipedia_page_edit.svg",
+    "nugget_colour": "#F59E0B"
+  }
+]
