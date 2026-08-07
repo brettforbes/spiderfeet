@@ -828,10 +828,14 @@ define
 	attribute created, value datetime;
 
 	#####################################
-	# Schema functions (containment walk)
-	# has_this ≈ ontology "had" (has is reserved); contains_this ≈ "contains";
-	# listens_to_this ≈ "listens-to". Roles remain semantic_link source/target.
+	# Schema functions (R10-08 / AI2)
+	# Edge mapping: see .governance/project/SPEC010_EDGE_NAMING.md
+	# Projection field contracts: .governance/project/SPEC010_FUN_PROJECTIONS.md
+	# has_this ≈ "had"; contains_this ≈ "contains"; listens_to_this ≈ "listens-to".
+	# Roles on semantic_link: source / target (not seed container/contained).
 	####################################
+
+	# --- Meta-concept walks (contains + had + listens-to) ---
 
 	fun contains_recursive($container_A: nugget) -> { nugget }:
 	match
@@ -844,3 +848,170 @@ define
 	      links (source: $intermediate_B, target: $contained_C);
 	  };
 	return { $contained_C };
+
+	# Root plus every nugget reached by transitive contains_this.
+	fun meta_member($root: nugget) -> { nugget }:
+	match
+	  {
+	    $n isa nugget;
+	    $n is $root;
+	  } or {
+	    let $n in contains_recursive($root);
+	  };
+	return { $n };
+
+	# Descriptor / port targets attached via had or listens-to from any meta member
+	# (including the root). Completes the meta-concept subgraph beyond pure contains.
+	fun meta_related($root: nugget) -> { nugget }:
+	match
+	  let $src_nug in meta_member($root);
+	  {
+	    $n is $src_nug;
+	  } or {
+	    $_ isa has_this, links (source: $src_nug, target: $n);
+	  } or {
+	    $_ isa listens_to_this, links (source: $src_nug, target: $n);
+	  };
+	return { $n };
+
+	# Edge endpoint pairs from any meta_member source (graph-JSON type = which fun).
+	fun meta_contains_edge_ends($root: nugget) -> { nugget_instance_id, nugget_instance_id }:
+	match
+	  let $src in meta_member($root);
+	  $_ isa contains_this, links (source: $src, target: $tgt);
+	  $src has nugget_instance_id $sid;
+	  $tgt has nugget_instance_id $tid;
+	return { $sid, $tid };
+
+	fun meta_had_edge_ends($root: nugget) -> { nugget_instance_id, nugget_instance_id }:
+	match
+	  let $src in meta_member($root);
+	  $_ isa has_this, links (source: $src, target: $tgt);
+	  $src has nugget_instance_id $sid;
+	  $tgt has nugget_instance_id $tid;
+	return { $sid, $tid };
+
+	fun meta_listens_edge_ends($root: nugget) -> { nugget_instance_id, nugget_instance_id }:
+	match
+	  let $src in meta_member($root);
+	  $_ isa listens_to_this, links (source: $src, target: $tgt);
+	  $src has nugget_instance_id $sid;
+	  $tgt has nugget_instance_id $tid;
+	return { $sid, $tid };
+
+	# --- Project / workflow / scan_step id + UI projections ---
+	# Fun return signatures use attribute types (TypeDB 3), values are JSON-ready strings.
+
+	fun project_ids() -> { project_id }:
+	match
+	  $p isa project, has project_id $id;
+	return { $id };
+
+	fun project_workflow_ids($pid: string) -> { workflow_id }:
+	match
+	  $p isa project, has project_id == $pid;
+	  $p links (workflow: $w);
+	  $w has workflow_id $wid;
+	return { $wid };
+
+	fun project_context_ids($pid: string) -> { project_context_id }:
+	match
+	  $p isa project, has project_id == $pid;
+	  $pc isa project_context, has project_context_id $cid;
+	  $pc links (project: $p);
+	return { $cid };
+
+	fun project_temporary_subgraph_ids($pid: string) -> { temporary_subgraph_id }:
+	match
+	  $p isa project, has project_id == $pid;
+	  $ts isa temporary_subgraph, has temporary_subgraph_id $tid;
+	  $ts links (project: $p);
+	return { $tid };
+
+	# Targets reach a project via its workflows (workflow relates target).
+	fun project_target_ids($pid: string) -> { target_id }:
+	match
+	  let $wid in project_workflow_ids($pid);
+	  $w isa workflow, has workflow_id == $wid;
+	  $w links (target: $t);
+	  $t has target_id $tid;
+	return { $tid };
+
+	fun workflow_target_ids($wid: string) -> { target_id }:
+	match
+	  $w isa workflow, has workflow_id == $wid;
+	  $w links (target: $t);
+	  $t has target_id $tid;
+	return { $tid };
+
+	fun workflow_first_step_ids($wid: string) -> { scan_instance_id }:
+	match
+	  $w isa workflow, has workflow_id == $wid;
+	  $w links (first_step: $s);
+	  $s has scan_instance_id $sid;
+	return { $sid };
+
+	fun workflow_prior_step_ids($wid: string) -> { scan_instance_id }:
+	match
+	  $w isa workflow, has workflow_id == $wid;
+	  $w links (prior_step: $s);
+	  $s has scan_instance_id $sid;
+	return { $sid };
+
+	fun workflow_next_step_ids($wid: string) -> { scan_instance_id }:
+	match
+	  $w isa workflow, has workflow_id == $wid;
+	  $w links (next_step: $s);
+	  $s has scan_instance_id $sid;
+	return { $sid };
+
+	fun workflow_yaml_string($wid: string) -> { workflow_yaml }:
+	match
+	  $w isa workflow, has workflow_id == $wid, has workflow_yaml $yaml;
+	return { $yaml };
+
+	fun scan_step_cli_command($sid: string) -> { scan_ui_cli_command }:
+	match
+	  $s isa scan_step, has scan_instance_id == $sid, has scan_ui_cli_command $v;
+	return { $v };
+
+	fun scan_step_text_form($sid: string) -> { scan_ui_text_form }:
+	match
+	  $s isa scan_step, has scan_instance_id == $sid, has scan_ui_text_form $v;
+	return { $v };
+
+	fun scan_step_structured_form($sid: string) -> { scan_ui_structured_form }:
+	match
+	  $s isa scan_step, has scan_instance_id == $sid, has scan_ui_structured_form $v;
+	return { $v };
+
+	fun scan_step_graph_form($sid: string) -> { scan_ui_graph_form }:
+	match
+	  $s isa scan_step, has scan_instance_id == $sid, has scan_ui_graph_form $v;
+	return { $v };
+
+	fun scan_step_markdown_narrative_form($sid: string) -> { scan_ui_markdown_narrative_form }:
+	match
+	  $s isa scan_step, has scan_instance_id == $sid, has scan_ui_markdown_narrative_form $v;
+	return { $v };
+
+	fun scan_step_consumed_ids($sid: string) -> { nugget_instance_id }:
+	match
+	  $s isa scan_step, has scan_instance_id == $sid;
+	  $s links (consumed: $n);
+	  $n has nugget_instance_id $nid;
+	return { $nid };
+
+	fun scan_step_produced_ids($sid: string) -> { nugget_instance_id }:
+	match
+	  $s isa scan_step, has scan_instance_id == $sid;
+	  $s links (produced: $n);
+	  $n has nugget_instance_id $nid;
+	return { $nid };
+
+	fun scan_step_result_graph_ids($sid: string) -> { scan_result_id }:
+	match
+	  $s isa scan_step, has scan_instance_id == $sid;
+	  $g isa scan_result_graph, has scan_result_id $gid;
+	  $g links (scan_step: $s);
+	return { $gid };
