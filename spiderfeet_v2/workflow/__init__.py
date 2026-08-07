@@ -1,8 +1,9 @@
-"""Workflow DSL + GSE runtime for SpiderFeet v2 (SPEC-010 AM1/AM2).
+"""Workflow DSL + GSE runtime for SpiderFeet v2 (SPEC-010 AM1–AM3).
 
 Ported and extended from ``.seed/scripts/cli_workflow/`` (SPEC-007).
 Canonical authoring shape: ``.seed/12A_Workflow_YAML_Example.yaml``.
 AM2: YAML-DSL ↔ TypeDB conversion via ``typedb_convert``.
+AM3: ``context.export`` mark + append-unique temporary-context merge.
 """
 
 from __future__ import annotations
@@ -40,6 +41,16 @@ __all__ = [
     "load_workflow_api_json",
     "workflows_equal",
     "dump_canonical_yaml",
+    "EXPORT_SCAN_GRAPH",
+    "EXPORT_NONE",
+    "empty_context",
+    "step_exports_scan_graph",
+    "mark_scan_result_for_export",
+    "is_marked_for_export",
+    "merge_graph",
+    "merge_graphs",
+    "apply_context_export",
+    "export_steps",
 ]
 
 
@@ -95,4 +106,19 @@ def __getattr__(name: str) -> Any:
         from spiderfeet_v2.workflow import typedb_convert as _convert
 
         return getattr(_convert, name)
+    if name in (
+        "EXPORT_SCAN_GRAPH",
+        "EXPORT_NONE",
+        "empty_context",
+        "step_exports_scan_graph",
+        "mark_scan_result_for_export",
+        "is_marked_for_export",
+        "merge_graph",
+        "merge_graphs",
+        "apply_context_export",
+        "export_steps",
+    ):
+        from spiderfeet_v2.workflow import context_export as _ctx
+
+        return getattr(_ctx, name)
     raise AttributeError(f"module {__name__!r} has no attribute {name}")
