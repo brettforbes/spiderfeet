@@ -45,6 +45,8 @@ Creates the database if missing, applies schema once, inserts missing nuggets an
 
 With the API running (`.\start.ps1 -Mode api`), use `/api/v1/map/*` — see [`.docs/api/README.md`](../api/README.md). The widget Maps tab will consume `GET /api/v1/map/graph`.
 
+**Auto-bootstrap:** When the TypeDB server is reachable but `spiderfeet-map` is missing, has no schema, or has no seeded catalogue (nuggets/services), the API recreates/seeds it on process startup and again on `GET /api/v1/map/status`. Use `POST /api/v1/map/bootstrap?reset=true` (or `python -m spiderfeet.map --reset`) only when you need a hard drop/recreate after schema breakage.
+
 ## Package layout
 
 | Module | Role |

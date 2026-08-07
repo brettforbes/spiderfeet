@@ -1,0 +1,843 @@
+define
+
+	# Naming convention (Option B):
+	#   Entity and relation type labels: kebab-case (e.g. osint-service, domain-name)
+	#   Attribute type labels: snake_case (e.g. access_tier, module_id)
+	#   @values string literals: snake_case data values (e.g. free_no_auth, ip_netblock)
+
+	####################################
+	# SpiderFeet Subgraph Relation - holds an aray of nuggets and an array of edges
+	####################################
+
+	relation subgraph @abstract,
+		relates nuggets @card(0..), # array of nugget entities
+		relates edges @card(0..), # array of edge relations
+		relates owner @card(0..1); # entity that owns the subgraph
+
+	relation scan_result_graph, sub subgraph,
+		owns scan_result_id @key, # e.g. "scan-result--0b778a9a-ae9c-4253-883d-32208b75d441"
+		relates scan_step as owner;
+
+	relation project_context, sub subgraph,
+		owns project_context_id @key, # e.g. "project-context--0b778a9a-ae9c-4253-883d-32208b75d441"
+		relates project as owner;
+
+	relation temporary_subgraph, sub subgraph,
+		owns temporary_subgraph_id @key, # e.g. "temporary-subgraph--0b778a9a-ae9c-4253-883d-32208b75d441"
+		relates project as owner;
+
+	relation target_context, sub subgraph,
+		owns target_context_id @key, # e.g. "target-context--0b778a9a-ae9c-4253-883d-32208b75d441"
+		relates target as owner;
+	
+	####################################
+	# SpiderFeet Nugget Definitions
+	#
+	####################################
+
+
+	entity nugget @abstract,
+		owns nugget_id, # nugget_id from the template in the .docs/analysis/nuggets.json
+		owns nugget_instance_id @unique  @card(0..1), # (`nugget_instance_id` = `<nugget_id>--<UUI5(namespace, nugget_data)>`)
+		owns nugget_description, # nugget_description from the template in the .docs/analysis/nuggets.json
+		owns nugget_type, # nugget_type from the template in the .docs/analysis/nuggets.json
+		owns nugget_event_type, # old event_type from the old scanning instance code, will be deprecated
+		owns nugget_icon, # nugget_icon from the template in the .docs/analysis/nuggets.json
+		owns nugget_colour, # nugget_colour from the template in the .docs/analysis/nuggets.json
+		owns nugget_data, # nugget_data from the scanning instance
+		owns nugget_source_data,
+		owns nugget_module, # name of osint-service relation used to produce this nugget
+		owns nugget_generated, # epoch/ms when this nugget instance was generated
+		owns nugget_confidence, # confidence level of the nugget from the scanning instance
+		owns nugget_visibility, # UI / operator visibility weight
+		owns nugget_risk, # risk weight for triage
+		owns nugget_false_positive, # operator false-positive flag
+		plays osint-service:consumed,
+		plays osint-service:produced,
+		plays route:consumed,
+		plays route:produced,
+		plays scan_step:consumed,
+		plays scan_step:produced,
+		plays semantic_link:target,
+		plays semantic_link:source,
+		plays subgraph:nuggets;
+
+	#
+	# Semantic Relations
+	relation semantic_link @abstract,
+		relates source,
+		relates target,
+		plays subgraph:edges;
+
+	relation has_this, sub semantic_link;
+	relation contains_this, sub semantic_link;
+	relation listens_to_this, sub semantic_link;
+
+	#
+	# Nugget Types
+	entity category, sub nugget;
+	entity entity_nugget, sub nugget;
+	entity descriptor_nugget, sub nugget;
+	entity data_nugget, sub nugget;
+	entity subentity_nugget, sub nugget;
+	entity root, sub nugget;
+	entity null_value_nugget, sub nugget; # Signifies no result is expected or positive result from a negative fixture
+	#
+	# Actual Nugget Types (grouped by nugget_type from .docs/analysis/nuggets.json)
+	#
+	# Null Value Nuggets
+	entity clean_miss, sub null_value_nugget; # Signfices positive result from a negative fixture
+	entity no_input, sub null_value_nugget; # Signifies no input was provided
+	#
+	# Meta Concept Nuggets - these concepts contain many other nuggets and can be retrieved using transitive relations
+	#
+	entity meta_concept, sub entity_nugget;
+	entity system, sub meta_concept;
+	entity host, sub system;
+	entity cdn, sub system;
+	entity mobile, sub system;
+	entity device, sub system;
+	entity trace, sub meta_concept;
+	entity company, sub meta_concept;
+	#
+	# Category Nuggets
+	#
+	entity networks, sub category;
+	entity environment, sub category;
+	entity applications, sub category;
+
+	# Entity Nuggets
+	# ENTITY - first-class investigation objects (hosts, domains, identities, etc.)
+	# Note: host / trace live under meta_concept above; port lives under subentity_nugget below.
+	entity scan-record, sub entity_nugget; # Scan Record (ontology nugget type SCAN_RECORD)
+	entity service, sub entity_nugget; # Network Service
+	entity transport, sub entity_nugget; # Transport Protocol
+
+	entity account-external-owned, sub entity_nugget;  # Account on External Site
+	entity affiliate-company-name, sub nugget;  # Affiliate - Company Name
+	entity affiliate-domain-name, sub nugget;  # Affiliate - Domain Name
+	entity affiliate-domain-unregistered, sub nugget;  # Affiliate - Domain Name Unregistered
+	entity affiliate-emailaddr, sub nugget;  # Affiliate - Email Address
+	entity affiliate-internet-name, sub nugget;  # Affiliate - Internet Name
+	entity affiliate-internet-name-hijackable, sub nugget;  # Affiliate - Internet Name Hijackable
+	entity affiliate-internet-name-unresolved, sub nugget;  # Affiliate - Internet Name - Unresolved
+	entity affiliate-ipaddr, sub nugget;  # Affiliate - IP Address
+	entity affiliate-ipv6-address, sub nugget;  # Affiliate - IPv6 Address
+	entity appstore-entry, sub nugget;  # App Store Entry
+	entity bgp-as-member, sub nugget;  # BGP AS Membership
+	entity bgp-as-owner, sub nugget;  # BGP AS Ownership
+	entity bitcoin-address, sub nugget;  # Bitcoin Address
+	entity cloud-storage-bucket, sub nugget;  # Cloud Storage Bucket
+	entity co-hosted-site, sub nugget;  # Co-Hosted Site
+	entity co-hosted-site-domain, sub nugget;  # Co-Hosted Site - Domain Name
+	entity company-name, sub nugget;  # Company Name
+	entity country-name, sub nugget;  # Country Name
+	entity credit-card-number, sub nugget;  # Credit Card Number
+	entity date-human-dob, sub nugget;  # Date of Birth
+	entity domain-name, sub nugget;  # Domain Name
+	entity domain-name-parent, sub nugget;  # Domain Name (Parent)
+	entity domain-registrar, sub nugget;  # Domain Registrar
+	entity emailaddr, sub nugget;  # Email Address
+	entity emailaddr-generic, sub nugget;  # Email Address - Generic
+	entity ethereum-address, sub nugget;  # Ethereum Address
+	entity human-name, sub nugget;  # Human Name
+	entity iban-number, sub nugget;  # IBAN Number
+	entity internal-ip-address, sub nugget;  # IP Address - Internal Network
+	entity internet-name, sub nugget;  # Internet Name
+	entity internet-name-unresolved, sub nugget;  # Internet Name - Unresolved
+	entity ipv4-address, sub nugget;  # IPv4 Address
+	entity ipv6-address, sub nugget;  # IPv6 Address
+	entity leaksite-url, sub nugget;  # Leak Site URL
+	entity lei, sub nugget;  # Legal Entity Identifier
+	entity netblock-member, sub nugget;  # Netblock Membership
+	entity netblock-owner, sub nugget;  # Netblock Ownership
+	entity netblockv6-member, sub nugget;  # Netblock IPv6 Membership
+	entity netblockv6-owner, sub nugget;  # Netblock IPv6 Ownership
+	entity phone-number, sub nugget;  # Phone Number
+	entity physical-address, sub nugget;  # Physical Address
+	entity physical-coordinates, sub nugget;  # Physical Coordinates
+	entity provider-dns, sub nugget;  # Name Server (DNS NS Records)
+	entity provider-hosting, sub nugget;  # Hosting Provider
+	entity provider-javascript, sub nugget;  # Externally Hosted Javascript
+	entity provider-mail, sub nugget;  # Email Gateway (DNS MX Records)
+	entity provider-telco, sub nugget;  # Telecommunications Provider
+	entity public-code-repo, sub nugget;  # Public Code Repository
+	entity similar-account-external, sub nugget;  # Similar Account on External Site
+	entity similardomain, sub nugget;  # Similar Domain
+	entity social-media, sub nugget;  # Social Media Presence
+	entity ssl-certificate-issued, sub nugget;  # SSL Certificate - Issued to
+	entity ssl-certificate-issuer, sub nugget;  # SSL Certificate - Issued by
+	entity username, sub nugget;  # Username
+	entity web-analytics-id, sub nugget;  # Web Analytics
+	entity wifi-access-point, sub nugget;  # WiFi Access Point Nearby
+
+	# Descriptor Nuggets
+	# DESCRIPTOR - attributes and classifications of entities
+	entity scan-cli, sub descriptor_nugget; # Scan CLI
+	entity scan-version, sub descriptor_nugget; # Scan Version
+	entity scan-start, sub descriptor_nugget; # Scan Start
+	entity scan-target, sub descriptor_nugget; # Scan Target
+	entity scan-tool, sub descriptor_nugget; # Scan Tool
+	entity scan-summary, sub descriptor_nugget; # Scan Summary
+	entity scan-elapsed, sub descriptor_nugget; # Scan Elapsed Time
+	entity host-status, sub descriptor_nugget; # Host Status
+	entity host-status-reason, sub descriptor_nugget; # Host Status Reason
+	entity port-state, sub descriptor_nugget; # Port State
+	entity port-state-reason, sub descriptor_nugget; # Port State Reason
+	entity port-protocol, sub descriptor_nugget; # Port Protocol
+	entity service-extrainfo, sub descriptor_nugget; # Service Extra Information
+	entity os-match-accuracy, sub descriptor_nugget; # OS Match Accuracy
+	entity trace-protocol, sub descriptor_nugget; # Trace Protocol
+	entity hop-ttl, sub descriptor_nugget; # Trace Hop TTL
+	entity hop-rtt, sub descriptor_nugget; # Trace Hop RTT
+	entity hop-order, sub descriptor_nugget; # Trace Hop Order
+	entity ssh-key-bits, sub descriptor_nugget; # SSH Key Bits
+	entity ssh-key-type, sub descriptor_nugget; # SSH Key Type
+	entity ssh-key-key, sub descriptor_nugget; # SSH Public Key
+	entity http-title, sub descriptor_nugget; # HTTP Title
+
+	entity account-external-owned-compromised, sub nugget;  # Hacked Account on External Site
+	entity account-external-user-shared-compromised, sub nugget;  # Hacked User Account on External Site
+	entity affiliate-description-abstract, sub nugget;  # Affiliate Description - Abstract
+	entity affiliate-description-category, sub nugget;  # Affiliate Description - Category
+	entity bitcoin-balance, sub nugget;  # Bitcoin Balance
+	entity blacklisted-affiliate-internet-name, sub nugget;  # Blacklisted Affiliate Internet Name
+	entity blacklisted-affiliate-ipaddr, sub nugget;  # Blacklisted Affiliate IP Address
+	entity blacklisted-cohost, sub nugget;  # Blacklisted Co-Hosted Site
+	entity blacklisted-internet-name, sub nugget;  # Blacklisted Internet Name
+	entity blacklisted-ipaddr, sub nugget;  # Blacklisted IP Address
+	entity blacklisted-netblock, sub nugget;  # Blacklisted IP on Owned Netblock
+	entity blacklisted-subnet, sub nugget;  # Blacklisted IP on Same Subnet
+	entity cloud-storage-bucket-open, sub nugget;  # Cloud Storage Bucket Open
+	entity darknet-mention-url, sub nugget;  # Darknet Mention URL
+	entity defaced-affiliate-internet-name, sub nugget;  # Defaced Affiliate
+	entity defaced-affiliate-ipaddr, sub nugget;  # Defaced Affiliate IP Address
+	entity defaced-cohost, sub nugget;  # Defaced Co-Hosted Site
+	entity defaced-internet-name, sub nugget;  # Defaced
+	entity defaced-ipaddr, sub nugget;  # Defaced IP Address
+	entity description-abstract, sub nugget;  # Description - Abstract
+	entity description-category, sub nugget;  # Description - Category
+	entity device-type, sub nugget;  # Device Type
+	entity emailaddr-compromised, sub nugget;  # Hacked Email Address
+	entity emailaddr-deliverable, sub nugget;  # Deliverable Email Address
+	entity emailaddr-disposable, sub nugget;  # Disposable Email Address
+	entity emailaddr-undeliverable, sub nugget;  # Undeliverable Email Address
+	entity ethereum-balance, sub nugget;  # Ethereum Balance
+	entity geoinfo, sub nugget;  # Physical Location
+	entity interesting-file, sub nugget;  # Interesting File
+	entity interesting-file-historic, sub nugget;  # Historic Interesting File
+	entity job-title, sub nugget;  # Job Title
+	entity junk-file, sub nugget;  # Junk File
+	entity malicious-affiliate-internet-name, sub nugget;  # Malicious Affiliate
+	entity malicious-affiliate-ipaddr, sub nugget;  # Malicious Affiliate IP Address
+	entity malicious-asn, sub nugget;  # Malicious AS
+	entity malicious-bitcoin-address, sub nugget;  # Malicious Bitcoin Address
+	entity malicious-cohost, sub nugget;  # Malicious Co-Hosted Site
+	entity malicious-emailaddr, sub nugget;  # Malicious E-mail Address
+	entity malicious-internet-name, sub nugget;  # Malicious Internet Name
+	entity malicious-ipaddr, sub nugget;  # Malicious IP Address
+	entity malicious-netblock, sub nugget;  # Malicious IP on Owned Netblock
+	entity malicious-phone-number, sub nugget;  # Malicious Phone Number
+	entity malicious-subnet, sub nugget;  # Malicious IP on Same Subnet
+	entity operating-system, sub nugget;  # Operating System
+	entity phone-number-compromised, sub nugget;  # Phone Number Compromised
+	entity phone-number-type, sub nugget;  # Phone Number Type
+	entity proxy-host, sub nugget;  # Proxy Host
+	entity ssl-certificate-expired, sub nugget;  # SSL Certificate Expired
+	entity ssl-certificate-expiring, sub nugget;  # SSL Certificate Expiring
+	entity ssl-certificate-mismatch, sub nugget;  # SSL Certificate Host Mismatch
+	entity target-web-content-type, sub nugget;  # Web Content Type
+	entity tor-exit-node, sub nugget;  # TOR Exit Node
+	entity url-adblocked-external, sub nugget;  # URL (AdBlocked External)
+	entity url-adblocked-internal, sub nugget;  # URL (AdBlocked Internal)
+	entity url-flash, sub nugget;  # URL (Uses Flash)
+	entity url-flash-historic, sub nugget;  # Historic URL (Uses Flash)
+	entity url-form, sub nugget;  # URL (Form)
+	entity url-form-historic, sub nugget;  # Historic URL (Form)
+	entity url-java-applet, sub nugget;  # URL (Uses Java Applet)
+	entity url-java-applet-historic, sub nugget;  # Historic URL (Uses Java Applet)
+	entity url-javascript, sub nugget;  # URL (Uses Javascript)
+	entity url-javascript-historic, sub nugget;  # Historic URL (Uses Javascript)
+	entity url-password, sub nugget;  # URL (Accepts Passwords)
+	entity url-password-historic, sub nugget;  # Historic URL (Accepts Passwords)
+	entity url-static, sub nugget;  # URL (Purely Static)
+	entity url-static-historic, sub nugget;  # Historic URL (Purely Static)
+	entity url-upload, sub nugget;  # URL (Accepts Uploads)
+	entity url-upload-historic, sub nugget;  # Historic URL (Accepts Uploads)
+	entity url-web-framework, sub nugget;  # URL (Uses a Web Framework)
+	entity url-web-framework-historic, sub nugget;  # Historic URL (Uses a Web Framework)
+	entity vpn-host, sub nugget;  # VPN Host
+	entity vulnerability-cve-critical, sub nugget;  # Vulnerability - CVE Critical
+	entity vulnerability-cve-high, sub nugget;  # Vulnerability - CVE High
+	entity vulnerability-cve-low, sub nugget;  # Vulnerability - CVE Low
+	entity vulnerability-cve-medium, sub nugget;  # Vulnerability - CVE Medium
+	entity vulnerability-disclosure, sub nugget;  # Vulnerability - Third Party Disclosure
+	entity vulnerability-general, sub nugget;  # Vulnerability - General
+	entity webserver-technology, sub nugget;  # Web Technology
+	entity wikipedia-page-edit, sub nugget;  # Wikipedia Page Edit
+
+	# Data Nuggets
+	# DATA - raw or structured payload blobs (WHOIS, banners, headers, etc.)
+
+	entity affiliate-domain-whois, sub nugget;  # Affiliate - Domain Whois
+	entity affiliate-web-content, sub nugget;  # Affiliate - Web Content
+	entity base64-data, sub nugget;  # Base64-encoded Data
+	entity co-hosted-site-domain-whois, sub nugget;  # Co-Hosted Site - Domain Whois
+	entity darknet-mention-content, sub nugget;  # Darknet Mention Web Content
+	entity dns-spf, sub nugget;  # DNS SPF Record
+	entity dns-srv, sub nugget;  # DNS SRV Record
+	entity dns-text, sub nugget;  # DNS TXT Record
+	entity domain-whois, sub nugget;  # Domain Whois
+	entity error-message, sub nugget;  # Error Message
+	entity hash, sub nugget;  # Hash
+	entity hash-compromised, sub nugget;  # Compromised Password Hash
+	entity http-code, sub nugget;  # HTTP Status Code
+	entity leaksite-content, sub nugget;  # Leak Site Content
+	entity netblock-whois, sub nugget;  # Netblock Whois
+	entity password-compromised, sub nugget;  # Compromised Password
+	entity pgp-key, sub nugget;  # PGP Public Key
+	entity raw-dns-records, sub nugget;  # Raw DNS Records
+	entity raw-file-meta-data, sub nugget;  # Raw File Meta Data
+	entity raw-rir-data, sub nugget;  # Raw Data from RIRs/APIs
+	entity search-engine-web-content, sub nugget;  # Search Engine Web Content
+	entity similardomain-whois, sub nugget;  # Similar Domain - Whois
+	entity ssl-certificate-raw, sub nugget;  # SSL Certificate - Raw Data
+	entity target-web-content, sub nugget;  # Web Content
+	entity target-web-cookie, sub nugget;  # Cookies
+	entity tcp-port-open-banner, sub nugget;  # Open TCP Port Banner
+	entity udp-port-open-info, sub nugget;  # Open UDP Port Information
+	entity webserver-banner, sub nugget;  # Web Server
+	entity webserver-httpheaders, sub nugget;  # HTTP Headers
+	entity webserver-strangeheader, sub nugget;  # Non-Standard HTTP Header
+
+	# Subentity Nuggets
+	# SUBENTITY - child objects owned by a parent entity (ports, URLs, software)
+
+	entity port, sub subentity_nugget; # Network Port
+	entity trace-hop, sub subentity_nugget; # Trace Hop
+	entity cpe-url, sub subentity_nugget; # CPE URL
+	entity ssh-key @abstract, sub subentity_nugget; # SSH Key
+	entity dsa, sub ssh-key; # SSH Key - DSA
+	entity rsa, sub ssh-key; # SSH Key - RSA
+	entity ecdsa, sub ssh-key; # SSH Key - ECDSA
+	entity eddsa, sub ssh-key; # SSH Key - EdDSA
+	entity linked-url-external, sub nugget;  # Linked URL - External
+	entity linked-url-internal, sub nugget;  # Linked URL - Internal
+	entity software-used, sub nugget;  # Software Used
+	entity tcp-port-open, sub nugget;  # Open TCP Port
+	entity udp-port-open, sub nugget;  # Open UDP Port
+
+	#####################################
+	# SpiderFeet OSINT Service Definitions
+	####################################
+
+	relation osint-service,
+		owns module_id,
+		owns name,
+		owns summary,
+		owns flags,
+		owns use_cases,
+		owns categories,
+		owns fixture_category,
+		owns access_tier,
+		owns consumption_group,
+		owns route_seed_nugget,
+		owns consumed_nuggets,
+		owns produced_nuggets,
+		owns service_state,
+		owns service_origin,
+		owns markdown_graph_structure_string, # String containing the Graph Structure doc for this service
+		owns markdown_options_string, # String containing the Markdown options for this service
+		owns markdown_zero_to_hero_string, # String containing the Zero to Hero doc for this service
+		plays scan_step:service,
+		plays data-source:service,
+		plays route:osint-service,
+		plays opts:service,
+		relates consumed @card(0..),
+		relates produced @card(0..);
+
+	entity osint-source,
+		owns website,
+		owns model,
+		owns references,
+		owns api_key_instructions,
+		owns fav_icon,
+		owns logo,
+		owns description,
+		plays data-source:source;
+
+	entity module-opt,
+		owns opt_name,
+		owns in_value @card(0..1),
+		owns db_value @card(0..1),
+		owns bo_value @card(0..1),
+		owns st_value @card(0..1),
+		owns description @card(0..1),
+		plays opts:opt;
+
+	relation opts,
+		relates service,
+		relates opt;
+
+	relation data-source,
+		relates service,
+		relates source;
+
+	##########################################
+	# SpiderFeet Legacy API Service Definitions
+	##########################################
+	relation sfp-api-abstractapi, sub osint-service;
+	relation sfp-api-abusech, sub osint-service;
+	relation sfp-api-abuseipdb, sub osint-service;
+	relation sfp-api-abusix, sub osint-service;
+	relation sfp-api-adblock, sub osint-service;
+	relation sfp-api-adguard-dns, sub osint-service;
+	relation sfp-api-ahmia, sub osint-service;
+	relation sfp-api-alienvault, sub osint-service;
+	relation sfp-api-alienvaultiprep, sub osint-service;
+	relation sfp-api-apple-itunes, sub osint-service;
+	relation sfp-api-archiveorg, sub osint-service;
+	relation sfp-api-arin, sub osint-service;
+	relation sfp-api-azureblobstorage, sub osint-service;
+	relation sfp-api-bgpview, sub osint-service;
+	relation sfp-api-binaryedge, sub osint-service;
+	relation sfp-api-bingsearch, sub osint-service;
+	relation sfp-api-bingsharedip, sub osint-service;
+	relation sfp-api-bitcoinabuse, sub osint-service;
+	relation sfp-api-bitcoinwhoswho, sub osint-service;
+	relation sfp-api-blockchain, sub osint-service;
+	relation sfp-api-blocklistde, sub osint-service;
+	relation sfp-api-botscout, sub osint-service;
+	relation sfp-api-botvrij, sub osint-service;
+	relation sfp-api-builtwith, sub osint-service;
+	relation sfp-api-c99, sub osint-service;
+	relation sfp-api-callername, sub osint-service;
+	relation sfp-api-censys, sub osint-service;
+	relation sfp-api-certspotter, sub osint-service;
+	relation sfp-api-cinsscore, sub osint-service;
+	relation sfp-api-circllu, sub osint-service;
+	relation sfp-api-citadel, sub osint-service;
+	relation sfp-api-cleanbrowsing, sub osint-service;
+	relation sfp-api-cleantalk, sub osint-service;
+	relation sfp-api-clearbit, sub osint-service;
+	relation sfp-api-cloudflaredns, sub osint-service;
+	relation sfp-api-coinblocker, sub osint-service;
+	relation sfp-api-commoncrawl, sub osint-service;
+	relation sfp-api-comodo, sub osint-service;
+	relation sfp-api-crobat-api, sub osint-service;
+	relation sfp-api-crt, sub osint-service;
+	relation sfp-api-crxcavator, sub osint-service;
+	relation sfp-api-cybercrimetracker, sub osint-service;
+	relation sfp-api-debounce, sub osint-service;
+	relation sfp-api-dehashed, sub osint-service;
+	relation sfp-api-digitaloceanspace, sub osint-service;
+	relation sfp-api-dns-for-family, sub osint-service;
+	relation sfp-api-dnsdb, sub osint-service;
+	relation sfp-api-dnsdumpster, sub osint-service;
+	relation sfp-api-dnsgrep, sub osint-service;
+	relation sfp-api-dronebl, sub osint-service;
+	relation sfp-api-duckduckgo, sub osint-service;
+	relation sfp-api-emailcrawlr, sub osint-service;
+	relation sfp-api-emailformat, sub osint-service;
+	relation sfp-api-emailrep, sub osint-service;
+	relation sfp-api-emergingthreats, sub osint-service;
+	relation sfp-api-etherscan, sub osint-service;
+	relation sfp-api-flickr, sub osint-service;
+	relation sfp-api-focsec, sub osint-service;
+	relation sfp-api-fortinet, sub osint-service;
+	relation sfp-api-fraudguard, sub osint-service;
+	relation sfp-api-fsecure-riddler, sub osint-service;
+	relation sfp-api-fullcontact, sub osint-service;
+	relation sfp-api-fullhunt, sub osint-service;
+	relation sfp-api-github, sub osint-service;
+	relation sfp-api-gleif, sub osint-service;
+	relation sfp-api-google-tag-manager, sub osint-service;
+	relation sfp-api-googlemaps, sub osint-service;
+	relation sfp-api-googleobjectstorage, sub osint-service;
+	relation sfp-api-googlesafebrowsing, sub osint-service;
+	relation sfp-api-googlesearch, sub osint-service;
+	relation sfp-api-gravatar, sub osint-service;
+	relation sfp-api-grayhatwarfare, sub osint-service;
+	relation sfp-api-greensnow, sub osint-service;
+	relation sfp-api-grep-app, sub osint-service;
+	relation sfp-api-greynoise, sub osint-service;
+	relation sfp-api-greynoise-community, sub osint-service;
+	relation sfp-api-h1nobbdde, sub osint-service;
+	relation sfp-api-hackertarget, sub osint-service;
+	relation sfp-api-haveibeenpwned, sub osint-service;
+	relation sfp-api-honeypot, sub osint-service;
+	relation sfp-api-hostio, sub osint-service;
+	relation sfp-api-hunter, sub osint-service;
+	relation sfp-api-hybrid-analysis, sub osint-service;
+	relation sfp-api-iknowwhatyoudownload, sub osint-service;
+	relation sfp-api-intelx, sub osint-service;
+	relation sfp-api-ipapico, sub osint-service;
+	relation sfp-api-ipapicom, sub osint-service;
+	relation sfp-api-ipinfo, sub osint-service;
+	relation sfp-api-ipqualityscore, sub osint-service;
+	relation sfp-api-ipregistry, sub osint-service;
+	relation sfp-api-ipstack, sub osint-service;
+	relation sfp-api-isc, sub osint-service;
+	relation sfp-api-jsonwhoiscom, sub osint-service;
+	relation sfp-api-keybase, sub osint-service;
+	relation sfp-api-koodous, sub osint-service;
+	relation sfp-api-leakix, sub osint-service;
+	relation sfp-api-maltiverse, sub osint-service;
+	relation sfp-api-malwarepatrol, sub osint-service;
+	relation sfp-api-metadefender, sub osint-service;
+	relation sfp-api-mnemonic, sub osint-service;
+	relation sfp-api-multiproxy, sub osint-service;
+	relation sfp-api-myspace, sub osint-service;
+	relation sfp-api-nameapi, sub osint-service;
+	relation sfp-api-networksdb, sub osint-service;
+	relation sfp-api-neutrinoapi, sub osint-service;
+	relation sfp-api-numverify, sub osint-service;
+	relation sfp-api-onioncity, sub osint-service;
+	relation sfp-api-onionsearchengine, sub osint-service;
+	relation sfp-api-onyphe, sub osint-service;
+	relation sfp-api-openbugbounty, sub osint-service;
+	relation sfp-api-opencorporates, sub osint-service;
+	relation sfp-api-opendns, sub osint-service;
+	relation sfp-api-opennic, sub osint-service;
+	relation sfp-api-openphish, sub osint-service;
+	relation sfp-api-openstreetmap, sub osint-service;
+	relation sfp-api-pastebin, sub osint-service;
+	relation sfp-api-phishstats, sub osint-service;
+	relation sfp-api-phishtank, sub osint-service;
+	relation sfp-api-projectdiscovery, sub osint-service;
+	relation sfp-api-psbdmp, sub osint-service;
+	relation sfp-api-pulsedive, sub osint-service;
+	relation sfp-api-punkspider, sub osint-service;
+	relation sfp-api-quad9, sub osint-service;
+	relation sfp-api-reversewhois, sub osint-service;
+	relation sfp-api-ripe, sub osint-service;
+	relation sfp-api-riskiq, sub osint-service;
+	relation sfp-api-robtex, sub osint-service;
+	relation sfp-api-s3bucket, sub osint-service;
+	relation sfp-api-searchcode, sub osint-service;
+	relation sfp-api-securitytrails, sub osint-service;
+	relation sfp-api-seon, sub osint-service;
+	relation sfp-api-shodan, sub osint-service;
+	relation sfp-api-skymem, sub osint-service;
+	relation sfp-api-slideshare, sub osint-service;
+	relation sfp-api-snov, sub osint-service;
+	relation sfp-api-sociallinks, sub osint-service;
+	relation sfp-api-socialprofiles, sub osint-service;
+	relation sfp-api-sorbs, sub osint-service;
+	relation sfp-api-spamcop, sub osint-service;
+	relation sfp-api-spamhaus, sub osint-service;
+	relation sfp-api-spur, sub osint-service;
+	relation sfp-api-spyonweb, sub osint-service;
+	relation sfp-api-stackoverflow, sub osint-service;
+	relation sfp-api-stevenblack-hosts, sub osint-service;
+	relation sfp-api-sublist3r, sub osint-service;
+	relation sfp-api-surbl, sub osint-service;
+	relation sfp-api-talosintel, sub osint-service;
+	relation sfp-api-template, sub osint-service;
+	relation sfp-api-textmagic, sub osint-service;
+	relation sfp-api-threatcrowd, sub osint-service;
+	relation sfp-api-threatfox, sub osint-service;
+	relation sfp-api-threatjammer, sub osint-service;
+	relation sfp-api-threatminer, sub osint-service;
+	relation sfp-api-torch, sub osint-service;
+	relation sfp-api-torexits, sub osint-service;
+	relation sfp-api-trashpanda, sub osint-service;
+	relation sfp-api-trumail, sub osint-service;
+	relation sfp-api-twilio, sub osint-service;
+	relation sfp-api-twitter, sub osint-service;
+	relation sfp-api-uceprotect, sub osint-service;
+	relation sfp-api-urlscan, sub osint-service;
+	relation sfp-api-venmo, sub osint-service;
+	relation sfp-api-viewdns, sub osint-service;
+	relation sfp-api-virustotal, sub osint-service;
+	relation sfp-api-voipbl, sub osint-service;
+	relation sfp-api-vxvault, sub osint-service;
+	relation sfp-api-whatcms, sub osint-service;
+	relation sfp-api-whoisology, sub osint-service;
+	relation sfp-api-whoxy, sub osint-service;
+	relation sfp-api-wigle, sub osint-service;
+	relation sfp-api-wikileaks, sub osint-service;
+	relation sfp-api-wikipediaedits, sub osint-service;
+	relation sfp-api-xforce, sub osint-service;
+	relation sfp-api-yandexdns, sub osint-service;
+	relation sfp-api-zetalytics, sub osint-service;
+	relation sfp-api-zonefiles, sub osint-service;
+	relation sfp-api-zoneh, sub osint-service;
+
+	relation sfp-api-accounts, sub osint-service;
+	relation sfp-api-base64, sub osint-service;
+	relation sfp-api-binstring, sub osint-service;
+	relation sfp-api-bitcoin, sub osint-service;
+	relation sfp-api-company, sub osint-service;
+	relation sfp-api-cookie, sub osint-service;
+	relation sfp-api-countryname, sub osint-service;
+	relation sfp-api-creditcard, sub osint-service;
+	relation sfp-api-crossref, sub osint-service;
+	relation sfp-api-customfeed, sub osint-service;
+	relation sfp-api-dnsbrute, sub osint-service;
+	relation sfp-api-dnscommonsrv, sub osint-service;
+	relation sfp-api-dnsneighbor, sub osint-service;
+	relation sfp-api-dnsraw, sub osint-service;
+	relation sfp-api-dnsresolve, sub osint-service;
+	relation sfp-api-dnszonexfer, sub osint-service;
+	relation sfp-api-email, sub osint-service;
+	relation sfp-api-errors, sub osint-service;
+	relation sfp-api-ethereum, sub osint-service;
+	relation sfp-api-filemeta, sub osint-service;
+	relation sfp-api-hashes, sub osint-service;
+	relation sfp-api-hosting, sub osint-service;
+	relation sfp-api-iban, sub osint-service;
+	relation sfp-api-intfiles, sub osint-service;
+	relation sfp-api-junkfiles, sub osint-service;
+	relation sfp-api-names, sub osint-service;
+	relation sfp-api-pageinfo, sub osint-service;
+	relation sfp-api-pgp, sub osint-service;
+	relation sfp-api-phone, sub osint-service;
+	relation sfp-api-portscan-tcp, sub osint-service;
+	relation sfp-api-similar, sub osint-service;
+	relation sfp-api-social, sub osint-service;
+	relation sfp-api-spider, sub osint-service;
+	relation sfp-api-sslcert, sub osint-service;
+	relation sfp-api-strangeheaders, sub osint-service;
+	relation sfp-api-subdomain-takeover, sub osint-service;
+	relation sfp-api-tldsearch, sub osint-service;
+	relation sfp-api-tool-cmseek, sub osint-service;
+	relation sfp-api-tool-dnstwist, sub osint-service;
+	relation sfp-api-tool-nbtscan, sub osint-service;
+	relation sfp-api-tool-onesixtyone, sub osint-service;
+	relation sfp-api-tool-retirejs, sub osint-service;
+	relation sfp-api-tool-snallygaster, sub osint-service;
+	relation sfp-api-tool-testsslsh, sub osint-service;
+	relation sfp-api-tool-trufflehog, sub osint-service;
+	relation sfp-api-tool-wafw00f, sub osint-service;
+	relation sfp-api-tool-wappalyzer, sub osint-service;
+	relation sfp-api-tool-whatweb, sub osint-service;
+	relation sfp-api-webanalytics, sub osint-service;
+	relation sfp-api-webframework, sub osint-service;
+	relation sfp-api-webserver, sub osint-service;
+	relation sfp-api-whois, sub osint-service;
+
+	##########################################
+	# Updated to v2 OSINT Service Definitions
+	##########################################
+
+	relation sfp-cli-app-nmap, sub osint-service;
+	relation sfp-cli-app-nuclei, sub osint-service;
+	relation sfp-cli-app-httpx, sub osint-service;
+	relation sfp-cli-app-netdiscover, sub osint-service;
+	relation sfp-cli-app-nerva, sub osint-service;
+	relation sfp-cli-app-pius, sub osint-service;
+	relation sfp-cli-app-subfinder, sub osint-service;
+	relation sfp-cli-app-katana, sub osint-service;
+	
+	#####################################
+	# SpiderFeet Route Relation Definitions
+	####################################
+
+	# Route state is in-test, until proven by tests to be either "favourite", 
+	#       "unique", "error", or "dominated" by another route.
+	
+	relation route,
+		owns route_name,
+		owns route_state,
+		relates osint-service,
+		relates consumed @card(0..),
+		relates produced @card(0..),
+		plays sequence:prior,
+		plays sequence:next,
+		plays scan_step:route; # v2 scan relation is scan_step (entity scan-record is the SCAN_RECORD nugget type)
+
+	relation sequence,
+		owns sequence_name,
+		relates prior,
+		relates next;
+
+
+	#####################################
+	# SpiderFeet Scan Relation Definitions
+	#
+	# One scan per module invocation (scan_ui / UI workflow). Owns instance
+	# metadata and result summary; links consumed/produced nuggets, the osint-service
+	# that ran (service role), and the route under test (route role).
+	#
+	# API / UI parity (POST /api/v1/scan_ui scan_record):
+	#   scan_instance_id   — SpiderFeet scan id (e.g. CFA30507)
+	#   scan_status        — lifecycle: STARTING, FINISHED, ERROR-FAILED, …
+	#   scan_duration      — seconds (started → ended)
+	#   scan_timestamp     — scan start (datetime)
+	#   scan_notes         — operator / UI notes
+	#   scan_nugget_count   — total events in this scan instance
+	#   scan_results_by_type — object map event_type → count (e.g. IP_ADDRESS: 2)
+	#   scan_results       — bundled summary object { status, event_count, by_type }
+	#   service (role)     — osint-service: module_id, name (e.g. sfp_dnsresolve)
+	#   route (role)       — route: route_name, route_state (e.g. in-test)
+	#   consumed / produced (roles) — nugget instances
+	####################################
+
+	relation scan_step, # the record generated as a result of a single scan instance, including ui data and scan results
+		owns scan_instance_id @key, # e.g. "scan_step--1c51e712-b5b5-4ef2-9967-e11debbcc607"
+		owns step_module_id, # name of the step's module, e.g. "sfp_cli_subfinder" (avoid bare attribute label `id`)
+		owns scan_status, # success, error, etc.
+		owns scan_nugget_count, # number of nuggets generated by this scan instance,
+		owns scan_results_by_type, # object map event_type → count (e.g. IP_ADDRESS: 2)
+		owns scan_results, # bundled summary object { status, nugget_count, by_type }
+		owns scan_duration, # time scan took to complete
+		owns scan_timestamp, # time scan started (API / UI parity)
+		owns scan_notes,
+		owns scan_ui_cli_command, # the command run to execute the scan step, e.g. "subfinder -d example.com -o json"
+		owns scan_ui_text_form, # text description of the scan step,
+		owns scan_ui_structured_form, # structured form of the scan step as a string, e.g. { json, csv, xml, etc. }
+		owns scan_ui_structured_form_type, # type of the structured form, e.g. "json", "csv", "xml", etc.
+		owns scan_ui_graph_form, # json string form of the nodes and edges arrays of the semantic scan subgraph
+		owns scan_ui_markdown_narrative_form, # markdown string form of the narrative description of the scan step
+		owns scan_yaml, # description in yaml workflow DSL, e.g. "subfinder_enum"
+		plays workflow:prior_step, # step can be a prior step in a sequence of steps
+		plays workflow:first_step, # step can be the first step in a sequence of steps
+		plays workflow:next_step, # step can be a next step in a sequence of steps
+		relates consumed @card(0..), # nugget inputs consumed by this scan step
+		plays scan_result_graph:scan_step,  # contains actual nodes and edges arrays for the scan result
+		relates service, # native osint-service: module_id, name (e.g. sfp_cli_nmap)
+		relates route @card(0..1); # route under test when this step ran
+
+		
+	relation workflow,
+		owns workflow_id @key, # e.g. "workflow--1c51e712-b5b5-4ef2-9967-e11debbcc607"
+		owns name, # name of the workflow, e.g. "recon_attack_surface"
+		owns description, # description of the workflow, e.g. "Enumerate domains, map ports/services, and map live web surface + vulns. Ports/services chain and web/vuln chain share sfp_cli_subfinder, then fan out."
+		owns author, # author of the workflow, e.g. "Modeller"
+		owns created, # time workflow was created
+		owns workflow_yaml, # string description in yaml workflow DSL, to feed to the workflow iFrame widget
+		relates first_step,
+		relates prior_step,
+		relates next_step,
+		relates target,
+		plays project:workflow;
+
+	entity target,
+		owns target_id @key, # e.g. "target--1c51e712-b5b5-4ef2-9967-e11debbcc607"
+		owns target_value, # value of the target, e.g. "example.com"
+		owns target_description, # description of the target, e.g. "The target domain to scan"
+		owns target_created, # time target was created
+		owns target_yaml, # string description in yaml target DSL, to feed to the target iFrame widget
+		plays workflow:target,
+		plays target_context:target;
+
+	#####################################
+	# SpiderFeet User-Initiated Project, includes a Workflow of scans and a Context
+	#
+	# A user-initiated project includes a workflow of individual scan steps, and a Context 
+	# each step comprised of inputs, scan config, produces a context subgraph (nodes and edges arrays), and outputs (defined variables)
+	# The overall workflow may have a Target, and steps can use the target or output variables as inputs
+	# Steps have a binary variable whether to output semantic scan subgraphs, as nodes and edges arrays, into
+	####################################
+
+	relation project,
+		owns project_id @key, # e.g. "project--1c51e712-b5b5-4ef2-9967-e11debbcc607"
+		owns stix_incident_id @card(0..1), # e.g. "incident--1c51e712-b5b5-4ef2-9967-e11debbcc607"
+		owns created,
+		relates workflow @card(0..),
+		plays project_context:project, # contains actual nodes and edges arrays for the context for the project
+		plays temporary_subgraph:project; # contains actual nodes and edges arrays as the temporary subgraph for the project
+
+
+	#####################################
+	# SpiderFeet Attribute Definitions
+	# (only attributes referenced by owns on entity/relation types)
+	####################################
+
+	attribute route_state, value string @values("in-test", "favourite", "unique", "error", "dominated");
+	attribute service_origin, value string @values("external-api", "cli", "local");
+	attribute service_state, value string @values("quarantine", "in-test", "favourite", "unique", "error", "dominated");
+	attribute fixture_category, value string @values("positive", "negative");
+	attribute route_name, value string;
+	attribute sequence_name, value string;
+	attribute access_tier, value string @values("free_no_auth", "free_auth", "paid");
+	attribute consumption_group, value string @values("domain", "hostname", "domain_and_hostname", "ip_netblock", "ip_only", "email", "email_identity_bundle", "phone", "crypto", "web_url_content", "org_entity", "other");
+	attribute route_seed_nugget, value string;
+	attribute module_id, value string;
+	attribute name, value string;
+	attribute summary, value string;
+	attribute flags, value string;
+	attribute use_cases, value string;
+	attribute categories, value string;
+	attribute consumed_nuggets, value string;
+	attribute produced_nuggets, value string;
+	attribute website, value string;
+	attribute model, value string;
+	attribute references, value string;
+	attribute api_key_instructions, value string;
+	attribute fav_icon, value string;
+	attribute logo, value string;
+	attribute description, value string;
+	attribute author, value string;
+	attribute markdown_graph_structure_string, value string;
+	attribute markdown_options_string, value string;
+	attribute markdown_zero_to_hero_string, value string;
+	attribute nugget_id, value string;
+	attribute nugget_instance_id, value string;
+	attribute nugget_description, value string;
+	attribute nugget_type, value string;
+	attribute nugget_event_type, value string;
+	attribute nugget_icon, value string;
+	attribute nugget_colour, value string;
+	attribute nugget_data, value string;
+	attribute nugget_source_data, value string;
+	attribute nugget_module, value string;
+	attribute nugget_generated, value integer;
+	attribute nugget_confidence, value integer;
+	attribute nugget_visibility, value integer;
+	attribute nugget_risk, value integer;
+	attribute nugget_false_positive, value boolean;
+	attribute opt_name, value string;
+	attribute in_value, value integer;
+	attribute db_value, value double;
+	attribute bo_value, value boolean;
+	attribute st_value, value string;
+	attribute scan_result_id, value string;
+	attribute project_context_id, value string;
+	attribute temporary_subgraph_id, value string;
+	attribute scan_instance_id, value string;
+	attribute step_module_id, value string;
+	attribute scan_status, value string @values("STARTING", "RUNNING", "FINISHED", "ERROR-FAILED", "ABORTED", "ABORT-REQUESTED", "UNKNOWN");
+	attribute scan_nugget_count, value integer;
+	attribute scan_results_by_type, value string;
+	attribute scan_results, value string;
+	attribute scan_duration, value double;
+	attribute scan_timestamp, value datetime;
+	attribute scan_notes, value string;
+	attribute scan_ui_cli_command, value string;
+	attribute scan_ui_text_form, value string;
+	attribute scan_ui_structured_form, value string;
+	attribute scan_ui_structured_form_type, value string;
+	attribute scan_ui_graph_form, value string;
+	attribute scan_ui_markdown_narrative_form, value string;
+	attribute scan_yaml, value string;
+	attribute workflow_id, value string;
+	attribute workflow_yaml, value string;
+	attribute project_id, value string;
+	attribute stix_incident_id, value string;
+	attribute target_id, value string;
+	attribute target_value, value string;
+	attribute target_description, value string;
+	attribute target_created, value datetime;
+	attribute target_yaml, value string;
+	attribute target_context_id, value string;
+	attribute created, value datetime;
+
+	#####################################
+	# Schema functions (containment walk)
+	# has_this ≈ ontology "had" (has is reserved); contains_this ≈ "contains";
+	# listens_to_this ≈ "listens-to". Roles remain semantic_link source/target.
+	####################################
+
+	fun contains_recursive($container_A: nugget) -> { nugget }:
+	match
+	  {
+	    $_ isa contains_this,
+	      links (source: $container_A, target: $contained_C);
+	  } or {
+	    let $intermediate_B in contains_recursive($container_A);
+	    $_ isa contains_this,
+	      links (source: $intermediate_B, target: $contained_C);
+	  };
+	return { $contained_C };

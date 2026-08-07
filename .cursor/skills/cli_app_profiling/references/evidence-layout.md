@@ -40,14 +40,15 @@
 ```
 .docs/docs-for-cli-tools/nugget_structure/
   <tool>_nugget_graph_structure.md
-  <tool>_<n>_proposed_nuggets_edges.json
-  <tool>_<n>_proposed_nuggets_edges.md
+  <tool>_<scenario_key>_proposed_nuggets_edges.json
+  <tool>_<scenario_key>_proposed_nuggets_edges_description.md
 ```
 
 ## Supporting artifacts
 
 ```
-.docs/docs-for-cli-tools/cli_help_text/<tool>_cli_help_text.md
+.docs/docs-for-cli-tools/<Tool>-CLI-Options.md
+.docs/docs-for-cli-tools/<Tool>-Zero-to-Hero.md
 .strategy/<tool>_strategy.skill
 .docs/docs-for-cli-tools/examination_plans/<tool>_formal_examination_plan.md
 ```

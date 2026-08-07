@@ -35,8 +35,8 @@ def test_workflow_example_loads_and_waves():
     doc = load_workflow(EXAMPLE, validate=True)
     waves = topological_waves(doc["steps"])
     assert waves is not None
-    assert waves[0] == ["subfinder_enum"]
-    assert set(waves[1]) == {"nmap_ports", "httpx_live"}
+    assert waves[0] == ["sfp_cli_subfinder"]
+    assert set(waves[1]) == {"sfp_cli_nmap", "sfp_cli_httpx"}
 
 
 def test_context_merge_unique():

@@ -176,7 +176,7 @@ nmap -sT -A -T3 --top-ports 1000 --open -oX - scanme.nmap.org
 
 ## Gaps / follow-ups before examination
 
-1. ~~Capture `nmap --help`~~ → `cli_help_text/nmap_cli_help_text.md` ✓
+1. ~~Capture `nmap --help`~~ → `NMAP-CLI-Options.md` ✓
 2. ~~Strategy skill~~ → `.strategy/nmap_strategy.skill` ✓
 3. ~~Update manifest~~ `nmap.yaml` v2 ✓
 4. ~~Formal harvest~~ — 30 bundles (15 scenario keys) ✓

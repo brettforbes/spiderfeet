@@ -1,4 +1,4 @@
-# Nmap OSINT Scan Report — windows_enrich_local
+# Nmap OSINT Scan Report — windows_enrich_local_xml
 
 ## Introduction
 

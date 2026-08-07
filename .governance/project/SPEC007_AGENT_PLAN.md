@@ -176,7 +176,7 @@ poetry run python -m cli_workflow.cli validate .seed/12A_Workflow_YAML_Example.y
 1. Detect cycles, unknown `needs`, duplicate step ids.
 2. Compute topological waves (parallel sets).
 
-**Verify:** Cycle fixture fails; 12A yields wave0=`subfinder_enum`, wave1=`nmap_ports|httpx_live`, etc.
+**Verify:** Cycle fixture fails; 12A yields wave0=`sfp_cli_subfinder`, wave1=`sfp_cli_nmap|sfp_cli_httpx`, etc.
 
 ### R3 — `variables.py` + `normalize.py`
 

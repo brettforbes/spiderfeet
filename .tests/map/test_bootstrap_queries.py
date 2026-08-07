@@ -1,11 +1,79 @@
 """Unit tests for TypeQL bootstrap query builders (no server)."""
 
+from unittest.mock import MagicMock, patch
+
 from spiderfeet.map.bootstrap import (
     build_nugget_insert_query,
     build_role_link_query,
     build_schema_extension_ddl,
     build_service_insert_queries,
+    ensure_map_ready,
+    needs_map_bootstrap,
 )
+
+
+def test_needs_map_bootstrap_when_database_missing():
+    cfg = MagicMock()
+    cfg.database = "spiderfeet-map"
+    driver = MagicMock()
+    driver.databases.contains.return_value = False
+    session = MagicMock()
+    session.__enter__.return_value = driver
+    session.__exit__.return_value = False
+
+    with patch("spiderfeet.map.bootstrap.driver_session", return_value=session):
+        assert needs_map_bootstrap(cfg) is True
+
+
+def test_needs_map_bootstrap_when_schema_missing():
+    cfg = MagicMock()
+    cfg.database = "spiderfeet-map"
+    driver = MagicMock()
+    driver.databases.contains.return_value = True
+    session = MagicMock()
+    session.__enter__.return_value = driver
+    session.__exit__.return_value = False
+
+    with patch("spiderfeet.map.bootstrap.driver_session", return_value=session), patch(
+        "spiderfeet.map.bootstrap.schema_already_loaded", return_value=False
+    ):
+        assert needs_map_bootstrap(cfg) is True
+
+
+def test_needs_map_bootstrap_when_catalogue_empty():
+    cfg = MagicMock()
+    cfg.database = "spiderfeet-map"
+    driver = MagicMock()
+    driver.databases.contains.return_value = True
+    session = MagicMock()
+    session.__enter__.return_value = driver
+    session.__exit__.return_value = False
+
+    with patch("spiderfeet.map.bootstrap.driver_session", return_value=session), patch(
+        "spiderfeet.map.bootstrap.schema_already_loaded", return_value=True
+    ), patch(
+        "spiderfeet.map.bootstrap.catalogue_seeded", return_value=False
+    ):
+        assert needs_map_bootstrap(cfg) is True
+
+
+def test_ensure_map_ready_skips_when_ready():
+    cfg = MagicMock()
+    with patch(
+        "spiderfeet.map.bootstrap.needs_map_bootstrap", return_value=False
+    ), patch("spiderfeet.map.bootstrap.bootstrap_map") as bootstrap:
+        assert ensure_map_ready(cfg) is False
+        bootstrap.assert_not_called()
+
+
+def test_ensure_map_ready_runs_bootstrap_when_needed():
+    cfg = MagicMock()
+    with patch(
+        "spiderfeet.map.bootstrap.needs_map_bootstrap", return_value=True
+    ), patch("spiderfeet.map.bootstrap.bootstrap_map") as bootstrap:
+        assert ensure_map_ready(cfg) is True
+        bootstrap.assert_called_once_with(cfg, database=None)
+
 
 
 def test_build_nugget_insert_query():

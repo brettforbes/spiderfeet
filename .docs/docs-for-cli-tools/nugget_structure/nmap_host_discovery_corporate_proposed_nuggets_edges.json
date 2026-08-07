@@ -4,211 +4,136 @@
       "id": "SCAN_RECORD--216eaf83-3c46-52d9-870f-9480c5087bab",
       "nugget_instance_id": "SCAN_RECORD--216eaf83-3c46-52d9-870f-9480c5087bab",
       "nugget_id": "SCAN_RECORD",
-      "nugget_description": "Scan Record",
       "nugget_type": "ENTITY",
-      "nugget_event_type": "SCAN_RECORD",
-      "nugget_icon": "",
-      "nugget_colour": "#3B82F6",
+      "nugget_description": "Scan Record",
       "nugget_data": "nmap:bbc.co.uk:Fri Jun 26 03:59:30 2026",
-      "nugget_source_data": "nmap:bbc.co.uk:Fri Jun 26 03:59:30 2026",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "nmap:bbc.co.uk:Fri Jun 26 03:59:30 2026"
+      "nugget_colour": "#3B82F6"
     },
     {
       "id": "SCAN_CLI--a169fe75-8319-5e42-88e3-3535172b5922",
       "nugget_instance_id": "SCAN_CLI--a169fe75-8319-5e42-88e3-3535172b5922",
       "nugget_id": "SCAN_CLI",
-      "nugget_description": "Scan CLI",
       "nugget_type": "DESCRIPTOR",
-      "nugget_event_type": "SCAN_CLI",
-      "nugget_icon": "",
-      "nugget_colour": "#F59E0B",
+      "nugget_description": "Scan CLI",
       "nugget_data": "nmap -sn -T3 -oX - bbc.co.uk",
-      "nugget_source_data": "nmap -sn -T3 -oX - bbc.co.uk",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "nmap -sn -T3 -oX - bbc.co.uk"
+      "nugget_colour": "#F59E0B"
     },
     {
       "id": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
       "nugget_instance_id": "SCAN_VERSION--062f14b1-fee5-5d3c-9fb1-bc2b937a446d",
       "nugget_id": "SCAN_VERSION",
-      "nugget_description": "Scan Version",
       "nugget_type": "DESCRIPTOR",
-      "nugget_event_type": "SCAN_VERSION",
-      "nugget_icon": "",
-      "nugget_colour": "#F59E0B",
+      "nugget_description": "Scan Version",
       "nugget_data": "7.80",
-      "nugget_source_data": "7.80",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "7.80"
+      "nugget_colour": "#F59E0B"
     },
     {
       "id": "SCAN_START--dbb818a1-0ba7-5c7a-b1a7-4a37b629ccd5",
       "nugget_instance_id": "SCAN_START--dbb818a1-0ba7-5c7a-b1a7-4a37b629ccd5",
       "nugget_id": "SCAN_START",
-      "nugget_description": "Scan Start",
       "nugget_type": "DESCRIPTOR",
-      "nugget_event_type": "SCAN_START",
-      "nugget_icon": "",
-      "nugget_colour": "#F59E0B",
+      "nugget_description": "Scan Start",
       "nugget_data": "Fri Jun 26 03:59:30 2026",
-      "nugget_source_data": "Fri Jun 26 03:59:30 2026",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "Fri Jun 26 03:59:30 2026"
+      "nugget_colour": "#F59E0B"
     },
     {
       "id": "SCAN_TARGET--6850a797-b2b2-5f58-bba7-ca0e3fc11b25",
       "nugget_instance_id": "SCAN_TARGET--6850a797-b2b2-5f58-bba7-ca0e3fc11b25",
       "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan Target",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_event_type": "SCAN_TARGET",
-      "nugget_icon": "",
-      "nugget_colour": "#F59E0B",
       "nugget_data": "bbc.co.uk",
-      "nugget_source_data": "bbc.co.uk",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "bbc.co.uk"
-    },
-    {
-      "id": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
-      "nugget_instance_id": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
-      "nugget_id": "SCAN_TOOL",
-      "nugget_description": "Scan Tool",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_event_type": "SCAN_TOOL",
-      "nugget_icon": "",
-      "nugget_colour": "#F59E0B",
-      "nugget_data": "nmap",
-      "nugget_source_data": "nmap",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "nmap"
+      "nugget_colour": "#F59E0B"
     },
     {
       "id": "SCAN_SUMMARY--25fa9f0a-a8b7-53b4-9470-b141c648ee28",
       "nugget_instance_id": "SCAN_SUMMARY--25fa9f0a-a8b7-53b4-9470-b141c648ee28",
       "nugget_id": "SCAN_SUMMARY",
-      "nugget_description": "Scan Summary",
       "nugget_type": "DESCRIPTOR",
-      "nugget_event_type": "SCAN_SUMMARY",
-      "nugget_icon": "",
-      "nugget_colour": "#F59E0B",
+      "nugget_description": "Scan Summary",
       "nugget_data": "Nmap done at Fri Jun 26 03:59:30 2026; 1 IP address (1 host up) scanned in 0.34 seconds",
-      "nugget_source_data": "Nmap done at Fri Jun 26 03:59:30 2026; 1 IP address (1 host up) scanned in 0.34 seconds",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "Nmap done at Fri Jun 26 03:59:30 2026; 1 IP address (1 host up) scanned in 0.34 seconds"
+      "nugget_colour": "#F59E0B"
     },
     {
       "id": "SCAN_ELAPSED--904c6de0-52ea-5699-8268-42b3c453df47",
       "nugget_instance_id": "SCAN_ELAPSED--904c6de0-52ea-5699-8268-42b3c453df47",
       "nugget_id": "SCAN_ELAPSED",
-      "nugget_description": "Scan Elapsed Time",
       "nugget_type": "DESCRIPTOR",
-      "nugget_event_type": "SCAN_ELAPSED",
-      "nugget_icon": "",
-      "nugget_colour": "#F59E0B",
+      "nugget_description": "Scan Elapsed Time",
       "nugget_data": "0.34",
-      "nugget_source_data": "0.34",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "0.34"
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "nugget_instance_id": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "nmap",
+      "nugget_colour": "#F59E0B"
     },
     {
       "id": "HOST--e2374799-e89b-57e9-94fa-79e42d0517aa",
       "nugget_instance_id": "HOST--e2374799-e89b-57e9-94fa-79e42d0517aa",
       "nugget_id": "HOST",
-      "nugget_description": "Host",
       "nugget_type": "ENTITY",
-      "nugget_event_type": "HOST",
-      "nugget_icon": "",
-      "nugget_colour": "#3B82F6",
+      "nugget_description": "Host",
       "nugget_data": "151.101.128.81",
-      "nugget_source_data": "151.101.128.81",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "151.101.128.81"
+      "nugget_colour": "#3B82F6"
     },
     {
       "id": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
       "nugget_instance_id": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
       "nugget_id": "HOST_STATUS",
-      "nugget_description": "Host Status",
       "nugget_type": "DESCRIPTOR",
-      "nugget_event_type": "HOST_STATUS",
-      "nugget_icon": "",
-      "nugget_colour": "#F59E0B",
+      "nugget_description": "Host Status",
       "nugget_data": "up",
-      "nugget_source_data": "up",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "up"
+      "nugget_colour": "#F59E0B"
     },
     {
       "id": "HOST_STATUS_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
       "nugget_instance_id": "HOST_STATUS_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
       "nugget_id": "HOST_STATUS_REASON",
-      "nugget_description": "Host Status Reason",
       "nugget_type": "DESCRIPTOR",
-      "nugget_event_type": "HOST_STATUS_REASON",
-      "nugget_icon": "",
-      "nugget_colour": "#F59E0B",
+      "nugget_description": "Host Status Reason",
       "nugget_data": "syn-ack",
-      "nugget_source_data": "syn-ack",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "syn-ack"
-    },
-    {
-      "id": "NETWORKS--e2530db2-131f-5523-ab0c-e0bd85933e3e",
-      "nugget_instance_id": "NETWORKS--e2530db2-131f-5523-ab0c-e0bd85933e3e",
-      "nugget_id": "NETWORKS",
-      "nugget_description": "Networks Category",
-      "nugget_type": "CATEGORY",
-      "nugget_event_type": "NETWORKS",
-      "nugget_icon": "",
-      "nugget_colour": "#14B8A6",
-      "nugget_data": "networks:151.101.128.81",
-      "nugget_source_data": "networks:151.101.128.81",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "networks:151.101.128.81"
-    },
-    {
-      "id": "IP_ADDRESS--e2374799-e89b-57e9-94fa-79e42d0517aa",
-      "nugget_instance_id": "IP_ADDRESS--e2374799-e89b-57e9-94fa-79e42d0517aa",
-      "nugget_id": "IP_ADDRESS",
-      "nugget_description": "IP Address",
-      "nugget_type": "ENTITY",
-      "nugget_event_type": "IP_ADDRESS",
-      "nugget_icon": "icon_ip_address.svg",
-      "nugget_colour": "#3B82F6",
-      "nugget_data": "151.101.128.81",
-      "nugget_source_data": "151.101.128.81",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "151.101.128.81"
+      "nugget_colour": "#F59E0B"
     },
     {
       "id": "INTERNET_NAME--6850a797-b2b2-5f58-bba7-ca0e3fc11b25",
       "nugget_instance_id": "INTERNET_NAME--6850a797-b2b2-5f58-bba7-ca0e3fc11b25",
       "nugget_id": "INTERNET_NAME",
+      "nugget_type": "DESCRIPTOR",
       "nugget_description": "Internet Name",
-      "nugget_type": "ENTITY",
-      "nugget_event_type": "INTERNET_NAME",
-      "nugget_icon": "icon_internet_name.svg",
-      "nugget_colour": "#3B82F6",
       "nugget_data": "bbc.co.uk",
-      "nugget_source_data": "bbc.co.uk",
-      "nugget_module": "nmap",
-      "nugget_confidence": 100,
-      "data": "bbc.co.uk"
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NETWORKS--e2530db2-131f-5523-ab0c-e0bd85933e3e",
+      "nugget_instance_id": "NETWORKS--e2530db2-131f-5523-ab0c-e0bd85933e3e",
+      "nugget_id": "NETWORKS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Networks Category",
+      "nugget_data": "networks:151.101.128.81",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "IP_ADDRESS--e2374799-e89b-57e9-94fa-79e42d0517aa",
+      "nugget_instance_id": "IP_ADDRESS--e2374799-e89b-57e9-94fa-79e42d0517aa",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "151.101.128.81",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "APPLICATIONS--b2f66520-adc0-5c24-8895-a7e6072de8fa",
+      "nugget_instance_id": "APPLICATIONS--b2f66520-adc0-5c24-8895-a7e6072de8fa",
+      "nugget_id": "APPLICATIONS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Applications Category",
+      "nugget_data": "applications:151.101.128.81",
+      "nugget_colour": "#14B8A6"
     }
   ],
   "edges": [
@@ -234,11 +159,6 @@
     },
     {
       "source": "SCAN_RECORD--216eaf83-3c46-52d9-870f-9480c5087bab",
-      "target": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
-      "relation": "had"
-    },
-    {
-      "source": "SCAN_RECORD--216eaf83-3c46-52d9-870f-9480c5087bab",
       "target": "SCAN_SUMMARY--25fa9f0a-a8b7-53b4-9470-b141c648ee28",
       "relation": "had"
     },
@@ -248,6 +168,16 @@
       "relation": "had"
     },
     {
+      "source": "SCAN_RECORD--216eaf83-3c46-52d9-870f-9480c5087bab",
+      "target": "SCAN_TOOL--64bbdd26-0a76-5f64-8e02-9f4fc9d08f76",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--216eaf83-3c46-52d9-870f-9480c5087bab",
+      "target": "HOST--e2374799-e89b-57e9-94fa-79e42d0517aa",
+      "relation": "contains"
+    },
+    {
       "source": "HOST--e2374799-e89b-57e9-94fa-79e42d0517aa",
       "target": "HOST_STATUS--b29782c6-e161-55a8-8897-a43bb0d22175",
       "relation": "had"
@@ -255,6 +185,11 @@
     {
       "source": "HOST--e2374799-e89b-57e9-94fa-79e42d0517aa",
       "target": "HOST_STATUS_REASON--7598a7aa-e494-58b9-bb28-d155fab26798",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--e2374799-e89b-57e9-94fa-79e42d0517aa",
+      "target": "INTERNET_NAME--6850a797-b2b2-5f58-bba7-ca0e3fc11b25",
       "relation": "had"
     },
     {
@@ -269,12 +204,7 @@
     },
     {
       "source": "HOST--e2374799-e89b-57e9-94fa-79e42d0517aa",
-      "target": "INTERNET_NAME--6850a797-b2b2-5f58-bba7-ca0e3fc11b25",
-      "relation": "had"
-    },
-    {
-      "source": "SCAN_RECORD--216eaf83-3c46-52d9-870f-9480c5087bab",
-      "target": "HOST--e2374799-e89b-57e9-94fa-79e42d0517aa",
+      "target": "APPLICATIONS--b2f66520-adc0-5c24-8895-a7e6072de8fa",
       "relation": "contains"
     }
   ]

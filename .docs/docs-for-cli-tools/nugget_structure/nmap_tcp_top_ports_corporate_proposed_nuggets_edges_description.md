@@ -1,4 +1,4 @@
-# Nmap OSINT Scan Report — tcp_top_ports_corporate
+# Nmap OSINT Scan Report — tcp_top_ports_corporate_xml
 
 ## Introduction
 
@@ -80,6 +80,7 @@ The scan captured **61** semantic nuggets across **1** host.
 | CATEGORY | NETWORKS | Networks Category | `networks:151.101.128.81` |
 | DESCRIPTOR | HOST_STATUS | Host Status | `up` |
 | DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `syn-ack` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `bbc.co.uk` |
 | DESCRIPTOR | PORT_PROTOCOL | Port Protocol | `tcp` |
 | DESCRIPTOR | PORT_STATE | Port State | `filtered` |
 | DESCRIPTOR | PORT_STATE | Port State | `open` |
@@ -93,7 +94,6 @@ The scan captured **61** semantic nuggets across **1** host.
 | DESCRIPTOR | SCAN_TOOL | Scan Tool | `nmap` |
 | DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
 | ENTITY | HOST | Host | `151.101.128.81` |
-| ENTITY | INTERNET_NAME | Internet Name | `bbc.co.uk` |
 | ENTITY | IP_ADDRESS | IP Address | `151.101.128.81` |
 | ENTITY | SCAN_RECORD | Scan Record | `nmap:bbc.co.uk:Fri Jun 26 03:59:31 2026` |
 | ENTITY | SERVICE | Network Service | `domain` |

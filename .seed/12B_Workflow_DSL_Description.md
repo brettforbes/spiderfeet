@@ -34,6 +34,8 @@ New tools onboard **without** changing the DSL grammar.
 
 ## 2. Background — single CLI step
 
+
+
 ### 2.1 Inputs
 
 Most tools take:

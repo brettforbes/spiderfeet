@@ -19,12 +19,12 @@ from cli_workflow.core.loader import WorkflowLoadError, load_workflow, topologic
 def test_12a_topological_waves():
     doc = load_workflow(EXAMPLE, validate=True)
     waves = topological_waves(doc["steps"])
-    assert waves[0] == ["subfinder_enum"]
-    assert set(waves[1]) == {"nmap_ports", "httpx_live"}
+    assert waves[0] == ["sfp_cli_subfinder"]
+    assert set(waves[1]) == {"sfp_cli_nmap", "sfp_cli_httpx"}
 
 
 def test_cycle_rejected():
     doc = yaml.safe_load(EXAMPLE.read_text(encoding="utf-8"))
-    doc["steps"][0]["needs"] = ["nuclei_vulns"]
+    doc["steps"][0]["needs"] = ["sfp_cli_nuclei"]
     with pytest.raises(WorkflowLoadError, match="cycle"):
         validate_workflow_dict(doc)

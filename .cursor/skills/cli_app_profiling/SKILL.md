@@ -20,7 +20,7 @@ description: Explore, formally examine, and profile CLI OSINT tools for SpiderFe
 1. **Exploration** — map semantic output types; build a **semantic outcome matrix** (mandatory); no evidence files yet (1h+ allowed).
 2. **Formal examination plan** — named scenarios, targets, expected data types; every matrix row mapped to a scenario or documented limitation.
 3. **Strategy skill** — `.strategy/<tool>_strategy.skill` (complements `.cursor/skills/<tool>/`).
-4. **CLI help capture** — `.docs/docs-for-cli-tools/cli_help_text/<tool>_cli_help_text.md`.
+4. **CLI help capture** — `.docs/docs-for-cli-tools/<Tool>-CLI-Options.md` (heading + fenced raw `--help` / `-h` output).
 5. **Adapter + YAML** — copy `adapters/_template` + `rules/_template`; implement four-output API; wire `harvest.py` `ADAPTER_TOOLS` (see ONBOARDING.md). **No new `*_to_graph.py`.**
 6. **Formal examination** — run `harvest.py`; outputs under `app_examination_docs/<tool>/` plus `nugget_structure/` graph + narrative.
 7. **Nugget / narrative proposal** — tool structure MD + per-scenario graph JSON + §4.3 description MD from the **shared narrative engine**.

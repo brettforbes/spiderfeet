@@ -1,4 +1,4 @@
-# Nmap OSINT Scan Report — service_version_permissive
+# Nmap OSINT Scan Report — service_version_permissive_xml
 
 ## Introduction
 
@@ -53,6 +53,7 @@ The scan captured **38** semantic nuggets across **1** host.
 | CATEGORY | NETWORKS | Networks Category | `networks:45.33.32.156` |
 | DESCRIPTOR | HOST_STATUS | Host Status | `up` |
 | DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `echo-reply` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
 | DESCRIPTOR | PORT_PROTOCOL | Port Protocol | `tcp` |
 | DESCRIPTOR | PORT_STATE | Port State | `filtered` |
 | DESCRIPTOR | PORT_STATE | Port State | `open` |
@@ -70,7 +71,6 @@ The scan captured **38** semantic nuggets across **1** host.
 | DESCRIPTOR | SERVICE_VERSION | Service Version | `Apache httpd 2.4.7` |
 | DESCRIPTOR | SERVICE_VERSION | Service Version | `OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13` |
 | ENTITY | HOST | Host | `45.33.32.156` |
-| ENTITY | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
 | ENTITY | IP_ADDRESS | IP Address | `45.33.32.156` |
 | ENTITY | SCAN_RECORD | Scan Record | `nmap:scanme.nmap.org:Tue Jun 23 19:00:44 2026` |
 | ENTITY | SERVICE | Network Service | `http` |

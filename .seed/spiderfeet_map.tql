@@ -8,14 +8,6 @@ define
 	####################################
 	# SpiderFeet Nugget Definitions
 	#
-	# Archetype nuggets (from nuggets.json): nugget_id, nugget_description,
-	# nugget_type (ENTITY/DESCRIPTOR/DATA/SUBENTITY/INTERNAL), nugget_icon, nugget_colour.
-	#
-	# Live / scan-instance nuggets (from SpiderFeet scan results) also populate:
-	#   nugget_instance_id @key, nugget_data, nugget_source_data, nugget_module,
-	#   nugget_event_type (e.g. INTERNET_NAME), nugget_generated (unix seconds),
-	#   nugget_confidence, nugget_visibility, nugget_risk, nugget_false_positive.
-	#   nugget_description holds event_description when present (e.g. "Internet Name").
 	####################################
 
 
@@ -36,7 +28,9 @@ define
 		plays route:consumed,
 		plays route:produced,
 		plays scan-record:consumed,
-		plays scan-record:produced;
+		plays scan-record:produced,
+		plays semantic_link:target,
+		plays semantic_link:source;
 
 	#
 	# Semantic Relations
@@ -51,22 +45,11 @@ define
 	#
 	# Nugget Types
 	entity category, sub nugget;
-	entity entity_nugget, sub nugget,
-		plays has_this:source,
-		plays contains_this:source,
-		plays contains_this:target,
-		plays listens_to_this:source,
-		plays listens_to_this:target;
-	entity descriptor_nugget, sub nugget,
-		plays has_this:target;
-	entity data_nugget, sub nugget,
-		plays has_this:target;
-	entity subentity_nugget, sub nugget,
-		plays has_this:source,
-		plays contains_this:source,
-		plays contains_this:target,
-		plays listens_to_this:source;
-	entity root_nugget, sub nugget;
+	entity entity_nugget, sub nugget;
+	entity descriptor_nugget, sub nugget;
+	entity data_nugget, sub nugget;
+	entity subentity_nugget, sub nugget;
+	entity root, sub nugget;
 	entity null_value_nugget, sub nugget; # Signifies no result is expected or positive result from a negative fixture
 	#
 	# Actual Nugget Types (grouped by nugget_type from .docs/analysis/nuggets.json)
@@ -82,7 +65,7 @@ define
 
 	# Entity Nuggets
 	# ENTITY - first-class investigation objects (hosts, domains, identities, etc.)
-	entity scan-record, sub entity_nugget; # Scan Record
+	# entity scan-record, sub entity_nugget; # Scan Record
 	entity host, sub entity_nugget; # Host
 	entity service, sub entity_nugget; # Network Service
 	entity transport, sub entity_nugget; # Transport Protocol
@@ -291,7 +274,7 @@ define
 	entity port, sub subentity_nugget; # Network Port
 	entity trace-hop, sub subentity_nugget; # Trace Hop
 	entity cpe-url, sub subentity_nugget; # CPE URL
-	entity ssh-key, sub subentity_nugget @abstract; # SSH Key
+	entity ssh-key, sub subentity_nugget; # SSH Key
 	entity dsa, sub ssh-key; # SSH Key - DSA
 	entity rsa, sub ssh-key; # SSH Key - RSA
 	entity ecdsa, sub ssh-key; # SSH Key - ECDSA

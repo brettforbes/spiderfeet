@@ -1,4 +1,4 @@
-# Nmap OSINT Scan Report — tcp_top_ports_local
+# Nmap OSINT Scan Report — tcp_top_ports_local_xml
 
 ## Introduction
 
@@ -73,6 +73,7 @@ The scan captured **33** semantic nuggets across **2** hosts.
 | CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.9` |
 | DESCRIPTOR | HOST_STATUS | Host Status | `up` |
 | DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `localhost-response` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `host.docker.internal` |
 | DESCRIPTOR | PORT_PROTOCOL | Port Protocol | `tcp` |
 | DESCRIPTOR | PORT_STATE | Port State | `open` |
 | DESCRIPTOR | PORT_STATE_REASON | Port State Reason | `syn-ack` |
@@ -85,7 +86,6 @@ The scan captured **33** semantic nuggets across **2** hosts.
 | DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
 | ENTITY | HOST | Host | `192.168.1.11` |
 | ENTITY | HOST | Host | `192.168.1.9` |
-| ENTITY | INTERNET_NAME | Internet Name | `host.docker.internal` |
 | ENTITY | IP_ADDRESS | IP Address | `192.168.1.11` |
 | ENTITY | IP_ADDRESS | IP Address | `192.168.1.9` |
 | ENTITY | SCAN_RECORD | Scan Record | `nmap:192.168.1.0/24:Fri Jun 26 04:00:30 2026` |

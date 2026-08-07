@@ -1,4 +1,4 @@
-# Nmap OSINT Scan Report — host_discovery_corporate
+# Nmap OSINT Scan Report — host_discovery_corporate_xml
 
 ## Introduction
 
@@ -25,7 +25,7 @@ Network address **151.101.128.81**:
 
 ## Conclusion
 
-The scan captured **14** semantic nuggets across **1** host.
+The scan captured **15** semantic nuggets across **1** host.
  Nmap done at Fri Jun 26 03:59:30 2026; 1 IP address (1 host up) scanned in 0.34 seconds
  The appendix lists every nugget instance and value for audit and downstream review.
 
@@ -34,9 +34,11 @@ The scan captured **14** semantic nuggets across **1** host.
 
 | Type | Nugget | Description | Value |
 |------|--------|-------------|-------|
+| CATEGORY | APPLICATIONS | Applications Category | `applications:151.101.128.81` |
 | CATEGORY | NETWORKS | Networks Category | `networks:151.101.128.81` |
 | DESCRIPTOR | HOST_STATUS | Host Status | `up` |
 | DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `syn-ack` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `bbc.co.uk` |
 | DESCRIPTOR | SCAN_CLI | Scan CLI | `nmap -sn -T3 -oX - bbc.co.uk` |
 | DESCRIPTOR | SCAN_ELAPSED | Scan Elapsed Time | `0.34` |
 | DESCRIPTOR | SCAN_START | Scan Start | `Fri Jun 26 03:59:30 2026` |
@@ -45,7 +47,6 @@ The scan captured **14** semantic nuggets across **1** host.
 | DESCRIPTOR | SCAN_TOOL | Scan Tool | `nmap` |
 | DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
 | ENTITY | HOST | Host | `151.101.128.81` |
-| ENTITY | INTERNET_NAME | Internet Name | `bbc.co.uk` |
 | ENTITY | IP_ADDRESS | IP Address | `151.101.128.81` |
 | ENTITY | SCAN_RECORD | Scan Record | `nmap:bbc.co.uk:Fri Jun 26 03:59:30 2026` |
 

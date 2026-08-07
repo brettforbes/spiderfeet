@@ -37,11 +37,11 @@ def test_12b_links_gap_notes():
 def test_gap_notes_per_step_table_covers_six_tools():
     text = GAP.read_text(encoding="utf-8")
     for step in (
-        "subfinder_enum",
-        "nmap_ports",
-        "nerva_services",
-        "httpx_live",
-        "katana_crawl",
-        "nuclei_vulns",
+        "sfp_cli_subfinder",
+        "sfp_cli_nmap",
+        "sfp_cli_nerva",
+        "sfp_cli_httpx",
+        "sfp_cli_katana",
+        "sfp_cli_nuclei",
     ):
         assert step in text
