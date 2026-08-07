@@ -1,0 +1,9 @@
+# Dry-run fixture map for 12A example workflow (T3 / S4)
+# Paths relative to repository root.
+
+subfinder_enum: .docs/docs-for-cli-tools/nugget_structure/subfinder_corporate_upside_au_passive_cs_proposed_nuggets_edges.json
+nmap_ports: .docs/docs-for-cli-tools/nugget_structure/nmap_tcp_top_ports_permissive_proposed_nuggets_edges.json
+nerva_services: .docs/docs-for-cli-tools/nugget_structure/nerva_tcp_http_rich_json_proposed_nuggets_edges.json
+httpx_live: .docs/docs-for-cli-tools/nugget_structure/httpx_from_subfinder_upside_com_proposed_nuggets_edges.json
+katana_crawl: .docs/docs-for-cli-tools/nugget_structure/katana_from_httpx_vcof_sparse_proposed_nuggets_edges.json
+nuclei_vulns: .docs/docs-for-cli-tools/nugget_structure/nuclei_pg_shadowlogic_weblogic_cves_proposed_nuggets_edges.json

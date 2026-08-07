@@ -1,0 +1,982 @@
+{
+  "nodes": [
+    {
+      "id": "SCAN_RECORD--69820dc4-21ed-5692-ad27-85e0967eeadb",
+      "nugget_instance_id": "SCAN_RECORD--69820dc4-21ed-5692-ad27-85e0967eeadb",
+      "nugget_id": "SCAN_RECORD",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Scan Record",
+      "nugget_data": "nuclei:pentest-ground.com:6379:nuclei -u pentest-ground.com:6379 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates/network/cves/2022/CVE-2022-0543.yaml -t .tools/nuclei-templates/network/exposures/exposed-redis.yaml -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 10 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/cipherheart_redis_lab.jsonl",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SCAN_CLI--27e93f18-48e1-5722-bc11-b59bd2144829",
+      "nugget_instance_id": "SCAN_CLI--27e93f18-48e1-5722-bc11-b59bd2144829",
+      "nugget_id": "SCAN_CLI",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan CLI",
+      "nugget_data": "nuclei -u pentest-ground.com:6379 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates/network/cves/2022/CVE-2022-0543.yaml -t .tools/nuclei-templates/network/exposures/exposed-redis.yaml -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 10 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/cipherheart_redis_lab.jsonl",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TARGET--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "nugget_instance_id": "SCAN_TARGET--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "pentest-ground.com:6379",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_START--497a589e-abef-5342-9d36-55122466c557",
+      "nugget_instance_id": "SCAN_START--497a589e-abef-5342-9d36-55122466c557",
+      "nugget_id": "SCAN_START",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Start",
+      "nugget_data": "2026-07-05T11:58:42.228637+00:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_ELAPSED--38fc49c8-9e23-5171-a356-dda8d347cd5d",
+      "nugget_instance_id": "SCAN_ELAPSED--38fc49c8-9e23-5171-a356-dda8d347cd5d",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_data": "0.0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_instance_id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_id": "SCAN_EXIT_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Exit Status",
+      "nugget_data": "0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_FINDING_COUNT--9779767f-44f2-5215-8820-bda646e3bbc1",
+      "nugget_instance_id": "SCAN_FINDING_COUNT--9779767f-44f2-5215-8820-bda646e3bbc1",
+      "nugget_id": "SCAN_FINDING_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Finding Count",
+      "nugget_data": "2",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--0315df1b-6604-5965-bf7e-aecadb998218",
+      "nugget_instance_id": "SCAN_TOOL--0315df1b-6604-5965-bf7e-aecadb998218",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "nuclei",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "HOST--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "nugget_instance_id": "HOST--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
+      "nugget_data": "pentest-ground.com:6379",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "nugget_instance_id": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
+      "nugget_data": "pentest-ground.com",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "SECURITY--0b61c31c-101e-52c6-a074-847c2efb6b9a",
+      "nugget_instance_id": "SECURITY--0b61c31c-101e-52c6-a074-847c2efb6b9a",
+      "nugget_id": "SECURITY",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Security Knowledge Container",
+      "nugget_data": "pentest-ground.com::SECURITY",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "TEMPLATES_USED--89f39de1-1931-5318-8303-d11e600e7b0e",
+      "nugget_instance_id": "TEMPLATES_USED--89f39de1-1931-5318-8303-d11e600e7b0e",
+      "nugget_id": "TEMPLATES_USED",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Templates Used Container",
+      "nugget_data": "pentest-ground.com::TEMPLATES_USED",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "FINDINGS--831a4651-c9b5-52ee-b6b1-97dd36c276e0",
+      "nugget_instance_id": "FINDINGS--831a4651-c9b5-52ee-b6b1-97dd36c276e0",
+      "nugget_id": "FINDINGS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Findings Container",
+      "nugget_data": "pentest-ground.com::FINDINGS",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "NUCLEI_SEVERITY_CRITICAL--0da43345-0356-5f47-8fb1-1fdb37e113ca",
+      "nugget_instance_id": "NUCLEI_SEVERITY_CRITICAL--0da43345-0356-5f47-8fb1-1fdb37e113ca",
+      "nugget_id": "NUCLEI_SEVERITY_CRITICAL",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Nuclei Critical Severity Bucket",
+      "nugget_data": "pentest-ground.com::NUCLEI_SEVERITY_CRITICAL",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE--db330bca-9245-530a-8d38-981aed57ab28",
+      "nugget_instance_id": "NUCLEI_TEMPLATE--db330bca-9245-530a-8d38-981aed57ab28",
+      "nugget_id": "NUCLEI_TEMPLATE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Template",
+      "nugget_data": "CVE-2022-0543",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_ID--db330bca-9245-530a-8d38-981aed57ab28",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_ID--db330bca-9245-530a-8d38-981aed57ab28",
+      "nugget_id": "NUCLEI_TEMPLATE_ID",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template ID",
+      "nugget_data": "CVE-2022-0543",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_NAME--67a7af75-2a30-5ca8-a7e4-6c8060f6c8b0",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_NAME--67a7af75-2a30-5ca8-a7e4-6c8060f6c8b0",
+      "nugget_id": "NUCLEI_TEMPLATE_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Name",
+      "nugget_data": "Redis Sandbox Escape - Remote Code Execution",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_PATH--c234cf96-d2f1-5c2b-8b84-9845e0b5880f",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_PATH--c234cf96-d2f1-5c2b-8b84-9845e0b5880f",
+      "nugget_id": "NUCLEI_TEMPLATE_PATH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Path",
+      "nugget_data": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\network\\cves\\2022\\CVE-2022-0543.yaml",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_AUTHOR--52dacc45-0d81-5ae0-b822-4a1e960a5927",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_AUTHOR--52dacc45-0d81-5ae0-b822-4a1e960a5927",
+      "nugget_id": "NUCLEI_TEMPLATE_AUTHOR",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Author",
+      "nugget_data": "dwisiswant0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_TAGS--3a59f689-add0-57ad-a19c-1c52b92d21ab",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_TAGS--3a59f689-add0-57ad-a19c-1c52b92d21ab",
+      "nugget_id": "NUCLEI_TEMPLATE_TAGS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Tags",
+      "nugget_data": "cve, cve2022, network, redis, unauth, rce, kev, tcp, vkev, vuln",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_id": "NUCLEI_TEMPLATE_PROTOCOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Protocol",
+      "nugget_data": "tcp",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "nugget_instance_id": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "nugget_id": "NUCLEI_FINDING",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Finding",
+      "nugget_data": "CVE-2022-0543:pentest-ground.com:6379:2026-07-05T21:43:18.136703+10:00",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_MATCHED_AT--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "nugget_instance_id": "NUCLEI_MATCHED_AT--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "nugget_id": "NUCLEI_MATCHED_AT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Matched At",
+      "nugget_data": "pentest-ground.com:6379",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING_TIMESTAMP--adb9cb5b-c01b-5e21-a00c-a72f07c65730",
+      "nugget_instance_id": "NUCLEI_FINDING_TIMESTAMP--adb9cb5b-c01b-5e21-a00c-a72f07c65730",
+      "nugget_id": "NUCLEI_FINDING_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding Timestamp",
+      "nugget_data": "2026-07-05T21:43:18.136703+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING_HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "nugget_instance_id": "NUCLEI_FINDING_HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "nugget_id": "NUCLEI_FINDING_HOST",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding Host",
+      "nugget_data": "pentest-ground.com",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING_IP--62e0c65e-cb70-5dd1-9804-4dbd05d4f024",
+      "nugget_instance_id": "NUCLEI_FINDING_IP--62e0c65e-cb70-5dd1-9804-4dbd05d4f024",
+      "nugget_id": "NUCLEI_FINDING_IP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding IP",
+      "nugget_data": "178.79.134.182",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING_PORT--57c42492-739f-539c-8358-c0da40c6024e",
+      "nugget_instance_id": "NUCLEI_FINDING_PORT--57c42492-739f-539c-8358-c0da40c6024e",
+      "nugget_id": "NUCLEI_FINDING_PORT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding Port",
+      "nugget_data": "6379",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING_URL--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "nugget_instance_id": "NUCLEI_FINDING_URL--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "nugget_id": "NUCLEI_FINDING_URL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding URL",
+      "nugget_data": "pentest-ground.com:6379",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_instance_id": "NUCLEI_FINDING_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_id": "NUCLEI_FINDING_PROTOCOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding Protocol",
+      "nugget_data": "tcp",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_MATCHER_STATUS--b36c45d7-9288-5624-a1f4-a56f9e87db07",
+      "nugget_instance_id": "NUCLEI_MATCHER_STATUS--b36c45d7-9288-5624-a1f4-a56f9e87db07",
+      "nugget_id": "NUCLEI_MATCHER_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Matcher Status",
+      "nugget_data": "True",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "nugget_instance_id": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "nugget_id": "NUCLEI_VULNERABILITY",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Vulnerability Observation",
+      "nugget_data": "CVE-2022-0543:pentest-ground.com:6379:2026-07-05T21:43:18.136703+10:00",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "VULNERABILITY_GENERAL--67a7af75-2a30-5ca8-a7e4-6c8060f6c8b0",
+      "nugget_instance_id": "VULNERABILITY_GENERAL--67a7af75-2a30-5ca8-a7e4-6c8060f6c8b0",
+      "nugget_id": "VULNERABILITY_GENERAL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Vulnerability - General",
+      "nugget_data": "Redis Sandbox Escape - Remote Code Execution",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_DESCRIPTION--c5e48b6f-c1eb-53bc-b71e-4a2c6a81902c",
+      "nugget_instance_id": "NUCLEI_VULN_DESCRIPTION--c5e48b6f-c1eb-53bc-b71e-4a2c6a81902c",
+      "nugget_id": "NUCLEI_VULN_DESCRIPTION",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Description",
+      "nugget_data": "This template exploits CVE-2022-0543, a Lua-based Redis sandbox escape. The\nvulnerability was introduced by Debian and Ubuntu Redis packages that\ninsufficiently sanitized the Lua environment. The maintainers failed to\ndisable the package interface, allowing attackers to load arbitrary libraries.\n",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_IMPACT--cb53e5f8-ec96-5433-96f9-b1360b8aecbb",
+      "nugget_instance_id": "NUCLEI_VULN_IMPACT--cb53e5f8-ec96-5433-96f9-b1360b8aecbb",
+      "nugget_id": "NUCLEI_VULN_IMPACT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Impact",
+      "nugget_data": "Successful exploitation of this vulnerability can lead to unauthorized access, data theft, and compromise of the affected system.\n",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_REMEDIATION--04ff1b0c-e7b9-5dff-88b0-29bf7fa42318",
+      "nugget_instance_id": "NUCLEI_VULN_REMEDIATION--04ff1b0c-e7b9-5dff-88b0-29bf7fa42318",
+      "nugget_id": "NUCLEI_VULN_REMEDIATION",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Remediation",
+      "nugget_data": "Update to the most recent versions currently available.",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_SEVERITY--961f9d9f-d77d-5948-8470-f04af0fb50f3",
+      "nugget_instance_id": "NUCLEI_VULN_SEVERITY--961f9d9f-d77d-5948-8470-f04af0fb50f3",
+      "nugget_id": "NUCLEI_VULN_SEVERITY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Severity",
+      "nugget_data": "critical",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_VENDOR--fde87c7a-1f01-5724-ad9e-59a9f1cf2703",
+      "nugget_instance_id": "NUCLEI_VULN_VENDOR--fde87c7a-1f01-5724-ad9e-59a9f1cf2703",
+      "nugget_id": "NUCLEI_VULN_VENDOR",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Vendor",
+      "nugget_data": "redis",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_PRODUCT--fde87c7a-1f01-5724-ad9e-59a9f1cf2703",
+      "nugget_instance_id": "NUCLEI_VULN_PRODUCT--fde87c7a-1f01-5724-ad9e-59a9f1cf2703",
+      "nugget_id": "NUCLEI_VULN_PRODUCT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Product",
+      "nugget_data": "redis",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_TAGS--3a59f689-add0-57ad-a19c-1c52b92d21ab",
+      "nugget_instance_id": "NUCLEI_VULN_TAGS--3a59f689-add0-57ad-a19c-1c52b92d21ab",
+      "nugget_id": "NUCLEI_VULN_TAGS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Tags",
+      "nugget_data": "cve, cve2022, network, redis, unauth, rce, kev, tcp, vkev, vuln",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_CPE--9958fda4-0808-5b5f-afb9-70b2ee3e989f",
+      "nugget_instance_id": "NUCLEI_VULN_CPE--9958fda4-0808-5b5f-afb9-70b2ee3e989f",
+      "nugget_id": "NUCLEI_VULN_CPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability CPE",
+      "nugget_data": "cpe:2.3:a:redis:redis:-:*:*:*:*:*:*:*",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_CVSS_METRICS--c8262261-f099-59ac-8e1f-07d17c5712b0",
+      "nugget_instance_id": "NUCLEI_VULN_CVSS_METRICS--c8262261-f099-59ac-8e1f-07d17c5712b0",
+      "nugget_id": "NUCLEI_VULN_CVSS_METRICS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability CVSS Metrics",
+      "nugget_data": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_CVSS_SCORE--6cc1da92-99a5-52dc-9e19-310edcdfede1",
+      "nugget_instance_id": "NUCLEI_VULN_CVSS_SCORE--6cc1da92-99a5-52dc-9e19-310edcdfede1",
+      "nugget_id": "NUCLEI_VULN_CVSS_SCORE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability CVSS Score",
+      "nugget_data": "10",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_EPSS_SCORE--fee56385-8547-5016-96cf-d6e0266cf88f",
+      "nugget_instance_id": "NUCLEI_VULN_EPSS_SCORE--fee56385-8547-5016-96cf-d6e0266cf88f",
+      "nugget_id": "NUCLEI_VULN_EPSS_SCORE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability EPSS Score",
+      "nugget_data": "0.9967",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_EPSS_PERCENTILE--35c1eea3-d7b7-5a5f-bb16-c6e23bd6fd7e",
+      "nugget_instance_id": "NUCLEI_VULN_EPSS_PERCENTILE--35c1eea3-d7b7-5a5f-bb16-c6e23bd6fd7e",
+      "nugget_id": "NUCLEI_VULN_EPSS_PERCENTILE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability EPSS Percentile",
+      "nugget_data": "0.99948",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "VULNERABILITY_CVE_CRITICAL--db330bca-9245-530a-8d38-981aed57ab28",
+      "nugget_instance_id": "VULNERABILITY_CVE_CRITICAL--db330bca-9245-530a-8d38-981aed57ab28",
+      "nugget_id": "VULNERABILITY_CVE_CRITICAL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Vulnerability - CVE Critical",
+      "nugget_data": "CVE-2022-0543",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "VULNERABILITY_CVE_CRITICAL--52018070-ea5f-57f4-b64f-38a67e013b19",
+      "nugget_instance_id": "VULNERABILITY_CVE_CRITICAL--52018070-ea5f-57f4-b64f-38a67e013b19",
+      "nugget_id": "VULNERABILITY_CVE_CRITICAL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Vulnerability - CVE Critical",
+      "nugget_data": "['cve-2022-0543']",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SERVICE--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "nugget_instance_id": "SERVICE--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "nugget_id": "SERVICE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Network Service",
+      "nugget_data": "pentest-ground.com:6379",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_SEVERITY_HIGH--55216759-0443-53bd-a2d3-77f95566dbe1",
+      "nugget_instance_id": "NUCLEI_SEVERITY_HIGH--55216759-0443-53bd-a2d3-77f95566dbe1",
+      "nugget_id": "NUCLEI_SEVERITY_HIGH",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Nuclei High Severity Bucket",
+      "nugget_data": "pentest-ground.com::NUCLEI_SEVERITY_HIGH",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "nugget_instance_id": "NUCLEI_TEMPLATE--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "nugget_id": "NUCLEI_TEMPLATE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Template",
+      "nugget_data": "exposed-redis",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_ID--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_ID--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "nugget_id": "NUCLEI_TEMPLATE_ID",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template ID",
+      "nugget_data": "exposed-redis",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_NAME--12f3dac0-8a26-5774-aeae-49cd09207793",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_NAME--12f3dac0-8a26-5774-aeae-49cd09207793",
+      "nugget_id": "NUCLEI_TEMPLATE_NAME",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Name",
+      "nugget_data": "Redis Server - Unauthenticated Access",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_PATH--5ae11bf2-a203-5b17-a455-4c7cd224e394",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_PATH--5ae11bf2-a203-5b17-a455-4c7cd224e394",
+      "nugget_id": "NUCLEI_TEMPLATE_PATH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Path",
+      "nugget_data": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\network\\exposures\\exposed-redis.yaml",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_AUTHOR--abe9e0d7-7364-5fe1-a9fc-9db8a6d600a9",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_AUTHOR--abe9e0d7-7364-5fe1-a9fc-9db8a6d600a9",
+      "nugget_id": "NUCLEI_TEMPLATE_AUTHOR",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Author",
+      "nugget_data": "pdteam",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_TEMPLATE_TAGS--e9e99134-aea9-5ef3-9296-bf771267dfd5",
+      "nugget_instance_id": "NUCLEI_TEMPLATE_TAGS--e9e99134-aea9-5ef3-9296-bf771267dfd5",
+      "nugget_id": "NUCLEI_TEMPLATE_TAGS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Template Tags",
+      "nugget_data": "network, redis, unauth, exposure, tcp, discovery",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "nugget_instance_id": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "nugget_id": "NUCLEI_FINDING",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Finding",
+      "nugget_data": "exposed-redis:pentest-ground.com:6379:2026-07-05T21:43:20.5499978+10:00",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "NUCLEI_FINDING_TIMESTAMP--5f7d1288-75ea-5762-b370-2743a54b1b58",
+      "nugget_instance_id": "NUCLEI_FINDING_TIMESTAMP--5f7d1288-75ea-5762-b370-2743a54b1b58",
+      "nugget_id": "NUCLEI_FINDING_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Finding Timestamp",
+      "nugget_data": "2026-07-05T21:43:20.5499978+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULNERABILITY--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "nugget_instance_id": "NUCLEI_VULNERABILITY--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "nugget_id": "NUCLEI_VULNERABILITY",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Nuclei Vulnerability Observation",
+      "nugget_data": "exposed-redis:pentest-ground.com:6379:2026-07-05T21:43:20.5499978+10:00",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "VULNERABILITY_GENERAL--12f3dac0-8a26-5774-aeae-49cd09207793",
+      "nugget_instance_id": "VULNERABILITY_GENERAL--12f3dac0-8a26-5774-aeae-49cd09207793",
+      "nugget_id": "VULNERABILITY_GENERAL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Vulnerability - General",
+      "nugget_data": "Redis Server - Unauthenticated Access",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_DESCRIPTION--5ce6b8ad-6179-5f43-9e51-27aac8eaeb6a",
+      "nugget_instance_id": "NUCLEI_VULN_DESCRIPTION--5ce6b8ad-6179-5f43-9e51-27aac8eaeb6a",
+      "nugget_id": "NUCLEI_VULN_DESCRIPTION",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Description",
+      "nugget_data": "Redis server without any required authentication was discovered.",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_SEVERITY--503ab962-b51c-5494-a5ab-1c5046a30266",
+      "nugget_instance_id": "NUCLEI_VULN_SEVERITY--503ab962-b51c-5494-a5ab-1c5046a30266",
+      "nugget_id": "NUCLEI_VULN_SEVERITY",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Severity",
+      "nugget_data": "high",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_TAGS--e9e99134-aea9-5ef3-9296-bf771267dfd5",
+      "nugget_instance_id": "NUCLEI_VULN_TAGS--e9e99134-aea9-5ef3-9296-bf771267dfd5",
+      "nugget_id": "NUCLEI_VULN_TAGS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability Tags",
+      "nugget_data": "network, redis, unauth, exposure, tcp, discovery",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_CWE--ced70c0b-fc9c-5099-b3d8-5d0ca62974bc",
+      "nugget_instance_id": "NUCLEI_VULN_CWE--ced70c0b-fc9c-5099-b3d8-5d0ca62974bc",
+      "nugget_id": "NUCLEI_VULN_CWE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability CWE",
+      "nugget_data": "cwe-306",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_CVSS_METRICS--b81c6a68-331b-5bae-b305-8931db95f3b7",
+      "nugget_instance_id": "NUCLEI_VULN_CVSS_METRICS--b81c6a68-331b-5bae-b305-8931db95f3b7",
+      "nugget_id": "NUCLEI_VULN_CVSS_METRICS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability CVSS Metrics",
+      "nugget_data": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "NUCLEI_VULN_CVSS_SCORE--00251a5c-313b-517e-a40b-4f9272261b87",
+      "nugget_instance_id": "NUCLEI_VULN_CVSS_SCORE--00251a5c-313b-517e-a40b-4f9272261b87",
+      "nugget_id": "NUCLEI_VULN_CVSS_SCORE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Nuclei Vulnerability CVSS Score",
+      "nugget_data": "7.2",
+      "nugget_colour": "#F59E0B"
+    }
+  ],
+  "edges": [
+    {
+      "source": "SCAN_RECORD--69820dc4-21ed-5692-ad27-85e0967eeadb",
+      "target": "SCAN_CLI--27e93f18-48e1-5722-bc11-b59bd2144829",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--69820dc4-21ed-5692-ad27-85e0967eeadb",
+      "target": "SCAN_TARGET--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--69820dc4-21ed-5692-ad27-85e0967eeadb",
+      "target": "SCAN_START--497a589e-abef-5342-9d36-55122466c557",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--69820dc4-21ed-5692-ad27-85e0967eeadb",
+      "target": "SCAN_ELAPSED--38fc49c8-9e23-5171-a356-dda8d347cd5d",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--69820dc4-21ed-5692-ad27-85e0967eeadb",
+      "target": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--69820dc4-21ed-5692-ad27-85e0967eeadb",
+      "target": "SCAN_FINDING_COUNT--9779767f-44f2-5215-8820-bda646e3bbc1",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--69820dc4-21ed-5692-ad27-85e0967eeadb",
+      "target": "SCAN_TOOL--0315df1b-6604-5965-bf7e-aecadb998218",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--69820dc4-21ed-5692-ad27-85e0967eeadb",
+      "target": "HOST--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "relation": "contains"
+    },
+    {
+      "source": "SCAN_RECORD--69820dc4-21ed-5692-ad27-85e0967eeadb",
+      "target": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "relation": "contains"
+    },
+    {
+      "source": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "target": "SECURITY--0b61c31c-101e-52c6-a074-847c2efb6b9a",
+      "relation": "contains"
+    },
+    {
+      "source": "SECURITY--0b61c31c-101e-52c6-a074-847c2efb6b9a",
+      "target": "TEMPLATES_USED--89f39de1-1931-5318-8303-d11e600e7b0e",
+      "relation": "contains"
+    },
+    {
+      "source": "SECURITY--0b61c31c-101e-52c6-a074-847c2efb6b9a",
+      "target": "FINDINGS--831a4651-c9b5-52ee-b6b1-97dd36c276e0",
+      "relation": "contains"
+    },
+    {
+      "source": "FINDINGS--831a4651-c9b5-52ee-b6b1-97dd36c276e0",
+      "target": "NUCLEI_SEVERITY_CRITICAL--0da43345-0356-5f47-8fb1-1fdb37e113ca",
+      "relation": "contains"
+    },
+    {
+      "source": "TEMPLATES_USED--89f39de1-1931-5318-8303-d11e600e7b0e",
+      "target": "NUCLEI_TEMPLATE--db330bca-9245-530a-8d38-981aed57ab28",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--db330bca-9245-530a-8d38-981aed57ab28",
+      "target": "NUCLEI_TEMPLATE_ID--db330bca-9245-530a-8d38-981aed57ab28",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--db330bca-9245-530a-8d38-981aed57ab28",
+      "target": "NUCLEI_TEMPLATE_NAME--67a7af75-2a30-5ca8-a7e4-6c8060f6c8b0",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--db330bca-9245-530a-8d38-981aed57ab28",
+      "target": "NUCLEI_TEMPLATE_PATH--c234cf96-d2f1-5c2b-8b84-9845e0b5880f",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--db330bca-9245-530a-8d38-981aed57ab28",
+      "target": "NUCLEI_TEMPLATE_AUTHOR--52dacc45-0d81-5ae0-b822-4a1e960a5927",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--db330bca-9245-530a-8d38-981aed57ab28",
+      "target": "NUCLEI_TEMPLATE_TAGS--3a59f689-add0-57ad-a19c-1c52b92d21ab",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--db330bca-9245-530a-8d38-981aed57ab28",
+      "target": "NUCLEI_TEMPLATE_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_SEVERITY_CRITICAL--0da43345-0356-5f47-8fb1-1fdb37e113ca",
+      "target": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_TEMPLATE_ID--db330bca-9245-530a-8d38-981aed57ab28",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_MATCHED_AT--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_FINDING_TIMESTAMP--adb9cb5b-c01b-5e21-a00c-a72f07c65730",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_FINDING_HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_FINDING_IP--62e0c65e-cb70-5dd1-9804-4dbd05d4f024",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_FINDING_PORT--57c42492-739f-539c-8358-c0da40c6024e",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_FINDING_URL--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_FINDING_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_MATCHER_STATUS--b36c45d7-9288-5624-a1f4-a56f9e87db07",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "VULNERABILITY_GENERAL--67a7af75-2a30-5ca8-a7e4-6c8060f6c8b0",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULN_DESCRIPTION--c5e48b6f-c1eb-53bc-b71e-4a2c6a81902c",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULN_IMPACT--cb53e5f8-ec96-5433-96f9-b1360b8aecbb",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULN_REMEDIATION--04ff1b0c-e7b9-5dff-88b0-29bf7fa42318",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULN_SEVERITY--961f9d9f-d77d-5948-8470-f04af0fb50f3",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULN_VENDOR--fde87c7a-1f01-5724-ad9e-59a9f1cf2703",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULN_PRODUCT--fde87c7a-1f01-5724-ad9e-59a9f1cf2703",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULN_TAGS--3a59f689-add0-57ad-a19c-1c52b92d21ab",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULN_CPE--9958fda4-0808-5b5f-afb9-70b2ee3e989f",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULN_CVSS_METRICS--c8262261-f099-59ac-8e1f-07d17c5712b0",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULN_CVSS_SCORE--6cc1da92-99a5-52dc-9e19-310edcdfede1",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULN_EPSS_SCORE--fee56385-8547-5016-96cf-d6e0266cf88f",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_VULN_EPSS_PERCENTILE--35c1eea3-d7b7-5a5f-bb16-c6e23bd6fd7e",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "VULNERABILITY_CVE_CRITICAL--db330bca-9245-530a-8d38-981aed57ab28",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "VULNERABILITY_CVE_CRITICAL--52018070-ea5f-57f4-b64f-38a67e013b19",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "target": "NUCLEI_TEMPLATE--db330bca-9245-530a-8d38-981aed57ab28",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "target": "SERVICE--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "target": "NUCLEI_FINDING_PORT--57c42492-739f-539c-8358-c0da40c6024e",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "target": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "target": "NUCLEI_VULNERABILITY--ac57e34b-5ca3-5c70-b88e-db1bdb541fa5",
+      "relation": "had"
+    },
+    {
+      "source": "FINDINGS--831a4651-c9b5-52ee-b6b1-97dd36c276e0",
+      "target": "NUCLEI_SEVERITY_HIGH--55216759-0443-53bd-a2d3-77f95566dbe1",
+      "relation": "contains"
+    },
+    {
+      "source": "TEMPLATES_USED--89f39de1-1931-5318-8303-d11e600e7b0e",
+      "target": "NUCLEI_TEMPLATE--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "target": "NUCLEI_TEMPLATE_ID--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "target": "NUCLEI_TEMPLATE_NAME--12f3dac0-8a26-5774-aeae-49cd09207793",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "target": "NUCLEI_TEMPLATE_PATH--5ae11bf2-a203-5b17-a455-4c7cd224e394",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "target": "NUCLEI_TEMPLATE_AUTHOR--abe9e0d7-7364-5fe1-a9fc-9db8a6d600a9",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "target": "NUCLEI_TEMPLATE_TAGS--e9e99134-aea9-5ef3-9296-bf771267dfd5",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_TEMPLATE--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "target": "NUCLEI_TEMPLATE_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_SEVERITY_HIGH--55216759-0443-53bd-a2d3-77f95566dbe1",
+      "target": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_TEMPLATE_ID--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_MATCHED_AT--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_FINDING_TIMESTAMP--5f7d1288-75ea-5762-b370-2743a54b1b58",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_FINDING_HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_FINDING_IP--62e0c65e-cb70-5dd1-9804-4dbd05d4f024",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_FINDING_PORT--57c42492-739f-539c-8358-c0da40c6024e",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_FINDING_URL--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_FINDING_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_MATCHER_STATUS--b36c45d7-9288-5624-a1f4-a56f9e87db07",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_VULNERABILITY--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "relation": "contains"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "VULNERABILITY_GENERAL--12f3dac0-8a26-5774-aeae-49cd09207793",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_VULN_DESCRIPTION--5ce6b8ad-6179-5f43-9e51-27aac8eaeb6a",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_VULN_SEVERITY--503ab962-b51c-5494-a5ab-1c5046a30266",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_VULN_TAGS--e9e99134-aea9-5ef3-9296-bf771267dfd5",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_VULN_CWE--ced70c0b-fc9c-5099-b3d8-5d0ca62974bc",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_VULN_CVSS_METRICS--b81c6a68-331b-5bae-b305-8931db95f3b7",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_VULNERABILITY--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_VULN_CVSS_SCORE--00251a5c-313b-517e-a40b-4f9272261b87",
+      "relation": "had"
+    },
+    {
+      "source": "NUCLEI_FINDING--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "target": "NUCLEI_TEMPLATE--11d6346c-5e65-537b-901a-8fab72bb625c",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--fe610b45-d450-502d-bf8e-b84f411a87ef",
+      "target": "NUCLEI_VULNERABILITY--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--a7ffc6d3-f287-54b8-b23c-406b97c4e038",
+      "target": "NUCLEI_VULNERABILITY--619c3532-0f89-5fdf-97d4-fdb8c90449c0",
+      "relation": "had"
+    }
+  ]
+}

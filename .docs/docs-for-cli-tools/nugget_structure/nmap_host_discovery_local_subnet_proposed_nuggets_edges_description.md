@@ -1,4 +1,4 @@
-# Nmap OSINT Scan Report — host_discovery_local_subnet
+# Nmap OSINT Scan Report — host_discovery_local_subnet_xml
 
 ## Introduction
 
@@ -34,7 +34,7 @@ Network address **192.168.1.9**:
 
 ## Conclusion
 
-The scan captured **17** semantic nuggets across **2** hosts.
+The scan captured **19** semantic nuggets across **2** hosts.
  Nmap done at Fri Jun 26 04:00:18 2026; 256 IP addresses (2 hosts up) scanned in 11.46 seconds
  The appendix lists every nugget instance and value for audit and downstream review.
 
@@ -43,10 +43,13 @@ The scan captured **17** semantic nuggets across **2** hosts.
 
 | Type | Nugget | Description | Value |
 |------|--------|-------------|-------|
+| CATEGORY | APPLICATIONS | Applications Category | `applications:192.168.1.11` |
+| CATEGORY | APPLICATIONS | Applications Category | `applications:192.168.1.9` |
 | CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.11` |
 | CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.9` |
 | DESCRIPTOR | HOST_STATUS | Host Status | `up` |
 | DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `localhost-response` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `host.docker.internal` |
 | DESCRIPTOR | SCAN_CLI | Scan CLI | `nmap -sn -T3 -oX - 192.168.1.0/24` |
 | DESCRIPTOR | SCAN_ELAPSED | Scan Elapsed Time | `11.46` |
 | DESCRIPTOR | SCAN_START | Scan Start | `Fri Jun 26 04:00:07 2026` |
@@ -56,7 +59,6 @@ The scan captured **17** semantic nuggets across **2** hosts.
 | DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
 | ENTITY | HOST | Host | `192.168.1.11` |
 | ENTITY | HOST | Host | `192.168.1.9` |
-| ENTITY | INTERNET_NAME | Internet Name | `host.docker.internal` |
 | ENTITY | IP_ADDRESS | IP Address | `192.168.1.11` |
 | ENTITY | IP_ADDRESS | IP Address | `192.168.1.9` |
 | ENTITY | SCAN_RECORD | Scan Record | `nmap:192.168.1.0/24:Fri Jun 26 04:00:07 2026` |

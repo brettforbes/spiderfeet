@@ -6,15 +6,18 @@ This report narrates the findings of a **Netdiscover** ARP discovery run for **n
 
 ## Scan
 
-The scan started at **Mon Jun 29 14:34:57 2026** with arguments `netdiscover — C — passive ARP snippet (bounded)`.
- It finished at **Mon Jun 29 14:35:14 2026**.
+The scan started at **Sun Jul 12 14:14:46 2026** with arguments `netdiscover — C — passive ARP snippet (bounded)`.
+ It finished at **Sun Jul 12 14:15:03 2026**.
  Exit status: **success**.
 
-NetDiscover done at Mon Jun 29 14:35:14 2026; 12 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 16.88 seconds
+NetDiscover done at Sun Jul 12 14:15:03 2026; 12 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 16.88 seconds
 
 Netdiscover recorded **4** scan frame(s), **3** empty scan(s) before settling on the host table used for this graph.
 **12** system(s) appear in the structured host inventory.
 **12** system node(s) are linked from the scan record in this graph.
+
+Additional scan metadata:
+- **Scan CLI** (`netdiscover — C — passive ARP snippet (bounded)`)
 
 ### Scan topology
 
@@ -314,7 +317,7 @@ flowchart TD
 ## Conclusion
 
 The scan captured **57** semantic nuggets across **12** systems.
- NetDiscover done at Mon Jun 29 14:35:14 2026; 12 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 16.88 seconds
+ NetDiscover done at Sun Jul 12 14:15:03 2026; 12 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 16.88 seconds
  The appendix lists every nugget instance and value for audit and downstream review.
 
 
@@ -335,13 +338,13 @@ The scan captured **57** semantic nuggets across **12** systems.
 | CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.7` |
 | CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.8` |
 | DESCRIPTOR | MAC_VENDOR | MAC Vendor | `Unknown` |
-| DESCRIPTOR | SCAN_ARGS | Scan Args | `netdiscover — C — passive ARP snippet (bounded)` |
+| DESCRIPTOR | SCAN_CLI | Scan CLI | `netdiscover — C — passive ARP snippet (bounded)` |
 | DESCRIPTOR | SCAN_DISCOVERED | Systems Discovered | `12` |
 | DESCRIPTOR | SCAN_EMPTY_SCANS | Empty Scans | `3` |
-| DESCRIPTOR | SCAN_END_TIME | Scan End Time | `Mon Jun 29 14:35:14 2026` |
+| DESCRIPTOR | SCAN_END_TIME | Scan End Time | `Sun Jul 12 14:15:03 2026` |
 | DESCRIPTOR | SCAN_EXIT_STATUS | Scan Exit Status | `success` |
-| DESCRIPTOR | SCAN_SUMMARY | Scan Summary | `NetDiscover done at Mon Jun 29 14:35:14 2026; 12 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 16.88 seconds` |
-| DESCRIPTOR | SCAN_TIMESTAMP | Scan Start Time | `Mon Jun 29 14:34:57 2026` |
+| DESCRIPTOR | SCAN_SUMMARY | Scan Summary | `NetDiscover done at Sun Jul 12 14:15:03 2026; 12 Systems Discovered, 4 Scan Tries, 3 Empty Scans, scanned in 16.88 seconds` |
+| DESCRIPTOR | SCAN_TIMESTAMP | Scan Start Time | `Sun Jul 12 14:14:46 2026` |
 | DESCRIPTOR | SCAN_TRIES | Scan Tries | `4` |
 | ENTITY | IP_ADDRESS | IP Address | `192.168.1.1` |
 | ENTITY | IP_ADDRESS | IP Address | `192.168.1.10` |
@@ -382,4 +385,4 @@ The scan captured **57** semantic nuggets across **12** systems.
 
 ---
 
-*OS-Intel Scan · Mon Jun 29 14:34:57 2026 · Page 1*
+*OS-Intel Scan · Sun Jul 12 14:14:46 2026 · Page 1*

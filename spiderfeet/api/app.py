@@ -1,5 +1,6 @@
 """FastAPI application factory."""
 
+import logging
 import os
 from contextlib import asynccontextmanager
 
@@ -13,6 +14,7 @@ from spiderfeet.api.bootstrap import init_runtime
 from spiderfeet.api.routes import (
     catalogue,
     cli_corpus,
+    content,
     health,
     map,
     scan_ui,
@@ -28,10 +30,35 @@ from spiderfeet.api.schemas import (
     SCAN_UI_SWAGGER_EXAMPLE,
 )
 
+logger = logging.getLogger(__name__)
+
+
+def _auto_bootstrap_map_at_startup() -> None:
+    """Create/seed spiderfeet-map when TypeDB is up but DB/schema/data is missing."""
+    try:
+        from spiderfeet.map.bootstrap import ensure_map_ready
+        from spiderfeet.map.config import load_connection_config
+        from spiderfeet.map.connection import ping
+
+        cfg = load_connection_config()
+        if not ping(cfg):
+            logger.warning(
+                "TypeDB unreachable at %s; map auto-bootstrap skipped",
+                cfg.addresses,
+            )
+            return
+        if ensure_map_ready(cfg):
+            logger.info("TypeDB map auto-bootstrapped (%s)", cfg.database)
+        else:
+            logger.info("TypeDB map already ready (%s)", cfg.database)
+    except Exception as exc:
+        logger.warning("TypeDB map auto-bootstrap skipped: %s", exc)
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     app.state.runtime = init_runtime()
+    _auto_bootstrap_map_at_startup()
     yield
 
 
@@ -70,6 +97,7 @@ def create_app() -> FastAPI:
     app.include_router(subscriptions.router, prefix=prefix)
     app.include_router(settings_routes.router, prefix=prefix)
     app.include_router(cli_corpus.router, prefix=prefix)
+    app.include_router(content.router, prefix=prefix)
 
     def custom_openapi():
         if app.openapi_schema:

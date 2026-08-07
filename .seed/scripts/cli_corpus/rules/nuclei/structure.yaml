@@ -1,0 +1,110 @@
+tool: nuclei
+display_name: Nuclei
+seed_docs:
+  - .seed/05_Onotology_for_Nuggets.md
+  - .seed/11_Ontology_for_Nuclei.md
+  - .seed/11B_Rules_for_Nuclei.md
+generator: .seed/scripts/cli_corpus/adapters/nuclei
+artifacts:
+  graph: nuclei_<scenario_id>_proposed_nuggets_edges.json
+  narrative: nuclei_<scenario_id>_proposed_nuggets_edges_description.md
+  output_dir: .docs/docs-for-cli-tools/nugget_structure
+narrative:
+  engine: .seed/scripts/cli_corpus/core/narrative_engine.py
+  method: render_narrative
+patterns:
+  - id: scan_head
+    title: Scan head
+    prose: >
+      SCAN_RECORD carries SCAN_CLI, SCAN_TARGET, SCAN_FINDING_COUNT, timing, and exit
+      descriptors. Target HOST may link from scan when a single URL/host seed is used.
+  - id: vuln_findings
+    title: Vulnerability findings tree
+    prose: >
+      Each JSONL finding creates or reuses HOST, SECURITY category, TEMPLATES_USED,
+      FINDINGS severity buckets, NUCLEI_FINDING rows, and NUCLEI_VULNERABILITY observations.
+    bullets:
+      - Severity categories map to NUCLEI_SEVERITY_* CATEGORY nodes.
+      - CVE tiers attach as VULNERABILITY_CVE_* descriptors on the vulnerability node.
+      - SERVICE may link to findings via had when port context is present.
+specialty_sections:
+  - title: Template inventory branch
+    pattern: vuln_findings
+    prose: >
+      NUCLEI_TEMPLATE entities deduplicate under TEMPLATES_USED with template metadata
+      descriptors (name, tags, author, protocol).
+  - title: Tech fingerprint pass
+    pattern: vuln_findings
+    prose: >
+      Tag-targeted tech fingerprint scenarios may emit info-severity findings that surface
+      as WEBSERVER_TECHNOLOGY-style descriptors on vulnerabilities when templates report tech.
+scenarios:
+  - id: scanme_all_templates
+    structures: HOST + SECURITY + mixed severity FINDINGS
+  - id: pg_shadowlogic_weblogic_cves
+    structures: CVE-tier VULNERABILITY_CVE_* descriptors
+  - id: cipherheart_redis_lab
+    structures: Network exposure + CVE findings
+  - id: pg_graphql_graphql_misconfig
+    structures: GraphQL misconfiguration findings
+  - id: pg_dvwa_tech_fingerprint
+    structures: Info-severity tech fingerprint findings
+field_mapping:
+  - path: command
+    nugget_id: SCAN_CLI
+  - path: target
+    nugget_id: SCAN_TARGET
+  - path: finding_summary_lines
+    nugget_id: SCAN_FINDING_COUNT
+  - path: records[].host
+    nugget_id: HOST
+    notes: scan contains
+  - path: records[].template-id
+    nugget_id: NUCLEI_TEMPLATE
+    notes: TEMPLATES_USED contains
+  - path: records[].info.severity
+    nugget_id: NUCLEI_SEVERITY_*
+    notes: FINDINGS severity category
+  - path: records[].info.name
+    nugget_id: VULNERABILITY_GENERAL
+    notes: had on NUCLEI_VULNERABILITY
+  - path: records[].info.classification.cve-id
+    nugget_id: VULNERABILITY_CVE_*
+    notes: tier by severity
+  - path: records[].matched-at
+    nugget_id: NUCLEI_MATCHED_AT
+    notes: had on NUCLEI_FINDING
+  - path: records[].port
+    nugget_id: SERVICE
+    notes: host contains; had to vulnerability
+proposed_nuggets:
+  - nugget_id: SECURITY
+    type: CATEGORY
+    parent: HOST
+    source: 11B SEC1
+    relation: contains
+  - nugget_id: FINDINGS
+    type: CATEGORY
+    parent: SECURITY
+    source: 11B FIND1
+    relation: contains
+  - nugget_id: NUCLEI_FINDING
+    type: ENTITY
+    parent: NUCLEI_SEVERITY_*
+    source: template-id + matched-at + timestamp
+    relation: contains
+  - nugget_id: NUCLEI_VULNERABILITY
+    type: ENTITY
+    parent: NUCLEI_FINDING
+    source: finding identity
+    relation: contains
+  - nugget_id: NUCLEI_TEMPLATE
+    type: ENTITY
+    parent: TEMPLATES_USED
+    source: template-id
+    relation: contains
+review_notes:
+  - One batch goal per examination scenario; avoid full-template sweeps on hardened targets.
+  - Structured capture uses -jsonl converted to bundle JSON at harvest.
+  - Interactsh/OOB templates may be blocked upstream; document as proven limitation not silent gap.
+cross_link: ../_Current_Ontology.md

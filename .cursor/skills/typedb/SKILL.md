@@ -1,14 +1,22 @@
 ---
 name: typeql
-description: Write and debug TypeQL queries for TypeDB 3.8+. Use when working with TypeDB schemas, data queries, insertions, deletions, or functions. Covers schema definition, CRUD operations, pattern matching, aggregations, and common pitfalls.
+description: Write and debug TypeQL for TypeDB 3.8+ and SpiderFeet v2 (.seed/spiderfeet_v2_semantic.tql). Use for schema define/load, CRUD, functions, and project-specific nugget/scan_step/subgraph patterns.
 ---
 # TypeQL Language Reference for TypeDB 3.8+
 
 This skill provides comprehensive guidance for writing TypeQL queries against TypeDB databases.
 
+For SpiderFeet engine work, also read the **SpiderFeet v2 semantic schema** appendix at the end — naming, attribute inventory, role specialization, and load checklist for `.seed/spiderfeet_v2_semantic.tql`.
+
+Always enclose TypeQL code snippets with a code block. 'typeql' should be used as the language identifier.
+
+Use `typeql-check` tool to validate TypeQL code blocks if available in `$PATH`.
+
 > **Note (3.8+):** Trailing commas are now allowed in all comma-separated contexts (variable lists, statements, reductions) for easier query composition.
 >
 > **Note (3.8+):** Unicode identifiers are now supported. Type names, attribute names, and variable names can use any Unicode XID_START character followed by XID_CONTINUE characters (e.g., `名前`, `prénom`, `город`).
+>
+> **Note (3.12+):** New this release — the `given` stage for multi-row input (see Quick Reference), the `@doc` / `@meta` schema annotations with their `get_doc(...)` / `get_meta(...)` retrieval built-ins (see Annotations Reference and Built-in Functions), and schema functions definable on abstract types (see Functions).
 
 ## Quick Reference
 
@@ -24,6 +32,7 @@ This skill provides comprehensive guidance for writing TypeQL queries against Ty
 
 ```text
 [with ...]                   -- Inline function preamble
+[given ...]                  -- Bind input rows for multi-row execution (3.12+)
 [define|undefine|redefine]   -- Schema operations
 [match]                      -- Pattern matching
 [insert|put|update|delete]   -- Data mutations
@@ -33,6 +42,27 @@ This skill provides comprehensive guidance for writing TypeQL queries against Ty
 [fetch]                      -- JSON output
 ;                            -- EVERY query MUST end with a semicolon
 ```
+
+### Given (Multi-Row Input) (3.12+)
+
+`given` binds typed variables to input rows supplied alongside the query, then runs the rest of the
+pipeline once per row. This avoids the per-row network and query-compilation overhead of issuing many
+separate queries, and — because the rows are separate from the query string — it is safe from TypeQL
+injection. If a query has a `given` stage, matching rows must be provided (and vice versa).
+
+```typeql
+# Bind one $n per input row, then run the pipeline per row
+given $n: string;
+insert $p isa person, has name == $n;   # value attributes use == in insert
+
+# Given concept rows: run the match against each given $p
+given $p: person;
+match $p has name $n;
+```
+
+Declare each input variable with `given <var>: <type>;` (use `<type>?` for a nullable column, e.g.
+`given $x: integer, $y: integer?;`). Variables bound by `given` cannot be reassigned in later stages.
+Driver APIs supply the actual rows — see the driver README for constructing given inputs.
 
 ---
 
@@ -163,8 +193,12 @@ define
 | `@independent` | `owns tag @independent`         | Attribute exists independently of owner |
 | `@distinct`    | `owns item @distinct`           | Each value can only be owned once       |
 | `@subkey(...)` | `owns code @subkey(region)`     | Composite key with another attribute    |
+| `@doc(...)`    | `person @doc("a client")`       | Human-readable description (3.12+)       |
+| `@meta(...)`   | `person @meta("icon","p.png")`  | Key-value metadata, any number (3.12+)   |
 
 Note:  `@key` and `@unique` can only be put on `owns`, not directly on an attribute value definition.
+
+Note (3.12+): `@doc("text")` and `@meta("key","value")` attach to any type, to `owns`/`plays`/`relates`/`sub` capabilities, and to functions (placed after the signature, before the `:`). Neither is inherited. Read them back with the `get_doc(...)` / `get_meta(...)` built-ins (see Built-in Functions).
 
 ---
 
@@ -653,6 +687,19 @@ fetch {
   "iid": iid($p),
   "type": label($t)                      # label() on TYPE variable $t
 };
+
+# Read @doc / @meta schema annotations (3.12+)
+# NOTE: these take TYPE variables - use isa! to bind an instance's exact type.
+match
+  $p isa! $t, has email "alice@example.com";
+fetch {
+  "type": label($t),
+  "doc":  get_doc($t),                   # description set via @doc("...")
+  "icon": get_meta("icon", $t)           # value set via @meta("icon", "...")
+};
+# Capability variants: get_owns_doc / get_plays_doc / get_relates_doc / get_sub_doc,
+# and get_owns_meta / get_plays_meta / get_relates_meta / get_sub_meta
+# (each *_meta takes the key first; *_all_meta variants stream all key-value pairs).
 ```
 
 ---
@@ -740,6 +787,11 @@ fetch {
 ## 10. Functions
 
 Define reusable query logic in schema.
+
+> **Note (3.12+):** Schema functions may be defined on abstract types (type-checked through the
+> abstract type even when no concrete type satisfies the pattern), letting you split function
+> definitions across modular schema files. Calling such a function from a query or preamble still
+> requires the pattern to be concretely satisfiable, otherwise you get a type-inference error.
 
 ### Function Definition
 
@@ -1239,4 +1291,99 @@ reduce $count = count;
 | `or`    | Disjunction                          |
 | `not`   | Negation                             |
 | `try`   | Optional pattern                     |
+
+---
+
+## SpiderFeet v2 semantic schema (project appendix)
+
+Canonical load file: `.seed/spiderfeet_v2_semantic.tql` (target DB e.g. `spiderfeet-actual`).  
+Older Maps schema: `.seed/spiderfeet_map.tql` — do **not** mix v1 `scan-record` **relation** patterns with v2 without reading the table below.
+
+### Naming (Option B)
+
+| Kind | Convention | Examples |
+|------|------------|----------|
+| Entity / relation labels | kebab-case | `osint-service`, `domain-name`, `scan-record` (nugget type) |
+| Attribute labels | snake_case | `scan_instance_id`, `module_id`, `nugget_data` |
+| `@values` literals | snake_case | `free_no_auth`, `ip_netblock` |
+| Exceptions | intentional | `scan_step`, `workflow`, `project`, `subgraph` (snake_case relations for engine objects); `cdn` not `CDN` |
+
+### Reserved-word / ontology aliases
+
+| Ontology / docs | Schema label | Notes |
+|-----------------|--------------|-------|
+| `had` / “has descriptor” | `has_this` | TypeQL keyword `has` is attribute ownership — never a relation label |
+| `contains` | `contains_this` | Roles are `semantic_link` **source** (container) / **target** (contained) |
+| `listens-to` | `listens_to_this` | Same source/target roles |
+| Map `relation scan-record` | `relation scan_step` | v2 scan invocation; **entity** `scan-record` is the `SCAN_RECORD` nugget type |
+
+### Core type map
+
+| Concern | Types |
+|---------|--------|
+| Nugget root | `nugget` (@abstract) → `category`, `entity_nugget`, `descriptor_nugget`, `data_nugget`, `subentity_nugget`, `root`, `null_value_nugget` |
+| Meta-concepts | `meta_concept` → `system` → (`host`, `cdn`, `mobile`, `device`); also `trace`, `company` |
+| Categories | `networks`, `environment`, `applications` |
+| Subgraph storage | `subgraph` → `scan_result_graph`, `project_context`, `temporary_subgraph`, `target_context` |
+| Scan / workflow | `scan_step`, `workflow`, `project`, `route`, `sequence`, `target` |
+| Services | `osint-service` (+ CLI subtypes), `osint-source`, `opts`, `data-source` |
+| Containment walk | schema fun `contains_recursive($container_A: nugget) -> { nugget }` |
+
+### Attribute inventory (must match `owns`)
+
+Every `owns X` requires `attribute X, value …;`. Current groups:
+
+- **Nugget:** `nugget_id`, `nugget_instance_id`, `nugget_description`, `nugget_type`, `nugget_event_type`, `nugget_icon`, `nugget_colour`, `nugget_data`, `nugget_source_data`, `nugget_module`, `nugget_generated`, `nugget_confidence`, `nugget_visibility`, `nugget_risk`, `nugget_false_positive`
+- **Service / source / opts:** `module_id`, `name`, `summary`, `flags`, `use_cases`, `categories`, `fixture_category`, `access_tier`, `consumption_group`, `route_seed_nugget`, `consumed_nuggets`, `produced_nuggets`, `service_state`, `service_origin`, `markdown_graph_structure_string`, `markdown_options_string`, `markdown_zero_to_hero_string`, `website`, `model`, `references`, `api_key_instructions`, `fav_icon`, `logo`, `description`, `opt_name`, `in_value`, `db_value`, `bo_value`, `st_value`
+- **Route / sequence:** `route_name`, `route_state`, `sequence_name`
+- **Subgraph keys:** `scan_result_id`, `project_context_id`, `temporary_subgraph_id`
+- **Scan step / UI:** `scan_instance_id`, `step_module_id`, `scan_status`, `scan_nugget_count`, `scan_results_by_type`, `scan_results`, `scan_duration`, `scan_timestamp`, `scan_notes`, `scan_ui_cli_command`, `scan_ui_text_form`, `scan_ui_structured_form`, `scan_ui_structured_form_type`, `scan_ui_graph_form`, `scan_ui_markdown_narrative_form`, `scan_yaml`
+- **Workflow / project:** `workflow_id`, `workflow_yaml`, `author`, `created`, `project_id`, `stix_incident_id`
+- **Target / context:** `target_id`, `target_value`, `target_description`, `target_created`, `target_yaml`, `target_context_id`
+
+Do **not** introduce bare attribute `id` (ambiguous / easy to collide). Use `step_module_id` on `scan_step`.
+
+### Role specialization pitfalls
+
+```typeql
+relation scan_result_graph, sub subgraph,
+  owns scan_result_id @key,
+  relates scan_step as owner;   # specialized role name is scan_step
+
+# players must use the specialized label:
+#   plays scan_result_graph:scan_step;
+# not only subgraph:owner
+```
+
+Same pattern: `project_context` / `temporary_subgraph` → `relates project as owner` → `plays project_context:project`.
+
+`scan_step` must `relates produced` and `relates route` because `nugget` / `route` declare `plays scan_step:produced` and `plays scan_step:route`.
+
+### Load checklist
+
+1. Fresh schema DB (or undefine-all) — duplicate type labels fail the define.
+2. File must start with `define` and every type/fun block ends with `;` (including abstract `subgraph`).
+3. Static gate: every `owns` label has an `attribute` def; no orphan attributes unless intentionally shared later.
+4. No duplicate labels for `host` / `port` / `trace` (meta-concept vs catalogue).
+5. Prefer `typeql-check` / a schema transaction load when CLI is available:
+
+```text
+# example — adjust binary/address to the local TypeDB 3.8+ install
+typedb console --address=127.0.0.1:1729
+# transaction schema write;
+# source .seed/spiderfeet_v2_semantic.tql
+# commit;
+```
+
+6. After load: smoke `match $x isa nugget; limit 1;` and `match $s isa scan_step; limit 1;` (empty OK).
+
+### Common authoring mistakes (this schema)
+
+- Defining both `entity host, sub entity_nugget` and `entity host, sub system` — illegal duplicate.
+- `entity meta_concept sub entity_nugget` without the comma after the label — must be `entity meta_concept, sub entity_nugget;`.
+- `plays scan-record:route` while `scan-record` is an **entity** nugget type — use `scan_step:route`.
+- Leaving `relates next` on `project` with no player — orphan role.
+- Duplicate `owns created` on `workflow`.
+- Documenting `contains` / roles `container`/`contained` while the schema uses `contains_this` + `source`/`target` — update queries to match the schema (see `contains_recursive` in the `.tql` file).
+
 

@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from spiderfeet.api.bootstrap import REPO_ROOT
+from spiderfeet.api.services import content as content_service
 
 _CLI_DOCS = REPO_ROOT / ".docs" / "docs-for-cli-tools"
 _CORPUS_INDEX = _CLI_DOCS / "corpus_index.json"
@@ -156,6 +157,20 @@ def _artifact_flags(bundle_dir: Path) -> Dict[str, bool]:
     }
 
 
+def _graph_deferred_fields(manifest: Dict[str, Any]) -> Dict[str, Any]:
+    deferred = bool(manifest.get("graph_deferred"))
+    fields: Dict[str, Any] = {"graph_deferred": deferred}
+    if deferred:
+        fields["graph_deferred_reason"] = manifest.get("graph_deferred_reason") or ""
+    return fields
+
+
+def _scenario_complete(flags: Dict[str, bool], manifest: Dict[str, Any]) -> bool:
+    """Graph + narrative are mandatory; graph_deferred is not a valid completion path."""
+    _ = manifest  # manifest retained for API signature; graph_deferred ignored
+    return all(flags.values())
+
+
 def _review_status_bundle(bundle_dir: Path, manifest: Dict[str, Any]) -> str:
     review_path = bundle_dir / "review.status.json"
     if review_path.is_file():
@@ -194,7 +209,8 @@ def _load_scenario_bundle(tool_id: str, bundle_dir: Path) -> Dict[str, Any]:
         "review_status": _review_status_bundle(bundle_dir, manifest),
         "legacy_exam_ids": manifest.get("legacy_exam_ids") or [],
         **flags,
-        "complete": all(flags.values()),
+        **_graph_deferred_fields(manifest),
+        "complete": _scenario_complete(flags, manifest),
     }
 
 
@@ -261,9 +277,13 @@ def list_scenarios(tool_id: str) -> List[Dict[str, Any]]:
         )
         has_text = any((tool_dir / f"{eid}_output_text.txt").is_file() for eid, _ in members)
         graph_path = _resolve_graph_path(tool_id, key, sid)
-        md_path = _NUGGET_ROOT / f"{tool_id}_{sid}_proposed_nuggets_edges_description.md"
-        if not md_path.is_file():
-            md_path = _NUGGET_ROOT / f"{tool_id}_{key}_proposed_nuggets_edges_description.md"
+        md_path = _resolve_markdown_path(tool_id, key, sid)
+        flags = {
+            "has_text": has_text,
+            "has_structured": has_structured,
+            "has_graph": graph_path.is_file(),
+            "has_markdown": md_path is not None,
+        }
         rows.append(
             {
                 "scenario_key": key,
@@ -273,11 +293,9 @@ def list_scenarios(tool_id: str) -> List[Dict[str, Any]]:
                 "structured_kind": primary.get("structured_kind"),
                 "review_status": _legacy_scenario_review_status(tool_dir, members),
                 "legacy_exam_ids": [eid for eid, _ in members],
-                "has_text": has_text,
-                "has_structured": has_structured,
-                "has_graph": graph_path.is_file(),
-                "has_markdown": md_path.is_file(),
-                "complete": has_text and has_structured and graph_path.is_file() and md_path.is_file(),
+                **flags,
+                **_graph_deferred_fields(primary),
+                "complete": _scenario_complete(flags, primary),
             }
         )
     return rows
@@ -307,6 +325,24 @@ def _resolve_graph_path(
     return candidates[0]
 
 
+def _resolve_markdown_path(
+    tool_id: str, scenario_key: str, scenario_id: str | None = None
+) -> Path | None:
+    """Resolve narrative Markdown using the same candidate order as graph paths."""
+    candidates: list[Path] = []
+    if scenario_id:
+        candidates.append(
+            _NUGGET_ROOT / f"{tool_id}_{scenario_id}_proposed_nuggets_edges_description.md"
+        )
+    candidates.append(
+        _NUGGET_ROOT / f"{tool_id}_{scenario_key}_proposed_nuggets_edges_description.md"
+    )
+    for path in candidates:
+        if path.is_file():
+            return path
+    return None
+
+
 def _graph_for_scenario(
     tool_id: str,
     scenario_key: str,
@@ -323,12 +359,22 @@ def _graph_for_scenario(
 
 
 def _tool_graph_structure_path(tool_id: str) -> Path:
+    bundle = REPO_ROOT / "modules_v2" / "content" / tool_id / "graph_structure.md"
+    if bundle.is_file():
+        return bundle
     return _NUGGET_ROOT / f"{tool_id}_nugget_graph_structure.md"
 
 
 def get_tool_graph_structure(tool_id: str) -> Optional[Dict[str, str]]:
     _safe_tool_dir(tool_id)
-    md_path = _tool_graph_structure_path(tool_id)
+    platform_md = content_service.get_graph_structure_markdown(tool_id)
+    if platform_md:
+        return {
+            "tool_id": tool_id,
+            "filename": "graph_structure.md",
+            "markdown": platform_md,
+        }
+    md_path = _NUGGET_ROOT / f"{tool_id}_nugget_graph_structure.md"
     if not md_path.is_file():
         return None
     return {
@@ -338,15 +384,18 @@ def get_tool_graph_structure(tool_id: str) -> Optional[Dict[str, str]]:
     }
 
 
-def _scenario_graph_description(tool_id: str, scenario_key: str, bundle_dir: Path) -> Optional[str]:
+def _scenario_graph_description(
+    tool_id: str,
+    scenario_key: str,
+    bundle_dir: Path,
+    scenario_id: str | None = None,
+) -> Optional[str]:
     bundle_md = bundle_dir / "proposed_nuggets_edges_description.md"
     if bundle_md.is_file():
         return _read_text(bundle_md)
-    for candidate in (
-        _NUGGET_ROOT / f"{tool_id}_{scenario_key}_proposed_nuggets_edges_description.md",
-    ):
-        if candidate.is_file():
-            return _read_text(candidate)
+    md_path = _resolve_markdown_path(tool_id, scenario_key, scenario_id)
+    if md_path:
+        return _read_text(md_path)
     return None
 
 
@@ -381,9 +430,12 @@ def _get_scenario_from_bundle(tool_id: str, scenario_key: str, bundle_dir: Path)
         }
 
     flags = _artifact_flags(bundle_dir)
-    markdown = _scenario_graph_description(tool_id, scenario_key, bundle_dir)
+    scenario_id = manifest.get("scenario_id") or scenario_key
+    markdown = _scenario_graph_description(
+        tool_id, scenario_key, bundle_dir, scenario_id
+    )
     flags["has_markdown"] = markdown is not None
-    return {
+    payload = {
         "tool_id": tool_id,
         "scenario_key": scenario_key,
         "exam_id": (manifest.get("legacy_exam_ids") or [None])[0],
@@ -392,12 +444,19 @@ def _get_scenario_from_bundle(tool_id: str, scenario_key: str, bundle_dir: Path)
         "command": _read_text(command_path) if command_path.is_file() else "",
         "output_text": _read_text(text_path) if text_path.is_file() else "",
         "structured": structured,
-        "graph_proposal": _graph_for_scenario(tool_id, scenario_key, bundle_dir),
+        "graph_proposal": _graph_for_scenario(
+            tool_id, scenario_key, bundle_dir, scenario_id
+        ),
         "graph_description_markdown": markdown,
         "markdown": markdown,
         "artifacts": flags,
-        "complete": all(flags.values()),
+        **_graph_deferred_fields(manifest),
+        "complete": _scenario_complete(flags, manifest),
     }
+    links = content_service.content_links_for_tool(tool_id)
+    if links:
+        payload["content_links"] = links
+    return payload
 
 
 def _structured_file_legacy(tool_dir: Path, exam_id: int, manifest: Dict[str, Any]) -> Optional[Path]:
@@ -474,7 +533,12 @@ def _merge_legacy_scenario(
     graph = _graph_for_scenario(
         tool_id, scenario_key, bundle_dir, primary_manifest.get("scenario_id")
     )
-    markdown = _scenario_graph_description(tool_id, scenario_key, bundle_dir)
+    markdown = _scenario_graph_description(
+        tool_id,
+        scenario_key,
+        bundle_dir,
+        primary_manifest.get("scenario_id"),
+    )
     flags = {
         "has_text": bool(text_content),
         "has_structured": structured is not None,
@@ -495,7 +559,13 @@ def _merge_legacy_scenario(
         "graph_description_markdown": markdown,
         "markdown": markdown,
         "artifacts": flags,
-        "complete": all(flags.values()),
+        **_graph_deferred_fields(primary_manifest),
+        "complete": _scenario_complete(flags, primary_manifest),
+        **(
+            {"content_links": content_service.content_links_for_tool(tool_id)}
+            if content_service.content_links_for_tool(tool_id)
+            else {}
+        ),
     }
 
 

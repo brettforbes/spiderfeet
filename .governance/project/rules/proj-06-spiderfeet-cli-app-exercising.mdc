@@ -34,6 +34,34 @@ First read the appropriate skillset documentation, then use the tool to explore 
 - **Instance identity:** `nugget_instance_id = f"{nugget_id}--{uuid5(ONTOLOGY_NAMESPACE, nugget_data)}"` using the shared seed in `graph_builder.py`. Exactly one node per `(nugget_id, nugget_data)`; shared values link via edges (`had`, `contains`, etc.).
 - **Categories:** Respect meta-concept rules in `.seed/05_Onotology_for_Nuggets.md` (e.g. `NETWORKS` is `CATEGORY`, not `ENTITY`).
 
+## Structured-first law (non-negotiable)
+
+**If a structured output form is available, you must use only the structured form.** Never run a formal examination scenario whose primary capture is native text when the tool offers JSON, XML, YAML, CSV, or an equivalent machine-readable mode (including `--json`, `-oX`, `--output ndjson`, etc.).
+
+| Role | Structured | Text |
+|------|------------|------|
+| Ontology / graph / interpretation | **Primary and mandatory** | Not used as source |
+| Human review in CLI Profiling | Shown in Structured pane | **Derived** from structured, or native capture only when no structured mode exists |
+
+Rules:
+
+1. **Never** create a separate harvest scenario that omits structured flags when structured flags exist (e.g. no `pius --output terminal` examination when `--output ndjson` exists; no nerva without `--json` when `--json` exists).
+2. **Text has lower value for interpretation.** Use it for operator readability in the Text pane — not as the evidence source for graphs or narratives.
+3. **Text-native examination is allowed only** when the tool has **no** structured output mode at all. Then capture full text and **parse to structured** (TextFSM or equivalent) before graph derivation.
+4. **Forbidden:** `graph_deferred` — ever. **Forbidden:** “paired” structured + native-text scenarios for the same semantic goal. **Forbidden:** any scenario that ships without graph + narrative.
+5. Exploration may document that a TUI/human mode exists; formal examination still uses structured only. Note TUI in the strategy skill — do not harvest it as a corpus scenario.
+
+## Graph-mandatory law (non-negotiable)
+
+**The aim of CLI profiling is a nugget graph.** Text and structured artifacts exist to produce that graph (and its narrative report). A scenario without a graph is **invalid** — not deferred, not complete, not shippable.
+
+Rules:
+
+1. **Every** formal examination scenario **must** produce `proposed_nuggets_edges.json` (and matching narrative Markdown) before it counts as done.
+2. **`graph_deferred` is forbidden.** Never mark a scenario complete without a graph. Never add manifest rows whose purpose is text-only review when structured modes exist.
+3. If you cannot derive a graph from the capture, **fix the capture** (structured flags, parser, adapter rules) — do not ship the scenario.
+4. Empty/clean-miss scans still produce a graph (scan head + empty or sparse host tree); that is valid. **No graph at all** is not.
+
 ## Formal Examination
 
 - Run the tool with the input scenarios you have collected.
@@ -44,20 +72,21 @@ First read the appropriate skillset documentation, then use the tool to explore 
 
 | Family | Examples | Structured file | Text source |
 |--------|----------|-----------------|-------------|
-| Native document | nmap XML, CMSeeK JSON | Tool-native `.xml` / `.json` | Paired text scenario or TUI capture |
-| Validated scan JSON | netdiscover | `netdiscover_scan` JSON from TextFSM | Same run text; must align |
+| Native document | nmap XML, CMSeeK JSON | Tool-native `.xml` / `.json` | **Derived** from structured at harvest (or same-run sidecar if tool emits both) |
+| Validated scan JSON | netdiscover | `netdiscover_scan` JSON from TextFSM | Native TUI capture → parse (no structured flag on tool) |
 | JSON bundle | nerva, pius | Single `.json` with `schema` + `records[]` | **Derived** from `records[]` at harvest |
-| Text-only | netdiscover TUI | Parsed JSON from TextFSM | Full native stdout |
+| Text-only (no structured mode) | netdiscover TUI | Parsed JSON from TextFSM | Full native stdout (input to parser only) |
 
 Do not store raw `.jsonl` / NDJSON as the examination structured artifact. The CLI Profiling **Structured** tab expects one parseable JSON root (or XML/YAML/CSV).
 
 ## Output Capture
 
-- Every scenario must produce a user-readable text artifact and a structured artifact (`json`, `xml`, `yaml`, or `csv`).
+- Every scenario must produce a structured artifact (`json`, `xml`, `yaml`, or `csv`) and a user-readable text artifact (derived from structured when the tool is structured-native).
 - Prefer structured formats in this order: JSON, XML, YAML, CSV. Use full verbosity where available.
-- If the tool can emit text and structured output in one run, capture both.
-- If the tool emits **only one output mode per flag** (e.g. pius `--output ndjson` vs `--output terminal`), use **paired scenarios**: one for the machine bundle path, one for native TUI text. Do not point `text_from: stderr` at progress banners when stdout holds the findings.
-- If the tool is text-only, then all text must be captured, do not truncate it. Then parse text into structured form with TextFSM Template parser.
+- If the tool can emit text and structured output in one run, capture both in that single run.
+- If the tool offers structured via a flag, **always use that flag** — do not add a second text-only scenario for the same outcome class.
+- If the tool is **truly** text-only (no structured mode exists), capture full native text, do not truncate, then parse into structured with TextFSM before graph derivation.
+- Do not point `text_from: stderr` at progress banners when stdout holds the findings.
 
 ### JSONL / NDJSON tools (nerva, pius, and similar)
 
@@ -80,6 +109,7 @@ Do not store raw `.jsonl` / NDJSON as the examination structured artifact. The C
 - Shell redirect of NDJSON when the tool skips non-TTY output — use harvest stdout capture instead
 - **`--domain` as URL** (`https://host/`) when the tool expects hostname only — yields zero records; validate args in exploration before manifest lock
 - **`wsl --shutdown`** immediately before a WSL harvest — breaks DNS for the next `wsl bash -lc` run
+- **Text-only harvest scenario when structured flags exist** — forbidden; derive Text pane from structured at harvest
 
 **Harvest deferral (offline targets):**
 
@@ -111,7 +141,7 @@ For each scenario bundle, verify:
 3. **Alignment** — text line count equals `len(records)` for JSON-bundle tools; netdiscover text/JSON alignment per `verify_text_structured_alignment`.
 4. **Graph** — `nugget_structure/<tool>_<scenario_id>_proposed_nuggets_edges.json` generated from structured artifact; no orphan nodes; IPs classified via `classify_ip`.
 5. **Markdown** — matching `*_proposed_nuggets_edges_description.md` from the shared narrative engine; appendix covers every node value; CLI Profiling shows the MD badge.
-6. **Manifest** — `structured_kind: json`, path ends in `_output_structured.json` for bundle tools (not `.jsonl`). Text-only without graph must declare `graph_deferred` + reason.
+6. **Manifest** — `structured_kind: json`, path ends in `_output_structured.json` for bundle tools (not `.jsonl`). **No `graph_deferred`.** Scenario incomplete until graph + Markdown exist on disk.
 
 ## Scenario Coverage
 
@@ -128,7 +158,7 @@ Review the foundation described here to convert the structured artifact to nugge
 - **Mandatory path (SPEC-004 / SPEC-005):** `adapters/<tool>/` + `rules/<tool>/*.yaml` + shared `core/` — follow `.cursor/rules/proj-07-cli-graph-rules-engine.mdc`. Do **not** add new hardcoded `*_to_graph.py` mappers. Onboard via `.seed/scripts/cli_corpus/ONBOARDING.md`.
 - Use shared `graph_builder` (`load_nugget_templates`, `nugget_node`, `GraphBuilder`, `validate_graph`) and `core.topology` helpers for scan/host/system stacks.
 - **IP literals:** create address nodes only via `core.ip_classify.classify_ip` (IPv4 vs IPv6 → correct nugget ids). Never hardcode `IP_ADDRESS` for colon-form values.
-- Keep raw text as review evidence and as a template source for derived text, not as the primary ontology input.
+- Text is for human review; structured is for ontology. Never use native text as graph/narrative source when structured was available.
 - Create a tool-level markdown document: `nugget_structure/<tool>_nugget_graph_structure.md` (scenario table, field mapping, Mermaid **type** patterns) for the Profiling **Structure** button.
 - Create per-scenario narrative markdown via the **shared narrative engine** (not adapter stub lists): `nugget_structure/<tool>_<scenario_id>_proposed_nuggets_edges_description.md` per `.seed/05_Onotology_for_Nuggets.md` §4.3.
 - Do not mark a tool's output model complete while any observed field, object type, error shape, or output mode is unmapped, intentionally ignored, or captured as a follow-up gap.
@@ -157,11 +187,11 @@ Prefer YAML in `rules/<tool>/narrative.yaml` + shared `rules/_shared/narrative_v
 
 ## UI / artifact completeness
 
-Formal examination is incomplete until the CLI Profiling UI can show **Text, Structured, Graph, Markdown** for every non-deferred scenario.
+Formal examination is incomplete until the CLI Profiling UI can show **Text, Structured, Graph, Markdown** for **every** scenario. No exceptions.
 
 - Name graph/MD files with the **full** `scenario_id` used in the manifest.
 - After engine changes, regenerate without re-scanning when possible: `python .seed/scripts/cli_corpus/backfill_adapter_four_outputs.py --tool <tool>`.
-- Paired text-only scenarios: derive structured→graph→narrative, **or** set `graph_deferred: true` with an explicit reason — never leave Graph/MD silently empty.
+- Never leave Graph/MD silently empty. Do not use text-only scenarios when structured modes exist (see Structured-first law).
 - Confirm badges in CLI Profiling (`has_graph` / `has_markdown`) before claiming harvest complete.
 
 ## Handoff

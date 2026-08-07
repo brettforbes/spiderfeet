@@ -1,12 +1,12 @@
 {
   "nodes": [
     {
-      "id": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
-      "nugget_instance_id": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "id": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
+      "nugget_instance_id": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
       "nugget_id": "SCAN_RECORD",
       "nugget_type": "ENTITY",
-      "nugget_description": "httpx probe scan",
-      "nugget_data": "venturecapitalopportunitiesfund.com.au",
+      "nugget_description": "Scan Record",
+      "nugget_data": "httpx:venturecapitalopportunitiesfund.com.au:httpx -l .docs/docs-for-cli-tools/exploration_scratch/httpx/hosts/from_subfinder_vcof_sparse_hosts.txt -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o .docs/docs-for-cli-tools/exploration_scratch/httpx/exams/from_subfinder_vcof_sparse.jsonl -silent -threads 5 -timeout 15",
       "nugget_colour": "#3B82F6"
     },
     {
@@ -19,6 +19,69 @@
       "nugget_colour": "#F59E0B"
     },
     {
+      "id": "SCAN_TARGET--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_instance_id": "SCAN_TARGET--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "venturecapitalopportunitiesfund.com.au",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_PROBE_PROFILE--14b8ffde-d141-5e58-a057-514b7d879f21",
+      "nugget_instance_id": "SCAN_PROBE_PROFILE--14b8ffde-d141-5e58-a057-514b7d879f21",
+      "nugget_id": "SCAN_PROBE_PROFILE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Probe Profile",
+      "nugget_data": "status-code,title,tech-detect,server,cdn,ip",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_HOST_INPUT_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "nugget_instance_id": "SCAN_HOST_INPUT_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "nugget_id": "SCAN_HOST_INPUT_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Host Input Count",
+      "nugget_data": "1",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_START--9d307ef8-75de-5430-9c5a-703c95827461",
+      "nugget_instance_id": "SCAN_START--9d307ef8-75de-5430-9c5a-703c95827461",
+      "nugget_id": "SCAN_START",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Start",
+      "nugget_data": "2026-07-05T16:05:01.072497+00:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_ELAPSED--ffbbbc74-1253-5680-813a-f7d924c04348",
+      "nugget_instance_id": "SCAN_ELAPSED--ffbbbc74-1253-5680-813a-f7d924c04348",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_data": "2.375",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_instance_id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_id": "SCAN_EXIT_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Exit Status",
+      "nugget_data": "0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--22134581-e219-550e-965c-923d13a2ec34",
+      "nugget_instance_id": "SCAN_TOOL--22134581-e219-550e-965c-923d13a2ec34",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "httpx",
+      "nugget_colour": "#F59E0B"
+    },
+    {
       "id": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
       "nugget_instance_id": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
       "nugget_id": "DOMAIN_NAME",
@@ -28,216 +91,663 @@
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "nugget_instance_id": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "nugget_id": "LINKED_URL_INTERNAL",
-      "nugget_type": "SUBENTITY",
-      "nugget_description": "Linked URL - Internal",
-      "nugget_data": "https://www.venturecapitalopportunitiesfund.com.au",
-      "nugget_colour": "#F97316"
+      "id": "UPSTREAM_SCENARIO_ID--b7fc7a39-f268-5ef5-9b2b-d04c129361b8",
+      "nugget_instance_id": "UPSTREAM_SCENARIO_ID--b7fc7a39-f268-5ef5-9b2b-d04c129361b8",
+      "nugget_id": "UPSTREAM_SCENARIO_ID",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Upstream Scenario Identifier",
+      "nugget_data": "corporate_vcof_sparse_passive",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "INTERNET_NAME--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
-      "nugget_instance_id": "INTERNET_NAME--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--17cebccd-3738-523b-99dd-92f5df906bcb",
+      "nugget_instance_id": "DOMAIN_NAME--17cebccd-3738-523b-99dd-92f5df906bcb",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
+      "nugget_description": "Domain Name",
+      "nugget_data": "www.venturecapitalopportunitiesfund.com.au",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "nugget_instance_id": "HTTP_LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "nugget_id": "HTTP_LIVENESS_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Liveness Status",
+      "nugget_data": "confirmed",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "HOST--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
+      "nugget_instance_id": "HOST--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
+      "nugget_id": "HOST",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Host",
       "nugget_data": "2606:4700:20::681a:623",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
-      "nugget_instance_id": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
-      "nugget_id": "HTTP_CODE",
-      "nugget_type": "DATA",
+      "id": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "nugget_instance_id": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "nugget_id": "NETWORKS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Networks Category",
+      "nugget_data": "NETWORKS",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "nugget_instance_id": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "104.26.6.35",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_instance_id": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_id": "TRANSPORT",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Transport Protocol",
+      "nugget_data": "tcp",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "TRANSPORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_instance_id": "TRANSPORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "nugget_id": "TRANSPORT_PROTOCOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Transport Protocol",
+      "nugget_data": "tcp",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "nugget_instance_id": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "nugget_id": "PORT",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Network Port",
+      "nugget_data": "443",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "nugget_instance_id": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "nugget_id": "PORT_STATE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Port State",
+      "nugget_data": "open",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "nugget_instance_id": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "nugget_id": "APPLICATIONS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Applications Category",
+      "nugget_data": "APPLICATIONS",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "nugget_instance_id": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "nugget_id": "SERVICE",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Network Service",
+      "nugget_data": "https",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_STATUS_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "nugget_instance_id": "HTTP_STATUS_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "nugget_id": "HTTP_STATUS_CODE",
+      "nugget_type": "DESCRIPTOR",
       "nugget_description": "HTTP Status Code",
       "nugget_data": "200",
-      "nugget_colour": "#14B8A6"
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "WEBSERVER_BANNER--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "nugget_instance_id": "WEBSERVER_BANNER--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "nugget_id": "WEBSERVER_BANNER",
-      "nugget_type": "DATA",
-      "nugget_description": "Web Server",
+      "id": "HTTP_TITLE--41861949-8afe-5df8-82ce-e6d26aeb829f",
+      "nugget_instance_id": "HTTP_TITLE--41861949-8afe-5df8-82ce-e6d26aeb829f",
+      "nugget_id": "HTTP_TITLE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Title",
+      "nugget_data": "Home - Venture Capital Opportunities Fund",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "CONTENT_TYPE--8c1d2b72-96e2-53ed-8e85-c86ea66b5528",
+      "nugget_instance_id": "CONTENT_TYPE--8c1d2b72-96e2-53ed-8e85-c86ea66b5528",
+      "nugget_id": "CONTENT_TYPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Content Type",
+      "nugget_data": "text/html",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "CONTENT_LENGTH--90dbc705-2068-5e88-9212-6b9a14b36298",
+      "nugget_instance_id": "CONTENT_LENGTH--90dbc705-2068-5e88-9212-6b9a14b36298",
+      "nugget_id": "CONTENT_LENGTH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Content Length",
+      "nugget_data": "23244",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "HTTP_METHOD--415137ec-cbb7-5a6a-a3ea-99224b2a3158",
+      "nugget_instance_id": "HTTP_METHOD--415137ec-cbb7-5a6a-a3ea-99224b2a3158",
+      "nugget_id": "HTTP_METHOD",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Method",
+      "nugget_data": "GET",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "HTTP_PATH--04e32488-8c9b-5cb8-9400-70c4e962cad5",
+      "nugget_instance_id": "HTTP_PATH--04e32488-8c9b-5cb8-9400-70c4e962cad5",
+      "nugget_id": "HTTP_PATH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "HTTP Path",
+      "nugget_data": "/",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "RESPONSE_TIME_MS--24e69d98-6c28-5a20-9642-06f4bbf15139",
+      "nugget_instance_id": "RESPONSE_TIME_MS--24e69d98-6c28-5a20-9642-06f4bbf15139",
+      "nugget_id": "RESPONSE_TIME_MS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Response Time Milliseconds",
+      "nugget_data": "249.3053ms",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "WORD_COUNT--6e7b9f6a-a2b8-5e68-9a9c-dc2c8cc72341",
+      "nugget_instance_id": "WORD_COUNT--6e7b9f6a-a2b8-5e68-9a9c-dc2c8cc72341",
+      "nugget_id": "WORD_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Word Count",
+      "nugget_data": "1779",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "LINE_COUNT--7bee01fe-fb71-57e6-87fb-5289a67ace5c",
+      "nugget_instance_id": "LINE_COUNT--7bee01fe-fb71-57e6-87fb-5289a67ace5c",
+      "nugget_id": "LINE_COUNT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Line Count",
+      "nugget_data": "298",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PROBE_FAILED--85b99c0c-9b97-537b-beff-05806734cc9f",
+      "nugget_instance_id": "PROBE_FAILED--85b99c0c-9b97-537b-beff-05806734cc9f",
+      "nugget_id": "PROBE_FAILED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Probe Failed",
+      "nugget_data": "False",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PROBE_TIMESTAMP--4326de67-a790-550c-8ecc-0f8990102711",
+      "nugget_instance_id": "PROBE_TIMESTAMP--4326de67-a790-550c-8ecc-0f8990102711",
+      "nugget_id": "PROBE_TIMESTAMP",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Probe Timestamp",
+      "nugget_data": "2026-07-06T02:05:03.3744974+10:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PAGE_TYPE--46db2c4f-db82-5c36-93fc-1d1e97792f90",
+      "nugget_instance_id": "PAGE_TYPE--46db2c4f-db82-5c36-93fc-1d1e97792f90",
+      "nugget_id": "PAGE_TYPE",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Page Type",
+      "nugget_data": "other",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "PAGE_HASH--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_instance_id": "PAGE_HASH--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_id": "PAGE_HASH",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Page Hash",
+      "nugget_data": "0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SOFTWARE_USED--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "nugget_instance_id": "SOFTWARE_USED--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
       "nugget_data": "cloudflare",
-      "nugget_colour": "#14B8A6"
+      "nugget_colour": "#F97316"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--588c51cd-3cdb-5072-becb-50a48da028f5",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--588c51cd-3cdb-5072-becb-50a48da028f5",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "id": "SOFTWARE_USED--442b20ca-c799-5da7-9692-fdf9b0d7bbde",
+      "nugget_instance_id": "SOFTWARE_USED--442b20ca-c799-5da7-9692-fdf9b0d7bbde",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "Bootstrap",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SOFTWARE_VERSION--cdf70fc3-d73f-5ef8-8488-69e294eca3b0",
+      "nugget_instance_id": "SOFTWARE_VERSION--cdf70fc3-d73f-5ef8-8488-69e294eca3b0",
+      "nugget_id": "SOFTWARE_VERSION",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "Bootstrap:3.3.5",
+      "nugget_description": "Software Version",
+      "nugget_data": "3.3.5",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
+      "id": "SOFTWARE_USED--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
+      "nugget_instance_id": "SOFTWARE_USED--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
       "nugget_data": "Cloudflare",
-      "nugget_colour": "#F59E0B"
+      "nugget_colour": "#F97316"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--672b842e-44ba-5234-a949-7b57869696e7",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--672b842e-44ba-5234-a949-7b57869696e7",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
+      "id": "SOFTWARE_USED--672b842e-44ba-5234-a949-7b57869696e7",
+      "nugget_instance_id": "SOFTWARE_USED--672b842e-44ba-5234-a949-7b57869696e7",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
       "nugget_data": "Cloudflare Browser Insights",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SOFTWARE_USED--e5db7e1c-c06c-5f65-a4f8-362ef2238b13",
+      "nugget_instance_id": "SOFTWARE_USED--e5db7e1c-c06c-5f65-a4f8-362ef2238b13",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "Drupal",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SOFTWARE_VERSION--aa137456-6009-5e12-9c7a-92289321d974",
+      "nugget_instance_id": "SOFTWARE_VERSION--aa137456-6009-5e12-9c7a-92289321d974",
+      "nugget_id": "SOFTWARE_VERSION",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Software Version",
+      "nugget_data": "7",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--242826ff-c753-5aba-b366-4ff46328c5bd",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--242826ff-c753-5aba-b366-4ff46328c5bd",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "Drupal:7",
-      "nugget_colour": "#F59E0B"
-    },
-    {
-      "id": "WEBSERVER_TECHNOLOGY--ea3da848-08a8-58c4-9ed6-6598774b287a",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--ea3da848-08a8-58c4-9ed6-6598774b287a",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
+      "id": "SOFTWARE_USED--ea3da848-08a8-58c4-9ed6-6598774b287a",
+      "nugget_instance_id": "SOFTWARE_USED--ea3da848-08a8-58c4-9ed6-6598774b287a",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
       "nugget_data": "Google Tag Manager",
-      "nugget_colour": "#F59E0B"
+      "nugget_colour": "#F97316"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
+      "id": "SOFTWARE_USED--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
+      "nugget_instance_id": "SOFTWARE_USED--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
       "nugget_data": "HTTP/3",
-      "nugget_colour": "#F59E0B"
+      "nugget_colour": "#F97316"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--c3ef2e72-0820-5ffc-ac3c-61eb7a1d9d82",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--c3ef2e72-0820-5ffc-ac3c-61eb7a1d9d82",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
+      "id": "SOFTWARE_USED--c3ef2e72-0820-5ffc-ac3c-61eb7a1d9d82",
+      "nugget_instance_id": "SOFTWARE_USED--c3ef2e72-0820-5ffc-ac3c-61eb7a1d9d82",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
       "nugget_data": "PHP",
-      "nugget_colour": "#F59E0B"
+      "nugget_colour": "#F97316"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--e61d90dd-149b-584b-8a21-a5903e1ad488",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--e61d90dd-149b-584b-8a21-a5903e1ad488",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
+      "id": "SOFTWARE_USED--e61d90dd-149b-584b-8a21-a5903e1ad488",
+      "nugget_instance_id": "SOFTWARE_USED--e61d90dd-149b-584b-8a21-a5903e1ad488",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
       "nugget_data": "jQuery",
-      "nugget_colour": "#F59E0B"
+      "nugget_colour": "#F97316"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--9d54701c-5e1a-5544-9f2b-7ca7662d7f29",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--9d54701c-5e1a-5544-9f2b-7ca7662d7f29",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
+      "id": "SOFTWARE_USED--9d54701c-5e1a-5544-9f2b-7ca7662d7f29",
+      "nugget_instance_id": "SOFTWARE_USED--9d54701c-5e1a-5544-9f2b-7ca7662d7f29",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
       "nugget_data": "jQuery CDN",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "SOFTWARE_USED--2f0d3719-948f-5f9a-97a4-e90110218a46",
+      "nugget_instance_id": "SOFTWARE_USED--2f0d3719-948f-5f9a-97a4-e90110218a46",
+      "nugget_id": "SOFTWARE_USED",
+      "nugget_type": "SUBENTITY",
+      "nugget_description": "Software Used",
+      "nugget_data": "jsDelivr",
+      "nugget_colour": "#F97316"
+    },
+    {
+      "id": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
+      "nugget_instance_id": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
+      "nugget_id": "PROBE_CONNECTED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Probe Connected Address",
+      "nugget_data": "false",
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "WEBSERVER_TECHNOLOGY--2f0d3719-948f-5f9a-97a4-e90110218a46",
-      "nugget_instance_id": "WEBSERVER_TECHNOLOGY--2f0d3719-948f-5f9a-97a4-e90110218a46",
-      "nugget_id": "WEBSERVER_TECHNOLOGY",
+      "id": "IP_ADDRESS--66ecbd14-3f5f-551f-b36c-a01c8ff3344e",
+      "nugget_instance_id": "IP_ADDRESS--66ecbd14-3f5f-551f-b36c-a01c8ff3344e",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "104.26.7.35",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "IP_ADDRESS--50c530aa-af63-59e9-a91b-c23d4845fddf",
+      "nugget_instance_id": "IP_ADDRESS--50c530aa-af63-59e9-a91b-c23d4845fddf",
+      "nugget_id": "IP_ADDRESS",
+      "nugget_type": "ENTITY",
+      "nugget_description": "IP Address",
+      "nugget_data": "172.67.68.161",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "HTTP_LIVENESS_STATUS--4866e2fd-4558-53cd-a7bd-6cd9208329ad",
+      "nugget_instance_id": "HTTP_LIVENESS_STATUS--4866e2fd-4558-53cd-a7bd-6cd9208329ad",
+      "nugget_id": "HTTP_LIVENESS_STATUS",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Web Technology",
-      "nugget_data": "jsDelivr",
+      "nugget_description": "HTTP Liveness Status",
+      "nugget_data": "unconfirmed",
       "nugget_colour": "#F59E0B"
     }
   ],
   "edges": [
     {
-      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "source": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
       "target": "SCAN_CLI--6c1b193c-0017-5697-8e21-4ef06ba9b613",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "source": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
+      "target": "SCAN_TARGET--d17556b9-557b-57cb-9b39-89aecdbe5562",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
+      "target": "SCAN_PROBE_PROFILE--14b8ffde-d141-5e58-a057-514b7d879f21",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
+      "target": "SCAN_HOST_INPUT_COUNT--42c02c84-414b-580f-a978-6f633b2681eb",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
+      "target": "SCAN_START--9d307ef8-75de-5430-9c5a-703c95827461",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
+      "target": "SCAN_ELAPSED--ffbbbc74-1253-5680-813a-f7d924c04348",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
+      "target": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
+      "target": "SCAN_TOOL--22134581-e219-550e-965c-923d13a2ec34",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
       "target": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
       "relation": "contains"
     },
     {
-      "source": "SCAN_RECORD--d17556b9-557b-57cb-9b39-89aecdbe5562",
-      "target": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
+      "source": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
+      "target": "UPSTREAM_SCENARIO_ID--b7fc7a39-f268-5ef5-9b2b-d04c129361b8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
+      "target": "DOMAIN_NAME--17cebccd-3738-523b-99dd-92f5df906bcb",
       "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--17cebccd-3738-523b-99dd-92f5df906bcb",
+      "target": "HTTP_LIVENESS_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--746a3013-616f-5ec6-84a4-80585b91fddd",
+      "target": "HOST--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--17cebccd-3738-523b-99dd-92f5df906bcb",
+      "target": "HOST--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
+      "target": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "relation": "contains"
+    },
+    {
+      "source": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
+      "target": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "relation": "contains"
+    },
+    {
+      "source": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "contains"
+    },
+    {
+      "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "target": "TRANSPORT_PROTOCOL--8ac153bd-ea26-5250-aae7-518222b25374",
+      "relation": "had"
+    },
+    {
+      "source": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
+      "target": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "relation": "contains"
+    },
+    {
+      "source": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "target": "PORT_STATE--d0d72c48-806c-5a94-b179-ef43e4601acc",
+      "relation": "had"
+    },
+    {
+      "source": "HOST--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
+      "target": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "relation": "contains"
+    },
+    {
+      "source": "APPLICATIONS--44e8a0ce-642a-5ebf-9d4a-2617a7f0f87e",
+      "target": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PORT--ac1d95b1-35fd-591c-adf4-98f6964e8314",
+      "relation": "listens-to"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_STATUS_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_TITLE--41861949-8afe-5df8-82ce-e6d26aeb829f",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "CONTENT_TYPE--8c1d2b72-96e2-53ed-8e85-c86ea66b5528",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "CONTENT_LENGTH--90dbc705-2068-5e88-9212-6b9a14b36298",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_METHOD--415137ec-cbb7-5a6a-a3ea-99224b2a3158",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "HTTP_PATH--04e32488-8c9b-5cb8-9400-70c4e962cad5",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "RESPONSE_TIME_MS--24e69d98-6c28-5a20-9642-06f4bbf15139",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "WORD_COUNT--6e7b9f6a-a2b8-5e68-9a9c-dc2c8cc72341",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "LINE_COUNT--7bee01fe-fb71-57e6-87fb-5289a67ace5c",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PROBE_FAILED--85b99c0c-9b97-537b-beff-05806734cc9f",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PROBE_TIMESTAMP--4326de67-a790-550c-8ecc-0f8990102711",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PAGE_TYPE--46db2c4f-db82-5c36-93fc-1d1e97792f90",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "PAGE_HASH--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--442b20ca-c799-5da7-9692-fdf9b0d7bbde",
+      "relation": "contains"
+    },
+    {
+      "source": "SOFTWARE_USED--442b20ca-c799-5da7-9692-fdf9b0d7bbde",
+      "target": "SOFTWARE_VERSION--cdf70fc3-d73f-5ef8-8488-69e294eca3b0",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--672b842e-44ba-5234-a949-7b57869696e7",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--e5db7e1c-c06c-5f65-a4f8-362ef2238b13",
+      "relation": "contains"
+    },
+    {
+      "source": "SOFTWARE_USED--e5db7e1c-c06c-5f65-a4f8-362ef2238b13",
+      "target": "SOFTWARE_VERSION--aa137456-6009-5e12-9c7a-92289321d974",
+      "relation": "had"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--ea3da848-08a8-58c4-9ed6-6598774b287a",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--c3ef2e72-0820-5ffc-ac3c-61eb7a1d9d82",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--e61d90dd-149b-584b-8a21-a5903e1ad488",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--9d54701c-5e1a-5544-9f2b-7ca7662d7f29",
+      "relation": "contains"
+    },
+    {
+      "source": "SERVICE--2a958f51-03fd-5450-89b0-fbe3b20bdddd",
+      "target": "SOFTWARE_USED--2f0d3719-948f-5f9a-97a4-e90110218a46",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--17cebccd-3738-523b-99dd-92f5df906bcb",
+      "target": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "target": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--17cebccd-3738-523b-99dd-92f5df906bcb",
+      "target": "IP_ADDRESS--66ecbd14-3f5f-551f-b36c-a01c8ff3344e",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--66ecbd14-3f5f-551f-b36c-a01c8ff3344e",
+      "target": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--17cebccd-3738-523b-99dd-92f5df906bcb",
+      "target": "IP_ADDRESS--50c530aa-af63-59e9-a91b-c23d4845fddf",
+      "relation": "had"
+    },
+    {
+      "source": "IP_ADDRESS--50c530aa-af63-59e9-a91b-c23d4845fddf",
+      "target": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
+      "relation": "had"
     },
     {
       "source": "DOMAIN_NAME--d17556b9-557b-57cb-9b39-89aecdbe5562",
-      "target": "INTERNET_NAME--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "INTERNET_NAME--1dc53281-ede5-5b2e-8004-b1b7c1f3534d",
-      "relation": "contains"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "HTTP_CODE--684c5a76-eb76-5aa5-972e-6f56a0f4f786",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "WEBSERVER_BANNER--9c0ef1af-6436-5ae4-a934-eb859c0961f7",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "WEBSERVER_TECHNOLOGY--588c51cd-3cdb-5072-becb-50a48da028f5",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "WEBSERVER_TECHNOLOGY--b2dbb122-0ba9-5d0e-95b1-96c09f9e07da",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "WEBSERVER_TECHNOLOGY--672b842e-44ba-5234-a949-7b57869696e7",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "WEBSERVER_TECHNOLOGY--242826ff-c753-5aba-b366-4ff46328c5bd",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "WEBSERVER_TECHNOLOGY--ea3da848-08a8-58c4-9ed6-6598774b287a",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "WEBSERVER_TECHNOLOGY--8e4677fa-8fad-5ffd-bc5b-d5e0d0919cc7",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "WEBSERVER_TECHNOLOGY--c3ef2e72-0820-5ffc-ac3c-61eb7a1d9d82",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "WEBSERVER_TECHNOLOGY--e61d90dd-149b-584b-8a21-a5903e1ad488",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "WEBSERVER_TECHNOLOGY--9d54701c-5e1a-5544-9f2b-7ca7662d7f29",
-      "relation": "had"
-    },
-    {
-      "source": "LINKED_URL_INTERNAL--d22e9c1c-bb6c-5899-bc8f-f083f7e55189",
-      "target": "WEBSERVER_TECHNOLOGY--2f0d3719-948f-5f9a-97a4-e90110218a46",
+      "target": "HTTP_LIVENESS_STATUS--4866e2fd-4558-53cd-a7bd-6cd9208329ad",
       "relation": "had"
     }
   ]

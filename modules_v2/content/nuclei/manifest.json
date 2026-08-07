@@ -1,0 +1,13 @@
+{
+  "tool_id": "nuclei",
+  "display_name": "Nuclei",
+  "kind": "cli",
+  "category": "vulnerability_scan",
+  "executable": "nuclei",
+  "content_version": 1,
+  "source_docs": {
+    "options": ".docs/docs-for-cli-tools/Nuclei-CLI-Options.md",
+    "zero_to_hero": ".docs/docs-for-cli-tools/Nuclei-Zero-to-Hero.md",
+    "graph_structure": ".docs/docs-for-cli-tools/nugget_structure/nuclei_nugget_graph_structure.md"
+  }
+}

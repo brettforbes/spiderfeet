@@ -1,0 +1,13 @@
+{
+  "tool_id": "katana",
+  "display_name": "Katana",
+  "kind": "cli",
+  "category": "web_crawl",
+  "executable": "katana",
+  "content_version": 1,
+  "source_docs": {
+    "options": ".docs/docs-for-cli-tools/katana-CLI-Options.md",
+    "zero_to_hero": ".docs/docs-for-cli-tools/katana-Zero-to-Hero.md",
+    "graph_structure": ".docs/docs-for-cli-tools/nugget_structure/katana_nugget_graph_structure.md"
+  }
+}

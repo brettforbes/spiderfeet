@@ -91,6 +91,30 @@ def test_cli_corpus_scenario_detail_host_discovery(api_client: TestClient):
     assert body["scenario_key"] == "host_discovery_permissive"
     assert body.get("output_text") or body.get("structured")
     assert "graph_description_markdown" in body
+    assert body["graph_description_markdown"]
+    assert body["artifacts"]["has_markdown"] is True
+
+
+def test_cli_corpus_nerva_json_scenario_markdown_by_scenario_id(api_client: TestClient):
+    """Detail view must resolve MD when files use full scenario_id (e.g. *_json suffix)."""
+    response = api_client.get(
+        "/api/v1/cli-corpus/tools/nerva/scenarios/tcp_http_rich"
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["artifacts"]["has_markdown"] is True
+    assert body["graph_description_markdown"]
+    assert "Nerva" in body["graph_description_markdown"] or "nerva" in body["graph_description_markdown"].lower()
+
+
+def test_cli_corpus_netdiscover_text_scenario_markdown(api_client: TestClient):
+    response = api_client.get(
+        "/api/v1/cli-corpus/tools/netdiscover/scenarios/local_subnet_active"
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["artifacts"]["has_markdown"] is True
+    assert body["graph_description_markdown"]
 
 
 def test_cli_corpus_tool_graph_structure(api_client: TestClient):
@@ -98,7 +122,7 @@ def test_cli_corpus_tool_graph_structure(api_client: TestClient):
     assert response.status_code == 200
     body = response.json()
     assert body["tool_id"] == "nmap"
-    assert body["filename"] == "nmap_nugget_graph_structure.md"
+    assert body["filename"] in ("nmap_nugget_graph_structure.md", "graph_structure.md")
     assert "markdown" in body
 
 
@@ -134,3 +158,23 @@ def test_cli_corpus_scenario_detail_and_review_roundtrip(api_client: TestClient)
             f"/api/v1/cli-corpus/tools/nmap/scenarios/{scenario_key}/review",
             json={"status": original},
         )
+
+
+def test_cli_corpus_complete_requires_graph_and_markdown(api_client: TestClient):
+    """Graph + Markdown are mandatory; graph-only text scenarios were removed."""
+    removed = (
+        ("nerva", "tcp_http_human"),
+        ("pius", "corporate_bbc_terminal"),
+    )
+    for tool_id, scenario_key in removed:
+        response = api_client.get(f"/api/v1/cli-corpus/tools/{tool_id}/scenarios/{scenario_key}")
+        assert response.status_code == 404, f"{tool_id}/{scenario_key} should be removed"
+
+    for tool_id in ("nerva", "pius", "nmap", "netdiscover"):
+        list_resp = api_client.get(f"/api/v1/cli-corpus/tools/{tool_id}/scenarios")
+        assert list_resp.status_code == 200
+        for row in list_resp.json():
+            if row["complete"]:
+                assert row["has_graph"], f"{tool_id}/{row['scenario_key']} complete without graph"
+                assert row["has_markdown"], f"{tool_id}/{row['scenario_key']} complete without markdown"
+            assert row.get("graph_deferred") is not True

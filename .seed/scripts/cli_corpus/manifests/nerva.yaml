@@ -51,9 +51,3 @@ scenarios:
     command: nerva -t scanme.nmap.org:1 --json -w 3000
     structured_kind: json
     structured_ext: json
-
-  - id: tcp_http_human_text
-    name: "Human-readable HTTP fingerprint"
-    target: scanme.nmap.org:80
-    command: nerva -t scanme.nmap.org:80 -w 5000
-    text_from: stdout

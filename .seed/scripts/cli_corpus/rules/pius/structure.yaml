@@ -1,0 +1,100 @@
+tool: pius
+display_name: Pius
+seed_docs:
+  - .seed/05_Onotology_for_Nuggets.md
+  - .seed/08_Rules_for_Pius.md
+generator: .seed/scripts/cli_corpus/adapters/pius
+artifacts:
+  graph: pius_<scenario_id>_proposed_nuggets_edges.json
+  narrative: pius_<scenario_id>_proposed_nuggets_edges_description.md
+  output_dir: .docs/docs-for-cli-tools/nugget_structure
+narrative:
+  engine: .seed/scripts/cli_corpus/core/narrative_engine.py
+  method: render_narrative
+patterns:
+  - id: scan_head
+    title: Scan head
+    prose: >
+      SCAN_RECORD carries SCAN_CLI, SCAN_TARGET, SCAN_TARGET_ORG, timing, and exit descriptors
+      via had. When org is known, COMPANY_NAME links from scan via contains.
+  - id: org_company_tree
+    title: Organisation findings tree
+    prose: >
+      NDJSON records classify into DOMAINS and NETBLOCKS categories under COMPANY_NAME.
+      INTERNET_NAME and NETBLOCK_OWNER entities carry PIUS_SOURCE and confidence descriptors.
+    bullets:
+      - Type:domain rows become INTERNET_NAME under DOMAINS.
+      - Type:cidr rows become NETBLOCK_OWNER under NETBLOCKS.
+      - Type:preseed rows are skipped in graph output.
+specialty_sections:
+  - title: Wikidata and gleif enrichment
+    pattern: org_company_tree
+    prose: >
+      Corporate plugin stacks may attach subsidiary COMPANY_NAME nodes and gleif/wikidata
+      descriptors on domain and netblock entities when plugins return structured enrichment.
+    bullets:
+      - needs_review confidence surfaces as descriptor facts, not new relation types.
+scenarios:
+  - id: crt_praetorian_ndjson
+    structures: COMPANY_NAME + DOMAINS + rich INTERNET_NAME
+  - id: crt_linode_ndjson
+    structures: High-volume crt-sh domains
+    notes: fixture fallback when live crt-sh empty
+  - id: corporate_bbc_gleif_ndjson
+    structures: gleif/wikidata/whois/crt corporate stack
+  - id: corporate_squarepeg_ndjson
+    structures: gleif corporate domains
+  - id: corporate_upside_ndjson
+    structures: gleif corporate domains
+  - id: corporate_k2am_ndjson
+    structures: deferred harvest when target offline
+field_mapping:
+  - path: command
+    nugget_id: SCAN_CLI
+  - path: target
+    nugget_id: SCAN_TARGET
+  - path: org
+    nugget_id: SCAN_TARGET_ORG
+  - path: started_at
+    nugget_id: SCAN_START
+  - path: duration_s
+    nugget_id: SCAN_ELAPSED
+  - path: exit_code
+    nugget_id: SCAN_EXIT_STATUS
+  - path: records[].Type=domain
+    nugget_id: INTERNET_NAME
+    notes: DOMAINS contains; PIUS_SOURCE had
+  - path: records[].Type=cidr
+    nugget_id: NETBLOCK_OWNER
+    notes: NETBLOCKS contains; PIUS_SOURCE had
+  - path: records[].source
+    nugget_id: PIUS_SOURCE
+  - path: records[].confidence
+    nugget_id: CONFIDENCE_SCORE
+    notes: had when needs_review
+proposed_nuggets:
+  - nugget_id: COMPANY_NAME
+    type: ENTITY
+    parent: SCAN_RECORD
+    source: org argument
+    relation: contains
+  - nugget_id: DOMAINS
+    type: CATEGORY
+    parent: COMPANY_NAME
+    source: 08 R3
+    relation: contains
+  - nugget_id: NETBLOCKS
+    type: CATEGORY
+    parent: COMPANY_NAME
+    source: 08 R3
+    relation: contains
+  - nugget_id: PIUS_SOURCE
+    type: DESCRIPTOR
+    parent: INTERNET_NAME or NETBLOCK_OWNER
+    source: record source plugin
+    relation: had
+review_notes:
+  - NDJSON must be captured via subprocess stdout; shell redirect yields empty files.
+  - stderr progress banners are stored in structured.stderr_banner only.
+  - WSL networking may require retry when stdout is empty after wsl --shutdown hygiene.
+cross_link: ../_Current_Ontology.md

@@ -1,1 +1,0 @@
-nmap -sn -T3 bbc.co.uk

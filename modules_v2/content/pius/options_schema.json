@@ -1,0 +1,42 @@
+{
+  "tool_id": "pius",
+  "generated_from": ".docs/docs-for-cli-tools/PIUS-CLI-Options.md",
+  "generated_at": "2026-07-27T13:27:43+00:00",
+  "groups": [
+    "General"
+  ],
+  "flags": [
+    {
+      "id": "help",
+      "flag": "--help",
+      "aliases": [
+        "-h"
+      ],
+      "label": "Help",
+      "description": "help for pius",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "General",
+      "placeholder": null,
+      "advanced": false
+    },
+    {
+      "id": "version",
+      "flag": "--version",
+      "aliases": [
+        "-v"
+      ],
+      "label": "Version",
+      "description": "version for pius",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "choices": null,
+      "group": "General",
+      "placeholder": null,
+      "advanced": false
+    }
+  ]
+}

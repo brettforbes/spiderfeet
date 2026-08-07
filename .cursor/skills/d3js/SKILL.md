@@ -1,6 +1,6 @@
 ---
 name: d3js
-description: Build interactive D3 visualisations with HTML5 and vanilla JavaScript using namespaced modules. Prioritises force-directed graph variants (OSINT maps, route networks, scan graphs). Use when creating custom charts, force graphs, network diagrams, or SVG visualisations without React/Vue frameworks.
+description: Build interactive D3 visualisations with HTML5 and vanilla JavaScript using namespaced modules. Prioritises force-directed graph variants (OSINT maps, route networks, scan graphs). Use when creating custom charts, force graphs, network diagrams, or canvas/SVG visualisations without React/Vue frameworks.
 ---
 
 # D3.js — HTML5 + Vanilla JS
@@ -16,10 +16,12 @@ description: Build interactive D3 visualisations with HTML5 and vanilla JavaScri
 
 ```text
 Viz/
-├── Core      — SVG setup, margins, resize, teardown, colours
-├── Charts    — bar, line, scatter (non-force)
-└── ForceGraph — simulation factory + variants + interactions
+├── Core         — dimensions, resize, colours, icon helpers
+├── Charts       — bar, line, scatter (non-force)
+└── CanvasGraph  — canvas force graph + Web Worker physics (SPEC-009; current SpiderFeet engine)
 ```
+
+**SpiderFeet production graphs** use `window.Viz.CanvasGraph` in `spiderfeet-widget` (`src/js/canvas-graph.js` + `src/assets/workers/canvas-graph.worker.js`). The older SVG `Viz.ForceGraph` / `viz.force.js` path was removed in SPEC-009 AG1.
 
 Bootstrap once:
 
@@ -27,16 +29,45 @@ Bootstrap once:
 window.Viz = window.Viz || {};
 ```
 
-Load order in HTML: `viz.core.js` → `viz.charts.js` → `viz.force.js` → page init.
+Load order in the widget bundle: `viz.core.js` → `canvas-graph.js` → consumers (`cli-scan-app.js`, `map.js`).
 
-## HTML5 page pattern
+## HTML5 page pattern (CanvasGraph)
+
+```html
+<main class="viz-shell">
+  <div id="stage"><canvas id="graph" role="img" aria-label="Force-directed network"></canvas></div>
+  <div id="tooltip" class="viz-tooltip" hidden></div>
+</main>
+```
+
+```javascript
+const graph = Viz.CanvasGraph.create({
+  canvas: '#graph',
+  tooltip: '#tooltip',
+  nodes,
+  links,
+  variant: 'default', // default | sparse | dense | grouped
+  nodeDisplay: 'icons', // circles | icons
+  linkLabels: true,
+  onNodeClick: (event, node) => {},
+});
+// later: graph.destroy();
+```
+
+Physics runs in a Web Worker when available (`/workers/canvas-graph.worker.js`); pass `forceMainThread: true` to force the main-thread fallback.
+
+## Legacy template notes
+
+Skill `assets/js/viz.force.js` and `references/force-graphs.md` still show an SVG `ForceGraph` teaching pattern. For SpiderFeet Maps / CLI Scan App Graph tabs, always use `Viz.CanvasGraph` instead.
+
+## Legacy SVG teaching page (skill assets only)
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Force graph</title>
+  <title>Force graph (legacy SVG demo)</title>
   <link rel="stylesheet" href="css/viz.css" />
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="js/viz.core.js" defer></script>
@@ -53,7 +84,7 @@ Load order in HTML: `viz.core.js` → `viz.charts.js` → `viz.force.js` → pag
 </html>
 ```
 
-Page init (`app.js`):
+Page init for the **skill demo only** (`app.js`):
 
 ```javascript
 document.addEventListener('DOMContentLoaded', async () => {
@@ -68,7 +99,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.addEventListener('beforeunload', () => graph.destroy());
 });
 ```
-
 ## Core workflow
 
 1. **Prepare data** — validate nodes/links; ensure `links` use `id` strings or resolve to node objects after `forceLink`.
@@ -136,7 +166,7 @@ Viz.ForceGraph.create({
 
 ## Other chart types
 
-Keep bar/line/scatter/chord/heatmap patterns in `references/d3-patterns.md` and `Viz.Charts` — use the same `Viz.Core` helpers. Force work stays in `Viz.ForceGraph`.
+Keep bar/line/scatter/chord/heatmap patterns in `references/d3-patterns.md` and `Viz.Charts` — use the same `Viz.Core` helpers. SpiderFeet force work stays in `Viz.CanvasGraph` (SPEC-009).
 
 ## Best practices
 
@@ -144,21 +174,23 @@ Keep bar/line/scatter/chord/heatmap patterns in `references/d3-patterns.md` and 
 - **Copy data** — `structuredClone` or `nodes.map(n => ({...n}))` before forces mutate positions.
 - **Id keys** — stable `id` on nodes for join and link resolution.
 - **Accessibility** — `role="img"`, `<title>`/`<desc>` on SVG, keyboard focus where interactive.
-- **Performance** — SVG &lt; ~500 nodes; switch to `canvas` variant above that.
+- **Performance** — prefer `Viz.CanvasGraph` (canvas + worker) for SpiderFeet nugget graphs; SVG ForceGraph teaching samples are for small demos only.
 
 ## Resources
 
 | Path | Purpose |
 |------|---------|
-| `references/force-graphs.md` | **Start here** for force variants and tuning |
+| `references/force-graphs.md` | Force variants (legacy SVG examples; prefer CanvasGraph in product) |
 | `references/d3-patterns.md` | Other chart types (vanilla `renderFn(svg, data)`) |
 | `references/scale-reference.md` | Scales |
 | `references/colour-schemes.md` | Palettes |
 | `assets/index.html` | Minimal bar chart demo |
-| `assets/force-graph.html` | Force variant switcher demo |
+| `assets/force-graph.html` | Legacy SVG force variant demo |
 | `assets/js/viz.core.js` | `Viz.Core` namespace |
 | `assets/js/viz.charts.js` | `Viz.Charts` namespace |
-| `assets/js/viz.force.js` | `Viz.ForceGraph` + variants |
+| `assets/js/viz.force.js` | Legacy SVG `Viz.ForceGraph` teaching sample |
+| `spiderfeet-widget/src/js/canvas-graph.js` | **Current** `Viz.CanvasGraph` (SPEC-009) |
+| `spiderfeet-widget/src/assets/workers/canvas-graph.worker.js` | Worker physics |
 | `assets/sample-data.json` | Includes `network` graph sample |
 
-When implementing spiderfeet map UI, read `force-graphs.md` and extend `Viz.ForceGraph.variants` rather than inlining one-off simulations.
+When implementing spiderfeet map / CLI Scan graph UI, use `Viz.CanvasGraph` rather than inlining one-off simulations or reviving `Viz.ForceGraph`.

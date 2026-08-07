@@ -1,195 +1,375 @@
 {
   "nodes": [
     {
-      "id": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
-      "nugget_instance_id": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
+      "id": "SCAN_RECORD--3712e2c9-ae51-582e-a143-6ace1aea68cc",
+      "nugget_instance_id": "SCAN_RECORD--3712e2c9-ae51-582e-a143-6ace1aea68cc",
       "nugget_id": "SCAN_RECORD",
       "nugget_type": "ENTITY",
       "nugget_description": "Scan Record",
-      "nugget_data": "Square Peg Capital Pty Ltd"
+      "nugget_data": "pius:Square Peg Capital Pty Ltd:/mnt/c/projects/spiderfeet/.tools/pius run --org \"Square Peg Capital Pty Ltd\" --domain squarepeg.vc --plugins gleif,wikidata,whois,crt-sh --output ndjson",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "SCAN_CLI--c4fe707c-322e-5d91-a8ff-9411eba844b1",
-      "nugget_instance_id": "SCAN_CLI--c4fe707c-322e-5d91-a8ff-9411eba844b1",
+      "id": "SCAN_CLI--aba860fe-6a60-5aac-83bb-fd8e2ba4bde7",
+      "nugget_instance_id": "SCAN_CLI--aba860fe-6a60-5aac-83bb-fd8e2ba4bde7",
       "nugget_id": "SCAN_CLI",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan CLI",
-      "nugget_data": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"Square Peg Capital Pty Ltd\" --domain squarepeg.vc --plugins gleif,wikidata,whois,crt-sh --output ndjson"
+      "nugget_data": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"Square Peg Capital Pty Ltd\" --domain squarepeg.vc --plugins gleif,wikidata,whois,crt-sh --output ndjson",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "COMPANY_NAME--53b0b896-f56f-5410-9bf3-3d51e148f354",
-      "nugget_instance_id": "COMPANY_NAME--53b0b896-f56f-5410-9bf3-3d51e148f354",
+      "id": "SCAN_TARGET--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "nugget_instance_id": "SCAN_TARGET--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "squarepeg.vc",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TARGET_ORG--526ae991-b702-5e7f-9622-9f82fa2bd19c",
+      "nugget_instance_id": "SCAN_TARGET_ORG--526ae991-b702-5e7f-9622-9f82fa2bd19c",
+      "nugget_id": "SCAN_TARGET_ORG",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target Organization",
+      "nugget_data": "Square Peg Capital Pty Ltd",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_START--dc3a2732-daaf-5101-8c30-b9728b2b66c8",
+      "nugget_instance_id": "SCAN_START--dc3a2732-daaf-5101-8c30-b9728b2b66c8",
+      "nugget_id": "SCAN_START",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Start",
+      "nugget_data": "2026-07-05T13:10:18.904973+00:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_ELAPSED--93961119-945e-5fbf-88f8-9289a84d6961",
+      "nugget_instance_id": "SCAN_ELAPSED--93961119-945e-5fbf-88f8-9289a84d6961",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_data": "35.046",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_instance_id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_id": "SCAN_EXIT_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Exit Status",
+      "nugget_data": "0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--3c0d7a10-a0bb-5dd4-9a16-549a2e2ad8b9",
+      "nugget_instance_id": "SCAN_TOOL--3c0d7a10-a0bb-5dd4-9a16-549a2e2ad8b9",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "pius",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "COMPANY_NAME--526ae991-b702-5e7f-9622-9f82fa2bd19c",
+      "nugget_instance_id": "COMPANY_NAME--526ae991-b702-5e7f-9622-9f82fa2bd19c",
       "nugget_id": "COMPANY_NAME",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "Organization",
-      "nugget_data": "Square Peg Capital Pty Ltd"
-    },
-    {
-      "id": "INTERNET_NAME--84c42091-620c-52e5-872a-dae53cb4cc73",
-      "nugget_instance_id": "INTERNET_NAME--84c42091-620c-52e5-872a-dae53cb4cc73",
-      "nugget_id": "INTERNET_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "www.squarepeg.vc"
+      "nugget_description": "Company Name",
+      "nugget_data": "Square Peg Capital Pty Ltd",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--8bf944d5-d3f7-51a7-973a-adcf58ca210a",
-      "nugget_instance_id": "INTERNET_NAME--8bf944d5-d3f7-51a7-973a-adcf58ca210a",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "nugget_instance_id": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "squarepeg.vc"
+      "nugget_description": "Domain Name",
+      "nugget_data": "www.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
+      "id": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "nugget_instance_id": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "nugget_id": "DISCOVERY_METHOD",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
+      "nugget_description": "Discovery Method",
+      "nugget_data": "certificate-transparency",
+      "nugget_colour": "#F59E0B"
     },
     {
-      "id": "INTERNET_NAME--e35b6fad-46a8-57e4-89c0-7891c8459ac3",
-      "nugget_instance_id": "INTERNET_NAME--e35b6fad-46a8-57e4-89c0-7891c8459ac3",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME_PARENT--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "nugget_instance_id": "DOMAIN_NAME_PARENT--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "nugget_id": "DOMAIN_NAME_PARENT",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Domain Name (Parent)",
+      "nugget_data": "squarepeg.vc",
+      "nugget_colour": "#3B82F6"
+    },
+    {
+      "id": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "nugget_instance_id": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "nugget_id": "DOMAINS",
+      "nugget_type": "CATEGORY",
+      "nugget_description": "Domains Category",
+      "nugget_data": "DOMAINS",
+      "nugget_colour": "#14B8A6"
+    },
+    {
+      "id": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "nugget_instance_id": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "nugget_id": "REVIEW_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Review Status",
+      "nugget_data": "confirmed",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "nugget_instance_id": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "foundersummit2026.squarepeg.vc"
+      "nugget_description": "Domain Name",
+      "nugget_data": "squarepeg.vc",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--0614dd9d-2696-5d94-b01b-71c88deae0ed",
-      "nugget_instance_id": "INTERNET_NAME--0614dd9d-2696-5d94-b01b-71c88deae0ed",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "nugget_instance_id": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "email.foundersummit2026.squarepeg.vc"
+      "nugget_description": "Domain Name",
+      "nugget_data": "foundersummit2026.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
-    },
-    {
-      "id": "INTERNET_NAME--a26354db-7d02-53fd-822d-a166e3b4da1a",
-      "nugget_instance_id": "INTERNET_NAME--a26354db-7d02-53fd-822d-a166e3b4da1a",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "nugget_instance_id": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "helix.squarepeg.vc"
+      "nugget_description": "Domain Name",
+      "nugget_data": "email.foundersummit2026.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
+      "id": "DOMAIN_NAME_PARENT--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "nugget_instance_id": "DOMAIN_NAME_PARENT--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "nugget_id": "DOMAIN_NAME_PARENT",
       "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
+      "nugget_description": "Domain Name (Parent)",
+      "nugget_data": "foundersummit2026.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "INTERNET_NAME--0c12ab3c-1621-5fea-9eea-9b3957e367e2",
-      "nugget_instance_id": "INTERNET_NAME--0c12ab3c-1621-5fea-9eea-9b3957e367e2",
-      "nugget_id": "INTERNET_NAME",
+      "id": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "nugget_instance_id": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "nugget_id": "DOMAIN_NAME",
       "nugget_type": "ENTITY",
-      "nugget_description": "Internet Name",
-      "nugget_data": "data.squarepeg.vc"
+      "nugget_description": "Domain Name",
+      "nugget_data": "helix.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_instance_id": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
-      "nugget_id": "PIUS_SOURCE",
-      "nugget_type": "DESCRIPTOR",
-      "nugget_description": "PIUS Source",
-      "nugget_data": "crt-sh"
+      "id": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "nugget_instance_id": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "nugget_id": "DOMAIN_NAME",
+      "nugget_type": "ENTITY",
+      "nugget_description": "Domain Name",
+      "nugget_data": "data.squarepeg.vc",
+      "nugget_colour": "#3B82F6"
     }
   ],
   "edges": [
     {
-      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
-      "target": "SCAN_CLI--c4fe707c-322e-5d91-a8ff-9411eba844b1",
+      "source": "SCAN_RECORD--3712e2c9-ae51-582e-a143-6ace1aea68cc",
+      "target": "SCAN_CLI--aba860fe-6a60-5aac-83bb-fd8e2ba4bde7",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
-      "target": "COMPANY_NAME--53b0b896-f56f-5410-9bf3-3d51e148f354",
+      "source": "SCAN_RECORD--3712e2c9-ae51-582e-a143-6ace1aea68cc",
+      "target": "SCAN_TARGET--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
-      "target": "INTERNET_NAME--84c42091-620c-52e5-872a-dae53cb4cc73",
+      "source": "SCAN_RECORD--3712e2c9-ae51-582e-a143-6ace1aea68cc",
+      "target": "SCAN_TARGET_ORG--526ae991-b702-5e7f-9622-9f82fa2bd19c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--3712e2c9-ae51-582e-a143-6ace1aea68cc",
+      "target": "SCAN_START--dc3a2732-daaf-5101-8c30-b9728b2b66c8",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--3712e2c9-ae51-582e-a143-6ace1aea68cc",
+      "target": "SCAN_ELAPSED--93961119-945e-5fbf-88f8-9289a84d6961",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--3712e2c9-ae51-582e-a143-6ace1aea68cc",
+      "target": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--3712e2c9-ae51-582e-a143-6ace1aea68cc",
+      "target": "SCAN_TOOL--3c0d7a10-a0bb-5dd4-9a16-549a2e2ad8b9",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--3712e2c9-ae51-582e-a143-6ace1aea68cc",
+      "target": "COMPANY_NAME--526ae991-b702-5e7f-9622-9f82fa2bd19c",
       "relation": "contains"
     },
     {
-      "source": "INTERNET_NAME--84c42091-620c-52e5-872a-dae53cb4cc73",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
-      "target": "INTERNET_NAME--8bf944d5-d3f7-51a7-973a-adcf58ca210a",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--8bf944d5-d3f7-51a7-973a-adcf58ca210a",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "target": "DOMAIN_NAME_PARENT--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
-      "target": "INTERNET_NAME--e35b6fad-46a8-57e4-89c0-7891c8459ac3",
+      "source": "COMPANY_NAME--526ae991-b702-5e7f-9622-9f82fa2bd19c",
+      "target": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
       "relation": "contains"
     },
     {
-      "source": "INTERNET_NAME--e35b6fad-46a8-57e4-89c0-7891c8459ac3",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--526ae991-b702-5e7f-9622-9f82fa2bd19c",
+      "target": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--442db23f-b5d6-51a9-9785-1b26ba2dbd41",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
-      "target": "INTERNET_NAME--0614dd9d-2696-5d94-b01b-71c88deae0ed",
-      "relation": "contains"
-    },
-    {
-      "source": "INTERNET_NAME--0614dd9d-2696-5d94-b01b-71c88deae0ed",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
-      "target": "INTERNET_NAME--a26354db-7d02-53fd-822d-a166e3b4da1a",
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
       "relation": "contains"
     },
     {
-      "source": "INTERNET_NAME--a26354db-7d02-53fd-822d-a166e3b4da1a",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "COMPANY_NAME--526ae991-b702-5e7f-9622-9f82fa2bd19c",
+      "target": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
       "relation": "had"
     },
     {
-      "source": "SCAN_RECORD--514e7535-9065-530e-b5a2-e6e471cf8c4e",
-      "target": "INTERNET_NAME--0c12ab3c-1621-5fea-9eea-9b3957e367e2",
+      "source": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "target": "DOMAIN_NAME_PARENT--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
       "relation": "contains"
     },
     {
-      "source": "INTERNET_NAME--0c12ab3c-1621-5fea-9eea-9b3957e367e2",
-      "target": "PIUS_SOURCE--dc861eed-f733-526d-818a-53384d15623c",
+      "source": "COMPANY_NAME--526ae991-b702-5e7f-9622-9f82fa2bd19c",
+      "target": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "target": "DOMAIN_NAME_PARENT--2757bcd8-2784-50da-be44-eccedf9d850e",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--526ae991-b702-5e7f-9622-9f82fa2bd19c",
+      "target": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--2b547dac-064c-5c0d-8165-19cff94c2f67",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "target": "DOMAIN_NAME_PARENT--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--526ae991-b702-5e7f-9622-9f82fa2bd19c",
+      "target": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--04bd14c8-f419-5c13-a6c5-7091fde5ce16",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "target": "DISCOVERY_METHOD--22bee244-970b-58cf-9700-bc6bdb1d2b54",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "target": "DOMAIN_NAME_PARENT--d439b447-7dd5-5d4a-ad50-adf7b2c78792",
+      "relation": "had"
+    },
+    {
+      "source": "DOMAINS--84cb3ebc-1695-580c-91dc-3df9467972b2",
+      "target": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "relation": "contains"
+    },
+    {
+      "source": "COMPANY_NAME--526ae991-b702-5e7f-9622-9f82fa2bd19c",
+      "target": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "relation": "contains"
+    },
+    {
+      "source": "DOMAIN_NAME--003d3aab-9d2c-5b32-ba5c-783bd6700651",
+      "target": "REVIEW_STATUS--5ad1e22b-d778-51c9-805f-fa85abe860c6",
       "relation": "had"
     }
   ]

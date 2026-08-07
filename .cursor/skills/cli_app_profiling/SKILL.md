@@ -20,7 +20,7 @@ description: Explore, formally examine, and profile CLI OSINT tools for SpiderFe
 1. **Exploration** — map semantic output types; build a **semantic outcome matrix** (mandatory); no evidence files yet (1h+ allowed).
 2. **Formal examination plan** — named scenarios, targets, expected data types; every matrix row mapped to a scenario or documented limitation.
 3. **Strategy skill** — `.strategy/<tool>_strategy.skill` (complements `.cursor/skills/<tool>/`).
-4. **CLI help capture** — `.docs/docs-for-cli-tools/cli_help_text/<tool>_cli_help_text.md`.
+4. **CLI help capture** — `.docs/docs-for-cli-tools/<Tool>-CLI-Options.md` (heading + fenced raw `--help` / `-h` output).
 5. **Adapter + YAML** — copy `adapters/_template` + `rules/_template`; implement four-output API; wire `harvest.py` `ADAPTER_TOOLS` (see ONBOARDING.md). **No new `*_to_graph.py`.**
 6. **Formal examination** — run `harvest.py`; outputs under `app_examination_docs/<tool>/` plus `nugget_structure/` graph + narrative.
 7. **Nugget / narrative proposal** — tool structure MD + per-scenario graph JSON + §4.3 description MD from the **shared narrative engine**.
@@ -49,16 +49,20 @@ Default commands and single targets are **insufficient**. Before formal runs:
 
 ## Output rules (fixed)
 
+**Structured-first law:** if structured output is available, use it exclusively for examination and graph derivation. Never harvest a text-only scenario when structured flags exist.
+
+**Graph-mandatory law:** the point is the nugget graph. No graph = invalid scenario. `graph_deferred` is forbidden.
+
 1. Full verbosity when available.
-2. Structured preference: JSON → XML → YAML → CSV.
-3. If tool supports both structured + text simultaneously → capture both in one run.
-4. If only one format at a time → run twice (structured run + text run).
-5. Text-only tools → TextFSM to structured before graph derivation.
-6. **Text-only isolation:** run `cls` / `Clear-Host` / `clear` before each examination command; one scenario → one capture; structured JSON must match the text (`scan_tries` = TUI frames or single parsable dump; `empty_scans` = frames with no host table rows).
+2. Structured preference: JSON → XML → YAML → CSV — **mandatory** when the tool offers it.
+3. Structured-native tools: one harvest run with structured flags; **derive** Text pane from structured at harvest.
+4. **Forbidden:** second scenario for native TUI/text when structured mode exists (no paired `terminal` + `ndjson`, no nerva without `--json`).
+5. Truly text-only tools (no structured mode): capture native text → TextFSM to structured → graph derivation.
+6. **Text-only isolation:** run `cls` / `Clear-Host` / `clear` before each text-native examination command; one scenario → one capture; structured JSON must match the text (`scan_tries` = TUI frames or single parsable dump; `empty_scans` = frames with no host table rows).
 7. **Never truncate** stdout/stderr in capture commands; include `exit_status` and stderr in structured artifacts when present.
-8. **Errors are scenarios:** auth, dependency, invalid target, and network failures get full text + structured captures, not log-only notes.
+8. **Errors are scenarios:** auth, dependency, invalid target, and network failures get full structured captures (and derived text); not log-only notes.
 9. **JSONL → single JSON bundle** (`schema` + `records[]`); never `structured_ext: jsonl`.
-10. **Four UI artifacts** required: Text, Structured, Graph, Markdown (proj-07). Regenerate graph+MD with `backfill_adapter_four_outputs.py` when engine changes without re-scanning.
+10. **Four UI artifacts** required: Text, Structured, **Graph**, Markdown — all four or the scenario is incomplete.
 
 ## Targets
 
@@ -113,7 +117,7 @@ Widget tab **CLI Profiling** (`spiderfeet-widget`) + API `GET /api/v1/cli-corpus
 - **Scenarios:** one API row per scan command (`/tools/{tool}/scenarios/{scenario_key}`), not per file type.
 - **Bundles:** `app_examination_docs/<tool>/scenarios/<key>/` with `output_text.txt`, `output_structured.*`, `proposed_nuggets_edges.json`, `nugget_graph_structure.md`.
 - **Legacy numbered exams:** pairs like `foo_xml` + `foo_text` are one scenario; consolidate into scenario bundles during examination.
-- Confirm **T / S / G / MD** badges before claiming complete. Text-only pairs without graph need `graph_deferred` or derived outputs.
+- Confirm **T / S / G / MD** badges before claiming complete. No text-only scenarios when structured modes exist; no `graph_deferred` when structured was skipped.
 
 **Data Viewer (Structured tab):** embed [json-yaml-xml-csv-widget](https://github.com/brettforbes/json-yaml-xml-csv-widget) via `DataViewerHost` — see `@spiderfeet-widget/.docs/data-viewer-embed.md`. Dev URL `http://localhost:3000/widget` (`SPIDERFEET_DATA_VIEWER_URL` / `data-data-viewer-url` on `#widget-root`). Pass `filename` + content; bridge sends `set-mode` then `set` with inferred format.
 

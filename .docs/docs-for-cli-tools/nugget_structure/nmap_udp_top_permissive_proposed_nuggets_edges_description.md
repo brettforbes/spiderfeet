@@ -1,4 +1,4 @@
-# Nmap OSINT Scan Report — udp_top_permissive
+# Nmap OSINT Scan Report — udp_top_permissive_xml
 
 ## Introduction
 
@@ -80,6 +80,7 @@ The scan captured **63** semantic nuggets across **1** host.
 | CATEGORY | NETWORKS | Networks Category | `networks:45.33.32.156` |
 | DESCRIPTOR | HOST_STATUS | Host Status | `up` |
 | DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `reset` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
 | DESCRIPTOR | PORT_PROTOCOL | Port Protocol | `udp` |
 | DESCRIPTOR | PORT_STATE | Port State | `closed` |
 | DESCRIPTOR | PORT_STATE | Port State | `open` |
@@ -95,7 +96,6 @@ The scan captured **63** semantic nuggets across **1** host.
 | DESCRIPTOR | SCAN_TOOL | Scan Tool | `nmap` |
 | DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
 | ENTITY | HOST | Host | `45.33.32.156` |
-| ENTITY | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
 | ENTITY | IP_ADDRESS | IP Address | `45.33.32.156` |
 | ENTITY | SCAN_RECORD | Scan Record | `nmap:scanme.nmap.org:Fri Jun 26 03:55:32 2026` |
 | ENTITY | SERVICE | Network Service | `dhcpc` |

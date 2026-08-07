@@ -9,7 +9,6 @@ output_path_type: 2
 
 # NDJSON on stdout; harvest converts to JSON bundle + derived [type] value (source) text.
 # stderr progress banners are stored in structured.stderr_banner only.
-# Pair with --output terminal scenarios for native TUI capture.
 
 scenarios:
   - id: crt_praetorian_ndjson
@@ -72,11 +71,3 @@ scenarios:
     timeout: 600
     harvest_deferred: true
     harvest_deferred_reason: "Target offline 2026-07-05; run harvest tomorrow when site is reachable"
-
-  - id: corporate_bbc_terminal
-    name: "Terminal output (BBC gleif subset)"
-    org: British Broadcasting Corporation
-    target: bbc.co.uk
-    command: /mnt/c/projects/spiderfeet/.tools/pius run --org "British Broadcasting Corporation" --domain bbc.co.uk --plugins gleif,crt-sh --output terminal
-    text_from: stdout
-    timeout: 180

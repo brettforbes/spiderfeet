@@ -1,150 +1,339 @@
-# CLI App Sequencing - Workflow DSL Description
+# CLI App Sequencing — Workflow DSL Description (v1)
 
-A powerful, generic workflow derived based on the data processing that needs to occur between each step in a CLI Application Sequencing workflow. Since the semantic extent of data output by any single CLI app is far greater than the existing SpiderFeet module, we believe by defining the DSL first on the CLI apps, we can easily retrofit the DSL to control the current SpiderFeet module processing. 
+**Companion docs**
+
+| Doc | Role |
+|-----|------|
+| [12A_Workflow_YAML_Example.yaml](12A_Workflow_YAML_Example.yaml) | Canonical example workflow (corrected) |
+| [12C_Graph_Select_Language.md](12C_Graph_Select_Language.md) | Graph Select Language (GSE) for output variables |
+| [SPEC007_SKETCH_GAP_NOTES.md](../.governance/project/SPEC007_SKETCH_GAP_NOTES.md) | Sketch → v1 defect inventory (review before schema/GSE changes) |
+| [SPEC-007](../.governance/specs/SPEC-007-cli-workflow-dsl.md) | Implementation requirements + epics |
+
+This document is the **logic master** for the Workflow YAML DSL. The example YAML must encode everything described here. Informal sketch expressions such as `concat({{IP_ADDRESS}}, ":", {{PORT}})` are **invalid** — use GSE (12C).
+
+---
 
 ## 1. Aim
 
-The aim is to design a DSL that enables us to define the sequence of inputs, commands, output variables and data saved to context, for any single scanning operation, whether it is a single CLI app, or an API connected through a SpiderFeet module. The SpiderFeet Workflow DSL also sets an interface standard for exchanging data between CLI apps, for example a fixed standard on how lists of values are represented and passed between CLI apps, while the module code performs any specific transforms from the global standard as needed to suit the specific needs of the CLI app. This will ensure the design can suit any new CLI apps as they are onboarded, without having to change the DSL.
+Design a DSL that defines, for any scanning operation (CLI app now; SpiderFeet API / `sfp_*` modules later):
 
-## 2. Background to a Single CLI App Workflow Step
+1. **Inputs** — string lists (or empty) feeding a step
+2. **Config** — argv templates, auto input/output files, tool options
+3. **Output variables** — GSE projections from the step’s scan graph into named string lists for downstream steps
+4. **Context export** — whether the step’s full `{nodes, edges}` is merged into the investigation context graph
 
-Most CLI Applications take in a single nugget value (e.g. DOMAIN_NAME, SUBDOMAIN, IP_ADDRESS, etc.), as a single value or a list of values. Some CLI applications require no input (e.g. network topology discovery, etc.), occaisionally a CLI application will require a pair of nuggets, separated by a delimiter (e.g. IP_ADDRESS:PORT) as a single value or a list of values.
+The DSL is the **interface standard** between tools. Tool-specific code only:
 
-All CLI applications output a semantic subgraph as an arrays of nodes and edges, based on the common SpiderFeet ontology (`.docs\docs-for-cli-tools\_Current_Ontology.md`), and as new CLI apps are onboarded, the ontology in this document will be updated and extended as needed to include the new CLI app's output.
+- runs the CLI / API
+- converts structured capture → scan graph (existing SPEC-004 adapters)
+- maps GSE string lists ↔ tool-specific argv / `-l` files
 
-### 2.1 Input File Handling
+New tools onboard **without** changing the DSL grammar.
 
-In order to import a list of inputs in a single command line, some Cli apps require this list to be in a file. Ideally we provide the capability for a user to either specify the file name through the user interface, or have an `auto` mode where the file is created automatically by the module as a consequence of the input data prior to handling the CLI app's input, rather than being specified by the user.
+---
 
-### 2.2 CLI App Command Handling
-
-Each CLI app has a single command line, with a number of options, inputs and outputs specified. The DSL needs a means of entering these and handling the tempaltes for variables to handle the input file and output files.
-
-### 2.3 Output Results Selection and Processing
-
-Every CLI App will output a scan graph, with a scan entity nugget that `had` a number of different descriptor nuggets as properties. 
-
-The scan nugget will also have a `contains` relation to any:
-
-- `HOST` type nuggets (`SYSTEM`, `HOST`, `DEVICE`, `MOBILE` or `CDN`), which will then contain category nuggets (`NETWORKS`, `APPLICATIONS`, `ENVIRONMENT`, `SECURITY` etc.). These category nuggets will then contain any of the data like `IP_ADDRESS`, `PORT`, `SERVICE` etc.
-- `DOMAIN_NAME` type nuggets, including `SUBDOMAIN` nuggets.
-
-In these cases, the DSL needs to provide output variables that can be used by  sunsequent worklfow steps, and will use the transitive relation `contains` to traverse the graph for example:
-
-- for each `HOST`, `SYSTEM` or `DEVICE`, we want to extract the `IP_ADDRESS` and any `PORT`s it `contains`, and csetup a list of pairs where they are separated by colons
-- for each `DOMAIN_NAME` in the scan graph, we want to extract the `SUBDOMAIN`s it `contains`, and setup a list of subdomains, one of domains and one of all domains
-
-### 2.4 Context Handling
-
-In some workflow steps, we want to copy the scan graph to the context, so that we can build it through multiple scans. Other scans are purely interim steps and we will not want to extract conterxt from them
+## 2. Background — single CLI step
 
 
-## 3. Description of Workflow YAML Example
 
-### 3.1 Overview of Example Workflow
+### 2.1 Inputs
 
-We have astarted a sketch of the Workflow YAML Example in `12A_Workflow_YAML_Example.yaml`. This is a simple example of a workflow that has a number of scans in steps:
+Most tools take:
 
-1. **sfp_subfinder**: Scan all subdomains given a domain name, output a list of subdomains -> context
-2. **sfp_nmap**: Scan all ports in each of the domains and subdomains in the list, output a list of IP_ADDRESS:PORT pairs -> context
-3. **sfp_nerva**: Scan all pairs of IP_ADDRESS:PORT, for services in every one of the pairs, output a list of services 
-4. **sfp_httpx**: Scan all domains and subdomains in the list, output a list of webservers and their status codes 
-5. **sfp_katana**: Scan and crawl all or the webservers in the list, output a list of every url found 
-6. **sfp_nuclei**: Scan all urls in the list, for vulnerabilities in every one of the urls, output a list of vulnerabilities -> context
+- one nugget value, or a **list** of values (`DOMAIN_NAME`, `INTERNET_NAME`, `IP_ADDRESS`, …)
+- occasionally a **paired** value (`IP_ADDRESS:PORT`) as one string or a list of such strings
+- rarely **no** input (LAN discovery)
 
-So there are two separate sequences of workflow steps:
+Lists are the interchange type. Pairing is a **string convention** produced by GSE (`emit.join`), not a separate YAML type in v1.
 
-1. **Map all Ports and Services for each Domain and Subdomain**: Steps 1, 2 and 3
-2. **Map all Webservers and Vulnerabilities for each Domain and Subdomain**: Steps 1, 4, 5 and 6
+### 2.2 Input files
 
-Two of the steps are only interim steps (4 and 5) and we will not want to extract conterxt from them. the other 4 steps are the main steps that we will want to extract context from.
+Some CLIs require a file (`-l`, `-oJ` host lists). The DSL supports:
 
+| Mode | Behaviour |
+|------|-----------|
+| `auto` | Runtime writes a temp file from the bound string list; path injected into argv |
+| `path` | Explicit path (UI / operator supplied) |
 
-### 3.2 Description of the Common Workflow DSL Structure
+### 2.3 Command line
 
-We have a sketch of the YAML workflow DSL, except probably the output variables are not properly specified. We really need to change the logic to make it more specific so the logic shown below is reflected in the YAML file `.seed\12A_Workflow_YAML_Example.yaml`. This document is the master inn lgoic, and the YAML file is meant to encapsulate everything described below.
+One argv template per step. Placeholders resolve from:
 
-#### 3.2.1 Workflow ID
+- `$step.files.input` / `$step.files.output` (auto temps)
+- `$step.input.values` (rarely inlined; prefer files for large lists)
+- `$workflow.inputs.*`
 
-Every workflow has a unique id, based on a label and a UUID4, so:
+### 2.4 Output = scan graph + GSE variables
+
+Every step produces a **scan graph** via the existing adapter path (`nodes` + `edges`).  
+Output **variables** are **not** free-form templates over nugget names. They are **GSE select/union** expressions (see 12C) that:
+
+- walk `contains` / `had` / `listens-to`
+- support nested / cascade scopes (`for_each`)
+- project `nugget_data` into `string_list` variables
+
+Example cascade (nmap → nerva):
+
+```text
+for each HOST|SYSTEM|DEVICE|CDN
+  collect IPs reachable via contains*
+  collect PORTs reachable via contains*
+  emit cartesian IP:PORT pairs
+```
+
+### 2.5 Context
+
+| `context.export` | Meaning |
+|------------------|---------|
+| `scan_graph` | Merge this step’s full `nodes` + `edges` into `$workflow.context` |
+| `none` / omitted | Interim step — variables may still flow; graph does not enter context |
+
+v1 context merge = **append unique nodes by id + append unique edges by (source,target,relation)**. No UI connect/disconnect yet.
+
+---
+
+## 3. Example workflow intent (attack surface)
+
+Two logical chains after subdomain enum:
+
+```text
+subfinder_enum ─┬─► nmap_ports ─► nerva_services        (ports/services → context)
+                └─► httpx_live ─► katana_crawl ─► nuclei_vulns
+                      (httpx/katana interim; nuclei → context)
+```
+
+| Step id | Tool | Context export | Downstream vars |
+|---------|------|----------------|-----------------|
+| `subfinder_enum` | subfinder | yes | `apex_domains`, `subdomains`, `all_domains` |
+| `nmap_ports` | nmap | yes | `ip_port_list` |
+| `nerva_services` | nerva | yes | (none required) |
+| `httpx_live` | httpx | no | `live_hosts` |
+| `katana_crawl` | katana | no | `crawl_urls` |
+| `nuclei_vulns` | nuclei | yes | (none required) |
+
+**Ontology note (sketch fix):** There is no `SUBDOMAIN` nugget in `nuggets.json`. Subfinder emits `DOMAIN_NAME` (+ `DOMAIN_NAME_PARENT` for children). GSE must filter on that reality — see 12C §4.1.
+
+Tool ids in v1 are **adapter tool names** (`subfinder`, `nmap`, …), not `sfp_*`. A later epic maps `uses: tool.subfinder` → `sfp_tool_subfinder` without changing workflow authoring.
+
+---
+
+## 4. Workflow document structure
+
+### 4.1 Header
+
 ```yaml
+apiVersion: spiderfeet.workflow/v1
+kind: Workflow
 id: workflow--1c51e712-b5b5-4ef2-9967-e11debbcc607
 ```
 
-#### 3.2.2 Workflow Info
+`id` = `workflow--` + UUID4.
 
-Every workflow has a unique info block, with the following fields, which are used to describe the modules in the workflow and the start module and targets:
+### 4.2 `info`
 
 ```yaml
 info:
   name: Recon Attack Surface
-  description: This workflow is used to recon the attack surface of a target.
+  description: Recon the attack surface of a target domain.
   author: Modeller
-  created: Tuesday, 7th July 2026, 21:58:32
-  modules: 
-    - sfp_subfinder
-    - sfp_nmap
-    - sfp_nerva
-    - sfp_httpx
-    - sfp_katana
-    - sfp_nuclei
-  start: sfp_subfinder
-  targets: 
-    - https://example.com
+  created: "2026-07-07T21:58:32+10:00"
 ```
-So there is a clear place to start the workflow, and a variable that contains an input list of targets to scan, which may be empty if the first scan step runs without a target.
 
-### 3.3 Description of the Subfinder Scan Step Logic
+Human metadata only. Machine start/targets live under `inputs` + `steps` + `needs` DAG (not a flat `modules`/`start` list — those are derived).
 
-The first step is the `sfp_subfinder` step, and we pretend an `sfp_subfinder` module already exists, and this YAML section defines its interaction with the standard workflow interface:
+### 4.3 `inputs`
 
-- **input** it uses a list input, based on the values in the target variable
-- **config** the input list is automatically copied to an appropriate input file by the `sfp_subfinder`, and templated in, as is the automated temporary output file, created through the `temp_file` config option
-- **output** the output is a series of variables that are used by subsequent workflow steps, and are setup as lists of values, based on the output of the `sfp_subfinder` module. So the scan graph is searched for `DOMAIN_NAME` and `SUBDOMAIN` nuggets that the `SCAN_RECORD` nugget `contains`. These are extracted and setup as named variables, which contain lists of values. These are:
-  - **domains**: a list of domain names
-  - **subdomains**: a list of subdomains
-  - **all_domains**: a list of all domains and subdomains
-- **context** this is definitely data we want in the context, so the scan graph is copied to the context, so that it can be built through the consolidation of multiple scans.
+```yaml
+inputs:
+  targets:
+    type: string_list
+    description: Seed domains or URLs
+    default:
+      - https://example.com
+```
 
-### 3.4 Description of the Nmap Scan Step Logic
+Runtime may override `default`. Normalization (URL → hostname) is declared on the consuming step’s `input.normalize`.
 
-The next step is the `sfp_nmap` step, and we pretend the existing `sfp_nmap` module already supports this workflow approach, and this YAML section then defines its interaction with the standard workflow interface:
+### 4.4 `steps` (DAG)
 
-- **input** it registers a list input, the values in the `subdomains` variable
-- **config** the input list is automatically copied to an appropriate input file by the `sfp_nmap`, and templated in, as is the automated output XML file, created through the `temp_file` config option
-- **output** the output is a single variable, that is based on searching the scan graph for `HOST`, `SYSTEM` or `DEVICE` nuggets that `contains` an `IP_ADDRESS` nugget, and then extracting the `IP_ADDRESS` and any `PORT`s it `contains`. These are extracted and setup as pairs, where for each IP_ADDRESS:PORT pair, the IP_ADDRESS and PORT are extracted, concatenated with a colon separator, and setup as named variables, which contain lists of IP_ADDRESS:PORT pairs. These are:
-  - **ip_port_list**: a list of paired IP_ADDRESS:PORT values
-- **context** this is definitely data we want in the context, so the scan graph is copied to the context, so that it can be added to previous scan graphs.
+Each step:
 
-### 3.5 Description of the Nerva Scan Step Logic
+| Field | Required | Meaning |
+|-------|----------|---------|
+| `id` | yes | Unique step id (variable namespace) |
+| `uses` | yes | `tool.<adapter_id>` |
+| `needs` | no | List of step ids that must complete first |
+| `input` | yes | How string-list values are bound |
+| `config` | yes | Argv + temp files |
+| `output.vars` | no | Named GSE bindings |
+| `context.export` | no | `scan_graph` or omit |
 
-The next step is the `sfp_nerva` step, and we pretend the existing `sfp_nerva` module already supports this workflow approach, and this YAML section then defines its interaction with the standard workflow interface:
+Parallelism: steps with disjoint `needs` may run concurrently once dependencies complete.
 
-- **input** it registers a list input, the values in the `subdomains` variable
-- **config** the input list is automatically copied to an appropriate input file by the `sfp_nmap`, and templated in, as is the automated output XML file, created through the `temp_file` config option
-- **output** there are no output values that are used by pother steps
-- **context** this is definitely data we want in the context, so the scan graph is copied to the context, so that it can be added to previous scan graphs.
+### 4.5 `input` block
 
-### 3.6 Description pf the Httpx Scan Step Logic
+```yaml
+input:
+  type: string_list
+  from: $workflow.inputs.targets          # or $steps.<id>.vars.<name>
+  normalize: hostname_from_url            # optional enum
+  empty: error                            # error | skip_step | continue
+```
 
-The next step is the `sfp_httpx` step, and we pretend there is an existing `sfp_httpx` module that already supports this workflow approach, and this YAML section then defines its interaction with the standard workflow interface:
+### 4.6 `config` block
 
-- **input** it registers a list input, the values in the `all_domains` list variable from the `sfp_subfinder` step
-- **config** the input list is automatically copied to an appropriate input file by the `sfp_httpx` module, and templated in, as is the automated output JSON file, created through the `temp_file` config option
-- **output** the output is a single variable `web_url_list`, a list of `URL_WEB_FRAMEWORK` nuggets, where the input domain list has been searched, and reduced only to those urls with a website framework, and the variable is setup as a list of these urls. 
+```yaml
+config:
+  argv:
+    - "-d"
+    - "$step.input.values[0]"             # single-value tools
+    # OR file-oriented:
+    # - "-l"
+    # - "$step.files.input"
+    - "-oJ"
+    - "-cs"
+    - "-o"
+    - "$step.files.output"
+    - "-silent"
+  files:
+    input:
+      mode: auto                          # auto | none
+      format: line_text                   # one value per line
+    output:
+      mode: auto
+      format: jsonl                       # tool-native structured
+  capture:
+    family: structured_native             # same families as cli_corpus
+    adapter: subfinder                    # SPEC-004 adapter id
+```
 
-### 3.6 Description pf the Katana Scan Step Logic
+**Rules**
 
-The next step is the `sfp_katana` step, and we pretend there is an existing `sfp_katana` module that already supports this workflow approach, and this YAML section then defines its interaction with the standard workflow interface:
+- Prefer argv **list** form (AST-friendly) over a single shell string.
+- Always capture **structured** output when the tool supports it (proj-06 structured-first).
+- `adapter` names the existing graph builder; workflow runtime does not re-implement mapping YAML.
 
-- **input** it registers a list input, the values in the `web_url_list` list variable from the `sfp_httpx` step
-- **config** the input list is automatically copied to an appropriate input file by the `sfp_katana` module, and templated in, as is the automated output JSON file, created through the `temp_file` config option
-- **output** the output is a single variable `internal_url_list`, a list of `LINKED_URL_INTERNAL` nuggets, where the input url list has been searched, and reduced only to those urls that are internal to the target domain, and the variable is setup as a list of these urls. 
+### 4.7 `output.vars` block
 
-### 3.5 Description of the Nuclei Scan Step Logic
+Each key is a variable name. Value is a GSE binding (`select` | `union` | `from_var` | `literal`). See 12C.
 
-The next step is the `sfp_nuclei` step, and we pretend the existing `sfp_nuclei` module already supports this workflow approach, and this YAML section then defines its interaction with the standard workflow interface:
+Variables are addressed downstream as `$steps.<step_id>.vars.<name>`.
 
-- **input** it registers a list input, the values in the `internal_url_list` list variable from the `sfp_katana` step
-- **config** the input list is automatically copied to an appropriate input file by the `sfp_nuclei` module, and templated in, as is the automated output JSON file, created through the `temp_file` config option
-- **context** this is definitely data we want in the context, so the scan graph is copied to the context, so that it can be added to previous scan graphs.
+### 4.8 `context` block
+
+```yaml
+context:
+  export: scan_graph    # full nodes[] + edges[] into $workflow.context
+```
+
+---
+
+## 5. Per-step logic (example workflow)
+
+### 5.1 `subfinder_enum`
+
+- **Input:** `$workflow.inputs.targets` → normalize hostname
+- **Config:** subfinder JSONL → adapter `subfinder`
+- **Output vars:**
+  - `apex_domains` — `DOMAIN_NAME` without `DOMAIN_NAME_PARENT`
+  - `subdomains` — `DOMAIN_NAME` with `DOMAIN_NAME_PARENT`
+  - `all_domains` — union of both
+- **Context:** export scan graph
+
+### 5.2 `nmap_ports`
+
+- **Input:** `$steps.subfinder_enum.vars.all_domains`
+- **Config:** nmap `-oX` → adapter `nmap`
+- **Output vars:**
+  - `ip_port_list` — GSE `for_each` endpoint → product `IP` × `PORT` joined by `:`
+- **Context:** export
+
+### 5.3 `nerva_services`
+
+- **Input:** `$steps.nmap_ports.vars.ip_port_list`
+- **Config:** nerva `--json` → adapter `nerva`
+- **Output vars:** none required for this example
+- **Context:** export
+
+### 5.4 `httpx_live`
+
+- **Input:** `$steps.subfinder_enum.vars.all_domains`
+- **Config:** httpx JSON → adapter `httpx`
+- **Output vars:**
+  - `live_hosts` — host/domain values under successful probes (GSE with `where` on status/liveness)
+- **Context:** none (interim)
+
+### 5.5 `katana_crawl`
+
+- **Input:** `$steps.httpx_live.vars.live_hosts`
+- **Config:** katana JSON → adapter `katana`
+- **Output vars:**
+  - `crawl_urls` — URL-bearing `nugget_data` values from crawl graph (exact `nugget_id`s per katana structure doc)
+- **Context:** none (interim)
+
+### 5.6 `nuclei_vulns`
+
+- **Input:** `$steps.katana_crawl.vars.crawl_urls`
+- **Config:** nuclei JSONL → adapter `nuclei`
+- **Context:** export
+
+---
+
+## 6. Runtime data plane (v1)
+
+```text
+WorkflowDocument (YAML)
+    → Loader + JSON Schema validate
+    → DAG scheduler
+         → for each step:
+              resolve input string_list
+              materialize auto files
+              invoke tool driver (CLI)
+              adapter: structured → scan_graph
+              GSE eval → step.vars
+              optional context merge
+    → Result bundle:
+         steps[id].scan_graph
+         steps[id].vars
+         workflow.context   # merged graphs
+```
+
+Interchange list encoding for files: UTF-8, one value per line, no shell quoting inside values. Drivers that need CSV/JSON arrays transform at the tool boundary.
+
+---
+
+## 7. Gaps fixed vs original sketch (12A)
+
+**Full inventory:** [SPEC007_SKETCH_GAP_NOTES.md](../.governance/project/SPEC007_SKETCH_GAP_NOTES.md) (per-step table + archived invalid sketch).
+
+| Sketch problem | v1 fix |
+|----------------|--------|
+| `concat({{IP_ADDRESS}}, ":", {{PORT}})` ignores host scope | GSE `for_each` + `product` |
+| `{{DOMAIN_NAME}}` / `{{SUBDOMAIN}}` | Match + `where related` on real nugget ids |
+| `sum(...)` | `union` |
+| Flat `sequence` with broken YAML indent | `steps` list + `needs` DAG |
+| `sfp_*` before adapters exist | `uses: tool.<adapter_id>` |
+| `cli_options` shell string | `config.argv` list + file placeholders |
+| Implicit `{{scan_graph}}` | `context.export: scan_graph` |
+| Linear only | Parallel branches via `needs` |
+| Targets as URLs for hostname tools | `normalize: hostname_from_url` |
+
+---
+
+## 8. Non-goals (this phase)
+
+- Langium grammar / Monaco editor (phase 2)
+- Visual schematic + AST sync (phases 3–4)
+- Context force-graph UI connect/disconnect/delete
+- Rewriting legacy `sfp_*` EVENT listeners
+- Inventing Nexus or new ontology nuggets for convenience
+
+---
+
+## 9. Acceptance for the DSL design itself
+
+1. 12A validates against `workflow_v1.schema.json`
+2. Every `output.vars` entry is valid GSE (`gse_v1.schema.json`)
+3. GSE cascade example evaluates against a real nmap corpus graph and yields `ip:port` strings
+4. Subfinder GSE example evaluates against a real subfinder corpus graph without referencing `SUBDOMAIN`
+5. SPEC-007 agent plan decomposes implementation so lesser agents can land loader → GSE → runtime → example E2E without redesigning the language

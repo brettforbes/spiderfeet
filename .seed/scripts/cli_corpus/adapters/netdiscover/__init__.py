@@ -8,7 +8,7 @@ from typing import Any, Literal
 
 from core.graph_builder import GraphBuilder, nugget_node
 from core.topology import add_scan_head, add_system_l2
-from narrative_report import build_netdiscover_narrative_report
+from core.narrative_engine import render_narrative
 from netdiscover_text_to_json import (
     OutputMode,
     convert_text_to_netdiscover_scan,
@@ -131,8 +131,7 @@ def to_graph(structured: dict[str, Any] | str) -> dict[str, Any]:
 
 
 def to_narrative(graph: dict[str, Any], *, scenario_key: str = "netdiscover") -> str:
-    """Build the Markdown report pane for a Netdiscover graph."""
-    return build_netdiscover_narrative_report(graph, scenario_key)
+    return render_narrative(graph, tool="netdiscover", scenario_key=scenario_key)
 
 
 def build_outputs(

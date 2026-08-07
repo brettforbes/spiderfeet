@@ -1,0 +1,101 @@
+tool: httpx
+display_name: httpx
+seed_docs:
+  - .seed/05_Onotology_for_Nuggets.md
+  - .seed/10_Rules_For_Httpx.md
+generator: .seed/scripts/cli_corpus/adapters/httpx
+artifacts:
+  graph: httpx_<scenario_id>_proposed_nuggets_edges.json
+  narrative: httpx_<scenario_id>_proposed_nuggets_edges_description.md
+  output_dir: .docs/docs-for-cli-tools/nugget_structure
+narrative:
+  engine: .seed/scripts/cli_corpus/core/narrative_engine.py
+  method: render_narrative
+patterns:
+  - id: scan_head
+    title: Scan head
+    prose: >
+      SCAN_RECORD carries SCAN_CLI, SCAN_TARGET, SCAN_PROBE_PROFILE, host_input_count,
+      timing, and exit descriptors. DOMAIN_NAME apex links from scan via contains.
+  - id: web_url_probe
+    title: Live URL probe tree
+    prose: >
+      Each JSONL live probe becomes LINKED_URL_INTERNAL under the scan. HOST or CDN endpoints
+      own NETWORKS port chains and APPLICATIONS SERVICE nodes with HTTP and technology facts.
+    bullets:
+      - Host lists are derived from upstream subfinder formal examinations.
+      - SERVICE listens-to PORT; HTTP_STATUS_CODE, HTTP_TITLE, WEBSERVER_TECHNOLOGY attach via had.
+      - CDN targets may emit CDN instead of HOST when edge signals are present.
+specialty_sections:
+  - title: Subfinder upstream linkage
+    pattern: web_url_probe
+    prose: >
+      Each httpx scenario documents subfinder_scenario in bundle metadata with host_input_count
+      versus live probe record counts.
+scenarios:
+  - id: from_subfinder_upside_au
+    structures: DOMAIN_NAME + LINKED_URL_INTERNAL + SERVICE/HTTP facts
+  - id: from_subfinder_squarepeg
+    structures: Small VC web surface
+  - id: from_subfinder_vcof_sparse
+    structures: Ultra-sparse probe
+  - id: from_subfinder_k2am_passive
+    structures: Hosting-style SME probes
+  - id: from_subfinder_k2am_active
+    structures: Active-resolved host probes
+  - id: from_subfinder_upside_com
+    structures: TLD sibling probes
+  - id: from_subfinder_sbs
+    structures: Enterprise-scale probes
+  - id: from_subfinder_invalid_clean_miss
+    structures: Clean miss; empty records[]
+field_mapping:
+  - path: command
+    nugget_id: SCAN_CLI
+  - path: target
+    nugget_id: SCAN_TARGET
+  - path: probe_profile
+    nugget_id: SCAN_PROBE_PROFILE
+  - path: host_input_count
+    nugget_id: SCAN_HOST_INPUT_COUNT
+  - path: records[].url
+    nugget_id: LINKED_URL_INTERNAL
+    notes: scan contains
+  - path: records[].host
+    nugget_id: DOMAIN_NAME or HOST
+    notes: domain contains host endpoint
+  - path: records[].ip
+    nugget_id: IP_ADDRESS
+    notes: NETWORKS contains via classify_ip
+  - path: records[].status_code
+    nugget_id: HTTP_STATUS_CODE
+    notes: had on SERVICE
+  - path: records[].title
+    nugget_id: HTTP_TITLE
+  - path: records[].webserver
+    nugget_id: WEBSERVER_BANNER
+  - path: records[].tech[]
+    nugget_id: WEBSERVER_TECHNOLOGY
+  - path: records[].cdn_name
+    nugget_id: PROVIDER_HOSTING
+proposed_nuggets:
+  - nugget_id: LINKED_URL_INTERNAL
+    type: ENTITY
+    parent: SCAN_RECORD
+    source: url field
+    relation: contains
+  - nugget_id: HTTP_STATUS_CODE
+    type: DESCRIPTOR
+    parent: SERVICE
+    source: status_code
+    relation: had
+  - nugget_id: WEBSERVER_TECHNOLOGY
+    type: DESCRIPTOR
+    parent: SERVICE
+    source: tech[]
+    relation: had
+review_notes:
+  - Structured capture uses -json JSONL converted to bundle JSON at harvest.
+  - Text pane is derived from structured records[]; no separate text-only scenario.
+  - Probe chains reuse Nmap-style NETWORKS → TRANSPORT → PORT topology per 10 H2.
+cross_link: ../_Current_Ontology.md

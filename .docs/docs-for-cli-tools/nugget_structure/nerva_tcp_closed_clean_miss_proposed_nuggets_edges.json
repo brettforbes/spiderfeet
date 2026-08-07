@@ -1,26 +1,98 @@
 {
   "nodes": [
     {
-      "id": "SCAN_RECORD--a17599c6-f865-512b-84e8-3fb85251bea7",
-      "nugget_instance_id": "SCAN_RECORD--a17599c6-f865-512b-84e8-3fb85251bea7",
+      "id": "SCAN_RECORD--9ebd85e9-c117-530b-9f50-8ead096c4067",
+      "nugget_instance_id": "SCAN_RECORD--9ebd85e9-c117-530b-9f50-8ead096c4067",
       "nugget_id": "SCAN_RECORD",
       "nugget_type": "ENTITY",
       "nugget_description": "Scan Record",
-      "nugget_data": "nerva -t scanme.nmap.org:1 --json -w 3000"
+      "nugget_data": "nerva:scanme.nmap.org:1:2026-06-30T07:40:54.267267+00:00",
+      "nugget_colour": "#3B82F6"
     },
     {
-      "id": "SCAN_CLI--9585a6c7-a512-5894-addf-2f6a8840020f",
-      "nugget_instance_id": "SCAN_CLI--9585a6c7-a512-5894-addf-2f6a8840020f",
+      "id": "SCAN_CLI--e192cdd5-0e0c-5bee-9662-de9605e983df",
+      "nugget_instance_id": "SCAN_CLI--e192cdd5-0e0c-5bee-9662-de9605e983df",
       "nugget_id": "SCAN_CLI",
       "nugget_type": "DESCRIPTOR",
       "nugget_description": "Scan CLI",
-      "nugget_data": "nerva -t scanme.nmap.org:1 --json -w 3000"
+      "nugget_data": "nerva -t scanme.nmap.org:1 --json -w 3000",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TARGET--dc258917-4ef5-5fe6-9743-b04ad707f4af",
+      "nugget_instance_id": "SCAN_TARGET--dc258917-4ef5-5fe6-9743-b04ad707f4af",
+      "nugget_id": "SCAN_TARGET",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Target",
+      "nugget_data": "scanme.nmap.org:1",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_START--1bca4ff1-ffe4-5fc8-9ba4-f9989c4561ac",
+      "nugget_instance_id": "SCAN_START--1bca4ff1-ffe4-5fc8-9ba4-f9989c4561ac",
+      "nugget_id": "SCAN_START",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Start",
+      "nugget_data": "2026-06-30T07:40:54.267267+00:00",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_ELAPSED--dcdda426-ca18-5dd1-a454-c9c4fd0ffa26",
+      "nugget_instance_id": "SCAN_ELAPSED--dcdda426-ca18-5dd1-a454-c9c4fd0ffa26",
+      "nugget_id": "SCAN_ELAPSED",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Elapsed Time",
+      "nugget_data": "4.641",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_instance_id": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "nugget_id": "SCAN_EXIT_STATUS",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Exit Status",
+      "nugget_data": "0",
+      "nugget_colour": "#F59E0B"
+    },
+    {
+      "id": "SCAN_TOOL--d91f520b-b1d4-5803-b941-fc4ca0f0bdba",
+      "nugget_instance_id": "SCAN_TOOL--d91f520b-b1d4-5803-b941-fc4ca0f0bdba",
+      "nugget_id": "SCAN_TOOL",
+      "nugget_type": "DESCRIPTOR",
+      "nugget_description": "Scan Tool",
+      "nugget_data": "nerva",
+      "nugget_colour": "#F59E0B"
     }
   ],
   "edges": [
     {
-      "source": "SCAN_RECORD--a17599c6-f865-512b-84e8-3fb85251bea7",
-      "target": "SCAN_CLI--9585a6c7-a512-5894-addf-2f6a8840020f",
+      "source": "SCAN_RECORD--9ebd85e9-c117-530b-9f50-8ead096c4067",
+      "target": "SCAN_CLI--e192cdd5-0e0c-5bee-9662-de9605e983df",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9ebd85e9-c117-530b-9f50-8ead096c4067",
+      "target": "SCAN_TARGET--dc258917-4ef5-5fe6-9743-b04ad707f4af",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9ebd85e9-c117-530b-9f50-8ead096c4067",
+      "target": "SCAN_START--1bca4ff1-ffe4-5fc8-9ba4-f9989c4561ac",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9ebd85e9-c117-530b-9f50-8ead096c4067",
+      "target": "SCAN_ELAPSED--dcdda426-ca18-5dd1-a454-c9c4fd0ffa26",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9ebd85e9-c117-530b-9f50-8ead096c4067",
+      "target": "SCAN_EXIT_STATUS--13669c97-c35a-5ccc-831e-f997fcff484c",
+      "relation": "had"
+    },
+    {
+      "source": "SCAN_RECORD--9ebd85e9-c117-530b-9f50-8ead096c4067",
+      "target": "SCAN_TOOL--d91f520b-b1d4-5803-b941-fc4ca0f0bdba",
       "relation": "had"
     }
   ]

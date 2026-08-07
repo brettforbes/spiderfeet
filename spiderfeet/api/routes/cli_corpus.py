@@ -39,6 +39,8 @@ class CliCorpusScenarioSummary(BaseModel):
     has_structured: bool = False
     has_graph: bool = False
     has_markdown: bool = False
+    graph_deferred: bool = False
+    graph_deferred_reason: str | None = None
     complete: bool = False
     exam_id: int | None = None
     scenario_id: str | None = None
@@ -70,7 +72,10 @@ class CliCorpusScenarioDetail(BaseModel):
     graph_description_markdown: str | None = None
     markdown: str | None = None
     artifacts: CliCorpusArtifacts
+    graph_deferred: bool = False
+    graph_deferred_reason: str | None = None
     complete: bool = False
+    content_links: dict[str, str] | None = None
 
 
 class CliCorpusMarkdownDocument(BaseModel):

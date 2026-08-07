@@ -1,0 +1,13 @@
+{
+  "tool_id": "pius",
+  "display_name": "Pius",
+  "kind": "cli",
+  "category": "org_intelligence",
+  "executable": "pius",
+  "content_version": 1,
+  "source_docs": {
+    "options": ".docs/docs-for-cli-tools/PIUS-CLI-Options.md",
+    "zero_to_hero": ".docs/docs-for-cli-tools/PIUS-Zero-to-Hero.md",
+    "graph_structure": ".docs/docs-for-cli-tools/nugget_structure/pius_nugget_graph_structure.md"
+  }
+}

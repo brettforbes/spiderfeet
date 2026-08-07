@@ -1,4 +1,4 @@
-# Nmap OSINT Scan Report — traceroute_permissive
+# Nmap OSINT Scan Report — traceroute_permissive_xml
 
 ## Introduction
 
@@ -11,21 +11,7 @@ The scan was executed with **nmap** version **7.80**, targeting **scanme.nmap.or
 
 Nmap done at Fri Jun 26 03:55:59 2026; 1 IP address (1 host up) scanned in 4.43 seconds
 
-During this scan, **1** host was placed under investigation.
-
-## Host 45.33.32.156
-
-The host was observed as **up** (reason: **echo-reply**).
-It answers to the internet name **scanme.nmap.org**.
-
-### Networks
-
-Network address **45.33.32.156**:
-- Port **80** on **tcp** is **open** (syn-ack), associated with **http**.
-
-### Applications
-
-Application service **http** listening on port **80**.
+During this scan, **8** hosts were placed under investigation.
 
 ## Host 114.31.192.64
 
@@ -89,6 +75,20 @@ It answers to the internet name **eqix-sv1.linode.com**.
 
 Network address **206.223.116.196**:
 - No transport endpoints were enumerated.
+
+## Host 45.33.32.156
+
+The host was observed as **up** (reason: **echo-reply**).
+It answers to the internet name **scanme.nmap.org**.
+
+### Networks
+
+Network address **45.33.32.156**:
+- Port **80** on **tcp** is **open** (syn-ack), associated with **http**.
+
+### Applications
+
+Application service **http** listening on port **80**.
 
 ## Traceroute Path
 
@@ -168,6 +168,14 @@ The scan captured **79** semantic nuggets across **8** hosts.
 | DESCRIPTOR | HOP_TTL | Trace Hop TTL | `9` |
 | DESCRIPTOR | HOST_STATUS | Host Status | `up` |
 | DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `echo-reply` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `ae10-100.edg01.alexeqn.nsw.vocus.network` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `be101.bdr01.sjc02.ca.us.vocus.network` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `be106-99.bdr01.syd14.nsw.vocus.network` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `be158.cor01.syd11.nsw.vocus.network` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `be202.bdr04.sjc01.ca.us.vocus.network` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `eqix-sv1.linode.com` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `lo0-33.bng71.alexeqn.nsw.vocus.network` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
 | DESCRIPTOR | PORT_PROTOCOL | Port Protocol | `tcp` |
 | DESCRIPTOR | PORT_STATE | Port State | `open` |
 | DESCRIPTOR | PORT_STATE_REASON | Port State Reason | `syn-ack` |
@@ -187,14 +195,6 @@ The scan captured **79** semantic nuggets across **8** hosts.
 | ENTITY | HOST | Host | `203.134.80.60` |
 | ENTITY | HOST | Host | `206.223.116.196` |
 | ENTITY | HOST | Host | `45.33.32.156` |
-| ENTITY | INTERNET_NAME | Internet Name | `ae10-100.edg01.alexeqn.nsw.vocus.network` |
-| ENTITY | INTERNET_NAME | Internet Name | `be101.bdr01.sjc02.ca.us.vocus.network` |
-| ENTITY | INTERNET_NAME | Internet Name | `be106-99.bdr01.syd14.nsw.vocus.network` |
-| ENTITY | INTERNET_NAME | Internet Name | `be158.cor01.syd11.nsw.vocus.network` |
-| ENTITY | INTERNET_NAME | Internet Name | `be202.bdr04.sjc01.ca.us.vocus.network` |
-| ENTITY | INTERNET_NAME | Internet Name | `eqix-sv1.linode.com` |
-| ENTITY | INTERNET_NAME | Internet Name | `lo0-33.bng71.alexeqn.nsw.vocus.network` |
-| ENTITY | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
 | ENTITY | IP_ADDRESS | IP Address | `114.31.192.64` |
 | ENTITY | IP_ADDRESS | IP Address | `114.31.199.249` |
 | ENTITY | IP_ADDRESS | IP Address | `114.31.199.41` |

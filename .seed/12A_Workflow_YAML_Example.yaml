@@ -1,96 +1,376 @@
+apiVersion: spiderfeet.workflow/v1
+kind: Workflow
 id: workflow--1c51e712-b5b5-4ef2-9967-e11debbcc607
 
 info:
   name: Recon Attack Surface
-  description: This workflow is used to recon the attack surface of a target.
+  description: >
+    Enumerate domains, map ports/services, and map live web surface + vulns.
+    Ports/services chain and web/vuln chain share sfp_cli_subfinder, then fan out.
   author: Modeller
-  created: Tuesday, 7th July 2026, 21:58:32
-  modules: 
-    - sfp_subfinder
-    - sfp_nmap
-    - sfp_nerva
-    - sfp_httpx
-    - sfp_katana
-    - sfp_nuclei
-  start: sfp_subfinder
-  targets: 
-    - https://example.com
+  created: "2026-07-07T21:58:32+10:00"
 
-sequence:
-  - sfp_subfinder:
+inputs:
+  targets:
+    type: string_list
+    description: Seed domains to recon
+    values:
+      - https://example.com
+
+# DAG (not a linear-only list):
+#   sfp_cli_subfinder ─┬─► sfp_cli_nmap ─► sfp_cli_nerva
+#                   └─► sfp_cli_httpx ─► sfp_cli_katana ─► sfp_cli_nuclei
+steps:
+  - id: sfp_cli_subfinder
+    uses: tool.subfinder
+    needs: []
     input:
-      - type: list
-        value: {{targets}}
+      type: string_list
+      from: $workflow.inputs.targets
+      normalize: hostname_from_url
+      empty: error
     config:
-      cli_options: -d {{targets}} -oJ -cs -o {{temp_file}} -silent
-      temp_file: auto
+      # `-dL` (file list) instead of `-d $step.input.values[0]`: the input is a
+      # string_list and may carry >1 seed domain. `-d` with values[0] silently
+      # drops every seed after the first. `-dL -oJ -cs -o` matches the batch
+      # pattern validated in subfinder skill references/tactics.md.
+      argv:
+        - "-dL"
+        - "$step.files.input"
+        - "-oJ"
+        - "-cs"
+        - "-o"
+        - "$step.files.output"
+        - "-silent"
+      files:
+        input:
+          mode: auto
+          format: line_text
+        output:
+          mode: auto
+          format: jsonl
+      capture:
+        family: structured_native
+        adapter: subfinder
     output:
-      - domains:
-        - type: list
-          value: {{DOMAIN_NAME}}
-      - subdomains:
-        - type: list
-          value: {{SUBDOMAIN}}
-      - all_domains:
-        - type: list
-          value: sum({{domains}}, {{subdomains}})
+      vars:
+        # Ontology reality: subfinder emits DOMAIN_NAME (+ DOMAIN_NAME_PARENT for children).
+        # There is no SUBDOMAIN nugget_id in nuggets.json.
+        apex_domains:
+          type: string_list
+          select:
+            source: $step.scan_graph
+            nodes:
+              nugget_id: DOMAIN_NAME
+              where:
+                - not:
+                    related:
+                      direction: out
+                      relation: had
+                      nugget_id: DOMAIN_NAME_PARENT
+            project: nugget_data
+            distinct: true
+        subdomains:
+          type: string_list
+          select:
+            source: $step.scan_graph
+            nodes:
+              nugget_id: DOMAIN_NAME
+              where:
+                - related:
+                    direction: out
+                    relation: had
+                    nugget_id: DOMAIN_NAME_PARENT
+            project: nugget_data
+            distinct: true
+        all_domains:
+          type: string_list
+          union:
+            - $step.vars.apex_domains
+            - $step.vars.subdomains
+          distinct: true
     context:
-      graph: {{scan_graph}}
+      export: scan_graph
 
-  - sfp_nmap:
+  - id: sfp_cli_nmap
+    uses: tool.nmap
+    needs: [sfp_cli_subfinder]
     input:
-      - type: list
-        value: {{all_domains}}
+      type: string_list
+      from: $steps.sfp_cli_subfinder.vars.all_domains
+      empty: error
     config:
-      cli_options:  -sT -T3 -p-  -oX {{temp_file}} {{all_domains}}
-      temp_file: auto
+      # `-Pn`: our own evasion-and-tactics.md lists ICMP-blocked hosts as the
+      # #1 real-world symptom (status state="down" for a known-live IP) —
+      # expected often here since `all_domains` are internet-facing/CDN'd and
+      # this step has no adaptive retry. `--top-ports 1000` replaces `-p-`:
+      # nmap_exploration_report.md explicitly defers full-range `-p-` as
+      # "not in initial matrix" / never validated; every refined command in
+      # that report tiers ports instead (top-ports 1000 permissive / 20-100
+      # corporate/local). `-p-` across a whole subdomain list is unrealistic.
+      argv:
+        - "-sT"
+        - "-T3"
+        - "-Pn"
+        - "--top-ports"
+        - "1000"
+        - "--open"
+        - "-iL"
+        - "$step.files.input"
+        - "-oX"
+        - "$step.files.output"
+      files:
+        input:
+          mode: auto
+          format: line_text
+        output:
+          mode: auto
+          format: xml
+      capture:
+        family: structured_native
+        adapter: nmap
     output:
-        - ip_port_list:
-          - type: list
-            value: concat({{IP_ADDRESS}}, ":", {{PORT}})
+      vars:
+        # Cascade: for each endpoint, cartesian IP × PORT under that endpoint.
+        ip_port_list:
+          type: string_list
+          select:
+            source: $step.scan_graph
+            for_each:
+              as: endpoint
+              nodes:
+                nugget_id_in: [HOST, SYSTEM, DEVICE, CDN, SERVER]
+              collect:
+                - as: ip
+                  reachable_from: endpoint
+                  along:
+                    relation: contains
+                    transitive: true
+                  nodes:
+                    nugget_id_in: [IP_ADDRESS, IPV6_ADDRESS]
+                  project: nugget_data
+                - as: port
+                  reachable_from: endpoint
+                  along:
+                    relation: contains
+                    transitive: true
+                  nodes:
+                    nugget_id: PORT
+                  project: nugget_data
+              emit:
+                product: [ip, port]
+                join: ":"
+            distinct: true
     context:
-      graph: {{scan_graph}}
+      export: scan_graph
 
-  - sfp_nerva:
+  - id: sfp_cli_nerva
+    uses: tool.nerva
+    needs: [sfp_cli_nmap]
     input:
-      - type: list
-        value: {{ip_port_list}}
+      type: string_list
+      from: $steps.sfp_cli_nmap.vars.ip_port_list
+      empty: skip_step
     config:
-      cli_options:  -sT -A -T3  -oX {{temp_file}} {{ip_port_list}}
-      temp_file: auto
+      # Nerva has no `-iL` flag (that is nmap's) — its list flag is `-l` /
+      # `--list` (Nerva-CLI-Options.md, nerva skill cli-options.md). Every
+      # real harvested nerva command in app_examination_docs/nerva/ uses
+      # `-t`/`--list`, never `-iL`. Also add `--output` so the run actually
+      # writes to `$step.files.output` (files.output.mode: auto expects the
+      # tool to be told the path, same as every other step in this workflow).
+      argv:
+        - "--json"
+        - "--list"
+        - "$step.files.input"
+        - "--output"
+        - "$step.files.output"
+      files:
+        input:
+          mode: auto
+          format: line_text
+        output:
+          mode: auto
+          format: jsonl
+      capture:
+        family: structured_native
+        adapter: nerva
     context:
-      graph: {{scan_graph}}
+      export: scan_graph
 
-  - sfp_httpx:
+  - id: sfp_cli_httpx
+    uses: tool.httpx
+    needs: [sfp_cli_subfinder]
     input:
-      - type: list
-        value: {{all_domains}}
+      type: string_list
+      from: $steps.sfp_cli_subfinder.vars.all_domains
+      empty: error
     config:
-      cli_options:  httpx -l {{all_domains}} -status-code -title -tech-detect -server -cdn -ip -json -no-stdin -o {{temp_file}} -silent -threads 10 -timeout 15 -rate-limit 25  
-      temp_file: auto
+      argv:
+        - "-l"
+        - "$step.files.input"
+        - "-status-code"
+        - "-title"
+        - "-tech-detect"
+        - "-server"
+        - "-cdn"
+        - "-ip"
+        - "-json"
+        - "-no-stdin"
+        - "-o"
+        - "$step.files.output"
+        - "-silent"
+        - "-threads"
+        - "10"
+        - "-timeout"
+        - "15"
+        - "-rate-limit"
+        - "25"
+      files:
+        input:
+          mode: auto
+          format: line_text
+        output:
+          mode: auto
+          format: jsonl
+      capture:
+        family: structured_native
+        adapter: httpx
     output:
-        - web_url_list:
-          - type: list
-            value: {{URL_WEB_FRAMEWORK}}
-
-  - sfp_katana:
-    input:
-      - type: list
-        value: {{all_domains}}
-    config:
-      cli_options:  katana -list {{web_url_list}} -j -duc -ob -or -o {{temp_file}}  -depth 2 -c 5 -timeout 10 -fs fqdn -ct 8m 
-      temp_file: auto
-    output:
-        - internal_url_list:
-          - type: list
-            value: {{"LINKED_URL_INTERNAL"}}
-
-  - sfp_nuclei:
-    input:
-      - type: list
-        value: {{all_domains}}
-    config:
-      cli_options:  nuclei -u {{internal_url_list}} -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates -tags weblogic,cve -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 25 -timeout 15 -jle {{temp_file}}       
-      temp_file: auto
+      vars:
+        # Live web hosts: DOMAIN_NAME under a HOST tree that has HTTP_STATUS_CODE.
+        live_hosts:
+          type: string_list
+          select:
+            source: $step.scan_graph
+            for_each:
+              as: endpoint
+              nodes:
+                nugget_id_in: [HOST, CDN]
+              collect:
+                - as: host
+                  reachable_from: endpoint
+                  along:
+                    relation: contains
+                    transitive: true
+                  nodes:
+                    nugget_id: DOMAIN_NAME
+                  project: nugget_data
+                - as: status
+                  reachable_from: endpoint
+                  along:
+                    relation: contains
+                    transitive: true
+                  nodes:
+                    nugget_id: HTTP_STATUS_CODE
+                  project: nugget_data
+              emit:
+                values: host
+            distinct: true
+    # Interim — do not export to context
     context:
-      graph: {{scan_graph}}
+      export: none
+
+  - id: sfp_cli_katana
+    uses: tool.katana
+    needs: [sfp_cli_httpx]
+    input:
+      type: string_list
+      from: $steps.sfp_cli_httpx.vars.live_hosts
+      empty: skip_step
+    config:
+      argv:
+        - "-list"
+        - "$step.files.input"
+        - "-j"
+        - "-duc"
+        - "-ob"
+        - "-or"
+        - "-o"
+        - "$step.files.output"
+        - "-depth"
+        - "2"
+        - "-c"
+        - "5"
+        - "-timeout"
+        - "10"
+        - "-fs"
+        - "fqdn"
+        - "-ct"
+        - "8m"
+      files:
+        input:
+          mode: auto
+          format: line_text
+        output:
+          mode: auto
+          format: jsonl
+      capture:
+        family: structured_native
+        adapter: katana
+    output:
+      vars:
+        # Prefer URL-bearing nuggets when present; fall back to DOMAIN_NAME values.
+        # Exact ids must match katana structure doc / corpus graphs when wiring E2E tests.
+        crawl_urls:
+          type: string_list
+          select:
+            source: $step.scan_graph
+            nodes:
+              nugget_id_in:
+                - LINKED_URL_INTERNAL
+                - LINKED_URL_EXTERNAL
+                - DOMAIN_NAME
+            project: nugget_data
+            distinct: true
+    context:
+      export: none
+
+  - id: sfp_cli_nuclei
+    uses: tool.nuclei
+    needs: [sfp_cli_katana]
+    input:
+      type: string_list
+      from: $steps.sfp_cli_katana.vars.crawl_urls
+      empty: skip_step
+    config:
+      # Dropped `-tags cve`: our own strategic exploration matrix
+      # (exploration_scratch/nuclei/strategic/exploration_report.json) ran
+      # `-tags cve -severity medium,high,critical` against 4 real targets
+      # (scanme.sh, k2am, vco_fund, squarepeg) and got 0 records every single
+      # time, while the untagged exposures-path pass on the same hosts found
+      # 25-34 records each. A CVE-tag-only pass is not a realistic way to
+      # maximize returns for this workflow's typical target class; run the
+      # full template tree (minus the excluded etags, matching the base
+      # nuclei skill's default SpiderFeet-equivalent command) instead so
+      # tech/exposure/misconfig/panel/CVE findings all surface in one pass.
+      argv:
+        - "-l"
+        - "$step.files.input"
+        - "-silent"
+        - "-jsonl"
+        - "-omit-raw"
+        - "-omit-template"
+        - "-no-interactsh"
+        - "-etags"
+        - "dos,fuzz,misc"
+        - "-duc"
+        - "-retries"
+        - "1"
+        - "-c"
+        - "25"
+        - "-timeout"
+        - "15"
+        - "-jle"
+        - "$step.files.output"
+      files:
+        input:
+          mode: auto
+          format: line_text
+        output:
+          mode: auto
+          format: jsonl
+      capture:
+        family: structured_native
+        adapter: nuclei
+    context:
+      export: scan_graph

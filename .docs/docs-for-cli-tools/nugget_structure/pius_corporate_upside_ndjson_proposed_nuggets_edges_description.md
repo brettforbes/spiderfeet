@@ -1,0 +1,240 @@
+# Pius scan narrative — `corporate_upside_ndjson`
+
+## Introduction
+
+Organizational attack-surface findings are grouped under the head company, with domains, affiliates, and unresolved research leads emitted per 08 rules.
+
+## Organization
+
+- `The Upside Pty Ltd`
+
+## Domains
+
+- `aws.theupside.com.au`
+- `cfjump.theupside.com.au`
+- `dev.theupside.com.au`
+- `e.theupside.com.au`
+- `email.theupside.com.au`
+- `info.theupside.com.au`
+- `k8s.theupside.com.au`
+- `mail.theupside.com.au`
+- `news.theupside.com.au`
+- `newsletter.theupside.com.au`
+- `spf.theupside.com.au`
+- `test.theupside.com.au`
+- `theupside.com.au`
+- `track.theupside.com.au`
+- `www.theupside.com.au`
+
+## Graph structure (types)
+
+```mermaid
+flowchart LR
+  SCAN_RECORD -->|had| SCAN_CLI
+  SCAN_RECORD -->|had| SCAN_TARGET
+  SCAN_RECORD -->|had| SCAN_TARGET_ORG
+  SCAN_RECORD -->|had| SCAN_START
+  SCAN_RECORD -->|had| SCAN_ELAPSED
+  SCAN_RECORD -->|had| SCAN_EXIT_STATUS
+  SCAN_RECORD -->|had| SCAN_TOOL
+  SCAN_RECORD -->|contains| COMPANY_NAME
+  COMPANY_NAME -->|contains| DOMAIN_REGISTRAR
+  CANDIDATE_ENTITY -->|had| PRESEED_TYPE
+  CANDIDATE_ENTITY -->|had| IS_PLACEHOLDER
+  CANDIDATE_ENTITY -->|had| NEEDS_REVIEW
+  COMPANY_NAME -->|contains| LEADS
+  LEADS -->|contains| CANDIDATE_ENTITY
+  COMPANY_NAME -->|contains| CANDIDATE_ENTITY
+  CANDIDATE_ENTITY -->|had| REVIEW_STATUS
+  DOMAIN_NAME -->|had| DISCOVERY_METHOD
+  DOMAIN_NAME -->|had| DOMAIN_NAME_PARENT
+  COMPANY_NAME -->|contains| DOMAINS
+  DOMAINS -->|contains| DOMAIN_NAME
+  COMPANY_NAME -->|contains| DOMAIN_NAME
+  DOMAIN_NAME -->|had| REVIEW_STATUS
+  DOMAIN_NAME -->|had| IS_WILDCARD_DNS
+  DOMAIN_NAME -->|had| WILDCARD_IP_COUNT
+  DOMAIN_NAME -->|had| SUBDOMAIN_ENUMERATION_SUPPRESSED
+```
+
+## Trace
+
+_Trace section omitted when no TRACE nodes present._
+
+
+## Appendix
+
+### Nodes
+
+- `CANDIDATE_ENTITY`: CEO
+- `COMPANY_NAME`: The Upside Pty Ltd
+- `DISCOVERY_METHOD`: certificate-transparency
+- `DOMAINS`: DOMAINS
+- `DOMAIN_NAME`: aws.theupside.com.au
+- `DOMAIN_NAME`: cfjump.theupside.com.au
+- `DOMAIN_NAME`: dev.theupside.com.au
+- `DOMAIN_NAME`: e.theupside.com.au
+- `DOMAIN_NAME`: email.theupside.com.au
+- `DOMAIN_NAME`: info.theupside.com.au
+- `DOMAIN_NAME`: k8s.theupside.com.au
+- `DOMAIN_NAME`: mail.theupside.com.au
+- `DOMAIN_NAME`: news.theupside.com.au
+- `DOMAIN_NAME`: newsletter.theupside.com.au
+- `DOMAIN_NAME`: spf.theupside.com.au
+- `DOMAIN_NAME`: test.theupside.com.au
+- `DOMAIN_NAME`: theupside.com.au
+- `DOMAIN_NAME`: track.theupside.com.au
+- `DOMAIN_NAME`: www.theupside.com.au
+- `DOMAIN_NAME_PARENT`: com.au
+- `DOMAIN_NAME_PARENT`: theupside.com.au
+- `DOMAIN_REGISTRAR`: .au Domain Administration Limited
+- `IS_PLACEHOLDER`: true
+- `IS_WILDCARD_DNS`: true
+- `LEADS`: LEADS
+- `NEEDS_REVIEW`: true
+- `PRESEED_TYPE`: whois+name
+- `REVIEW_STATUS`: confirmed
+- `SCAN_CLI`: /mnt/c/projects/spiderfeet/.tools/pius run --org "The Upside Pty Ltd" --domain theupside.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson
+- `SCAN_ELAPSED`: 16.125
+- `SCAN_EXIT_STATUS`: 0
+- `SCAN_RECORD`: pius:The Upside Pty Ltd:/mnt/c/projects/spiderfeet/.tools/pius run --org "The Upside Pty Ltd" --domain theupside.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson
+- `SCAN_START`: 2026-07-05T13:10:54.341348+00:00
+- `SCAN_TARGET`: theupside.com.au
+- `SCAN_TARGET_ORG`: The Upside Pty Ltd
+- `SCAN_TOOL`: pius
+- `SUBDOMAIN_ENUMERATION_SUPPRESSED`: true
+- `WILDCARD_IP_COUNT`: 1
+
+### Edges
+
+- `SCAN_RECORD` `had` `SCAN_CLI`
+- `SCAN_RECORD` `had` `SCAN_TARGET`
+- `SCAN_RECORD` `had` `SCAN_TARGET_ORG`
+- `SCAN_RECORD` `had` `SCAN_START`
+- `SCAN_RECORD` `had` `SCAN_ELAPSED`
+- `SCAN_RECORD` `had` `SCAN_EXIT_STATUS`
+- `SCAN_RECORD` `had` `SCAN_TOOL`
+- `SCAN_RECORD` `contains` `COMPANY_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_REGISTRAR`
+- `CANDIDATE_ENTITY` `had` `PRESEED_TYPE`
+- `CANDIDATE_ENTITY` `had` `IS_PLACEHOLDER`
+- `CANDIDATE_ENTITY` `had` `NEEDS_REVIEW`
+- `COMPANY_NAME` `contains` `LEADS`
+- `LEADS` `contains` `CANDIDATE_ENTITY`
+- `COMPANY_NAME` `contains` `CANDIDATE_ENTITY`
+- `CANDIDATE_ENTITY` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `COMPANY_NAME` `contains` `DOMAINS`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `DISCOVERY_METHOD`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAINS` `contains` `DOMAIN_NAME`
+- `COMPANY_NAME` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `REVIEW_STATUS`
+- `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
+- `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
+- `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+- `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
+- `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
+- `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+- `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
+- `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
+- `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+- `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
+- `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
+- `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+- `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
+- `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
+- `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+- `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
+- `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
+- `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+- `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
+- `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
+- `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+- `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
+- `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
+- `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+- `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
+- `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
+- `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+- `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
+- `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
+- `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+- `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
+- `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
+- `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+- `DOMAIN_NAME` `had` `IS_WILDCARD_DNS`
+- `DOMAIN_NAME` `had` `WILDCARD_IP_COUNT`
+- `DOMAIN_NAME` `had` `SUBDOMAIN_ENUMERATION_SUPPRESSED`
+---
+
+*OS-Intel Scan*

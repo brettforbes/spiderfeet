@@ -1,4 +1,4 @@
-# Nmap OSINT Scan Report — skip_ping_permissive
+# Nmap OSINT Scan Report — skip_ping_permissive_xml
 
 ## Introduction
 
@@ -42,6 +42,7 @@ The scan captured **21** semantic nuggets across **1** host.
 | CATEGORY | NETWORKS | Networks Category | `networks:45.33.32.156` |
 | DESCRIPTOR | HOST_STATUS | Host Status | `up` |
 | DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `user-set` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
 | DESCRIPTOR | PORT_PROTOCOL | Port Protocol | `tcp` |
 | DESCRIPTOR | PORT_STATE | Port State | `open` |
 | DESCRIPTOR | PORT_STATE_REASON | Port State Reason | `syn-ack` |
@@ -53,7 +54,6 @@ The scan captured **21** semantic nuggets across **1** host.
 | DESCRIPTOR | SCAN_TOOL | Scan Tool | `nmap` |
 | DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
 | ENTITY | HOST | Host | `45.33.32.156` |
-| ENTITY | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
 | ENTITY | IP_ADDRESS | IP Address | `45.33.32.156` |
 | ENTITY | SCAN_RECORD | Scan Record | `nmap:scanme.nmap.org:Fri Jun 26 03:56:03 2026` |
 | ENTITY | SERVICE | Network Service | `http` |

@@ -10,7 +10,7 @@ from adapters.nmap.hooks import apply_nmap_hosts
 from adapters.nmap.intermediate import parse_nmap_xml
 from core.graph_builder import GraphBuilder, nugget_node
 from core.rule_engine import RuleEngine, load_rule_pack
-from narrative_report import build_nmap_narrative_report
+from core.narrative_engine import render_narrative
 
 CAPTURE_FAMILY: Literal["structured_native"] = "structured_native"
 RULES_DIR = Path(__file__).resolve().parents[2] / "rules"
@@ -83,8 +83,7 @@ def to_graph(structured: dict[str, Any] | str) -> dict[str, Any]:
 
 
 def to_narrative(graph: dict[str, Any], *, scenario_key: str = "nmap") -> str:
-    """Build the Markdown report pane for an Nmap graph."""
-    return build_nmap_narrative_report(graph, scenario_key)
+    return render_narrative(graph, tool="nmap", scenario_key=scenario_key)
 
 
 def build_outputs(

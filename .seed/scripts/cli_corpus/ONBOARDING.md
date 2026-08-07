@@ -48,14 +48,24 @@ See also: `.cursor/skills/cli_app_profiling/references/exploration-examination-l
 
 ---
 
+## Structured-first law (read before Phase 1)
+
+If the tool offers structured output (JSON, XML, YAML, CSV, `--json`, `-oX`, `--output ndjson`, etc.), **every formal scenario must use it**. Text is for human reading in the Text pane — derived from structured at harvest, not a separate text-only examination run. Text-native harvest is allowed **only** when the tool has no structured mode (then TextFSM → structured before graph).
+
+**Forbidden:** `pius --output terminal`, nerva without `--json`, or any second scenario that omits structured flags when structured flags exist.
+
+**Graph-mandatory:** every scenario must produce graph + narrative Markdown. `graph_deferred` is forbidden. No graph = useless scenario — do not ship it.
+
+---
+
 ## Phase 1 — Decide capture family + schema
 
 Pick exactly one:
 
 | Family | When | Structured pane | Text pane |
 |--------|------|-----------------|-----------|
-| `structured_native` | Tool emits JSON/XML/JSONL | Normalized single-root JSON/XML (JSONL → `schema` + `records[]` bundle) | Derived from records or paired scenario |
-| `text_native` | TUI / text-only | TextFSM (or equivalent) → JSON | Native full capture |
+| `structured_native` | Tool emits JSON/XML/JSONL | Normalized single-root JSON/XML (JSONL → `schema` + `records[]` bundle) | **Derived** from structured at harvest |
+| `text_native` | No structured mode (TUI only) | TextFSM (or equivalent) → JSON | Native full capture (parser input) |
 
 **JSONL / NDJSON:** never store `.jsonl` as the Structured artifact. Bundle shape:
 
@@ -186,6 +196,30 @@ nugget_structure/<tool>_<scenario_id>_proposed_nuggets_edges_description.md
 nugget_structure/<tool>_nugget_graph_structure.md
 ```
 
+**SPEC-006:** Tool Structure docs must match the Nmap gold bar (`.governance/project/SPEC006_STRUCTURE_QUALITY_BAR.md`). Prefer `rules/<tool>/structure.yaml` + `render_structure_docs.py` once Epic M lands — see `.governance/project/SPEC006_AGENT_PLAN.md`. Also update composed ontology `.docs/docs-for-cli-tools/_Current_Ontology.md` when a new sub-graph lands.
+
+### SPEC-008 content bundle (required before operator review)
+
+Formal examination and onboarding are **incomplete** without a content-platform bundle under `modules_v2/content/<tool_id>/` per `.governance/project/SPEC008_CONTENT_CONTRACT.md`:
+
+```text
+modules_v2/content/<tool_id>/
+  manifest.json
+  options.md
+  options_schema.json
+  zero_to_hero.md
+  graph_structure.md
+```
+
+Generate/backfill:
+
+```bash
+python .seed/scripts/cli_corpus/backfill_content_bundles.py --tool <tool>
+python .seed/scripts/cli_corpus/generate_options_schema.py --tool <tool> --check
+```
+
+Resolve every entry in `options_schema.review.md` before marking the bundle Pass. Content is served by `GET /api/v1/content/*` (SPEC-008 R8-04).
+
 4. If graph/MD missing after an engine change but structured exists:
 
 ```bash
@@ -203,7 +237,8 @@ python .seed/scripts/cli_corpus/backfill_adapter_four_outputs.py --tool <tool> -
 | `wsl --shutdown` then immediate WSL harvest | Avoid; DNS breaks |
 | Truncate with `head`/`tail` | Full capture; `timeout` only for bounds |
 | Skip empty JSONL as “done” on resume | Force re-run or require stderr sidecar |
-| Silent missing Graph/MD for text-only pair | Derive outputs or `graph_deferred: true` |
+| Silent missing Graph/MD | Fix adapter; never skip structured when available |
+| Text-only scenario when `--json` / ndjson / `-oX` exists | One structured scenario; derive Text at harvest |
 | Hardcoded IPv6 as `IP_ADDRESS` | `classify_ip` |
 | Inline stub narratives | Shared engine + YAML |
 

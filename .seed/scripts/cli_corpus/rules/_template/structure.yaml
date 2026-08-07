@@ -1,0 +1,70 @@
+# Tool structure pack template (SPEC-006)
+# Copy to rules/<tool>/structure.yaml and fill.
+# Quality bar: .governance/project/SPEC006_STRUCTURE_QUALITY_BAR.md
+# Gold example: .docs/docs-for-cli-tools/nugget_structure/nmap_nugget_graph_structure.md
+
+tool: REPLACE_ME
+display_name: Replace Me
+
+# Ontology and seed authority (cite paths; do not invent relations).
+seed_docs:
+  - .seed/05_Onotology_for_Nuggets.md
+  - .seed/REPLACE_ME.md
+
+# Adapter or legacy generator path shown in Structure header.
+generator: .seed/scripts/cli_corpus/adapters/REPLACE_ME
+
+# Examination artifact naming pattern (scenario_id from manifests/*.yaml).
+artifacts:
+  graph: REPLACE_ME_<scenario_id>_proposed_nuggets_edges.json
+  narrative: REPLACE_ME_<scenario_id>_proposed_nuggets_edges_description.md
+  output_dir: .docs/docs-for-cli-tools/nugget_structure
+
+# Optional narrative engine cross-link (shown when tool uses shared §4.3 engine).
+narrative:
+  engine: .seed/scripts/cli_corpus/core/narrative_engine.py
+  method: render_narrative
+
+# Ordered sections: each entry references a pattern id from rules/_shared/structure_v1.yaml.
+# Optional per-section prose overrides shared pattern prose.
+patterns:
+  - id: scan_head
+    title: Scan head
+    # prose: optional override
+  - id: host_networks_port_service
+    title: Primary endpoint tree
+
+# Tool-specific branches not covered by shared patterns alone.
+specialty_sections:
+  - title: Specialty branch title
+    pattern: ssh_host_keys
+    prose: Factual prose describing when this branch appears.
+    bullets:
+      - Optional bullet notes (type vocabulary, not instance values)
+
+# Formal examination scenarios (ids must match manifests/<tool>.yaml).
+scenarios:
+  - id: scenario_key_from_manifest
+    structures: SCAN + HOST + NETWORKS
+    notes: optional archetype or target class
+
+# Structured field/path → nugget_id (cite mapping.yaml paths; do not fork mappings).
+field_mapping:
+  - path: records[*].field
+    nugget_id: NUGGET_ID
+    notes: optional relation or parent hint
+
+# Catalogue-worthy types this tool introduces or heavily uses.
+proposed_nuggets:
+  - nugget_id: SERVICE
+    type: ENTITY
+    parent: APPLICATIONS
+    source: service@name
+    relation: contains; listens-to → PORT
+
+# Intentional omissions, deferred fields, relation vocabulary reminders.
+review_notes:
+  - Relations use ontology vocabulary contains, had, listens-to only.
+  - Document intentionally unmapped fields here.
+
+cross_link: ../_Current_Ontology.md
