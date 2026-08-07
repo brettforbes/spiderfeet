@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import re
 from functools import lru_cache
-from pathlib import Path
 from typing import Any
 
 import yaml
@@ -23,9 +22,10 @@ from .narrative_report import (  # noqa: F401 — re-export compat shim source
     validate_narrative_coverage,
 )
 
-_CORPUS_DIR = Path(__file__).resolve().parents[1]
-_SHARED_RULES = _CORPUS_DIR / "rules" / "_shared"
-_TOOL_RULES = _CORPUS_DIR / "rules"
+from .paths import RULES_DIR, SHARED_RULES_DIR
+
+_SHARED_RULES = SHARED_RULES_DIR
+_TOOL_RULES = RULES_DIR
 
 _MERMAID_SAFE = re.compile(r"[^A-Za-z0-9_]")
 

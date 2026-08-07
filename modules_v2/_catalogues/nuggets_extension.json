@@ -1,0 +1,1311 @@
+[
+  {
+    "nugget_id": "SCAN_RECORD",
+    "nugget_description": "Scan Record",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "HOST",
+    "nugget_description": "Host",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "SERVICE",
+    "nugget_description": "Network Service",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "TRANSPORT",
+    "nugget_description": "Transport Protocol",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "TRACE",
+    "nugget_description": "Trace",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "NETWORKS",
+    "nugget_description": "Networks Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "ENVIRONMENT",
+    "nugget_description": "Environment Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "APPLICATIONS",
+    "nugget_description": "Applications Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "PORT",
+    "nugget_description": "Network Port",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "TRACE_HOP",
+    "nugget_description": "Trace Hop",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "CPE_URL",
+    "nugget_description": "CPE URL",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "DSA",
+    "nugget_description": "SSH Key - DSA",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "RSA",
+    "nugget_description": "SSH Key - RSA",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "ECDSA",
+    "nugget_description": "SSH Key - ECDSA",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "EDDSA",
+    "nugget_description": "SSH Key - EdDSA",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "SCAN_CLI",
+    "nugget_description": "Scan CLI",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_VERSION",
+    "nugget_description": "Scan Version",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_START",
+    "nugget_description": "Scan Start",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_TARGET",
+    "nugget_description": "Scan Target",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_TOOL",
+    "nugget_description": "Scan Tool",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_SUMMARY",
+    "nugget_description": "Scan Summary",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_ELAPSED",
+    "nugget_description": "Scan Elapsed Time",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HOST_STATUS",
+    "nugget_description": "Host Status",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HOST_STATUS_REASON",
+    "nugget_description": "Host Status Reason",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PORT_STATE",
+    "nugget_description": "Port State",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PORT_STATE_REASON",
+    "nugget_description": "Port State Reason",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PORT_PROTOCOL",
+    "nugget_description": "Port Protocol",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SERVICE_EXTRAINFO",
+    "nugget_description": "Service Extra Information",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SERVICE_VERSION",
+    "nugget_description": "Service Version",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SERVICE_FINGERPRINT",
+    "nugget_description": "Nmap Service Fingerprint",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "OS_MATCH_ACCURACY",
+    "nugget_description": "OS Match Accuracy",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "TRACE_PROTOCOL",
+    "nugget_description": "Trace Protocol",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HOP_TTL",
+    "nugget_description": "Trace Hop TTL",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HOP_RTT",
+    "nugget_description": "Trace Hop RTT",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HOP_ORDER",
+    "nugget_description": "Trace Hop Order",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SSH_KEY_BITS",
+    "nugget_description": "SSH Key Bits",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SSH_KEY_TYPE",
+    "nugget_description": "SSH Key Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SSH_KEY_KEY",
+    "nugget_description": "SSH Public Key",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HTTP_TITLE",
+    "nugget_description": "HTTP Title",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SYSTEM",
+    "nugget_description": "System",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "CDN",
+    "nugget_description": "Content Delivery Network Edge",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "SCAN_ARGS",
+    "nugget_description": "Scan Arguments",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_TIMESTAMP",
+    "nugget_description": "Scan Timestamp",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_END_TIME",
+    "nugget_description": "Scan End Time",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_EXIT_STATUS",
+    "nugget_description": "Scan Exit Status",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_TRIES",
+    "nugget_description": "Scan Tries",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_EMPTY_SCANS",
+    "nugget_description": "Empty Scan Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_DISCOVERED",
+    "nugget_description": "Discovered System Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "MAC_VENDOR",
+    "nugget_description": "MAC Vendor",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "RECORD_ID",
+    "nugget_description": "Scan Record Identifier",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "IP_VERSION",
+    "nugget_description": "IP Version",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SAME_SYSTEM_GROUP_ID",
+    "nugget_description": "Same System Group Identifier",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SAME_SYSTEM_CONFIDENCE",
+    "nugget_description": "Same System Confidence",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SAME_SYSTEM_EVIDENCE",
+    "nugget_description": "Same System Evidence",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HOST_CLASSIFICATION",
+    "nugget_description": "Host Classification",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CLASSIFICATION_CONFIDENCE",
+    "nugget_description": "Host Classification Confidence",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CLASSIFICATION_RULE_FIRED",
+    "nugget_description": "Classification Rule Fired",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CDN_VENDOR",
+    "nugget_description": "CDN Vendor",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CDN_VENDOR_CONFIDENCE",
+    "nugget_description": "CDN Vendor Confidence",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CDN_DETECTION_SIGNAL",
+    "nugget_description": "CDN Detection Signal",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CDN_ASN",
+    "nugget_description": "CDN ASN",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CDN_ASN_ORG",
+    "nugget_description": "CDN ASN Organization",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CDN_PRODUCT_HINT",
+    "nugget_description": "CDN Product Hint",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CDN_POP_CODE",
+    "nugget_description": "CDN Point of Presence Code",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "EDGE_NODE_ID",
+    "nugget_description": "Edge Node Identifier",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "ANYCAST_SUSPECTED",
+    "nugget_description": "Anycast Suspected",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CACHE_STATUS",
+    "nugget_description": "Cache Status",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "EDGE_DURATION_MS",
+    "nugget_description": "Edge Duration Milliseconds",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "ORIGIN_DURATION_MS",
+    "nugget_description": "Origin Duration Milliseconds",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PROTOCOLS_OFFERED",
+    "nugget_description": "Protocols Offered",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HSTS_ENABLED",
+    "nugget_description": "HSTS Enabled",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HSTS_MAX_AGE",
+    "nugget_description": "HSTS Max Age",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HSTS_PRELOAD",
+    "nugget_description": "HSTS Preload",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HSTS_INCLUDE_SUBDOMAINS",
+    "nugget_description": "HSTS Include Subdomains",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CSP_PRESENT",
+    "nugget_description": "Content Security Policy Present",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CSP_THIRD_PARTY_DOMAIN",
+    "nugget_description": "CSP Third Party Domain",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NEL_ACTIVE",
+    "nugget_description": "Network Error Logging Active",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NEL_REPORT_ENDPOINT",
+    "nugget_description": "Network Error Logging Report Endpoint",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "WAF_BOT_MANAGEMENT_DETECTED",
+    "nugget_description": "WAF Bot Management Detected",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "WAF_VENDOR_HINT",
+    "nugget_description": "WAF Vendor Hint",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "RESPONSE_HEADERS_RAW",
+    "nugget_description": "Raw Response Headers",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "REDIRECT_LOCATION",
+    "nugget_description": "Redirect Location",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SERVER_HEADER",
+    "nugget_description": "Server Header",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "ORIGIN_HOST_COUNT",
+    "nugget_description": "Origin Host Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "ORIGIN_IP",
+    "nugget_description": "Origin IP",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "ORIGIN_TECHNOLOGY",
+    "nugget_description": "Origin Technology",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "ORIGIN_FINGERPRINT_SUPPRESSED",
+    "nugget_description": "Origin Fingerprint Suppressed",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "ORIGIN_FINGERPRINT_RAW",
+    "nugget_description": "Raw Origin Fingerprint",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_TARGET_ORG",
+    "nugget_description": "Scan Target Organization",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CANDIDATE_ENTITY",
+    "nugget_description": "Unresolved Research Lead",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "PAGE",
+    "nugget_description": "Web Page URL",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "AFFILIATES",
+    "nugget_description": "Affiliated Companies Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "DOMAINS",
+    "nugget_description": "Domains Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "LEADS",
+    "nugget_description": "Research Leads Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "PAGES",
+    "nugget_description": "Pages Category",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "WIKIDATA_ID",
+    "nugget_description": "Wikidata Identifier",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "LEI",
+    "nugget_description": "Legal Entity Identifier",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "JURISDICTION",
+    "nugget_description": "Legal Jurisdiction",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CONFIDENCE_SCORE",
+    "nugget_description": "Source Confidence Score",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DISCOVERY_METHOD",
+    "nugget_description": "Discovery Method",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NEEDS_REVIEW",
+    "nugget_description": "Needs Human Review",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PRESEED_TYPE",
+    "nugget_description": "Preseed Record Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "IS_PLACEHOLDER",
+    "nugget_description": "Placeholder Identity Flag",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "RAW_VALUE",
+    "nugget_description": "Raw Unnormalized Value",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "IS_WILDCARD_DNS",
+    "nugget_description": "Wildcard DNS Detected",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "WILDCARD_IP_COUNT",
+    "nugget_description": "Wildcard DNS IP Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SUBDOMAIN_ENUMERATION_SUPPRESSED",
+    "nugget_description": "Subdomain Enumeration Suppressed",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NETWORK_TYPE",
+    "nugget_description": "Network Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PAGE_URL",
+    "nugget_description": "Page URL",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PAGE_PATH",
+    "nugget_description": "Page Path",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "BRAND_NAME",
+    "nugget_description": "Brand Name",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "REVIEW_STATUS",
+    "nugget_description": "Review Status",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "RELATIONSHIP_TYPE",
+    "nugget_description": "Relationship Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_MODE",
+    "nugget_description": "Scan Enumeration Mode",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DISCOVERY_SOURCE",
+    "nugget_description": "Discovery Source",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "DISCOVERY_MODE",
+    "nugget_description": "Discovery Mode",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "LIVENESS_STATUS",
+    "nugget_description": "Liveness Status",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CDN_REVIEW_NEEDED",
+    "nugget_description": "CDN Review Needed",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SOFTWARE_USED",
+    "nugget_description": "Software Used",
+    "nugget_type": "SUBENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#F97316"
+  },
+  {
+    "nugget_id": "CDN_NAME",
+    "nugget_description": "CDN Name",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CDN_TYPE",
+    "nugget_description": "CDN Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "TRANSPORT_PROTOCOL",
+    "nugget_description": "Transport Protocol",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HTTP_STATUS_CODE",
+    "nugget_description": "HTTP Status Code",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HTTP_TITLE",
+    "nugget_description": "HTTP Title",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CONTENT_TYPE",
+    "nugget_description": "Content Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CONTENT_LENGTH",
+    "nugget_description": "Content Length",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HTTP_METHOD",
+    "nugget_description": "HTTP Method",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HTTP_PATH",
+    "nugget_description": "HTTP Path",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "RESPONSE_TIME_MS",
+    "nugget_description": "Response Time Milliseconds",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "WORD_COUNT",
+    "nugget_description": "Word Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "LINE_COUNT",
+    "nugget_description": "Line Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PROBE_FAILED",
+    "nugget_description": "Probe Failed",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PAGE_TYPE",
+    "nugget_description": "Page Type",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PAGE_HASH",
+    "nugget_description": "Page Hash",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PROBE_TIMESTAMP",
+    "nugget_description": "Probe Timestamp",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SOFTWARE_VERSION",
+    "nugget_description": "Software Version",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "IS_ERROR_PAGE",
+    "nugget_description": "Is Error Page",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "CNAME_TARGET",
+    "nugget_description": "CNAME Target",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "HTTP_LIVENESS_STATUS",
+    "nugget_description": "HTTP Liveness Status",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_PROBE_PROFILE",
+    "nugget_description": "Scan Probe Profile",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_HOST_INPUT_COUNT",
+    "nugget_description": "Scan Host Input Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "PROBE_CONNECTED",
+    "nugget_description": "Probe Connected Address",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "UPSTREAM_SCENARIO_ID",
+    "nugget_description": "Upstream Scenario Identifier",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_CRAWL_PROFILE",
+    "nugget_description": "Scan Crawl Profile",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_URL_INPUT_COUNT",
+    "nugget_description": "Scan URL Input Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SCAN_FINDING_COUNT",
+    "nugget_description": "Scan Finding Count",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "SECURITY",
+    "nugget_description": "Security Knowledge Container",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "TEMPLATES_USED",
+    "nugget_description": "Templates Used Container",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "FINDINGS",
+    "nugget_description": "Findings Container",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "NUCLEI_SEVERITY_INFO",
+    "nugget_description": "Nuclei Info Severity Bucket",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "NUCLEI_SEVERITY_LOW",
+    "nugget_description": "Nuclei Low Severity Bucket",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "NUCLEI_SEVERITY_MEDIUM",
+    "nugget_description": "Nuclei Medium Severity Bucket",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "NUCLEI_SEVERITY_HIGH",
+    "nugget_description": "Nuclei High Severity Bucket",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "NUCLEI_SEVERITY_CRITICAL",
+    "nugget_description": "Nuclei Critical Severity Bucket",
+    "nugget_type": "CATEGORY",
+    "nugget_icon": "",
+    "nugget_colour": "#14B8A6"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE",
+    "nugget_description": "Nuclei Template",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING",
+    "nugget_description": "Nuclei Finding",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "NUCLEI_VULNERABILITY",
+    "nugget_description": "Nuclei Vulnerability Observation",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE_ID",
+    "nugget_description": "Nuclei Template ID",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE_NAME",
+    "nugget_description": "Nuclei Template Name",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE_PATH",
+    "nugget_description": "Nuclei Template Path",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE_AUTHOR",
+    "nugget_description": "Nuclei Template Author",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE_TAGS",
+    "nugget_description": "Nuclei Template Tags",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_TEMPLATE_PROTOCOL",
+    "nugget_description": "Nuclei Template Protocol",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_MATCHED_AT",
+    "nugget_description": "Nuclei Matched At",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING_TIMESTAMP",
+    "nugget_description": "Nuclei Finding Timestamp",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING_HOST",
+    "nugget_description": "Nuclei Finding Host",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING_IP",
+    "nugget_description": "Nuclei Finding IP",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING_PORT",
+    "nugget_description": "Nuclei Finding Port",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING_URL",
+    "nugget_description": "Nuclei Finding URL",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_FINDING_PROTOCOL",
+    "nugget_description": "Nuclei Finding Protocol",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_MATCHER_NAME",
+    "nugget_description": "Nuclei Matcher Name",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_MATCHER_STATUS",
+    "nugget_description": "Nuclei Matcher Status",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_EXTRACTED_RESULTS",
+    "nugget_description": "Nuclei Extracted Results",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_DESCRIPTION",
+    "nugget_description": "Nuclei Vulnerability Description",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_IMPACT",
+    "nugget_description": "Nuclei Vulnerability Impact",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_REMEDIATION",
+    "nugget_description": "Nuclei Vulnerability Remediation",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_SEVERITY",
+    "nugget_description": "Nuclei Vulnerability Severity",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_VENDOR",
+    "nugget_description": "Nuclei Vulnerability Vendor",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_PRODUCT",
+    "nugget_description": "Nuclei Vulnerability Product",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_TAGS",
+    "nugget_description": "Nuclei Vulnerability Tags",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_CWE",
+    "nugget_description": "Nuclei Vulnerability CWE",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_CPE",
+    "nugget_description": "Nuclei Vulnerability CPE",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_CVSS_METRICS",
+    "nugget_description": "Nuclei Vulnerability CVSS Metrics",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_CVSS_SCORE",
+    "nugget_description": "Nuclei Vulnerability CVSS Score",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_EPSS_SCORE",
+    "nugget_description": "Nuclei Vulnerability EPSS Score",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "NUCLEI_VULN_EPSS_PERCENTILE",
+    "nugget_description": "Nuclei Vulnerability EPSS Percentile",
+    "nugget_type": "DESCRIPTOR",
+    "nugget_icon": "",
+    "nugget_colour": "#F59E0B"
+  },
+  {
+    "nugget_id": "IPV4_ADDRESS",
+    "nugget_description": "IPv4 Address",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_ip_address.svg",
+    "nugget_colour": "#3B82F6"
+  }
+]

@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 from typing import Any
 
 import yaml
 
-SHARED_RULES_DIR = Path(__file__).resolve().parents[1] / "rules" / "_shared"
+from .paths import SHARED_RULES_DIR
+
 PIUS_LISTS_PATH = SHARED_RULES_DIR / "pius_lists.yaml"
 
 

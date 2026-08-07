@@ -1,0 +1,23 @@
+tool: nerva
+profile: nerva_default
+version: 2
+seed_docs:
+  - .seed/07_Nerva_Scan_Record_Host_Correlation_Rulesets.md
+  - .seed/07B_Nerva_Ontology_Rules.md
+sections:
+  - introduction
+  - systems
+  - cdn_fronting
+  - services
+  - appendix
+phrasing:
+  fronted_unknown: >
+    This hostname is fronted by a CDN/edge vendor. Origin host count is
+    indeterminate — do not treat edge IP cardinality as origin host count.
+  origin_fingerprint_suppressed: >
+    SOFTWARE_USED nodes tagged ORIGIN_FINGERPRINT_SUPPRESSED are retained for
+    audit only and must not be reported as confirmed origin stack.
+  standard_host: >
+    Durable machine identity evidence supports a standard (non-fronted) host
+    classification under Rulesets A/B.
+  indeterminate_origin_count: indeterminate

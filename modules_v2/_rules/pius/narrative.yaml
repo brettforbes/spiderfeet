@@ -1,0 +1,14 @@
+tool: pius
+profile: pius_default
+version: 1
+seed_docs:
+  - .seed/08_Rules_for_Pius.md
+sections:
+  - introduction
+  - organization
+  - domains
+  - appendix
+phrasing:
+  introduction: >
+    Organizational attack-surface findings are grouped under the head company,
+    with domains, affiliates, and unresolved research leads emitted per 08 rules.

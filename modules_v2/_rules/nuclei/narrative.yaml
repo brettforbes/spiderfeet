@@ -1,0 +1,18 @@
+tool: nuclei
+profile: nuclei_default
+version: 1
+seed_docs:
+  - .seed/11_Ontology_for_Nuclei.md
+  - .seed/11B_Rules_for_Nuclei.md
+sections:
+  - introduction
+  - hosts
+  - findings
+  - appendix
+phrasing:
+  introduction: >
+    Nuclei findings are grouped under each host's SECURITY container with
+    severity buckets, deduplicated templates, and per-record findings.
+  relation_deferral: >
+    Seed-defined affected-by and based-on relations are represented with
+    approved SPEC-004 had/contains edges until relation coverage is updated.

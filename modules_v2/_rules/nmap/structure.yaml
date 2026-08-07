@@ -1,0 +1,153 @@
+tool: nmap
+display_name: Nmap
+seed_docs:
+  - .seed/05_Onotology_for_Nuggets.md
+  - .seed/06B_NMAP_Ontology_Update_Ruleset.md
+  - .seed/06_Updates_to_NMAP_Cli_App_Profiling.md
+generator: .seed/scripts/cli_corpus/adapters/nmap
+artifacts:
+  graph: nmap_<scenario_id>_proposed_nuggets_edges.json
+  narrative: nmap_<scenario_id>_proposed_nuggets_edges_description.md
+  output_dir: .docs/docs-for-cli-tools/nugget_structure
+narrative:
+  engine: .seed/scripts/cli_corpus/core/narrative_engine.py
+  method: render_narrative
+patterns:
+  - id: scan_head
+    title: Scan head
+    prose: >
+      Every graph has one SCAN_RECORD entity with scan descriptors (SCAN_CLI, SCAN_TARGET,
+      SCAN_VERSION, SCAN_START, SCAN_SUMMARY, …) linked via had. Discovered hosts link
+      from scan via contains.
+  - id: host_status
+    title: Host tree (all scenarios)
+    bullets:
+      - HOST canonical key is the primary IPv4 address (or first address).
+      - INTERNET_NAME descriptors attach to HOST when Nmap reports hostnames.
+  - id: host_networks_port_service
+    title: Port and service tree (port scans)
+    bullets:
+      - PORT_STATE values include open, filtered, closed, open|filtered (UDP).
+      - listens-to links each SERVICE to its PORT whenever Nmap reports a service name.
+      - SERVICE_VERSION carries product + version; SERVICE_FINGERPRINT carries servicefp when present.
+specialty_sections:
+  - title: SSH service and host keys (APPLICATIONS branch)
+    pattern: ssh_host_keys
+    prose: >
+      When Nmap runs the ssh-hostkey NSE script against an open SSH port, the graph extends
+      the APPLICATIONS branch with key SUBENTITY nodes per algorithm family.
+    bullets:
+      - Key nugget_id is the algorithm family (RSA, ECDSA, EDDSA, DSA).
+      - Multiple keys on one service are sibling SUBENTITY nodes under the same SERVICE.
+  - title: OS fingerprint (-A / OS detection)
+    pattern: os_environment
+    prose: Best osmatch by accuracy is selected when multiple matches exist.
+  - title: Traceroute trace (host-to-host path)
+    pattern: trace_hop_chain
+    prose: >
+      Nmap records hop IPs in XML; the graph models hosts along the path. The final hop
+      reuses the target HOST node when IPs match.
+scenarios:
+  - id: host_discovery_permissive_xml
+    structures: SCAN + HOST + HOST_STATUS
+  - id: host_discovery_corporate_xml
+    structures: SCAN + HOST + HOST_STATUS
+  - id: host_discovery_local_subnet_xml
+    structures: SCAN + multiple HOST
+  - id: tcp_top_ports_permissive_xml
+    structures: HOST + PORT/SERVICE (open TCP)
+  - id: tcp_top_ports_corporate_xml
+    structures: HOST + PORT/SERVICE for all table rows
+  - id: tcp_top_ports_local_xml
+    structures: Multiple hosts, sparse ports
+  - id: service_version_permissive_xml
+    structures: SERVICE + SERVICE_VERSION + SERVICE_EXTRAINFO + CPE
+  - id: os_aggressive_permissive_xml
+    structures: ENVIRONMENT + OS + TRACE
+  - id: nse_default_permissive_xml
+    structures: SERVICE + script-heavy ports; SSH keys when ssh-hostkey fires
+  - id: udp_top_permissive_xml
+    structures: UDP PORT_STATE variants
+  - id: traceroute_permissive_xml
+    structures: TRACE host chain
+  - id: skip_ping_permissive_xml
+    structures: HOST without prior ping semantics
+  - id: capstone_permissive_xml
+    structures: Combined rich scan; often includes SSH keys on port 22
+  - id: service_version_corporate_xml
+    structures: SERVICE + SERVICE_VERSION + SERVICE_FINGERPRINT
+  - id: windows_enrich_local_xml
+    structures: Local Windows enrichment
+field_mapping:
+  - path: nmaprun@args
+    nugget_id: SCAN_CLI
+  - path: host/status@state
+    nugget_id: HOST_STATUS
+  - path: host/status@reason
+    nugget_id: HOST_STATUS_REASON
+  - path: address@addr
+    nugget_id: IPV4_ADDRESS
+    notes: under NETWORKS via classify_ip
+  - path: hostname@name
+    nugget_id: INTERNET_NAME
+    notes: had on HOST
+  - path: port/state@state
+    nugget_id: PORT_STATE
+  - path: service@product + @version
+    nugget_id: SERVICE_VERSION
+  - path: service@servicefp
+    nugget_id: SERVICE_FINGERPRINT
+  - path: service@extrainfo
+    nugget_id: SERVICE_EXTRAINFO
+  - path: service/cpe
+    nugget_id: CPE_URL
+  - path: script@id=ssh-hostkey
+    nugget_id: RSA|ECDSA|EDDSA|DSA
+    notes: SSH key SUBENTITY under SERVICE
+  - path: os/osmatch@name
+    nugget_id: OPERATING_SYSTEM
+  - path: trace@proto
+    nugget_id: TRACE_PROTOCOL
+  - path: trace/hop@ttl
+    nugget_id: HOP_TTL
+  - path: trace/hop@rtt
+    nugget_id: HOP_RTT
+  - path: trace/hop@ipaddr
+    nugget_id: IPV4_ADDRESS
+    notes: under hop HOST
+proposed_nuggets:
+  - nugget_id: SERVICE
+    type: ENTITY
+    parent: APPLICATIONS
+    source: service@name
+    relation: contains; listens-to → PORT
+  - nugget_id: SERVICE_VERSION
+    type: DESCRIPTOR
+    parent: SERVICE
+    source: service@product + @version
+    relation: had
+  - nugget_id: SERVICE_FINGERPRINT
+    type: DESCRIPTOR
+    parent: SERVICE
+    source: service@servicefp
+    relation: had
+  - nugget_id: SERVICE_EXTRAINFO
+    type: DESCRIPTOR
+    parent: SERVICE
+    source: service@extrainfo
+    relation: had
+  - nugget_id: CPE_URL
+    type: SUBENTITY
+    parent: SERVICE
+    source: service/cpe
+    relation: contains
+  - nugget_id: HTTP_TITLE
+    type: DESCRIPTOR
+    parent: SERVICE
+    source: NSE http-title
+    relation: had
+review_notes:
+  - Relations use ontology vocabulary contains, had, listens-to (not has, listens on, discovered).
+  - NSE script output is not fully decomposed in v1 proposals; port/service nodes carry primary facts.
+  - extraports aggregate filtered counts are not expanded to individual port nodes.
+cross_link: ../_Current_Ontology.md

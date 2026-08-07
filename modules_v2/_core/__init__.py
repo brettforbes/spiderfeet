@@ -1,5 +1,16 @@
 """Core helpers for SPEC-004 CLI graph conversion."""
 
+from .paths import (
+    CATALOGUES_DIR,
+    MODULES_V2_ROOT,
+    NUGGETS_EXTENSION_PATH,
+    NUGGETS_PATH,
+    RULES_DIR,
+    SHARED_RULES_DIR,
+    mapping_path,
+    modules_v2_root,
+    tool_rules_dir,
+)
 from .graph_builder import (
     DEFAULT_TYPE_COLOURS,
     ONTOLOGY_NAMESPACE,
@@ -37,6 +48,7 @@ from .topology import (
 from .types import CaptureFamily, RulePack
 
 __all__ = [
+    "CATALOGUES_DIR",
     "DEFAULT_TYPE_COLOURS",
     "ONTOLOGY_NAMESPACE",
     "correlate_nerva_records",
@@ -45,6 +57,7 @@ __all__ = [
     "RecordCorrelationResult",
     "normalize_nerva_record",
     "GraphBuilder",
+    "MODULES_V2_ROOT",
     "RulePack",
     "RuleEngine",
     "RulePackError",
@@ -59,6 +72,10 @@ __all__ = [
     "load_cdn_signatures",
     "load_edge_asns",
     "load_nugget_templates",
+    "mapping_path",
+    "modules_v2_root",
+    "NUGGETS_EXTENSION_PATH",
+    "NUGGETS_PATH",
     "load_rule_pack",
     "load_shared_rules",
     "match_edge_asn",
@@ -66,6 +83,9 @@ __all__ = [
     "nugget_instance_id",
     "nugget_node",
     "resolve_path",
+    "RULES_DIR",
+    "SHARED_RULES_DIR",
+    "tool_rules_dir",
     "validate_graph",
     "validate_graph_connectivity",
 ]
