@@ -1,0 +1,94 @@
+{
+  "schema": "katana_crawl_v1",
+  "tool": "katana",
+  "scenario": "Katana sparse fixture (truncated from upside.com exam)",
+  "scenario_id": "from_httpx_upside_com_sample",
+  "target": "theupside.com",
+  "httpx_scenario": "from_subfinder_upside_com",
+  "crawl_profile": "depth-2,fqdn-scope,concurrency-5,timeout-10,crawl-duration-30s",
+  "url_input_count": 1,
+  "command": "katana -u https://theupside.com -silent -jsonl -depth 2",
+  "runtime": "modules_v2",
+  "started_at": "2026-07-06T12:00:00+00:00",
+  "duration_s": 12.0,
+  "exit_code": 0,
+  "endpoint_summary_lines": 3,
+  "text_role": "one line per endpoint: url host=\u2026 method=\u2026 status=\u2026",
+  "structured_role": "full katana JSONL crawl objects in records[]",
+  "records": [
+    {
+      "timestamp": "2026-07-06T22:04:37.8492148+10:00",
+      "request": {
+        "method": "GET",
+        "endpoint": "https://uat.theupside.com"
+      },
+      "response": {
+        "status_code": 204,
+        "headers": {
+          "Connection": "keep-alive",
+          "Date": "Mon, 06 Jul 2026 12:04:38 GMT",
+          "Server": "awselb/2.0"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-07-06T22:04:38.1123174+10:00",
+      "request": {
+        "method": "GET",
+        "endpoint": "https://image.theupside.com"
+      },
+      "response": {
+        "status_code": 403,
+        "headers": {
+          "Alt-Svc": "h3=\":443\"; ma=86400",
+          "Cache-Control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+          "Cf-Cache-Status": "DYNAMIC",
+          "Cf-Ray": "a16e791adaafa7ad-SYD",
+          "Connection": "keep-alive",
+          "Content-Length": "17",
+          "Content-Type": "text/plain; charset=UTF-8",
+          "Date": "Mon, 06 Jul 2026 12:04:38 GMT",
+          "Expires": "Thu, 01 Jan 1970 00:00:01 GMT",
+          "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+          "Referrer-Policy": "same-origin",
+          "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=i7MoaJQj4PfHVpd7anS%2FhMzjthNs6lTD%2BOXXZagDAnYVLMcIy7%2B4179N2fUkxd0T6EaFf614TfEYbHuc0popl9GrmncRkCCAXe7gv0VH%2FDkweYpJYk7t8jFzhPEZSD%2BFOg%2B97bfZ\"}]}",
+          "Server": "cloudflare",
+          "Server-Timing": "cfEdge;dur=1,cfOrigin;dur=0;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=5,cfOrigin;dur=2;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=4,cfOrigin;dur=9;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=4,cfOrigin;dur=15;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=4,cfOrigin;dur=22;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=4,cfOrigin;dur=29;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=4,cfOrigin;dur=34;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=4,cfOrigin;dur=41;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=4,cfOrigin;dur=47;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=4,cfOrigin;dur=52;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=2,cfOrigin;dur=58;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=3,cfOrigin;dur=63;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=3,cfOrigin;dur=68;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=4,cfOrigin;dur=73;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=3,cfOrigin;dur=79;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=6,cfOrigin;dur=83;cfCacheStatus;desc=\"DYNAMIC\";cfEdge;dur=18,cfOrigin;dur=99",
+          "X-Frame-Options": "SAMEORIGIN"
+        },
+        "content_length": 17
+      }
+    },
+    {
+      "timestamp": "2026-07-06T22:04:38.3270151+10:00",
+      "request": {
+        "method": "GET",
+        "endpoint": "https://returns.theupside.com"
+      },
+      "response": {
+        "status_code": 404,
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Branded-Page-Name": "returns",
+          "Cache-Control": "private, no-cache, no-store, max-age=0, must-revalidate",
+          "Cf-Cache-Status": "DYNAMIC",
+          "Cf-Ray": "a16e791b5fef5c09-SYD",
+          "Connection": "keep-alive",
+          "Content-Security-Policy": "frame-ancestors https://*.returnscenter.io https://*.returnscenter.com https://*.aftership.com https://*.aftership.io https://*.shopify.com http://localhost:3344",
+          "Content-Type": "text/html; charset=utf-8",
+          "Date": "Mon, 06 Jul 2026 12:04:38 GMT",
+          "Ratelimit-Limit": "10;300",
+          "Ratelimit-Remaining": "9;293",
+          "Ratelimit-Reset": "1;1",
+          "Server": "cloudflare",
+          "Set-Cookie": "shopper-proxy-by=as-accounts; SameSite=None; Secure; Path=/;",
+          "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "Via": "1.1 google",
+          "X-Content-Type-Options": "nosniff"
+        },
+        "content_length": 10485
+      }
+    }
+  ]
+}
