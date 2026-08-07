@@ -1,0 +1,17 @@
+Value Required IP (\d+\.\d+\.\d+\.\d+)
+Value Required MAC ([0-9a-fA-F:]{17})
+Value COUNT (\d+)
+Value LEN (\d+)
+Value VENDOR (.+)
+
+Start
+  ^\s*${IP}\s+${MAC}\s+${COUNT}\s+${LEN}\s+${VENDOR} -> Record
+  ^\s*$$
+  ^Currently scanning: -> Next
+  ^-- Active scan completed -> Next
+  ^-- Passive capture ended -> Next
+  ^-- Ending netdiscover -> Next
+  ^ERROR: -> Next
+  ^.* -> Next
+
+EOF
