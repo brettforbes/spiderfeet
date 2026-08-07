@@ -124,7 +124,8 @@ AH is a hard prerequisite — no engine/module work begins until AH4 lands. AI (
 
 ### AI2 — `fun` JSON projections
 **Do:** Write the `fun` queries (project, workflow, scan_step, extended `contains_recursive` with `had`/`listens-to`) returning fields sufficient for JSON assembly (R10-08).
-**Verify:** typedb skill: run each `fun` against a seeded fixture DB; outputs cover the documented fields.
+**Artifact:** `.governance/project/SPEC010_FUN_PROJECTIONS.md` + schema funs in `.seed/spiderfeet_v2_semantic.tql`.
+**Verify:** `poetry run pytest .tests/test_fun_projections.py -q`.
 
 ### AI3 — Bootstrap load `spiderfeet-actual` **[G1]**
 **Do:** `spiderfeet_v2/db/bootstrap` loads the reconciled `.tql` into a fresh `spiderfeet-actual` and seeds the 8 `sfp-cli-app-*` services; `--reset` is idempotent. Post the command + no-data-loss confirmation; wait for operator approval comment.
