@@ -10,6 +10,7 @@ define
 	####################################
 
 	relation subgraph @abstract,
+		owns json_string @card(0..1), # dual-form: full graph JSON ({nodes,edges}) string (R10-18 / seed §3.3)
 		relates nuggets @card(0..), # array of nugget entities
 		relates edges @card(0..), # array of edge relations
 		relates owner @card(0..1); # entity that owns the subgraph
@@ -796,6 +797,7 @@ define
 	attribute db_value, value double;
 	attribute bo_value, value boolean;
 	attribute st_value, value string;
+	attribute json_string, value string; # dual-form subgraph payload (graph JSON)
 	attribute scan_result_id, value string;
 	attribute project_context_id, value string;
 	attribute temporary_subgraph_id, value string;
