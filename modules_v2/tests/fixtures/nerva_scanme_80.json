@@ -1,0 +1,107 @@
+{
+  "schema": "nerva_fingerprint_v1",
+  "tool": "nerva",
+  "scenario": "TCP HTTP rich metadata (scanme:80)",
+  "scenario_id": "tcp_http_rich_json",
+  "target": "scanme.nmap.org:80",
+  "command": "nerva -t scanme.nmap.org:80 --json -w 5000",
+  "runtime": "windows",
+  "started_at": "2026-06-30T07:38:43.148728+00:00",
+  "duration_s": 16.094,
+  "exit_code": 0,
+  "fingerprint_summary_lines": 2,
+  "text_role": "one line per discovered service/IP (pipe-friendly summary)",
+  "structured_role": "full JSON metadata per record (headers, findings, etc.)",
+  "records": [
+    {
+      "host": "scanme.nmap.org",
+      "ip": "2600:3c01::f03c:91ff:fe18:bb2f",
+      "port": 80,
+      "protocol": "http",
+      "tls": false,
+      "transport": "tcp",
+      "version": "Apache/2.4.7 (Ubuntu)",
+      "metadata": {
+        "status": "200 OK",
+        "status_code": 200,
+        "response_headers": {
+          "Accept-Ranges": [
+            "bytes"
+          ],
+          "Content-Type": [
+            "text/html"
+          ],
+          "Date": [
+            "Tue, 30 Jun 2026 07:38:47 GMT"
+          ],
+          "Server": [
+            "Apache/2.4.7 (Ubuntu)"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ]
+        },
+        "technologies": [
+          "Ubuntu",
+          "Apache HTTP Server:2.4.7",
+          "apache_httpd:2.4.7"
+        ],
+        "cpes": [
+          "cpe:2.3:o:canonical:ubuntu_linux:*:*:*:*:*:*:*:*",
+          "cpe:2.3:a:apache:http_server:*:*:*:*:*:*:*:*",
+          "cpe:2.3:a:apache:http_server:2.4.7:*:*:*:*:*:*:*"
+        ],
+        "fingerprint_metadata": {
+          "apache_httpd": {
+            "os": "Ubuntu"
+          }
+        }
+      }
+    },
+    {
+      "host": "scanme.nmap.org",
+      "ip": "45.33.32.156",
+      "port": 80,
+      "protocol": "http",
+      "tls": false,
+      "transport": "tcp",
+      "version": "Apache/2.4.7 (Ubuntu)",
+      "metadata": {
+        "status": "200 OK",
+        "status_code": 200,
+        "response_headers": {
+          "Accept-Ranges": [
+            "bytes"
+          ],
+          "Content-Type": [
+            "text/html"
+          ],
+          "Date": [
+            "Tue, 30 Jun 2026 07:38:47 GMT"
+          ],
+          "Server": [
+            "Apache/2.4.7 (Ubuntu)"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ]
+        },
+        "technologies": [
+          "Ubuntu",
+          "Apache HTTP Server:2.4.7",
+          "apache_httpd:2.4.7"
+        ],
+        "cpes": [
+          "cpe:2.3:o:canonical:ubuntu_linux:*:*:*:*:*:*:*:*",
+          "cpe:2.3:a:apache:http_server:*:*:*:*:*:*:*:*",
+          "cpe:2.3:a:apache:http_server:2.4.7:*:*:*:*:*:*:*"
+        ],
+        "fingerprint_metadata": {
+          "apache_httpd": {
+            "os": "Ubuntu"
+          }
+        }
+      }
+    }
+  ]
+}
