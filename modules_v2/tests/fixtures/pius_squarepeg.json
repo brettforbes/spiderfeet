@@ -1,0 +1,73 @@
+{
+  "schema": "pius_finding_v1",
+  "tool": "pius",
+  "scenario": "Corporate gleif stack (Square Peg Capital)",
+  "scenario_id": "corporate_squarepeg_ndjson",
+  "org": "Square Peg Capital Pty Ltd",
+  "target": "squarepeg.vc",
+  "command": "/mnt/c/projects/spiderfeet/.tools/pius run --org \"Square Peg Capital Pty Ltd\" --domain squarepeg.vc --plugins gleif,wikidata,whois,crt-sh --output ndjson",
+  "runtime": "wsl",
+  "started_at": "2026-07-05T13:10:18.904973+00:00",
+  "duration_s": 35.046,
+  "exit_code": 0,
+  "finding_summary_lines": 6,
+  "text_role": "one line per finding: [type] value (source)",
+  "structured_role": "full NDJSON finding objects in records[]",
+  "stderr_banner": "Running 4 plugin(s) in \"passive\" mode...",
+  "records": [
+    {
+      "Type": "domain",
+      "Value": "www.squarepeg.vc",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "Square Peg Capital Pty Ltd",
+        "query": "squarepeg.vc"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "squarepeg.vc",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "Square Peg Capital Pty Ltd",
+        "query": "squarepeg.vc"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "foundersummit2026.squarepeg.vc",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "Square Peg Capital Pty Ltd",
+        "query": "squarepeg.vc"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "email.foundersummit2026.squarepeg.vc",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "Square Peg Capital Pty Ltd",
+        "query": "squarepeg.vc"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "helix.squarepeg.vc",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "Square Peg Capital Pty Ltd",
+        "query": "squarepeg.vc"
+      }
+    },
+    {
+      "Type": "domain",
+      "Value": "data.squarepeg.vc",
+      "Source": "crt-sh",
+      "Data": {
+        "org": "Square Peg Capital Pty Ltd",
+        "query": "squarepeg.vc"
+      }
+    }
+  ]
+}
