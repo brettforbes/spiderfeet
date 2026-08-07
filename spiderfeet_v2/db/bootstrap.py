@@ -12,8 +12,8 @@ from typing import List, Optional
 
 from typedb.api.connection.driver import Driver
 
-from spiderfeet.map.config import TypeDBConfigError, TypeDBConnectionConfig, load_connection_config
-from spiderfeet.map.connection import open_driver, ping
+from spiderfeet_v2.db.config import TypeDBConfigError, TypeDBConnectionConfig, load_connection_config
+from spiderfeet_v2.db.connection import open_driver, ping
 from spiderfeet.map.typeql_util import literal_string, run_read_exists, run_schema, run_write
 from spiderfeet_v2.db.constants import (
     ACTUAL_DATABASE_NAME,
@@ -327,3 +327,4 @@ def main(argv: Optional[List[str]] = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

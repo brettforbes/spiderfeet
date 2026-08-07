@@ -8,6 +8,9 @@ ACTUAL_DATABASE_NAME = "spiderfeet-actual"
 
 SCHEMA_TQL = REPO_ROOT / ".seed" / "spiderfeet_v2_semantic.tql"
 
+DEFAULT_CONFIG_PATH = REPO_ROOT / ".config" / "typedb.connection.json"
+EXAMPLE_CONFIG_PATH = REPO_ROOT / ".config" / "typedb.connection.example.json"
+
 # Relation type (schema) -> (module_id attribute, display name)
 CLI_APP_SERVICES = (
     ("sfp-cli-app-nmap", "sfp_cli_nmap", "Nmap CLI App"),
