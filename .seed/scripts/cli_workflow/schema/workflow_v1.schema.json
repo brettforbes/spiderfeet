@@ -36,6 +36,11 @@
           "default": {
             "type": "array",
             "items": { "type": "string" }
+          },
+          "values": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Canonical 12A seed list (alias of default)"
           }
         }
       }
