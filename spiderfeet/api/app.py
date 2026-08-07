@@ -29,6 +29,13 @@ from spiderfeet.api.schemas import (
     SCAN_UI_OPENAPI_EXAMPLES,
     SCAN_UI_SWAGGER_EXAMPLE,
 )
+from spiderfeet_v2.api import v2_router
+from spiderfeet_v2.api.schemas import (
+    PROJECT_CREATE_OPENAPI_EXAMPLES,
+    PROJECT_CREATE_EXAMPLE,
+    TEMPORARY_CONTEXT_UPDATE_EXAMPLE,
+    TEMPORARY_CONTEXT_UPDATE_OPENAPI_EXAMPLES,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -115,6 +122,8 @@ def create_app() -> FastAPI:
     app.include_router(settings_routes.router, prefix=prefix)
     app.include_router(cli_corpus.router, prefix=prefix)
     app.include_router(content.router, prefix=prefix)
+    # SPEC-010 AN2: v2 engine routes alongside v1 (dual-stack; AN1 G2 not required).
+    app.include_router(v2_router, prefix=prefix)
 
     def custom_openapi():
         if app.openapi_schema:
@@ -151,6 +160,38 @@ def create_app() -> FastAPI:
         if scan_ui_content is not None:
             scan_ui_content["example"] = SCAN_UI_SWAGGER_EXAMPLE
             scan_ui_content.setdefault("examples", SCAN_UI_OPENAPI_EXAMPLES)
+
+        # v2 OpenAPI examples (AN2 / R10-24)
+        project_post = (
+            schema.get("paths", {})
+            .get(f"{prefix}/projects", {})
+            .get("post", {})
+        )
+        project_content = (
+            project_post.get("requestBody", {})
+            .get("content", {})
+            .get("application/json", {})
+        )
+        if project_content is not None:
+            project_content["example"] = PROJECT_CREATE_EXAMPLE
+            project_content.setdefault("examples", PROJECT_CREATE_OPENAPI_EXAMPLES)
+
+        temp_put = (
+            schema.get("paths", {})
+            .get(f"{prefix}/projects/{{project_id}}/contexts/temporary", {})
+            .get("put", {})
+        )
+        temp_content = (
+            temp_put.get("requestBody", {})
+            .get("content", {})
+            .get("application/json", {})
+        )
+        if temp_content is not None:
+            temp_content["example"] = TEMPORARY_CONTEXT_UPDATE_EXAMPLE
+            temp_content.setdefault(
+                "examples", TEMPORARY_CONTEXT_UPDATE_OPENAPI_EXAMPLES
+            )
+
         app.openapi_schema = schema
         return app.openapi_schema
 
