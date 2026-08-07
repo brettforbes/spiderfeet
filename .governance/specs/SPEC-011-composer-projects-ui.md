@@ -74,6 +74,7 @@ Deliver the **Projects page** (replacing the disabled *Enrichments* nav stub, re
 |----|-------------|
 | R11-16 | With a valid step and Scan Now enabled, clicking Scan Now calls the SPEC-010 execute endpoint, shows progress, and on completion populates the Text / Structured / Graph / Report tabs from the returned four forms; the scan_step is persisted server-side (verified by re-fetch). |
 | R11-17 | Selecting a step that has already been run loads its stored four forms in **read-only** mode (all five tabs viewable, Scan Now shown complete/disabled), sourced from the persisted scan_step. |
+| R11-23 | With a multi-step workflow YAML that the YAML DSL Workflow iframe reports as valid (`validationResult.ok`), the Composer exposes a **Run Workflow** control that persists the current editor YAML to the workflow record, calls the SPEC-010 full-workflow execute endpoint (`POST /workflows/{workflow_id}/execute` / AO2), shows progress and a succeeded/failed/skipped summary, and imports each completed step whose `context.export` is `scan_graph` into the Temporary Subgraph Viewer as discrete subgraphs (same import rules as R11-18). Per-step Scan Now (R11-16) remains available and unchanged. Run Workflow stays disabled while validation is not `ok` or while a workflow run is in flight. |
 
 ### Epic AW — Temporary Subgraph Viewer behavior
 
@@ -92,7 +93,7 @@ Deliver the **Projects page** (replacing the disabled *Enrichments* nav stub, re
 
 ## Milestone (what "done" looks like for the operator)
 
-The renamed **Projects** tab lists projects; clicking one opens the **Composer**. The left YAML editor shows the workflow diagram (collapsible to 0 / 3 / 12 columns, theme-matched). Clicking a workflow step slides in that tool's 5-tab CLI app on the right; unset steps allow option editing with Scan Now disabled until the step's YAML is valid; setting options updates the workflow YAML/diagram. Running a step shows Text/Structured/Graph/Report and, when the step exports its scan graph, drops that subgraph into the lower Temporary Subgraph Viewer as a discrete graph. The upper Project Context Viewer is present but empty. The whole flow works live against the SPEC-010 engine for a real target.
+The renamed **Projects** tab lists projects; clicking one opens the **Composer**. The left YAML editor shows the workflow diagram (collapsible to 0 / 3 / 12 columns, theme-matched). Clicking a workflow step slides in that tool's 5-tab CLI app on the right; unset steps allow option editing with Scan Now disabled until the step's YAML is valid; setting options updates the workflow YAML/diagram. Running a single step (Scan Now) or a validated multi-step workflow (Run Workflow) shows Text/Structured/Graph/Report for steps as applicable and, when a step exports its scan graph, drops that subgraph into the lower Temporary Subgraph Viewer as a discrete graph. The upper Project Context Viewer is present but empty. The whole flow works live against the SPEC-010 engine for a real target.
 
 ## Architecture
 
