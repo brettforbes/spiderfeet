@@ -63,7 +63,7 @@ field_mapping:
   - path: runstats.systems.discovered
     nugget_id: SCAN_DISCOVERED
   - path: systems[].ipv4
-    nugget_id: SYSTEM, IP_ADDRESS
+    nugget_id: SYSTEM, IPV4_ADDRESS
     notes: scan contains SYSTEM; NETWORKS contains IP
   - path: systems[].mac
     nugget_id: MAC_ADDRESS

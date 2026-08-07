@@ -61,7 +61,7 @@ field_mapping:
     nugget_id: HOST or CDN
     notes: correlation engine reclassifies CDN edges
   - path: records[].ip
-    nugget_id: IP_ADDRESS
+    nugget_id: IPV4_ADDRESS
     notes: under NETWORKS via classify_ip
   - path: records[].port
     nugget_id: PORT

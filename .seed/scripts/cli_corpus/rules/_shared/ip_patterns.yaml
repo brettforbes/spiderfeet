@@ -14,7 +14,7 @@ patterns:
     :(?:(?::[0-9A-Fa-f]{1,4}){1,6}))$
 roles:
   host:
-    ipv4: IP_ADDRESS
+    ipv4: IPV4_ADDRESS
     ipv6: IPV6_ADDRESS
   internal:
     ipv4: INTERNAL_IP_ADDRESS

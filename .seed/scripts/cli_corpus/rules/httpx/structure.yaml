@@ -65,7 +65,7 @@ field_mapping:
     nugget_id: DOMAIN_NAME or HOST
     notes: domain contains host endpoint
   - path: records[].ip
-    nugget_id: IP_ADDRESS
+    nugget_id: IPV4_ADDRESS
     notes: NETWORKS contains via classify_ip
   - path: records[].status_code
     nugget_id: HTTP_STATUS_CODE

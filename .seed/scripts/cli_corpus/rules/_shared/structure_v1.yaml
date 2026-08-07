@@ -33,7 +33,7 @@ patterns:
         target: NETWORKS
       - source: NETWORKS
         relation: contains
-        target: IP_ADDRESS
+        target: IPV4_ADDRESS
       - source: NETWORKS
         relation: contains
         target: MAC_ADDRESS
@@ -55,7 +55,7 @@ patterns:
         target: NETWORKS
       - source: NETWORKS
         relation: contains
-        target: IP_ADDRESS
+        target: IPV4_ADDRESS
       - source: NETWORKS
         relation: contains
         target: TRANSPORT
@@ -125,7 +125,7 @@ patterns:
         target: NETWORKS
       - source: NETWORKS
         relation: contains
-        target: IP_ADDRESS
+        target: IPV4_ADDRESS
 
   os_environment:
     title: OS fingerprint
@@ -203,7 +203,7 @@ patterns:
         target: LIVENESS_STATUS
       - source: DOMAIN_NAME
         relation: had
-        target: IP_ADDRESS
+        target: IPV4_ADDRESS
 
   org_company_tree:
     title: Organisation company tree
@@ -256,7 +256,7 @@ patterns:
         target: NETWORKS
       - source: NETWORKS
         relation: contains
-        target: IP_ADDRESS
+        target: IPV4_ADDRESS
       - source: NETWORKS
         relation: contains
         target: TRANSPORT

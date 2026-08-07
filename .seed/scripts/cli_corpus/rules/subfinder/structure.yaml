@@ -21,7 +21,7 @@ patterns:
     title: Subdomain enumeration tree
     prose: >
       Each JSONL host becomes a DOMAIN_NAME under the scan. Passive mode leaves liveness
-      unconfirmed; active mode with IP attaches IP_ADDRESS via had on the domain node.
+      unconfirmed; active mode with IP attaches IPV4_ADDRESS via had on the domain node.
     bullets:
       - DISCOVERY_SOURCE and DISCOVERY_MODE descriptors capture passive/active provenance.
       - DOMAIN_NAME_PARENT derives registrable parent labels per 09 S6.
@@ -30,7 +30,7 @@ specialty_sections:
   - title: Active resolution with IP
     pattern: domain_apex
     prose: >
-      Active enumeration (-active -oI) attaches resolved IP_ADDRESS via had and sets
+      Active enumeration (-active -oI) attaches resolved IPV4_ADDRESS via had and sets
       LIVENESS_STATUS to confirmed on the domain node.
 scenarios:
   - id: corporate_upside_au_passive_cs
@@ -42,7 +42,7 @@ scenarios:
   - id: corporate_k2am_passive_cs
     structures: Hosting-style SME enumeration
   - id: corporate_k2am_active_oI
-    structures: Active mode + IP_ADDRESS had edges
+    structures: Active mode + IPV4_ADDRESS had edges
   - id: corporate_upside_com_passive_cs
     structures: TLD sibling enumeration
   - id: enterprise_sbs_passive_cs
@@ -69,7 +69,7 @@ field_mapping:
     nugget_id: DISCOVERY_SOURCE
     notes: had on domain
   - path: records[].ip
-    nugget_id: IP_ADDRESS
+    nugget_id: IPV4_ADDRESS
     notes: had on domain when active
   - path: records[].mode
     nugget_id: DISCOVERY_MODE
