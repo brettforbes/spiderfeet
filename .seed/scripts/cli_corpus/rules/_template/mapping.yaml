@@ -9,7 +9,7 @@ seed_docs:
 
 # Prefer existing nugget_id values from nuggets.json / nuggets_extension.json.
 # IP fields: emit raw address strings; adapters/topology must call classify_ip
-# (do not assume IPv4-only IP_ADDRESS).
+# (do not assume IPv4-only IPV4_ADDRESS).
 
 # Example (engine may use path mappings and/or topology templates):
 # mappings:

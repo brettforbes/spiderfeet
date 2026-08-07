@@ -86,7 +86,7 @@ field_mapping:
   - path: host/status@reason
     nugget_id: HOST_STATUS_REASON
   - path: address@addr
-    nugget_id: IP_ADDRESS
+    nugget_id: IPV4_ADDRESS
     notes: under NETWORKS via classify_ip
   - path: hostname@name
     nugget_id: INTERNET_NAME
@@ -113,7 +113,7 @@ field_mapping:
   - path: trace/hop@rtt
     nugget_id: HOP_RTT
   - path: trace/hop@ipaddr
-    nugget_id: IP_ADDRESS
+    nugget_id: IPV4_ADDRESS
     notes: under hop HOST
 proposed_nuggets:
   - nugget_id: SERVICE

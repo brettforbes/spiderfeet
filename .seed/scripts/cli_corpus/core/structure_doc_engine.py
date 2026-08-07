@@ -471,7 +471,7 @@ flowchart TB
 def _ontology_composition_suffix() -> str:
     return """## Composing sub-graphs
 
-The **investigation graph** is the union of contributed sub-graphs, correlated by shared keys (`IP_ADDRESS`, `INTERNET_NAME` / `DOMAIN_NAME`, URLs, findings):
+The **investigation graph** is the union of contributed sub-graphs, correlated by shared keys (`IPV4_ADDRESS`, `INTERNET_NAME` / `DOMAIN_NAME`, URLs, findings):
 
 ```mermaid
 flowchart LR

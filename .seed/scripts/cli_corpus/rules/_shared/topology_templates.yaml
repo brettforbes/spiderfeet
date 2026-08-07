@@ -14,7 +14,7 @@ templates:
         target: NETWORKS
       - source: NETWORKS
         relation: contains
-        target: IP_ADDRESS
+        target: IPV4_ADDRESS
       - source: NETWORKS
         relation: contains
         target: MAC_ADDRESS
@@ -31,7 +31,7 @@ templates:
         target: NETWORKS
       - source: NETWORKS
         relation: contains
-        target: IP_ADDRESS
+        target: IPV4_ADDRESS
       - source: NETWORKS
         relation: contains
         target: TRANSPORT

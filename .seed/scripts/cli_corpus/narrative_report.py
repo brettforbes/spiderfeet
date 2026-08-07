@@ -91,6 +91,13 @@ class SemanticGraph:
     def contained(self, entity_id: str, nugget_id: Optional[str] = None) -> List[Node]:
         return self.outgoing(entity_id, relation="contains", nugget_id=nugget_id)
 
+    def contained_ip_addresses(self, entity_id: str) -> List[Node]:
+        """Host/system address nodes: IPV4_ADDRESS and/or IPV6_ADDRESS (SPEC-010 AH)."""
+        nodes: List[Node] = []
+        for nugget_id in ("IPV4_ADDRESS", "IPV6_ADDRESS"):
+            nodes.extend(self.contained(entity_id, nugget_id=nugget_id))
+        return self._sort_nodes({n["id"]: n for n in nodes}.values())
+
     def find_by_nugget_id(self, nugget_id: str) -> List[Node]:
         return self._sort_nodes(
             [node for node in self.nodes.values() if node.get("nugget_id") == nugget_id]
@@ -154,7 +161,7 @@ class SemanticGraph:
             return None
         networks = self.contained(host["id"], nugget_id="NETWORKS")
         for net in networks:
-            for ip in self.contained(net["id"], nugget_id="IP_ADDRESS"):
+            for ip in self.contained_ip_addresses(net["id"]):
                 return node_value(ip)
         return node_value(host)
 
@@ -407,7 +414,7 @@ class NarrativeReportBuilder:
         for net in [nets] + self.graph.contained(host["id"], nugget_id="NETWORKS"):
             if net["id"] == nets["id"]:
                 pass
-            ip_nodes.extend(self.graph.contained(net["id"], nugget_id="IP_ADDRESS"))
+            ip_nodes.extend(self.graph.contained_ip_addresses(net["id"]))
         ip_nodes = self.graph._sort_nodes({n["id"]: n for n in ip_nodes}.values())
 
         if not ip_nodes:
@@ -893,7 +900,7 @@ class NetdiscoverNarrativeReportBuilder(NarrativeReportBuilder):
         self.lines.extend(["### Networks", ""])
         self._system_network_mermaid(host, nets)
 
-        ip_nodes = self.graph.contained(nets["id"], nugget_id="IP_ADDRESS")
+        ip_nodes = self.graph.contained_ip_addresses(nets["id"])
         mac_nodes = self.graph.contained(nets["id"], nugget_id="MAC_ADDRESS")
 
         if not ip_nodes and not mac_nodes:
@@ -923,7 +930,7 @@ class NetdiscoverNarrativeReportBuilder(NarrativeReportBuilder):
         self.lines.append("")
 
     def _system_network_mermaid(self, system: Node, networks: Node) -> None:
-        ip = next(iter(self.graph.contained(networks["id"], nugget_id="IP_ADDRESS")), None)
+        ip = next(iter(self.graph.contained_ip_addresses(networks["id"])), None)
         mac = next(iter(self.graph.contained(networks["id"], nugget_id="MAC_ADDRESS")), None)
         vendor = None
         if mac:
@@ -943,7 +950,8 @@ class NetdiscoverNarrativeReportBuilder(NarrativeReportBuilder):
         self.lines.append('  nets["NETWORKS"]')
         self.lines.append(f"  system -->|contains| nets")
         if ip:
-            self.lines.append(f'  ip["IP_ADDRESS"]')
+            ip_type = str(ip.get("nugget_id") or "IPV4_ADDRESS")
+            self.lines.append(f'  ip["{ip_type}"]')
             self.lines.append(f"  nets -->|contains| ip")
         if mac:
             self.lines.append(f'  mac["MAC_ADDRESS"]')
