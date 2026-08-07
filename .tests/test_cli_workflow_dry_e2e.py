@@ -34,7 +34,7 @@ def test_dry_e2e_12a_context_export_policy():
         for s in doc["steps"]
         if (s.get("context") or {}).get("export") == "scan_graph"
     }
-    assert export_ids == {"subfinder_enum", "nmap_ports", "nerva_services", "nuclei_vulns"}
-    assert result.steps["subfinder_enum"].vars["all_domains"]
-    assert result.steps["nmap_ports"].vars["ip_port_list"]
+    assert export_ids == {"sfp_cli_subfinder", "sfp_cli_nmap", "sfp_cli_nerva", "sfp_cli_nuclei"}
+    assert result.steps["sfp_cli_subfinder"].vars["all_domains"]
+    assert result.steps["sfp_cli_nmap"].vars["ip_port_list"]
     assert len(result.context["nodes"]) > 0

@@ -14,7 +14,7 @@ from cli_workflow.core.variables import build_env, resolve_step_input  # noqa: E
 def test_resolve_workflow_inputs_and_step_vars():
     env = build_env(
         workflow_inputs={"targets": ["example.com"]},
-        steps={"subfinder_enum": {"vars": {"all_domains": ["a.example.com"]}}},
+        steps={"sfp_cli_subfinder": {"vars": {"all_domains": ["a.example.com"]}}},
     )
     assert resolve_step_input("$workflow.inputs.targets", env) == ["example.com"]
-    assert resolve_step_input("$steps.subfinder_enum.vars.all_domains", env) == ["a.example.com"]
+    assert resolve_step_input("$steps.sfp_cli_subfinder.vars.all_domains", env) == ["a.example.com"]

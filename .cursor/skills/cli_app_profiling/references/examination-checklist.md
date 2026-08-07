@@ -3,7 +3,7 @@
 ## Exploration (before saving evidence)
 
 - [ ] Confirm binary on PATH (Windows and/or WSL per manifest)
-- [ ] Capture `--help` / `-h` / manual text → `cli_help_text/<tool>_cli_help_text.md`
+- [ ] Capture `--help` / `-h` / manual text → `<Tool>-CLI-Options.md` (single canonical file per tool)
 - [ ] Identify output path: structured-available (use structured only) vs true text-only (TextFSM required)
 - [ ] **Draft semantic outcome matrix** — every distinct output shape with planned scenario id (rich, sparse, empty, error, clean miss, mode/format variants)
 - [ ] List command families that change **semantic data types** (not just formatting)

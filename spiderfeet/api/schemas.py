@@ -334,11 +334,17 @@ class MapStatusResponse(BaseModel):
     )
     database_ready: bool = Field(
         False,
-        description="Map database exists and inventory query succeeded",
+        description=(
+            "Map database exists with schema and seeded catalogue "
+            "(nuggets and OSINT services)"
+        ),
     )
     bootstrapped: bool = Field(
         False,
-        description="True when this status check auto-created or re-seeded the map DB",
+        description=(
+            "True when this status check auto-created, schema-loaded, "
+            "or re-seeded the map DB"
+        ),
     )
     inventory: Optional[MapInventoryCounts] = None
 

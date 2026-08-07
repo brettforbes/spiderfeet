@@ -13,17 +13,17 @@ This document inventories every defect in the **pre-v1 workflow sketch** and rec
 
 | Sketch defect | Why it fails | v1 replacement | Verified in |
 |---------------|--------------|----------------|-------------|
-| `concat({{IP_ADDRESS}}, ":", {{PORT}})` | Global cartesian; no host scope; ignores `contains` edges | GSE `for_each` + `collect` + `emit.product` + `join` | 12A `nmap_ports.output.vars.ip_port_list`; 12C §5 |
-| `value: {{DOMAIN_NAME}}` / `{{SUBDOMAIN}}` | Template over type name; not graph traversal | GSE `select.nodes` + `where.related` | 12A `subfinder_enum` vars |
+| `concat({{IP_ADDRESS}}, ":", {{PORT}})` | Global cartesian; no host scope; ignores `contains` edges | GSE `for_each` + `collect` + `emit.product` + `join` | 12A `sfp_cli_nmap.output.vars.ip_port_list`; 12C §5 |
+| `value: {{DOMAIN_NAME}}` / `{{SUBDOMAIN}}` | Template over type name; not graph traversal | GSE `select.nodes` + `where.related` | 12A `sfp_cli_subfinder` vars |
 | `{{SUBDOMAIN}}` nugget id | **Not in ontology** (`nuggets.json`) | `DOMAIN_NAME` + `DOMAIN_NAME_PARENT` predicate | 12C §4.1; subfinder corpus |
 | `sum({{domains}}, {{subdomains}})` | Informal function | GSE `union` binding | 12A `all_domains` |
 | `sequence:` with broken YAML indent | Invalid mapping (`- sfp_subfinder:` child keys mis-indented) | `steps:` list of step objects | 12A structure |
-| Linear `sequence` only | Cannot express fan-out (ports chain vs web chain) | `needs` DAG | 12A `nmap_ports` + `httpx_live` both need `subfinder_enum` |
+| Linear `sequence` only | Cannot express fan-out (ports chain vs web chain) | `needs` DAG | 12A `sfp_cli_nmap` + `sfp_cli_httpx` both need `sfp_cli_subfinder` |
 | `sfp_*` module ids in `info.modules` / step keys | Adapters are `tool.<id>` today; no workflow-aware `sfp_*` yet | `uses: tool.subfinder` etc. | 12B §4.4 |
 | Single shell `cli_options` string | Hard for Langium AST; escaping/splitting fragile | `config.argv` string list | 12A each step |
 | `temp_file: auto` (undifferentiated) | Unclear input vs output file roles | `files.input` / `files.output` with `mode: auto` | 12A `config.files` |
 | `context: graph: {{scan_graph}}` | Unclear merge semantics | `context.export: scan_graph \| none` | 12B §2.5; 12A interim steps |
-| `targets: https://…` passed to `-d` | DNS tools expect hostname | `normalize: hostname_from_url` on step input | 12A `subfinder_enum.input` |
+| `targets: https://…` passed to `-d` | DNS tools expect hostname | `normalize: hostname_from_url` on step input | 12A `sfp_cli_subfinder.input` |
 | `{{scan_graph}}` in output | Graph is step artifact, not a template var | `$step.scan_graph` as GSE `source` only | 12C §7 |
 
 ---
@@ -34,12 +34,12 @@ Original intent from 12B §3.3–3.5. Sketch step names used `sfp_*`; v1 uses st
 
 | Sketch step | Sketch input (as written) | Sketch output (as written) | Sketch bugs | v1 step id | v1 fix |
 |-------------|---------------------------|----------------------------|-------------|------------|--------|
-| `sfp_subfinder` | `{{targets}}` | `domains`, `subdomains`, `all_domains` via `{{DOMAIN_NAME}}` / `{{SUBDOMAIN}}` / `sum` | SUBDOMAIN type; no parent/apex split | `subfinder_enum` | GSE apex vs child `DOMAIN_NAME`; `union` for `all_domains` |
-| `sfp_nmap` | `{{all_domains}}` (sketch said `subdomains` in prose §3.4 inconsistency) | `ip_port_list` via `concat(IP, PORT)` | No host scope; wrong input in prose | `nmap_ports` | `from: $steps.subfinder_enum.vars.all_domains`; GSE `for_each` product |
-| `sfp_nerva` | `{{ip_port_list}}` (prose wrongly said `subdomains`) | none | Prose/config copy-paste from nmap | `nerva_services` | Correct input ref; context export only |
-| `sfp_httpx` | `{{all_domains}}` | `web_url_list` via `{{URL_WEB_FRAMEWORK}}` | Type name not in all httpx graphs; no filter | `httpx_live` | GSE under HOST with `HTTP_STATUS_CODE`; interim `export: none` |
-| `sfp_katana` | sketch used `{{all_domains}}` in YAML but prose said `web_url_list` | `internal_url_list` via `{{LINKED_URL_INTERNAL}}` | **Wrong input in YAML** | `katana_crawl` | `from: $steps.httpx_live.vars.live_hosts` |
-| `sfp_nuclei` | sketch used `{{all_domains}}` | context only | **Wrong input** — should be crawl URLs | `nuclei_vulns` | `from: $steps.katana_crawl.vars.crawl_urls` |
+| `sfp_subfinder` | `{{targets}}` | `domains`, `subdomains`, `all_domains` via `{{DOMAIN_NAME}}` / `{{SUBDOMAIN}}` / `sum` | SUBDOMAIN type; no parent/apex split | `sfp_cli_subfinder` | GSE apex vs child `DOMAIN_NAME`; `union` for `all_domains` |
+| `sfp_nmap` | `{{all_domains}}` (sketch said `subdomains` in prose §3.4 inconsistency) | `ip_port_list` via `concat(IP, PORT)` | No host scope; wrong input in prose | `sfp_cli_nmap` | `from: $steps.sfp_cli_subfinder.vars.all_domains`; GSE `for_each` product |
+| `sfp_nerva` | `{{ip_port_list}}` (prose wrongly said `subdomains`) | none | Prose/config copy-paste from nmap | `sfp_cli_nerva` | Correct input ref; context export only |
+| `sfp_httpx` | `{{all_domains}}` | `web_url_list` via `{{URL_WEB_FRAMEWORK}}` | Type name not in all httpx graphs; no filter | `sfp_cli_httpx` | GSE under HOST with `HTTP_STATUS_CODE`; interim `export: none` |
+| `sfp_katana` | sketch used `{{all_domains}}` in YAML but prose said `web_url_list` | `internal_url_list` via `{{LINKED_URL_INTERNAL}}` | **Wrong input in YAML** | `sfp_cli_katana` | `from: $steps.sfp_cli_httpx.vars.live_hosts` |
+| `sfp_nuclei` | sketch used `{{all_domains}}` | context only | **Wrong input** — should be crawl URLs | `sfp_cli_nuclei` | `from: $steps.sfp_cli_katana.vars.crawl_urls` |
 
 ---
 

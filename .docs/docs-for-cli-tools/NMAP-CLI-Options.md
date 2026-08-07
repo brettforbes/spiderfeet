@@ -1,349 +1,118 @@
-# Nmap CLI Options Reference
+# NMAP CLI Arguments
 
-Comprehensive reference for Nmap command-line options. Official manual: https://nmap.org/book/man.html
-
-**SpiderFeet agent rule:** always include `-oX file.xml` for machine parsing.
-
----
-
-## Target specification
-
-Targets appear after all options, or via input flags.
-
-| Syntax | Example | Description |
-|--------|---------|-------------|
-| Hostname | `example.com` | Resolves via DNS |
-| IP address | `192.168.1.1` | IPv4 |
-| IPv6 | `-6 2001:db8::1` | IPv6 scan |
-| CIDR | `10.0.0.0/8` | Network block |
-| Range | `10.0.0.1-50` | Last octet range |
-| Octet ranges | `192.168.1-3,5.1` | Multiple ranges |
-| List file | `-iL file.txt` | One target per line |
-| Random | `-iR N` | Scan N random IPs |
-| Exclude | `--exclude a,b` | Skip addresses |
-| Exclude file | `--excludefile f.txt` | Exclusions from file |
-
----
-
-## Output options
-
-| Option | Description |
-|--------|-------------|
-| `-oX filespec` | **XML output** (required for agents) |
-| `-oN filespec` | Normal interactive output |
-| `-oG filespec` | Grepable output |
-| `-oS filespec` | Script kiddie output |
-| `-oA basename` | All formats: `.xml`, `.nmap`, `.gnmap` |
-| `-v` | Verbose |
-| `-vv` | More verbose |
-| `-d` | Debugging |
-| `-dd` | More debugging |
-| `--reason` | Show port state reasons |
-| `--open` | Show only open ports (normal output) |
-| `--packet-trace` | Show all packets sent/received |
-| `--iflist` | Print host interfaces and routes |
-| `--resume filename` | Resume aborted scan |
-| `--append-output` | Append to output files |
-| `--stylesheet path` | XSL for XML HTML view |
-| `--webxml` | Web scan XML format |
-| `--no-stylesheet` | Omit XSL declaration in XML |
-
-`filespec` can be `-` for stdout.
-
----
-
-## Host discovery
-
-| Option | Description |
-|--------|-------------|
-| `-sL` | List scan — DNS resolve only, no send |
-| `-sn` | Ping scan — disable port scan |
-| `-Pn` | Treat all hosts as online (skip discovery) |
-| `-PS portlist` | TCP SYN ping to ports |
-| `-PA portlist` | TCP ACK ping |
-| `-PU portlist` | UDP ping |
-| `-PY portlist` | SCTP INIT ping |
-| `-PO protocol list` | IP protocol ping |
-| `-PE` | ICMP echo ping |
-| `-PP` | ICMP timestamp ping |
-| `-PM` | ICMP netmask ping |
-| `-PR` | ARP ping (local LAN) |
-| `-n` | Never do DNS resolution |
-| `-R` | Always resolve DNS |
-| `--dns-servers serv1,serv2` | Specify DNS servers |
-| `--system-dns` | Use OS DNS resolver |
-| `--traceroute` | Trace path to each host |
-| `--resolve-all` | Resolve all IPs of a name |
-
-Default: `-PE -PS80,443 -PA80 -PP` on most platforms; ARP on local Ethernet.
-
----
-
-## Port specification
-
-| Option | Description |
-|--------|-------------|
-| `-p ports` | Ports: `22`, `1-1024`, `U:53,T:21-25` |
-| `-p-` | All ports 1-65535 |
-| `-F` | Fast mode — 100 common ports |
-| `--top-ports n` | Scan n highest-frequency ports |
-| `-r` | Scan ports sequentially (don't randomize) |
-| `--port-ratio ratio` | Scan ports more common than ratio |
-
----
-
-## Scan techniques
-
-| Option | Scan type | Privileged |
-|--------|-----------|------------|
-| `-sS` | TCP SYN (default) | Yes |
-| `-sT` | TCP connect | No |
-| `-sU` | UDP | Yes |
-| `-sY` | SCTP INIT | Yes |
-| `-sZ` | SCTP COOKIE-ECHO | Yes |
-| `-sA` | TCP ACK | Yes |
-| `-sW` | TCP Window | Yes |
-| `-sM` | TCP Maimon | Yes |
-| `-sN` | TCP Null | Yes |
-| `-sF` | TCP FIN | Yes |
-| `-sX` | TCP Xmas | Yes |
-| `-sO` | IP protocol | Yes |
-| `-sI zombie host` | Idle scan | Yes |
-| `-b FTP relay host` | FTP bounce scan | Rare |
-
-Default TCP: `-sS` if raw sockets available, else `-sT`.
-
----
-
-## Service and version detection
-
-| Option | Description |
-|--------|-------------|
-| `-sV` | Probe open ports for version info |
-| `--version-intensity level` | 0 (light) to 9 (all probes) |
-| `--version-light` | Intensity 2 |
-| `--version-all` | Intensity 9 |
-| `--version-trace` | Show version detection activity |
-
-XML: `<service name="" product="" version="" extrainfo="" conf="" method=""/>`.
-
----
-
-## OS detection
-
-| Option | Description |
-|--------|-------------|
-| `-O` | Enable OS detection |
-| `--osscan-limit` | Limit OS detection to promising hosts |
-| `--osscan-guess` | Guess OS when imperfect match |
-| `--max-os-tries` | Limit OS detection attempts |
-| `--defeat-rst-ratelimit` | Ignore RST rate limit for OS detect |
-| `--defeat-icmp-ratelimit` | Ignore ICMP rate limit |
-
-Requires open and closed port for best accuracy. XML: `<os><osmatch name="" accuracy=""/></os>`.
-
----
-
-## Timing and performance
-
-| Option | Level | Description |
-|--------|-------|-------------|
-| `-T0` | Paranoid | Very slow, IDS evasion |
-| `-T1` | Sneaky | Slow |
-| `-T2` | Polite | Slows for less bandwidth |
-| `-T3` | Normal | Default |
-| `-T4` | Aggressive | Faster, assumes fast network |
-| `-T5` | Insane | Very fast, may sacrifice accuracy |
-
-| Option | Description |
-|--------|-------------|
-| `--min-hostgroup` | Minimum parallel hosts |
-| `--max-hostgroup` | Maximum parallel hosts |
-| `--min-parallelism` | Minimum parallel probes |
-| `--max-parallelism` | Maximum parallel probes |
-| `--min-rtt-timeout` | Minimum probe timeout |
-| `--max-rtt-timeout` | Maximum probe timeout |
-| `--initial-rtt-timeout` | Initial probe timeout |
-| `--max-retries` | Cap probe retransmissions |
-| `--host-timeout` | Give up on host after time |
-| `--scan-delay` | Minimum delay between probes |
-| `--max-scan-delay` | Maximum delay between probes |
-| `--min-rate` | Send packets no slower than rate/s |
-| `--max-rate` | Send packets no faster than rate/s |
-
----
-
-## Firewall / IDS evasion and spoofing
-
-| Option | Description |
-|--------|-------------|
-| `-f` | Fragment packets (8-byte MTU) |
-| `-ff` | Fragment twice |
-| `--mtu value` | Custom fragment size (multiple of 8) |
-| `-D decoy1,decoy2,...` | Cloak scan with decoys (`ME` = real IP) |
-| `-S IP_Address` | Spoof source address |
-| `-e interface` | Use specified interface |
-| `-g port` / `--source-port port` | Use given source port |
-| `--proxies url1,url2` | Relay through proxies |
-| `--data-length num` | Append random data to packets |
-| `--data-string string` | Append custom string |
-| `--data 0xhex` | Append custom hex payload |
-| `--ttl value` | Set IP time-to-live |
-| `--spoof-mac MAC` | Spoof MAC address |
-| `--badsum` | Send packets with bad checksums |
-| `--ip-options options` | Send with specified IP options |
-| `--randomize-hosts` | Randomize target order |
-
----
-
-## Nmap Scripting Engine (NSE)
-
-| Option | Description |
-|--------|-------------|
-| `-sC` | Run default scripts |
-| `--script names` | Comma-separated script names or categories |
-| `--script-args name=value` | Arguments for scripts |
-| `--script-args-file filename` | Args from file |
-| `--script-help` | Show script help |
-| `--script-trace` | Show data sent/received by scripts |
-| `--script-updatedb` | Update script database |
-| `--script-timeout` | Limit script run time |
-
-### Script categories
-
-`auth`, `broadcast`, `brute`, `default`, `discovery`, `dos`, `exploit`, `external`, `fuzzer`, `intrusive`, `malware`, `safe`, `version`, `vuln`
-
-Examples:
-
-```bash
---script "default,safe"
---script vuln
---script "http-*"
---script ssl-cert,http-title
 ```
-
-Script reference: https://nmap.org/nsedoc/
-
----
-
-## Misc options
-
-| Option | Description |
-|--------|-------------|
-| `-6` | Enable IPv6 scanning |
-| `-A` | Aggressive: OS + version + default scripts + traceroute |
-| `-4` | Force IPv4 |
-| `--privileged` | Assume user has raw socket privileges |
-| `--unprivileged` | Assume no raw sockets |
-| `--send-eth` | Use raw Ethernet frames |
-| `--send-ip` | Use raw IP packets |
-| `--bpf-filter filter` | Specify custom BPF filter |
-| `--datadir directory` | Nmap data file location |
-| `-V` | Print version |
-| `-h` | Print help |
-| `--release-memory` | Free memory after each host |
-| `--max-scan-delay` | Max delay between probes |
-| `--scanflags flags` | Custom TCP scan flags |
-| `--versiondb` | Custom service probe DB |
-| `--servicedb` | Custom services file |
-
----
-
-## Environment variables
-
-| Variable | Effect |
-|----------|--------|
-| `NMAPDIR` | Data directory |
-| `NMAP_ARGS` | Default extra arguments (use carefully) |
-
----
-
-## Exit codes
-
-| Code | Meaning |
-|------|---------|
-| 0 | Success |
-| 1 | Error in arguments or runtime |
-
-Check XML `<finished exit="success"/>` for per-run status.
-
----
-
-## Common recipes
-
-### Quick single-host recon
-
-```bash
-nmap -sV -sC -O --osscan-limit -oX recon.xml TARGET
+Nmap 7.80 ( https://nmap.org )
+Usage: nmap [Scan Type(s)] [Options] {target specification}
+TARGET SPECIFICATION:
+  Can pass hostnames, IP addresses, networks, etc.
+  Ex: scanme.nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254
+  -iL <inputfilename>: Input from list of hosts/networks
+  -iR <num hosts>: Choose random targets
+  --exclude <host1[,host2][,host3],...>: Exclude hosts/networks
+  --excludefile <exclude_file>: Exclude list from file
+HOST DISCOVERY:
+  -sL: List Scan - simply list targets to scan
+  -sn: Ping Scan - disable port scan
+  -Pn: Treat all hosts as online -- skip host discovery
+  -PS/PA/PU/PY[portlist]: TCP SYN/ACK, UDP or SCTP discovery to given ports
+  -PE/PP/PM: ICMP echo, timestamp, and netmask request discovery probes
+  -PO[protocol list]: IP Protocol Ping
+  -n/-R: Never do DNS resolution/Always resolve [default: sometimes]
+  --dns-servers <serv1[,serv2],...>: Specify custom DNS servers
+  --system-dns: Use OS's DNS resolver
+  --traceroute: Trace hop path to each host
+SCAN TECHNIQUES:
+  -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans
+  -sU: UDP Scan
+  -sN/sF/sX: TCP Null, FIN, and Xmas scans
+  --scanflags <flags>: Customize TCP scan flags
+  -sI <zombie host[:probeport]>: Idle scan
+  -sY/sZ: SCTP INIT/COOKIE-ECHO scans
+  -sO: IP protocol scan
+  -b <FTP relay host>: FTP bounce scan
+PORT SPECIFICATION AND SCAN ORDER:
+  -p <port ranges>: Only scan specified ports
+    Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9
+  --exclude-ports <port ranges>: Exclude the specified ports from scanning
+  -F: Fast mode - Scan fewer ports than the default scan
+  -r: Scan ports consecutively - don't randomize
+  --top-ports <number>: Scan <number> most common ports
+  --port-ratio <ratio>: Scan ports more common than <ratio>
+SERVICE/VERSION DETECTION:
+  -sV: Probe open ports to determine service/version info
+  --version-intensity <level>: Set from 0 (light) to 9 (try all probes)
+  --version-light: Limit to most likely probes (intensity 2)
+  --version-all: Try every single probe (intensity 9)
+  --version-trace: Show detailed version scan activity (for debugging)
+SCRIPT SCAN:
+  -sC: equivalent to --script=default
+  --script=<Lua scripts>: <Lua scripts> is a comma separated list of
+           directories, script-files or script-categories
+  --script-args=<n1=v1,[n2=v2,...]>: provide arguments to scripts
+  --script-args-file=filename: provide NSE script args in a file
+  --script-trace: Show all data sent and received
+  --script-updatedb: Update the script database.
+  --script-help=<Lua scripts>: Show help about scripts.
+           <Lua scripts> is a comma-separated list of script-files or
+           script-categories.
+OS DETECTION:
+  -O: Enable OS detection
+  --osscan-limit: Limit OS detection to promising targets
+  --osscan-guess: Guess OS more aggressively
+TIMING AND PERFORMANCE:
+  Options which take <time> are in seconds, or append 'ms' (milliseconds),
+  's' (seconds), 'm' (minutes), or 'h' (hours) to the value (e.g. 30m).
+  -T<0-5>: Set timing template (higher is faster)
+  --min-hostgroup/max-hostgroup <size>: Parallel host scan group sizes
+  --min-parallelism/max-parallelism <numprobes>: Probe parallelization
+  --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout <time>: Specifies
+      probe round trip time.
+  --max-retries <tries>: Caps number of port scan probe retransmissions.
+  --host-timeout <time>: Give up on target after this long
+  --scan-delay/--max-scan-delay <time>: Adjust delay between probes
+  --min-rate <number>: Send packets no slower than <number> per second
+  --max-rate <number>: Send packets no faster than <number> per second
+FIREWALL/IDS EVASION AND SPOOFING:
+  -f; --mtu <val>: fragment packets (optionally w/given MTU)
+  -D <decoy1,decoy2[,ME],...>: Cloak a scan with decoys
+  -S <IP_Address>: Spoof source address
+  -e <iface>: Use specified interface
+  -g/--source-port <portnum>: Use given port number
+  --proxies <url1,[url2],...>: Relay connections through HTTP/SOCKS4 proxies
+  --data <hex string>: Append a custom payload to sent packets
+  --data-string <string>: Append a custom ASCII string to sent packets
+  --data-length <num>: Append random data to sent packets
+  --ip-options <options>: Send packets with specified ip options
+  --ttl <val>: Set IP time-to-live field
+  --spoof-mac <mac address/prefix/vendor name>: Spoof your MAC address
+  --badsum: Send packets with a bogus TCP/UDP/SCTP checksum
+OUTPUT:
+  -oN/-oX/-oS/-oG <file>: Output scan in normal, XML, s|<rIpt kIddi3,
+     and Grepable format, respectively, to the given filename.
+  -oA <basename>: Output in the three major formats at once
+  -v: Increase verbosity level (use -vv or more for greater effect)
+  -d: Increase debugging level (use -dd or more for greater effect)
+  --reason: Display the reason a port is in a particular state
+  --open: Only show open (or possibly open) ports
+  --packet-trace: Show all packets sent and received
+  --iflist: Print host interfaces and routes (for debugging)
+  --append-output: Append to rather than clobber specified output files
+  --resume <filename>: Resume an aborted scan
+  --stylesheet <path/URL>: XSL stylesheet to transform XML output to HTML
+  --webxml: Reference stylesheet from Nmap.Org for more portable XML
+  --no-stylesheet: Prevent associating of XSL stylesheet w/XML output
+MISC:
+  -6: Enable IPv6 scanning
+  -A: Enable OS detection, version detection, script scanning, and traceroute
+  --datadir <dirname>: Specify custom Nmap data file location
+  --send-eth/--send-ip: Send using raw ethernet frames or IP packets
+  --privileged: Assume that the user is fully privileged
+  --unprivileged: Assume the user lacks raw socket privileges
+  -V: Print version number
+  -h: Print this help summary page.
+EXAMPLES:
+  nmap -v -A scanme.nmap.org
+  nmap -v -sn 192.168.0.0/16 10.0.0.0/8
+  nmap -v -iR 10000 -Pn -p 80
+SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES
 ```
-
-### Network inventory
-
-```bash
-nmap -sn -oX live.xml 192.168.0.0/24
-nmap -sS -sV --open --top-ports 1000 -oX detail.xml -iL live_ips.txt
-```
-
-### Full TCP (authorized)
-
-```bash
-nmap -sS -p- -sV -O -oX full.xml TARGET
-```
-
-### UDP top ports
-
-```bash
-nmap -sU --top-ports 100 -sV -oX udp.xml TARGET
-```
-
-### Stealth / IDS-aware
-
-```bash
-nmap -sS -T2 -f --scan-delay 500ms -p 22,80,443,8443 -oX stealth.xml TARGET
-```
-
-### Web assessment
-
-```bash
-nmap -p 80,443,8080,8443 -sV --script "http-title,http-headers,ssl-cert" -oX web.xml TARGET
-```
-
-### No root / Windows user
-
-```bash
-nmap -sT -sV -p 1-10000 -oX nroot.xml TARGET
-```
-
-### Ping-disabled network
-
-```bash
-nmap -Pn -sS -p 22,80,443,3389,8443 -oX pn.xml TARGET
-```
-
----
-
-## XML output flags (detail)
-
-From https://nmap.org/book/output-formats-commandline-flags.html
-
-- `-oX -` — XML to stdout (pipe-friendly)
-- `-oA base` — produces `base.xml` plus other formats
-- Combine with `-v` for stderr progress only; XML structure unchanged
-
----
-
-## Related documentation
-
-| Document | Path |
-|----------|------|
-| Agent skill | `.cursor/skills/nmap/SKILL.md` |
-| XML schema | `.cursor/skills/nmap/references/xml-output-schema.md` |
-| Workflows | `.cursor/skills/nmap/references/workflows-and-phases.md` |
-| Zero to Hero | `NMAP-Zero-to-Hero.md` |
-| Official book | https://nmap.org/book/toc.html |
-
----
-
-## Version note
-
-Options vary slightly by Nmap version. Run `nmap -h` and `nmap --version` on the execution host. This document targets Nmap 7.x / 7.94+ semantics.

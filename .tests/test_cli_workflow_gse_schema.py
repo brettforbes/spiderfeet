@@ -55,7 +55,7 @@ def test_valid_union_binding():
 
 def test_12a_ip_port_for_each_fragment_validates():
     doc = yaml.safe_load(EXAMPLE.read_text(encoding="utf-8"))
-    nmap = next(s for s in doc["steps"] if s["id"] == "nmap_ports")
+    nmap = next(s for s in doc["steps"] if s["id"] == "sfp_cli_nmap")
     binding = nmap["output"]["vars"]["ip_port_list"]
     validate_gse_binding(binding)
 

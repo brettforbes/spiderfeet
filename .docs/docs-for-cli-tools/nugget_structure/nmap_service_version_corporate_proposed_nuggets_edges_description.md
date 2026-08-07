@@ -1,4 +1,4 @@
-# Nmap OSINT Scan Report — service_version_corporate
+# Nmap OSINT Scan Report — service_version_corporate_xml
 
 ## Introduction
 
@@ -46,6 +46,7 @@ The scan captured **26** semantic nuggets across **1** host.
 | CATEGORY | NETWORKS | Networks Category | `networks:151.101.128.81` |
 | DESCRIPTOR | HOST_STATUS | Host Status | `up` |
 | DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `syn-ack` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `bbc.co.uk` |
 | DESCRIPTOR | PORT_PROTOCOL | Port Protocol | `tcp` |
 | DESCRIPTOR | PORT_STATE | Port State | `open` |
 | DESCRIPTOR | PORT_STATE_REASON | Port State Reason | `syn-ack` |
@@ -60,7 +61,6 @@ The scan captured **26** semantic nuggets across **1** host.
 | DESCRIPTOR | SERVICE_FINGERPRINT | Nmap Service Fingerprint | `SF-Port80-TCP:V=7.80%I=7%D=6/26%Time=6A3D6C8F%P=i686-pc-windows-windows%r(GetRequest,201,"HTTP/1\.1\x20500\x20Domain\x20Not\x20Found\r\nConnection:\x20close\r\nContent-Length:\x20238\r\nServer:\x20Varnish\r\nRetry-After:\x200\r\ncontent-type:\x20text/html\r\nCache-Control:\x20private,\x20no-cache\r\nX-Served-By:\x20cache-syd10132-SYD\r\nAccept-Ranges:\x20bytes\r\nDate:\x20Thu,\x2025\x20Jun\x202026\x2017:59:43\x20GMT\r\nVia:\x201\.1\x20varnish\r\n\r\n\n<html>\n<head>\n<title>Fastly\x20error:\x20unknown\x20domain\x20</title>\n</head>\n<body>\n<p>Fastly\x20error:\x20unknown\x20domain:\x20\.\x20Please\x20check\x20that\x20this\x20domain\x20has\x20been\x20added\x20to\x20a\x20service\.</p>\n<p>Details:\x20cache-syd10132-SYD\x20\(151\.101\.128\.81\)</p></body></html>")%r(HTTPOptions,201,"HTTP/1\.1\x20500\x20Domain\x20Not\x20Found\r\nConnection:\x20close\r\nContent-Length:\x20238\r\nServer:\x20Varnish\r\nRetry-After:\x200\r\ncontent-type:\x20text/html\r\nCache-Control:\x20private,\x20no-cache\r\nX-Served-By:\x20cache-syd10136-SYD\r\nAccept-Ranges:\x20bytes\r\nDate:\x20Thu,\x2025\x20Jun\x202026\x2017:59:43\x20GMT\r\nVia:\x201\.1\x20varnish\r\n\r\n\n<html>\n<head>\n<title>Fastly\x20error:\x20unknown\x20domain\x20</title>\n</head>\n<body>\n<p>Fastly\x20error:\x20unknown\x20domain:\x20\.\x20Please\x20check\x20that\x20this\x20domain\x20has\x20been\x20added\x20to\x20a\x20service\.</p>\n<p>Details:\x20cache-syd10136-SYD\x20\(151\.101\.128\.81\)</p></body></html>")%r(RTSPRequest,94,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\nContent-Length:\x2011\r\ncontent-type:\x20text/plain;\x20charset=utf-8\r\nx-served-by:\x20cache-syd10134\r\n\r\nBad\x20Request")%r(X11Probe,94,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\nContent-Length:\x2011\r\ncontent-type:\x20text/plain;\x20charset=utf-8\r\nx-served-by:\x20cache-syd10128\r\n\r\nBad\x20Request")%r(FourOhFourRequest,201,"HTTP/1\.1\x20500\x20Domain\x20Not\x20Found\r\nConnection:\x20close\r\nContent-Length:\x20238\r\nServer:\x20Varnish\r\nRetry-After:\x200\r\ncontent-type:\x20text/html\r\nCache-Control:\x20private,\x20no-cache\r\nX-Served-By:\x20cache-syd10172-SYD\r\nAccept-Ranges:\x20bytes\r\nDate:\x20Thu,\x2025\x20Jun\x202026\x2017:59:43\x20GMT\r\nVia:\x201\.1\x20varnish\r\n\r\n\n<html>\n<head>\n<title>Fastly\x20error:\x20unknown\x20domain\x20</title>\n</head>\n<body>\n<p>Fastly\x20error:\x20unknown\x20domain:\x20\.\x20Please\x20check\x20that\x20this\x20domain\x20has\x20been\x20added\x20to\x20a\x20service\.</p>\n<p>Details:\x20cache-syd10172-SYD\x20\(151\.101\.128\.81\)</p></body></html>");` |
 | DESCRIPTOR | SERVICE_VERSION | Service Version | `Varnish` |
 | ENTITY | HOST | Host | `151.101.128.81` |
-| ENTITY | INTERNET_NAME | Internet Name | `bbc.co.uk` |
 | ENTITY | IP_ADDRESS | IP Address | `151.101.128.81` |
 | ENTITY | SCAN_RECORD | Scan Record | `nmap:bbc.co.uk:Fri Jun 26 03:59:36 2026` |
 | ENTITY | SERVICE | Network Service | `http` |

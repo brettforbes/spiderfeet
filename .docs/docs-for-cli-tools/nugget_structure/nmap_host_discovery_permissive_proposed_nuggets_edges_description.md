@@ -1,4 +1,4 @@
-# Nmap OSINT Scan Report — host_discovery_permissive
+# Nmap OSINT Scan Report — host_discovery_permissive_xml
 
 ## Introduction
 
@@ -25,7 +25,7 @@ Network address **45.33.32.156**:
 
 ## Conclusion
 
-The scan captured **14** semantic nuggets across **1** host.
+The scan captured **15** semantic nuggets across **1** host.
  Nmap done at Fri Jun 26 03:51:04 2026; 1 IP address (1 host up) scanned in 0.94 seconds
  The appendix lists every nugget instance and value for audit and downstream review.
 
@@ -34,9 +34,11 @@ The scan captured **14** semantic nuggets across **1** host.
 
 | Type | Nugget | Description | Value |
 |------|--------|-------------|-------|
+| CATEGORY | APPLICATIONS | Applications Category | `applications:45.33.32.156` |
 | CATEGORY | NETWORKS | Networks Category | `networks:45.33.32.156` |
 | DESCRIPTOR | HOST_STATUS | Host Status | `up` |
 | DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `echo-reply` |
+| DESCRIPTOR | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
 | DESCRIPTOR | SCAN_CLI | Scan CLI | `nmap -sn -T3 -oX - scanme.nmap.org` |
 | DESCRIPTOR | SCAN_ELAPSED | Scan Elapsed Time | `0.94` |
 | DESCRIPTOR | SCAN_START | Scan Start | `Fri Jun 26 03:51:03 2026` |
@@ -45,7 +47,6 @@ The scan captured **14** semantic nuggets across **1** host.
 | DESCRIPTOR | SCAN_TOOL | Scan Tool | `nmap` |
 | DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
 | ENTITY | HOST | Host | `45.33.32.156` |
-| ENTITY | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
 | ENTITY | IP_ADDRESS | IP Address | `45.33.32.156` |
 | ENTITY | SCAN_RECORD | Scan Record | `nmap:scanme.nmap.org:Fri Jun 26 03:51:03 2026` |
 

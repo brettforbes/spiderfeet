@@ -472,6 +472,58 @@ def bootstrap_map(
     return report
 
 
+def catalogue_seeded(driver: Driver, database: str) -> bool:
+    """True when archetype nuggets and OSINT services have been seeded."""
+    try:
+        from spiderfeet.map.read import get_inventory
+
+        inv = get_inventory(driver, database)
+        return inv.nugget_count > 0 and inv.service_count > 0
+    except Exception:
+        return False
+
+
+def needs_map_bootstrap(
+    cfg: Optional[TypeDBConnectionConfig] = None,
+    *,
+    database: Optional[str] = None,
+) -> bool:
+    """True when the map DB is missing, has no schema, or has no seed catalogue."""
+    if cfg is None:
+        from spiderfeet.map.config import load_connection_config
+
+        cfg = load_connection_config()
+
+    db_name = database or cfg.database or MAP_DATABASE_NAME
+    with driver_session(cfg) as driver:
+        if not driver.databases.contains(db_name):
+            return True
+        if not schema_already_loaded(driver, db_name):
+            return True
+        return not catalogue_seeded(driver, db_name)
+
+
+def ensure_map_ready(
+    cfg: Optional[TypeDBConnectionConfig] = None,
+    *,
+    database: Optional[str] = None,
+) -> bool:
+    """
+    Idempotently bootstrap when DB, schema, or seed data is missing.
+
+    Returns True when bootstrap ran.
+    """
+    if cfg is None:
+        from spiderfeet.map.config import load_connection_config
+
+        cfg = load_connection_config()
+
+    if not needs_map_bootstrap(cfg, database=database):
+        return False
+    bootstrap_map(cfg, database=database)
+    return True
+
+
 def bootstrap_map_from_config_path(path) -> BootstrapReport:
     from spiderfeet.map.config import load_connection_config
 

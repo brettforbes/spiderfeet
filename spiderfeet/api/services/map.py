@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 from typing import List, Optional, Union
 
 from typedb.common.exception import TypeDBDriverException
@@ -15,10 +16,12 @@ from spiderfeet.api.schemas import (
     MapForceGraphResponse,
     MapStatusResponse,
 )
-from spiderfeet.map.bootstrap import BootstrapReport, bootstrap_map
+from spiderfeet.map.bootstrap import BootstrapReport, bootstrap_map, ensure_map_ready
 from spiderfeet.map.config import TypeDBConfigError, load_connection_config
 from spiderfeet.map.connection import database_exists, driver_session, ping
 from spiderfeet.map.read import export_force_graph, get_inventory
+
+logger = logging.getLogger(__name__)
 
 
 def _addresses_list(addresses: Union[str, List[str]]) -> List[str]:
@@ -47,8 +50,8 @@ def map_status(*, auto_bootstrap: bool = True) -> MapStatusResponse:
     """Server connectivity plus map database readiness.
 
     ``reachable`` / ``server_reachable`` reflect the TypeDB server only.
-    When the server is up but the map database is missing, bootstrap runs
-    idempotently (same as ``POST /map/bootstrap``) so a deleted DB is recreated.
+    When the server is up but the map DB is missing, has no schema, or has no
+    seed catalogue, bootstrap runs idempotently (same as ``POST /map/bootstrap``).
     """
     cfg = load_connection_config()
     server_reachable = ping(cfg)
@@ -56,9 +59,11 @@ def map_status(*, auto_bootstrap: bool = True) -> MapStatusResponse:
     inventory = None
     bootstrapped = False
 
-    if server_reachable and auto_bootstrap and not database_exists(cfg):
-        bootstrap_map(cfg)
-        bootstrapped = True
+    if server_reachable and auto_bootstrap:
+        try:
+            bootstrapped = ensure_map_ready(cfg)
+        except Exception as exc:
+            logger.warning("Map auto-bootstrap failed: %s", exc)
 
     if server_reachable and database_exists(cfg):
         try:
@@ -69,7 +74,7 @@ def map_status(*, auto_bootstrap: bool = True) -> MapStatusResponse:
                 "service_count": inv.service_count,
                 "link_count": inv.link_count,
             }
-            database_ready = True
+            database_ready = inv.nugget_count > 0 and inv.service_count > 0
         except TypeDBDriverException:
             database_ready = False
 

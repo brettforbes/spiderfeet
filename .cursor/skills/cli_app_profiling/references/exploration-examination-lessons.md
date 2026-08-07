@@ -77,4 +77,4 @@ Keep **clean miss** scenarios only when clean miss is the semantic type under te
 - Explore **JSON vs text** output modes separately if mutually exclusive
 - Matrix rows: rich subdomain set, wildcard/filtered parent, zero results, API key missing, rate limit, invalid domain
 - Permissive + real org domains before assuming corporate apex is representative
-- Capture help → `cli_help_text/` before formal plan
+- Capture help → `<Tool>-CLI-Options.md` before formal plan
