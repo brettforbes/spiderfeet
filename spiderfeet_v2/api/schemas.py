@@ -1,0 +1,358 @@
+"""Pydantic models + OpenAPI examples for v2 engine routes (R10-24)."""
+
+from __future__ import annotations
+
+from typing import Any, Dict, List, Optional
+
+from pydantic import BaseModel, ConfigDict, Field
+
+
+# ---------------------------------------------------------------------------
+# Shared graph shapes
+# ---------------------------------------------------------------------------
+
+
+class GraphNode(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    id: Optional[str] = None
+    nugget_instance_id: Optional[str] = None
+    nugget_id: Optional[str] = None
+    nugget_data: Optional[str] = None
+    temporary_id: Optional[str] = Field(
+        default=None,
+        description="Widget-only tag; stripped before persistence (R10-25).",
+    )
+
+
+class GraphEdge(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    source: Optional[str] = None
+    target: Optional[str] = None
+    relation: Optional[str] = None
+    # Viewer may send from/to/type while temporary_ids are active
+    type: Optional[str] = None
+
+
+class GraphPayload(BaseModel):
+    nodes: List[Dict[str, Any]] = Field(default_factory=list)
+    edges: List[Dict[str, Any]] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
+# Targets
+# ---------------------------------------------------------------------------
+
+
+class TargetCreate(BaseModel):
+    target_id: str = Field(..., examples=["target--example-com"])
+    target_value: Optional[str] = Field(None, examples=["example.com"])
+    target_description: Optional[str] = None
+    target_created: Optional[str] = None
+    target_yaml: Optional[str] = None
+
+
+class TargetUpdate(BaseModel):
+    target_value: Optional[str] = None
+    target_description: Optional[str] = None
+    target_created: Optional[str] = None
+    target_yaml: Optional[str] = None
+
+
+class TargetOut(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    target_id: str
+    target_value: Optional[str] = None
+    target_description: Optional[str] = None
+    target_created: Optional[str] = None
+    target_yaml: Optional[str] = None
+
+
+TARGET_CREATE_EXAMPLE = {
+    "target_id": "target--example-com",
+    "target_value": "example.com",
+    "target_description": "Permissive lab target",
+    "target_yaml": "value: example.com\n",
+}
+
+TARGET_CREATE_OPENAPI_EXAMPLES = {
+    "lab": {
+        "summary": "Lab hostname target",
+        "value": TARGET_CREATE_EXAMPLE,
+    }
+}
+
+
+# ---------------------------------------------------------------------------
+# Workflows
+# ---------------------------------------------------------------------------
+
+
+class WorkflowCreate(BaseModel):
+    workflow_id: str = Field(..., examples=["workflow--recon-12a"])
+    name: Optional[str] = None
+    description: Optional[str] = None
+    author: Optional[str] = None
+    created: Optional[str] = None
+    workflow_yaml: Optional[str] = None
+    target_id: Optional[str] = None
+    first_step_id: Optional[str] = None
+    prior_step_ids: Optional[List[str]] = None
+    next_step_ids: Optional[List[str]] = None
+
+
+class WorkflowUpdate(BaseModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+    author: Optional[str] = None
+    created: Optional[str] = None
+    workflow_yaml: Optional[str] = None
+    target_id: Optional[str] = None
+    first_step_id: Optional[str] = None
+    prior_step_ids: Optional[List[str]] = None
+    next_step_ids: Optional[List[str]] = None
+
+
+class WorkflowOut(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    workflow_id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
+    author: Optional[str] = None
+    created: Optional[str] = None
+    workflow_yaml: Optional[str] = None
+    target_id: Optional[str] = None
+    first_step_id: Optional[str] = None
+    prior_step_ids: Optional[List[str]] = None
+    next_step_ids: Optional[List[str]] = None
+
+
+class WorkflowProjectionOut(BaseModel):
+    """AL3 projection shape for a workflow."""
+
+    model_config = ConfigDict(extra="allow")
+
+    workflow_id: str
+    target: Optional[str] = None
+    first_step: Optional[str] = None
+    prior_step: List[str] = Field(default_factory=list)
+    next_step: List[str] = Field(default_factory=list)
+    workflow_yaml: Optional[str] = None
+
+
+WORKFLOW_CREATE_EXAMPLE = {
+    "workflow_id": "workflow--recon-12a",
+    "name": "12A recon",
+    "description": "Split-branch recon workflow",
+    "author": "spiderfeet",
+    "workflow_yaml": "apiVersion: spiderfeet.workflow/v1\nkind: Workflow\n",
+    "target_id": "target--example-com",
+}
+
+WORKFLOW_CREATE_OPENAPI_EXAMPLES = {
+    "with_target": {
+        "summary": "Workflow linked to a target",
+        "value": WORKFLOW_CREATE_EXAMPLE,
+    }
+}
+
+
+# ---------------------------------------------------------------------------
+# Projects
+# ---------------------------------------------------------------------------
+
+
+class ProjectCreate(BaseModel):
+    project_id: str = Field(..., examples=["project--demo"])
+    stix_incident_id: Optional[str] = None
+    created: Optional[str] = None
+    workflow_ids: List[str] = Field(
+        ...,
+        min_length=1,
+        examples=[["workflow--recon-12a"]],
+        description="At least one workflow (TypeDB 3 cannot persist playerless relations).",
+    )
+
+
+class ProjectUpdate(BaseModel):
+    stix_incident_id: Optional[str] = None
+    created: Optional[str] = None
+    workflow_ids: Optional[List[str]] = None
+
+
+class ProjectOut(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    project_id: str
+    stix_incident_id: Optional[str] = None
+    created: Optional[str] = None
+    workflow_ids: List[str] = Field(default_factory=list)
+
+
+class ProjectProjectionOut(BaseModel):
+    """AL3 projection: workflows/targets/context ids."""
+
+    model_config = ConfigDict(extra="allow")
+
+    project_id: str
+    workflows: List[str] = Field(default_factory=list)
+    targets: List[str] = Field(default_factory=list)
+    project_context: List[str] = Field(default_factory=list)
+    temporary_subgraph: List[str] = Field(default_factory=list)
+    stix_incident_id: Optional[str] = None
+    created: Optional[str] = None
+
+
+PROJECT_CREATE_EXAMPLE = {
+    "project_id": "project--demo",
+    "stix_incident_id": "incident--demo",
+    "workflow_ids": ["workflow--recon-12a"],
+}
+
+PROJECT_CREATE_OPENAPI_EXAMPLES = {
+    "demo": {
+        "summary": "Project with one workflow",
+        "value": PROJECT_CREATE_EXAMPLE,
+    }
+}
+
+
+# ---------------------------------------------------------------------------
+# Scan steps (four forms)
+# ---------------------------------------------------------------------------
+
+
+class ScanStepOut(BaseModel):
+    """Four UI forms + consumed/produced (AL3 projection + CRUD attrs)."""
+
+    model_config = ConfigDict(extra="allow")
+
+    scan_instance_id: str
+    cli_command: Optional[str] = None
+    text_form: Optional[str] = None
+    structured_form: Optional[str] = None
+    graph_form: Optional[str] = None
+    markdown_narrative_form: Optional[str] = None
+    consumed: List[str] = Field(default_factory=list)
+    produced: List[str] = Field(default_factory=list)
+    scan_result_graph: List[str] = Field(default_factory=list)
+    # CRUD extras when available
+    step_module_id: Optional[str] = None
+    scan_status: Optional[str] = None
+    scan_ui_structured_form_type: Optional[str] = None
+
+
+# ---------------------------------------------------------------------------
+# Contexts
+# ---------------------------------------------------------------------------
+
+
+class ContextGraphOut(BaseModel):
+    project_id: str
+    kind: str
+    subgraph_id: Optional[str] = None
+    nodes: List[Dict[str, Any]] = Field(default_factory=list)
+    edges: List[Dict[str, Any]] = Field(default_factory=list)
+    json_string: Optional[str] = None
+
+
+class TemporaryContextUpdate(BaseModel):
+    """Widget temporary-context push; temporary_id stripped server-side."""
+
+    nodes: List[Dict[str, Any]] = Field(default_factory=list)
+    edges: List[Dict[str, Any]] = Field(default_factory=list)
+    temporary_subgraph_id: Optional[str] = Field(
+        default=None,
+        description="Existing temporary_subgraph id; created if omitted.",
+    )
+
+
+TEMPORARY_CONTEXT_UPDATE_EXAMPLE = {
+    "temporary_subgraph_id": "temporary-subgraph--demo",
+    "nodes": [
+        {
+            "id": "DOMAIN_NAME--example-com",
+            "nugget_instance_id": "DOMAIN_NAME--example-com",
+            "nugget_id": "DOMAIN_NAME",
+            "nugget_data": "example.com",
+            "temporary_id": "temporary--11111111-1111-4111-8111-111111111111",
+        },
+        {
+            "id": "IPV4_ADDRESS--93-184-216-34",
+            "nugget_instance_id": "IPV4_ADDRESS--93-184-216-34",
+            "nugget_id": "IPV4_ADDRESS",
+            "nugget_data": "93.184.216.34",
+            "temporary_id": "temporary--22222222-2222-4222-8222-222222222222",
+        },
+    ],
+    "edges": [
+        {
+            "source": "temporary--11111111-1111-4111-8111-111111111111",
+            "target": "temporary--22222222-2222-4222-8222-222222222222",
+            "relation": "resolves-to",
+        }
+    ],
+}
+
+TEMPORARY_CONTEXT_UPDATE_OPENAPI_EXAMPLES = {
+    "with_temporary_ids": {
+        "summary": "Viewer graph with temporary_id tags (stripped on persist)",
+        "value": TEMPORARY_CONTEXT_UPDATE_EXAMPLE,
+    }
+}
+
+
+# ---------------------------------------------------------------------------
+# Execute (stubs until Epic AO)
+# ---------------------------------------------------------------------------
+
+
+class ExecuteWorkflowRequest(BaseModel):
+    project_id: Optional[str] = None
+    dry_run: bool = False
+
+
+class ExecuteStepRequest(BaseModel):
+    project_id: Optional[str] = None
+    step_id: Optional[str] = Field(
+        default=None,
+        description="DSL step id when path param is the scan_instance_id.",
+    )
+    dry_run: bool = False
+
+
+class ExecuteResponse(BaseModel):
+    status: str = Field(..., examples=["accepted", "stub"])
+    message: str
+    workflow_id: Optional[str] = None
+    step_id: Optional[str] = None
+    scan_instance_id: Optional[str] = None
+    orchestrator: str = Field(
+        default="pending",
+        description="AO1/AO2 wires real execution; AN2 returns stubs.",
+    )
+
+
+EXECUTE_WORKFLOW_EXAMPLE = {"project_id": "project--demo", "dry_run": True}
+EXECUTE_STEP_EXAMPLE = {
+    "project_id": "project--demo",
+    "step_id": "subfinder_enum",
+    "dry_run": True,
+}
+
+EXECUTE_WORKFLOW_OPENAPI_EXAMPLES = {
+    "dry_run": {
+        "summary": "Accept workflow execute (stub until AO)",
+        "value": EXECUTE_WORKFLOW_EXAMPLE,
+    }
+}
+
+EXECUTE_STEP_OPENAPI_EXAMPLES = {
+    "dry_run": {
+        "summary": "Accept step execute (stub until AO)",
+        "value": EXECUTE_STEP_EXAMPLE,
+    }
+}
