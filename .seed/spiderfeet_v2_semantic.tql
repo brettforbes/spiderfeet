@@ -316,7 +316,9 @@ define
 	entity port, sub subentity_nugget; # Network Port
 	entity trace-hop, sub subentity_nugget; # Trace Hop
 	entity cpe-url, sub subentity_nugget; # CPE URL
-	entity ssh-key @abstract, sub subentity_nugget; # SSH Key
+	# Concrete (not @abstract): TypeDB requires abstract types to have an abstract
+	# supertype; subentity_nugget is concrete. Aligns with spiderfeet_map.tql.
+	entity ssh-key, sub subentity_nugget; # SSH Key (subtypes: dsa, rsa, ed25519, ecdsa)
 	entity dsa, sub ssh-key; # SSH Key - DSA
 	entity rsa, sub ssh-key; # SSH Key - RSA
 	entity ecdsa, sub ssh-key; # SSH Key - ECDSA
@@ -695,6 +697,7 @@ define
 		plays workflow:first_step, # step can be the first step in a sequence of steps
 		plays workflow:next_step, # step can be a next step in a sequence of steps
 		relates consumed @card(0..), # nugget inputs consumed by this scan step
+		relates produced @card(0..), # nugget outputs produced by this scan step (R10-07 / AI1)
 		plays scan_result_graph:scan_step,  # contains actual nodes and edges arrays for the scan result
 		relates service, # native osint-service: module_id, name (e.g. sfp_cli_nmap)
 		relates route @card(0..1); # route under test when this step ran
