@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Subfinder contributes DNS-focused domain enumeration. Active-mode IP resolution is retained as an IP_ADDRESS fact using currently approved SPEC-004 relations; the exact dns-resolves-to relation remains deferred until relation coverage is updated.
+Subfinder contributes DNS-focused domain enumeration. Active-mode IP resolution is retained as an IPV4_ADDRESS fact using currently approved SPEC-004 relations; the exact dns-resolves-to relation remains deferred until relation coverage is updated.
 
 ## Domains
 
@@ -31,9 +31,9 @@ flowchart LR
   DOMAIN_NAME -->|had| DOMAIN_NAME_PARENT
   DOMAIN_NAME -->|had| DISCOVERY_MODE
   DOMAIN_NAME -->|had| DISCOVERY_SOURCE
-  DOMAIN_NAME -->|had| IP_ADDRESS
+  DOMAIN_NAME -->|had| IPV4_ADDRESS
   DOMAIN_NAME -->|had| LIVENESS_STATUS
-  IP_ADDRESS -->|had| CDN_REVIEW_NEEDED
+  IPV4_ADDRESS -->|had| CDN_REVIEW_NEEDED
 ```
 
 ## Trace
@@ -60,11 +60,11 @@ _Trace section omitted when no TRACE nodes present._
 - `DOMAIN_NAME`: www.k2am.com.au
 - `DOMAIN_NAME_PARENT`: com.au
 - `DOMAIN_NAME_PARENT`: k2am.com.au
-- `IP_ADDRESS`: 101.0.68.158
-- `IP_ADDRESS`: 170.187.131.209
-- `IP_ADDRESS`: 172.64.153.235
-- `IP_ADDRESS`: 58.171.162.96
-- `IP_ADDRESS`: 59.100.198.94
+- `IPV4_ADDRESS`: 101.0.68.158
+- `IPV4_ADDRESS`: 170.187.131.209
+- `IPV4_ADDRESS`: 172.64.153.235
+- `IPV4_ADDRESS`: 58.171.162.96
+- `IPV4_ADDRESS`: 59.100.198.94
 - `LIVENESS_STATUS`: confirmed
 - `LIVENESS_STATUS`: unconfirmed
 - `SCAN_CLI`: subfinder -d k2am.com.au -active -oJ -oI -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_k2am_active_oI.jsonl -silent
@@ -91,52 +91,52 @@ _Trace section omitted when no TRACE nodes present._
 - `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
 - `DOMAIN_NAME` `had` `DISCOVERY_MODE`
 - `DOMAIN_NAME` `had` `DISCOVERY_SOURCE`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
 - `DOMAIN_NAME` `had` `LIVENESS_STATUS`
-- `IP_ADDRESS` `had` `CDN_REVIEW_NEEDED`
+- `IPV4_ADDRESS` `had` `CDN_REVIEW_NEEDED`
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
 - `DOMAIN_NAME` `had` `DISCOVERY_MODE`
 - `DOMAIN_NAME` `had` `DISCOVERY_SOURCE`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `DOMAIN_NAME` `had` `LIVENESS_STATUS`
-- `SCAN_RECORD` `contains` `DOMAIN_NAME`
-- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
-- `DOMAIN_NAME` `had` `DISCOVERY_MODE`
-- `DOMAIN_NAME` `had` `DISCOVERY_SOURCE`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `DOMAIN_NAME` `had` `LIVENESS_STATUS`
-- `IP_ADDRESS` `had` `CDN_REVIEW_NEEDED`
-- `SCAN_RECORD` `contains` `DOMAIN_NAME`
-- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
-- `DOMAIN_NAME` `had` `DISCOVERY_MODE`
-- `DOMAIN_NAME` `had` `DISCOVERY_SOURCE`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
 - `DOMAIN_NAME` `had` `LIVENESS_STATUS`
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
 - `DOMAIN_NAME` `had` `DISCOVERY_MODE`
 - `DOMAIN_NAME` `had` `DISCOVERY_SOURCE`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
 - `DOMAIN_NAME` `had` `LIVENESS_STATUS`
-- `IP_ADDRESS` `had` `CDN_REVIEW_NEEDED`
+- `IPV4_ADDRESS` `had` `CDN_REVIEW_NEEDED`
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
 - `DOMAIN_NAME` `had` `DISCOVERY_MODE`
 - `DOMAIN_NAME` `had` `DISCOVERY_SOURCE`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `DOMAIN_NAME` `had` `LIVENESS_STATUS`
-- `SCAN_RECORD` `contains` `DOMAIN_NAME`
-- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
-- `DOMAIN_NAME` `had` `DISCOVERY_MODE`
-- `DOMAIN_NAME` `had` `DISCOVERY_SOURCE`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
 - `DOMAIN_NAME` `had` `LIVENESS_STATUS`
 - `SCAN_RECORD` `contains` `DOMAIN_NAME`
 - `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
 - `DOMAIN_NAME` `had` `DISCOVERY_MODE`
 - `DOMAIN_NAME` `had` `DISCOVERY_SOURCE`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `DOMAIN_NAME` `had` `LIVENESS_STATUS`
+- `IPV4_ADDRESS` `had` `CDN_REVIEW_NEEDED`
+- `SCAN_RECORD` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAIN_NAME` `had` `DISCOVERY_MODE`
+- `DOMAIN_NAME` `had` `DISCOVERY_SOURCE`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `DOMAIN_NAME` `had` `LIVENESS_STATUS`
+- `SCAN_RECORD` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAIN_NAME` `had` `DISCOVERY_MODE`
+- `DOMAIN_NAME` `had` `DISCOVERY_SOURCE`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `DOMAIN_NAME` `had` `LIVENESS_STATUS`
+- `SCAN_RECORD` `contains` `DOMAIN_NAME`
+- `DOMAIN_NAME` `had` `DOMAIN_NAME_PARENT`
+- `DOMAIN_NAME` `had` `DISCOVERY_MODE`
+- `DOMAIN_NAME` `had` `DISCOVERY_SOURCE`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
 - `DOMAIN_NAME` `had` `LIVENESS_STATUS`
 - `DOMAIN_NAME` `had` `LIVENESS_STATUS`
 ---

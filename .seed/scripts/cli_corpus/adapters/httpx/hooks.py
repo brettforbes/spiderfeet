@@ -64,7 +64,7 @@ def _add_network_chain(
     ip_value: str,
     port_value: str,
 ) -> dict[str, Any]:
-    """10 H2 — Nmap-style NETWORKS -> IP_ADDRESS -> TRANSPORT -> PORT chain."""
+    """10 H2 — Nmap-style NETWORKS -> IPV4_ADDRESS -> TRANSPORT -> PORT chain."""
     networks = builder.add_node(nugget_node("NETWORKS", "NETWORKS", nugget_type="CATEGORY"))
     builder.add_edge(system_id, networks["id"], "contains")
     transport_parent = networks["id"]

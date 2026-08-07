@@ -42,7 +42,7 @@ def apply_host_scan_head(
     scan_id: str,
     host: dict[str, Any],
 ) -> dict[str, Any]:
-    """Create HOST / NETWORKS / IP_ADDRESS scaffold for one host row."""
+    """Create HOST / NETWORKS / IPV4_ADDRESS scaffold for one host row."""
     host_key = host["host_key"]
     host_node = builder.add_node(nugget_node("HOST", host_key, description="Host"))
     builder.add_edge(scan_id, host_node["id"], "contains")

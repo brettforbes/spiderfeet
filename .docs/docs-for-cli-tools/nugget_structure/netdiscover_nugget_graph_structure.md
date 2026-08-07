@@ -34,7 +34,7 @@ flowchart TD
   scan_record_1["SCAN_RECORD"]
   system_2["SYSTEM"]
   networks_3["NETWORKS"]
-  ip_address_4["IP_ADDRESS"]
+  ip_address_4["IPV4_ADDRESS"]
   mac_address_5["MAC_ADDRESS"]
   mac_vendor_6["MAC_VENDOR"]
   scan_record_1 -->|contains| system_2
@@ -57,7 +57,7 @@ flowchart TD
   scan_record_1["SCAN_RECORD"]
   system_2["SYSTEM"]
   networks_3["NETWORKS"]
-  ip_address_4["IP_ADDRESS"]
+  ip_address_4["IPV4_ADDRESS"]
   mac_address_5["MAC_ADDRESS"]
   mac_vendor_6["MAC_VENDOR"]
   scan_record_1 -->|contains| system_2
@@ -91,7 +91,7 @@ flowchart TD
 | runstats.systems.scan_tries | SCAN_TRIES |  |
 | runstats.systems.empty_scans | SCAN_EMPTY_SCANS |  |
 | runstats.systems.discovered | SCAN_DISCOVERED |  |
-| systems[].ipv4 | SYSTEM, IP_ADDRESS | scan contains SYSTEM; NETWORKS contains IP |
+| systems[].ipv4 | SYSTEM, IPV4_ADDRESS | scan contains SYSTEM; NETWORKS contains IP |
 | systems[].mac | MAC_ADDRESS | NETWORKS contains MAC |
 | systems[].mac_vendor | MAC_VENDOR | MAC_ADDRESS had MAC_VENDOR |
 

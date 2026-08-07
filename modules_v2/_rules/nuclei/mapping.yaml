@@ -1,0 +1,32 @@
+tool: nuclei
+capture_family: structured_native
+seed_docs:
+  - .seed/11_Ontology_for_Nuclei.md
+  - .seed/11B_Rules_for_Nuclei.md
+  - .seed/14_Business_Rules_for_Converting_Structured_Data_to_Graph.md
+scan_head:
+  data_path: scan_data
+  fallback: nuclei scan
+hooks:
+  - apply_nuclei_records
+topology_templates:
+  - scan_head
+mappings:
+  - path: command
+    nugget_id: SCAN_CLI
+    relation: had
+  - path: target
+    nugget_id: SCAN_TARGET
+    relation: had
+  - path: started_at
+    nugget_id: SCAN_START
+    relation: had
+  - path: duration_s
+    nugget_id: SCAN_ELAPSED
+    relation: had
+  - path: exit_code
+    nugget_id: SCAN_EXIT_STATUS
+    relation: had
+  - path: finding_summary_lines
+    nugget_id: SCAN_FINDING_COUNT
+    relation: had

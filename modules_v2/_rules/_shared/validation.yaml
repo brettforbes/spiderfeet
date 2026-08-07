@@ -1,0 +1,14 @@
+required_node_fields:
+  - id
+  - nugget_instance_id
+  - nugget_id
+  - nugget_type
+  - nugget_description
+  - nugget_data
+required_edge_fields:
+  - source
+  - target
+  - relation
+forbid_orphan_nodes: true
+forbid_duplicate_node_ids: true
+forbid_duplicate_nugget_data_per_type: true

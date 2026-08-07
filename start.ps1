@@ -1,6 +1,11 @@
 # SpiderFeet development entry
 #   .\start.ps1              — CherryPy web UI (legacy, port 5001)
 #   .\start.ps1 -Mode api    — FastAPI for widget / Requestly (port 8001; TypeDB HTTP uses 8000)
+#
+# API mode auto-bootstraps TypeDB (create-if-missing, seed-if-incomplete; never drops):
+#   - spiderfeet-map    — legacy Maps / Tests catalogue
+#   - spiderfeet-actual — v2 semantic engine (SPEC-010)
+# Both coexist while v2 capability is rebuilt alongside the old stack.
 param(
     [ValidateSet("web", "api")]
     [string]$Mode = "web",
@@ -23,6 +28,7 @@ if ($Mode -eq "api") {
     $env:SPIDERFEET_API_HOST = $parts[0]
     $env:SPIDERFEET_API_PORT = $parts[1]
     Write-Host "Starting SpiderFeet FastAPI at http://$Listen (docs: http://$Listen/docs) ..."
+    Write-Host "TypeDB auto-bootstrap: spiderfeet-map + spiderfeet-actual (create/seed if missing) ..."
     poetry run python -m spiderfeet.api
     exit $LASTEXITCODE
 }

@@ -18,6 +18,7 @@ if str(_CLI_CORPUS) not in sys.path:
 
 from graph_builder import nugget_instance_id
 from narrative_report import build_nmap_narrative_report
+from core.ip_classify import classify_ip
 EXAM_ROOT = REPO_ROOT / ".docs/docs-for-cli-tools/app_examination_docs/nmap"
 NUGGET_ROOT = REPO_ROOT / ".docs/docs-for-cli-tools/nugget_structure"
 NUGGETS_PATH = REPO_ROOT / ".docs/analysis/nuggets.json"
@@ -297,7 +298,8 @@ def _ensure_host(
     networks_id = g.add_node("NETWORKS", f"networks:{host_key}", "CATEGORY")
     g.add_edge(host_id, networks_id, "contains")
 
-    ip_id = g.add_node("IP_ADDRESS", host_key, "ENTITY")
+    ip_nugget = classify_ip(host_key) or "IPV4_ADDRESS"
+    ip_id = g.add_node(ip_nugget, host_key, "ENTITY")
     g.add_edge(networks_id, ip_id, "contains")
 
     for name in hostnames or []:
@@ -372,7 +374,8 @@ def _parse_ports(g: GraphBuilder, host_id: str, host_key: str, host_el: ET.Eleme
     apps_id = g.add_node("APPLICATIONS", f"applications:{host_key}", "CATEGORY")
     g.add_edge(host_id, apps_id, "contains")
 
-    ip_id = nugget_instance_id("IP_ADDRESS", host_key)
+    ip_nugget = classify_ip(host_key) or "IPV4_ADDRESS"
+    ip_id = nugget_instance_id(ip_nugget, host_key)
 
     for port_el in ports_el.findall("port"):
         proto = port_el.get("protocol", "tcp")

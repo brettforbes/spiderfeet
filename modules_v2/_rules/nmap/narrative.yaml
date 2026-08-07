@@ -1,0 +1,6 @@
+tool: nmap
+profile: nmap_default
+sections:
+  - scan_summary
+  - hosts
+  - appendix

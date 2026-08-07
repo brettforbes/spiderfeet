@@ -35,7 +35,7 @@ flowchart TD
   domain_name_4["DOMAIN_NAME"]
   host_5["HOST"]
   networks_6["NETWORKS"]
-  ip_address_7["IP_ADDRESS"]
+  ip_address_7["IPV4_ADDRESS"]
   transport_8["TRANSPORT"]
   port_9["PORT"]
   applications_10["APPLICATIONS"]
@@ -72,7 +72,7 @@ flowchart TD
   domain_name_4["DOMAIN_NAME"]
   host_5["HOST"]
   networks_6["NETWORKS"]
-  ip_address_7["IP_ADDRESS"]
+  ip_address_7["IPV4_ADDRESS"]
   transport_8["TRANSPORT"]
   port_9["PORT"]
   applications_10["APPLICATIONS"]
@@ -126,7 +126,7 @@ Canonical vocabulary: `.docs/analysis/nuggets.json` and `.docs/analysis/nuggets_
 | host_input_count | SCAN_HOST_INPUT_COUNT |  |
 | records[].url | LINKED_URL_INTERNAL | scan contains |
 | records[].host | DOMAIN_NAME or HOST | domain contains host endpoint |
-| records[].ip | IP_ADDRESS | NETWORKS contains via classify_ip |
+| records[].ip | IPV4_ADDRESS | NETWORKS contains via classify_ip |
 | records[].status_code | HTTP_STATUS_CODE | had on SERVICE |
 | records[].title | HTTP_TITLE |  |
 | records[].webserver | WEBSERVER_BANNER |  |

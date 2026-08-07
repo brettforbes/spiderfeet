@@ -18,8 +18,8 @@ from core.ip_classify import assert_ip_nugget, classify_ip
 @pytest.mark.parametrize(
     ("value", "expected"),
     [
-        ("192.168.1.1", "IP_ADDRESS"),
-        ("10.0.0.5", "IP_ADDRESS"),
+        ("192.168.1.1", "IPV4_ADDRESS"),
+        ("10.0.0.5", "IPV4_ADDRESS"),
         ("2001:db8::1", "IPV6_ADDRESS"),
         ("[2001:db8::1]", "IPV6_ADDRESS"),
         ("::1", "IPV6_ADDRESS"),
@@ -48,12 +48,22 @@ def test_classify_ip_rejects_non_ip(value: str) -> None:
 
 
 def test_assert_ip_nugget_passes_for_correct_id() -> None:
-    assert_ip_nugget("192.168.0.1", "IP_ADDRESS")
+    assert_ip_nugget("192.168.0.1", "IPV4_ADDRESS")
 
 
 def test_assert_ip_nugget_raises_for_ipv6_mislabel() -> None:
     with pytest.raises(ValueError, match="IPV6_ADDRESS"):
-        assert_ip_nugget("2001:db8::1", "IP_ADDRESS")
+        assert_ip_nugget("2001:db8::1", "IPV4_ADDRESS")
+
+
+def test_ip_nugget_node_emits_ipv4_entity() -> None:
+    from core.graph_builder import GraphBuilder
+    from core.ip_classify import ip_nugget_node
+
+    builder = GraphBuilder()
+    node = builder.add_node(ip_nugget_node("8.8.8.8"))
+    assert node["nugget_id"] == "IPV4_ADDRESS"
+    assert node["nugget_data"] == "8.8.8.8"
 
 
 def test_ip_nugget_node_emits_ipv6_entity() -> None:

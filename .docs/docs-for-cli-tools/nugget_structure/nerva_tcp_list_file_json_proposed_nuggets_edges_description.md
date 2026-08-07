@@ -44,8 +44,8 @@ flowchart LR
   SERVICE -->|listens-to| PORT
   SERVICE -->|had| TLS_ENABLED
   SERVICE -->|had| SERVICE_BANNER
-  NETWORKS -->|contains| IP_ADDRESS
-  IP_ADDRESS -->|contains| TRANSPORT
+  NETWORKS -->|contains| IPV4_ADDRESS
+  IPV4_ADDRESS -->|contains| TRANSPORT
   SCAN_RECORD -->|contains| CDN
   CDN -->|had| HOST_CLASSIFICATION
   CDN -->|had| CLASSIFICATION_RULE_FIRED
@@ -139,12 +139,12 @@ _Trace section omitted when no TRACE nodes present._
 - `HTTP_REDIRECT_LOCATION`: https://www.praetorian.com/
 - `HTTP_STATUS_CODE`: 200
 - `HTTP_STATUS_CODE`: 301
+- `IPV4_ADDRESS`: 172.66.40.60
+- `IPV4_ADDRESS`: 172.66.43.196
+- `IPV4_ADDRESS`: 45.33.32.156
 - `IPV6_ADDRESS`: 2600:3c01::f03c:91ff:fe18:bb2f
 - `IPV6_ADDRESS`: 2606:4700:3108::ac42:283c
 - `IPV6_ADDRESS`: 2606:4700:3108::ac42:2bc4
-- `IP_ADDRESS`: 172.66.40.60
-- `IP_ADDRESS`: 172.66.43.196
-- `IP_ADDRESS`: 45.33.32.156
 - `NEL_ACTIVE`: True
 - `NETWORKS`: networks:praetorian.com
 - `NETWORKS`: networks:scanme.nmap.org
@@ -209,8 +209,8 @@ _Trace section omitted when no TRACE nodes present._
 - `SERVICE` `listens-to` `PORT`
 - `SERVICE` `had` `TLS_ENABLED`
 - `SERVICE` `had` `SERVICE_BANNER`
-- `NETWORKS` `contains` `IP_ADDRESS`
-- `IP_ADDRESS` `contains` `TRANSPORT`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `contains` `TRANSPORT`
 - `SCAN_RECORD` `contains` `CDN`
 - `CDN` `had` `HOST_CLASSIFICATION`
 - `CDN` `had` `CLASSIFICATION_RULE_FIRED`
@@ -218,7 +218,7 @@ _Trace section omitted when no TRACE nodes present._
 - `CDN` `had` `ORIGIN_HOST_COUNT`
 - `CDN` `contains` `NETWORKS`
 - `CDN` `contains` `APPLICATIONS`
-- `NETWORKS` `contains` `IP_ADDRESS`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
 - `APPLICATIONS` `contains` `SERVICE`
 - `TRANSPORT` `contains` `PORT`
 - `SERVICE` `listens-to` `PORT`
@@ -242,9 +242,9 @@ _Trace section omitted when no TRACE nodes present._
 - `CDN` `had` `ORIGIN_HOST_COUNT`
 - `CDN` `contains` `NETWORKS`
 - `CDN` `contains` `APPLICATIONS`
-- `NETWORKS` `contains` `IP_ADDRESS`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
 - `APPLICATIONS` `contains` `SERVICE`
-- `IP_ADDRESS` `contains` `TRANSPORT`
+- `IPV4_ADDRESS` `contains` `TRANSPORT`
 - `TRANSPORT` `contains` `PORT`
 - `SERVICE` `listens-to` `PORT`
 - `SERVICE` `had` `SERVICE_VERSION`
@@ -303,8 +303,8 @@ _Trace section omitted when no TRACE nodes present._
 - `IPV6_ADDRESS` `contains` `TRANSPORT`
 - `CDN` `had` `EDGE_NODE_ID`
 - `SERVICE` `had` `EDGE_DURATION_MS`
-- `NETWORKS` `contains` `IP_ADDRESS`
-- `IP_ADDRESS` `contains` `TRANSPORT`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `contains` `TRANSPORT`
 - `CDN` `had` `EDGE_NODE_ID`
 - `SERVICE` `had` `EDGE_DURATION_MS`
 - `NETWORKS` `contains` `IPV6_ADDRESS`

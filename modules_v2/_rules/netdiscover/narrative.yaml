@@ -1,0 +1,8 @@
+tool: netdiscover
+host_nugget_id: SYSTEM
+primary_sections:
+  - scan
+  - systems
+  - networks
+include_trace: false
+include_appendix: true

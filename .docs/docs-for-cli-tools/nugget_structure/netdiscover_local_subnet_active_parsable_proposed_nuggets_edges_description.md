@@ -6,11 +6,11 @@ This report narrates the findings of a **Netdiscover** ARP discovery run for **n
 
 ## Scan
 
-The scan started at **Sun Jul 12 14:14:46 2026** with arguments `netdiscover — A — active ARP scan 192.168.1.0/24 (parseable)`.
- It finished at **Sun Jul 12 14:15:03 2026**.
+The scan started at **Fri Aug 07 10:50:40 2026** with arguments `netdiscover — A — active ARP scan 192.168.1.0/24 (parseable)`.
+ It finished at **Fri Aug 07 10:50:57 2026**.
  Exit status: **success**.
 
-NetDiscover done at Sun Jul 12 14:15:03 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 17.20 seconds
+NetDiscover done at Fri Aug 07 10:50:57 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 17.20 seconds
 
 Netdiscover recorded **1** scan frame(s), **0** empty scan(s) before settling on the host table used for this graph.
 **12** system(s) appear in the structured host inventory.
@@ -61,7 +61,7 @@ flowchart TD
   system["SYSTEM 192.168.1.1"]
   nets["NETWORKS"]
   system -->|contains| nets
-  ip["IP_ADDRESS"]
+  ip["IPV4_ADDRESS"]
   nets -->|contains| ip
   mac["MAC_ADDRESS"]
   nets -->|contains| mac
@@ -83,7 +83,7 @@ flowchart TD
   system["SYSTEM 192.168.1.10"]
   nets["NETWORKS"]
   system -->|contains| nets
-  ip["IP_ADDRESS"]
+  ip["IPV4_ADDRESS"]
   nets -->|contains| ip
   mac["MAC_ADDRESS"]
   nets -->|contains| mac
@@ -105,7 +105,7 @@ flowchart TD
   system["SYSTEM 192.168.1.14"]
   nets["NETWORKS"]
   system -->|contains| nets
-  ip["IP_ADDRESS"]
+  ip["IPV4_ADDRESS"]
   nets -->|contains| ip
   mac["MAC_ADDRESS"]
   nets -->|contains| mac
@@ -127,7 +127,7 @@ flowchart TD
   system["SYSTEM 192.168.1.15"]
   nets["NETWORKS"]
   system -->|contains| nets
-  ip["IP_ADDRESS"]
+  ip["IPV4_ADDRESS"]
   nets -->|contains| ip
   mac["MAC_ADDRESS"]
   nets -->|contains| mac
@@ -149,7 +149,7 @@ flowchart TD
   system["SYSTEM 192.168.1.16"]
   nets["NETWORKS"]
   system -->|contains| nets
-  ip["IP_ADDRESS"]
+  ip["IPV4_ADDRESS"]
   nets -->|contains| ip
   mac["MAC_ADDRESS"]
   nets -->|contains| mac
@@ -171,7 +171,7 @@ flowchart TD
   system["SYSTEM 192.168.1.2"]
   nets["NETWORKS"]
   system -->|contains| nets
-  ip["IP_ADDRESS"]
+  ip["IPV4_ADDRESS"]
   nets -->|contains| ip
   mac["MAC_ADDRESS"]
   nets -->|contains| mac
@@ -193,7 +193,7 @@ flowchart TD
   system["SYSTEM 192.168.1.250"]
   nets["NETWORKS"]
   system -->|contains| nets
-  ip["IP_ADDRESS"]
+  ip["IPV4_ADDRESS"]
   nets -->|contains| ip
   mac["MAC_ADDRESS"]
   nets -->|contains| mac
@@ -215,7 +215,7 @@ flowchart TD
   system["SYSTEM 192.168.1.3"]
   nets["NETWORKS"]
   system -->|contains| nets
-  ip["IP_ADDRESS"]
+  ip["IPV4_ADDRESS"]
   nets -->|contains| ip
   mac["MAC_ADDRESS"]
   nets -->|contains| mac
@@ -237,7 +237,7 @@ flowchart TD
   system["SYSTEM 192.168.1.4"]
   nets["NETWORKS"]
   system -->|contains| nets
-  ip["IP_ADDRESS"]
+  ip["IPV4_ADDRESS"]
   nets -->|contains| ip
   mac["MAC_ADDRESS"]
   nets -->|contains| mac
@@ -259,7 +259,7 @@ flowchart TD
   system["SYSTEM 192.168.1.6"]
   nets["NETWORKS"]
   system -->|contains| nets
-  ip["IP_ADDRESS"]
+  ip["IPV4_ADDRESS"]
   nets -->|contains| ip
   mac["MAC_ADDRESS"]
   nets -->|contains| mac
@@ -281,7 +281,7 @@ flowchart TD
   system["SYSTEM 192.168.1.7"]
   nets["NETWORKS"]
   system -->|contains| nets
-  ip["IP_ADDRESS"]
+  ip["IPV4_ADDRESS"]
   nets -->|contains| ip
   mac["MAC_ADDRESS"]
   nets -->|contains| mac
@@ -303,7 +303,7 @@ flowchart TD
   system["SYSTEM 192.168.1.8"]
   nets["NETWORKS"]
   system -->|contains| nets
-  ip["IP_ADDRESS"]
+  ip["IPV4_ADDRESS"]
   nets -->|contains| ip
   mac["MAC_ADDRESS"]
   nets -->|contains| mac
@@ -317,7 +317,7 @@ flowchart TD
 ## Conclusion
 
 The scan captured **58** semantic nuggets across **12** systems.
- NetDiscover done at Sun Jul 12 14:15:03 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 17.20 seconds
+ NetDiscover done at Fri Aug 07 10:50:57 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 17.20 seconds
  The appendix lists every nugget instance and value for audit and downstream review.
 
 
@@ -341,23 +341,23 @@ The scan captured **58** semantic nuggets across **12** systems.
 | DESCRIPTOR | SCAN_CLI | Scan CLI | `netdiscover — A — active ARP scan 192.168.1.0/24 (parseable)` |
 | DESCRIPTOR | SCAN_DISCOVERED | Systems Discovered | `12` |
 | DESCRIPTOR | SCAN_EMPTY_SCANS | Empty Scans | `0` |
-| DESCRIPTOR | SCAN_END_TIME | Scan End Time | `Sun Jul 12 14:15:03 2026` |
+| DESCRIPTOR | SCAN_END_TIME | Scan End Time | `Fri Aug 07 10:50:57 2026` |
 | DESCRIPTOR | SCAN_EXIT_STATUS | Scan Exit Status | `success` |
-| DESCRIPTOR | SCAN_SUMMARY | Scan Summary | `NetDiscover done at Sun Jul 12 14:15:03 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 17.20 seconds` |
-| DESCRIPTOR | SCAN_TIMESTAMP | Scan Start Time | `Sun Jul 12 14:14:46 2026` |
+| DESCRIPTOR | SCAN_SUMMARY | Scan Summary | `NetDiscover done at Fri Aug 07 10:50:57 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 17.20 seconds` |
+| DESCRIPTOR | SCAN_TIMESTAMP | Scan Start Time | `Fri Aug 07 10:50:40 2026` |
 | DESCRIPTOR | SCAN_TRIES | Scan Tries | `1` |
-| ENTITY | IP_ADDRESS | IP Address | `192.168.1.1` |
-| ENTITY | IP_ADDRESS | IP Address | `192.168.1.10` |
-| ENTITY | IP_ADDRESS | IP Address | `192.168.1.14` |
-| ENTITY | IP_ADDRESS | IP Address | `192.168.1.15` |
-| ENTITY | IP_ADDRESS | IP Address | `192.168.1.16` |
-| ENTITY | IP_ADDRESS | IP Address | `192.168.1.2` |
-| ENTITY | IP_ADDRESS | IP Address | `192.168.1.250` |
-| ENTITY | IP_ADDRESS | IP Address | `192.168.1.3` |
-| ENTITY | IP_ADDRESS | IP Address | `192.168.1.4` |
-| ENTITY | IP_ADDRESS | IP Address | `192.168.1.6` |
-| ENTITY | IP_ADDRESS | IP Address | `192.168.1.7` |
-| ENTITY | IP_ADDRESS | IP Address | `192.168.1.8` |
+| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.1` |
+| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.10` |
+| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.14` |
+| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.15` |
+| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.16` |
+| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.2` |
+| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.250` |
+| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.3` |
+| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.4` |
+| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.6` |
+| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.7` |
+| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.8` |
 | ENTITY | MAC_ADDRESS | MAC Address | `02:0f:b5:0a:e3:6c` |
 | ENTITY | MAC_ADDRESS | MAC Address | `02:0f:b5:23:c6:49` |
 | ENTITY | MAC_ADDRESS | MAC Address | `02:0f:b5:2f:b0:73` |
@@ -386,4 +386,4 @@ The scan captured **58** semantic nuggets across **12** systems.
 
 ---
 
-*OS-Intel Scan · Sun Jul 12 14:14:46 2026 · Page 1*
+*OS-Intel Scan · Fri Aug 07 10:50:40 2026 · Page 1*

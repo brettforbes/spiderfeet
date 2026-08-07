@@ -26,8 +26,8 @@ flowchart LR
   SCAN_RECORD -->|contains| HOST
   DOMAIN_NAME -->|had| HOST
   HOST -->|contains| NETWORKS
-  NETWORKS -->|contains| IP_ADDRESS
-  IP_ADDRESS -->|contains| TRANSPORT
+  NETWORKS -->|contains| IPV4_ADDRESS
+  IPV4_ADDRESS -->|contains| TRANSPORT
   TRANSPORT -->|had| TRANSPORT_PROTOCOL
   TRANSPORT -->|contains| PORT
   PORT -->|had| PORT_STATE
@@ -49,8 +49,8 @@ flowchart LR
   SERVICE -->|had| PAGE_HASH
   SERVICE -->|contains| SOFTWARE_USED
   SOFTWARE_USED -->|had| SOFTWARE_VERSION
-  DOMAIN_NAME -->|had| IP_ADDRESS
-  IP_ADDRESS -->|had| PROBE_CONNECTED
+  DOMAIN_NAME -->|had| IPV4_ADDRESS
+  IPV4_ADDRESS -->|had| PROBE_CONNECTED
 ```
 
 ## Trace
@@ -74,9 +74,9 @@ _Trace section omitted when no TRACE nodes present._
 - `HTTP_PATH`: /
 - `HTTP_STATUS_CODE`: 200
 - `HTTP_TITLE`: Home - Venture Capital Opportunities Fund
-- `IP_ADDRESS`: 104.26.6.35
-- `IP_ADDRESS`: 104.26.7.35
-- `IP_ADDRESS`: 172.67.68.161
+- `IPV4_ADDRESS`: 104.26.6.35
+- `IPV4_ADDRESS`: 104.26.7.35
+- `IPV4_ADDRESS`: 172.67.68.161
 - `LINE_COUNT`: 298
 - `NETWORKS`: NETWORKS
 - `PAGE_HASH`: 0
@@ -132,8 +132,8 @@ _Trace section omitted when no TRACE nodes present._
 - `SCAN_RECORD` `contains` `HOST`
 - `DOMAIN_NAME` `had` `HOST`
 - `HOST` `contains` `NETWORKS`
-- `NETWORKS` `contains` `IP_ADDRESS`
-- `IP_ADDRESS` `contains` `TRANSPORT`
+- `NETWORKS` `contains` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `contains` `TRANSPORT`
 - `TRANSPORT` `had` `TRANSPORT_PROTOCOL`
 - `TRANSPORT` `contains` `PORT`
 - `PORT` `had` `PORT_STATE`
@@ -166,12 +166,12 @@ _Trace section omitted when no TRACE nodes present._
 - `SERVICE` `contains` `SOFTWARE_USED`
 - `SERVICE` `contains` `SOFTWARE_USED`
 - `SERVICE` `contains` `SOFTWARE_USED`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
-- `DOMAIN_NAME` `had` `IP_ADDRESS`
-- `IP_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
+- `DOMAIN_NAME` `had` `IPV4_ADDRESS`
+- `IPV4_ADDRESS` `had` `PROBE_CONNECTED`
 - `DOMAIN_NAME` `had` `HTTP_LIVENESS_STATUS`
 ---
 

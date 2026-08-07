@@ -136,9 +136,9 @@
       "nugget_colour": "#14B8A6"
     },
     {
-      "id": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
-      "nugget_instance_id": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
-      "nugget_id": "IP_ADDRESS",
+      "id": "IPV4_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "nugget_instance_id": "IPV4_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "nugget_id": "IPV4_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "IP Address",
       "nugget_data": "104.26.6.35",
@@ -442,18 +442,18 @@
       "nugget_colour": "#F59E0B"
     },
     {
-      "id": "IP_ADDRESS--66ecbd14-3f5f-551f-b36c-a01c8ff3344e",
-      "nugget_instance_id": "IP_ADDRESS--66ecbd14-3f5f-551f-b36c-a01c8ff3344e",
-      "nugget_id": "IP_ADDRESS",
+      "id": "IPV4_ADDRESS--66ecbd14-3f5f-551f-b36c-a01c8ff3344e",
+      "nugget_instance_id": "IPV4_ADDRESS--66ecbd14-3f5f-551f-b36c-a01c8ff3344e",
+      "nugget_id": "IPV4_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "IP Address",
       "nugget_data": "104.26.7.35",
       "nugget_colour": "#3B82F6"
     },
     {
-      "id": "IP_ADDRESS--50c530aa-af63-59e9-a91b-c23d4845fddf",
-      "nugget_instance_id": "IP_ADDRESS--50c530aa-af63-59e9-a91b-c23d4845fddf",
-      "nugget_id": "IP_ADDRESS",
+      "id": "IPV4_ADDRESS--50c530aa-af63-59e9-a91b-c23d4845fddf",
+      "nugget_instance_id": "IPV4_ADDRESS--50c530aa-af63-59e9-a91b-c23d4845fddf",
+      "nugget_id": "IPV4_ADDRESS",
       "nugget_type": "ENTITY",
       "nugget_description": "IP Address",
       "nugget_data": "172.67.68.161",
@@ -547,11 +547,11 @@
     },
     {
       "source": "NETWORKS--4b54d000-1657-54c2-b30a-d868d212bc97",
-      "target": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "target": "IPV4_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
       "relation": "contains"
     },
     {
-      "source": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "source": "IPV4_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
       "target": "TRANSPORT--8ac153bd-ea26-5250-aae7-518222b25374",
       "relation": "contains"
     },
@@ -717,31 +717,31 @@
     },
     {
       "source": "DOMAIN_NAME--17cebccd-3738-523b-99dd-92f5df906bcb",
-      "target": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "target": "IPV4_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
       "relation": "had"
     },
     {
-      "source": "IP_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
+      "source": "IPV4_ADDRESS--9ea3f442-1b53-5839-b6ee-e9827bee49e7",
       "target": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
       "relation": "had"
     },
     {
       "source": "DOMAIN_NAME--17cebccd-3738-523b-99dd-92f5df906bcb",
-      "target": "IP_ADDRESS--66ecbd14-3f5f-551f-b36c-a01c8ff3344e",
+      "target": "IPV4_ADDRESS--66ecbd14-3f5f-551f-b36c-a01c8ff3344e",
       "relation": "had"
     },
     {
-      "source": "IP_ADDRESS--66ecbd14-3f5f-551f-b36c-a01c8ff3344e",
+      "source": "IPV4_ADDRESS--66ecbd14-3f5f-551f-b36c-a01c8ff3344e",
       "target": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
       "relation": "had"
     },
     {
       "source": "DOMAIN_NAME--17cebccd-3738-523b-99dd-92f5df906bcb",
-      "target": "IP_ADDRESS--50c530aa-af63-59e9-a91b-c23d4845fddf",
+      "target": "IPV4_ADDRESS--50c530aa-af63-59e9-a91b-c23d4845fddf",
       "relation": "had"
     },
     {
-      "source": "IP_ADDRESS--50c530aa-af63-59e9-a91b-c23d4845fddf",
+      "source": "IPV4_ADDRESS--50c530aa-af63-59e9-a91b-c23d4845fddf",
       "target": "PROBE_CONNECTED--c223f3d4-185e-54ff-a5b4-ab520dbd27da",
       "relation": "had"
     },

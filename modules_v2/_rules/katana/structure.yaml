@@ -1,0 +1,87 @@
+tool: katana
+display_name: Katana
+seed_docs:
+  - .seed/05_Onotology_for_Nuggets.md
+  - .seed/14_Business_Rules_for_Converting_Structured_Data_to_Graph.md
+generator: .seed/scripts/cli_corpus/adapters/katana
+artifacts:
+  graph: katana_<scenario_id>_proposed_nuggets_edges.json
+  narrative: katana_<scenario_id>_proposed_nuggets_edges_description.md
+  output_dir: .docs/docs-for-cli-tools/nugget_structure
+narrative:
+  engine: .seed/scripts/cli_corpus/core/narrative_engine.py
+  method: render_narrative
+patterns:
+  - id: scan_head
+    title: Scan head
+    prose: >
+      SCAN_RECORD carries SCAN_CLI, SCAN_TARGET, SCAN_CRAWL_PROFILE, url_input_count,
+      timing, and exit descriptors. DOMAIN_NAME apex links from scan via contains.
+  - id: crawl_url_tree
+    title: Crawl URL tree
+    prose: >
+      Each crawl JSONL row becomes LINKED_URL_INTERNAL under the scan. Host DOMAIN_NAME
+      nodes nest discovered URLs; HTTP_METHOD and HTTP_STATUS_CODE attach via had.
+    bullets:
+      - Seed URL lists are derived from upstream httpx formal examinations.
+      - UPSTREAM_SCENARIO_ID descriptor records the httpx scenario linkage on the scan head.
+      - Crawl scope uses fqdn filtering and bounded depth/duration per manifest crawl_profile.
+specialty_sections:
+  - title: httpx upstream linkage
+    pattern: crawl_url_tree
+    prose: >
+      Katana scenarios document httpx_scenario in bundle metadata with url_input_count
+      versus discovered URL record counts.
+scenarios:
+  - id: from_httpx_upside_au
+    structures: DOMAIN_NAME apex + LINKED_URL_INTERNAL crawl tree
+  - id: from_httpx_squarepeg
+    structures: VC crawl surface
+  - id: from_httpx_vcof_sparse
+    structures: Ultra-sparse crawl
+  - id: from_httpx_k2am_passive
+    structures: SME passive-seed crawl
+  - id: from_httpx_k2am_active
+    structures: Active-seed crawl
+  - id: from_httpx_upside_com
+    structures: TLD sibling crawl
+  - id: from_httpx_sbs
+    structures: Enterprise bounded crawl
+  - id: from_httpx_invalid_clean_miss
+    structures: Deferred/clean miss; empty or placeholder records[]
+field_mapping:
+  - path: command
+    nugget_id: SCAN_CLI
+  - path: target
+    nugget_id: SCAN_TARGET
+  - path: crawl_profile
+    nugget_id: SCAN_CRAWL_PROFILE
+  - path: url_input_count
+    nugget_id: SCAN_URL_INPUT_COUNT
+  - path: httpx_scenario
+    nugget_id: UPSTREAM_SCENARIO_ID
+  - path: records[].url
+    nugget_id: LINKED_URL_INTERNAL
+    notes: scan contains; host domain contains
+  - path: records[].request.method
+    nugget_id: HTTP_METHOD
+    notes: had on URL
+  - path: records[].response.status_code
+    nugget_id: HTTP_STATUS_CODE
+    notes: had on URL
+proposed_nuggets:
+  - nugget_id: LINKED_URL_INTERNAL
+    type: ENTITY
+    parent: SCAN_RECORD or DOMAIN_NAME
+    source: url field
+    relation: contains
+  - nugget_id: SCAN_CRAWL_PROFILE
+    type: DESCRIPTOR
+    parent: SCAN_RECORD
+    source: manifest crawl_profile
+    relation: had
+review_notes:
+  - Structured capture uses -j JSONL converted to bundle JSON at harvest.
+  - Crawl graphs do not invent HOST port/service trees unless response metadata justifies them.
+  - harvest_deferred scenarios ship placeholder bundles when httpx produced zero live URLs.
+cross_link: ../_Current_Ontology.md

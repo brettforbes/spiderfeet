@@ -34,7 +34,7 @@ flowchart TD
   host_status_3["HOST_STATUS"]
   host_status_reason_4["HOST_STATUS_REASON"]
   networks_5["NETWORKS"]
-  ip_address_6["IP_ADDRESS"]
+  ip_address_6["IPV4_ADDRESS"]
   scan_record_1 -->|contains| host_2
   host_2 -->|had| host_status_3
   host_2 -->|had| host_status_reason_4
@@ -54,7 +54,7 @@ flowchart TD
   scan_record_1["SCAN_RECORD"]
   host_2["HOST"]
   networks_3["NETWORKS"]
-  ip_address_4["IP_ADDRESS"]
+  ip_address_4["IPV4_ADDRESS"]
   transport_5["TRANSPORT"]
   port_6["PORT"]
   port_state_7["PORT_STATE"]
@@ -187,7 +187,7 @@ Canonical vocabulary: `.docs/analysis/nuggets.json` and `.docs/analysis/nuggets_
 | nmaprun@args | SCAN_CLI |  |
 | host/status@state | HOST_STATUS |  |
 | host/status@reason | HOST_STATUS_REASON |  |
-| address@addr | IP_ADDRESS | under NETWORKS via classify_ip |
+| address@addr | IPV4_ADDRESS | under NETWORKS via classify_ip |
 | hostname@name | INTERNET_NAME | had on HOST |
 | port/state@state | PORT_STATE |  |
 | service@product + @version | SERVICE_VERSION |  |
@@ -199,7 +199,7 @@ Canonical vocabulary: `.docs/analysis/nuggets.json` and `.docs/analysis/nuggets_
 | trace@proto | TRACE_PROTOCOL |  |
 | trace/hop@ttl | HOP_TTL |  |
 | trace/hop@rtt | HOP_RTT |  |
-| trace/hop@ipaddr | IP_ADDRESS | under hop HOST |
+| trace/hop@ipaddr | IPV4_ADDRESS | under hop HOST |
 
 ## Review notes
 

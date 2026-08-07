@@ -94,11 +94,11 @@ All IP node creation (topology + adapter hooks) must go through `core.ip_classif
 
 | Role | IPv4 | IPv6 |
 |------|------|------|
-| host | `IP_ADDRESS` | `IPV6_ADDRESS` |
+| host | `IPV4_ADDRESS` | `IPV6_ADDRESS` |
 | internal | `INTERNAL_IP_ADDRESS` | `IPV6_ADDRESS` (until catalogue adds INTERNAL_IPV6) |
 | affiliate | `AFFILIATE_IPADDR` | `AFFILIATE_IPV6_ADDRESS` |
 
-Fast gate: dots → IPv4 path; colons → IPv6 path; then YAML regex confirm. Never emit `IP_ADDRESS` for a colon-form literal.
+Fast gate: dots → IPv4 path; colons → IPv6 path; then YAML regex confirm. Never emit ambiguous `IP_ADDRESS`; never emit `IPV4_ADDRESS` for a colon-form literal.
 
 ## Hooks gate
 
