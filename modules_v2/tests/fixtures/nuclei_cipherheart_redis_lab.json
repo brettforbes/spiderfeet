@@ -1,0 +1,120 @@
+{
+  "schema": "nuclei_finding_v1",
+  "tool": "nuclei",
+  "scenario": "Redis CVE-2022-0543 + unauthenticated exposure on pentest-ground (:6379)",
+  "scenario_id": "cipherheart_redis_lab",
+  "target": "pentest-ground.com:6379",
+  "command": "nuclei -u pentest-ground.com:6379 -silent -jsonl -omit-raw -omit-template -t .tools/nuclei-templates/network/cves/2022/CVE-2022-0543.yaml -t .tools/nuclei-templates/network/exposures/exposed-redis.yaml -no-interactsh -etags dos,fuzz,misc -duc -retries 1 -c 10 -timeout 15 -jle .docs/docs-for-cli-tools/exploration_scratch/nuclei/cipherheart_redis_lab.jsonl",
+  "runtime": "windows",
+  "started_at": "2026-07-05T11:58:42.228637+00:00",
+  "duration_s": 0.0,
+  "exit_code": 0,
+  "finding_summary_lines": 2,
+  "text_role": "one line per JSONL finding: [severity] template-id @ matched-at",
+  "structured_role": "full JSONL finding objects in records[]",
+  "records": [
+    {
+      "template-id": "CVE-2022-0543",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\network\\cves\\2022\\CVE-2022-0543.yaml",
+      "info": {
+        "name": "Redis Sandbox Escape - Remote Code Execution",
+        "author": [
+          "dwisiswant0"
+        ],
+        "tags": [
+          "cve",
+          "cve2022",
+          "network",
+          "redis",
+          "unauth",
+          "rce",
+          "kev",
+          "tcp",
+          "vkev",
+          "vuln"
+        ],
+        "description": "This template exploits CVE-2022-0543, a Lua-based Redis sandbox escape. The\nvulnerability was introduced by Debian and Ubuntu Redis packages that\ninsufficiently sanitized the Lua environment. The maintainers failed to\ndisable the package interface, allowing attackers to load arbitrary libraries.\n",
+        "impact": "Successful exploitation of this vulnerability can lead to unauthorized access, data theft, and compromise of the affected system.\n",
+        "reference": [
+          "https://www.ubercomp.com/posts/2022-01-20_redis_on_debian_rce",
+          "https://attackerkb.com/topics/wyA1c1HIC8/cve-2022-0543/rapid7-analysis#rapid7-analysis",
+          "https://bugs.debian.org/1005787",
+          "https://www.debian.org/security/2022/dsa-5081",
+          "https://lists.debian.org/debian-security-announce/2022/msg00048.html"
+        ],
+        "severity": "critical",
+        "metadata": {
+          "max-request": 2,
+          "product": "redis",
+          "shodan-query": [
+            "redis_version",
+            "redis"
+          ],
+          "vendor": "redis"
+        },
+        "classification": {
+          "cve-id": [
+            "cve-2022-0543"
+          ],
+          "cwe-id": null,
+          "cvss-metrics": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+          "cvss-score": 10,
+          "epss-score": 0.9967,
+          "epss-percentile": 0.99948,
+          "cpe": "cpe:2.3:a:redis:redis:-:*:*:*:*:*:*:*"
+        },
+        "remediation": "Update to the most recent versions currently available."
+      },
+      "type": "tcp",
+      "host": "pentest-ground.com",
+      "port": "6379",
+      "url": "pentest-ground.com:6379",
+      "matched-at": "pentest-ground.com:6379",
+      "ip": "178.79.134.182",
+      "timestamp": "2026-07-05T21:43:18.136703+10:00",
+      "matcher-status": true
+    },
+    {
+      "template-id": "exposed-redis",
+      "template-path": "C:\\projects\\spiderfeet\\.tools\\nuclei-templates\\network\\exposures\\exposed-redis.yaml",
+      "info": {
+        "name": "Redis Server - Unauthenticated Access",
+        "author": [
+          "pdteam"
+        ],
+        "tags": [
+          "network",
+          "redis",
+          "unauth",
+          "exposure",
+          "tcp",
+          "discovery"
+        ],
+        "description": "Redis server without any required authentication was discovered.",
+        "reference": [
+          "https://redis.io/topics/security"
+        ],
+        "severity": "high",
+        "metadata": {
+          "max-request": 2
+        },
+        "classification": {
+          "cve-id": null,
+          "cwe-id": [
+            "cwe-306"
+          ],
+          "cvss-metrics": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N",
+          "cvss-score": 7.2
+        }
+      },
+      "type": "tcp",
+      "host": "pentest-ground.com",
+      "port": "6379",
+      "url": "pentest-ground.com:6379",
+      "matched-at": "pentest-ground.com:6379",
+      "ip": "178.79.134.182",
+      "timestamp": "2026-07-05T21:43:20.5499978+10:00",
+      "matcher-status": true
+    }
+  ]
+}
