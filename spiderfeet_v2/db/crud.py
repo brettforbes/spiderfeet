@@ -13,6 +13,13 @@ from typedb.api.connection.transaction import TransactionType
 from spiderfeet.map.typeql_util import literal_string, run_read_exists, run_write, run_writes
 from spiderfeet_v2.db.config import TypeDBConnectionConfig, load_connection_config
 from spiderfeet_v2.db.connection import open_driver
+from spiderfeet_v2.db.subgraph_codec import (
+    SubgraphCodecError,
+    load_dual_form,
+    load_graph_from_typedb,
+    read_json_string,
+    store_dual_form,
+)
 
 # --- Attribute inventories (schema keys ↔ JSON fields) ---
 
@@ -991,6 +998,18 @@ class CrudStore:
                   $g links ({meta["owner_role"]}: $owner);
                 """,
             )
+            graph = data.get("graph")
+            if graph is None and ("nodes" in data or "edges" in data):
+                graph = {
+                    "nodes": data.get("nodes") or [],
+                    "edges": data.get("edges") or [],
+                }
+            if graph is not None:
+                try:
+                    store_dual_form(driver, self.database, kind, sg_id, graph)
+                except SubgraphCodecError as exc:
+                    raise CrudError(str(exc)) from exc
+                return self.get_subgraph_dual(kind, sg_id, _driver=driver)
             return self.get_subgraph(kind, sg_id, _driver=driver)  # type: ignore[return-value]
         finally:
             driver.close()
@@ -1026,11 +1045,14 @@ class CrudStore:
                   $owner has {meta["owner_id_attr"]} $v;
                 """,
             )
-            return {
+            row: Dict[str, Any] = {
                 "kind": kind,
                 id_attr: subgraph_id,
                 meta["json_owner_key"]: owners[0] if owners else None,
             }
+            js = read_json_string(driver, self.database, kind, subgraph_id)
+            row["json_string"] = js
+            return row
         finally:
             if own:
                 driver.close()
@@ -1038,25 +1060,89 @@ class CrudStore:
     def update_subgraph(
         self, kind: str, subgraph_id: str, data: Dict[str, Any]
     ) -> Dict[str, Any]:
-        """AL1: re-point owner only (nugget/edge payload is AL2)."""
+        """Re-point owner and/or replace dual-form graph payload (AL1 + AL2)."""
         if kind not in _SUBGRAPH_META:
             raise CrudError(f"unknown subgraph kind: {kind}")
         meta = _SUBGRAPH_META[kind]
         owner_key = meta["json_owner_key"]
-        owner_id = data.get(owner_key)
-        if not owner_id:
-            raise CrudError(f"{owner_key} is required for subgraph update")
         current = self.get_subgraph(kind, subgraph_id)
         if current is None:
             raise CrudError(f"{kind} not found: {subgraph_id}")
-        # Owner is the only role; unlinking drops the relation — recreate.
-        self.delete_subgraph(kind, subgraph_id)
-        payload = {
-            "kind": kind,
-            meta["id_attr"]: subgraph_id,
-            owner_key: owner_id,
-        }
-        return self.create_subgraph(payload)
+
+        graph = data.get("graph")
+        if graph is None and ("nodes" in data or "edges" in data):
+            graph = {"nodes": data.get("nodes") or [], "edges": data.get("edges") or []}
+
+        owner_id = data.get(owner_key)
+        if owner_id and owner_id != current.get(owner_key):
+            # Owner is the only ownership role; unlinking drops the relation — recreate.
+            self.delete_subgraph(kind, subgraph_id)
+            payload = {
+                "kind": kind,
+                meta["id_attr"]: subgraph_id,
+                owner_key: owner_id,
+            }
+            if graph is not None:
+                payload["graph"] = graph
+            return self.create_subgraph(payload)
+
+        if graph is not None:
+            return self.put_subgraph_dual(kind, subgraph_id, graph)
+        return current
+
+    def put_subgraph_dual(
+        self, kind: str, subgraph_id: str, graph: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """Store both json_string and in-graph entity/relation form (R10-18)."""
+        driver = self._driver()
+        try:
+            try:
+                store_dual_form(driver, self.database, kind, subgraph_id, graph)
+            except SubgraphCodecError as exc:
+                raise CrudError(str(exc)) from exc
+            return self.get_subgraph_dual(kind, subgraph_id, _driver=driver)
+        finally:
+            driver.close()
+
+    def get_subgraph_dual(
+        self,
+        kind: str,
+        subgraph_id: str,
+        *,
+        _driver: Optional[Driver] = None,
+    ) -> Dict[str, Any]:
+        """Read dual-form: json_string attribute + reconstructed in-graph graph."""
+        own = _driver is None
+        driver = _driver or self._driver()
+        try:
+            meta = self.get_subgraph(kind, subgraph_id, _driver=driver)
+            if meta is None:
+                raise CrudError(f"{kind} not found: {subgraph_id}")
+            try:
+                dual = load_dual_form(driver, self.database, kind, subgraph_id)
+            except SubgraphCodecError as exc:
+                raise CrudError(str(exc)) from exc
+            return {**meta, **dual}
+        finally:
+            if own:
+                driver.close()
+
+    def get_subgraph_graph(
+        self, kind: str, subgraph_id: str
+    ) -> Optional[Dict[str, Any]]:
+        """Reconstruct graph JSON from the in-graph form only."""
+        driver = self._driver()
+        try:
+            if self.get_subgraph(kind, subgraph_id, _driver=driver) is None:
+                return None
+            try:
+                return load_graph_from_typedb(
+                    driver, self.database, kind, subgraph_id
+                )
+            except SubgraphCodecError as exc:
+                raise CrudError(str(exc)) from exc
+        finally:
+            driver.close()
 
     def delete_subgraph(self, kind: str, subgraph_id: str) -> bool:
         if kind not in _SUBGRAPH_META:

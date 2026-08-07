@@ -14,6 +14,13 @@ __all__ = [
     "driver_session",
     "CrudStore",
     "CrudError",
+    "SubgraphCodecError",
+    "store_dual_form",
+    "load_dual_form",
+    "normalize_graph",
+    "graphs_equal",
+    "JSON_TO_TYPEQL",
+    "TYPEQL_TO_JSON",
 ]
 
 
@@ -34,4 +41,16 @@ def __getattr__(name: str) -> Any:
         from spiderfeet_v2.db import crud as _crud
 
         return getattr(_crud, name)
+    if name in (
+        "SubgraphCodecError",
+        "store_dual_form",
+        "load_dual_form",
+        "normalize_graph",
+        "graphs_equal",
+        "JSON_TO_TYPEQL",
+        "TYPEQL_TO_JSON",
+    ):
+        from spiderfeet_v2.db import subgraph_codec as _codec
+
+        return getattr(_codec, name)
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

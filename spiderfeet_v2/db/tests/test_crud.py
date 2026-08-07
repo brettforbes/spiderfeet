@@ -278,11 +278,10 @@ def test_subgraph_crud_round_trip(store) -> None:
             "scan_instance_id": SID,
         }
     )
-    assert rg == {
-        "kind": "scan_result_graph",
-        "scan_result_id": RG_ID,
-        "scan_instance_id": SID,
-    }
+    assert rg["kind"] == "scan_result_graph"
+    assert rg["scan_result_id"] == RG_ID
+    assert rg["scan_instance_id"] == SID
+    assert rg.get("json_string") is None
 
     pc = store.create_subgraph(
         {
