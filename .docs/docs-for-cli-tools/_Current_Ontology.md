@@ -102,7 +102,7 @@ flowchart TD
   host_status_3["HOST_STATUS"]
   host_status_reason_4["HOST_STATUS_REASON"]
   networks_5["NETWORKS"]
-  ip_address_6["IP_ADDRESS"]
+  ip_address_6["IPV4_ADDRESS"]
   scan_record_1 -->|contains| host_2
   host_2 -->|had| host_status_3
   host_2 -->|had| host_status_reason_4
@@ -119,7 +119,7 @@ flowchart TD
   scan_record_1["SCAN_RECORD"]
   host_2["HOST"]
   networks_3["NETWORKS"]
-  ip_address_4["IP_ADDRESS"]
+  ip_address_4["IPV4_ADDRESS"]
   transport_5["TRANSPORT"]
   port_6["PORT"]
   port_state_7["PORT_STATE"]
@@ -182,7 +182,7 @@ flowchart TD
   scan_record_1["SCAN_RECORD"]
   system_2["SYSTEM"]
   networks_3["NETWORKS"]
-  ip_address_4["IP_ADDRESS"]
+  ip_address_4["IPV4_ADDRESS"]
   mac_address_5["MAC_ADDRESS"]
   mac_vendor_6["MAC_VENDOR"]
   scan_record_1 -->|contains| system_2
@@ -207,7 +207,7 @@ flowchart TD
   scan_record_1["SCAN_RECORD"]
   host_2["HOST"]
   networks_3["NETWORKS"]
-  ip_address_4["IP_ADDRESS"]
+  ip_address_4["IPV4_ADDRESS"]
   transport_5["TRANSPORT"]
   port_6["PORT"]
   port_state_7["PORT_STATE"]
@@ -275,7 +275,7 @@ flowchart TD
   discovery_mode_5["DISCOVERY_MODE"]
   discovery_source_6["DISCOVERY_SOURCE"]
   liveness_status_7["LIVENESS_STATUS"]
-  ip_address_8["IP_ADDRESS"]
+  ip_address_8["IPV4_ADDRESS"]
   scan_record_1 -->|contains| domain_name_2
   domain_name_3 -->|contains| domain_name_4
   domain_name_3 -->|had| discovery_mode_5
@@ -302,7 +302,7 @@ flowchart TD
   domain_name_4["DOMAIN_NAME"]
   host_5["HOST"]
   networks_6["NETWORKS"]
-  ip_address_7["IP_ADDRESS"]
+  ip_address_7["IPV4_ADDRESS"]
   transport_8["TRANSPORT"]
   port_9["PORT"]
   applications_10["APPLICATIONS"]
@@ -389,7 +389,7 @@ Full Structure doc: [nuclei_nugget_graph_structure.md](_Current_Ontology.md).
 
 ## Composing sub-graphs
 
-The **investigation graph** is the union of contributed sub-graphs, correlated by shared keys (`IP_ADDRESS`, `INTERNET_NAME` / `DOMAIN_NAME`, URLs, findings):
+The **investigation graph** is the union of contributed sub-graphs, correlated by shared keys (`IPV4_ADDRESS`, `INTERNET_NAME` / `DOMAIN_NAME`, URLs, findings):
 
 ```mermaid
 flowchart LR
