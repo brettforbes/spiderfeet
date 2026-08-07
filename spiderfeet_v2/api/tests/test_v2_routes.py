@@ -218,14 +218,47 @@ def test_project_context_empty(client):
     assert r.json()["edges"] == []
 
 
-def test_execute_stubs(client):
+def test_execute_workflow_stub_and_step_dry_run(client):
+    yaml_doc = """apiVersion: spiderfeet.workflow/v1
+kind: Workflow
+id: workflow--ex
+info:
+  name: ao1-ex
+inputs:
+  targets:
+    type: string_list
+    values:
+      - https://example.com
+steps:
+  - id: sfp_cli_subfinder
+    uses: tool.subfinder
+    needs: []
+    input:
+      type: string_list
+      from: $workflow.inputs.targets
+      normalize: hostname_from_url
+    config:
+      argv:
+        - "-d"
+        - "$step.input.values[0]"
+        - "-oJ"
+        - "-silent"
+    output:
+      vars: {}
+    context:
+      export: scan_graph
+"""
     client.post(
         "/api/v1/targets",
         json={"target_id": "target--ex", "target_value": "ex.example"},
     )
     client.post(
         "/api/v1/workflows",
-        json={"workflow_id": "workflow--ex", "target_id": "target--ex"},
+        json={
+            "workflow_id": "workflow--ex",
+            "target_id": "target--ex",
+            "workflow_yaml": yaml_doc,
+        },
     )
     client.post(
         "/api/v1/projects",
@@ -238,14 +271,20 @@ def test_execute_stubs(client):
     )
     assert r.status_code == 202, r.text
     assert r.json()["status"] == "stub"
-    assert r.json()["orchestrator"] == "pending"
+    assert r.json()["orchestrator"] == "pending-ao2"
 
     r = client.post(
-        "/api/v1/workflows/workflow--ex/steps/subfinder_enum/execute",
+        "/api/v1/workflows/workflow--ex/steps/sfp_cli_subfinder/execute",
         json={"project_id": "project--ex", "dry_run": True},
     )
-    assert r.status_code == 202
-    assert r.json()["step_id"] == "subfinder_enum"
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert body["status"] == "DRY_RUN"
+    assert body["orchestrator"] == "ao1"
+    assert body["step_id"] == "sfp_cli_subfinder"
+    assert body["module_id"] == "sfp_cli_subfinder"
+    assert body["input_values"] == ["example.com"]
+    assert body["scan_instance_id"]
 
     assert (
         client.post(

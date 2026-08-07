@@ -306,7 +306,7 @@ TEMPORARY_CONTEXT_UPDATE_OPENAPI_EXAMPLES = {
 
 
 # ---------------------------------------------------------------------------
-# Execute (stubs until Epic AO)
+# Execute (AO1 step run; full-workflow stub until AO2)
 # ---------------------------------------------------------------------------
 
 
@@ -325,34 +325,55 @@ class ExecuteStepRequest(BaseModel):
 
 
 class ExecuteResponse(BaseModel):
-    status: str = Field(..., examples=["accepted", "stub"])
+    model_config = ConfigDict(extra="allow")
+
+    status: str = Field(..., examples=["SUCCESS", "ERROR", "DRY_RUN", "stub"])
     message: str
     workflow_id: Optional[str] = None
     step_id: Optional[str] = None
     scan_instance_id: Optional[str] = None
     orchestrator: str = Field(
-        default="pending",
-        description="AO1/AO2 wires real execution; AN2 returns stubs.",
+        default="ao1",
+        description="ao1 for single-step; pending-ao2 for full-workflow stub.",
     )
+    module_id: Optional[str] = None
+    scan_status: Optional[str] = None
+    output_vars: Optional[Dict[str, Any]] = None
+    exported_to_temporary: Optional[bool] = None
+    temporary_subgraph_id: Optional[str] = None
+    scan_result_id: Optional[str] = None
+    counts: Optional[Dict[str, Any]] = None
+    error: Optional[str] = None
+    dry_run: Optional[bool] = None
+    command: Optional[List[str]] = None
+    input_values: Optional[List[str]] = None
 
 
 EXECUTE_WORKFLOW_EXAMPLE = {"project_id": "project--demo", "dry_run": True}
 EXECUTE_STEP_EXAMPLE = {
     "project_id": "project--demo",
-    "step_id": "subfinder_enum",
+    "step_id": "sfp_cli_subfinder",
     "dry_run": True,
 }
 
 EXECUTE_WORKFLOW_OPENAPI_EXAMPLES = {
     "dry_run": {
-        "summary": "Accept workflow execute (stub until AO)",
+        "summary": "Accept workflow execute (stub until AO2)",
         "value": EXECUTE_WORKFLOW_EXAMPLE,
     }
 }
 
 EXECUTE_STEP_OPENAPI_EXAMPLES = {
     "dry_run": {
-        "summary": "Accept step execute (stub until AO)",
+        "summary": "Dry-run single-step resolve (AO1)",
         "value": EXECUTE_STEP_EXAMPLE,
-    }
+    },
+    "live": {
+        "summary": "Live single-step execute (AO1)",
+        "value": {
+            "project_id": "project--demo",
+            "step_id": "sfp_cli_subfinder",
+            "dry_run": False,
+        },
+    },
 }
