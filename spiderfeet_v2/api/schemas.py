@@ -306,7 +306,7 @@ TEMPORARY_CONTEXT_UPDATE_OPENAPI_EXAMPLES = {
 
 
 # ---------------------------------------------------------------------------
-# Execute (AO1 step run; full-workflow stub until AO2)
+# Execute (AO1 single-step; AO2 full-workflow chaining)
 # ---------------------------------------------------------------------------
 
 
@@ -327,14 +327,16 @@ class ExecuteStepRequest(BaseModel):
 class ExecuteResponse(BaseModel):
     model_config = ConfigDict(extra="allow")
 
-    status: str = Field(..., examples=["SUCCESS", "ERROR", "DRY_RUN", "stub"])
+    status: str = Field(
+        ..., examples=["SUCCESS", "ERROR", "DRY_RUN", "SKIPPED"]
+    )
     message: str
     workflow_id: Optional[str] = None
     step_id: Optional[str] = None
     scan_instance_id: Optional[str] = None
     orchestrator: str = Field(
         default="ao1",
-        description="ao1 for single-step; pending-ao2 for full-workflow stub.",
+        description="ao1 for single-step; ao2 for full-workflow chaining.",
     )
     module_id: Optional[str] = None
     scan_status: Optional[str] = None
@@ -347,6 +349,13 @@ class ExecuteResponse(BaseModel):
     dry_run: Optional[bool] = None
     command: Optional[List[str]] = None
     input_values: Optional[List[str]] = None
+    waves: Optional[List[List[str]]] = None
+    steps: Optional[List[Dict[str, Any]]] = None
+    step_count: Optional[int] = None
+    succeeded: Optional[int] = None
+    failed: Optional[int] = None
+    skipped: Optional[int] = None
+    stopped_early: Optional[bool] = None
 
 
 EXECUTE_WORKFLOW_EXAMPLE = {"project_id": "project--demo", "dry_run": True}
@@ -358,9 +367,13 @@ EXECUTE_STEP_EXAMPLE = {
 
 EXECUTE_WORKFLOW_OPENAPI_EXAMPLES = {
     "dry_run": {
-        "summary": "Accept workflow execute (stub until AO2)",
+        "summary": "Dry-run full-workflow chaining (AO2)",
         "value": EXECUTE_WORKFLOW_EXAMPLE,
-    }
+    },
+    "live": {
+        "summary": "Live full-workflow execute (AO2)",
+        "value": {"project_id": "project--demo", "dry_run": False},
+    },
 }
 
 EXECUTE_STEP_OPENAPI_EXAMPLES = {

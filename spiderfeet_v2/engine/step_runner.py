@@ -22,6 +22,7 @@ from spiderfeet_v2.engine.status import (
     MODULE_OK,
     OUTCOME_DRY_RUN,
     OUTCOME_ERROR,
+    OUTCOME_SKIPPED,
     OUTCOME_SUCCESS,
     STATUS_ERROR_FAILED,
     STATUS_FINISHED,
@@ -77,6 +78,7 @@ class StepRunResult:
             "scan_instance_id": self.scan_instance_id,
             "orchestrator": "ao1",
             "module_id": self.module_id,
+            "skipped": self.status == OUTCOME_SKIPPED,
             "scan_status": self.scan_status,
             "output_vars": self.output_vars,
             "exported_to_temporary": self.exported_to_temporary,
@@ -219,9 +221,21 @@ def run_single_step(
     stored_prior = _prior_vars_from_store(store, workflow_id, step)
     if prior_vars:
         for k, v in prior_vars.items():
-            stored_prior[k] = {vk: list(vv) for vk, vv in v.items()}
+            # Accept flat {var: [vals]} or nested {vars: {var: [vals]}}.
+            if isinstance(v, Mapping) and "vars" in v and isinstance(
+                v.get("vars"), Mapping
+            ):
+                stored_prior[k] = {
+                    vk: list(vv) for vk, vv in v["vars"].items()
+                }
+            else:
+                stored_prior[k] = {vk: list(vv) for vk, vv in v.items()}
 
-    env = build_env(workflow_inputs=workflow_inputs, steps=stored_prior)
+    # build_env expects steps[id] = {"vars": {...}}.
+    env = build_env(
+        workflow_inputs=workflow_inputs,
+        steps={sid: {"vars": vars_map} for sid, vars_map in stored_prior.items()},
+    )
     try:
         input_values = resolve_step_inputs(step, env)
     except (VariableError, KeyError, ValueError) as exc:
@@ -229,10 +243,67 @@ def run_single_step(
             f"failed to resolve inputs for step {dsl_step_id}: {exc}"
         ) from exc
 
-    empty_mode = (step.get("input") or {}).get("empty")
-    if not input_values and empty_mode == "error":
+    empty_mode = (step.get("input") or {}).get("empty") or "continue"
+    # Dry-run may carry empty seeded prior vars; only enforce empty:error live.
+    if not input_values and empty_mode == "error" and not dry_run:
         raise OrchestratorError(
             f"step {dsl_step_id} input is empty (empty: error)"
+        )
+
+    # DSL empty: skip_step — do not invoke the module; persist empty vars so
+    # downstream steps can resolve $steps.<id>.vars.* as empty lists.
+    if not input_values and empty_mode == "skip_step":
+        if dry_run:
+            return StepRunResult(
+                workflow_id=workflow_id,
+                step_id=dsl_step_id,
+                scan_instance_id=scan_id,
+                module_id=module_id,
+                status=OUTCOME_DRY_RUN,
+                scan_status=OUTCOME_DRY_RUN,
+                message=f"Dry-run: would skip {dsl_step_id} (empty input)",
+                dry_run=True,
+                input_values=[],
+            )
+        ensure_scan_step(
+            store,
+            scan_instance_id=scan_id,
+            module_id=module_id,
+            step=step,
+            scan_status=STATUS_FINISHED,
+        )
+        empty_result = {
+            "status": "SUCCESS",
+            "text": f"SKIPPED: step {dsl_step_id} (empty input)\n",
+            "structured": {"skipped": True, "reason": "empty_input"},
+            "structured_type": "json",
+            "graph": {"nodes": [], "edges": []},
+            "narrative": f"# Skipped\n\nStep `{dsl_step_id}` skipped (empty input).\n",
+            "command": [],
+            "counts": {"nodes": 0, "edges": 0},
+            "duration": 0.0,
+        }
+        persisted = persist_module_result(
+            store,
+            scan_instance_id=scan_id,
+            module_id=module_id,
+            step=step,
+            module_result=empty_result,
+            output_vars={},
+        )
+        return StepRunResult(
+            workflow_id=workflow_id,
+            step_id=dsl_step_id,
+            scan_instance_id=scan_id,
+            module_id=module_id,
+            status=OUTCOME_SKIPPED,
+            scan_status=STATUS_FINISHED,
+            message=f"Step {dsl_step_id} skipped (empty input)",
+            output_vars={},
+            counts={"nodes": 0, "edges": 0},
+            scan_result_id=persisted.get("scan_result_id"),
+            temporary_subgraph_id=existing_temporary_subgraph_id,
+            input_values=[],
         )
 
     temps = TempFileManager(prefix=f"sf_ao1_{dsl_step_id}_")
