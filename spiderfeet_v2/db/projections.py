@@ -278,6 +278,75 @@ class ProjectionStore:
             driver.close()
 
 
+def assemble_project_complete(store: Any, project_id: str) -> Optional[Dict[str, Any]]:
+    """One-call Composer load shape (R13-06).
+
+    Returns ``{project, workflows:[{attrs…, workflow_yaml, steps:[summary], target}]}``
+    assembled from CRUD rows (no TypeQL funs required).
+    """
+    project = store.get_project(project_id)
+    if project is None:
+        return None
+
+    workflows_out: List[Dict[str, Any]] = []
+    for wid in project.get("workflow_ids") or []:
+        wf = store.get_workflow(wid)
+        if wf is None:
+            continue
+
+        step_ids: Set[str] = set(wf.get("prior_step_ids") or [])
+        step_ids.update(wf.get("next_step_ids") or [])
+        if wf.get("first_step_id"):
+            step_ids.add(wf["first_step_id"])
+
+        steps: List[Dict[str, Any]] = []
+        for sid in sorted(step_ids):
+            step = store.get_scan_step(sid)
+            if step is None:
+                steps.append({"scan_instance_id": sid, "missing": True})
+                continue
+            roles: List[str] = []
+            if sid == wf.get("first_step_id"):
+                roles.append("first")
+            if sid in (wf.get("prior_step_ids") or []):
+                roles.append("prior")
+            if sid in (wf.get("next_step_ids") or []):
+                roles.append("next")
+            steps.append(
+                {
+                    "scan_instance_id": sid,
+                    "step_module_id": step.get("step_module_id"),
+                    "scan_status": step.get("scan_status"),
+                    "roles": roles,
+                }
+            )
+
+        target = None
+        tid = wf.get("target_id")
+        if tid:
+            target = store.get_target(tid)
+
+        workflows_out.append(
+            {
+                "workflow_id": wf.get("workflow_id") or wid,
+                "name": wf.get("name"),
+                "description": wf.get("description"),
+                "author": wf.get("author"),
+                "created": wf.get("created"),
+                "workflow_yaml": wf.get("workflow_yaml"),
+                "project_id": wf.get("project_id") or project_id,
+                "target_id": tid,
+                "first_step_id": wf.get("first_step_id"),
+                "prior_step_ids": list(wf.get("prior_step_ids") or []),
+                "next_step_ids": list(wf.get("next_step_ids") or []),
+                "steps": steps,
+                "target": target,
+            }
+        )
+
+    return {"project": project, "workflows": workflows_out}
+
+
 # Module-level convenience wrappers (stateless connect-per-call)
 
 def project_json(

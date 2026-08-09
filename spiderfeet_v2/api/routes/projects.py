@@ -9,13 +9,14 @@ from fastapi import APIRouter, Body, Depends, HTTPException, Query
 from spiderfeet_v2.api.deps import get_crud_store, get_projection_store
 from spiderfeet_v2.api.schemas import (
     PROJECT_CREATE_OPENAPI_EXAMPLES,
+    ProjectCompleteOut,
     ProjectCreate,
     ProjectOut,
     ProjectProjectionOut,
     ProjectUpdate,
 )
 from spiderfeet_v2.db.crud import CrudError, CrudStore
-from spiderfeet_v2.db.projections import ProjectionStore
+from spiderfeet_v2.db.projections import ProjectionStore, assemble_project_complete
 
 router = APIRouter(tags=["v2-projects"])
 
@@ -60,6 +61,25 @@ def create_project(
         )
     except CrudError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.get(
+    "/projects/{project_id}/complete",
+    response_model=ProjectCompleteOut,
+    summary="Complete project for Composer load (R13-06)",
+)
+def get_project_complete(
+    project_id: str,
+    store: CrudStore = Depends(get_crud_store),
+) -> Dict[str, Any]:
+    """Return project attrs + linked workflows with ``workflow_yaml`` inline.
+
+    Includes a parsed step/target summary so Composer can load in one call.
+    """
+    payload = assemble_project_complete(store, project_id)
+    if payload is None:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return payload
 
 
 @router.get("/projects/{project_id}")

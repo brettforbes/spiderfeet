@@ -26,6 +26,7 @@ V2_OPENAPI_PATHS = (
     "/api/v1/targets",
     "/api/v1/scan-steps/{scan_instance_id}",
     "/api/v1/projects/{project_id}/contexts/temporary",
+    "/api/v1/projects/{project_id}/complete",
     "/api/v1/workflows/{workflow_id}/execute",
 )
 

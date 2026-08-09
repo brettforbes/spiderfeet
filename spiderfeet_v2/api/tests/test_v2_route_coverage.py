@@ -173,6 +173,57 @@ def test_put_workflow_yaml_triggers_reparse(client, monkeypatch):
     assert r.status_code == 400
 
 
+def test_get_project_complete_shape(client, fake_stores):
+    """R13-06: GET /projects/{id}/complete returns project + workflows with YAML."""
+    crud, _ = fake_stores
+    r = client.post(
+        "/api/v1/projects",
+        json={
+            "project_id": "project--complete",
+            "project_name": "Complete Load",
+            "project_description": "R13-06",
+        },
+    )
+    assert r.status_code == 201, r.text
+    created = r.json()
+    wid = created["primary_workflow_id"]
+
+    # Attach a materialized step + target so the summary is non-empty.
+    crud.targets["target--c"] = {
+        "target_id": "target--c",
+        "target_value": "https://example.com",
+    }
+    crud.scan_steps["scan_step--c"] = {
+        "scan_instance_id": "scan_step--c",
+        "step_module_id": "sfp_cli_subfinder",
+        "scan_status": "NEW",
+    }
+    crud.workflows[wid].update(
+        {
+            "target_id": "target--c",
+            "first_step_id": "scan_step--c",
+            "prior_step_ids": ["scan_step--c"],
+            "next_step_ids": ["scan_step--c"],
+            "workflow_yaml": created["workflow_yaml"],
+        }
+    )
+
+    r = client.get("/api/v1/projects/project--complete/complete")
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert body["project"]["project_id"] == "project--complete"
+    assert body["project"]["project_name"] == "Complete Load"
+    assert len(body["workflows"]) == 1
+    wf = body["workflows"][0]
+    assert wf["workflow_id"] == wid
+    assert "apiVersion:" in (wf.get("workflow_yaml") or "")
+    assert wf["target"]["target_id"] == "target--c"
+    assert wf["steps"][0]["step_module_id"] == "sfp_cli_subfinder"
+    assert "first" in wf["steps"][0]["roles"]
+
+    assert client.get("/api/v1/projects/missing/complete").status_code == 404
+
+
 def test_projects_update_crud_get_and_errors(client):
     _seed_project(client, "pj")
 
