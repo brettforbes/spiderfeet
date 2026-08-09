@@ -1,123 +1,221 @@
 ---
 name: cmseek
-description: Detect CMS platforms (WordPress, Joomla, Drupal, etc.) on web targets using CMSeeK. Use when fingerprinting web stacks, mapping WEBSERVER_TECHNOLOGY nuggets, parsing Result/cms.json, or running SpiderFeet sfp_tool_cmseek with --follow-redirect --batch.
+description: Detect CMS platforms (WordPress, Joomla, Drupal, Magento, 170+) with CMSeeK. Trigger on cmseek, CMS fingerprint, cms.json, WEBSERVER_TECHNOLOGY, sfp_tool_cmseek, or SpiderFeet `--follow-redirect --batch -u` scans.
 ---
 
 # CMSeeK — CMS Detection and Deep Scan
 
 ## Purpose
 
-Use when you need to **identify the Content Management System** behind a hostname or URL and optionally enrich with version, plugin, or theme data. Primary SpiderFeet output is `WEBSERVER_TECHNOLOGY` from `Result/<target>/cms.json`.
+Use when you need to **identify the Content Management System** behind a hostname or URL, optionally enrich with version and CMS-specific deep data, and map results to SpiderFeet **`WEBSERVER_TECHNOLOGY`** from `Result/<host>/cms.json`. Default automation flags: **`--follow-redirect --batch -u`**.
 
 ## Step-by-Step Instructions
 
-1. **Confirm install** — CMSeeK is a Python 3 clone of [Tuhinshubhra/CMSeeK](https://github.com/Tuhinshubhra/CMSeeK). On Windows, prefer WSL2 (see `.docs/analysis/cli_tool_install_runbook.md`).
-2. **Normalize the target** — SpiderFeet passes `INTERNET_NAME` values (e.g. `example.com`). CMSeeK accepts URLs; `process_url()` adds `http://` when missing.
-3. **Run batch detection (SpiderFeet default)** — non-interactive, follows redirects:
+1. **Confirm install** — Python 3 clone of [Tuhinshubhra/CMSeeK](https://github.com/Tuhinshubhra/CMSeeK). On Windows use WSL2 or repo `.tools/CMSeeK/` (see `.docs/analysis/cli_tool_install_runbook.md`).
+2. **Capture help once** — `python3 cmseek.py -h` (version pinned in `references/cli-options.md`).
+3. **Normalize target** — CMSeeK accepts hostnames or URLs; `process_url()` adds `http://` when no scheme is present.
+4. **Run batch detection (SpiderFeet default)**:
 
 ```bash
 python3 /path/to/CMSeeK/cmseek.py --follow-redirect --batch -u https://example.com
 ```
 
-4. **Read the result file** — output lands at `<cmseek_dir>/Result/<hostname>/cms.json` (hostname derived from final URL after redirects).
-5. **Map to nuggets** — emit `WEBSERVER_TECHNOLOGY` as `"<cms_name> <cms_version>"` when `cms_name` is present (see `references/nugget-mapping.md`).
-6. **Optional deep scan** — omit `--light-scan` and `--only-cms` for full CMS-specific enumeration (plugins, themes, users). SpiderFeet module uses detection + version only.
-7. **Batch many hosts** — use `-l targets.txt` (one URL per line or comma-separated) with `--batch --skip-scanned` for repeat runs.
+5. **Read structured output** — primary artifact is `<install>/Result/<hostname>/cms.json`, not stdout.
+6. **Map to nuggets** — emit `WEBSERVER_TECHNOLOGY` as `"<cms_name> <cms_version>"` when `cms_name` is set (see `references/nugget-mapping.md`).
+7. **Adapt on failure** — rotate user agent, redirect policy, or CMS filters per `references/tactics.md`; re-run only when prior pass returned `CMS Detection failed` or empty `cms_name`.
+8. **Batch many hosts** — `-l targets.txt` with `--batch`; add `--skip-scanned` on periodic re-runs.
 
 ## If/Then Decision Rules
 
 | If | Then |
 |----|------|
-| stdout contains `CMS Detection failed` | No CMS matched; do not expect `cms.json` with `cms_name` |
-| Target redirects (301/302) | Use `--follow-redirect` (SpiderFeet default) or answer `y` interactively |
-| Redirect must be ignored | `--no-redirect` |
-| Known CMS false positive | `--ignore-cms wordpress,joomla` (comma-separated CMS IDs) |
-| Hunt one CMS only | `--strict-cms wordpress` |
+| stdout contains `CMS Detection failed` | No CMS matched; expect missing or empty `cms_name` in `cms.json` |
+| `cms.json` exists but `cms_name` is empty | Treat as clean miss; do not emit `WEBSERVER_TECHNOLOGY` |
+| Target redirects (301/302) | Use `--follow-redirect` (SpiderFeet default); read `target_url` in JSON |
+| CMS only visible on pre-redirect URL | `--no-redirect` and scan apex/`www` separately |
+| Result path mismatch (`Result/` dir not found) | Align seed hostname with directory name CMSeeK created, or check redirect final host |
+| Known false positive CMS | `-i wordpress,joomla` (`--ignore-cms` in code; help typo `--ignore--cms`) |
+| Hypothesis: one CMS family | `--strict-cms wordpress` |
 | Repeat scan of same host | `--skip-scanned` skips targets already in result index |
-| Faster footprint only | `--light-scan` (detection + version, no deep scan) |
-| Detection only, no version/deep | `--only-cms` |
-| WAF or bot blocking | Try `--random-agent`, `--user-agent "..."`, or `--googlebot` |
+| Need CMS + version only, low noise | `--light-scan` |
+| Need CMS ID only, no version/deep | `-o` / `--only-cms` |
+| WAF or bot blocking | `--random-agent`, `--user-agent "..."`, or `--googlebot` (scope only) |
 | Multiple URLs | `-l urls.txt` with `--batch` |
-| Stale results | `--clear-result` wipes entire `Result/` tree |
+| Stale cached results | `--clear-result` wipes entire `Result/` tree |
+| Automation / SpiderFeet | Always `--batch`; never rely on interactive menu |
+| Deep scan authorized | Omit `--light-scan` and `--only-cms`; inspect extra files under `Result/<host>/` |
 
 ## Guardrails & Pitfalls
 
-- **Python 3 only** — Python 2 exits immediately.
-- **Path sensitivity** — SpiderFeet `cmseekpath` must point at the directory containing `cmseek.py`; results go to sibling `Result/`.
-- **Hostname in path** — `cms.json` path uses the **event data string** as directory name (`Result/{eventData}/cms.json`). Mismatch between redirect final host and seed name breaks file lookup.
-- **Authorization** — scan only targets you are permitted to assess.
-- **Deep scan noise** — brute-force and user enumeration are intrusive; keep `--light-scan` or `--only-cms` for passive footprinting.
-- **Do not parse stdout for CMS name** — always read `cms.json`; console output is for humans.
-- **SSL** — upstream tool disables certificate verification by default; treat as environment risk, not a finding.
+- **Python 3 only** — Python 2 exits immediately with an error message.
+- **Structured-first** — parse `cms.json`; stdout is human-oriented and may include ANSI colour codes.
+- **Path sensitivity** — SpiderFeet `cmseekpath` must resolve to install root containing `cmseek.py`; results land in sibling `Result/`.
+- **Hostname key** — module reads `Result/{eventData}/cms.json` where `eventData` is the incoming `INTERNET_NAME`; redirect to a different host breaks lookup unless seed matches directory name.
+- **Authorization** — scan only permitted targets; deep scan and bruteforce menu options are intrusive.
+- **SSL** — upstream disables certificate verification by default (`ssl._create_unverified_context`); environment risk, not a finding.
+- **Help typo** — printed help lists `--ignore--cms`; argparse accepts **`--ignore-cms`** (single hyphen pair).
+- **`--batch` side effect** — batch mode prints `True` to stdout once; ignore when checking for detection failure.
 
 ## Strategies and Tactics
 
 **Maximize detection rate**
 
-1. Start with default five-stage detection (headers → generator → source → robots → directories).
-2. If blocked, rotate user agent (`--random-agent` → custom UA → `--googlebot` for allow-listed bots).
-3. If redirect hides CMS on apex, `--follow-redirect` and scan the final URL's `cms.json`.
-4. If noisy multi-CMS signals, `--strict-cms` to confirm one candidate.
+1. Baseline: `--follow-redirect --batch -u URL` (SpiderFeet parity).
+2. If blocked or empty body → `--random-agent`, then explicit `--user-agent`, then `--googlebot` where policy allows.
+3. If redirect hides CMS → scan both `--follow-redirect` and `--no-redirect` variants; compare `target_url` in JSON.
+4. If multi-CMS noise → `--strict-cms <id>` to confirm; or `--ignore-cms` to drop known false positives.
+5. If version missing → re-run without `--light-scan` / `--only-cms`.
 
 **Combine with other tools**
 
 | Prior tool | Follow-up |
 |------------|-----------|
-| WAFWOOF detected WAF | Expect partial detection; try alternate UA or scan origin IP if known |
-| Nuclei / WhatWeb | CMSeeK confirms CMS family; use version for targeted templates |
-| PIUS domain list | Feed discovered `INTERNET_NAME` hosts into CMSeeK batch file |
+| WAFWOOF | Expect partial fingerprints; tune CMSeeK UA before deep scan |
+| httpx / WhatWeb | Broad tech stack → CMSeeK confirms CMS family and version |
+| PIUS / Subfinder | Feed `INTERNET_NAME` list into `-l` batch file |
+| Nuclei | Use detected CMS/version for tagged templates |
 
 **SpiderFeet integration**
 
 ```python
-args = [pythonpath, exe, '--follow-redirect', '--batch', '-u', eventData]
+args = [pythonpath, exe, "--follow-redirect", "--batch", "-u", eventData]
 # Read: {cmseekpath}/Result/{eventData}/cms.json → WEBSERVER_TECHNOLOGY
+```
+
+**Scale and re-scan**
+
+```
+Build targets.txt from INTERNET_NAME events
+  → cmseek --batch --follow-redirect --skip-scanned -l targets.txt
+  → parse each Result/*/cms.json
 ```
 
 ## Examples
 
-### Single URL (SpiderFeet)
+One example per CLI option (install path illustrative).
+
+### `-u` / `--url` — single target (SpiderFeet default)
 
 ```bash
 python3 cmseek.py --follow-redirect --batch -u https://shop.example.com
 cat Result/shop.example.com/cms.json
 ```
 
-### List file, skip already scanned
+### `-l` / `--list` — multi-site file
 
 ```bash
-python3 cmseek.py --batch --follow-redirect --skip-scanned -l domains.txt
+python3 cmseek.py --batch --follow-redirect -l targets.txt
 ```
 
-### Light scan (CMS + version, no deep modules)
+### `-i` / `--ignore-cms` — skip CMS IDs (false positives)
 
 ```bash
-python3 cmseek.py --batch --follow-redirect --light-scan -u https://example.com
+python3 cmseek.py --batch --follow-redirect --ignore-cms joomla,drupal -u https://example.com
 ```
 
-### Strict WordPress confirmation
+### `--strict-cms` — test only listed CMS IDs
 
 ```bash
 python3 cmseek.py --batch --follow-redirect --strict-cms wordpress -u https://example.com
 ```
 
-### Ignore false Joomla match
+### `--skip-scanned` — skip hosts already in index
 
 ```bash
-python3 cmseek.py --batch --follow-redirect --ignore-cms joomla -u https://example.com
+python3 cmseek.py --batch --follow-redirect --skip-scanned -l domains.txt
 ```
 
-### Custom user agent (WAF bypass attempt)
+### `--light-scan` — CMS + version, no deep modules
 
 ```bash
-python3 cmseek.py --batch --follow-redirect --user-agent "Mozilla/5.0 (compatible; Googlebot/2.1)" -u https://example.com
+python3 cmseek.py --batch --follow-redirect --light-scan -u https://example.com
 ```
 
-### Clear all cached results
+### `-o` / `--only-cms` — detection only
+
+```bash
+python3 cmseek.py --batch --follow-redirect --only-cms -u https://example.com
+```
+
+### `--follow-redirect` — accept redirect chain
+
+```bash
+python3 cmseek.py --batch --follow-redirect -u http://example.com
+```
+
+### `--no-redirect` — test input URL only
+
+```bash
+python3 cmseek.py --batch --no-redirect -u https://example.com
+```
+
+### `-r` / `--random-agent`
+
+```bash
+python3 cmseek.py --batch --follow-redirect --random-agent -u https://example.com
+```
+
+### `--googlebot`
+
+```bash
+python3 cmseek.py --batch --follow-redirect --googlebot -u https://example.com
+```
+
+### `--user-agent`
+
+```bash
+python3 cmseek.py --batch --follow-redirect \
+  --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36" \
+  -u https://example.com
+```
+
+### `-v` / `--verbose`
+
+```bash
+python3 cmseek.py --batch --follow-redirect --verbose -u https://example.com
+```
+
+### `--update`
+
+```bash
+python3 cmseek.py --update
+```
+
+### `--version`
+
+```bash
+python3 cmseek.py --version
+```
+
+### `-h` / `--help`
+
+```bash
+python3 cmseek.py -h
+```
+
+### `--clear-result`
 
 ```bash
 python3 cmseek.py --clear-result
 ```
+
+### `--batch` — non-interactive (required for automation)
+
+```bash
+python3 cmseek.py --batch --follow-redirect -u example.com
+```
+
+### Interactive menu (manual only)
+
+```bash
+python3 cmseek.py
+# 1 = single-site detect + deep scan
+# 2 = multi-site
+# 3 = CMS bruteforce paths
+# U = update, R = rebuild bruteforce cache, 0 = exit
+```
+
+Do not use the menu in SpiderFeet or harvest manifests.
 
 ## References
 
@@ -125,10 +223,10 @@ Indexed in [`references/SKILLS.md`](references/SKILLS.md):
 
 | File | Topic |
 |------|--------|
-| `cli-options.md` | Full CLI flag reference |
+| `cli-options.md` | Captured `-h` output + flag tables |
 | `output-schema.md` | `Result/<target>/cms.json` fields |
 | `nugget-mapping.md` | `WEBSERVER_TECHNOLOGY` mapping |
 | `tactics.md` | Adaptive scan sequences |
-| `sources.md` | Upstream URLs and blogs |
+| `sources.md` | Upstream URLs, blogs, module paths |
 
 Operator guides: `.docs/docs-for-cli-tools/CMSeeK-Zero-to-Hero.md`, `CMSeeK-CLI-Options.md`.
