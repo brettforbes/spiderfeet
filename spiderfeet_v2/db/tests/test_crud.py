@@ -221,6 +221,39 @@ def test_workflow_crud_round_trip(store) -> None:
     assert updated["next_step_ids"] == [SID]
 
 
+def test_create_new_project_info_only_workflow(store) -> None:
+    """R13-04: project entity + info-only workflow (no target/steps)."""
+    from spiderfeet_v2.workflow.new_project import create_new_project
+
+    pid = "project--info-only-b21"
+    if store.get_project(pid) is not None:
+        for wid in store.get_project(pid).get("workflow_ids") or []:
+            store.delete_workflow(wid)
+        store.delete_project(pid)
+
+    out = create_new_project(
+        store,
+        project_name="Info Only",
+        project_description="Brand new",
+        project_id=pid,
+        project_created="2026-08-09T11:00:00Z",
+    )
+    assert out["project_id"] == pid
+    assert out["project_name"] == "Info Only"
+    assert len(out["workflow_ids"]) == 1
+    wid = out["primary_workflow_id"]
+    wf = store.get_workflow(wid)
+    assert wf is not None
+    assert wf["project_id"] == pid
+    assert wf["target_id"] is None
+    assert wf["first_step_id"] is None
+    assert "apiVersion: spiderfeet.workflow/v1" in (wf.get("workflow_yaml") or "")
+    assert "steps:" not in (wf.get("workflow_yaml") or "")
+
+    store.delete_workflow(wid)
+    store.delete_project(pid)
+
+
 def test_project_crud_round_trip(store) -> None:
     """R13-02: project is an entity; workflows link via workflow→project."""
     # Standalone project (zero workflows) must persist.

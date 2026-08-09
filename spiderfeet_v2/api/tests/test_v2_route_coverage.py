@@ -132,18 +132,20 @@ def test_projects_update_crud_get_and_errors(client):
     assert client.patch("/api/v1/projects/missing", json={"stix_incident_id": "x"}).status_code == 404
     assert client.delete("/api/v1/projects/missing").status_code == 404
 
-    # create without workflows → OK (standalone project entity, R13-03)
+    # create without workflows → info-only workflow (R13-04)
     r = client.post(
         "/api/v1/projects",
         json={
             "project_id": "project--empty",
             "project_name": "Empty",
             "project_description": "Standalone",
-            "workflow_ids": [],
         },
     )
     assert r.status_code == 201, r.text
-    assert r.json()["workflow_ids"] == []
+    body = r.json()
+    assert len(body["workflow_ids"]) == 1
+    assert body.get("primary_workflow_id") in body["workflow_ids"]
+    assert "apiVersion:" in (body.get("workflow_yaml") or "")
 
     # duplicate → 400
     r = client.post(
