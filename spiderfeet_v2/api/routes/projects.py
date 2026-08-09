@@ -67,7 +67,9 @@ def get_project(
         **{
             **proj,
             "stix_incident_id": crud_row.get("stix_incident_id"),
-            "created": crud_row.get("created"),
+            "project_name": crud_row.get("project_name"),
+            "project_description": crud_row.get("project_description"),
+            "project_created": crud_row.get("project_created"),
         }
     ).model_dump()
     merged["workflow_ids"] = crud_row.get("workflow_ids") or []

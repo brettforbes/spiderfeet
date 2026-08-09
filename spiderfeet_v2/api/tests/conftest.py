@@ -96,8 +96,6 @@ class FakeCrudStore:
         if not pid:
             raise CrudError("project_id is required")
         wids = list(data.get("workflow_ids") or [])
-        if not wids:
-            raise CrudError("project create requires at least one workflow_id")
         if pid in self.projects:
             raise CrudError(f"project already exists: {pid}")
         row = {**data, "workflow_ids": wids}

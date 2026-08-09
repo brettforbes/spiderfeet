@@ -30,6 +30,8 @@ def _seed_project(client, suffix: str = "cov"):
             "/api/v1/projects",
             json={
                 "project_id": f"project--{suffix}",
+                "project_name": f"Project {suffix}",
+                "project_description": f"Coverage project {suffix}",
                 "workflow_ids": [f"workflow--{suffix}"],
                 "stix_incident_id": f"incident--{suffix}",
             },
@@ -130,12 +132,18 @@ def test_projects_update_crud_get_and_errors(client):
     assert client.patch("/api/v1/projects/missing", json={"stix_incident_id": "x"}).status_code == 404
     assert client.delete("/api/v1/projects/missing").status_code == 404
 
-    # create without workflows → validation (422) or CrudError (400)
+    # create without workflows → OK (standalone project entity, R13-03)
     r = client.post(
         "/api/v1/projects",
-        json={"project_id": "project--empty", "workflow_ids": []},
+        json={
+            "project_id": "project--empty",
+            "project_name": "Empty",
+            "project_description": "Standalone",
+            "workflow_ids": [],
+        },
     )
-    assert r.status_code in (400, 422)
+    assert r.status_code == 201, r.text
+    assert r.json()["workflow_ids"] == []
 
     # duplicate → 400
     r = client.post(
