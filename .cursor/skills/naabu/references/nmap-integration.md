@@ -1,80 +1,45 @@
 # Naabu Nmap Integration and Service Detection
 
+Only flags present in **naabu v2.6.1** live help (`-h` captured **2026-08-10**) are documented here. Do not invent `-sV-fast` or other undocumented switches.
+
 ## Built-in service version (`-sV`)
 
-Naabu runs **parallel** service version detection using Nmap's `nmap-service-probes` database (read from local Nmap install — not bundled due to license).
-
 ```bash
-naabu -host scanme.sh -sV
-```
-
-Example output:
-
-```
-scanme.sh:22 [ssh OpenSSH/6.6.1p1]
-scanme.sh:80 [http Apache httpd/2.4.7]
-```
-
-With JSON:
-
-```bash
-naabu -host scanme.sh -sV -json -o sv.jsonl
+naabu -host scanme.nmap.org -sV -json -silent -duc
 ```
 
 | Flag | Purpose |
 |------|---------|
-| `-sV` | Full version probing |
-| `-sV-fast` | Port-hinted probes only — faster |
-| `-sV-timeout` | Per-probe timeout |
-| `-sV-workers` | Concurrency |
-| `-sV-probes` | Custom probes file path |
+| `-sV` / `-service-version` | Service version |
+| `-sD` / `-service-discovery` | Service discovery |
 
-If probes file missing, naabu logs warning and skips version detection.
-
-## Service discovery only (`-sD`)
-
-Maps port number to service name without active version probe — lighter than `-sV`.
-
-```bash
-naabu -host scanme.sh -sD -json
-```
-
-## UDP probes (`-uP`)
-
-UDP ports often need protocol-specific payloads:
-
-```bash
-naabu -host scanme.sh -p u:53,u:123,u:161 -uP -json
-```
-
-- Shares probe database with `-sV`.
-- `-cp` custom payload overrides automatic probe for that port.
+If version probing depends on local Nmap probe data and it is missing, inspect stderr/verbose output and fall back to external Nmap.
 
 ## External Nmap via `-nmap-cli`
 
-Runs arbitrary Nmap command on discovered host:port set:
+Runs an Nmap command on the discovered host:port set:
 
 ```bash
-naabu -host hackerone.com -nmap-cli 'nmap -sV -oX nmap-output.xml'
+naabu -host hackerone.com -nmap-cli "nmap -sV -oX nmap-output.xml" -duc
 ```
 
 **Security note:** naabu executes the provided command — only use trusted Nmap invocations.
 
-Deprecated `-nmap` flag replaced by `-nmap-cli`.
+Deprecated `-nmap` flag is replaced by `-nmap-cli` (still listed as Deprecated in help).
 
 ### SpiderFeet pattern
 
 1. **Naabu** `-json` for fast port inventory → nuggets.
 2. **Nmap** `-oX` for OS/NSE on high-value hosts (separate skill).
 
-Do not parse Nmap text from `-nmap-cli` stdout — capture `-oX` file.
+Do not parse Nmap text from `-nmap-cli` stdout as the primary structured artifact — capture `-oX` XML.
 
 ## Comparison matrix
 
 | Need | Tool / flag |
 |------|-------------|
 | Fast open port list | `naabu -json` |
-| Service name hint | `-sD` |
+| Service discovery hint | `-sD` |
 | Version strings in naabu | `-sV` |
 | OS detection | Nmap `-O` via `-nmap-cli` or follow-up scan |
 | NSE scripts | Nmap `--script` |
@@ -83,8 +48,16 @@ Do not parse Nmap text from `-nmap-cli` stdout — capture `-oX` file.
 ## Example combined workflow
 
 ```bash
-naabu -host 10.0.0.50 -p 22,80,443,8080 -json -o naabu.jsonl
-nmap -sV -O -p $(jq -r '.port' naabu.jsonl | paste -sd,) 10.0.0.50 -oX nmap.xml
+naabu -host 10.0.0.50 -p 22,80,443,8080 -json -o naabu.jsonl -duc
+nmap -sV -O -p 22,80,443,8080 10.0.0.50 -oX nmap.xml
 ```
 
-Extract port list programmatically rather than manual paste for large result sets.
+Build the Nmap `-p` list from JSONL programmatically for large result sets:
+
+```bash
+jq -r '.port' naabu.jsonl | sort -n | uniq | paste -sd,
+```
+
+## CONNECT payloads
+
+Help also exposes `-connect-payload` / `-cp` for optional CONNECT-scan payloads. Use only when exploring CONNECT-specific behavior — keep formal corpus on plain `-json` port hits unless a scenario explicitly needs payloads.

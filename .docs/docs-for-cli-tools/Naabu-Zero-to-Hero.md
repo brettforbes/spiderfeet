@@ -4,15 +4,25 @@ From install to orchestrated recon with **`naabu -json`**, nugget mapping, and p
 
 Skill reference: `.cursor/skills/naabu/SKILL.md`
 
+**Binary (this repo):** `C:\projects\spiderfeet\.tools\naabu\naabu.exe` — **v2.6.1** (help captured **2026-08-10**).
+
 ## What Naabu does
 
-Naabu is ProjectDiscovery's **fast port scanner** (Go). It finds **open TCP/UDP ports** using SYN, CONNECT, or UDP probes — optimized for chaining in modern recon stacks.
+Naabu is ProjectDiscovery's **fast port scanner** (Go). It finds **open ports** using **SYN** or **CONNECT** (and optional UDP port syntax from PD Running docs), optimized for chaining in modern recon stacks.
 
 Naabu does **not**:
 
 - Replace full **Nmap** OS detection / NSE (chain Nmap after)
-- Fingerprint application-layer LLM services (use **Julius** on HTTP ports)
-- Deep service metadata without `-sV` or **Nerva**
+- Fingerprint application-layer LLM services (use **Julius** on candidate ports)
+- Deep service metadata without `-sV` / `-sD` or **Nerva**
+
+### Windows / privileges
+
+| Fact | Implication |
+|------|-------------|
+| Help default `-s` is **`c` (CONNECT)** | Unprivileged Windows scans should stay on CONNECT |
+| `naabu -hc` may show `Privileged/NET_RAW: Ko` | SYN (`-s s`) needs elevation + Npcap |
+| Npcap recommended for SYN | Install from https://npcap.com/ when you need raw scans |
 
 ---
 
@@ -24,7 +34,7 @@ Naabu does **not**:
 |----|---------|
 | Debian/Ubuntu | `sudo apt install -y libpcap-dev` |
 | macOS | `brew install libpcap` |
-| Windows | Install [Npcap](https://npcap.com/) |
+| Windows | [Npcap](https://npcap.com/) for SYN / raw; CONNECT works without it |
 
 ### Binary
 
@@ -35,31 +45,28 @@ naabu -version
 
 Or download from https://github.com/projectdiscovery/naabu/releases
 
+This workspace: `C:\projects\spiderfeet\.tools\naabu\naabu.exe`
+
 ---
 
 ## Level 1 — First scan
 
 ```bash
-naabu -host scanme.sh
+naabu -host scanme.nmap.org -duc
 ```
 
-Default: top 100 ports, CONNECT scan if non-root.
+Default: top 100 ports; on this Windows binary, CONNECT scan (`-s c`).
 
 Structured output:
 
 ```bash
-naabu -host scanme.sh -json
+naabu -host scanme.nmap.org -json -silent -duc
 ```
+
+Example line (v2.6.1):
 
 ```json
-{"ip":"45.33.32.156","port":22}
-{"ip":"45.33.32.156","port":80}
-```
-
-Pipe-friendly:
-
-```bash
-naabu -host scanme.sh -json -silent
+{"host":"scanme.nmap.org","ip":"45.33.32.156","timestamp":"2026-08-10T00:00:00Z","port":80,"protocol":"tcp","tls":false}
 ```
 
 ---
@@ -67,135 +74,138 @@ naabu -host scanme.sh -json -silent
 ## Level 2 — Port selection
 
 ```bash
-naabu -host scanme.sh -p 22,80,443,8080 -json
-naabu -host scanme.sh -top-ports 1000 -json
-naabu -host scanme.sh -p - -json                    # full range — single host only
-naabu -host scanme.sh -p u:53 -uP -json             # UDP with probes
+naabu -host scanme.nmap.org -p 22,80,443,8080 -json -silent -duc
+naabu -host scanme.nmap.org -top-ports 1000 -json -silent -duc
+naabu -host scanme.nmap.org -top-ports full -json -silent -duc
+naabu -host scanme.nmap.org -p - -json -silent -duc
 ```
+
+`-top-ports` accepts `100`, `1000`, or `full` (from help). Full range via `-p -` is documented in PD Running docs — use on single high-value hosts only.
+
+UDP ports (Running docs): express as `u:port`, e.g. `-p 80,443,u:53`. There is **no** separate `-uP` flag in this binary’s `-h`.
 
 ---
 
 ## Level 3 — Multiple targets
 
 ```bash
-naabu -host scanme.sh,example.com -p 443 -json
-naabu -l hosts.txt -top-ports 100 -json -o batch.jsonl
-subfinder -d example.com -silent | naabu -json -silent
+naabu -host a.example,b.example -p 80,443 -json -silent -duc
+naabu -l hosts.txt -top-ports 100 -json -o ports.jsonl -duc
+echo AS14421 | naabu -p 80,443 -json -silent -duc
+subfinder -d example.com -silent | naabu -json -silent -duc
 ```
 
 ---
 
-## Level 4 — Scan types and tuning
+## Level 4 — Scan type, rate, CDN
 
-| Goal | Command |
-|------|---------|
-| SYN (fast, root) | `naabu -host TARGET -s s -json` |
-| CONNECT (non-root) | `naabu -host TARGET -s c -json` |
-| Slower / safer | `naabu -host TARGET -rate 300 -c 10 -json` |
-| CDN-aware | `naabu -host TARGET -ec -cdn -json` |
-| Passive (InternetDB) | `naabu -host TARGET -passive -json` |
+```bash
+naabu -host target.com -s c -json -silent -duc
+naabu -host target.com -s s -json -silent -duc
+naabu -host target.com -rate 300 -c 10 -json -silent -duc
+naabu -host cdn.example.com -ec -cdn -json -silent -duc
+```
+
+PD defaults assume VPS-class capacity — lower `-rate` on laptops.
 
 ---
 
 ## Level 5 — Host discovery
 
 ```bash
-naabu -host 192.168.1.0/24 -sn
-naabu -host 10.0.0.0/24 -wn -ps 80,443 -p 22,80,443 -json
+naabu -host 10.0.0.0/24 -sn -duc
+naabu -host 10.0.0.0/24 -wn -ps 80,443 -p 22,80,443 -json -silent -duc
+naabu -host 10.0.0.0/24 -Pn -top-ports 100 -json -silent -duc
 ```
 
-Use before port scanning large nets with many dead IPs.
+| Flag | Meaning |
+|------|---------|
+| `-sn` | Discovery only |
+| `-wn` | Enable discovery before port scan |
+| `-Pn` | Skip discovery |
 
 ---
 
-## Level 6 — Service enrichment
+## Level 6 — Passive (InternetDB)
 
 ```bash
-naabu -host scanme.sh -sV -json
-naabu -host scanme.sh -nmap-cli 'nmap -sV -oX nmap.xml'
+naabu -host example.com -passive -json -silent -duc
 ```
 
-Requires local Nmap service probes for `-sV`. Details: `.cursor/skills/naabu/references/nmap-integration.md`
+No active packets to the target — useful for low-touch recon. Confirm actively when allowed.
 
 ---
 
-## Level 7 — Pipelines
+## Level 7 — Service enrichment and Nmap
 
-### httpx (web)
-
-```bash
-naabu -host example.com -json -silent | httpx -silent
-```
-
-### Nerva (service fingerprint)
+Flags in live help:
 
 ```bash
-naabu -host example.com -json -silent | jq -r '(.host//.ip)+":"+(.port|tostring)' | nerva --json
+naabu -host scanme.nmap.org -sD -json -silent -duc
+naabu -host scanme.nmap.org -sV -json -silent -duc
+naabu -host scanme.nmap.org -nmap-cli "nmap -sV -oX detail.xml" -duc
 ```
 
-### Julius (LLM ports)
-
-```bash
-naabu -host corp.internal -p 11434,8000,8080 -json -silent -o ports.jsonl
-jq -r '"https://" + .ip + ":" + (.port|tostring)' ports.jsonl | julius probe - -o jsonl
-```
-
-### Nmap (deep)
-
-Port list from naabu JSON → targeted Nmap `-oX` (see Nmap Zero to Hero).
+Prefer separate Nmap `-oX` captures for SpiderFeet Nmap corpus work.
 
 ---
 
-## Level 8 — Nugget mapping
+## Level 8 — Pipelines
 
-For each JSONL line:
-
-- `IP_ADDRESS` / `INTERNET_NAME` from `ip` / `host`
-- `TCP_PORT_OPEN` or `UDP_PORT_OPEN` for `port`
-- Optional `SOFTWARE_USED` when `-sV` populated `service`/`version`
-
-Full rules: `.cursor/skills/naabu/references/nugget-mapping.md`
-
-### Python example
-
-```python
-import json
-
-with open("ports.jsonl", encoding="utf-8") as fh:
-    for line in fh:
-        row = json.loads(line)
-        host = row.get("host") or row["ip"]
-        print("TCP_PORT_OPEN", f"{host}:{row['port']}")
+```bash
+echo example.com | naabu -silent -duc | httpx -silent
+subfinder -d example.com -silent | dnsx -silent -a | naabu -top-ports 1000 -json -silent -duc
+naabu -host example.com -json -silent -duc | jq -r '(.host//.ip)+":"+(.port|tostring)' | nerva --json
+naabu -host corp.internal -p 11434,8000,8080,7860,4000,3000 -json -silent -o ai.jsonl -duc
 ```
 
 ---
 
-## Level 9 — Formal examination (SpiderFeet)
+## Level 9 — SpiderFeet nuggets
 
-Per `.cursor/skills/cli_app_profiling/SKILL.md`:
+Map JSONL → graph (`nodes[]` / `edges[]`):
 
-| Scenario | Target / flags |
-|----------|----------------|
-| Positive permissive | `scanme.sh -top-ports 100 -json` |
-| Rich | `-sV -json` with version fields |
-| UDP | `-p u:53 -uP -json` |
-| Passive | `-passive -json` |
-| CDN | `-ec -cdn` on Cloudflare site |
-| Clean miss | closed port or dead host |
-| Pipeline | `-json -silent \| httpx` |
+| Signal | Nugget |
+|--------|--------|
+| `host` | `INTERNET_NAME` |
+| `ip` | `classify_ip` → IPv4 / IPv6 types |
+| TCP open port | `TCP_PORT_OPEN` |
+| UDP open port | `UDP_PORT_OPEN` |
+| CDN label (`-cdn`) | `PROVIDER_HOSTING` when applicable |
 
-Artifacts: `app_examination_docs/naabu/scenarios/<key>/`
+Full mapping: `.cursor/skills/naabu/references/nugget-mapping.md`
+
+**Always prefer `-json` for SpiderFeet** — parse line by line into harvest `records[]`.
 
 ---
 
-## Quick reference
+## Tactics for better results
 
-```bash
-naabu -host TARGET -json -o out.jsonl           # baseline
-naabu -host TARGET -top-ports 1000 -json -silent
-naabu -host TARGET -passive -json
-naabu -host TARGET -sV -json
-naabu -l hosts.txt -rate 500 -json
-```
+- Discover → top ports → full sweep only on winners.
+- On Windows, assume CONNECT until SYN is proven with `-hc`.
+- Use `-ec`/`-cdn` on edge hosts; do not full-sweep CDN IPs.
+- Drop `-rate` under IDS pressure; add `-verify` when noisy.
+- Gap-fill with `-passive`, then active-confirm.
+- Pipeline: `subfinder → dnsx → naabu -json → httpx / nerva / julius`.
 
-CLI details: `Naabu-CLI-Options.md`
+---
+
+## Common pitfalls
+
+- Parsing text banners instead of **`-json`**
+- Inventing flags not in `naabu -h` (e.g. undocumented `-sV-fast` / `-uP`)
+- Assuming SYN works on Windows without NET_RAW/Npcap
+- Running `-top-ports full` / `-p -` across huge CIDRs
+- Treating InternetDB passive hits as live confirmation
+- Emitting IPv6 as `IP_ADDRESS` without `classify_ip`
+- Using `-stream` when you still need `-resume`, `-verify`, or `-nmap-cli`
+
+---
+
+## Next references
+
+- `.cursor/skills/naabu/SKILL.md`
+- `.cursor/skills/naabu/references/SKILLS.md`
+- `Naabu-CLI-Options.md` (includes **Captured help**)
+- [Naabu usage docs](https://docs.projectdiscovery.io/opensource/naabu/usage)
+- [Naabu running docs](https://docs.projectdiscovery.io/opensource/naabu/running)
