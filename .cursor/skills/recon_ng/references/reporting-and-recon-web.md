@@ -2,40 +2,44 @@
 
 ## Reporting modules
 
-The `reporting/*` module family converts workspace data into exportable outputs for review, handoff, and downstream ingestion.
+`reporting/*` converts workspace tables into exportable artifacts for review and SpiderFeet ingestion.
 
-Use cases:
-- Human-readable summaries for analysts/operators.
-- Structured exports for pipeline ingestion.
-- Evidence bundles for engagement records.
+Workflow:
 
-## Reporting workflow
+1. Validate tables (`domains`, `hosts`, `contacts`, `ports`, vulnerabilities as present)
+2. `modules load reporting/<module>`
+3. Configure output options
+4. Run; verify artifact integrity
+5. Ingest structured exports into text/data/graph paths
 
-1. Validate workspace tables (`domains`, `hosts`, `contacts`, `ports`, vulnerabilities-related rows).
-2. Load relevant `reporting/*` module.
-3. Configure output options and destination paths.
-4. Execute and verify artifact integrity.
-5. Ingest outputs into SpiderFeet text/data/graph processing paths.
+Prefer machine-readable reporting outputs when the module offers them; derive human text for review.
 
-## recon-web role
+## recon-web
 
-Recon-web provides a web interface context for reviewing workspaces and results. It is useful for collaborative review and visual inspection when console-only interaction is insufficient.
+Launcher (captured **2026-08-10**):
 
-Operational caution:
-- Treat recon-web as a presentation/review layer, not a substitute for direct table validation with `db query`.
+```text
+recon-web [-h] [--host HOST] [--port PORT]
+```
 
-## Export strategy for SpiderFeet
+Banner states:
 
-Export priorities:
-1. Preserve raw report text for audit/context (text tab).
-2. Preserve normalized record sets for table-based display (data tab).
-3. Preserve relationship-capable data for graph node/edge synthesis (graph tab).
+- Web UI for analytics/reporting
+- Recon-API under `/api/`
 
-## Common pitfalls
+```powershell
+$env:PYTHONPATH = "C:\projects\spiderfeet\.tools\recon-ng"
+& C:\projects\spiderfeet\.venv\Scripts\python.exe C:\projects\spiderfeet\.tools\recon-ng\recon-web --host 127.0.0.1 --port 5000
+```
 
-- Exporting before validating table completeness.
-- Assuming report success equals complete dataset quality.
-- Losing workspace identifier context in exported file names.
+Use for collaborative review. Still validate with `db query` before declaring completeness. Bind `--host` carefully (prefer localhost for local review).
 
-Use deterministic naming:
-- `<workspace>-<module-family>-<timestamp>.<ext>`
+## Export naming
+
+`<workspace>-<module-family>-<timestamp>.<ext>` — keep workspace identity in filenames.
+
+## Pitfalls
+
+- Exporting before table validation
+- Assuming report success equals data quality
+- Using recon-web as the only evidence without structured extracts

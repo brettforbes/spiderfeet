@@ -1,6 +1,6 @@
 # Recon-ng Source URLs
 
-Only the following URLs are used as source material for this skill package and companion docs.
+Source material for this skill package and companion docs. Launcher flags are additionally bound to live captures in `.tmp_reconng_help/` (**2026-08-10**, version **5.1.2**).
 
 ## Official repository and releases
 
@@ -42,3 +42,13 @@ Only the following URLs are used as source material for this skill package and c
 
 - https://www.blackhillsinfosec.com/webcast-pentester-tactics-techniques-and-procedures-ttps-w-chris-traynor/
 - https://github.com/lanmaster53/recon-ng/wiki/Home#news
+
+## Local capture paths
+
+- `.tmp_reconng_help/recon-ng_help.txt`
+- `.tmp_reconng_help/recon-ng_version.txt`
+- `.tmp_reconng_help/recon-cli_help.txt`
+- `.tmp_reconng_help/recon-cli_global_opts.txt`
+- `.tmp_reconng_help/recon-cli_modules.txt`
+- `.tmp_reconng_help/recon-web_help.txt`
+- Framework tree: `C:\projects\spiderfeet\.tools\recon-ng\`

@@ -1,128 +1,213 @@
 # Recon-ng Zero to Hero
 
-This guide walks from first launch to a full modular domain OSINT pipeline using workspace isolation, marketplace modules, `SOURCE`-driven chaining, and export for SpiderFeet ingestion.
+From first launch on this SpiderFeet host through a full modular domain OSINT pipeline: workspace → marketplace modules → subdomain/host expansion → contacts/ports → export → SpiderFeet mapping. Framework version **5.1.2**. Prefer **`recon-cli`** once a sequence is proven.
+
+| Field | Value |
+|-------|-------|
+| Python | `C:\projects\spiderfeet\.venv\Scripts\python.exe` |
+| Framework | `C:\projects\spiderfeet\.tools\recon-ng\` |
+| Launchers | `recon-ng`, `recon-cli`, `recon-web` |
+| Skill | `.cursor/skills/recon_ng/SKILL.md` |
+| CLI options | `recon-ng-CLI-Options.md` (Captured help **2026-08-10**) |
+
+---
 
 ## 1) Install and bootstrap
 
-1. Install Recon-ng using your approved package/source channel.
-2. Launch `recon-ng` once to initialize local paths and workspace structures.
-3. Confirm baseline commands: `help`, `workspaces`, `marketplace`, `modules`, `keys`, `db`.
+1. Framework tree is at `.tools/recon-ng/` (see `REQUIREMENTS` for Python deps in the project venv).
+2. Set `PYTHONPATH` to the framework root and verify:
+
+```powershell
+$env:PYTHONPATH = "C:\projects\spiderfeet\.tools\recon-ng"
+$py = "C:\projects\spiderfeet\.venv\Scripts\python.exe"
+& $py C:\projects\spiderfeet\.tools\recon-ng\recon-ng --version
+# expect: 5.1.2
+```
+
+3. Launch interactive console **without** `--stealth` so marketplace can work:
+
+```powershell
+& $py C:\projects\spiderfeet\.tools\recon-ng\recon-ng
+```
+
+4. Confirm console families: `help`, `workspaces`, `marketplace`, `modules`, `keys`, `db`.
+
+**Important:** `--stealth` disables marketplace. Captured `recon-cli --stealth -M` shows `[!] No modules found.` Install modules first; stealth later if needed.
+
+---
 
 ## 2) Create engagement workspace
 
-Example:
-- `workspaces create acme-ext-2026q2`
-- `workspaces select acme-ext-2026q2`
+```text
+workspaces create acme-ext-2026q3
+workspaces select acme-ext-2026q3
+workspaces list
+```
 
-Why:
-- Keeps target data isolated.
-- Preserves clean chain-of-custody for reports/exports.
+Or launch with `-w acme-ext-2026q3`. Why: isolates target data and preserves chain-of-custody for exports.
 
-## 3) Configure keys and global runtime posture
+---
 
-1. `keys list`
-2. Add provider keys needed by chosen modules.
-3. Set conservative global execution options when stealth/quota control matters.
+## 3) Configure keys and global posture
 
-Key tactic:
-- Validate key-backed modules against tiny seed sets before full input scope.
+```text
+keys list
+keys add <provider> <value>
+```
+
+Tune globals (captured defaults include `NAMESERVER`, `PROXY`, `THREADS`, `TIMEOUT`, `USER-AGENT`, `VERBOSITY`) conservatively when stealth/quota matter. Via CLI: `recon-cli -g VERBOSITY=1 -g THREADS=5`.
+
+Validate key-backed modules on tiny seeds before full scope.
+
+---
 
 ## 4) Refresh marketplace and prepare modules
 
-1. Refresh marketplace index.
-2. Search/install required modules in these families:
-   - `recon/domains-hosts/*`
-   - `recon/domains-contacts/*`
-   - `recon/hosts-ports/*`
-   - `reporting/*`
-3. Load one module at a time and inspect `show info` + `show options`.
+Still with marketplace **enabled**:
 
-## 5) Seed with domain and run domains->hosts
+```text
+marketplace refresh
+marketplace search domains-hosts
+marketplace info recon/domains-hosts/<module>
+marketplace install recon/domains-hosts/<module>
+```
 
-1. Load a `recon/domains-hosts/*` module.
-2. `options set SOURCE <target-domain>` (or file/SQL source).
-3. Run module.
-4. Validate `hosts` table growth using `db query`.
+Install families as needed:
 
-If no growth:
-- switch to alternate domains->hosts module,
-- verify SOURCE correctness,
-- check dependency/key requirements.
+- `recon/domains-hosts/*`
+- `recon/domains-contacts/*`
+- `recon/hosts-ports/*`
+- `reporting/*`
 
-## 6) Expand domains->contacts in parallel lane
+Load one module at a time; `show info` + `show options`.
 
-1. Load a `recon/domains-contacts/*` module.
-2. Reuse same `SOURCE` domain seed (literal/file/SQL).
-3. Run and validate `contacts` table growth.
+---
 
-Value:
-- Increases graph breadth (people/email assets) without waiting for host-port enrichment.
+## 5) Seed domain and run domains → hosts
 
-## 7) Chain hosts->ports from database-backed SOURCE
+```text
+modules load recon/domains-hosts/<module>
+options set SOURCE example.com
+run
+db query SELECT COUNT(*) FROM hosts
+```
 
-1. Load a `recon/hosts-ports/*` module.
-2. Set `SOURCE` from workspace hosts table (SQL strategy preferred for adaptive filtering).
-3. Run and validate `ports` table growth.
+If no growth: alternate module in the same path, verify SOURCE, check D/K requirements.
 
-API spend control:
-- Filter SOURCE to newly discovered hosts first.
-- Avoid re-running full historical host list unless module/provider changed.
+Headless equivalent:
+
+```powershell
+$cli = "C:\projects\spiderfeet\.tools\recon-ng\recon-cli"
+& $py $cli -w acme-ext-2026q3 -m recon/domains-hosts/<module> -o SOURCE=example.com -x
+```
+
+---
+
+## 6) Expand domains → contacts (parallel lane)
+
+```text
+modules load recon/domains-contacts/<module>
+options set SOURCE example.com
+run
+db query SELECT * FROM contacts LIMIT 20
+```
+
+Value: people/email breadth without waiting on host→port enrichment.
+
+---
+
+## 7) Chain hosts → ports (SQL SOURCE)
+
+```text
+modules load recon/hosts-ports/<module>
+options set SOURCE query SELECT host FROM hosts WHERE host IS NOT NULL
+run
+db query SELECT COUNT(*) FROM ports
+```
+
+API spend: filter to newly discovered hosts; avoid replaying the entire historical host list unless the provider/module changed.
+
+---
 
 ## 8) Optional vulnerability enrichment
 
-If enabled modules provide vulnerability mappings from host/service context:
-1. Validate prerequisites exist.
-2. Run on bounded host/port subsets.
-3. Capture vulnerability table rows for SpiderFeet `VULNERABILITY_GENERAL` mapping.
+If installed modules map host/service context to vulnerability rows:
+
+1. Confirm prerequisite tables exist
+2. Bound SOURCE to priority hosts/ports
+3. Capture rows for `VULNERABILITY_GENERAL` (and CVE types when present)
+
+---
 
 ## 9) Export and reporting
 
-1. Load `reporting/*` modules suitable for your handoff format.
-2. Generate report artifacts.
-3. Keep naming tied to workspace and timestamp.
+```text
+modules load reporting/<module>
+show options
+run
+```
 
-Recommended:
-- Export both narrative and structured data when possible.
+Optional review UI:
+
+```powershell
+& $py C:\projects\spiderfeet\.tools\recon-ng\recon-web --host 127.0.0.1 --port 5000
+# UI + Recon-API under /api/
+```
+
+Name artifacts `<workspace>-<family>-<timestamp>.*`.
+
+---
 
 ## 10) SpiderFeet ingestion mapping
 
-Map Recon-ng outputs into nugget graph structures:
-- `domains` -> `INTERNET_NAME`
-- `hosts` -> `IP_ADDRESS` / host entities
-- `contacts` -> `HUMAN_NAME`, `EMAILADDR`, `PHONE_NUMBER`
-- `ports` -> `TCP_PORT_OPEN` / `UDP_PORT_OPEN`
-- vulnerability rows -> `VULNERABILITY_GENERAL`
+| Table / field | Nugget direction |
+|---------------|------------------|
+| domains | `INTERNET_NAME` / `DOMAIN_NAME` |
+| hosts | `INTERNET_NAME`; IPs via `classify_ip` |
+| contacts | `HUMAN_NAME`, `EMAILADDR`, `PHONE_NUMBER` |
+| ports | `TCP_PORT_OPEN` / `UDP_PORT_OPEN` |
+| vulnerabilities | `VULNERABILITY_GENERAL` |
 
-Edges:
-- `contains`: domain->host, host->port
-- `has`: contact->email/phone, host/service->vulnerability
+Edges: `contains` (domain→host, host→port); `had` for descriptors. Details: `.cursor/skills/recon_ng/references/nugget-mapping.md`.
 
-Output tab alignment:
-- text tab: spool/report artifacts
-- data tab: normalized table extracts
-- graph tab: nodes/edges with deduped IDs
+Tabs: text (spool/report) · data (SQL/reporting structured) · graph (nodes/edges from structured rows).
+
+---
 
 ## 11) Automation upgrade path
 
-After successful interactive run:
-1. Capture sequence with `script record`.
-2. Replay via `script execute`.
-3. Convert to resource script and run with `recon-ng -r`.
-4. Integrate into headless orchestration via `recon-cli`.
+After a successful interactive run:
+
+1. `script record` during the validated session
+2. `script execute` to replay
+3. Convert to resource file → `recon-ng -r`
+4. Productionize with **`recon-cli`** for SpiderFeet pipelines
+
+```powershell
+& $py C:\projects\spiderfeet\.tools\recon-ng\recon-ng -w acme-ext-2026q3 -r .\pipelines\acme-domain.rc
+```
+
+---
 
 ## 12) Troubleshooting checkpoints
 
-- Empty outputs: validate SOURCE and prerequisite table.
-- Module failure: check dependency/key markers and verbosity.
-- Low yield: pivot module family or provider.
-- Quota risk: reduce scope and prioritize high-yield rows.
+| Symptom | Check |
+|---------|--------|
+| No modules found | Marketplace disabled (`--stealth` / `--no-marketplace`); install modules with marketplace on |
+| Empty outputs | SOURCE + prerequisite table rows |
+| Module failure | D/K markers, `VERBOSITY=2`, marketplace issues |
+| Low yield | Pivot module family/provider |
+| Quota risk | Shrink SOURCE; prioritize high-yield rows |
+
+---
 
 ## Worked command-family examples
 
-- **workspaces**: create/select/list for engagement isolation.
-- **marketplace**: refresh/search/install/info/remove update cycle.
-- **modules**: load path-family modules by current table state.
-- **options**: explicit SOURCE and module option tuning.
-- **keys**: provider setup before K-marked modules.
-- **db/show**: row checks and module metadata inspection.
-- **reporting**: export both narrative and structured artifacts.
+- **workspaces** — create/select/list for isolation
+- **marketplace** — refresh/search/install/info (marketplace enabled)
+- **modules** — load by path matching current table state
+- **options** — explicit SOURCE + module tuning
+- **keys** — providers before K modules
+- **db / show** — row gates and metadata
+- **reporting** — export for SpiderFeet tabs
+- **recon-cli** — `-w -m -o -x` headless runs (preferred automation)

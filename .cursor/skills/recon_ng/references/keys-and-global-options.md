@@ -1,48 +1,54 @@
 # Keys and Global Options
 
-## API key management
+## API keys
 
-Many Recon-ng modules require provider credentials. Missing keys commonly cause silent low-yield runs or explicit module failures.
+Many marketplace modules require provider credentials (metadata **K** markers). Missing keys cause failures or empty yield.
 
-Key workflow:
-1. `keys list` to inspect configured providers.
-2. `keys add <provider> <value>` for required modules.
-3. Validate key-required modules on a minimal SOURCE before full execution.
+Console workflow:
 
-Operational guidance:
-- Keep key usage scoped to authorized engagements.
-- Rotate/revoke keys according to provider policy.
-- Avoid committing key material into scripts or logs.
+```text
+keys list
+keys add <provider> <value>
+```
 
-## Dependency and key markers
+Guidance:
 
-Module metadata typically indicates:
-- dependencies (D),
-- key requirement (K),
-- path/category context.
+- Scope keys to authorized engagements
+- Smoke-test K modules on tiny SOURCE before full scope
+- Never commit key literals into resource scripts or git
+- For automation, inject from secure environment / secret store
 
-Treat D/K markers as preflight requirements, not optional hints.
+## Dependency markers
 
-## Global options and execution posture
+Module info typically indicates:
 
-Global options influence runtime behavior across modules, such as:
-- verbosity and debugging visibility,
-- request/HTTP behavior (for example user-agent/proxy context where available),
-- execution pacing/threading and noise profile,
-- output and logging behavior.
+- **D** — software/library dependencies
+- **K** — API key requirements
 
-Use low-noise defaults for stealth-sensitive workflows and increase verbosity for debugging.
+Treat both as preflight gates.
 
-## Rate limit and quota controls
+## Captured global options (5.1.2)
 
-- Run passive/no-key modules first to expand seed set cheaply.
-- Defer paid/rate-limited modules until prerequisite tables prove value.
-- Use batched SOURCE inputs for provider-heavy modules.
-- Track per-module value by row growth and output quality.
+From `recon-cli --stealth -G` on **2026-08-10** (marketplace/version checks disabled in that capture):
 
-## Key-safe automation
+| Name | Default (capture) | Required | Description |
+|------|-------------------|----------|-------------|
+| NAMESERVER | 8.8.8.8 | yes | default nameserver for the resolver mixin |
+| PROXY | *(empty)* | no | proxy server (address:port) |
+| THREADS | 10 | yes | number of threads (where applicable) |
+| TIMEOUT | 10 | yes | socket timeout (seconds) |
+| USER-AGENT | Recon-ng/v5 | yes | user-agent string |
+| VERBOSITY | 1 | yes | 0 = minimal, 1 = verbose, 2 = debug |
 
-When automating with resource scripts or `recon-cli`:
-- inject keys from environment/secure runtime stores,
-- avoid plaintext key literals in reusable artifacts,
-- separate reusable logic scripts from environment-specific secret setup.
+Set via `recon-cli -g name=value` (repeatable) or interactive global options commands.
+
+## Rate limits and quotas
+
+- Passive / no-key modules first
+- Defer paid modules until prerequisite tables prove value
+- Batch SOURCE for provider-heavy modules
+- Measure value by row growth and quality, not wall-clock alone
+
+## Stealth vs keys
+
+`--stealth` disables framework passive requests (`--no-version --no-analytics --no-marketplace`). It does **not** replace careful USER-AGENT/PROXY/THREADS tuning for module traffic. Install modules before relying on stealth mode.

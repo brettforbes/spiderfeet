@@ -3,157 +3,234 @@ name: recon_ng
 description: Trigger for recon-ng, marketplace install, modules load, workspaces create, options set SOURCE, recon-cli, resource scripts, and OSINT module chaining when modular web OSINT pipelines must persist data in workspaces and feed SpiderFeet text/data/graph nugget outputs with controlled API spend.
 ---
 
-# Recon-ng Skill
+# Recon-ng — Modular Web OSINT Framework
 
 ## Purpose
 
-Use this skill when the task needs a modular, database-backed OSINT workflow rather than a one-shot command.
+Use when the task needs a **modular, database-backed web OSINT workflow** — workspaces, marketplace modules, and table-to-table chaining — rather than a one-shot CLI.
 
-Choose Recon-ng when you need:
-- Workspace isolation per engagement.
-- Module chaining where one module's output table seeds the next module.
-- Marketplace-driven capability expansion.
-- Repeatable headless automation with `recon-cli` or resource scripts.
-- Structured extraction for SpiderFeet nugget graph mapping.
+Recon-ng ([lanmaster53/recon-ng](https://github.com/lanmaster53/recon-ng)) is an interactive Python framework (Metasploit-style console) with:
 
-Prefer standalone tools (for example dnsx or theHarvester) when:
-- You only need one narrow data collection step.
-- No persistent workspace/database history is required.
-- You do not need module-to-module table chaining.
+- **Workspaces** isolating engagement data
+- **SQLite** tables that seed the next module
+- A **module marketplace** (`recon-ng-marketplace`)
+- Headless automation via **`recon-cli`** and resource files (`recon-ng -r script.rc`)
+- Optional **`recon-web`** UI / Recon-API for review
+
+Choose Recon-ng when you need workspace isolation, module chaining (`recon/<input>-<output>/…`), marketplace-driven capability, or repeatable headless runs for SpiderFeet nugget graphs.
+
+Prefer standalone tools (dnsx, theHarvester, subfinder, etc.) when you only need one narrow collection step with no persistent workspace.
+
+**Not Metasploit** — recon only, no exploit payloads. Distinguish from dnsx/uncover/theHarvester one-shot CLIs.
+
+**Install (this host):**
+
+| Piece | Path |
+|-------|------|
+| Python | `C:\projects\spiderfeet\.venv\Scripts\python.exe` |
+| Framework root | `C:\projects\spiderfeet\.tools\recon-ng\` |
+| Launchers | `recon-ng`, `recon-cli`, `recon-web` (run with venv Python; `PYTHONPATH` = framework root) |
+| Version | **5.1.2** (`recon-ng --version`) |
+| Help capture | **2026-08-10** (`.tmp_reconng_help/`) |
+
+**SpiderFeet preference:** automate with **`recon-cli`** (workspace → global/module options → `-x`). Use interactive `recon-ng` for exploration and `script record`; use `recon-ng -r` for resource replay.
 
 ## Step-by-Step Instructions
 
-1. **Bootstrap framework**
-   - Install from official package/repo paths.
-   - Launch `recon-ng` once to initialize home paths and default workspace assets.
-   - Verify core commands (`help`, `workspaces`, `marketplace`, `modules`) are available.
-
-2. **Create or select workspace**
-   - Use `workspaces create <name>` for a new engagement.
-   - Use `workspaces select <name>` before loading modules.
-   - Keep one workspace per client/target scope to avoid data contamination.
-
-3. **Set API keys and global context**
-   - Use `keys list` to inspect required providers.
-   - Use `keys add <provider> <value>` for required module dependencies.
-   - Tune global options (verbosity/user-agent/proxy/threading as available in your install) before expensive module runs.
-
-4. **Prepare marketplace and modules**
-   - Refresh/search marketplace index.
-   - Install needed modules by category path.
-   - Load modules by canonical path such as:
-     - `recon/domains-hosts/*`
-     - `recon/hosts-ports/*`
-     - `recon/domains-contacts/*`
-     - `reporting/*`
-
-5. **Configure module options and SOURCE**
-   - Run `show info` and `show options` after each `modules load`.
-   - Set module options explicitly.
-   - Set `SOURCE` based on seed strategy:
-     - Single seed value for focused runs.
-     - File-backed source for larger target sets.
-     - SQL source to pull directly from prior workspace tables.
-
-6. **Execute and validate table growth**
-   - Run module.
-   - Inspect `show` output and `db query` table counts after each step.
-   - Confirm expected table growth before chaining onward.
-
-7. **Chain next module from produced tables**
-   - Move from domain to hosts, then hosts to ports or other enrichment modules.
-   - Use `SOURCE` set to prior outputs (direct value, file, or SQL).
-   - Stop redundant modules when no new rows are being produced.
-
-8. **Query/export for SpiderFeet integration**
-   - Use `db query` for structured extraction.
-   - Use `reporting/*` modules for export artifacts.
-   - Convert rows into SpiderFeet nuggets and graph edges.
+1. **Confirm authorization** — web OSINT against approved orgs/domains only; respect API ToS and rate limits.
+2. **Verify tooling** — from framework root (or with `PYTHONPATH` set):
+   ```powershell
+   $env:PYTHONPATH = "C:\projects\spiderfeet\.tools\recon-ng"
+   & C:\projects\spiderfeet\.venv\Scripts\python.exe C:\projects\spiderfeet\.tools\recon-ng\recon-ng --version
+   & C:\projects\spiderfeet\.venv\Scripts\python.exe C:\projects\spiderfeet\.tools\recon-ng\recon-cli -h
+   ```
+3. **Bootstrap** — launch once without `--stealth` so marketplace can initialize; create/select a workspace.
+4. **Keys** — `keys list` / `keys add <provider> <value>` before K-marked modules; never commit keys.
+5. **Marketplace** — refresh, search, install only modules needed for the chain. **Do not use `--stealth` until modules are installed** — stealth disables marketplace; `recon-cli -M` then reports `No modules found`.
+6. **Load and configure** — `modules load recon/<input>-<output>/…`; `show info` / `show options`; set `SOURCE` (literal, file, or SQL).
+7. **Run and validate** — execute module; `db query` / `show` for row growth before chaining.
+8. **Chain** — domains → hosts → contacts/ports → reporting; gate expensive API modules on non-zero table deltas.
+9. **Export** — `reporting/*` and/or SQL extracts; map rows to SpiderFeet nuggets (`references/nugget-mapping.md`).
+10. **Automate** — promote proven sequences to `recon-cli` or `recon-ng -r` for SpiderFeet pipelines.
 
 ## If/Then Decision Rules
 
-- **If module has dependency marker (D), then** verify dependency availability before execution.
-- **If module requires API key (K), then** configure key first and test with minimal seed scope.
-- **If API spend/rate risk is high, then** run cheap passive modules first and gate expensive modules on new-row yield.
-- **If `SOURCE` is large, then** batch inputs and checkpoint row counts between runs.
-- **If module output tables are empty, then** pivot to adjacent category modules rather than rerunning unchanged inputs.
-- **If module appears stale/disabled/removed in marketplace, then** use maintained alternatives in same input-output path.
-- **If stealth is required, then** reduce request intensity, adjust timing/proxy/user-agent settings, and prioritize passive collection.
-- **If workspace data looks mixed, then** stop and switch to the correct workspace before continuing.
+| If | Then |
+|----|------|
+| SpiderFeet / CI / corpus automation | Prefer **`recon-cli`** (`-w`, `-m`, `-o`, `-x`); capture structured exports, not TUI only |
+| Fresh host / empty module list | Install marketplace modules **without** `--stealth` / `--no-marketplace` first |
+| Need OPSEC / no outbound framework checks | `--stealth` (implies `--no-version --no-analytics --no-marketplace`) — modules must already be installed |
+| Module shows dependency (D) | Install dependency before run |
+| Module requires key (K) | `keys add` then smoke-test on a tiny `SOURCE` |
+| High API spend / rate risk | Passive free/passive modules; gate paid modules on new-row yield |
+| Large `SOURCE` | Batch; checkpoint `db query` between runs |
+| Prerequisite table empty | Pivot module family or fix `SOURCE` — do not treat as “tool broken” |
+| Module stale / disabled / removed | Alternate in same `recon/<input>-<output>/` path |
+| Workspace looks mixed | Stop; `workspaces select` correct engagement |
+| Interactive exploration done | `script record` → resource file → `recon-cli` for production |
 
 ## Guardrails & Pitfalls
 
-- Authorized targets only. Do not run outside approved scope.
-- Do not treat marketplace modules as uniformly maintained; validate metadata and behavior each run.
-- Do not mix unrelated clients/engagements in one workspace.
-- Do not burn API quota on broad seeds before confirming module utility on small samples.
-- Do not assume module success means useful output; verify table delta and row quality.
-- Do not proceed from empty prerequisite tables; adjust sequence or source first.
+- **Authorized targets only** — framework modules query third-party APIs and web sources.
+- **Marketplace quality varies** — validate metadata and sample output; do not install the entire catalog blindly.
+- **One workspace per engagement** — never mix clients.
+- **`--stealth` ≠ “stealthy modules”** — it disables framework passive requests (version/analytics/marketplace). Documented capture: with stealth, marketplace disabled and module list empty until modules are installed.
+- **Do not invent launcher flags** — only options from Captured help (`recon-ng` / `recon-cli` / `recon-web`).
+- **Empty tables ≠ success** — verify row deltas before reporting or chaining.
+- **Keys in scripts** — inject from secure env; keep secrets out of `.rc` files committed to git.
+- **Abandoned modules** — check marketplace issues; replace with maintained peers in the same I/O path.
 
 ## Automation
 
-Use these modes for repeatability:
+| Mode | When |
+|------|------|
+| **`recon-cli`** (preferred for SpiderFeet) | Headless: `-w`, `-C`/`-c`, `-g`/`-o`, `-m`, `-x` |
+| **`recon-ng -r script.rc`** | Deterministic resource replay |
+| **`script record` / `script execute`** | Capture interactive → replay |
+| **`spool`** | Console evidence for text tab / audit |
 
-- **Resource scripts:** `recon-ng -r <script.rc>`
-  - Best for deterministic replay of console commands.
-- **Headless CLI:** `recon-cli`
-  - Best for non-interactive orchestration in larger pipelines.
-- **Script recording/execution:** `script record` / `script execute`
-  - Best for capturing a proven interactive workflow and replaying it.
-- **Output capture:** `spool`
-  - Capture command output for audit trails and parser ingestion.
+Minimal `recon-cli` pattern (after modules installed):
 
-Automation pattern:
-1. Create/select workspace.
-2. Add keys.
-3. Install/refresh needed modules.
-4. Run seed modules.
-5. Gate next modules on `db query` delta checks.
-6. Export reporting artifacts and table extracts.
+```powershell
+$py = "C:\projects\spiderfeet\.venv\Scripts\python.exe"
+$cli = "C:\projects\spiderfeet\.tools\recon-ng\recon-cli"
+$env:PYTHONPATH = "C:\projects\spiderfeet\.tools\recon-ng"
+& $py $cli -w acme-ext -m recon/domains-hosts/example_module -o "SOURCE=example.com" -x
+```
+
+Use `-G` / `-O` / `-M` to inspect options and installed modules (without inventing flags).
 
 ## SpiderFeet nugget mapping
 
-Map Recon-ng database/reporting output into SpiderFeet structures aligned with `.seed/04_Driving and Integrating_CLI_Apps.md`.
+Map workspace tables / reporting exports into nuggets (see `references/nugget-mapping.md`):
 
-- `domains` -> `INTERNET_NAME`
-- `hosts` -> `IP_ADDRESS` or host-typed nugget as implemented
-- `contacts` -> `HUMAN_NAME`, `EMAILADDR`, `PHONE_NUMBER` where available
-- `ports` -> `TCP_PORT_OPEN` / `UDP_PORT_OPEN` as applicable
-- `vulnerabilities` -> `VULNERABILITY_GENERAL` and CVE-linked types when present
-- Reporting artifacts -> text/data tabs; structured rows -> graph tab nodes/edges
+| Recon-ng | Nugget direction |
+|----------|------------------|
+| `domains` | `INTERNET_NAME` / `DOMAIN_NAME` |
+| `hosts` | `INTERNET_NAME`, `IPV4_ADDRESS` / `IPV6_ADDRESS` via `classify_ip` |
+| `contacts` | `HUMAN_NAME`, `EMAILADDR`, `PHONE_NUMBER` |
+| `ports` | `TCP_PORT_OPEN` / `UDP_PORT_OPEN` |
+| `vulnerabilities` | `VULNERABILITY_GENERAL` (+ CVE types when present) |
 
-Edge guidance:
-- Use `contains` for ownership/container relationships (domain contains host, host contains port).
-- Use `has` for attribute-style links (contact has email/phone, entity has vulnerability marker).
+Edges: `contains` (domain→host, host→port); `had` for descriptor attributes. Align with `.seed/04_Driving and Integrating_CLI_Apps.md` and catalogue reuse before inventing types.
 
-Pipeline goal:
-- Preserve raw evidence for text output.
-- Preserve normalized rows for data output.
-- Emit nodes/edges for graph output with stable IDs and deduplication.
+Output tabs: text (spool/report) · structured data (SQL/reporting JSON/CSV) · graph (nodes/edges from structured rows).
 
 ## Strategies and Tactics
 
 ### Module selection by path
 
-- Start with `recon/<input>-<output>/` path that matches current known table.
-- Prefer modules whose input table already has non-zero rows.
-- Keep a small rotation of alternative modules per path to mitigate staleness.
+- Pick `recon/<input>-<output>/` where `<input>` matches a non-empty table.
+- Keep alternate modules per path for staleness.
+- Run `reporting/*` only after tables validate.
 
 ### SOURCE strategy
 
-- Use default/literal `SOURCE` for quick validation.
-- Use file-backed `SOURCE` for curated bulk seed sets.
-- Use SQL-backed `SOURCE` for adaptive chaining from workspace truth.
+- Literal — smoke-test module viability.
+- File — curated bulk seeds.
+- SQL — adaptive chaining from workspace truth (prefer for hosts→ports).
 
-### API spend control
+### API spend
 
-- Run low-cost passive modules first.
-- Promote to paid/rate-limited modules only when prior stages yield new high-value seeds.
-- Track per-module row delta; stop modules with repeated zero-growth runs.
-- Reuse persisted workspace data instead of re-querying providers.
+- Passive first → paid only on new high-value seeds.
+- Track per-module row delta; stop zero-growth repeats.
+- Reuse workspace rows instead of re-querying providers.
 
 ## References
 
-See indexed references in:
-- `.cursor/skills/recon_ng/references/SKILLS.md`
-- `.cursor/skills/recon_ng/references/sources.md`
+Indexed in [`references/SKILLS.md`](references/SKILLS.md).
+
+| File | Topic |
+|------|--------|
+| `cli-options.md` | Launcher flags from live capture; stealth/module-empty note |
+| `workspaces-and-database.md` | Workspaces, SQLite, `db query` gates |
+| `marketplace-and-modules.md` | Marketplace lifecycle, disabled/stale modules |
+| `module-io-paths-and-source.md` | Path heuristics, SOURCE strategies |
+| `keys-and-global-options.md` | Keys + captured global options |
+| `automation-and-scripting.md` | recon-cli, `-r`, script, spool |
+| `reporting-and-recon-web.md` | reporting/*, recon-web /api/ |
+| `nugget-mapping.md` | Tables → SpiderFeet graph |
+| `development-api-and-metadata.md` | Module meta, D/K, issue routing |
+| `sources.md` | Canonical URLs |
+
+Operator guides: `.docs/docs-for-cli-tools/recon-ng-Zero-to-Hero.md`, `recon-ng-CLI-Options.md`.
+
+## Comprehensive Examples
+
+### WORKSPACES
+
+```text
+workspaces create acme-ext-2026q3
+workspaces select acme-ext-2026q3
+workspaces list
+```
+
+### MARKETPLACE (interactive; marketplace enabled)
+
+```text
+marketplace refresh
+marketplace search domains-hosts
+marketplace info recon/domains-hosts/<module>
+marketplace install recon/domains-hosts/<module>
+```
+
+### MODULES + SOURCE (domains → hosts)
+
+```text
+modules load recon/domains-hosts/<module>
+show info
+show options
+options set SOURCE example.com
+run
+db query SELECT COUNT(*) FROM hosts
+```
+
+### DOMAINS → CONTACTS
+
+```text
+modules load recon/domains-contacts/<module>
+options set SOURCE example.com
+run
+db query SELECT * FROM contacts LIMIT 20
+```
+
+### HOSTS → PORTS (SQL SOURCE)
+
+```text
+modules load recon/hosts-ports/<module>
+options set SOURCE query SELECT host FROM hosts WHERE host IS NOT NULL
+run
+```
+
+### REPORTING
+
+```text
+modules load reporting/<module>
+show options
+run
+```
+
+### RECON-CLI (headless)
+
+```powershell
+$env:PYTHONPATH = "C:\projects\spiderfeet\.tools\recon-ng"
+$py = "C:\projects\spiderfeet\.venv\Scripts\python.exe"
+$cli = "C:\projects\spiderfeet\.tools\recon-ng\recon-cli"
+& $py $cli -w acme-ext -G
+& $py $cli -w acme-ext -M
+& $py $cli -w acme-ext -m recon/domains-hosts/<module> -O
+& $py $cli -w acme-ext -m recon/domains-hosts/<module> -o SOURCE=example.com -x
+```
+
+### RESOURCE FILE
+
+```powershell
+& $py C:\projects\spiderfeet\.tools\recon-ng\recon-ng -w acme-ext -r .\pipelines\acme-domain.rc
+```
+
+### RECON-WEB
+
+```powershell
+& $py C:\projects\spiderfeet\.tools\recon-ng\recon-web --host 127.0.0.1 --port 5000
+# Browser UI + Recon-API under /api/
+```

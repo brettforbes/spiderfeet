@@ -1,52 +1,50 @@
 # Marketplace and Modules
 
-## Marketplace role
+## Role
 
-The marketplace is Recon-ng's module distribution channel. It allows operators to discover, install, update, and remove modules without changing core framework code.
+The marketplace ([recon-ng-marketplace](https://github.com/lanmaster53/recon-ng-marketplace)) distributes modules without changing core framework code. Modules are selected by path families such as `recon/domains-hosts/*`.
 
-## Core marketplace workflow
+## Bootstrap vs stealth
 
-1. Refresh module index.
-2. Search by category/path/keyword.
-3. Inspect module metadata before install/load.
-4. Install only required modules for current engagement scope.
-5. Re-check for updates during long-running campaigns.
+Authoritative capture (**2026-08-10**): running with `--stealth` prints `Marketplace disabled.` and `recon-cli -M` returns `[!] No modules found.`
 
-## Module lifecycle commands (conceptual)
+| Goal | Action |
+|------|--------|
+| Install / refresh modules | Run **without** `--stealth` and **without** `--no-marketplace` |
+| Later OPSEC (no version/analytics/marketplace checks) | `--stealth` only **after** needed modules are installed locally |
 
-- Search catalog entries.
-- Install selected modules.
-- Remove unused/problematic modules.
-- Show module info for dependencies and key requirements.
-- Load module and inspect runtime options.
+## Lifecycle (console)
 
-## Category path strategy
+Typical interactive flow (wiki / Features):
 
-Use path families to maintain coherent chaining:
-- `recon/domains-hosts/*`
-- `recon/hosts-ports/*`
-- `recon/domains-contacts/*`
-- `reporting/*`
+1. Refresh marketplace index
+2. Search by path or keyword
+3. Inspect module info (dependencies, keys)
+4. Install required modules only
+5. `modules load <path>` → configure → run
+6. Remove unused or broken modules when cleaning
 
-Interpretation:
-- The left side of `<input>-<output>` is prerequisite data shape.
-- The right side is newly produced table shape.
+Do not invent marketplace subcommand spellings beyond what the installed console documents via `help`.
 
-## Disabled/stale module handling
+## Category paths
 
-When a module is unavailable, stale, or failing:
-- Check marketplace and issues for known breakage.
-- Choose an alternate module in the same input-output family.
-- Revalidate output schema before continuing downstream modules.
+| Path family | Intent |
+|-------------|--------|
+| `recon/domains-hosts/*` | Domain seeds → host rows |
+| `recon/domains-contacts/*` | Domain seeds → contacts |
+| `recon/hosts-ports/*` | Hosts → ports/services |
+| `reporting/*` | Export / handoff artifacts |
+
+Left side of `<input>-<output>` = prerequisite shape; right side = produced table shape.
+
+## Disabled / stale modules
+
+- Check marketplace and marketplace issues for breakage
+- Pivot to another module in the same I/O family
+- Revalidate output columns before downstream chaining
 
 ## Risk controls
 
-- Treat third-party module behavior as variable quality.
-- Validate dependencies and API requirements before full-scale runs.
-- Avoid broad install-everything behavior; keep module footprint minimal for predictable operations.
-
-## Tactical sequencing
-
-- Prioritize passive/high-yield modules first.
-- Gate expensive API-backed modules on prior table growth.
-- Pivot paths when no net new rows are produced.
+- Treat third-party modules as variable quality
+- Minimal install footprint for predictable automation
+- Gate API-heavy modules on prior table growth

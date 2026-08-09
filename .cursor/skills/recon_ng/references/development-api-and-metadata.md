@@ -1,45 +1,47 @@
 # Development API and Metadata
 
-## Why this matters for operators
+## Operator value
 
-Even when not writing modules, understanding metadata and framework API concepts improves safe module selection, troubleshooting, and upgrade resilience.
+Even without writing modules, metadata and framework API concepts improve safe selection, troubleshooting, and upgrade resilience.
 
-## Module metadata essentials
+## Module metadata
 
-Inspect module info to identify:
-- category path and intended input/output flow,
-- dependency requirements,
-- key requirements,
-- descriptive context and maintainability signals.
+Before load/run, inspect module info for:
 
-Use metadata-driven preflight checks before module execution in automation.
+- Category path and intended I/O
+- Dependency (**D**) requirements
+- Key (**K**) requirements
+- Maintainability / description signals
 
-## Framework API and mixin concepts
+Use metadata as automation preflight, not optional flavor text.
 
-Development docs describe framework APIs/mixins used by module authors. Operator takeaway:
-- modules share common framework services for option handling, requests, parsing, and database interactions,
-- failures can stem from framework-level behavior or module-level logic,
-- issue routing should distinguish core framework defects from marketplace module defects.
+## Framework API / mixins
 
-## Marketplace indexing implications
+Modules share framework services (options, requests, parsing, DB). Failures may be:
 
-Marketplace indexing defines discoverability and install behavior. Operators should:
-- refresh indexes before assuming module absence,
-- verify module state after framework updates,
-- track removed/renamed modules in long-lived runbooks.
+- Framework-level → [recon-ng issues](https://github.com/lanmaster53/recon-ng/issues)
+- Module-level → [marketplace issues](https://github.com/lanmaster53/recon-ng-marketplace/issues)
 
-## Troubleshooting routing
+See [Development Guide](https://github.com/lanmaster53/recon-ng/wiki/Development-Guide).
 
-When diagnosing failures:
-- check dependency/key/option metadata first,
-- reproduce with minimal SOURCE and higher verbosity,
-- file issues in framework repo for core behavior,
-- file issues in marketplace repo for module-specific behavior.
+## Marketplace indexing
 
-## Operator checklist before scripted runs
+- Refresh indexes before assuming a module is absent
+- Re-verify after framework upgrades
+- Update long-lived runbooks when modules are renamed/removed
 
-1. Metadata confirms required inputs exist.
-2. Dependencies are installed and reachable.
-3. Keys are present for K modules.
-4. SOURCE strategy is explicit and bounded.
-5. Output tables and reporting targets are defined.
+## Troubleshooting order
+
+1. Dependency / key / option metadata
+2. Minimal SOURCE + higher `VERBOSITY`
+3. Correct issue tracker (core vs marketplace)
+4. Alternate module in the same I/O path
+
+## Preflight checklist (scripted runs)
+
+1. Metadata confirms required inputs exist
+2. Dependencies installed
+3. Keys present for K modules
+4. SOURCE explicit and bounded
+5. Marketplace modules installed if not using a pre-baked module tree
+6. Output / reporting targets defined

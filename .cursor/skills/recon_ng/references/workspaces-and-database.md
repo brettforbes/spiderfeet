@@ -2,53 +2,53 @@
 
 ## Why workspaces exist
 
-Recon-ng workspaces isolate engagement data so module chaining, row provenance, and reporting remain scoped to a single target/client context. This supports repeatability and prevents cross-engagement contamination.
+Workspaces isolate engagement data so module chaining, provenance, and reporting stay scoped to one authorization boundary. Cross-engagement contamination breaks SpiderFeet graph trust and API-spend accounting.
 
-## Workspace lifecycle
+## Lifecycle
 
-- Create: `workspaces create <name>`
-- Select: `workspaces select <name>`
-- List: `workspaces list`
-- Remove/archive when engagement is complete (after exports and evidence capture).
+Interactive console (not launcher flags):
 
-Recommended naming:
-- `<org>-<scope>-<date>` for deterministic sorting and handoff.
+```text
+workspaces create <name>
+workspaces select <name>
+workspaces list
+```
 
-## SQLite role in workflow
+Launcher shortcut (captured):
 
-Each workspace persists module output in tables that become the seed source for subsequent modules. This is the core advantage over one-shot CLI tools.
+```text
+recon-ng -w <workspace>
+recon-cli -w <workspace> …
+```
 
-Operational pattern:
-1. Run module A (for example domains -> hosts).
-2. Validate inserted rows.
-3. Feed module B using table-derived `SOURCE`.
-4. Repeat until no meaningful row growth remains.
+Naming: `<org>-<scope>-<date>` (example: `acme-ext-2026q3`).
 
-## Database inspection and quality checks
+## SQLite role
 
-Use `db query` throughout execution to:
-- confirm expected table growth,
-- validate row quality before expensive API calls,
-- detect duplicated/low-value data early,
-- drive adaptive module selection.
+Each workspace persists module outputs in tables that become seeds for subsequent modules. That persistence is the advantage over one-shot CLIs.
 
-Quality gates between modules:
-- Non-zero prerequisite table rows.
-- Distinct value count threshold (avoid rerunning on duplicates).
-- Freshness checks when running long engagements.
+Pattern:
 
-## Workspace hygiene tactics
+1. Run module A (e.g. domains → hosts).
+2. Validate inserts with `db query` / `show`.
+3. Feed module B via table-derived `SOURCE` (prefer SQL for adaptive filters).
+4. Stop when row growth plateaus.
 
-- One workspace per authorization boundary.
-- Do not mix sandbox tests with production reconnaissance.
-- Snapshot or export before destructive workspace changes.
-- Keep an execution log (spool/script record) tied to workspace name.
+## Quality gates
 
-## SpiderFeet integration implications
+Between modules, require:
 
-Workspace tables are the authoritative intermediate representation for:
-- text evidence capture (console/reporting artifacts),
-- tabular data output (normalized extracts),
-- graph output (nugget nodes/edges).
+- Non-zero prerequisite table rows
+- Distinct-value / freshness checks before expensive providers
+- Explicit workspace selection before every automation batch
 
-For deterministic SpiderFeet ingestion, always extract from validated workspace rows rather than raw terminal text.
+## Hygiene
+
+- One workspace per authorization boundary
+- Do not mix sandbox tests with production recon
+- Snapshot/export before destructive cleanup
+- Tie spool/script logs to workspace name
+
+## SpiderFeet
+
+Validated workspace rows (or reporting exports) are the structured source for text/data/graph tabs — not raw console chatter alone.
