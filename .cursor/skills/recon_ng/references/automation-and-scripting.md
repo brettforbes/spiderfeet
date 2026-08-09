@@ -1,61 +1,60 @@
 # Automation and Scripting
 
-## Automation modes
+## SpiderFeet preference: `recon-cli`
 
-Recon-ng supports both interactive and headless automation styles for repeatable OSINT chains.
+For corpus harvest, CI, and non-interactive pipelines, prefer **`recon-cli`** with explicit `-w`, `-m`, `-o` / `-g`, and `-x`.
 
-### `recon-ng -r <script.rc>`
+Captured flags (do not invent others): `-C`, `-c`, `-G`, `-g`, `-M`, `-m`, `-O`, `-o`, `-x`, plus workspace and `--no-*` / `--stealth` / `--version`.
 
-Resource script execution for deterministic command playback.
+```powershell
+$env:PYTHONPATH = "C:\projects\spiderfeet\.tools\recon-ng"
+$py = "C:\projects\spiderfeet\.venv\Scripts\python.exe"
+$cli = "C:\projects\spiderfeet\.tools\recon-ng\recon-cli"
 
-Use when:
-- workflow is stable and ordered,
-- you want easy versioning of command sequences,
-- same pipeline runs across multiple engagements with minor variable changes.
+& $py $cli -w acme-ext -G
+& $py $cli -w acme-ext -M
+& $py $cli -w acme-ext -m recon/domains-hosts/<module> -O
+& $py $cli -w acme-ext -m recon/domains-hosts/<module> -o SOURCE=example.com -x
+& $py $cli -w acme-ext -C "db query SELECT COUNT(*) FROM hosts"
+```
 
-### `recon-cli`
+`-C` runs a command in global context; `-c` runs in module context (pre-run).
 
-Headless/non-interactive execution interface.
+## Resource files
 
-Use when:
-- integrating into larger orchestration systems,
-- running scheduled jobs,
-- embedding Recon-ng in SpiderFeet external-tool pipelines.
+```powershell
+& $py C:\projects\spiderfeet\.tools\recon-ng\recon-ng -w acme-ext -r .\pipelines\acme.rc
+```
 
-### Script recording and replay
+Use when the command sequence is stable and versioned with the engagement.
 
-- `script record` captures interactive command sessions.
-- `script execute` replays known-good sequences.
+## Script record / execute
 
-Use when converting exploratory manual sessions into repeatable runbooks.
+Interactive console:
 
-### Spooling
+- `script record` — capture a validated manual session
+- `script execute` — replay
 
-`spool` captures output streams for:
-- audit/evidence retention,
-- troubleshooting,
-- parser ingestion into text/data output tabs.
+Promote recorded flows to `.rc` or `recon-cli` once stable.
 
-## Recommended automation template
+## Spool
 
-1. Select/create workspace.
-2. Configure keys and global options.
-3. Refresh/install/load required modules.
-4. Set module options + SOURCE.
-5. Execute module.
-6. Run `db query` checks for row deltas.
-7. Branch to next module path based on results.
-8. Export reporting artifacts.
+`spool` captures console output for audit, troubleshooting, and text-tab evidence. Name files with workspace + timestamp.
 
-## Adaptive automation logic
+## Adaptive gates (required for good automation)
 
-Automation should not be purely linear. Add decision gates:
-- If prerequisite table empty -> skip dependent module.
-- If row delta below threshold -> pivot to alternate module family.
-- If API quota warning/failure -> pause expensive modules and continue passive collection.
+Do not run purely linear chains:
 
-## Error handling and diagnostics
+- Empty prerequisite table → skip dependent module
+- Zero row delta → pivot module family
+- Quota / auth errors → pause paid modules; continue passive where possible
 
-- Increase verbosity when diagnosing module failures.
-- Route framework bugs vs marketplace module bugs to correct issue tracker.
-- Keep captured logs with workspace IDs for reproducibility.
+## Diagnostics
+
+- Raise `VERBOSITY` (`-g VERBOSITY=2`) when debugging
+- Route framework bugs → recon-ng issues; module bugs → marketplace issues
+- Keep logs with workspace IDs for reproducibility
+
+## Empty modules under stealth
+
+If automation uses `--stealth` before marketplace install, `-M` shows no modules. Install modules with marketplace enabled first (see `cli-options.md`).

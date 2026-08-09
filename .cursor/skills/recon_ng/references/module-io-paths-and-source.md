@@ -1,58 +1,52 @@
 # Module I/O Paths and SOURCE
 
-## Path-first module selection
+## Path-first selection
 
-Recon-ng module paths encode dataflow intent as `recon/<input>-<output>/module_name`.
-Use this path structure to decide sequence based on current workspace table state.
+Module paths encode dataflow: `recon/<input>-<output>/module_name`. Choose modules whose `<input>` matches a non-empty workspace table.
 
 Common families:
+
 - `recon/domains-hosts/*`
 - `recon/hosts-ports/*`
 - `recon/domains-contacts/*`
-- `reporting/*` (export/output)
+- `reporting/*`
 
-## Sequencing model
+## Sequencing
 
-1. Identify current strongest table (for example `domains`).
-2. Select modules whose `<input>` matches that table.
-3. Execute and validate `<output>` table growth.
-4. Promote newly grown table as next stage input.
-5. Repeat until graph breadth plateaus.
+1. Identify strongest current table (e.g. `domains`).
+2. Load modules whose `<input>` matches.
+3. Run; validate `<output>` growth with `db query`.
+4. Promote the grown table as the next stage input.
+5. Stop when graph breadth / row growth plateaus.
 
-## SOURCE option strategies
+## SOURCE strategies
 
-`SOURCE` controls seed inputs to module execution.
+`SOURCE` is the usual module seed option (set via console `options set` or `recon-cli -o SOURCE=…`).
 
-### 1) Literal/default SOURCE
-- Use for initial sanity checks and small-scope runs.
-- Best when you need immediate feedback on module viability.
+| Mode | When |
+|------|------|
+| Literal / default | Smoke-test viability; tiny authorized seeds |
+| File-backed | Curated bulk lists; replayable batches |
+| SQL-backed | Adaptive chaining from workspace tables (e.g. only new hosts) |
 
-### 2) File-backed SOURCE
-- Use for curated bulk seeds gathered externally.
-- Best for controlled batch execution and replayability.
+### Decision rules
 
-### 3) SQL-backed SOURCE
-- Use for adaptive in-workspace chaining.
-- Best when dynamically selecting rows from existing tables (for example only unresolved hosts).
+- Uncertain module → literal SOURCE first
+- Large curated list → file SOURCE
+- Mature workspace chaining → SQL SOURCE
+- Quota constrained → SQL SOURCE with filters
 
-## SOURCE decision rules
+## Spend and redundancy
 
-- If first run and uncertain module quality -> use literal SOURCE.
-- If large curated target list -> use file SOURCE.
-- If chaining mature workspace outputs -> use SQL SOURCE.
-- If quota is constrained -> use SQL SOURCE with filtered subsets.
+- Sample slices before full provider runs
+- Track row deltas; stop repeated zero-growth modules
+- Deduplicate SOURCE before expensive APIs
+- Prefer local table reuse over re-querying identical external data
 
-## API spend and redundancy control
+## Example pipeline
 
-- Run modules against small representative seed slices before full runs.
-- Track row deltas after each execution; stop modules with repeated zero-growth outcomes.
-- Deduplicate or filter source rows before expensive providers.
-- Prefer chaining from verified local tables over re-querying identical external data.
-
-## Example path-driven pipeline
-
-1. `domains` seed available.
-2. Run `recon/domains-hosts/*` modules -> populate `hosts`.
-3. Run `recon/domains-contacts/*` modules -> populate `contacts`.
-4. Run `recon/hosts-ports/*` modules using `hosts` SOURCE -> populate `ports`.
-5. Run `reporting/*` modules for export and downstream SpiderFeet ingest.
+1. Seed `domains`
+2. `recon/domains-hosts/*` → `hosts`
+3. `recon/domains-contacts/*` → `contacts` (parallel lane)
+4. `recon/hosts-ports/*` with SQL SOURCE from `hosts` → `ports`
+5. `reporting/*` for export / SpiderFeet ingest

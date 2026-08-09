@@ -1,183 +1,312 @@
-# Recon-ng CLI and Console Options
+# Recon-ng CLI Options
 
-This document covers launcher flags and interactive command families for both framework operation and repeatable OSINT module chaining.
+Operator reference for **Recon-ng** framework launchers and console command families. Prefer **`recon-cli`** for SpiderFeet automation after marketplace modules are installed.
 
-## 1) Launcher binaries and help surfaces
+| Field | Value |
+|-------|-------|
+| Version | **5.1.2** |
+| Python | `C:\projects\spiderfeet\.venv\Scripts\python.exe` |
+| Framework root | `C:\projects\spiderfeet\.tools\recon-ng\` |
+| Launchers | `recon-ng`, `recon-cli`, `recon-web` |
+| Capture date | **2026-08-10** |
+| Help source | `.tmp_reconng_help/*.txt` |
 
-## `recon-ng -h`
+> Launcher flags below are from live `-h` / `--version` / `-G` / `-M` only — **do not invent options**.  
+> Console families (`workspaces`, `marketplace`, …) are interactive framework commands (wiki / Features); they are not additional launcher flags.
 
-Primary interactive framework launcher. Use for:
-- direct console-driven operations,
-- running resource scripts with `-r`,
-- maintaining workspaces and module workflows.
+Skill: `.cursor/skills/recon_ng/SKILL.md`
 
-## `recon-cli -h`
+---
 
-Headless command interface. Use for:
-- non-interactive automation,
-- CI/pipeline integration,
-- batch execution where no TTY interaction is required.
+## SpiderFeet preferred commands
 
-## Common launcher usage patterns
+```powershell
+$env:PYTHONPATH = "C:\projects\spiderfeet\.tools\recon-ng"
+$py = "C:\projects\spiderfeet\.venv\Scripts\python.exe"
+$cli = "C:\projects\spiderfeet\.tools\recon-ng\recon-cli"
 
-- Interactive startup: `recon-ng`
-- Scripted run: `recon-ng -r <script.rc>`
-- Headless operation entrypoint: `recon-cli ...`
+# Inspect (after modules installed; avoid --stealth until then)
+& $py $cli -w acme-ext -G
+& $py $cli -w acme-ext -M
 
-## 2) Console command families
+# Run a module headlessly
+& $py $cli -w acme-ext -m recon/domains-hosts/<module> -o SOURCE=example.com -x
 
-## `workspaces`
+# Resource replay
+& $py C:\projects\spiderfeet\.tools\recon-ng\recon-ng -w acme-ext -r .\pipelines\acme.rc
+```
 
-Purpose:
-- Create, select, list, and manage isolated engagement contexts.
+### Observed: `--stealth` disables marketplace
 
-Example flow:
-1. create workspace
-2. select workspace
-3. run modules scoped to that workspace only
+Captures of `recon-cli --stealth -G` and `recon-cli --stealth -M` show:
 
-## `marketplace`
+- `[*] Marketplace disabled.`
+- `[*] Version check disabled.`
+- `-M` → `[!] No modules found.`
 
-Purpose:
-- Discover/install/remove/update module packages.
+Install marketplace modules **with marketplace enabled** first. Use `--stealth` only when local modules already exist and you want all `--no-*` passive framework requests disabled.
 
-Example flow:
-1. refresh index
-2. search by category or keyword
-3. install module
-4. inspect info/update as needed
+---
 
-## `modules`
+## Captured help
 
-Purpose:
-- Load modules by path (`recon/<input>-<output>/...` and `reporting/*`).
+Live help text captured from `C:\projects\spiderfeet\.tools\recon-ng\` via Windows Python on **2026-08-10**. Each block is the full content of the listed capture file (ANSI sequences retained where present).
 
-Example flow:
-1. load module
-2. inspect info/options
-3. set SOURCE and module options
-4. run
+### recon-ng
 
-## `options`
+#### Version (`recon-ng --version`) — `.tmp_reconng_help/recon-ng_version.txt`
 
-Purpose:
-- Set module-specific and global options.
+```text
+5.1.2
+```
 
-Key option:
-- `SOURCE` controls seed model:
-  - literal/default value
-  - file-backed list
-  - SQL-derived in-workspace seed set
+#### Root help (`recon-ng -h`) — `.tmp_reconng_help/recon-ng_help.txt`
 
-## `keys`
+```text
+usage: recon-ng [-h] [-w workspace] [-r filename] [--no-version]
+                [--no-analytics] [--no-marketplace] [--stealth] [--accessible]
+                [--version]
 
-Purpose:
-- Manage provider API credentials for key-dependent modules.
+recon-ng - Tim Tomes (@lanmaster53)
 
-Typical operations:
-- list configured keys
-- add/update keys
-- validate before key-required module execution
+options:
+  -h, --help        show this help message and exit
+  -w workspace      load/create a workspace
+  -r filename       load commands from a resource file
+  --no-version      disable version check
+  --no-analytics    disable analytics reporting
+  --no-marketplace  disable remote module management
+  --stealth         disable all passive requests (--no-*)
+  --accessible      Use accessible outputs when available
+  --version         displays the current version
+```
 
-## `db`
+### recon-cli
 
-Purpose:
-- Query workspace SQLite data to validate pipeline output and drive adaptive sequencing.
+#### Root help (`recon-cli -h`) — `.tmp_reconng_help/recon-cli_help.txt`
 
-Usage patterns:
-- row count checks between module runs
-- dedup/filter checks for API spend control
-- selecting SQL SOURCE subsets
+```text
+usage: recon-cli [-h] [-w workspace] [-C command] [-c command] [-G]
+                 [-g name=value] [-M] [-m module] [-O] [-o name=value] [-x]
+                 [--no-version] [--no-analytics] [--no-marketplace]
+                 [--stealth] [--version]
 
-## `show`
+recon-cli - Tim Tomes (@lanmaster53)
 
-Purpose:
-- Inspect module metadata, options, and table visibility before/after runs.
+options:
+  -h, --help        show this help message and exit
+  -w workspace      load/create a workspace
+  -C command        runs a command at the global context
+  -c command        runs a command at the module context (pre-run)
+  -G                show available global options
+  -g name=value     set a global option (can be used more than once)
+  -M                show modules
+  -m module         specify the module
+  -O                show available module options
+  -o name=value     set a module option (can be used more than once)
+  -x                run the module
+  --no-version      disable version check
+  --no-analytics    disable analytics reporting
+  --no-marketplace  disable remote module management
+  --stealth         disable all passive requests (--no-*)
+  --version         displays the current version
+```
 
-Minimum expected usage:
-- `show info`
-- `show options`
-- table/state inspections relevant to chaining decisions
+#### Global options (`recon-cli --stealth -G`) — `.tmp_reconng_help/recon-cli_global_opts.txt`
 
-## `dashboard`
+```text
+[32m[*][m Marketplace disabled.
+[32m[*][m Version check disabled.
 
-Purpose:
-- High-level workspace status and activity visibility.
+  Name        Current Value  Required  Description
+  ----------  -------------  --------  -----------
+  NAMESERVER  8.8.8.8        yes       default nameserver for the resolver mixin
+  PROXY                      no        proxy server (address:port)
+  THREADS     10             yes       number of threads (where applicable)
+  TIMEOUT     10             yes       socket timeout (seconds)
+  USER-AGENT  Recon-ng/v5    yes       user-agent string
+  VERBOSITY   1              yes       verbosity level (0 = minimal, 1 = verbose, 2 = debug)
 
-Use as quick orientation before deep `db query` validation.
+```
 
-## `snapshots`
+#### Modules list (`recon-cli --stealth -M`) — `.tmp_reconng_help/recon-cli_modules.txt`
 
-Purpose:
-- Manage point-in-time workspace state capture for rollback/comparison workflows.
+```text
+[32m[*][m Marketplace disabled.
+[32m[*][m Version check disabled.
+[31m[!] No modules found.[m
+Searches installed modules
+
+Usage: modules search [<regex>]
 
-Use around high-impact module sequences or before destructive cleanup.
+```
 
-## `spool`
+### recon-web
 
-Purpose:
-- Capture console output to file for evidence, auditing, and parser ingestion.
+#### Root help / startup (`recon-web -h`) — `.tmp_reconng_help/recon-web_help.txt`
 
-Recommended:
-- enable spool per major run and name output with workspace/timestamp.
+```text
+*************************************************************************
+ * Welcome to Recon-web, the analytics and reporting engine for Recon-ng!
+ * This is a web-based user interface. Open the URL below in your browser to begin.
+ * Recon-web includes the Recon-API, which can be accessed via the `/api/` URL.
+*************************************************************************
+[32m[*][m Marketplace disabled.
+[32m[*][m Version check disabled.
+ * Workspace initialized: C:\Users\brett\.recon-ng\workspaces\default
+usage: recon-web [-h] [--host HOST] [--port PORT]
 
-## `script`
+options:
+  -h, --help   show this help message and exit
+  --host HOST  IP address to listen on
+  --port PORT  port to bind the web server to
+```
 
-Purpose:
-- Record and replay command sequences.
+### Re-capture
 
-Sub-workflow:
-- `script record` during a validated manual run
-- `script execute` to replay deterministic sequence
+```powershell
+$env:PYTHONPATH = "C:\projects\spiderfeet\.tools\recon-ng"
+$py = "C:\projects\spiderfeet\.venv\Scripts\python.exe"
+$root = "C:\projects\spiderfeet\.tools\recon-ng"
+$out = "C:\projects\spiderfeet\.tmp_reconng_help"
+New-Item -ItemType Directory -Force -Path $out | Out-Null
 
-## Global options
+& $py "$root\recon-ng" --version | Out-File -Encoding utf8 "$out\recon-ng_version.txt"
+& $py "$root\recon-ng" -h        | Out-File -Encoding utf8 "$out\recon-ng_help.txt"
+& $py "$root\recon-cli" -h       | Out-File -Encoding utf8 "$out\recon-cli_help.txt"
+& $py "$root\recon-cli" --stealth -G | Out-File -Encoding utf8 "$out\recon-cli_global_opts.txt"
+& $py "$root\recon-cli" --stealth -M | Out-File -Encoding utf8 "$out\recon-cli_modules.txt"
+& $py "$root\recon-web" -h       | Out-File -Encoding utf8 "$out\recon-web_help.txt"
+```
 
-Purpose:
-- Set framework-wide execution posture (verbosity/debugging/network/runtime behavior as available in install).
+---
 
-Use cases:
-- stealth-sensitive runs,
-- troubleshooting failures,
-- output verbosity tuning for automation logs.
+## Launcher options reference (tables)
 
-## 3) Module category worked examples
+### `recon-ng`
 
-## `recon/domains-hosts/*`
+| Flag | Description |
+|------|-------------|
+| `-h, --help` | show this help message and exit |
+| `-w workspace` | load/create a workspace |
+| `-r filename` | load commands from a resource file |
+| `--no-version` | disable version check |
+| `--no-analytics` | disable analytics reporting |
+| `--no-marketplace` | disable remote module management |
+| `--stealth` | disable all passive requests (`--no-*`) |
+| `--accessible` | Use accessible outputs when available |
+| `--version` | displays the current version |
 
-Goal:
-- Convert domain seeds into discovered host assets.
+### `recon-cli`
 
-Source strategy:
-- start literal/file, then pivot to SQL if chaining from prior domain rows.
+| Flag | Description |
+|------|-------------|
+| `-h, --help` | show this help message and exit |
+| `-w workspace` | load/create a workspace |
+| `-C command` | runs a command at the global context |
+| `-c command` | runs a command at the module context (pre-run) |
+| `-G` | show available global options |
+| `-g name=value` | set a global option (can be used more than once) |
+| `-M` | show modules |
+| `-m module` | specify the module |
+| `-O` | show available module options |
+| `-o name=value` | set a module option (can be used more than once) |
+| `-x` | run the module |
+| `--no-version` | disable version check |
+| `--no-analytics` | disable analytics reporting |
+| `--no-marketplace` | disable remote module management |
+| `--stealth` | disable all passive requests (`--no-*`) |
+| `--version` | displays the current version |
 
-## `recon/hosts-ports/*`
+### `recon-web`
 
-Goal:
-- Enrich host rows with observed service/port data.
+| Flag | Description |
+|------|-------------|
+| `-h, --help` | show this help message and exit |
+| `--host HOST` | IP address to listen on |
+| `--port PORT` | port to bind the web server to |
 
-Source strategy:
-- SQL-filter hosts to new/priority targets to reduce redundant scans/calls.
+---
 
-## `recon/domains-contacts/*`
+## Console command families
 
-Goal:
-- Expand domain scope into people/contact artifacts.
+Interactive `recon-ng` console (and `recon-cli -C` / `-c` command strings). Confirm exact subcommands with in-console `help` on your install — wiki [Features](https://github.com/lanmaster53/recon-ng/wiki/Features) is canonical.
 
-Source strategy:
-- domain literal or SQL subset for business-unit segmentation.
+### `workspaces`
 
-## `reporting/*`
+Create, select, list engagement contexts. Example: `workspaces create acme-ext` → `workspaces select acme-ext`.
 
-Goal:
-- Export workspace data for operator review and downstream systems.
+### `marketplace`
 
-Output strategy:
-- keep both narrative and structured artifacts for SpiderFeet text/data/graph tabs.
+Discover/install/remove/update modules when marketplace is **enabled** (not under `--stealth` / `--no-marketplace`). Refresh → search → info → install.
 
-## 4) Tactical usage rules
+### `modules`
 
-- Choose modules by current table state, not by static favorite list.
-- Treat empty prerequisite tables as sequencing blockers, not module failures.
+Search/load by path (`recon/<input>-<output>/…`, `reporting/*`). Capture note: with no installed modules, `modules search` usage is shown.
+
+### `options`
+
+Set module options including `SOURCE` (literal, file, or SQL). Via CLI: `recon-cli -o name=value`.
+
+### `keys`
+
+List/add provider API credentials before K-marked modules.
+
+### `db`
+
+`db query` against workspace SQLite for row-count gates and SQL `SOURCE` construction.
+
+### `show`
+
+Inspect module metadata, options, and table visibility (`show info`, `show options`, …).
+
+### `dashboard`
+
+High-level workspace status before deep `db query`.
+
+### `snapshots`
+
+Point-in-time workspace state for rollback/comparison around high-impact sequences.
+
+### `spool`
+
+Capture console output to file for evidence and parser ingestion.
+
+### `script`
+
+`script record` / `script execute` to capture and replay interactive sessions.
+
+### Global options
+
+Framework-wide posture. Captured names: `NAMESERVER`, `PROXY`, `THREADS`, `TIMEOUT`, `USER-AGENT`, `VERBOSITY`. Set with `recon-cli -g name=value`.
+
+---
+
+## Module category worked examples
+
+### `recon/domains-hosts/*`
+
+Goal: domain seeds → host assets. Start literal/file `SOURCE`, then SQL if chaining from prior domain rows.
+
+### `recon/hosts-ports/*`
+
+Goal: enrich hosts with port/service data. SQL-filter to new/priority hosts to reduce redundant calls.
+
+### `recon/domains-contacts/*`
+
+Goal: people/contact artifacts from domains. Literal or SQL subset for segmentation.
+
+### `reporting/*`
+
+Goal: export for operator review and SpiderFeet text/data/graph tabs. Prefer structured export formats when the module provides them.
+
+---
+
+## Tactical usage rules
+
+- Choose modules by current table state, not a static favorite list.
+- Treat empty prerequisite tables as sequencing blockers.
 - Run low-cost/passive modules before quota-heavy API modules.
-- Stop repeated zero-delta modules to control spend and noise.
-- Reuse workspace data through SQL SOURCE rather than re-querying identical inputs.
+- Stop repeated zero-delta modules.
+- Reuse workspace data through SQL `SOURCE` rather than re-querying identical inputs.
+- Prefer **`recon-cli`** for SpiderFeet; keep interactive console for exploration and `script record`.
