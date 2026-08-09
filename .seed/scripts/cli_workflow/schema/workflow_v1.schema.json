@@ -3,7 +3,7 @@
   "$id": "https://spiderfeet.local/schemas/workflow_v1.schema.json",
   "title": "SpiderFeet Workflow DSL v1",
   "type": "object",
-  "required": ["apiVersion", "kind", "id", "info", "inputs", "steps"],
+  "required": ["apiVersion", "kind", "id", "info", "steps"],
   "additionalProperties": false,
   "properties": {
     "apiVersion": { "const": "spiderfeet.workflow/v1" },
@@ -71,20 +71,32 @@
           "default": []
         },
         "input": {
-          "type": "object",
-          "required": ["type", "from"],
-          "additionalProperties": false,
-          "properties": {
-            "type": { "const": "string_list" },
-            "from": { "type": "string", "minLength": 1 },
-            "normalize": {
-              "enum": ["hostname_from_url", "none"]
+          "oneOf": [
+            {
+              "type": "object",
+              "required": ["type", "from"],
+              "additionalProperties": false,
+              "properties": {
+                "type": { "const": "string_list" },
+                "from": { "type": "string", "minLength": 1 },
+                "normalize": {
+                  "enum": ["hostname_from_url", "none"]
+                },
+                "empty": {
+                  "enum": ["error", "skip_step", "continue"],
+                  "default": "error"
+                }
+              }
             },
-            "empty": {
-              "enum": ["error", "skip_step", "continue"],
-              "default": "error"
+            {
+              "type": "object",
+              "required": ["type"],
+              "additionalProperties": false,
+              "properties": {
+                "type": { "const": "none" }
+              }
             }
-          }
+          ]
         },
         "config": {
           "type": "object",
@@ -98,7 +110,7 @@
             },
             "files": {
               "type": "object",
-              "required": ["input", "output"],
+              "required": ["output"],
               "additionalProperties": false,
               "properties": {
                 "input": { "$ref": "#/$defs/fileSpec" },
@@ -128,8 +140,11 @@
           "additionalProperties": false,
           "properties": {
             "vars": {
-              "type": "object",
-              "additionalProperties": true
+              "oneOf": [
+                { "type": "object", "additionalProperties": true },
+                { "type": "null" },
+                { "const": "none" }
+              ]
             }
           }
         },
