@@ -75,14 +75,6 @@ def to_graph(structured: dict[str, Any] | str) -> dict[str, Any]:
     return builder.build()
 
 
-def _load_narrative_profile() -> dict[str, Any]:
-    import yaml
-
-    path = RULES_DIR / "nerva" / "narrative.yaml"
-    data = yaml.safe_load(path.read_text(encoding="utf-8"))
-    return data if isinstance(data, dict) else {}
-
-
 def to_narrative(graph: dict[str, Any], *, scenario_key: str = "nerva") -> str:
     from core.narrative_engine import render_narrative
 
