@@ -2,37 +2,69 @@
 
 ## Strategy: classify fast, pivot smart
 
-Use webanalyze early for broad stack classification, then route targets into specialized modules based on detected categories.
+Use webanalyze early for broad stack classification on live web hosts, then route targets into specialized tools from `category_names` / `app_name`.
 
-## Workflow 1 - Broad host fingerprinting
+Always prefer:
 
-1. Feed live web hosts.
-2. Run quick fingerprints on root path.
-3. Cluster by common stacks (WordPress, React, nginx, Cloudflare, etc.).
+```bash
+webanalyze -hosts live.txt -output json -silent
+```
 
-## Workflow 2 - Path-aware deepening
+## Workflow 1 — Broad host fingerprinting
 
-1. Re-scan selected hosts on `/login`, `/admin`, API roots.
-2. Merge detections from all scanned paths.
-3. Raise confidence on technologies seen across multiple paths.
+1. Collect live URLs/hosts (httpx, subfinder→dnsx→httpx, Naabu web ports).
+2. Ensure definitions: `webanalyze -update` (cwd or `.tools/webanalyze`).
+3. Batch: `-hosts file -output json -silent -worker 4` (raise workers only with scope approval).
+4. Cluster records by `app_name` and `app.category_names`.
+5. Prioritize hosts with CMS, outdated versions, or unusual stacks.
 
-## Workflow 3 - Category-driven pivots
+## Workflow 2 — Path and crawl deepening
 
-| Category | Next step |
-|---|---|
-| CMS | run CMS-focused modules and CVE checks |
-| Web server/CDN/WAF | run perimeter and service fingerprint modules |
-| JS framework | prioritize front-end exposure review |
-| Analytics/tracking | enrich third-party dependency graph |
+1. Select high-value hosts from Workflow 1.
+2. Re-run with `-redirect` when the root only redirects.
+3. Add `-crawl 1` or `-crawl 2` to follow same-site links (respect `-search` default).
+4. Add explicit path hosts: `/login`, `/admin`, app roots as separate `-host` lines.
+5. Merge technology sets; keep versions when present.
 
-## Workflow 4 - Drift tracking
+## Workflow 3 — Category-driven pivots
 
-1. Schedule recurring fingerprints.
-2. Diff previous and current tech sets.
-3. Alert on newly introduced high-risk components.
+| Signal | Next step |
+|--------|-----------|
+| CMS / blogs | CMSeeK; Nuclei CMS/CVE tags on smaller permissive targets |
+| CDN / WAF / security | wafw00f; slow Nuclei; adjust UA/rate |
+| Web servers / frameworks | httpx tech confirm; version-aware CVE hunt |
+| Analytics / JS libraries | third-party dependency and supply-chain review |
+| Empty matches | verify scheme, `-redirect`, path variants before declaring clean miss |
 
-## Tactical guidance
+## Workflow 4 — Drift tracking
 
-- Run pre-auth and post-auth passes for applications with gated content.
-- Compare fingerprint results with response headers/body snapshots to reduce false positives.
-- Keep Wappalyzer schema alignment in mind when adding custom detection logic.
+1. Snapshot `-output json` bundles on a schedule.
+2. Diff `app_name` (+ version) sets per host.
+3. Investigate newly introduced high-risk components immediately.
+
+## Tactical adaptations
+
+| Observation | Adaptation |
+|-------------|------------|
+| Sparse on HTTPS site with bare hostname | Use `https://` explicitly (default scheme is HTTP) |
+| Only CDN detected | Origin may be masked; continue but annotate; optional origin IP if in scope |
+| `technologies.json` week-old warning | `-update` then re-scan |
+| Noisy header in captures | `-silent` |
+| Unwanted subdomain/link expansion | `-search=false` |
+| Auth-gated app | Fingerprint will miss post-login stack; document limitation |
+| Batch timeouts / flaky hosts | Lower `-worker`; retry failures from stderr |
+
+## Sequencing with other SpiderFeet skills
+
+```
+subfinder/dnsx → httpx (live URLs)
+              → webanalyze -output json -silent
+              → cmseek | wafw00f | nuclei (by category)
+```
+
+## Exploration vs examination
+
+| Phase | Output |
+|-------|--------|
+| Exploration | May use default stdout to learn shapes; document TUI/human mode |
+| Formal examination | **Only** `-output json` (+ `-silent`); derive text from structured; graph mandatory |
