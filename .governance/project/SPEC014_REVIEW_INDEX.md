@@ -1,6 +1,6 @@
 # SPEC-014 narrative review index (BF1)
 
-**Issue:** #1189 · **Requirement:** R14-09 · **PR:** (this PR)
+**Issue:** #1189 · **Requirement:** R14-09 · **PR:** [#1204](https://github.com/brettforbes/spiderfeet/pull/1204)
 
 All scenario Markdown under `.docs/docs-for-cli-tools/nugget_structure/*_proposed_nuggets_edges_description.md`
 was regenerated with `backfill_adapter_four_outputs.py --force` through the shared meta-concept engine.
