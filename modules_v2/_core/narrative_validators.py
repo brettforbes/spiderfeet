@@ -5,9 +5,9 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from core.meta_concept_registry import mermaid_settings
-from core.meta_narrative import count_mermaid_shapes, detect_meta_concepts
-from narrative_report import validate_narrative_coverage
+from .meta_concept_registry import mermaid_settings
+from .meta_narrative import count_mermaid_shapes, detect_meta_concepts
+from .narrative_report import validate_narrative_coverage
 
 _H2 = re.compile(r"^##\s+(.+?)\s*$", re.M)
 _MERMAID = re.compile(r"```mermaid\n(.*?)```", re.S)

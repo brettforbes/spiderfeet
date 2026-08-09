@@ -6,7 +6,7 @@ import re
 from collections import defaultdict
 from typing import Any
 
-from core.meta_concept_registry import (
+from .meta_concept_registry import (
     get_meta_concept,
     list_meta_concepts,
     mermaid_settings,
