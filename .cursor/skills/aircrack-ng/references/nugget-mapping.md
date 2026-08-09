@@ -83,12 +83,6 @@ Default **OSINT discovery** integrations should **not** emit credentials — onl
 
 ---
 
-## airgraph-ng output
-
-PNG/graph files are artifacts — attach as scan metadata or `RAW_FILE` descriptor if module supports file events. Graph edges mirror AP↔client associations.
-
----
-
 ## Decision flow
 
 ```

@@ -1,330 +1,254 @@
 # Aircrack-ng CLI Options by Module
 
-Per-tool flags for the [Aircrack-ng suite](https://www.aircrack-ng.org/). Run `<tool> --help` on the target system for authoritative syntax.
+Flags below are summarized from **live Captured help** on **2026-08-10** (`.tmp_aircrack_help/`). Full verbatim blocks: [Aircrack-Ng-CLI-Options.md](../../../.docs/docs-for-cli-tools/Aircrack-Ng-CLI-Options.md).
+
+**Do not invent flags.** Especially for `aircrack-ng` (cracker) — no successful help on this host.
+
+| Tool | Capture status |
+|------|----------------|
+| airmon-ng | **Not in Windows zip** — Linux/WSL; see wiki |
+| aircrack-ng | **Proven limitation** — `The system cannot execute the specified program` |
+| Others below | Captured from Windows 1.7 suite |
 
 ---
 
-## airmon-ng
+## airmon-ng (Linux/WSL only)
 
-Manage monitor mode on wireless interfaces.
+Not present in the official Windows 1.7 zip. No Captured help on this host.
 
-| Command / flag | Description |
-|----------------|-------------|
-| `airmon-ng` | List interfaces and driver/chipset |
-| `airmon-ng start <iface>` | Start monitor mode on interface |
-| `airmon-ng start <iface> <channel>` | Start on fixed channel |
-| `airmon-ng stop <iface>mon` | Stop monitor mode |
-| `airmon-ng check` | List processes that interfere with monitor mode |
-| `airmon-ng check kill` | Kill interfering processes (NetworkManager, wpa_supplicant, etc.) |
+Typical Linux operations (wiki / suite docs — re-verify with `airmon-ng` on Linux):
 
-**Notes:** Resulting monitor iface often `wlan0mon` but naming is driver-dependent.
+```bash
+sudo airmon-ng
+sudo airmon-ng check
+sudo airmon-ng check kill
+sudo airmon-ng start wlan0
+sudo airmon-ng stop wlan0mon
+```
+
+Wiki: https://www.aircrack-ng.org/doku.php?id=airmon-ng
+
+---
+
+## aircrack-ng (proven limitation)
+
+Help capture failed on this host. **No flag table.** Re-capture:
+
+```bash
+# Linux / WSL
+aircrack-ng --help
+```
+
+Captured error (`.tmp_aircrack_help/aircrack-ng_help.txt`):
+
+```text
+The system cannot execute the specified program.
+```
 
 ---
 
 ## airodump-ng
 
-802.11 packet capture, AP/client discovery, CSV logging.
+`usage: airodump-ng <options> <interface>[,<interface>,...]`
 
-| Flag | Description |
-|------|-------------|
-| `<interface>` | Monitor mode interface (positional) |
-| `-c <channel>` | Fixed channel (1–14 2.4 GHz; 5 GHz channel numbers for dual-band) |
-| `--band <a\|bg\|abg\|bg>` | Restrict band |
-| `--bssid <MAC>` | Filter to AP BSSID |
-| `-w <prefix>` | Output file prefix (`-01.cap`, `-01.csv`, …) |
-| `--output-format <csv,pcap,ivs,csv,pcap>` | Comma-separated output types |
-| `--write-interval <sec>` | CSV flush interval |
-| `-a` | Only show associated clients |
-| `--showack` | Print ACK/CTS/RTS statistics |
-| `-m` | Hide unassociated clients |
-| `-n <min packets>` | Minimum packet count to display AP |
-| `-N` | WEP detection filter |
-| `-d <msec>` | Channel hop delay |
-| `-H` | Hide IEEE 802.11 headers in dump |
-| `-D` | WDS nodes |
-| `-s` | Measure beacon strength (last beacon) |
-| `-h` | Hides known APs (ESSID probe) |
-| `-u <sec>` | Time before declaring AP inactive |
-| `--ignore-negative-one` | Ignore -1 channel (driver quirk) |
-| `--manufacturer` | Show manufacturer from OUI |
-| `--beacons` | Record all beacons in cap |
-| `-R` | Assume all frames WPA length (rare) |
-| `-x <mB>` | Active scanning bitrate |
-| `-M` | Display MAN vs UNK authentication |
-| `-B` | Do not show APs (clients only) — rare |
-| `-K` | WEP key in ASCII (debug) |
-| `-f <MHz>` | Frequency instead of channel |
-
-**Common invocations:**
+| Flag | Description (from help) |
+|------|-------------------------|
+| `--ivs` | Save only captured IVs |
+| `--gpsd` | Use GPSd |
+| `--write` / `-w` `<prefix>` | Dump file prefix |
+| `--beacons` | Record all beacons in dump file |
+| `--update` `<secs>` | Display update delay |
+| `--showack` | ACK/CTS/RTS statistics |
+| `-h` | Hide known stations for `--showack` |
+| `-f` `<msecs>` | Time between hopping channels |
+| `--berlin` `<secs>` | Remove AP/client from screen when quiet (default 120) |
+| `-r` `<file>` | Read packets from file |
+| `-T` | Simulate live arrival when reading file |
+| `-x` `<msecs>` | Active Scanning Simulation |
+| `--manufacturer` | Display manufacturer from IEEE OUI list |
+| `--uptime` | Display AP uptime from beacon timestamp |
+| `--wps` | Display WPS information |
+| `--output-format` `<formats>` | `pcap`, `ivs`, `csv`, `gps`, `kismet`, `netxml`, `logcsv` |
+| `--ignore-negative-one` | Suppress fixed channel -1 message |
+| `--write-interval` `<seconds>` | Output write interval |
+| `--background` `<enable>` | Override background detection |
+| `-n` `<int>` | Minimum AP packets before display |
+| `--encrypt` `<suite>` | Filter APs by cipher suite |
+| `--netmask` `<netmask>` | Filter APs by mask |
+| `--bssid` `<bssid>` | Filter APs by BSSID |
+| `--essid` `<essid>` | Filter APs by ESSID |
+| `--essid-regex` `<regex>` | Filter APs by ESSID regex |
+| `-a` | Filter unassociated clients |
+| `--ht20` / `--ht40-` / `--ht40+` | 802.11n channel width |
+| `--channel` `<channels>` | Capture on specific channels |
+| `--band` `<abg>` | Band to hop |
+| `-C` `<frequencies>` | Hop these MHz frequencies |
+| `--cswitch` / `-s` `<method>` | Channel switch: 0 FIFO, 1 Round Robin, 2 Hop on last |
+| `--help` | Usage |
 
 ```bash
-airodump-ng wlan0mon
-airodump-ng -c 11 --bssid AA:BB:CC:DD:EE:FF -w capture wlan0mon
 airodump-ng -w survey --output-format csv,pcap wlan0mon
+airodump-ng --channel 11 --bssid AA:BB:CC:DD:EE:FF -w capture wlan0mon
 ```
 
 ---
 
 ## aireplay-ng
 
-Frame injection: deauth, fake auth, ARP replay, chopchop, etc.
+`usage: aireplay-ng <options> <replay interface>`
 
-| Flag | Description |
-|------|-------------|
-| `<interface>` | Monitor mode interface |
-| `-0 <count>` | Deauthentication attack (count frames; 0 = stream) |
-| `-1 <delay>` | Fake authentication with delay |
-| `-2` | Interactive packet replay |
-| `-3` | ARP request replay (WEP IV generation) |
-| `-4` | KoreK chopchop attack (WEP) |
-| `-5` | Fragmentation attack (WEP) |
-| `-6` | caffe-latte attack (WEP, clientless) |
-| `-7` | Clientless fragmentation (WEP) |
-| `-8` | QoS null replay |
-| `-9` | Injection test |
-| `-a <BSSID>` | AP MAC |
-| `-c <MAC>` | Client MAC (source for deauth) |
-| `-h <MAC>` | Source MAC for injected frames |
-| `-e <ESSID>` | Target ESSID (fake auth) |
-| `-D` | Disable AP detection |
-| `-j` | ARP replay from DS |
-| `-g <packets>` | Change ring buffer size |
-| `-F` | Choose first matching packet |
-| `-B` | AP MAC from packet |
-| `-d <delay>` | Delay between packets (ms) |
-| `-f <packets/sec>` | Rate |
-| `-x <pps>` | Packets per second |
-| `-p <nb>` | Number of packets to send |
-| `-o <nb>` | Starting packet # |
-| `-k <IP>` | Dest IP for ARP replay |
-| `-l <IP>` | Source IP for ARP replay |
-| `-t <ttl>` | TTL |
-| `-s <size>` | Packet size |
-| `-n <nbpps>` | Packets per burst |
-| `-m <rate>` | Rate in Mbps |
-| `-r <file>` | Pcap to replay |
+**Filter:** `-b` bssid, `-d` dmac, `-s` smac, `-m`/`-n` len, `-u` type, `-v` subt, `-t` tods, `-f` fromds, `-w` iswep, `-D` disable AP detection.
 
-**Examples:**
+**Replay:** `-x` nbpps, `-p` fctrl, `-a` bssid, `-c` dmac, `-h` smac, `-g` ring, `-F` first match.
+
+**Fakeauth:** `-e` essid, `-o` npckts, `-q` sec, `-Q` reassoc, `-y` prga, `-T` n.
+
+**ARP replay:** `-j` FromDS.
+
+**Fragmentation:** `-k`/`-l` IP.
+
+**Test:** `-B` bitrate test.
+
+**Source:** `-i` iface, `-r` file.
+
+**Misc:** `-R`, `--ignore-negative-one`, `--deauth-rc` rc.
+
+**Attack modes** (numbers still work):
+
+| Long | Short | Role |
+|------|-------|------|
+| `--deauth` count | `-0` | Deauthenticate stations |
+| `--fakeauth` delay | `-1` | Fake authentication |
+| `--interactive` | `-2` | Interactive frame selection |
+| `--arpreplay` | `-3` | ARP-request replay |
+| `--chopchop` | `-4` | Chopchop WEP |
+| `--fragment` | `-5` | Keystream generation |
+| `--caffe-latte` | `-6` | Client IV query |
+| `--cfrag` | `-7` | Fragments against client |
+| `--migmode` | `-8` | WPA migration mode |
+| `--test` | `-9` | Injection test |
 
 ```bash
-aireplay-ng -0 5 -a AP_MAC -c CLIENT_MAC wlan0mon
-aireplay-ng -1 0 -e LabNet -a AP_MAC -h MY_MAC wlan0mon
-aireplay-ng -3 -b AP_MAC -h CLIENT_MAC wlan0mon
-```
-
----
-
-## aircrack-ng
-
-WEP/WPA-PSK key recovery from captures.
-
-| Flag | Description |
-|------|-------------|
-| `<capture.cap>` | PCAP/IVS file(s) |
-| `-a <mode>` | Force mode: `1`=WEP, `2`=WPA-PSK |
-| `-b <BSSID>` | Target AP BSSID |
-| `-e <ESSID>` | Target ESSID |
-| `-w <wordlist>` | Wordlist file for WPA |
-| `-r <airolib_db>` | airolib-ng database for PMK lookup |
-| `-p <nbcpu>` | CPU count |
-| `-q` | Quiet |
-| `-C <macs>` | Merge APs (WEP) |
-| `-l <file>` | Log key to file |
-| `-E <file>` | Session file |
-| `-J <file>` | WPA session file |
-| `-S` | WPA speed test |
-| `-Z <sec>` | WPA length brute force (discouraged) |
-| `-M <num>` | WEP key index |
-| `-d <debug>` | Debug mask |
-| `-V` | Verbose |
-| `-K` | WEP key in ASCII |
-| `-D` | WEP decloak |
-| `-y <file>` | KoreK optimized WEP |
-| `-0` | WEP attack mode 0 (PTW) |
-| `-1` | WEP attack mode 1 (FMS) |
-| `-n <bits>` | WEP key length (64/128) |
-| `-m <idx>` | WEP key index |
-| `-f <factor>` | WEP fudge factor |
-| `-x <nb>` | WEP last IVs |
-| `-k <key>` | WEP 10-byte key |
-| `-H` | KoreK WEP |
-| `-R` | WEP testing |
-
-**Examples:**
-
-```bash
-aircrack-ng -b AA:BB:CC:DD:EE:FF -w wordlist.txt capture-01.cap
-aircrack-ng -r pmk_db -b AA:BB:CC:DD:EE:FF capture-01.cap
-aircrack-ng wep-01.cap
-```
-
----
-
-## airbase-ng
-
-Soft AP / honeypot for lab testing.
-
-| Flag | Description |
-|------|-------------|
-| `-e <ESSID>` | AP ESSID |
-| `-c <channel>` | Channel |
-| `-P` | Send beacon probes |
-| `-A` | Ad-hoc mode |
-| `-C <seconds>` | Beacon interval |
-| `-W 0\|1` | WEP: 0=open, 1=WEP |
-| `-N` | No beacon flood |
-| `-x <pps>` | Packets per second |
-| `-s` | Shared key authentication |
-| `-S` | Hide SSID |
-| `-L` | Caffe Latte WEP attack |
-| `-Y <file>` | WEP key file |
-| `-d` | All clients |
-| `-z <type>` | WPA type |
-| `-Z <type>` | WPA2 type |
-| `-V <mode>` | Validation mode |
-| `-F <prefix>` | MAC filter prefix |
-| `-w <file>` | Write packet capture |
-| `-D` | Do not respond to probes |
-| `-I <interval>` | Beacon interval ms |
-| `-C` | Beacon count |
-
-```bash
-airbase-ng -e RogueAP -c 6 wlan0mon
+aireplay-ng --test wlan0mon
+aireplay-ng --deauth 3 -a AP_MAC -c CLIENT_MAC wlan0mon
+aireplay-ng --arpreplay -b AP_MAC -h CLIENT_MAC wlan0mon
 ```
 
 ---
 
 ## airdecap-ng
 
-Decrypt WEP/WPA captures with known key.
+`usage: airdecap-ng [options] <pcap file>`
 
 | Flag | Description |
 |------|-------------|
-| `<input.cap>` | Encrypted capture |
-| `-l <file>` | Output decrypted pcap |
-| `-e <ESSID>` | Network name |
-| `-p <pass>` | WPA passphrase |
-| `-w <hexkey>` | WEP hex key |
-| `-t <num>` | Key type |
-| `-k <index>` | WEP key index |
+| `-l` | Don't remove 802.11 header |
+| `-b` `<bssid>` | AP MAC filter (required for WDS in capture) |
+| `-e` `<essid>` | Target SSID |
+| `-o` `<fname>` | Decrypted output (default `<src>-dec`) |
+| `-w` `<key>` | WEP key hex |
+| `-c` `<fname>` | Corrupted WEP packets (default `<src>-bad`) |
+| `-p` `<pass>` | WPA passphrase |
+| `-k` `<pmk>` | WPA PMK hex |
+| `--help` | Usage |
 
 ```bash
-airdecap-ng -e LabNet -p secretpass encrypted.cap
+airdecap-ng -e LabNet -p secret capture.cap
+```
+
+---
+
+## airolib-ng
+
+`Usage: airolib-ng <database> <operation> [options]`
+
+| Operation | Description |
+|-----------|-------------|
+| `--stats` | Database info |
+| `--sql` `<sql>` | Execute SQL |
+| `--clean` `[all]` | Clean junk; `all` also reduce size + integrity check |
+| `--batch` | Batch-process ESSID×password PMKs |
+| `--verify` `[all]` | Verify random PMKs; `all` deletes invalid |
+| `--import essid\|passwd` `<file>` | Import text lists |
+| `--import cowpatty` `<file>` | Import cowpatty |
+| `--export cowpatty` `<essid>` `<file>` | Export cowpatty |
+
+```bash
+airolib-ng pmk_db --import essid essids.txt
+airolib-ng pmk_db --import passwd wordlist.txt
+airolib-ng pmk_db --batch
+```
+
+---
+
+## airbase-ng
+
+`usage: airbase-ng <options> <replay interface>`
+
+Key options from help: `-a` bssid, `-i` iface, `-w` WEP key, `-h` MAC, `-f` disallow, `-W` 0\|1, `-q`/`-v`, `-A` Ad-Hoc, `-Y` in\|out\|both, `-c` channel, `-X` hidden ESSID, `-s`/`-S` shared key, `-L` Caffe-Latte, `-N` cfrag, `-x` nbpps, `-y` no broadcast probes, `-0` all tags, `-z`/`-Z` WPA/WPA2 type, `-V` fake EAPOL, `-F` prefix, `-P`, `-I` interval, `-C` seconds, `-n` hex ANonce; filters `--bssid`, `--bssids`, `--client`, `--clients`, `--essid`, `--essids`.
+
+```bash
+airbase-ng --essid RogueLab -c 6 wlan0mon
 ```
 
 ---
 
 ## airdecloak-ng
 
-Remove WEP cloaking (hidden WEP).
-
-| Flag | Description |
-|------|-------------|
-| `-i <in>` | Input cap |
-| `-o <out>` | Output cap |
-| `-d <debug>` | Debug level |
+Mandatory: `-i` `<file>`, and `--ssid` **or** `--bssid`. Optional: `-o`/`-c`/`-u` outputs, `--filters`, `--null-packets`, `--disable-base_filter`, `--drop-frag`.
 
 ---
 
-## airolib-ng
+## airtun-ng
 
-PMK database for faster WPA cracking.
+`usage: airtun-ng <options> <replay interface>`
 
-| Subcommand | Description |
-|------------|-------------|
-| `<db> --import essid <file>` | Import ESSIDs |
-| `<db> --import passwd <file>` | Import passwords |
-| `<db> --clean all` | Remove invalid entries |
-| `<db> --batch` | Precompute all PMKs |
-| `<db> --verify all` | Verify database |
-| `<db> --stats` | Statistics |
-| `<db> --export <out>` | Export |
-| `<db> --sql <query>` | SQL query |
-
-Used with `aircrack-ng -r <db>`.
+`-x` nbpps, `-a` bssid, `-i` iface, `-y` PRGA file, `-w` wepkey, `-p` passphrase (+ `-a`/`-e`), `-e` essid, `-t` tods, `-r` file, `-h` MAC; WDS `-s`/`-b`; repeater `--repeat`, `--bssid`, `--netmask`.
 
 ---
 
-## airdrop-ng
+## airserv-ng
 
-Rule-based wireless client redirection (specialized).
-
-| Flag | Description |
-|------|-------------|
-| `-i <iface>` | Interface |
-| `-r <rules>` | Rules file |
-| `-b <file>` | Blacklist |
-| `-w <file>` | Whitelist |
-| `-d` | Disable DSA |
-| `-s <MAC>` | Source MAC |
-| `-h` | Help |
-
----
-
-## airgraph-ng
-
-Graph AP/client relationships from airodump CSV.
-
-| Flag | Description |
-|------|-------------|
-| `-i <csv>` | Input airodump CSV |
-| `-o <png>` | Output graph |
-| `-a` | AP graph |
-| `-c` | Client graph |
-| `-l` | Load balancing view |
-
----
-
-## besside-ng / easside-ng / wesside-ng
-
-Automated WEP/WPA attack tools (legacy/lab). Prefer explicit `airodump` + `aireplay` + `aircrack` for controlled engagements.
-
-| Tool | Purpose |
-|------|---------|
-| `besside-ng` | Auto WEP/WPA capture and crack attempt |
-| `easside-ng` | WEP via WDS tunnel (legacy) |
-| `wesside-ng` | Automated WEP cracking |
-
-Use only in isolated lab environments with authorization.
+Use `-h` (not `--help`). Options: `-p` port (default 666), `-d` iface, `-c` chan, `-v` level.
 
 ---
 
 ## packetforge-ng
 
-Craft encrypted packets for WEP injection.
+`Usage: packetforge-ng <mode> <options>`
 
-| Flag | Description |
-|------|-------------|
-| `-a <BSSID>` | AP MAC |
-| `-h <MAC>` | Source MAC |
-| `-k <key>` | WEP key |
-| `-l <len>` | Packet length |
-| `-y <file>` | PRGA file |
-| `-w <out>` | Output file |
+Forge: `-p` fctrl, `-a`/`-c`/`-h` MACs, `-j` FromDS, `-o` clear ToDS, `-e` disable WEP, `-k`/`-l` ip[:port], `-t` ttl, `-w` file, `-s` size, `-n` packets; source `-r`/`-y`. Modes: `--arp` (`-0`), `--udp` (`-1`), `--icmp` (`-2`), `--null` (`-3`), `--custom` (`-9`).
 
 ---
 
-## ivstools / makeivs-ng / wpaclean
+## tkiptun-ng
 
-| Tool | Purpose |
-|------|---------|
-| `ivstools` | Extract IVs from pcap |
-| `makeivs-ng` | Build IVS file |
-| `wpaclean` | Strip WPA handshakes from large pcaps |
+Filter/replay/debug options per Captured help (`-d`/`-s`/`-m`/`-n`/`-t`/`-f`/`-D`/`-Z`, `-x`/`-a`/`-c`/`-h`/`-e`/`-M`, `-K`/`-y`/`-j`/`-P`/`-p`, `-i`/`-r`).
+
+---
+
+## besside-ng / easside-ng / wesside-ng / buddy-ng
+
+Use `-h` for usage ( `--` rejected on capture). See Captured help for full option lists (victim BSSID, channel lock, buddy IP, etc.).
+
+---
+
+## airventriloquist-ng
+
+`-i` iface, `-d`/`--deauth`, `-e`/`--essid`, `-p`/`--passphrase`, `-c`/`--icmp`, `-n`/`--dns`, `-s`/`--hijack`, `-r`/`--redirect`, `-v`/`--verbose`.
+
+---
+
+## Helpers
+
+| Tool | Captured usage |
+|------|----------------|
+| `ivstools` | `--convert <pcap> <ivs>`; `--merge <ivs…> <out>` |
+| `makeivs-ng` | `-b`/`-f`/`-k`/`-s`/`-w`/`-c`/`-d`/`-e`/`-l`/`-n`/`-p` |
+| `kstats` | `kstats <ivs file> <104-bit key>` |
+| `wpaclean` | `wpaclean <out.cap> <in.cap> [in2.cap …]` |
 
 ```bash
-wpaclean clean.cap noisy_capture.cap
+wpaclean clean.cap noisy-01.cap
+ivstools --convert capture.cap out.ivs
 ```
-
----
-
-## Suite-wide prerequisites
-
-| Requirement | Check |
-|-------------|-------|
-| Monitor mode | `airmon-ng start wlan0` succeeds |
-| Injection | `aireplay-ng -9 wlan0mon` |
-| Root | Most tools require `sudo` |
-| Compatible driver | `airmon-ng` lists chipset/driver |
-
-See [workflows.md](workflows.md) for orchestration.

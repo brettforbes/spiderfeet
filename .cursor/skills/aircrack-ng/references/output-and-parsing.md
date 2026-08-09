@@ -11,7 +11,7 @@ With `-w <prefix>`:
 | `<prefix>-01.kismet.csv` | Kismet-compatible CSV (if enabled) |
 | `<prefix>-01.log.csv` | GPS log (if GPS linked) |
 
-Use `--output-format csv,pcap` for SpiderFeet-friendly discovery.
+Use `--output-format csv,pcap` for SpiderFeet-friendly discovery (formats from Captured airodump-ng help: `pcap`, `ivs`, `csv`, `gps`, `kismet`, `netxml`, `logcsv`).
 
 ---
 
@@ -132,23 +132,16 @@ For JSON-native pipelines, consider `tshark -T fields` on PCAP as alternative wh
 
 ## aircrack-ng stdout
 
-Typical WPA crack output:
+**Note:** On this Windows host, `aircrack-ng` help/execution is a **proven limitation** — do not document cracker flags until Linux `aircrack-ng --help` is captured. Illustrative crack stdout (from operator experience / tutorials, not Captured help):
 
 ```
 Reading packets, please wait...
 Opening wpa_capture-01.cap
-Read 1523 packets.
-
-   #  BSSID              ESSID                     Encryption
-
-   1  AA:BB:CC:DD:EE:FF  CorpWiFi                  WPA (1 handshake)
-
-Choosing first network as target.
-
+...
 KEY FOUND! [ password123 ]
 ```
 
-Parse `KEY FOUND` lines for credential events (authorized assessments only). Handshake count from table header.
+Parse `KEY FOUND` lines for credential events (authorized assessments only) when observed on a working Linux binary.
 
 ---
 

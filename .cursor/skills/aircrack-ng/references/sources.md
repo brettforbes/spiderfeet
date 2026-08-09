@@ -2,6 +2,16 @@
 
 Canonical documentation for skill maintenance and operator learning.
 
+## This host (2026-08-10)
+
+| Resource | Path / note |
+|----------|-------------|
+| Windows suite extract | `.tools/aircrack-ng/aircrack-ng-1.7-win/` |
+| Help captures | `.tmp_aircrack_help/*.txt` |
+| Combined Captured help | `.docs/docs-for-cli-tools/Aircrack-Ng-CLI-Options.md` |
+| **airmon-ng** | Not in Windows zip — Linux/WSL |
+| **aircrack-ng** help | Proven limitation: `The system cannot execute the specified program` — re-capture on Linux |
+
 ## Official project
 
 | Resource | URL |
@@ -65,4 +75,4 @@ Canonical documentation for skill maintenance and operator learning.
 
 ## Hardware notes
 
-Compatible adapter lists change frequently. Verify monitor mode and injection with `airmon-ng start` and `aireplay-ng -9` on the deployment host before relying on third-party chipset charts.
+Compatible adapter lists change frequently. Verify monitor mode and injection with `airmon-ng start` (Linux) and `aireplay-ng --test` / `-9` before relying on third-party chipset charts.
