@@ -29,11 +29,96 @@ flowchart TD
   scan_record_1 -->|had| scan_tool_8
 ```
 
-### Scan descriptors
+### `SCAN_CLI`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI: /mnt/c/projects/spiderfeet/.tools/pius …"]
+  scan_record_1 -->|contains| scan_cli_2
+```
 
 | Nugget | Value |
 | --- | --- |
-| `SCAN_RECORD` | `pius:Praetorian:/mnt/c/projects/spiderfeet/.tools/pius run --org Praetorian --domain praetorian.com --plugins crt-sh --output ndjson` |
+| `SCAN_CLI` | `/mnt/c/projects/spiderfeet/.tools/pius run --org Praetorian --domain praetorian.com --plugins crt-sh --output ndjson` |
+
+### `SCAN_TARGET`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_2["SCAN_TARGET: praetorian.com"]
+  scan_record_1 -->|contains| scan_target_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET` | `praetorian.com` |
+
+### `SCAN_TARGET_ORG`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_org_2["SCAN_TARGET_ORG: Praetorian"]
+  scan_record_1 -->|contains| scan_target_org_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET_ORG` | `Praetorian` |
+
+### `SCAN_START`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_start_2["SCAN_START: 2026-06-30T04:09:26.834504+00:00"]
+  scan_record_1 -->|contains| scan_start_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_START` | `2026-06-30T04:09:26.834504+00:00` |
+
+### `SCAN_ELAPSED`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_elapsed_2["SCAN_ELAPSED: 12.407"]
+  scan_record_1 -->|contains| scan_elapsed_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_ELAPSED` | `12.407` |
+
+### `SCAN_EXIT_STATUS`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_exit_status_2["SCAN_EXIT_STATUS: 0"]
+  scan_record_1 -->|contains| scan_exit_status_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_EXIT_STATUS` | `0` |
+
+### `SCAN_TOOL`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_tool_2["SCAN_TOOL: pius"]
+  scan_record_1 -->|contains| scan_tool_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TOOL` | `pius` |
 
 ## Organization
 
@@ -170,252 +255,6 @@ flowchart TD
 | `DOMAIN_NAME` | `www2.praetorian.com` |
 | `DOMAIN_NAME` | `www3.praetorian.com` |
 
-### `NETBLOCKS`
-
-```mermaid
-flowchart TD
-  netblocks_1["NETBLOCKS"]
-  domains_2["DOMAINS: DOMAINS"]
-  netblocks_1 -->|contains| domains_2
-  domain_name_3["DOMAIN_NAME: 8472.app.chariot.praetorian.com"]
-  netblocks_1 -->|contains| domain_name_3
-  domain_name_4["DOMAIN_NAME: 8472.app.guard.praetorian.com"]
-  netblocks_1 -->|contains| domain_name_4
-  more_5["+102 more"]
-  netblocks_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `DOMAINS` | `DOMAINS` |
-| `DOMAIN_NAME` | `8472.app.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `8472.app.guard.praetorian.com` |
-| `DOMAIN_NAME` | `aegis.app.staging.guard.praetorian.com` |
-| `DOMAIN_NAME` | `agent-dev.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `agent-speculatore.praetorian.com` |
-| `DOMAIN_NAME` | `agent.8472.app.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `agent.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `alice.praetorian.com` |
-| `DOMAIN_NAME` | `api.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `api.praetorian.com` |
-| `DOMAIN_NAME` | `armory.praetorian.com` |
-| `DOMAIN_NAME` | `artifactory.praetorian.com` |
-| `DOMAIN_NAME` | `blog-dev.praetorian.com` |
-| `DOMAIN_NAME` | `blog.praetorian.com` |
-| `DOMAIN_NAME` | `burp.8472.app.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `burp.8472.app.guard.praetorian.com` |
-| `DOMAIN_NAME` | `burp.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `burp.prod.app.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `burp.prod.app.guard.praetorian.com` |
-| `DOMAIN_NAME` | `capdev.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `chaos.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-comlink.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-comlink.staging.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-comlink.uat.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-leia.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-leia.staging.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-leia.uat.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-slave-one.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-slave-one.staging.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-slave-one.uat.praetorian.com` |
-| `DOMAIN_NAME` | `chariot.praetorian.com` |
-| `DOMAIN_NAME` | `chariot.staging.praetorian.com` |
-| `DOMAIN_NAME` | `chariot.uat.praetorian.com` |
-| `DOMAIN_NAME` | `chat.praetorian.com` |
-| `DOMAIN_NAME` | `contentapalooza.praetorian.com` |
-| `DOMAIN_NAME` | `crypto.praetorian.com` |
-| `DOMAIN_NAME` | `demand.praetorian.com` |
-| `DOMAIN_NAME` | `demo.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `dev-test0.app.staging.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `dev-test1.app.staging.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `diana.praetorian.com` |
-| `DOMAIN_NAME` | `diana.staging.praetorian.com` |
-| `DOMAIN_NAME` | `diana.uat.praetorian.com` |
-| `DOMAIN_NAME` | `docs.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `docs.praetorian.com` |
-| `DOMAIN_NAME` | `feedback.praetorian.com` |
-| `DOMAIN_NAME` | `foxctf.praetorian.com` |
-| `DOMAIN_NAME` | `future.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `go.praetorian.com` |
-| `DOMAIN_NAME` | `guard.praetorian.com` |
-| `DOMAIN_NAME` | `hof.praetorian.com` |
-| `DOMAIN_NAME` | `jmukund.app.staging.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `joseph.app.staging.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `joseph.uat.app.staging.guard.praetorian.com` |
-| `DOMAIN_NAME` | `jupiter-staging.praetorian.com` |
-| `DOMAIN_NAME` | `jupiter.praetorian.com` |
-| `DOMAIN_NAME` | `log4j.praetorian.com` |
-| `DOMAIN_NAME` | `login.diana.staging.praetorian.com` |
-| `DOMAIN_NAME` | `lp.praetorian.com` |
-| `DOMAIN_NAME` | `luke.production.praetorian.com` |
-| `DOMAIN_NAME` | `luke.staging.praetorian.com` |
-| `DOMAIN_NAME` | `luke.uat.praetorian.com` |
-| `DOMAIN_NAME` | `luna.praetorian.com` |
-| `DOMAIN_NAME` | `mars.praetorian.com` |
-| `DOMAIN_NAME` | `mastermind.praetorian.com` |
-| `DOMAIN_NAME` | `merch.praetorian.com` |
-| `DOMAIN_NAME` | `mlb.praetorian.com` |
-| `DOMAIN_NAME` | `neptune.praetorian.com` |
-| `DOMAIN_NAME` | `oob.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `oob.guard.praetorian.com` |
-| `DOMAIN_NAME` | `peter-test-redirect.praetorian.com` |
-| `DOMAIN_NAME` | `pm-bounces.praetorian.com` |
-| `DOMAIN_NAME` | `portal.praetorian.com` |
-| `DOMAIN_NAME` | `praetorian-cloudfront-redirect-test.praetorian.com` |
-| `DOMAIN_NAME` | `praetorian.com` |
-| `DOMAIN_NAME` | `preview.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `pwnable.praetorian.com` |
-| `DOMAIN_NAME` | `redirect-with-cloudfront.praetorian.com` |
-| `DOMAIN_NAME` | `rota.praetorian.com` |
-| `DOMAIN_NAME` | `rtv.praetorian.com` |
-| `DOMAIN_NAME` | `securetransfer.praetorian.com` |
-| `DOMAIN_NAME` | `signup.praetorian.com` |
-| `DOMAIN_NAME` | `speculae-gcp.praetorian.com` |
-| `DOMAIN_NAME` | `speculae.praetorian.com` |
-| `DOMAIN_NAME` | `sso.8472.app.guard.praetorian.com` |
-| `DOMAIN_NAME` | `sso.guard.praetorian.com` |
-| `DOMAIN_NAME` | `sso.uat.app.staging.guard.praetorian.com` |
-| `DOMAIN_NAME` | `start.praetorian.com` |
-| `DOMAIN_NAME` | `support.praetorian.com` |
-| `DOMAIN_NAME` | `tesserarius-stage.praetorian.com` |
-| `DOMAIN_NAME` | `test.app.staging.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `trust.praetorian.com` |
-| `DOMAIN_NAME` | `uat.app.staging.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `uat.app.staging.guard.praetorian.com` |
-| `DOMAIN_NAME` | `uat.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `webmail.praetorian.com` |
-| `DOMAIN_NAME` | `www.chat.praetorian.com` |
-| `DOMAIN_NAME` | `www.mars.praetorian.com` |
-| `DOMAIN_NAME` | `www.neptune.praetorian.com` |
-| `DOMAIN_NAME` | `www.praetorian.com` |
-| `DOMAIN_NAME` | `www.securetransfer.praetorian.com` |
-| `DOMAIN_NAME` | `www.support.praetorian.com` |
-| `DOMAIN_NAME` | `www2.praetorian.com` |
-| `DOMAIN_NAME` | `www3.praetorian.com` |
-
-### `LEADS`
-
-```mermaid
-flowchart TD
-  leads_1["LEADS"]
-  domains_2["DOMAINS: DOMAINS"]
-  leads_1 -->|contains| domains_2
-  domain_name_3["DOMAIN_NAME: 8472.app.chariot.praetorian.com"]
-  leads_1 -->|contains| domain_name_3
-  domain_name_4["DOMAIN_NAME: 8472.app.guard.praetorian.com"]
-  leads_1 -->|contains| domain_name_4
-  more_5["+102 more"]
-  leads_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `DOMAINS` | `DOMAINS` |
-| `DOMAIN_NAME` | `8472.app.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `8472.app.guard.praetorian.com` |
-| `DOMAIN_NAME` | `aegis.app.staging.guard.praetorian.com` |
-| `DOMAIN_NAME` | `agent-dev.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `agent-speculatore.praetorian.com` |
-| `DOMAIN_NAME` | `agent.8472.app.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `agent.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `alice.praetorian.com` |
-| `DOMAIN_NAME` | `api.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `api.praetorian.com` |
-| `DOMAIN_NAME` | `armory.praetorian.com` |
-| `DOMAIN_NAME` | `artifactory.praetorian.com` |
-| `DOMAIN_NAME` | `blog-dev.praetorian.com` |
-| `DOMAIN_NAME` | `blog.praetorian.com` |
-| `DOMAIN_NAME` | `burp.8472.app.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `burp.8472.app.guard.praetorian.com` |
-| `DOMAIN_NAME` | `burp.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `burp.prod.app.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `burp.prod.app.guard.praetorian.com` |
-| `DOMAIN_NAME` | `capdev.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `chaos.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-comlink.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-comlink.staging.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-comlink.uat.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-leia.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-leia.staging.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-leia.uat.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-slave-one.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-slave-one.staging.praetorian.com` |
-| `DOMAIN_NAME` | `chariot-slave-one.uat.praetorian.com` |
-| `DOMAIN_NAME` | `chariot.praetorian.com` |
-| `DOMAIN_NAME` | `chariot.staging.praetorian.com` |
-| `DOMAIN_NAME` | `chariot.uat.praetorian.com` |
-| `DOMAIN_NAME` | `chat.praetorian.com` |
-| `DOMAIN_NAME` | `contentapalooza.praetorian.com` |
-| `DOMAIN_NAME` | `crypto.praetorian.com` |
-| `DOMAIN_NAME` | `demand.praetorian.com` |
-| `DOMAIN_NAME` | `demo.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `dev-test0.app.staging.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `dev-test1.app.staging.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `diana.praetorian.com` |
-| `DOMAIN_NAME` | `diana.staging.praetorian.com` |
-| `DOMAIN_NAME` | `diana.uat.praetorian.com` |
-| `DOMAIN_NAME` | `docs.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `docs.praetorian.com` |
-| `DOMAIN_NAME` | `feedback.praetorian.com` |
-| `DOMAIN_NAME` | `foxctf.praetorian.com` |
-| `DOMAIN_NAME` | `future.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `go.praetorian.com` |
-| `DOMAIN_NAME` | `guard.praetorian.com` |
-| `DOMAIN_NAME` | `hof.praetorian.com` |
-| `DOMAIN_NAME` | `jmukund.app.staging.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `joseph.app.staging.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `joseph.uat.app.staging.guard.praetorian.com` |
-| `DOMAIN_NAME` | `jupiter-staging.praetorian.com` |
-| `DOMAIN_NAME` | `jupiter.praetorian.com` |
-| `DOMAIN_NAME` | `log4j.praetorian.com` |
-| `DOMAIN_NAME` | `login.diana.staging.praetorian.com` |
-| `DOMAIN_NAME` | `lp.praetorian.com` |
-| `DOMAIN_NAME` | `luke.production.praetorian.com` |
-| `DOMAIN_NAME` | `luke.staging.praetorian.com` |
-| `DOMAIN_NAME` | `luke.uat.praetorian.com` |
-| `DOMAIN_NAME` | `luna.praetorian.com` |
-| `DOMAIN_NAME` | `mars.praetorian.com` |
-| `DOMAIN_NAME` | `mastermind.praetorian.com` |
-| `DOMAIN_NAME` | `merch.praetorian.com` |
-| `DOMAIN_NAME` | `mlb.praetorian.com` |
-| `DOMAIN_NAME` | `neptune.praetorian.com` |
-| `DOMAIN_NAME` | `oob.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `oob.guard.praetorian.com` |
-| `DOMAIN_NAME` | `peter-test-redirect.praetorian.com` |
-| `DOMAIN_NAME` | `pm-bounces.praetorian.com` |
-| `DOMAIN_NAME` | `portal.praetorian.com` |
-| `DOMAIN_NAME` | `praetorian-cloudfront-redirect-test.praetorian.com` |
-| `DOMAIN_NAME` | `praetorian.com` |
-| `DOMAIN_NAME` | `preview.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `pwnable.praetorian.com` |
-| `DOMAIN_NAME` | `redirect-with-cloudfront.praetorian.com` |
-| `DOMAIN_NAME` | `rota.praetorian.com` |
-| `DOMAIN_NAME` | `rtv.praetorian.com` |
-| `DOMAIN_NAME` | `securetransfer.praetorian.com` |
-| `DOMAIN_NAME` | `signup.praetorian.com` |
-| `DOMAIN_NAME` | `speculae-gcp.praetorian.com` |
-| `DOMAIN_NAME` | `speculae.praetorian.com` |
-| `DOMAIN_NAME` | `sso.8472.app.guard.praetorian.com` |
-| `DOMAIN_NAME` | `sso.guard.praetorian.com` |
-| `DOMAIN_NAME` | `sso.uat.app.staging.guard.praetorian.com` |
-| `DOMAIN_NAME` | `start.praetorian.com` |
-| `DOMAIN_NAME` | `support.praetorian.com` |
-| `DOMAIN_NAME` | `tesserarius-stage.praetorian.com` |
-| `DOMAIN_NAME` | `test.app.staging.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `trust.praetorian.com` |
-| `DOMAIN_NAME` | `uat.app.staging.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `uat.app.staging.guard.praetorian.com` |
-| `DOMAIN_NAME` | `uat.chariot.praetorian.com` |
-| `DOMAIN_NAME` | `webmail.praetorian.com` |
-| `DOMAIN_NAME` | `www.chat.praetorian.com` |
-| `DOMAIN_NAME` | `www.mars.praetorian.com` |
-| `DOMAIN_NAME` | `www.neptune.praetorian.com` |
-| `DOMAIN_NAME` | `www.praetorian.com` |
-| `DOMAIN_NAME` | `www.securetransfer.praetorian.com` |
-| `DOMAIN_NAME` | `www.support.praetorian.com` |
-| `DOMAIN_NAME` | `www2.praetorian.com` |
-| `DOMAIN_NAME` | `www3.praetorian.com` |
-
 ## Domains
 
 Apex DOMAIN_NAME entities contain subdomain DOMAIN_NAME children; descriptors capture discovery mode, sources, and liveness. This scan includes **104** Domains root node(s) (e.g. `jupiter.praetorian.com`, `portal.praetorian.com`, `www.praetorian.com`). Linked structures: no child categories.
@@ -427,20 +266,7 @@ flowchart TD
   domain_name_1["DOMAIN_NAME"]
 ```
 
-### `DOMAIN_NAME`
-
-```mermaid
-flowchart TD
-  domain_name_1["DOMAIN_NAME"]
-  domain_name_2["DOMAIN_NAME: 8472.app.chariot.praetorian.com"]
-  domain_name_1 -->|contains| domain_name_2
-  domain_name_3["DOMAIN_NAME: 8472.app.guard.praetorian.com"]
-  domain_name_1 -->|contains| domain_name_3
-  domain_name_4["DOMAIN_NAME: aegis.app.staging.guard.praetorian.com"]
-  domain_name_1 -->|contains| domain_name_4
-  more_5["+101 more"]
-  domain_name_1 -->|contains| more_5
-```
+### Values
 
 | Nugget | Value |
 | --- | --- |

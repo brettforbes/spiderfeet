@@ -29,11 +29,96 @@ flowchart TD
   scan_record_1 -->|had| scan_tool_8
 ```
 
-### Scan descriptors
+### `SCAN_CLI`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI: /mnt/c/projects/spiderfeet/.tools/pius …"]
+  scan_record_1 -->|contains| scan_cli_2
+```
 
 | Nugget | Value |
 | --- | --- |
-| `SCAN_RECORD` | `pius:Linode:/mnt/c/projects/spiderfeet/.tools/pius run --org Linode --domain linode.com --plugins crt-sh --output ndjson` |
+| `SCAN_CLI` | `/mnt/c/projects/spiderfeet/.tools/pius run --org Linode --domain linode.com --plugins crt-sh --output ndjson` |
+
+### `SCAN_TARGET`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_2["SCAN_TARGET: linode.com"]
+  scan_record_1 -->|contains| scan_target_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET` | `linode.com` |
+
+### `SCAN_TARGET_ORG`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_org_2["SCAN_TARGET_ORG: Linode"]
+  scan_record_1 -->|contains| scan_target_org_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET_ORG` | `Linode` |
+
+### `SCAN_START`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_start_2["SCAN_START: 2026-06-30T04:30:38.345430+00:00"]
+  scan_record_1 -->|contains| scan_start_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_START` | `2026-06-30T04:30:38.345430+00:00` |
+
+### `SCAN_ELAPSED`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_elapsed_2["SCAN_ELAPSED: 7.063"]
+  scan_record_1 -->|contains| scan_elapsed_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_ELAPSED` | `7.063` |
+
+### `SCAN_EXIT_STATUS`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_exit_status_2["SCAN_EXIT_STATUS: 0"]
+  scan_record_1 -->|contains| scan_exit_status_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_EXIT_STATUS` | `0` |
+
+### `SCAN_TOOL`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_tool_2["SCAN_TOOL: pius"]
+  scan_record_1 -->|contains| scan_tool_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TOOL` | `pius` |
 
 ## Organization
 
@@ -49,6 +134,19 @@ flowchart TD
   domains_3["DOMAINS"]
   company_name_1 -->|contains| domains_3
 ```
+
+### `LEADS`
+
+```mermaid
+flowchart TD
+  leads_1["LEADS"]
+  candidate_entity_2["CANDIDATE_ENTITY: Akamai Technologies, Inc."]
+  leads_1 -->|contains| candidate_entity_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `CANDIDATE_ENTITY` | `Akamai Technologies, Inc.` |
 
 ### `DOMAINS`
 
@@ -117,89 +215,6 @@ flowchart TD
 | `DOMAIN_NAME` | `li996-123.members.linode.com` |
 | `DOMAIN_NAME` | `status.linode.com` |
 
-### `NETBLOCKS`
-
-```mermaid
-flowchart TD
-  netblocks_1["NETBLOCKS"]
-  candidate_entity_2["CANDIDATE_ENTITY: Akamai Technologies, Inc."]
-  netblocks_1 -->|contains| candidate_entity_2
-  domains_3["DOMAINS: DOMAINS"]
-  netblocks_1 -->|contains| domains_3
-  domain_name_4["DOMAIN_NAME: li1028-8.members.linode.com"]
-  netblocks_1 -->|contains| domain_name_4
-  more_5["+49 more"]
-  netblocks_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `CANDIDATE_ENTITY` | `Akamai Technologies, Inc.` |
-| `DOMAINS` | `DOMAINS` |
-| `DOMAIN_NAME` | `li1028-8.members.linode.com` |
-| `DOMAIN_NAME` | `li1046-180.members.linode.com` |
-| `DOMAIN_NAME` | `li1055-17.members.linode.com` |
-| `DOMAIN_NAME` | `li1055-94.members.linode.com` |
-| `DOMAIN_NAME` | `li1081-239.members.linode.com` |
-| `DOMAIN_NAME` | `li115-170.members.linode.com` |
-| `DOMAIN_NAME` | `li1245-154.members.linode.com` |
-| `DOMAIN_NAME` | `li1362-220.members.linode.com` |
-| `DOMAIN_NAME` | `li1430-61.members.linode.com` |
-| `DOMAIN_NAME` | `li1451-189.members.linode.com` |
-| `DOMAIN_NAME` | `li1452-70.members.linode.com` |
-| `DOMAIN_NAME` | `li148-141.members.linode.com` |
-| `DOMAIN_NAME` | `li1498-45.members.linode.com` |
-| `DOMAIN_NAME` | `li1519-235.members.linode.com` |
-| `DOMAIN_NAME` | `li1591-123.members.linode.com` |
-| `DOMAIN_NAME` | `li1647-116.members.linode.com` |
-| `DOMAIN_NAME` | `li165-157.members.linode.com` |
-| `DOMAIN_NAME` | `li1656-231.members.linode.com` |
-| `DOMAIN_NAME` | `li1662-227.members.linode.com` |
-| `DOMAIN_NAME` | `li1672-129.members.linode.com` |
-| `DOMAIN_NAME` | `li1684-125.members.linode.com` |
-| `DOMAIN_NAME` | `li1708-148.members.linode.com` |
-| `DOMAIN_NAME` | `li1713-17.members.linode.com` |
-| `DOMAIN_NAME` | `li1739-57.members.linode.com` |
-| `DOMAIN_NAME` | `li1772-33.members.linode.com` |
-| `DOMAIN_NAME` | `li1781-140.members.linode.com` |
-| `DOMAIN_NAME` | `li1817-160.members.linode.com` |
-| `DOMAIN_NAME` | `li1821-228.members.linode.com` |
-| `DOMAIN_NAME` | `li229-211.members.linode.com` |
-| `DOMAIN_NAME` | `li238-60.members.linode.com` |
-| `DOMAIN_NAME` | `li256-77.members.linode.com` |
-| `DOMAIN_NAME` | `li35-11.members.linode.com` |
-| `DOMAIN_NAME` | `li463-22.members.linode.com` |
-| `DOMAIN_NAME` | `li514-170.members.linode.com` |
-| `DOMAIN_NAME` | `li572-196.members.linode.com` |
-| `DOMAIN_NAME` | `li572-41.members.linode.com` |
-| `DOMAIN_NAME` | `li574-183.members.linode.com` |
-| `DOMAIN_NAME` | `li719-216.members.linode.com` |
-| `DOMAIN_NAME` | `li795-130.members.linode.com` |
-| `DOMAIN_NAME` | `li839-123.members.linode.com` |
-| `DOMAIN_NAME` | `li840-199.members.linode.com` |
-| `DOMAIN_NAME` | `li852-102.members.linode.com` |
-| `DOMAIN_NAME` | `li859-243.members.linode.com` |
-| `DOMAIN_NAME` | `li929-99.members.linode.com` |
-| `DOMAIN_NAME` | `li951-236.members.linode.com` |
-| `DOMAIN_NAME` | `li968-12.members.linode.com` |
-| `DOMAIN_NAME` | `li968-8.members.linode.com` |
-| `DOMAIN_NAME` | `li996-123.members.linode.com` |
-| `DOMAIN_NAME` | `status.linode.com` |
-| `LEADS` | `LEADS` |
-
-### `LEADS`
-
-```mermaid
-flowchart TD
-  leads_1["LEADS"]
-  candidate_entity_2["CANDIDATE_ENTITY: Akamai Technologies, Inc."]
-  leads_1 -->|contains| candidate_entity_2
-```
-
-| Nugget | Value |
-| --- | --- |
-| `CANDIDATE_ENTITY` | `Akamai Technologies, Inc.` |
-
 ## Domains
 
 Apex DOMAIN_NAME entities contain subdomain DOMAIN_NAME children; descriptors capture discovery mode, sources, and liveness. This scan includes **49** Domains root node(s) (e.g. `status.linode.com`, `li839-123.members.linode.com`, `li1362-220.members.linode.com`). Linked structures: no child categories.
@@ -211,20 +226,7 @@ flowchart TD
   domain_name_1["DOMAIN_NAME"]
 ```
 
-### `DOMAIN_NAME`
-
-```mermaid
-flowchart TD
-  domain_name_1["DOMAIN_NAME"]
-  domain_name_2["DOMAIN_NAME: li1028-8.members.linode.com"]
-  domain_name_1 -->|contains| domain_name_2
-  domain_name_3["DOMAIN_NAME: li1046-180.members.linode.com"]
-  domain_name_1 -->|contains| domain_name_3
-  domain_name_4["DOMAIN_NAME: li1055-17.members.linode.com"]
-  domain_name_1 -->|contains| domain_name_4
-  more_5["+46 more"]
-  domain_name_1 -->|contains| more_5
-```
+### Values
 
 | Nugget | Value |
 | --- | --- |

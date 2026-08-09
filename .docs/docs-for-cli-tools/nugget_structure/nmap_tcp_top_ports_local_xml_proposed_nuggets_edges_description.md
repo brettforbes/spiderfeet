@@ -29,11 +29,96 @@ flowchart TD
   scan_record_1 -->|had| scan_tool_8
 ```
 
-### Scan descriptors
+### `SCAN_CLI`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI: nmap -sT -T3 --top-ports 100 --open -oX…"]
+  scan_record_1 -->|contains| scan_cli_2
+```
 
 | Nugget | Value |
 | --- | --- |
-| `SCAN_RECORD` | `nmap:192.168.1.0/24:Fri Jun 26 04:00:30 2026` |
+| `SCAN_CLI` | `nmap -sT -T3 --top-ports 100 --open -oX - 192.168.1.0/24` |
+
+### `SCAN_VERSION`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_version_2["SCAN_VERSION: 7.80"]
+  scan_record_1 -->|contains| scan_version_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_VERSION` | `7.80` |
+
+### `SCAN_START`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_start_2["SCAN_START: Fri Jun 26 04:00:30 2026"]
+  scan_record_1 -->|contains| scan_start_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_START` | `Fri Jun 26 04:00:30 2026` |
+
+### `SCAN_TARGET`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_2["SCAN_TARGET: 192.168.1.0/24"]
+  scan_record_1 -->|contains| scan_target_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET` | `192.168.1.0/24` |
+
+### `SCAN_SUMMARY`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_summary_2["SCAN_SUMMARY: Nmap done at Fri Jun 26 04:00:52 2026; …"]
+  scan_record_1 -->|contains| scan_summary_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_SUMMARY` | `Nmap done at Fri Jun 26 04:00:52 2026; 256 IP addresses (2 hosts up) scanned in 21.75 seconds` |
+
+### `SCAN_ELAPSED`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_elapsed_2["SCAN_ELAPSED: 21.75"]
+  scan_record_1 -->|contains| scan_elapsed_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_ELAPSED` | `21.75` |
+
+### `SCAN_TOOL`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_tool_2["SCAN_TOOL: nmap"]
+  scan_record_1 -->|contains| scan_tool_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TOOL` | `nmap` |
 
 ## Host
 
@@ -88,81 +173,6 @@ flowchart TD
 | `SERVICE` | `msrpc` |
 | `SERVICE` | `netbios-ssn` |
 | `SERVICE` | `ppp` |
-
-### `ENVIRONMENT`
-
-```mermaid
-flowchart TD
-  environment_1["ENVIRONMENT"]
-  applications_2["APPLICATIONS: applications:192.168.1.11"]
-  environment_1 -->|contains| applications_2
-  applications_3["APPLICATIONS: applications:192.168.1.9"]
-  environment_1 -->|contains| applications_3
-  host_status_4["HOST_STATUS: up"]
-  environment_1 -->|contains| host_status_4
-  more_5["+4 more"]
-  environment_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `APPLICATIONS` | `applications:192.168.1.11` |
-| `APPLICATIONS` | `applications:192.168.1.9` |
-| `HOST_STATUS` | `up` |
-| `HOST_STATUS_REASON` | `localhost-response` |
-| `INTERNET_NAME` | `host.docker.internal` |
-| `NETWORKS` | `networks:192.168.1.11` |
-| `NETWORKS` | `networks:192.168.1.9` |
-
-### `VULNERABILITIES`
-
-```mermaid
-flowchart TD
-  vulnerabilities_1["VULNERABILITIES"]
-  applications_2["APPLICATIONS: applications:192.168.1.11"]
-  vulnerabilities_1 -->|contains| applications_2
-  applications_3["APPLICATIONS: applications:192.168.1.9"]
-  vulnerabilities_1 -->|contains| applications_3
-  host_status_4["HOST_STATUS: up"]
-  vulnerabilities_1 -->|contains| host_status_4
-  more_5["+4 more"]
-  vulnerabilities_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `APPLICATIONS` | `applications:192.168.1.11` |
-| `APPLICATIONS` | `applications:192.168.1.9` |
-| `HOST_STATUS` | `up` |
-| `HOST_STATUS_REASON` | `localhost-response` |
-| `INTERNET_NAME` | `host.docker.internal` |
-| `NETWORKS` | `networks:192.168.1.11` |
-| `NETWORKS` | `networks:192.168.1.9` |
-
-### `SECURITY`
-
-```mermaid
-flowchart TD
-  security_1["SECURITY"]
-  applications_2["APPLICATIONS: applications:192.168.1.11"]
-  security_1 -->|contains| applications_2
-  applications_3["APPLICATIONS: applications:192.168.1.9"]
-  security_1 -->|contains| applications_3
-  host_status_4["HOST_STATUS: up"]
-  security_1 -->|contains| host_status_4
-  more_5["+4 more"]
-  security_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `APPLICATIONS` | `applications:192.168.1.11` |
-| `APPLICATIONS` | `applications:192.168.1.9` |
-| `HOST_STATUS` | `up` |
-| `HOST_STATUS_REASON` | `localhost-response` |
-| `INTERNET_NAME` | `host.docker.internal` |
-| `NETWORKS` | `networks:192.168.1.11` |
-| `NETWORKS` | `networks:192.168.1.9` |
 
 ## Services and ports
 

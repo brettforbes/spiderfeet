@@ -29,11 +29,96 @@ flowchart TD
   scan_record_1 -->|had| scan_tool_8
 ```
 
-### Scan descriptors
+### `SCAN_CLI`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI: subfinder -d not-a-real-domain-xyzzy.in…"]
+  scan_record_1 -->|contains| scan_cli_2
+```
 
 | Nugget | Value |
 | --- | --- |
-| `SCAN_RECORD` | `subfinder:not-a-real-domain-xyzzy.invalid:subfinder -d not-a-real-domain-xyzzy.invalid -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/invalid_domain_clean_miss.jsonl -silent` |
+| `SCAN_CLI` | `subfinder -d not-a-real-domain-xyzzy.invalid -oJ -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/invalid_domain_clean_miss.jsonl -silent` |
+
+### `SCAN_TARGET`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_2["SCAN_TARGET: not-a-real-domain-xyzzy.invalid"]
+  scan_record_1 -->|contains| scan_target_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET` | `not-a-real-domain-xyzzy.invalid` |
+
+### `SCAN_MODE`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_mode_2["SCAN_MODE: passive"]
+  scan_record_1 -->|contains| scan_mode_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_MODE` | `passive` |
+
+### `SCAN_START`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_start_2["SCAN_START: 2026-07-05T14:26:26.453039+00:00"]
+  scan_record_1 -->|contains| scan_start_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_START` | `2026-07-05T14:26:26.453039+00:00` |
+
+### `SCAN_ELAPSED`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_elapsed_2["SCAN_ELAPSED: 24.594"]
+  scan_record_1 -->|contains| scan_elapsed_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_ELAPSED` | `24.594` |
+
+### `SCAN_EXIT_STATUS`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_exit_status_2["SCAN_EXIT_STATUS: 0"]
+  scan_record_1 -->|contains| scan_exit_status_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_EXIT_STATUS` | `0` |
+
+### `SCAN_TOOL`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_tool_2["SCAN_TOOL: subfinder"]
+  scan_record_1 -->|contains| scan_tool_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TOOL` | `subfinder` |
 
 ## Domains
 
@@ -46,14 +131,7 @@ flowchart TD
   domain_name_1["DOMAIN_NAME"]
 ```
 
-### `DOMAIN_NAME`
-
-```mermaid
-flowchart TD
-  domain_name_1["DOMAIN_NAME"]
-  domain_name_2["DOMAIN_NAME: not-a-real-domain-xyzzy.invalid"]
-  domain_name_1 -->|contains| domain_name_2
-```
+### Values
 
 | Nugget | Value |
 | --- | --- |

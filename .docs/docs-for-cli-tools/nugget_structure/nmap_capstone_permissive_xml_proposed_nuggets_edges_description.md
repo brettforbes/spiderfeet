@@ -29,11 +29,96 @@ flowchart TD
   scan_record_1 -->|had| scan_tool_8
 ```
 
-### Scan descriptors
+### `SCAN_CLI`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI: nmap -sT -A -T3 --top-ports 1000 --open…"]
+  scan_record_1 -->|contains| scan_cli_2
+```
 
 | Nugget | Value |
 | --- | --- |
-| `SCAN_RECORD` | `nmap:scanme.nmap.org:Fri Jun 26 03:56:04 2026` |
+| `SCAN_CLI` | `nmap -sT -A -T3 --top-ports 1000 --open -oX - scanme.nmap.org` |
+
+### `SCAN_VERSION`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_version_2["SCAN_VERSION: 7.80"]
+  scan_record_1 -->|contains| scan_version_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_VERSION` | `7.80` |
+
+### `SCAN_START`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_start_2["SCAN_START: Fri Jun 26 03:56:04 2026"]
+  scan_record_1 -->|contains| scan_start_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_START` | `Fri Jun 26 03:56:04 2026` |
+
+### `SCAN_TARGET`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_2["SCAN_TARGET: scanme.nmap.org"]
+  scan_record_1 -->|contains| scan_target_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET` | `scanme.nmap.org` |
+
+### `SCAN_SUMMARY`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_summary_2["SCAN_SUMMARY: Nmap done at Fri Jun 26 03:57:46 2026; …"]
+  scan_record_1 -->|contains| scan_summary_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_SUMMARY` | `Nmap done at Fri Jun 26 03:57:46 2026; 1 IP address (1 host up) scanned in 102.84 seconds` |
+
+### `SCAN_ELAPSED`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_elapsed_2["SCAN_ELAPSED: 102.84"]
+  scan_record_1 -->|contains| scan_elapsed_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_ELAPSED` | `102.84` |
+
+### `SCAN_TOOL`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_tool_2["SCAN_TOOL: nmap"]
+  scan_record_1 -->|contains| scan_tool_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TOOL` | `nmap` |
 
 ## Host
 
@@ -127,82 +212,6 @@ flowchart TD
 | `OPERATING_SYSTEM` | `Linux 4.2` |
 | `OPERATING_SYSTEM` | `Linux 4.4` |
 | `OPERATING_SYSTEM` | `Synology DiskStation Manager 5.1` |
-
-### `VULNERABILITIES`
-
-```mermaid
-flowchart TD
-  vulnerabilities_1["VULNERABILITIES"]
-  applications_2["APPLICATIONS: applications:45.33.32.156"]
-  vulnerabilities_1 -->|contains| applications_2
-  environment_3["ENVIRONMENT: environment:45.33.32.156"]
-  vulnerabilities_1 -->|contains| environment_3
-  host_status_4["HOST_STATUS: up"]
-  vulnerabilities_1 -->|contains| host_status_4
-  more_5["+17 more"]
-  vulnerabilities_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `APPLICATIONS` | `applications:45.33.32.156` |
-| `ENVIRONMENT` | `environment:45.33.32.156` |
-| `HOST_STATUS` | `up` |
-| `HOST_STATUS_REASON` | `reset` |
-| `INTERNET_NAME` | `ae10-100.edg01.alexeqn.nsw.vocus.network` |
-| `INTERNET_NAME` | `be101.bdr01.sjc02.ca.us.vocus.network` |
-| `INTERNET_NAME` | `be106-99.bdr01.syd14.nsw.vocus.network` |
-| `INTERNET_NAME` | `be158.cor01.syd11.nsw.vocus.network` |
-| `INTERNET_NAME` | `be202.bdr04.sjc01.ca.us.vocus.network` |
-| `INTERNET_NAME` | `eqix-sv1.linode.com` |
-| `INTERNET_NAME` | `lo0-33.bng71.alexeqn.nsw.vocus.network` |
-| `INTERNET_NAME` | `scanme.nmap.org` |
-| `NETWORKS` | `networks:114.31.192.64` |
-| `NETWORKS` | `networks:114.31.199.249` |
-| `NETWORKS` | `networks:114.31.199.41` |
-| `NETWORKS` | `networks:175.45.103.109` |
-| `NETWORKS` | `networks:203.134.80.236` |
-| `NETWORKS` | `networks:203.134.80.60` |
-| `NETWORKS` | `networks:206.223.116.196` |
-| `NETWORKS` | `networks:45.33.32.156` |
-
-### `SECURITY`
-
-```mermaid
-flowchart TD
-  security_1["SECURITY"]
-  applications_2["APPLICATIONS: applications:45.33.32.156"]
-  security_1 -->|contains| applications_2
-  environment_3["ENVIRONMENT: environment:45.33.32.156"]
-  security_1 -->|contains| environment_3
-  host_status_4["HOST_STATUS: up"]
-  security_1 -->|contains| host_status_4
-  more_5["+17 more"]
-  security_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `APPLICATIONS` | `applications:45.33.32.156` |
-| `ENVIRONMENT` | `environment:45.33.32.156` |
-| `HOST_STATUS` | `up` |
-| `HOST_STATUS_REASON` | `reset` |
-| `INTERNET_NAME` | `ae10-100.edg01.alexeqn.nsw.vocus.network` |
-| `INTERNET_NAME` | `be101.bdr01.sjc02.ca.us.vocus.network` |
-| `INTERNET_NAME` | `be106-99.bdr01.syd14.nsw.vocus.network` |
-| `INTERNET_NAME` | `be158.cor01.syd11.nsw.vocus.network` |
-| `INTERNET_NAME` | `be202.bdr04.sjc01.ca.us.vocus.network` |
-| `INTERNET_NAME` | `eqix-sv1.linode.com` |
-| `INTERNET_NAME` | `lo0-33.bng71.alexeqn.nsw.vocus.network` |
-| `INTERNET_NAME` | `scanme.nmap.org` |
-| `NETWORKS` | `networks:114.31.192.64` |
-| `NETWORKS` | `networks:114.31.199.249` |
-| `NETWORKS` | `networks:114.31.199.41` |
-| `NETWORKS` | `networks:175.45.103.109` |
-| `NETWORKS` | `networks:203.134.80.236` |
-| `NETWORKS` | `networks:203.134.80.60` |
-| `NETWORKS` | `networks:206.223.116.196` |
-| `NETWORKS` | `networks:45.33.32.156` |
 
 ## Services and ports
 

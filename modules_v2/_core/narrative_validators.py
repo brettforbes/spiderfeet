@@ -5,9 +5,9 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from .meta_concept_registry import mermaid_settings
-from .meta_narrative import count_mermaid_shapes, detect_meta_concepts
-from .narrative_report import validate_narrative_coverage
+from core.meta_concept_registry import mermaid_settings
+from core.meta_narrative import count_mermaid_shapes, detect_meta_concepts
+from narrative_report import validate_narrative_coverage
 
 _H2 = re.compile(r"^##\s+(.+?)\s*$", re.M)
 _MERMAID = re.compile(r"```mermaid\n(.*?)```", re.S)
@@ -94,9 +94,8 @@ def validate_example_cap_and_table(
                 problems.append(
                     f"category {cat}: {len(value_labels)} example values without +N more (cap {default_cap})"
                 )
-        if "| Nugget | Value |" not in body and "| Nugget | Value |" not in body.replace(" ", ""):
-            if "| Nugget |" not in body:
-                problems.append(f"category {cat}: missing value table")
+        if "| Nugget |" not in body and "_No values._" not in body:
+            problems.append(f"category {cat}: missing value table")
     del graph  # reserved for stricter instance counting later
     return problems
 

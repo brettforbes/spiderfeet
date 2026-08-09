@@ -18,6 +18,7 @@ from core.meta_narrative import (
     concept_prose,
     detect_meta_concepts,
 )
+from core.meta_narrative import present_categories_under_roots
 from core.narrative_profile import load_narrative_profile
 from narrative_report import (  # noqa: F401 — re-export coverage helpers
     Graph,
@@ -108,14 +109,8 @@ def _render_concept_section(lines: list[str], graph: dict[str, Any], concept: di
     if overview:
         lines.extend(["### Structure overview", "", overview, ""])
 
-    categories = list(concept.get("category_nugget_ids") or [])
-    children = list(concept.get("child_nugget_ids") or [])
-    # Domain: also show subdomain child diagram when child_nugget_ids present.
-    render_ids: list[str] = []
-    for item in categories + children:
-        if item not in render_ids:
-            render_ids.append(item)
-    # Scan: descriptors as a table under the overview.
+    # Only render categories/children that are present in this graph (avoid empty stubs).
+    render_ids = present_categories_under_roots(graph, concept)
     if concept.get("id") == "scan" and not render_ids:
         lines.extend(["### Scan descriptors", "", category_table(graph, concept, None), ""])
         return
@@ -125,11 +120,14 @@ def _render_concept_section(lines: list[str], graph: dict[str, Any], concept: di
         return
 
     for cat in render_ids:
+        table = category_table(graph, concept, cat)
+        if table.strip() == "_No values._":
+            continue
         lines.extend([f"### `{cat}`", ""])
         example = category_example_mermaid(graph, concept, cat)
         if example:
             lines.extend([example, ""])
-        lines.extend([category_table(graph, concept, cat), ""])
+        lines.extend([table, ""])
 
 
 def render_narrative(

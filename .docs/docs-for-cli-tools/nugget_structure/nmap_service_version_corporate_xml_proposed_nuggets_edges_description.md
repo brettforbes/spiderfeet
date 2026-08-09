@@ -29,11 +29,96 @@ flowchart TD
   scan_record_1 -->|had| scan_tool_8
 ```
 
-### Scan descriptors
+### `SCAN_CLI`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI: nmap -sT -sV -T3 -p 80,443 -oX - bbc.co…"]
+  scan_record_1 -->|contains| scan_cli_2
+```
 
 | Nugget | Value |
 | --- | --- |
-| `SCAN_RECORD` | `nmap:bbc.co.uk:Fri Jun 26 03:59:36 2026` |
+| `SCAN_CLI` | `nmap -sT -sV -T3 -p 80,443 -oX - bbc.co.uk` |
+
+### `SCAN_VERSION`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_version_2["SCAN_VERSION: 7.80"]
+  scan_record_1 -->|contains| scan_version_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_VERSION` | `7.80` |
+
+### `SCAN_START`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_start_2["SCAN_START: Fri Jun 26 03:59:36 2026"]
+  scan_record_1 -->|contains| scan_start_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_START` | `Fri Jun 26 03:59:36 2026` |
+
+### `SCAN_TARGET`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_2["SCAN_TARGET: bbc.co.uk"]
+  scan_record_1 -->|contains| scan_target_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET` | `bbc.co.uk` |
+
+### `SCAN_SUMMARY`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_summary_2["SCAN_SUMMARY: Nmap done at Fri Jun 26 03:59:51 2026; …"]
+  scan_record_1 -->|contains| scan_summary_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_SUMMARY` | `Nmap done at Fri Jun 26 03:59:51 2026; 1 IP address (1 host up) scanned in 15.40 seconds` |
+
+### `SCAN_ELAPSED`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_elapsed_2["SCAN_ELAPSED: 15.40"]
+  scan_record_1 -->|contains| scan_elapsed_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_ELAPSED` | `15.40` |
+
+### `SCAN_TOOL`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_tool_2["SCAN_TOOL: nmap"]
+  scan_record_1 -->|contains| scan_tool_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TOOL` | `nmap` |
 
 ## Host
 
@@ -78,75 +163,6 @@ flowchart TD
 | --- | --- |
 | `SERVICE` | `http` |
 | `SERVICE` | `https` |
-
-### `ENVIRONMENT`
-
-```mermaid
-flowchart TD
-  environment_1["ENVIRONMENT"]
-  applications_2["APPLICATIONS: applications:151.101.128.81"]
-  environment_1 -->|contains| applications_2
-  host_status_3["HOST_STATUS: up"]
-  environment_1 -->|contains| host_status_3
-  host_status_reason_4["HOST_STATUS_REASON: syn-ack"]
-  environment_1 -->|contains| host_status_reason_4
-  more_5["+2 more"]
-  environment_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `APPLICATIONS` | `applications:151.101.128.81` |
-| `HOST_STATUS` | `up` |
-| `HOST_STATUS_REASON` | `syn-ack` |
-| `INTERNET_NAME` | `bbc.co.uk` |
-| `NETWORKS` | `networks:151.101.128.81` |
-
-### `VULNERABILITIES`
-
-```mermaid
-flowchart TD
-  vulnerabilities_1["VULNERABILITIES"]
-  applications_2["APPLICATIONS: applications:151.101.128.81"]
-  vulnerabilities_1 -->|contains| applications_2
-  host_status_3["HOST_STATUS: up"]
-  vulnerabilities_1 -->|contains| host_status_3
-  host_status_reason_4["HOST_STATUS_REASON: syn-ack"]
-  vulnerabilities_1 -->|contains| host_status_reason_4
-  more_5["+2 more"]
-  vulnerabilities_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `APPLICATIONS` | `applications:151.101.128.81` |
-| `HOST_STATUS` | `up` |
-| `HOST_STATUS_REASON` | `syn-ack` |
-| `INTERNET_NAME` | `bbc.co.uk` |
-| `NETWORKS` | `networks:151.101.128.81` |
-
-### `SECURITY`
-
-```mermaid
-flowchart TD
-  security_1["SECURITY"]
-  applications_2["APPLICATIONS: applications:151.101.128.81"]
-  security_1 -->|contains| applications_2
-  host_status_3["HOST_STATUS: up"]
-  security_1 -->|contains| host_status_3
-  host_status_reason_4["HOST_STATUS_REASON: syn-ack"]
-  security_1 -->|contains| host_status_reason_4
-  more_5["+2 more"]
-  security_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `APPLICATIONS` | `applications:151.101.128.81` |
-| `HOST_STATUS` | `up` |
-| `HOST_STATUS_REASON` | `syn-ack` |
-| `INTERNET_NAME` | `bbc.co.uk` |
-| `NETWORKS` | `networks:151.101.128.81` |
 
 ## Services and ports
 

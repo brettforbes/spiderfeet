@@ -94,9 +94,8 @@ def validate_example_cap_and_table(
                 problems.append(
                     f"category {cat}: {len(value_labels)} example values without +N more (cap {default_cap})"
                 )
-        if "| Nugget | Value |" not in body and "| Nugget | Value |" not in body.replace(" ", ""):
-            if "| Nugget |" not in body:
-                problems.append(f"category {cat}: missing value table")
+        if "| Nugget |" not in body and "_No values._" not in body:
+            problems.append(f"category {cat}: missing value table")
     del graph  # reserved for stricter instance counting later
     return problems
 

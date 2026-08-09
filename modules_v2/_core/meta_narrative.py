@@ -6,7 +6,7 @@ import re
 from collections import defaultdict
 from typing import Any
 
-from .meta_concept_registry import (
+from core.meta_concept_registry import (
     get_meta_concept,
     list_meta_concepts,
     mermaid_settings,
@@ -66,7 +66,7 @@ def detect_meta_concepts(graph: dict[str, Any]) -> list[dict[str, Any]]:
     return found
 
 
-def _present_categories_under_roots(
+def present_categories_under_roots(
     graph: dict[str, Any],
     concept: dict[str, Any],
 ) -> list[str]:
@@ -125,7 +125,7 @@ def concept_overview_mermaid(
     if not roots:
         return ""
     root_type = roots[0]
-    categories = _present_categories_under_roots(graph, concept)
+    categories = present_categories_under_roots(graph, concept)
     lines = ["```mermaid", "flowchart TD"]
     node_index = 0
     declared: dict[str, str] = {}
@@ -337,7 +337,7 @@ def concept_prose(graph: dict[str, Any], concept: dict[str, Any]) -> str:
     root_count = len(roots)
     sample = ", ".join(f"`{n.get('nugget_data')}`" for n in roots[:3])
     base = str(concept.get("prose") or "").strip()
-    categories = _present_categories_under_roots(graph, concept)
+    categories = present_categories_under_roots(graph, concept)
     cat_text = ", ".join(f"`{c}`" for c in categories[:6]) or "no child categories"
     parts = [base] if base else []
     heading = concept.get("heading") or concept.get("id")
