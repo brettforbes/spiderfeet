@@ -123,6 +123,11 @@ DEFAULT_SMOKE_ARGS = [
     "10",
 ]
 
+DEFAULT_BATCH_SIZE = 20
+DEFAULT_OPTION_PASSES: list[dict[str, str]] = [
+    {"tags": "tech", "severity": "info"},
+]
+
 
 class sfp_cli_nuclei(CliModuleBase):
     """Nuclei v2 module: argv-only CLI → JSONL → four outputs via adapters + _core."""
@@ -337,6 +342,25 @@ class sfp_cli_nuclei(CliModuleBase):
                 severity=severity,
             )
 
+        # R14-11: batch large URL sets + option-pass fan-out (argv arrays only).
+        targets = _collect_urls(spec)
+        batch_size = int(spec.get("batch_size") or DEFAULT_BATCH_SIZE)
+        passes = option_passes_from_spec(spec)
+        use_batching = bool(spec.get("batch")) or bool(spec.get("option_passes")) or (
+            len(targets) > batch_size
+        )
+        if use_batching and targets:
+            return self._run_batched(
+                spec,
+                targets=targets,
+                batch_size=batch_size,
+                option_passes=passes,
+                scenario_key=scenario_key,
+                target=target,
+                tags=tags,
+                severity=severity,
+            )
+
         try:
             argv = self.build_argv(spec)
         except FileNotFoundError as exc:
@@ -415,6 +439,167 @@ class sfp_cli_nuclei(CliModuleBase):
             result["error"] = f"nuclei exited {completed.returncode}"
         return result
 
+    def _run_batched(
+        self,
+        spec: Mapping[str, Any],
+        *,
+        targets: Sequence[str],
+        batch_size: int,
+        option_passes: Sequence[Mapping[str, Any]],
+        scenario_key: str,
+        target: str | None,
+        tags: str | None,
+        severity: str | None,
+    ) -> dict[str, Any]:
+        """Run nuclei per (option pass × target chunk); aggregate JSONL → one four-output bundle."""
+        jobs = plan_batch_jobs(targets, batch_size=batch_size, option_passes=option_passes)
+        progress = progress_totals(targets, batch_size=batch_size, option_passes=option_passes)
+        callback = spec.get("progress_callback")
+        per_timeout = float(spec.get("timeout") or 180.0)
+        overall_limit = float(spec.get("overall_timeout") or (per_timeout * max(1, len(jobs))))
+        started_at = datetime.now(timezone.utc)
+        records_jsonl: list[str] = []
+        stderr_parts: list[str] = []
+        last_argv: list[str] = [TOOL_NAME]
+        exit_code = 0
+        duration_total = 0.0
+
+        for job_idx, job in enumerate(jobs, start=1):
+            elapsed = (datetime.now(timezone.utc) - started_at).total_seconds()
+            if elapsed >= overall_limit:
+                return error_result(
+                    command=last_argv,
+                    status=STATUS_TIMEOUT,
+                    error=f"overall_timeout {overall_limit}s exceeded after {job_idx - 1}/{len(jobs)} batches",
+                    duration=elapsed,
+                    structured_type="json",
+                )
+
+            pass_spec = dict(job["pass"])
+            chunk = list(job["targets"])
+            batch_spec = dict(spec)
+            batch_spec.pop("option_passes", None)
+            batch_spec.pop("batch", None)
+            batch_spec.pop("urls", None)
+            batch_spec.pop("hosts", None)
+            batch_spec.pop("url", None)
+            batch_spec.pop("target", None)
+            batch_spec.pop("host_list", None)
+            batch_spec.pop("argv", None)
+            batch_spec["urls"] = chunk
+            if pass_spec.get("tags") is not None:
+                batch_spec["tags"] = pass_spec["tags"]
+            if pass_spec.get("severity") is not None:
+                batch_spec["severity"] = pass_spec["severity"]
+            if pass_spec.get("templates") is not None:
+                batch_spec["templates"] = pass_spec["templates"]
+
+            try:
+                argv = self.build_argv(batch_spec)
+            except FileNotFoundError as exc:
+                return error_result(
+                    command=[TOOL_NAME],
+                    status=STATUS_MISSING_TOOL,
+                    error=str(exc),
+                    structured_type="json",
+                )
+            except (TypeError, ValueError) as exc:
+                return error_result(
+                    command=[TOOL_NAME],
+                    status=STATUS_ERROR,
+                    error=str(exc),
+                    structured_type="json",
+                )
+
+            last_argv = argv
+            label = (
+                f"batch {job_idx}/{len(jobs)} "
+                f"(pass: tags={pass_spec.get('tags')}, severity={pass_spec.get('severity')})"
+            )
+            if callable(callback):
+                callback(
+                    {
+                        **progress,
+                        "batches_done": job_idx - 1,
+                        "label": label,
+                        "current_targets": len(chunk),
+                    }
+                )
+
+            completed, duration, err = self._timed_run_argv(argv, timeout=per_timeout)
+            duration_total += duration
+            if err and completed is None:
+                status = STATUS_TIMEOUT if err.startswith("timeout") else STATUS_ERROR
+                return error_result(
+                    command=argv,
+                    status=status,
+                    error=f"{label}: {err}",
+                    duration=duration_total,
+                    structured_type="json",
+                )
+            assert completed is not None
+            raw_out = completed.stdout or ""
+            out_path = _output_file_from_argv(argv)
+            if out_path and Path(out_path).is_file():
+                file_body = Path(out_path).read_text(encoding="utf-8", errors="replace")
+                if file_body.strip():
+                    raw_out = file_body
+            if completed.stderr:
+                stderr_parts.append(completed.stderr.strip())
+            if completed.returncode != 0:
+                exit_code = completed.returncode
+            if raw_out.strip():
+                records_jsonl.append(raw_out.strip())
+            progress["batches_done"] = job_idx
+            progress["bundles_scanned"] = job_idx
+
+        if callable(callback):
+            callback({**progress, "label": f"bundles scanned across all options: {progress['bundles_scanned']}"})
+
+        combined = "\n".join(records_jsonl)
+        if not combined.strip() and exit_code != 0:
+            return error_result(
+                command=last_argv,
+                status=STATUS_ERROR,
+                error=f"nuclei batched run exited {exit_code} with empty output",
+                duration=duration_total,
+                exit_code=exit_code,
+                stderr="\n".join(stderr_parts),
+                structured_type="json",
+            )
+
+        try:
+            result = self.run_from_structured(
+                combined,
+                command=last_argv,
+                scenario_key=scenario_key,
+                duration=duration_total,
+                exit_code=exit_code,
+                stderr="\n".join(stderr_parts),
+                target=target or (targets[0] if targets else None),
+                tags=tags or (str(option_passes[0].get("tags")) if option_passes else None),
+                severity=severity
+                or (str(option_passes[0].get("severity")) if option_passes else None),
+                started_at=started_at,
+            )
+        except Exception as exc:  # noqa: BLE001
+            return error_result(
+                command=last_argv,
+                status=STATUS_ERROR,
+                error=f"four-output conversion failed: {exc}",
+                duration=duration_total,
+                exit_code=exit_code,
+                stderr="\n".join(stderr_parts),
+                structured_type="json",
+            )
+
+        result["progress"] = progress
+        result["summary"] = f"bundles scanned across all options: {progress['bundles_scanned']}"
+        if exit_code != 0:
+            result["status"] = STATUS_ERROR
+            result["error"] = f"nuclei batched run exited {exit_code}"
+        return result
+
 
 def _has_flag(argv: Sequence[str], flag: str) -> bool:
     return flag in argv
@@ -477,6 +662,14 @@ def _collect_urls(spec: Mapping[str, Any]) -> list[str]:
         value = spec.get(key)
         if value:
             urls.append(str(value).strip())
+    host_list = spec.get("host_list")
+    if host_list:
+        path = Path(str(host_list))
+        if path.is_file():
+            for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+                item = line.strip()
+                if item and not item.startswith("#"):
+                    urls.append(item)
     seen: set[str] = set()
     ordered: list[str] = []
     for item in urls:
@@ -484,6 +677,80 @@ def _collect_urls(spec: Mapping[str, Any]) -> list[str]:
             seen.add(item)
             ordered.append(item)
     return ordered
+
+
+def chunk_targets(targets: Sequence[str], batch_size: int = DEFAULT_BATCH_SIZE) -> list[list[str]]:
+    """Split targets into contiguous blocks of ``batch_size`` (R14-11)."""
+    size = max(1, int(batch_size or DEFAULT_BATCH_SIZE))
+    items = [str(t).strip() for t in targets if str(t).strip()]
+    return [items[i : i + size] for i in range(0, len(items), size)] or [[]]
+
+
+def option_passes_from_spec(spec: Mapping[str, Any]) -> list[dict[str, Any]]:
+    """Resolve option-pass families (tags/severity/templates) for fan-out."""
+    raw = spec.get("option_passes")
+    if raw:
+        passes: list[dict[str, Any]] = []
+        for item in raw:
+            if isinstance(item, Mapping):
+                passes.append(dict(item))
+        if passes:
+            return passes
+    # Single pass from top-level filters (or default tech fingerprint).
+    if spec.get("tags") or spec.get("severity") or spec.get("templates") or spec.get("template_path"):
+        pass_spec: dict[str, Any] = {}
+        if spec.get("tags"):
+            pass_spec["tags"] = spec["tags"]
+        if spec.get("severity"):
+            pass_spec["severity"] = spec["severity"]
+        if spec.get("templates") or spec.get("template_path"):
+            pass_spec["templates"] = spec.get("templates") or spec.get("template_path")
+        return [pass_spec]
+    return [dict(p) for p in DEFAULT_OPTION_PASSES]
+
+
+def plan_batch_jobs(
+    targets: Sequence[str],
+    *,
+    batch_size: int = DEFAULT_BATCH_SIZE,
+    option_passes: Sequence[Mapping[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
+    """Cartesian product of option passes × target chunks (R14-11)."""
+    passes = list(option_passes) if option_passes is not None else list(DEFAULT_OPTION_PASSES)
+    chunks = chunk_targets(targets, batch_size=batch_size)
+    jobs: list[dict[str, Any]] = []
+    for pass_idx, pass_spec in enumerate(passes):
+        for chunk_idx, chunk in enumerate(chunks):
+            jobs.append(
+                {
+                    "pass_index": pass_idx,
+                    "chunk_index": chunk_idx,
+                    "pass": dict(pass_spec),
+                    "targets": list(chunk),
+                }
+            )
+    return jobs
+
+
+def progress_totals(
+    targets: Sequence[str],
+    *,
+    batch_size: int = DEFAULT_BATCH_SIZE,
+    option_passes: Sequence[Mapping[str, Any]] | None = None,
+) -> dict[str, Any]:
+    """Compute BH2 progress denominators without running nuclei."""
+    passes = list(option_passes) if option_passes is not None else list(DEFAULT_OPTION_PASSES)
+    chunks = chunk_targets(targets, batch_size=batch_size)
+    batches_total = max(1, len(chunks)) * max(1, len(passes))
+    return {
+        "batches_total": batches_total,
+        "batches_done": 0,
+        "passes": len(passes),
+        "chunks": len(chunks),
+        "targets": len([t for t in targets if str(t).strip()]),
+        "batch_size": max(1, int(batch_size or DEFAULT_BATCH_SIZE)),
+        "bundles_scanned": 0,
+    }
 
 
 def _first_target(spec: Mapping[str, Any]) -> str | None:
