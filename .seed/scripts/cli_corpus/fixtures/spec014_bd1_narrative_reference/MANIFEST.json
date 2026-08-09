@@ -1,0 +1,255 @@
+{
+  "spec": "SPEC-014",
+  "issue": 1185,
+  "requirement": "R14-06",
+  "count": 35,
+  "source_glob": ".docs/docs-for-cli-tools/nugget_structure/{nmap,netdiscover}_*_proposed_nuggets_edges_description.md",
+  "criteria": "MATCH_OR_BEAT.md",
+  "files": [
+    {
+      "file": "netdiscover_local_subnet_active_parsable_proposed_nuggets_edges_description.md",
+      "tool": "netdiscover",
+      "scenario_key": "local_subnet_active_parsable",
+      "sha256": "fc62f8d019274c26df85458e7e5a89878c56931b44977d3ec274b2a3ae8460c1",
+      "bytes": 11858
+    },
+    {
+      "file": "netdiscover_local_subnet_active_text_proposed_nuggets_edges_description.md",
+      "tool": "netdiscover",
+      "scenario_key": "local_subnet_active_text",
+      "sha256": "6fedf8be2a6b3ab4c43d3772fec79a9eabfe39b12e157be04ef566938f14431b",
+      "bytes": 11889
+    },
+    {
+      "file": "netdiscover_local_subnet_fast_parsable_proposed_nuggets_edges_description.md",
+      "tool": "netdiscover",
+      "scenario_key": "local_subnet_fast_parsable",
+      "sha256": "bcac1d14c982b8d5b1461d1fc09b31639bc4249595981d6b05ff8c50639d41b6",
+      "bytes": 3405
+    },
+    {
+      "file": "netdiscover_passive_snippet_text_proposed_nuggets_edges_description.md",
+      "tool": "netdiscover",
+      "scenario_key": "passive_snippet_text",
+      "sha256": "8f54e2efcf91d3db83599794b601166065709f1e0d20be6aea653690cb856e13",
+      "bytes": 11723
+    },
+    {
+      "file": "netdiscover_sparse_subnet_parsable_proposed_nuggets_edges_description.md",
+      "tool": "netdiscover",
+      "scenario_key": "sparse_subnet_parsable",
+      "sha256": "5cb44810652e8328abc2a216d876590cdeaf772f54336042813e0ab603e84625",
+      "bytes": 11812
+    },
+    {
+      "file": "nmap_capstone_permissive_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "capstone_permissive",
+      "sha256": "0735ff86a6fbdfae9290d4a81d1cbf064c8369b4137dee35bd365c1fd9119bff",
+      "bytes": 19386
+    },
+    {
+      "file": "nmap_capstone_permissive_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "capstone_permissive_xml",
+      "sha256": "0735ff86a6fbdfae9290d4a81d1cbf064c8369b4137dee35bd365c1fd9119bff",
+      "bytes": 19386
+    },
+    {
+      "file": "nmap_host_discovery_corporate_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "host_discovery_corporate",
+      "sha256": "c96f4641e3734ce30d903fd03930d1ab4316fa20627b57f548902144d805c8b6",
+      "bytes": 2460
+    },
+    {
+      "file": "nmap_host_discovery_corporate_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "host_discovery_corporate_xml",
+      "sha256": "c96f4641e3734ce30d903fd03930d1ab4316fa20627b57f548902144d805c8b6",
+      "bytes": 2460
+    },
+    {
+      "file": "nmap_host_discovery_local_subnet_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "host_discovery_local_subnet",
+      "sha256": "d2cfe06d2d177238e33db4898133179c2dc5ac15e71a845eb2d10257e3fd26eb",
+      "bytes": 2985
+    },
+    {
+      "file": "nmap_host_discovery_local_subnet_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "host_discovery_local_subnet_xml",
+      "sha256": "d2cfe06d2d177238e33db4898133179c2dc5ac15e71a845eb2d10257e3fd26eb",
+      "bytes": 2985
+    },
+    {
+      "file": "nmap_host_discovery_permissive_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "host_discovery_permissive",
+      "sha256": "2f6afe4630aa4cd8e114eb8a1c75c2ab97e7e3cd04392a94773c2bb5fcbc24cd",
+      "bytes": 2503
+    },
+    {
+      "file": "nmap_host_discovery_permissive_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "host_discovery_permissive_xml",
+      "sha256": "2f6afe4630aa4cd8e114eb8a1c75c2ab97e7e3cd04392a94773c2bb5fcbc24cd",
+      "bytes": 2503
+    },
+    {
+      "file": "nmap_nse_default_permissive_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "nse_default_permissive",
+      "sha256": "f16f05d325a12fde13cf5d0ee7cd25c7c98075f0177edabcecd6e412d337baaf",
+      "bytes": 7517
+    },
+    {
+      "file": "nmap_nse_default_permissive_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "nse_default_permissive_xml",
+      "sha256": "f16f05d325a12fde13cf5d0ee7cd25c7c98075f0177edabcecd6e412d337baaf",
+      "bytes": 7517
+    },
+    {
+      "file": "nmap_os_aggressive_permissive_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "os_aggressive_permissive",
+      "sha256": "b48f65235470a9dd763a79157acf8862bfa291775d82be88ccecff439428a83b",
+      "bytes": 18721
+    },
+    {
+      "file": "nmap_os_aggressive_permissive_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "os_aggressive_permissive_xml",
+      "sha256": "b48f65235470a9dd763a79157acf8862bfa291775d82be88ccecff439428a83b",
+      "bytes": 18721
+    },
+    {
+      "file": "nmap_service_version_corporate_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "service_version_corporate",
+      "sha256": "1e11703e469afdc693b872cf73875c0c02dfd49797ae524db1c8dbd7d72cd10d",
+      "bytes": 13133
+    },
+    {
+      "file": "nmap_service_version_corporate_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "service_version_corporate_xml",
+      "sha256": "1e11703e469afdc693b872cf73875c0c02dfd49797ae524db1c8dbd7d72cd10d",
+      "bytes": 13133
+    },
+    {
+      "file": "nmap_service_version_permissive_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "service_version_permissive",
+      "sha256": "096b392f9230f33c2d1682e71342218b543bc720166bf66327b05d5116ed49f5",
+      "bytes": 4991
+    },
+    {
+      "file": "nmap_service_version_permissive_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "service_version_permissive_xml",
+      "sha256": "096b392f9230f33c2d1682e71342218b543bc720166bf66327b05d5116ed49f5",
+      "bytes": 4991
+    },
+    {
+      "file": "nmap_skip_ping_permissive_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "skip_ping_permissive",
+      "sha256": "eef7aea3936e49db94b294bf80532a669a49a5d1ddc90589d0a990933120f97a",
+      "bytes": 2945
+    },
+    {
+      "file": "nmap_skip_ping_permissive_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "skip_ping_permissive_xml",
+      "sha256": "eef7aea3936e49db94b294bf80532a669a49a5d1ddc90589d0a990933120f97a",
+      "bytes": 2945
+    },
+    {
+      "file": "nmap_tcp_top_ports_corporate_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "tcp_top_ports_corporate",
+      "sha256": "6b2d427e69d3583408c4183806396d171c596295bd4793c9d12bbfbd97ddc09f",
+      "bytes": 7621
+    },
+    {
+      "file": "nmap_tcp_top_ports_corporate_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "tcp_top_ports_corporate_xml",
+      "sha256": "6b2d427e69d3583408c4183806396d171c596295bd4793c9d12bbfbd97ddc09f",
+      "bytes": 7621
+    },
+    {
+      "file": "nmap_tcp_top_ports_local_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "tcp_top_ports_local",
+      "sha256": "e5f9e9aad7b95f83b594ddfa981dcd5eba90d55edb7796ad47dfdc41ef19a65c",
+      "bytes": 5114
+    },
+    {
+      "file": "nmap_tcp_top_ports_local_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "tcp_top_ports_local_xml",
+      "sha256": "e5f9e9aad7b95f83b594ddfa981dcd5eba90d55edb7796ad47dfdc41ef19a65c",
+      "bytes": 5114
+    },
+    {
+      "file": "nmap_tcp_top_ports_permissive_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "tcp_top_ports_permissive",
+      "sha256": "a258eb0aef846adb2be615072c5bf90ac1420d0a9ffdf272d8cd125b87a9f393",
+      "bytes": 3691
+    },
+    {
+      "file": "nmap_tcp_top_ports_permissive_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "tcp_top_ports_permissive_xml",
+      "sha256": "a258eb0aef846adb2be615072c5bf90ac1420d0a9ffdf272d8cd125b87a9f393",
+      "bytes": 3691
+    },
+    {
+      "file": "nmap_traceroute_permissive_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "traceroute_permissive",
+      "sha256": "ce4326b5a0378e8d0c40f07a76a2dcb7525655d3c84997f7acfcfb708a70bd50",
+      "bytes": 8829
+    },
+    {
+      "file": "nmap_traceroute_permissive_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "traceroute_permissive_xml",
+      "sha256": "ce4326b5a0378e8d0c40f07a76a2dcb7525655d3c84997f7acfcfb708a70bd50",
+      "bytes": 8829
+    },
+    {
+      "file": "nmap_udp_top_permissive_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "udp_top_permissive",
+      "sha256": "63206d9de2247f0d8ec824fa33157efbfd25efe3f25199e2eb07fb7f43fb6bc5",
+      "bytes": 7865
+    },
+    {
+      "file": "nmap_udp_top_permissive_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "udp_top_permissive_xml",
+      "sha256": "63206d9de2247f0d8ec824fa33157efbfd25efe3f25199e2eb07fb7f43fb6bc5",
+      "bytes": 7865
+    },
+    {
+      "file": "nmap_windows_enrich_local_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "windows_enrich_local",
+      "sha256": "c45898c5aa8b9d1b0ab59dda8f32d327cc3054ce3528d3cf4d22e01e7ce04b8a",
+      "bytes": 1850
+    },
+    {
+      "file": "nmap_windows_enrich_local_xml_proposed_nuggets_edges_description.md",
+      "tool": "nmap",
+      "scenario_key": "windows_enrich_local_xml",
+      "sha256": "c45898c5aa8b9d1b0ab59dda8f32d327cc3054ce3528d3cf4d22e01e7ce04b8a",
+      "bytes": 1850
+    }
+  ]
+}
