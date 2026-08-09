@@ -167,7 +167,7 @@ Refine the already-delivered Projects and Composer pages (SPEC-011) and the embe
 | ID | Requirement |
 |----|-------------|
 | R13-23 | Track the DAG bounding geometry at 100% zoom: vertical centre line, full width left-of-centre and right-of-centre, and top/bottom, updated on every layout change. |
-| R13-24 | Default view = 50% zoom, DAG centered horizontally, **Start** shape at the top, remainder reachable by vertical scroll. If the DAG is wider than the host at that zoom, zoom out until the left/right edges are 5px inside the host edges. Provide an **on-canvas reset** control that restores this default view. |
+| R13-24 | Default view = **70%** zoom, DAG centered horizontally, **Start** shape at the top, remainder reachable by vertical scroll. If the DAG is wider than the host at that zoom, zoom out until the left/right edges are **10px** inside the host edges (graph width + 10px each side). Host Workflow Bar **reset** control restores this default (or fullscreen split when left column is full). |
 
 #### Epic Y4 — Zoom/pan rework + legend toggle
 
@@ -180,7 +180,7 @@ Refine the already-delivered Projects and Composer pages (SPEC-011) and the embe
 
 | ID | Requirement |
 |----|-------------|
-| R13-27 | Smoke + visual verification on both seed workflows (`12A`, `12A2`) in embed and standalone: title bar gone; embed renders full-bleed with correct scrollbar/legend; default 50%/fit view correct; CTRL zoom + wheel/drag pan behave per R13-25; pencil/gear host messages toggle edit + settings + legend. Screenshots attached. **[OPERATOR GATE]** |
+| R13-27 | Smoke + visual verification on both seed workflows (`12A`, `12A2`) in embed and standalone: title bar gone; embed renders full-bleed with correct scrollbar/legend; default **70%**/fit view correct; CTRL zoom + wheel/drag pan behave per R13-25; pencil/gear/reset host messages toggle edit + settings + legend + view reset. Screenshots attached. **[OPERATOR GATE]** |
 
 ---
 

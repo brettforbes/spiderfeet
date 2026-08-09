@@ -115,9 +115,9 @@ If you always know the size, locations and centre line of the DAG Workflow, base
 
 Based on the width of the host iFrame, and the dimensions/location of the DAG Workflow Viz, you can instantly calculate how to show the DAG Workflow Viz in the host iFrame.
 
-Rule 1: Start with a zoom of 50%, show the DAG Workflow Viz at the centre of the host iFrame, with the Start shape at the top of the screen. then  a user can scroll down to see more of the diagram
+Rule 1: Start with a zoom of 70%, show the DAG Workflow Viz at the centre of the host iFrame, with the Start shape at the top of the screen. then  a user can scroll down to see more of the diagram
 
-Rule 2: If the DAG Workflow Viz is to wide for the host iFrame, then zoom out further until the left edge of the DAG Workflow Viz is 5px in from the left edge of the host iFrame, and the right edge of the DAG Workflow Viz is 5px in from the right edge of the host iFrame.
+Rule 2: If the DAG Workflow Viz is too wide for the host iFrame at 70%, then zoom out further until the left edge of the DAG Workflow Viz is 10px in from the left edge of the host iFrame, and the right edge of the DAG Workflow Viz is 10px in from the right edge of the host iFrame (graph width + 10px each side).
 
 Rule 3: Enable the User to use CTRL + and CTRL - to zoom in and out, but provide an option to reset back to default view of rule 1/2 above.
 
