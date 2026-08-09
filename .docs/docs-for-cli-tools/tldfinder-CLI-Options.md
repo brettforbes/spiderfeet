@@ -1,43 +1,84 @@
 # tldfinder CLI Options
 
-Quick option reference for `tldfinder`. Validate exact switches with `tldfinder -h`.
+Evidence: **tldfinder v0.0.2** — `C:\projects\spiderfeet\.tools\tldfinder\tldfinder.exe`  
+Captured: **2026-08-10** from `.tmp_tldfinder_help/help_long.txt`  
+Prefer JSONL: `-oJ` / `-json`
 
-## Standard option classes
+```
+A streamlined tool for discovering private TLDs for security research.
 
-| Class | Typical options | Purpose |
-|---|---|---|
-| Seed input | `-d`, `-l` | Provide initial domains/targets |
-| Output mode | `-json` | Structured parser-friendly output |
-| Basic run controls | verbosity/silent flags | Human vs automated operation |
+Usage:
+  C:\projects\spiderfeet\.tools\tldfinder\tldfinder.exe [flags]
 
-## Advanced option classes
+Flags:
+INPUT:
+   -d, -domain string[]  domain or list of domains for discovery (file or comma separated)
 
-| Class | Typical options | Purpose |
-|---|---|---|
-| Confidence filters | threshold/min-score flags | Keep high-signal candidates |
-| Resolver selection | `-r` | Validate from specific resolver sets |
-| Runtime tuning | concurrency/rate flags | Scale large runs safely |
+SOURCE:
+   -s, -sources string[]           specific sources to use for discovery (-s censys,dnsrepo). Use -ls to display all available sources.
+   -es, -exclude-sources string[]  sources to exclude from enumeration (-es censys,dnsrepo)
+   -dm, -discovery-mode value      discovery mode (dns,tld,domain) (default dns)
+   -all                            use all sources for enumeration (slow)
 
-## Examples by major option class
+FILTER:
+   -m, -match string[]   domain or list of domain to match (file or comma separated)
+   -f, -filter string[]   domain or list of domain to filter (file or comma separated)
 
-```bash
-# Single seed
-tldfinder -d example.com -json
+RATE-LIMIT:
+   -rl, -rate-limit int      maximum number of http requests to send per second (global)
+   -rls, -rate-limits value  maximum number of http requests to send per second four providers in key=value format (-rls hackertarget=10/m) (default ["waybackarchive=15/m", "whoisxmlapi=50/s", "whoisxmlapi=30/s"])
+   -t int                    number of concurrent goroutines for resolving (-active only) (default 10)
 
-# Seed list
-tldfinder -l seeds.txt -json
+UPDATE:
+   -up, -update                 update tldfinder to latest version
+   -duc, -disable-update-check  disable automatic tldfinder update check
 
-# Confidence-filtered run
-tldfinder -l seeds.txt -json -min-confidence 0.7
+OUTPUT:
+   -o, -output string       file to write output to
+   -oJ, -json               write output in JSONL(ines) format
+   -oD, -output-dir string  directory to write output (-dL only)
+   -cs, -collect-sources    include all sources in the output (-json only)
+   -oI, -ip                 include host IP in output (-active only)
 
-# Resolver-controlled pass
-tldfinder -l seeds.txt -json -r resolvers.txt
+CONFIGURATION:
+   -config string                flag config file (default "C:\\Users\\brett\\AppData\\Roaming\\tldfinder\\config.yaml")
+   -pc, -provider-config string  provider config file (default "C:\\Users\\brett\\AppData\\Roaming\\tldfinder\\provider-config.yaml")
+   -r string[]                   comma separated list of resolvers to use
+   -rL, -rlist string            file containing list of resolvers to use
+   -nW, -active                  display active domains only
+   -proxy string                 http proxy to use with tldfinder
+   -ei, -exclude-ip              exclude IPs from the list of domains
+
+DEBUG:
+   -silent             show only domains in output
+   -version            show version of tldfinder
+   -v                  show verbose output
+   -nc, -no-color      disable color in output
+   -ls, -list-sources  list all available sources
+   -stats              report source statistics
+
+OPTIMIZATION:
+   -timeout int   seconds to wait before timing out (default 30)
+   -max-time int  minutes to wait for enumeration results (default 10)
 ```
 
-## Conversion reminder
+## Sources (`tldfinder -ls`, v0.0.2)
 
-Map parsed findings to SpiderFeet graph payloads:
-- `nodes[]`: seed and candidate namespace/host nodes
-- `edges[]`: `suggests_private_tld`, `expands_to_candidate_host`
+Sources marked `*` need keys/tokens in `provider-config.yaml`:
 
-Reference: `.cursor/skills/tldfinder/references/nugget-mapping.md`.
+- censys *
+- dnsx
+- whoisxmlapi *
+- crtsh
+- whoxy *
+- bufferover *
+- dnsrepo *
+- netlas *
+- waybackarchive
+
+## Notes
+
+- Input is a **private TLD** label (e.g. `google`) or a name under one; see README.
+- Prefer `-oJ` for automation and SpiderFeet corpus harvest.
+- `-oD` help mentions `-dL`; v0.0.2 INPUT documents only `-d` (file or comma-separated) — do not invent `-dL` unless your binary lists it.
+- Skill: `.cursor/skills/tldfinder/SKILL.md`
