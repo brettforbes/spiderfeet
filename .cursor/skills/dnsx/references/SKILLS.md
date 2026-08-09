@@ -2,10 +2,32 @@
 
 | File | Contents |
 |------|----------|
-| [cli-options.md](cli-options.md) | Standard and advanced dnsx flags with practical usage classes |
-| [output-schema-and-parsing.md](output-schema-and-parsing.md) | JSON output fields, parsing strategy, and normalization notes |
-| [nugget-mapping.md](nugget-mapping.md) | dnsx output to SpiderFeet `nodes[]` and `edges[]` conversion |
-| [tactics-and-workflows.md](tactics-and-workflows.md) | Sequenced operating playbooks for recon and enrichment |
-| [sources.md](sources.md) | Official docs, code, releases, and practitioner references |
+| [cli-options.md](cli-options.md) | All flags grouped by INPUT, QUERY, FILTER, OUTPUT, etc. |
+| [json-output-schema.md](json-output-schema.md) | `-json` JSON Lines record shapes |
+| [workflows-and-phases.md](workflows-and-phases.md) | subfinder → dnsx → httpx → naabu → nuclei |
+| [tactics.md](tactics.md) | Wildcards, resolvers, thin yield, rate limits |
+| [nugget-mapping.md](nugget-mapping.md) | JSONL → SpiderFeet nuggets + `nodes[]`/`edges[]` |
+| [sources.md](sources.md) | ProjectDiscovery docs and articles |
 
-Recommended read order: `output-schema-and-parsing.md` -> `nugget-mapping.md` -> `cli-options.md`.
+**Read order for new agents**
+
+1. `workflows-and-phases.md` — where dnsx sits in recon pipelines.
+2. `cli-options.md` — build query commands from live flag set.
+3. `json-output-schema.md` — always `-json` for automation.
+4. `nugget-mapping.md` — emit DNS/host nuggets for corpus and httpx chaining.
+5. `tactics.md` — adapt when wildcards, SERVFAIL, or thin answers appear.
+
+**Operator docs (repo)**
+
+| File | Contents |
+|------|----------|
+| `.docs/docs-for-cli-tools/dnsx-Zero-to-Hero.md` | Install → resolve → JSONL → nuggets → pipelines |
+| `.docs/docs-for-cli-tools/dnsx-CLI-Options.md` | Full CLI reference + captured help |
+
+**Help captures:** `.tmp_dnsx_help/` — **2026-08-10**, binary `C:\projects\spiderfeet\.tools\dnsx\dnsx.exe` **v1.2.3**.
+
+**Upstream skills:** [`../../subfinder/SKILL.md`](../../subfinder/SKILL.md)
+
+**Downstream skills:** [`../../httpx/SKILL.md`](../../httpx/SKILL.md), [`../../naabu/SKILL.md`](../../naabu/SKILL.md), [`../../nuclei/SKILL.md`](../../nuclei/SKILL.md)
+
+**Ontology:** `.docs/docs-for-cli-tools/_Current_Ontology.md` — dnsx feeds NETWORKS / host qualification before APPLICATIONS.
