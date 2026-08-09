@@ -13,6 +13,7 @@ description: Explore, formally examine, and profile CLI OSINT tools for SpiderFe
 **Tool manifests:** `.seed/scripts/cli_corpus/manifests/<tool>.yaml`  
 **New-tool onboarding (start here):** `.seed/scripts/cli_corpus/ONBOARDING.md`  
 **Graph/narrative rules:** `.cursor/rules/proj-07-cli-graph-rules-engine.mdc`  
+**Narrative v3 (SPEC-014):** `.governance/specs/SPEC-014-narrative-meta-concept-reports.md`  
 **Architecture guide:** `.docs/docs-for-cli-tools/SPEC004_SYSTEM_GUIDE.md`
 
 ## Phases (per tool)
@@ -21,9 +22,9 @@ description: Explore, formally examine, and profile CLI OSINT tools for SpiderFe
 2. **Formal examination plan** — named scenarios, targets, expected data types; every matrix row mapped to a scenario or documented limitation.
 3. **Strategy skill** — `.strategy/<tool>_strategy.skill` (complements `.cursor/skills/<tool>/`).
 4. **CLI help capture** — `.docs/docs-for-cli-tools/<Tool>-CLI-Options.md` (heading + fenced raw `--help` / `-h` output).
-5. **Adapter + YAML** — copy `adapters/_template` + `rules/_template`; implement four-output API; wire `harvest.py` `ADAPTER_TOOLS` (see ONBOARDING.md). **No new `*_to_graph.py`.**
+5. **Adapter + YAML** — copy `adapters/_template` + `rules/_template`; implement four-output API; wire `harvest.py` `ADAPTER_TOOLS` (see ONBOARDING.md). **No new `*_to_graph.py`.** Narrative: thin `to_narrative()` → `render_narrative` only; tool knobs live in `rules/<tool>/narrative.yaml` (no per-tool narrative Python).
 6. **Formal examination** — run `harvest.py`; outputs under `app_examination_docs/<tool>/` plus `nugget_structure/` graph + narrative.
-7. **Nugget / narrative proposal** — tool structure MD + per-scenario graph JSON + §4.3 description MD from the **shared narrative engine**.
+7. **Nugget / narrative proposal** — tool structure MD + per-scenario graph JSON + §4.3 description MD from the **shared meta-concept engine** (`core/narrative_engine.py` + `core/meta_narrative.py` + `rules/_shared/narrative_v2.yaml`).
 8. **Operator review** — CLI Profiling four panes; `*_review.status.json` → `approved` | `rejected`; `corpus_index.json` → `complete` on sign-off.
 
 **Excluded:** Aircrack-ng (hardware pending).
@@ -91,8 +92,8 @@ Directory: `.docs/docs-for-cli-tools/app_examination_docs/<tool>/`
 Nugget drafts: `.docs/docs-for-cli-tools/nugget_structure/`
 
 - `<tool>_<scenario_id>_proposed_nuggets_edges.json`
-- `<tool>_<scenario_id>_proposed_nuggets_edges_description.md` — §4.3 narrative (shared engine; type-only Mermaid in body)
-- `<tool>_nugget_graph_structure.md` — tool-level structure doc
+- `<tool>_<scenario_id>_proposed_nuggets_edges_description.md` — §4.3 narrative (progressive disclosure; see Narrative contract)
+- `<tool>_nugget_graph_structure.md` — tool-level structure doc (SPEC-006; type-only Mermaids)
 
 ## Running examinations
 
@@ -108,6 +109,9 @@ python .seed/scripts/cli_corpus/harvest.py --tool nmap --dry-run
 
 # Regenerate graph + narrative from existing structured (no CLI re-run)
 python .seed/scripts/cli_corpus/backfill_adapter_four_outputs.py --tool nmap
+
+# Force-overwrite graph + narrative for all scenarios of a tool (or omit --tool for all eight)
+python .seed/scripts/cli_corpus/backfill_adapter_four_outputs.py --tool nmap --force
 ```
 
 ## Operator review UI
@@ -133,20 +137,50 @@ Every examination produces a **scan head** node plus discovered entities linked 
 
 Emit `nodes[]` and `edges[]`; scan owns discoveries via `contains`. Use `core.graph_builder` for catalogue lookup, uuid5 ids, deduplication, and `validate_graph()`. Prefer `adapters/` + `rules/` over legacy converters. See [v2-graph-rules.md](references/v2-graph-rules.md) and proj-07.
 
-## Narrative contract
+## Narrative contract (SPEC-014 progressive disclosure)
 
-Follow ontology §4.3 and proj-07 narrative quality bar:
+**Active path:** `.seed/scripts/cli_corpus/core/` (what harvest/backfill/API write). Mirror under `modules_v2/_core` when changing shared code.
 
-- Meta-concepts (Scan → Host/System/CDN → Trace) with category subsections
-- Prose + **type-relation Mermaid** (no value labels) + optional tables
-- Full appendix; `validate_narrative_coverage`
-- Factual introduction (tool + hierarchy guide)
+| Piece | Role |
+|-------|------|
+| `rules/_shared/narrative_v2.yaml` | Meta-concept registry (scan, host, system, cdn, org, domain, url, service_port, environment, security, trace) |
+| `core/meta_narrative.py` | Overview Mermaid, capped example Mermaid (`+N more`), category tables, prose, deduped appendix |
+| `core/narrative_engine.py` → `render_narrative` | Composes Title → Introduction → present meta-concepts → Conclusion → Appendix |
+| `rules/<tool>/narrative.yaml` | Declarative overrides only (`tool_name`, `phrasing`, `intro_facts`, `meta_concepts`, `include_*`, …) |
+| Adapter `to_narrative()` | **One-line shim** calling `render_narrative` — no bespoke builders |
+
+**Report shape (not a single flat type graph):**
+
+1. Factual **Introduction** (tool + hierarchy guide).
+2. Per **present** meta-concept: prose → **Structure overview** Mermaid (**type-only**) → per present category: capped **example** Mermaid (values allowed, `example_cap` + `+N more`) + **full value table**.
+3. **Conclusion** → one **Appendix** (nodes + edges once; no duplicate edge inventories).
+4. Shape cap ~12 nodes per Mermaid; empty categories are omitted.
+
+**Forbidden:** per-tool narrative Python; `NarrativeReportBuilder`-style forks; primary diagram = one global `type_relation_mermaid`; regenerating by re-scanning when `backfill --force` suffices.
+
+**Validators (run after backfill / before claiming MD complete):**
+
+```bash
+# Coverage + meta-concept + shape cap + example-cap + appendix dedupe
+poetry run pytest .tests/test_narrative_validators.py .tests/test_max_common_invariant.py -q
+
+# nmap/netdiscover match-or-beat vs BD1 reference fixtures (after engine changes)
+poetry run python .seed/scripts/cli_corpus/match_or_beat.py
+```
+
+Use `core.narrative_validators.validate_narrative_report(graph, md)` in ad-hoc checks. Max-common gate fails if adapters grow narrative logic or `narrative.yaml` introduces unknown keys.
+
+**Quality target:** hierarchy legibility of `modules_v2/content/<tool>/graph_structure.md`, plus capped example values + tables in the Report tab. Review index pattern: `.governance/project/SPEC014_REVIEW_INDEX.md`.
+
+## Nuclei large inputs (modules_v2)
+
+When profiling or executing nuclei against large URL sets: `modules_v2/sfp_cli_nuclei.py` chunks targets (`batch_size` default **20**), fans out `option_passes` (tags/severity/templates), aggregates JSONL into one `nuclei_finding_v1` bundle, and reports `progress` / `bundles scanned across all options: N`. Argv arrays only — never shell strings. Prefer one-batch-one-goal passes per `nuclei_strategy` skill.
 
 ## Tool order
 
 **Nmap pilot:** complete (2026-06-26) — see `.docs/docs-for-cli-tools/nmap_pilot_signoff.md`.
 
-**Netdiscover:** complete (2026-06-29) — five windows-lan scenarios; reference for text_native + narrative quality.
+**Netdiscover:** complete (2026-06-29) — five windows-lan scenarios; now on the **same** shared narrative engine as other tools (SPEC-014 BD2).
 
 **SPEC-004 adapters:** nmap, netdiscover, nerva, pius, subfinder, httpx, katana, nuclei — patterns to copy.
 
@@ -162,6 +196,7 @@ Next tools: follow `corpus_index.json` priority after exploration gate passes; o
 | [references/exploration-examination-lessons.md](references/exploration-examination-lessons.md) | Nuclei/Pius lessons; target taxonomy; harvest pitfalls |
 | [references/evidence-layout.md](references/evidence-layout.md) | File naming + scenario bundles |
 | `../../ONBOARDING.md` (cli_corpus) | End-to-end new-tool checklist |
+| `.governance/specs/SPEC-014-narrative-meta-concept-reports.md` | Narrative v3 + nuclei batching requirements |
 | `@spiderfeet-widget/.docs/data-viewer-embed.md` | Data Viewer host integration |
 
 Per-tool skills: `.cursor/skills/<tool>/SKILL.md` and Zero-to-Hero docs under `.docs/docs-for-cli-tools/`.

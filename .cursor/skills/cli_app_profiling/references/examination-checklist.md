@@ -20,6 +20,8 @@
 - [ ] Follow `.seed/scripts/cli_corpus/ONBOARDING.md` (adapter + YAML path — no new `*_to_graph.py`)
 - [ ] Add/update `.seed/scripts/cli_corpus/manifests/<tool>.yaml`
 - [ ] Scaffold `adapters/<tool>/` + `rules/<tool>/mapping.yaml` + `narrative.yaml` from `_template/`
+- [ ] `to_narrative()` is a thin `render_narrative` shim only (no per-tool narrative Python; R14-07)
+- [ ] `narrative.yaml` keys are engine-consumed or allowed metadata (`core/max_common_invariant.py`)
 - [ ] Wire tool into `harvest.py` `ADAPTER_TOOLS`; implement `build_outputs`
 - [ ] Run `harvest.py` for each scenario (structured flags when available; derive Text; `cls` before true text-native runs only)
 - [ ] For WSL tools: do not run `wsl --shutdown` before harvest; confirm DNS resolves in the same WSL session
@@ -31,9 +33,12 @@
 - [ ] Graph via adapter + `core.graph_builder` / topology; `classify_ip` for addresses; `validate_graph()` passes
 - [ ] Load nugget templates from `nuggets.json` + `nuggets_extension.json`; new types only in extension
 - [ ] Draft `nugget_structure/<tool>_nugget_graph_structure.md`
-- [ ] Narrative via shared engine → `*_proposed_nuggets_edges_description.md` (§4.3: meta-concepts, type Mermaid, appendix)
+- [ ] Narrative via shared engine → `*_proposed_nuggets_edges_description.md` (SPEC-014: per meta-concept overview + capped example Mermaid + table + **one** deduped appendix)
+- [ ] Overview Mermaids type-only; category example diagrams may show capped values + `+N more` (full set in table)
+- [ ] `validate_narrative_report` / narrative validator tests green for new scenarios
 - [ ] CLI Profiling shows T / S / G / MD for **every** scenario — no graph = incomplete
 - [ ] Set `*_review.status.json` to `pending`
+- [ ] After engine changes: prefer `backfill_adapter_four_outputs.py --force` (do not re-scan for narrative-only regen)
 
 ## Operator gate
 
@@ -42,7 +47,7 @@
 - [ ] On approval: record sign-off doc under `.docs/docs-for-cli-tools/<tool>_pilot_signoff.md`
 - [ ] On approval: set `corpus_index.json` tool phase to `complete` when pilot criteria met
 - [ ] On approval: update `nuggets_extension.json` / TypeQL as needed (not `nuggets.json` for new tool types)
-- [ ] Byte-lock golden narratives only after visual sign-off (SPEC-004 R4-01-08 / SPEC-005 K1)
+- [ ] Byte-lock golden narratives only after visual sign-off (SPEC-004 R4-01-08 / SPEC-005 K1 / SPEC-014 BF1 pattern)
 
 ## Do not
 
@@ -54,3 +59,7 @@
 - Lock examinations that only capture info noise when the matrix row needs critical/CVE/org signal
 - Ship a scenario without graph + narrative Markdown
 - Use `graph_deferred` for any reason
+- Add bespoke narrative builders or grow adapter `to_narrative` beyond a one-line shim
+- Use one flat global type Mermaid as the primary Report diagram
+- Exceed Mermaid shape / example caps (overflow belongs in the table)
+- Re-scan CLI tools solely to refresh narrative Markdown when backfill can regenerate from structured
