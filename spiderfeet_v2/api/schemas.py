@@ -166,20 +166,34 @@ WORKFLOW_CREATE_OPENAPI_EXAMPLES = {
 
 
 class ProjectCreate(BaseModel):
+    """Create a project entity (standalone OK — workflow_ids optional)."""
+
     project_id: str = Field(..., examples=["project--demo"])
+    project_name: Optional[str] = Field(None, examples=["Demo Project"])
+    project_description: Optional[str] = Field(
+        None, examples=["A project to scan the target domain"]
+    )
+    project_created: Optional[str] = Field(
+        None,
+        examples=["2026-08-09T10:00:00Z"],
+        description="ISO-8601 datetime; server may supply when omitted.",
+    )
     stix_incident_id: Optional[str] = None
-    created: Optional[str] = None
     workflow_ids: List[str] = Field(
-        ...,
-        min_length=1,
+        default_factory=list,
         examples=[["workflow--recon-12a"]],
-        description="At least one workflow (TypeDB 3 cannot persist playerless relations).",
+        description=(
+            "Optional. Derived links are written as workflow→project. "
+            "Empty list creates a standalone project entity (R13-03)."
+        ),
     )
 
 
 class ProjectUpdate(BaseModel):
+    project_name: Optional[str] = None
+    project_description: Optional[str] = None
+    project_created: Optional[str] = None
     stix_incident_id: Optional[str] = None
-    created: Optional[str] = None
     workflow_ids: Optional[List[str]] = None
 
 
@@ -187,13 +201,18 @@ class ProjectOut(BaseModel):
     model_config = ConfigDict(extra="allow")
 
     project_id: str
+    project_name: Optional[str] = None
+    project_description: Optional[str] = None
+    project_created: Optional[str] = None
     stix_incident_id: Optional[str] = None
-    created: Optional[str] = None
-    workflow_ids: List[str] = Field(default_factory=list)
+    workflow_ids: List[str] = Field(
+        default_factory=list,
+        description="Workflow ids that link this project (derived).",
+    )
 
 
 class ProjectProjectionOut(BaseModel):
-    """AL3 projection: workflows/targets/context ids."""
+    """AL3 projection: workflows/targets/context ids + CRUD project attrs."""
 
     model_config = ConfigDict(extra="allow")
 
@@ -202,12 +221,17 @@ class ProjectProjectionOut(BaseModel):
     targets: List[str] = Field(default_factory=list)
     project_context: List[str] = Field(default_factory=list)
     temporary_subgraph: List[str] = Field(default_factory=list)
+    project_name: Optional[str] = None
+    project_description: Optional[str] = None
+    project_created: Optional[str] = None
     stix_incident_id: Optional[str] = None
-    created: Optional[str] = None
 
 
 PROJECT_CREATE_EXAMPLE = {
     "project_id": "project--demo",
+    "project_name": "Demo Project",
+    "project_description": "A project to scan the target domain",
+    "project_created": "2026-08-09T10:00:00Z",
     "stix_incident_id": "incident--demo",
     "workflow_ids": ["workflow--recon-12a"],
 }
@@ -216,7 +240,16 @@ PROJECT_CREATE_OPENAPI_EXAMPLES = {
     "demo": {
         "summary": "Project with one workflow",
         "value": PROJECT_CREATE_EXAMPLE,
-    }
+    },
+    "standalone": {
+        "summary": "Standalone project (no workflows yet)",
+        "value": {
+            "project_id": "project--new",
+            "project_name": "New Project",
+            "project_description": "Info-only; workflow added later",
+            "project_created": "2026-08-09T10:00:00Z",
+        },
+    },
 }
 
 
