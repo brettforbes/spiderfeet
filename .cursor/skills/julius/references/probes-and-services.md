@@ -1,81 +1,65 @@
-# Julius Supported Services (32 probes)
+# Julius Supported Services (live `list` — 63 probes)
 
-Julius fingerprints **HTTP(S) LLM inference, gateway, and RAG/orchestration** endpoints via embedded YAML probes. Probes are sorted by **port_hint** relevance before execution.
+Source of truth for this host: **`julius list`** on `C:\projects\spiderfeet\.tools\julius\julius.exe` (**2026-08-10**). Count: **63** probe names (including `openai-compatible`). Bundled README may advertise slightly different totals; prefer live `list`.
 
-## Categories
+Julius fingerprints **HTTP(S) LLM inference, gateway, MCP, RAG/orchestration, and cloud AI** endpoints via embedded YAML probes. Port hints **prioritize** probe order; Julius still runs the probe set.
 
-| Category | Count | Specificity range | Notes |
-|----------|-------|-------------------|-------|
-| Self-hosted LLM servers | 15 | 50–100 | Ollama (100), vLLM, LocalAI, llama.cpp, TGI, LM Studio, … |
-| Gateway services | 3 | 75–85 | LiteLLM, Kong AI Gateway, Envoy AI Gateway |
-| RAG & orchestration | 12 | 50–80 | Open WebUI, Dify, Flowise, LibreChat, NextChat, Onyx, … |
-| Cloud-managed | 1 | 75 | Salesforce Einstein |
-| Generic fallback | 1 | 1 | `openai-compatible` — lowest priority |
+## Categories (aligned with README + live names)
 
-## Self-hosted (port hints)
+| Category | Approx. count | Examples |
+|----------|---------------|----------|
+| Self-hosted LLM servers | 25 | `ollama`, `vllm`, `localai`, `sglang`, `huggingface-tgi`, … |
+| Gateway / proxy | 8 | `litellm`, `bifrost`, `kong-proxy`, `envoy-ai-gateway`, … |
+| MCP | 1 | `mcp-server` |
+| RAG & orchestration | 18 | `open-webui`, `dify`, `flowise`, `anythingllm`, … |
+| Cloud-managed | 10 | `aws-bedrock`, `azure-openai`, `vertex-ai`, `groq`, … |
+| Generic fallback | 1 | `openai-compatible` (specificity 1) |
 
-| Service | Probe | Port hint | Specificity | Models | Augustus |
-|---------|-------|-----------|-------------|--------|----------|
-| Ollama | `ollama` | 11434 | 100 | Yes | Yes |
-| vLLM | `vllm` | 8000 | 75 | Yes | Yes |
-| LocalAI | `localai` | 8080 | 75 | Yes | Yes |
-| llama.cpp | `llama-cpp` | 8080 | 50 | Yes | Yes |
-| Hugging Face TGI | `huggingface-tgi` | 3000 | 75 | Yes | Yes |
-| LM Studio | `lm-studio` | 1234 | 70 | Yes | Yes |
-| Aphrodite Engine | `aphrodite-engine` | 2242 | 75 | Yes | Yes |
-| FastChat | `fastchat-controller` | 21001 | 75 | Yes | Yes |
-| GPT4All | `gpt4all` | 4891 | 75 | Yes | Yes |
-| Gradio | `gradio` | 7860 | 75 | No | No |
-| Jan | `jan` | 1337 | 75 | Yes | Yes |
-| KoboldCpp | `koboldcpp` | 5001 | 75 | Yes | Yes |
-| NVIDIA NIM | `nvidia-nim` | 8000 | 75 | Yes | Yes |
-| TabbyAPI | `tabbyapi` | 5000 | 75 | Yes | Yes |
-| Text Generation WebUI | `text-generation-webui` | 5000 | 75 | Yes | Yes |
+## Probe names (alphabetical, from live `list`)
 
-## Gateway
+```
+anythingllm, aphrodite-engine, astrbot, aws-bedrock, azure-openai,
+baseten-truss, bentoml, betterchatgpt, bifrost, cloudflare-ai-gateway,
+deepspeed-mii, dify, envoy-ai-gateway, fastchat-controller, fireworks-ai,
+flowise, gpt4all, gradio, groq, h2ogpt, helicone, huggingface-chat-ui,
+huggingface-tgi, jan, koboldcpp, kong-proxy, langflow, librechat, litellm,
+llama-cpp, lm-studio, lobehub, localai, mcp-server, mlc-llm, modal,
+nextchat, nvidia-nim, ollama, omniroute, onyx, open-webui, openai-compatible,
+openclaw, petals, portkey-ai-gateway, powerinfer, privategpt, quivr,
+ragflow, ray-serve, replicate, salesforce-einstein, sglang, sillytavern,
+tabbyapi, tensorrt-llm, tensorzero, text-generation-webui, together-ai,
+triton-inference-server, vertex-ai, vllm
+```
 
-| Service | Probe | Port | Specificity |
-|---------|-------|------|-------------|
-| LiteLLM | `litellm` | 4000 | 85 |
-| Kong AI Gateway | `kong-ai-proxy` | 8000 | 80 |
-| Envoy AI Gateway | `envoy-ai-gateway` | 80 | 75 |
+## Common port hints (targeting)
 
-## RAG & orchestration (selected)
+| Ports | Likely services |
+|-------|-----------------|
+| 11434 | Ollama |
+| 8000, 8080 | vLLM, LocalAI, NIM, gateways |
+| 7860 | Gradio, Langflow, h2oGPT |
+| 4000 | LiteLLM |
+| 3000, 3001, 3080, 3210 | Web UIs (Open WebUI, Flowise, LibreChat, LobeHub, …) |
+| 1234 | LM Studio |
+| 443 | Cloud APIs, HTTPS frontends, MCP |
+| 8265 | Ray Serve |
+| 18789 | OpenClaw |
+| 30000 | SGLang |
 
-| Service | Probe | Port | Specificity |
-|---------|-------|------|-------------|
-| Open WebUI | `openwebui` | 3000 | 80 |
-| Dify | `dify` | 80 | 75 |
-| Flowise | `flowise` | 3000 | 75 |
-| LibreChat | `librechat` | 3080 | 50 |
-| NextChat | `nextchat` | 3000 | 75 |
-| Onyx | `onyx` | 3000 | 75 |
-
-Full table: https://github.com/praetorian-inc/julius/wiki/Supported-Services
+Full human descriptions: bundled `.tools/julius/README.md` and [Supported Services wiki](https://github.com/praetorian-inc/julius/wiki/Supported-Services).
 
 ## Match strategies (probe YAML)
 
 | `require` | Behavior |
 |-----------|----------|
-| `any` (default) | First matching request wins (e.g. Ollama `/api/tags` OR `/`) |
-| `all` | Every request must match (e.g. vLLM `/version` AND `/v1/models`) |
-
-## Agent targeting tips
-
-When building targets from port scans, map common ports to URL seeds:
-
-| Ports | Likely services |
-|-------|-----------------|
-| 11434 | Ollama |
-| 8000, 8080 | vLLM, LocalAI, Kong, NIM |
-| 7860 | Gradio |
-| 4000 | LiteLLM |
-| 3000, 3001, 3080, 3210 | Web UIs (Open WebUI, Flowise, LibreChat, LobeHub) |
-| 1234 | LM Studio |
-| 443 | Cloud APIs, Einstein, HTTPS gateways |
-
-Julius still runs all probes; port_hint only **prioritizes** probe order.
+| `any` (default) | First matching request wins |
+| `all` | Every request must match |
 
 ## Custom probes
 
-Use `-p ./probes` and validate with `julius validate ./probes`. See [match-rules-and-probes.md](match-rules-and-probes.md).
+```bash
+julius validate ./probes
+julius probe -p ./probes -o jsonl https://target:9000
+```
+
+See `match-rules-and-probes.md`.
