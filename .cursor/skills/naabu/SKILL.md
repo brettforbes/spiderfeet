@@ -1,56 +1,68 @@
 ---
 name: naabu
-description: Fast SYN/CONNECT/UDP port scanning with Naabu, JSON-lines output, and SpiderFeet nugget mapping. Use for port enumeration, host discovery, passive InternetDB recon, CDN-aware scans, and pipelines to httpx, Nerva, Nmap, or Julius on authorized targets.
+description: Fast SYN/CONNECT port scanning with Naabu, JSON-lines output, and SpiderFeet nugget mapping. Use for port enumeration, host discovery, passive InternetDB recon, CDN-aware scans, and pipelines to httpx, Nerva, Nmap, or Julius on authorized targets.
 ---
 
 # Naabu — Port Scan to Nuggets
 
 ## Purpose
 
-Use when you must **enumerate open TCP/UDP ports** on hosts, CIDRs, or stdin-fed target lists faster than full Nmap, capture **`naabu -json`** JSON Lines, and map results to SpiderFeet **`TCP_PORT_OPEN`** / **`UDP_PORT_OPEN`** nuggets — then chain to **httpx**, **Nerva**, **Nmap**, or **Julius**.
+Use when you must **enumerate open ports** on hosts, CIDRs, ASN lists, or stdin-fed targets with [ProjectDiscovery Naabu](https://github.com/projectdiscovery/naabu), capture **`-json` / `-j` JSON Lines**, and map results to SpiderFeet **`TCP_PORT_OPEN`** (and **`UDP_PORT_OPEN`** when UDP ports are requested via `u:port` syntax), then chain to **httpx**, **Nerva**, **Nmap**, or **Julius**.
+
+Run **after** host/name lists exist (`subfinder`, `dnsx`, seed IPs/CIDRs). Prefer Naabu for mass port inventory; escalate to **Nmap** for OS/NSE depth.
+
+**Binary (this repo):** `C:\projects\spiderfeet\.tools\naabu\naabu.exe` — **v2.6.1** (captured **2026-08-10**).
+
+**Windows note:** This binary’s help defaults **`-scan-type` / `-s` to `c` (CONNECT)**. Health-check on this host showed `Privileged/NET_RAW: Ko`. SYN (`-s s`) needs elevated privileges + Npcap; without that, stay on CONNECT.
 
 ## Step-by-Step Instructions
 
-1. **Confirm scope** — Authorized hosts/CIDRs only. Install **libpcap** (Linux/macOS) or **Npcap** (Windows) for SYN scans.
-2. **Choose scan mode** — SYN (`-s s`, root) vs CONNECT (`-s c`, default); passive (`-passive`) when active scan blocked.
-3. **Select ports** — `-top-ports 100`, explicit `-p`, or `-p -` for full range on single high-value host.
-4. **Optional discovery** — `-wn` / `-sn` on large nets before port scan.
-5. **Run with JSON** — `naabu -host TARGET -json -o out.jsonl` (add `-silent` for pipes).
-6. **Parse JSONL** — Line-by-line; see `references/json-output-schema.md`.
-7. **Map nuggets** — `IP_ADDRESS`, `INTERNET_NAME`, port nodes per `references/nugget-mapping.md`.
-8. **Adapt** — Lower `-rate`, `-ec` for CDN, `-verify`, `-passive`, or escalate to Nmap `-sV`/`-nmap-cli`.
-9. **Chain downstream** — httpx, Nerva, Julius on AI port lists.
+1. **Confirm scope** — Authorized hosts/CIDRs/ASNs only. SYN needs root/admin + libpcap/Npcap; CONNECT works unprivileged.
+2. **Prepare inputs** — `-host`, `-list` / `-l`, or stdin (unless `-no-stdin`). Exclude with `-eh` / `-ef` when needed.
+3. **Choose port profile** — `-top-ports 100|1000|full` (default top 100), explicit `-p` (`80,443`, ranges `100-200`, full via `-p -` per PD running docs), or `-ports-file`.
+4. **Optional discovery** — Large nets: `-wn` before port scan, or `-sn` discovery-only; skip with `-Pn` when hosts are known live.
+5. **Run with JSONL** — Always `-json` / `-j` for corpus and nuggets. Add `-silent` for pipes; `-o` for a file. Prefer `-duc` in automation to skip update checks.
+6. **Parse JSONL** — One object per open port; fields in `references/json-output-schema.md`.
+7. **Map nuggets** — Host → `INTERNET_NAME`; IPs via `classify_ip`; ports → `TCP_PORT_OPEN` / `UDP_PORT_OPEN` per `references/nugget-mapping.md`.
+8. **Adapt** — Lower `-rate`/`-c` on filtered nets; `-ec`/`-cdn` for CDN; `-verify` for false positives; `-passive` when active scan is blocked; escalate with `-sV`/`-sD` or `-nmap-cli`.
+9. **Chain downstream** — httpx on web ports; Nerva on open `host:port`; Julius on AI port lists.
 
 ## If/Then Decision Rules
 
 | If | Then |
 |----|------|
-| Non-root / Windows user | Default CONNECT `-s c`; or run as admin for SYN |
-| Large CIDR | `-wn` discovery first; avoid `-p -` on whole net |
-| CDN/WAF target | `-ec` or `-cdn` to label; expect 80/443 only with `-ec` |
-| IDS / packet drops | Lower `-rate 200-500`, increase `-timeout`, reduce `-c` |
-| Need structured output | Always `-json`; never parse banner art |
-| UDP services | `-p u:53,u:161` plus `-uP` for payloads |
-| No packets allowed | `-passive -json` (InternetDB) |
-| Need service versions | `-sV` (requires local nmap probes) or `-nmap-cli` |
-| Pipe to httpx | `-json -silent` |
-| Pipe to Nerva | `jq` to `host:port` or compatible JSON pipe |
+| Need automation / corpus / nuggets | Always `-json` (`-j`); never parse banner art only |
+| Windows / non-root / `Privileged/NET_RAW: Ko` | Stay on CONNECT (`-s c`, this binary’s default); do not assume SYN works |
+| Elevated Linux/macOS + pcap | Prefer SYN `-s s` for speed when authorized |
+| Large CIDR / many downs | `-wn` (or `-sn` first); avoid `-top-ports full` / `-p -` on whole net |
+| CDN/WAF front | `-ec` (only 80/443 on CDN IPs) and/or `-cdn` to label |
+| IDS / packet drops / laptop | Lower `-rate` (e.g. 200–500), raise `-timeout`, reduce `-c` |
+| Need historical ports without touching target | `-passive -json` (Shodan InternetDB) — then optionally confirm actively |
+| Need service name/version in naabu | `-sD` and/or `-sV` (local nmap probes); or `-nmap-cli 'nmap -sV …'` |
+| Multiple A/AAAA for one name | `-sa` (+ `-iv 4,6` when both families matter) |
+| IPv6-only focus | `-iv 6` |
+| Stream large stdin lists | `-stream` (disables resume, nmap, verify, retries, shuffling, etc.) |
+| Resume interrupted scan | `-resume` (not with `-stream`) |
+| Predictive ports | `-ss` / `-smart-scan` with optional `-pt` threshold |
+| Pipe to httpx | Prefer `-silent` host:port lines, or JSONL + jq |
+| Pipe to Nerva | `jq` to `host:port` from JSONL |
 | AI / LLM hunt | `-p 11434,8000,8080,7860,4000,3000` → Julius |
 | Zero open ports | Valid **clean_miss** for negative fixtures |
-| IPv6 focus | `-iv 6` |
-| Multiple DNS A records | `-sa` |
+| Empty JSONL on known-open host | Check `-Pn`, rate/timeout, IPv4 vs `-iv 6`, CONNECT vs SYN |
 
 ## Guardrails & Pitfalls
 
-- **Authorization** — mass scanning without scope is prohibited.
-- **JSON Lines** — not a JSON array; parse per line.
-- **VPS vs laptop** — default `-rate 1000` may be too fast locally; tune down.
+- **Authorization** — Mass scanning without scope is prohibited.
+- **JSONL ≠ JSON array** — Parse line by line; harvest bundles use `records[]`.
+- **Do not invent flags** — Use only options from live `naabu -h` (see CLI docs Captured help). Port syntax extras (`-p -`, `u:53`) come from official PD Running docs, not inventing new switches.
+- **Windows SYN** — Without NET_RAW/Npcap privileges, SYN is unreliable or unavailable; CONNECT is the safe default here.
+- **VPS vs laptop** — Default `-rate 1000` assumes VPS-class capacity; tune down locally.
 - **`-nmap-cli`** executes shell Nmap — injection risk if built from untrusted input.
 - **Passive ≠ confirmed** — InternetDB may be stale; re-scan actively when allowed.
-- **Do not** emit closed ports as open nuggets.
-- **SYN scan** requires privileges; document fallback to CONNECT.
-- **Full port scan** `-p -` on many hosts is slow and noisy — tier targets.
-- `-stream` disables resume, verify, nmap integration — know tradeoffs.
+- **`-stream` tradeoffs** — Disables resume, nmap integration, verify, retries, shuffling.
+- **Full port sweeps** — `-top-ports full` / `-p -` on many hosts is slow and noisy — tier targets.
+- **Do not** emit closed/filtered ports as open nuggets.
+- **IP nuggets** — Use `core.ip_classify.classify_ip`; never hardcode `IP_ADDRESS` for colon-form literals.
 
 ## References
 
@@ -58,141 +70,119 @@ Indexed in [`references/SKILLS.md`](references/SKILLS.md).
 
 | File | Topic |
 |------|--------|
-| `cli-options.md` | All flags |
+| `cli-options.md` | All flags by category |
 | `json-output-schema.md` | JSONL fields |
 | `workflows-and-phases.md` | Phase sequences |
-| `tactics.md` | CDN, rate, passive |
-| `nugget-mapping.md` | JSON → nuggets |
-| `nmap-integration.md` | `-sV`, `-nmap-cli`, UDP |
-| `sources.md` | URLs |
+| `tactics.md` | CDN, rate, passive, hostile nets |
+| `nugget-mapping.md` | JSONL → SpiderFeet graph |
+| `nmap-integration.md` | `-sV`, `-sD`, `-nmap-cli` |
+| `sources.md` | Official URLs |
 
 Operator guides: `.docs/docs-for-cli-tools/Naabu-Zero-to-Hero.md`, `Naabu-CLI-Options.md`.
 
+Help captures: `.tmp_naabu_help/` (`help_h.txt`, `help_long.txt`, `version.txt`) — **2026-08-10**.
+
 ## Comprehensive Examples
 
-### Input targets
+### INPUT
 
 ```bash
-naabu -host scanme.sh -json
-naabu -host a.com,b.com -p 80,443 -json
-naabu -host 192.168.1.0/24 -top-ports 100 -json
-naabu -l hosts.txt -json -o out.jsonl
-echo scanme.sh | naabu -json
-subfinder -d example.com -silent | naabu -json
-echo AS13335 | naabu -p 443 -json
+naabu -host scanme.nmap.org -json -silent -duc
+naabu -host a.com,b.com -p 80,443 -json -silent -duc
+naabu -host 192.168.1.0/24 -top-ports 100 -json -silent -duc
+naabu -l hosts.txt -json -o out.jsonl -duc
+echo scanme.nmap.org | naabu -json -silent -duc
+subfinder -d example.com -silent | naabu -json -silent -duc
+echo AS14421 | naabu -p 80,443 -json -silent -duc
 ```
 
-### Port selection
+### PORT
 
 ```bash
-naabu -host scanme.sh -p 22,80,443 -json
-naabu -host scanme.sh -top-ports 1000 -json
-naabu -host scanme.sh -p - -json
-naabu -host scanme.sh -p u:53,u:161 -uP -json
-naabu -host scanme.sh -p - -exclude-ports 80,443 -json
+naabu -host scanme.nmap.org -p 22,80,443 -json -silent -duc
+naabu -host scanme.nmap.org -top-ports 1000 -json -silent -duc
+naabu -host scanme.nmap.org -top-ports full -json -silent -duc
+naabu -host scanme.nmap.org -p - -json -silent -duc
+naabu -host scanme.nmap.org -p 80,443,u:53 -json -silent -duc
+naabu -host scanme.nmap.org -p - -exclude-ports 80,443 -json -silent -duc
+naabu -host cdn.example.com -ec -cdn -json -silent -duc
 ```
 
-### Output
+### OUTPUT (JSONL preferred)
 
 ```bash
-naabu -host scanme.sh -json -o ports.jsonl
-naabu -host scanme.sh -json -silent
-naabu -host scanme.sh -csv -o ports.csv
-naabu -host scanme.sh -silent
+naabu -host scanme.nmap.org -json -o ports.jsonl -duc
+naabu -host scanme.nmap.org -json -silent -duc
+naabu -host scanme.nmap.org -csv -o ports.csv -duc
 ```
 
-### Scan type and rate
+### CONFIGURATION (scan type / IPs)
 
 ```bash
-naabu -host scanme.sh -s s -json
-naabu -host scanme.sh -s c -json
-naabu -host scanme.sh -rate 300 -c 10 -json
+naabu -host scanme.nmap.org -s c -json -silent -duc
+naabu -host scanme.nmap.org -s s -json -silent -duc
+naabu -host example.com -sa -iv 4,6 -p 443 -json -silent -duc
+naabu -host example.com -iv 6 -p 80 -json -silent -duc
+naabu -host scanme.nmap.org -rate 300 -c 10 -json -silent -duc
 ```
 
-### Host discovery
+### HOST-DISCOVERY
 
 ```bash
-naabu -host 192.168.1.0/24 -sn
-naabu -host 10.0.0.0/24 -wn -ps 80,443 -p 22,80,443 -json
-naabu -host 192.168.1.0/24 -arp -wn -p 22,80,443 -json
+naabu -host 192.168.1.0/24 -sn -duc
+naabu -host 10.0.0.0/24 -wn -ps 80,443 -p 22,80,443 -json -silent -duc
+naabu -host 192.168.1.0/24 -wn -arp -p 22,80,443 -json -silent -duc
+naabu -host 10.0.0.0/24 -Pn -top-ports 100 -json -silent -duc
 ```
 
-### CDN / passive
+### PASSIVE / CDN
 
 ```bash
-naabu -host cloudflare.site -ec -cdn -json
-naabu -host example.com -passive -json
+naabu -host example.com -passive -json -silent -duc
+naabu -host cloudflare.site -ec -cdn -json -silent -duc
 ```
 
-### Service detection
+### SERVICES-DISCOVERY
 
 ```bash
-naabu -host scanme.sh -sV -json
-naabu -host scanme.sh -sD -json
-naabu -host scanme.sh -sV-fast -json
-naabu -host scanme.sh -nmap-cli 'nmap -sV -oX out.xml'
+naabu -host scanme.nmap.org -sD -json -silent -duc
+naabu -host scanme.nmap.org -sV -json -silent -duc
+naabu -host scanme.nmap.org -nmap-cli "nmap -sV -oX out.xml" -duc
 ```
 
-### Verify / smart
+### OPTIMIZATION
 
 ```bash
-naabu -host scanme.sh -p 1-1000 -verify -json
-naabu -host scanme.sh -ss -json
+naabu -host scanme.nmap.org -p 1-1000 -verify -json -silent -duc
+naabu -host scanme.nmap.org -ss -json -silent -duc
+naabu -host scanme.nmap.org -ss -pt 40 -json -silent -duc
+naabu -host scanme.nmap.org -retries 5 -timeout 2s -json -silent -duc
 ```
 
-### IPv6 / all IPs
+### PIPELINES
 
 ```bash
-naabu -host example.com -iv 6 -p 80 -json
-naabu -host example.com -sa -p 443 -json -silent
+echo example.com | naabu -silent -duc | httpx -silent
+naabu -host example.com -json -silent -duc | jq -r '(.host//.ip)+":"+(.port|tostring)' | nerva --json
+naabu -host corp.internal -p 11434,8000,8080,7860,4000,3000 -json -silent -o ai.jsonl -duc
 ```
 
-### Pipelines
+### Parse one JSONL line (Python)
 
-```bash
-naabu -host example.com -json -silent | httpx -silent
-naabu -host example.com -json -silent | jq -r '(.host//.ip)+":"+(.port|tostring)' | nerva --json
-naabu -host corp.internal -p 11434,8000 -json -silent -o ai.jsonl
+```python
+import json
+
+line = '{"host":"scanme.nmap.org","ip":"45.33.32.156","timestamp":"2026-08-10T00:00:00Z","port":80,"protocol":"tcp","tls":false}'
+row = json.loads(line)
 ```
 
 ## Strategies and Tactics
 
-### Maximize port data on unknown network
+See [`references/tactics.md`](references/tactics.md). Summary:
 
-1. **dnsx/subfinder** → host list.
-2. **Discovery** `-wn` on large nets → live IP file.
-3. **Top 1000** `-top-ports 1000 -json` on live hosts.
-4. **Verify** if noisy; **full `-p -`** only on interesting hosts.
-5. **httpx** on web ports; **Nerva** on full open set.
-6. Compare **passive** `-passive` JSONL with active for gap analysis.
-
-### Hostile / filtered network
-
-1. Drop `-rate` to 200–500.
-2. Switch **CONNECT** if SYN filtered.
-3. **`-ec`** on CDN domains.
-4. **Passive** first, active confirm on subset.
-5. Escalate to **Nmap `-sT -T2`** on stubborn hosts (separate skill).
-
-### Bug bounty quick sweep
-
-```bash
-subfinder -d target.com -silent | naabu -top-ports 1000 -json -silent | httpx -silent
-```
-
-### SpiderFeet seed workflows
-
-| Seed | Command pattern |
-|------|-----------------|
-| `INTERNET_NAME` | `naabu -host SEED -top-ports 100 -json` |
-| `IP_ADDRESS` | `naabu -host SEED -p 22,80,443,8080 -json` |
-| `NETBLOCK_OWNER` | cap size; `-wn` then top ports only |
-
-### Pipeline with Julius (shadow AI)
-
-```bash
-naabu -host internal.corp -p 11434,8000,8080,7860,4000,3000,443 -json -silent -o ports.jsonl
-jq -r '"https://" + (.ip) + ":" + (.port|tostring)' ports.jsonl | julius probe - -o jsonl
-```
-
-Attach `source_module` and jsonl path to every port nugget for Tests tab replay.
+1. **Discover → top ports → deep on winners** — `-wn` / top 1000, then `-p -` only on interesting hosts.
+2. **Windows / unprivileged** — CONNECT first; document SYN as privilege-gated.
+3. **CDN-aware** — `-ec` + `-cdn`; do not waste full sweeps on edge IPs.
+4. **Hostile nets** — Drop rate, raise timeout, verify, optionally passive-then-active.
+5. **Pipeline order** — `subfinder → dnsx → naabu -json → httpx / nerva / julius`; Nmap for OS/NSE.
+6. **Maximize thin yield** — `-sa`, both IP versions, `-verify`, passive gap-fill, then Nerva on opens.

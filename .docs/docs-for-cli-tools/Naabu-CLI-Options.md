@@ -1,211 +1,230 @@
 # Naabu CLI Options
 
-Complete command-line reference for ProjectDiscovery Naabu port scanner.
+Operator reference for **ProjectDiscovery Naabu** port scanner. Prefer **`-json` / `-j` (JSONL)** for SpiderFeet corpus and automation.
 
-**Binary:** `naabu`  
-**Install:** https://github.com/projectdiscovery/naabu/releases  
-**Prerequisite:** libpcap (Linux/macOS) or Npcap (Windows) for SYN scans
+| Field | Value |
+|-------|-------|
+| Windows binary | `C:\projects\spiderfeet\.tools\naabu\naabu.exe` |
+| Version | **2.6.1** |
+| Capture date | **2026-08-10** |
+| Help source | `.tmp_naabu_help/help_h.txt`, `help_long.txt`, `version.txt` |
+
+> Flags below are from live `-h` / `-version` only — **do not invent options**.  
+> `help_h.txt` and `help_long.txt` are identical for this capture.  
+> **Windows:** help default `-scan-type` / `-s` is **`"c"` (CONNECT)**. SYN requires privileges + Npcap; `naabu -hc` may report `Privileged/NET_RAW: Ko`.
+
+Skill: `.cursor/skills/naabu/SKILL.md`
 
 ---
 
-## Synopsis
+## SpiderFeet preferred commands
 
+```bash
+naabu -host scanme.nmap.org -top-ports 100 -json -silent -o naabu.jsonl -duc
+naabu -l hosts.txt -p 80,443,8080,8443 -json -silent -duc
+echo example.com | naabu -json -silent -duc
+subfinder -d example.com -silent | naabu -top-ports 1000 -json -silent -duc
+naabu -host example.com -passive -json -silent -duc
+naabu -host cdn.example.com -ec -cdn -json -silent -duc
 ```
-naabu [flags]
-```
-
-Hosts via `-host`, `-list`, or stdin (unless `-no-stdin`).
 
 ---
 
-## INPUT
+## Captured help
+
+Live help text captured from `C:\projects\spiderfeet\.tools\naabu\naabu.exe` on **2026-08-10**. Each block is the full stdout of the listed command (ANSI sequences retained where present).
+
+### Version (`naabu -version`)
+
+```text
+
+                  __
+  ___  ___  ___ _/ /  __ __
+ / _ \/ _ \/ _ \/ _ \/ // /
+/_//_/\_,_/\_,_/_.__/\_,_/
+
+		projectdiscovery.io
+
+[INF] Current Version: 2.6.1
+```
+
+### Root help (`naabu -h`)
+
+```text
+Naabu is a port scanning tool written in Go that allows you to enumerate open ports for hosts in a fast and reliable manner.
+
+Usage:
+  C:\projects\spiderfeet\.tools\naabu\naabu.exe [flags]
+
+Flags:
+INPUT:
+   -host string[]              hosts to scan ports for (comma-separated)
+   -list, -l string            list of hosts to scan ports (file)
+   -exclude-hosts, -eh string  hosts to exclude from the scan (comma-separated)
+   -exclude-file, -ef string   list of hosts to exclude from scan (file)
+
+PORT:
+   -port, -p string              ports to scan (80,443, 100-200)
+   -top-ports, -tp string        top ports to scan (default 100) [full,100,1000]
+   -exclude-ports, -ep string[]  ports to exclude from scan (file or comma-separated)
+   -ports-file, -pf string[]     list of ports to scan (file or comma-separated)
+   -port-threshold, -pts int     port threshold to skip port scan for the host
+   -exclude-cdn, -ec             skip full port scans for CDN/WAF (only scan for port 80,443)
+   -display-cdn, -cdn            display cdn in use
+
+RATE-LIMIT:
+   -c int     general internal worker threads (default 25)
+   -rate int  packets to send per second (default 1000)
+
+UPDATE:
+   -up, -update                 update naabu to latest version
+   -duc, -disable-update-check  disable automatic naabu update check
+
+OUTPUT:
+   -o, -output string                     file to write output to (optional)
+   -lof, -list-output-fields              list of fields to output (comma separated)
+   -eof, -exclude-output-fields string[]  exclude output fields output based on a condition
+   -j, -json                              write output in JSON lines format
+   -csv                                   write output in csv format
+
+CONFIGURATION:
+   -config string                   path to the naabu configuration file (default $HOME/.config/naabu/config.yaml)
+   -scan-all-ips, -sa               scan all the IP's associated with DNS record
+   -ip-version, -iv string[]        ip version to scan of hostname (4,6) - (default 4,6) (default ["4", "6"])
+   -scan-type, -s string            type of port scan (SYN/CONNECT) (default "c")
+   -source-ip string                source ip and port (x.x.x.x:yyy - might not work on OSX) 
+   -connect-payload, -cp string     payload to send in CONNECT scans (optional)
+   -interface-list, -il             list available interfaces and public ip
+   -interface, -i string            network Interface to use for port scan
+   -nmap                            invoke nmap scan on targets (nmap must be installed) - Deprecated
+   -nmap-cli string                 nmap command to run on found results (example: -nmap-cli 'nmap -sV')
+   -r string                        list of custom resolver dns resolution (comma separated or from file)
+   -proxy string                    socks5 proxy (ip[:port] / fqdn[:port]
+   -proxy-auth string               socks5 proxy authentication (username:password)
+   -dns-order string                dns resolution order (p/l/lp/pl) (default "l")
+   -sr, -system-resolver            use system DNS as fallback resolver
+   -resume                          resume scan using resume.cfg
+   -stream                          stream mode (disables resume, nmap, verify, retries, shuffling, etc)
+   -passive                         display passive open ports using shodan internetdb api
+   -irt, -input-read-timeout value  timeout on input read (default 3m0s)
+   -no-stdin                        Disable Stdin processing
+
+HOST-DISCOVERY:
+   -sn, -host-discovery           Perform Only Host Discovery
+   -Pn, -skip-host-discovery      Skip Host discovery
+   -wn, -with-host-discovery      Enable Host discovery
+   -ps, -probe-tcp-syn string[]   TCP SYN Ping (host discovery needs to be enabled)
+   -pa, -probe-tcp-ack string[]   TCP ACK Ping (host discovery needs to be enabled)
+   -pe, -probe-icmp-echo          ICMP echo request Ping (host discovery needs to be enabled)
+   -pp, -probe-icmp-timestamp     ICMP timestamp request Ping (host discovery needs to be enabled)
+   -pm, -probe-icmp-address-mask  ICMP address mask request Ping (host discovery needs to be enabled)
+   -arp, -arp-ping                ARP ping (host discovery needs to be enabled)
+   -nd, -nd-ping                  IPv6 Neighbor Discovery (host discovery needs to be enabled)
+   -rev-ptr                       Reverse PTR lookup for input ips
+
+SERVICES-DISCOVERY:
+   -sD, -service-discovery  Service Discovery
+   -sV, -service-version    Service Version
+
+OPTIMIZATION:
+   -retries int                    number of retries for the port scan (default 3)
+   -timeout value                  millisecond to wait before timing out (default 1s)
+   -warm-up-time int               time in seconds between scan phases (default 2)
+   -ping                           ping probes for verification of host
+   -verify                         validate the ports again with TCP verification
+   -ss, -smart-scan                predictive port scanning using port correlation model
+   -pt, -prediction-threshold int  minimum confidence for port predictions (0-100%) (default 20)
+
+DEBUG:
+   -health-check, -hc        run diagnostic check up
+   -debug                    display debugging information
+   -verbose, -v              display verbose output
+   -no-color, -nc            disable colors in CLI output
+   -silent                   display only results in output
+   -version                  display version of naabu
+   -stats                    display stats of the running scan (deprecated)
+   -si, -stats-interval int  number of seconds to wait between showing a statistics update (deprecated) (default 5)
+   -mp, -metrics-port int    port to expose naabu metrics on (default 63636)
+
+CLOUD:
+   -auth                           configure projectdiscovery cloud (pdcp) api key (default true)
+   -ac, -auth-config string        configure projectdiscovery cloud (pdcp) api key credential file
+   -pd, -dashboard                 upload / view output in projectdiscovery cloud (pdcp) UI dashboard
+   -tid, -team-id string           upload asset results to given team id (optional)
+   -aid, -asset-id string          upload new assets to existing asset id (optional)
+   -aname, -asset-name string      assets group name to set (optional)
+   -pdu, -dashboard-upload string  upload naabu output file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard
+```
+
+---
+
+## Flag groups (summary)
+
+### INPUT
 
 | Flag | Short | Description |
 |------|-------|-------------|
-| `-host` | — | Comma-separated hosts (IP, CIDR, domain) |
+| `-host` | — | Hosts to scan (comma-separated) |
 | `-list` | `-l` | Host list file |
 | `-exclude-hosts` | `-eh` | Hosts to exclude |
 | `-exclude-file` | `-ef` | Exclude file |
 
-```bash
-naabu -host scanme.sh
-naabu -host 192.168.1.0/24,10.0.0.1
-naabu -l targets.txt
-echo scanme.sh | naabu
-echo AS15169 | naabu -p 443
-```
-
----
-
-## PORT
+### PORT
 
 | Flag | Short | Description |
 |------|-------|-------------|
-| `-port` | `-p` | Ports (`80,443`, `1-1000`, `u:53`, `-` for all) |
-| `-top-ports` | `-tp` | `100`, `1000`, `full` |
-| `-exclude-ports` | `-ep` | Excluded ports |
+| `-port` | `-p` | Ports (`80,443`, ranges `100-200`) |
+| `-top-ports` | `-tp` | `full`, `100`, `1000` (default 100) |
+| `-exclude-ports` | `-ep` | Ports to skip |
 | `-ports-file` | `-pf` | Port list file |
-| `-port-threshold` | `-pts` | Skip host if too many ports open |
-| `-exclude-cdn` | `-ec` | CDN hosts: scan 80,443 only |
-| `-display-cdn` | `-cdn` | Show CDN name |
+| `-port-threshold` | `-pts` | Skip host when open-port count exceeds threshold |
+| `-exclude-cdn` | `-ec` | CDN/WAF: only 80,443 |
+| `-display-cdn` | `-cdn` | Show CDN in use |
 
-```bash
-naabu -host scanme.sh -p 22,80,443
-naabu -host scanme.sh -top-ports 1000
-naabu -host scanme.sh -p -
-naabu -host scanme.sh -p u:53,u:161 -uP
-```
+Official Running docs also document full range via `-p -` and UDP as `u:port`.
 
----
-
-## RATE-LIMIT
+### RATE-LIMIT
 
 | Flag | Default | Description |
 |------|---------|-------------|
 | `-c` | 25 | Worker threads |
 | `-rate` | 1000 | Packets per second |
 
-```bash
-naabu -host 10.0.0.0/24 -rate 400 -c 15
-```
-
----
-
-## OUTPUT
+### OUTPUT
 
 | Flag | Short | Description |
 |------|-------|-------------|
 | `-output` | `-o` | Output file |
-| `-json` | `-j` | JSON Lines (**use for SpiderFeet**) |
-| `-csv` | — | CSV format |
-| `-silent` | — | Results only |
-| `-no-color` | `-nc` | No ANSI colors |
-| `-verbose` | `-v` | Verbose |
+| `-list-output-fields` | `-lof` | Fields to include |
+| `-exclude-output-fields` | `-eof` | Fields to exclude |
+| `-json` | `-j` | **JSONL (preferred)** |
+| `-csv` | — | CSV |
 
-```bash
-naabu -host scanme.sh -json -o ports.jsonl
-naabu -host scanme.sh -json -silent
-```
+### CONFIGURATION (highlights)
 
----
-
-## SERVICES-DISCOVERY
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `-service-discovery` | `-sD` | Service name by port |
-| `-service-version` | `-sV` | Version via nmap-service-probes |
-| `-sV-fast` | — | Fast version mode |
-| `-sV-timeout` | — | Probe timeout |
-| `-sV-workers` | — | Version worker count |
-| `-sV-probes` | — | Custom probes file |
-| `-udp-probes` | `-uP` | UDP payloads from probes DB |
-
----
-
-## CONFIGURATION (selected)
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `-config` | — | Config YAML path |
-| `-scan-all-ips` | `-sa` | Scan all DNS A/AAAA |
-| `-ip-version` | `-iv` | `4`, `6`, or both |
-| `-scan-type` | `-s` | `s` SYN, `c` CONNECT |
-| `-connect-payload` | `-cp` | Custom UDP payload |
-| `-nmap-cli` | — | Run Nmap on results |
+| Flag | Short | Notes |
+|------|-------|-------|
+| `-scan-type` | `-s` | `SYN`/`CONNECT` — **default `"c"` on this binary** |
+| `-scan-all-ips` | `-sa` | All DNS IPs |
+| `-ip-version` | `-iv` | `4`,`6` |
 | `-passive` | — | Shodan InternetDB |
-| `-stream` | — | Stream mode |
-| `-resume` | — | Resume scan |
-| `-proxy` | — | SOCKS5 proxy |
-| `-no-stdin` | — | Disable stdin input |
+| `-stream` | — | Disables resume/nmap/verify/retries/shuffling |
+| `-nmap-cli` | — | Run nmap on findings |
+| `-nmap` | — | Deprecated |
+| `-connect-payload` | `-cp` | Optional CONNECT payload |
 
-```bash
-naabu -host scanme.sh -s s -json
-naabu -host example.com -passive -json
-naabu -host scanme.sh -nmap-cli 'nmap -sV'
-```
+### HOST-DISCOVERY / SERVICES / OPTIMIZATION
 
----
+See Captured help for full lists: `-sn`, `-Pn`, `-wn`, probe flags (`-ps`, `-pa`, `-pe`, …), `-sD`, `-sV`, `-verify`, `-ss`, `-pt`.
 
-## HOST-DISCOVERY
+### CLOUD
 
-| Flag | Short | Description |
-|------|-------|-------------|
-| `-host-discovery` | `-sn` | Discovery only |
-| `-with-host-discovery` | `-wn` | Discover before scan |
-| `-probe-tcp-syn` | `-ps` | TCP SYN ping |
-| `-probe-tcp-ack` | `-pa` | TCP ACK ping |
-| `-probe-icmp-echo` | `-pe` | ICMP echo |
-| `-arp-ping` | `-arp` | ARP (LAN) |
-| `-nd-ping` | `-nd` | IPv6 ND |
-| `-rev-ptr` | — | Reverse PTR |
-
-```bash
-naabu -host 192.168.1.0/24 -sn
-naabu -host 10.0.0.0/24 -wn -ps 80,443 -p 443 -json
-```
+PDCP upload/auth flags (`-auth`, `-pd`, `-pdu`, …) — optional; local `-json -o` is enough for SpiderFeet.
 
 ---
 
-## OPTIMIZATION
+## Notes
 
-| Flag | Short | Default | Description |
-|------|-------|---------|-------------|
-| `-retries` | — | 3 | Scan retries |
-| `-timeout` | — | 1000 | Timeout (ms) |
-| `-verify` | — | — | Re-verify open ports |
-| `-smart-scan` | `-ss` | — | Predictive ports |
-| `-prediction-threshold` | `-pt` | 20 | Smart scan threshold % |
-
----
-
-## DEBUG / METRICS
-
-| Flag | Description |
-|------|-------------|
-| `-health-check` / `-hc` | Diagnostics |
-| `-debug` | Debug mode |
-| `-version` | Version string |
-| `-metrics-port` / `-mp` | Metrics HTTP (default 63636) |
-
----
-
-## UPDATE / CLOUD
-
-| Flag | Description |
-|------|-------------|
-| `-update` / `-up` | Self-update |
-| `-disable-update-check` / `-duc` | Skip update check |
-| PDCP flags | ProjectDiscovery cloud upload (optional) |
-
----
-
-## Common recipes
-
-```bash
-# Standard recon
-naabu -host TARGET -top-ports 1000 -json -silent
-
-# Root SYN
-sudo naabu -host TARGET -s s -top-ports 1000 -json
-
-# Subdomain sweep
-subfinder -d example.com -silent | naabu -json -silent | httpx -silent
-
-# Service versions
-naabu -host scanme.sh -sV -json
-
-# LLM port sweep
-naabu -host corp.internal -p 11434,8000,8080,7860,4000 -json -silent
-```
-
----
-
-## Related documentation
-
-| Resource | Path |
-|----------|------|
-| Agent skill | `.cursor/skills/naabu/SKILL.md` |
-| Reference index | `.cursor/skills/naabu/references/SKILLS.md` |
-| ProjectDiscovery running guide | https://docs.projectdiscovery.io/opensource/naabu/running |
-| Zero to Hero | `Naabu-Zero-to-Hero.md` |
+- Online Usage docs may lag this binary (missing CLOUD, SERVICES-DISCOVERY, smart-scan, etc.). Prefer this capture.
+- Tune `-rate` / `-c` when scanning from a laptop (PD assumes VPS-class defaults).
+- Metrics listen on localhost port `63636` by default (`-mp`).
