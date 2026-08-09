@@ -244,6 +244,47 @@ class ProjectProjectionOut(BaseModel):
     stix_incident_id: Optional[str] = None
 
 
+class ProjectCompleteStepSummary(BaseModel):
+    """Parsed step summary for Composer one-call load (R13-06)."""
+
+    model_config = ConfigDict(extra="allow")
+
+    scan_instance_id: str
+    step_module_id: Optional[str] = None
+    scan_status: Optional[str] = None
+    roles: List[str] = Field(default_factory=list)
+    missing: Optional[bool] = None
+
+
+class ProjectCompleteWorkflow(BaseModel):
+    """Workflow attrs + inline YAML + step/target summary (R13-06)."""
+
+    model_config = ConfigDict(extra="allow")
+
+    workflow_id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
+    author: Optional[str] = None
+    created: Optional[str] = None
+    workflow_yaml: Optional[str] = None
+    project_id: Optional[str] = None
+    target_id: Optional[str] = None
+    first_step_id: Optional[str] = None
+    prior_step_ids: List[str] = Field(default_factory=list)
+    next_step_ids: List[str] = Field(default_factory=list)
+    steps: List[ProjectCompleteStepSummary] = Field(default_factory=list)
+    target: Optional[Dict[str, Any]] = None
+
+
+class ProjectCompleteOut(BaseModel):
+    """``GET /projects/{id}/complete`` response (R13-06)."""
+
+    model_config = ConfigDict(extra="allow")
+
+    project: ProjectOut
+    workflows: List[ProjectCompleteWorkflow] = Field(default_factory=list)
+
+
 PROJECT_CREATE_EXAMPLE = {
     "project_id": "project--demo",
     "project_name": "Demo Project",
