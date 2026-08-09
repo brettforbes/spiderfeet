@@ -222,6 +222,24 @@ def test_workflow_crud_round_trip(store) -> None:
 
 
 def test_project_crud_round_trip(store) -> None:
+    """R13-02: project is an entity; workflows link via workflow→project."""
+    # Standalone project (zero workflows) must persist.
+    empty_pid = "project--al1-empty"
+    if store.get_project(empty_pid) is not None:
+        store.delete_project(empty_pid)
+    empty = store.create_project(
+        {
+            "project_id": empty_pid,
+            "project_name": "Empty Project",
+            "project_description": "No workflows yet",
+            "project_created": "2026-08-07T10:14:00Z",
+        }
+    )
+    assert empty["project_id"] == empty_pid
+    assert empty["project_name"] == "Empty Project"
+    assert empty["workflow_ids"] == []
+    store.delete_project(empty_pid)
+
     if store.get_workflow(WID) is None:
         if store.get_target(TID) is None:
             store.create_target({"target_id": TID, "target_value": "al1.example"})
@@ -233,23 +251,39 @@ def test_project_crud_round_trip(store) -> None:
             }
         )
 
+    if store.get_project(PID) is not None:
+        store.delete_project(PID)
+
     created = store.create_project(
         {
             "project_id": PID,
             "stix_incident_id": "incident--al1",
-            "created": "2026-08-07T10:15:00Z",
+            "project_name": "AL1 Project",
+            "project_description": "CRUD round-trip",
+            "project_created": "2026-08-07T10:15:00Z",
             "workflow_ids": [WID],
         }
     )
     assert created["project_id"] == PID
     assert created["stix_incident_id"] == "incident--al1"
+    assert created["project_name"] == "AL1 Project"
+    assert created["project_description"] == "CRUD round-trip"
     assert created["workflow_ids"] == [WID]
+    # Workflow side must see the project link.
+    wf = store.get_workflow(WID)
+    assert wf is not None
+    assert wf["project_id"] == PID
 
     updated = store.update_project(
         PID,
-        {"stix_incident_id": "incident--al1-b", "workflow_ids": [WID]},
+        {
+            "stix_incident_id": "incident--al1-b",
+            "project_name": "AL1 Project v2",
+            "workflow_ids": [WID],
+        },
     )
     assert updated["stix_incident_id"] == "incident--al1-b"
+    assert updated["project_name"] == "AL1 Project v2"
     assert store.list_projects()
 
 

@@ -40,7 +40,9 @@ WORKFLOW_ATTRS = (
 
 PROJECT_ATTRS = (
     "stix_incident_id",
-    "created",
+    "project_name",
+    "project_description",
+    "project_created",
 )
 
 SCAN_STEP_ATTRS = (
@@ -61,7 +63,9 @@ SCAN_STEP_ATTRS = (
     "scan_yaml",
 )
 
-DATETIME_ATTRS = frozenset({"created", "target_created", "scan_timestamp"})
+DATETIME_ATTRS = frozenset(
+    {"created", "project_created", "target_created", "scan_timestamp"}
+)
 INT_ATTRS = frozenset({"scan_nugget_count"})
 DOUBLE_ATTRS = frozenset({"scan_duration"})
 
@@ -377,15 +381,17 @@ class CrudStore:
         if not wid:
             raise CrudError("workflow_id is required")
         # TypeDB 3 does not persist playerless relation instances.
+        # A linked project alone is a valid player (info-only workflow).
         has_players = bool(
-            data.get("target_id")
+            data.get("project_id")
+            or data.get("target_id")
             or data.get("first_step_id")
             or data.get("prior_step_ids")
             or data.get("next_step_ids")
         )
         if not has_players:
             raise CrudError(
-                "workflow create requires at least one of target_id, "
+                "workflow create requires at least one of project_id, target_id, "
                 "first_step_id, prior_step_ids, next_step_ids"
             )
         driver = self._driver()
@@ -397,6 +403,12 @@ class CrudStore:
             )
             match_lines: List[str] = []
             insert_links: List[str] = []
+            pid = data.get("project_id")
+            if pid:
+                match_lines.append(
+                    f"$p isa project, has project_id {literal_string(pid)};"
+                )
+                insert_links.append("$w links (project: $p);")
             tid = data.get("target_id")
             if tid:
                 match_lines.append(
@@ -437,6 +449,17 @@ class CrudStore:
 
     def _link_workflow(self, driver: Driver, wid: str, data: Dict[str, Any]) -> None:
         queries: List[str] = []
+        pid = data.get("project_id")
+        if pid:
+            queries.append(
+                f"""
+                match
+                  $w isa workflow, has workflow_id {literal_string(wid)};
+                  $p isa project, has project_id {literal_string(pid)};
+                insert
+                  $w links (project: $p);
+                """
+            )
         tid = data.get("target_id")
         if tid:
             queries.append(
@@ -474,7 +497,7 @@ class CrudStore:
             run_writes(driver, self.database, queries)
 
     def _clear_workflow_links(self, driver: Driver, wid: str) -> None:
-        for role in ("target", "first_step", "prior_step", "next_step"):
+        for role in ("project", "target", "first_step", "prior_step", "next_step"):
             exists = run_read_exists(
                 driver,
                 self.database,
@@ -519,6 +542,16 @@ class CrudStore:
                 workflow_id,
                 WORKFLOW_ATTRS,
             )
+            projects = _collect_strings(
+                driver,
+                self.database,
+                f"""
+                match
+                  $w isa workflow, has workflow_id {literal_string(workflow_id)};
+                  $w links (project: $p);
+                  $p has project_id $v;
+                """,
+            )
             targets = _collect_strings(
                 driver,
                 self.database,
@@ -559,6 +592,7 @@ class CrudStore:
                   $s has scan_instance_id $v;
                 """,
             )
+            row["project_id"] = projects[0] if projects else None
             row["target_id"] = targets[0] if targets else None
             row["first_step_id"] = first[0] if first else None
             row["prior_step_ids"] = sorted(prior)
@@ -569,7 +603,13 @@ class CrudStore:
                 driver.close()
 
     def update_workflow(self, workflow_id: str, data: Dict[str, Any]) -> Dict[str, Any]:
-        link_keys = {"target_id", "first_step_id", "prior_step_ids", "next_step_ids"}
+        link_keys = {
+            "project_id",
+            "target_id",
+            "first_step_id",
+            "prior_step_ids",
+            "next_step_ids",
+        }
         current = self.get_workflow(workflow_id)
         if current is None:
             raise CrudError(f"workflow not found: {workflow_id}")
@@ -625,37 +665,34 @@ class CrudStore:
     # ----------------------------------------------------------------- project
 
     def create_project(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        """Create a project **entity** (standalone OK) and optionally link workflows.
+
+        Direction: each workflow relation ``links (project: $p)``. Project entities
+        need no role players, so ``workflow_ids`` may be empty.
+        """
         pid = data.get("project_id")
         if not pid:
             raise CrudError("project_id is required")
-        workflow_ids = list(data.get("workflow_ids") or [])
-        if not workflow_ids:
-            raise CrudError(
-                "project create requires at least one workflow_id "
-                "(TypeDB 3 cannot persist playerless relations)"
-            )
+        payload = dict(data)
+        # Soft alias: older callers used bare ``created``.
+        if "project_created" not in payload and payload.get("created") is not None:
+            payload["project_created"] = payload["created"]
+        workflow_ids = list(payload.get("workflow_ids") or [])
         driver = self._driver()
         try:
             if self.get_project(pid, _driver=driver) is not None:
                 raise CrudError(f"project already exists: {pid}")
             has_parts = [f"has project_id {literal_string(pid)}"] + _has_clauses(
-                data, PROJECT_ATTRS
+                payload, PROJECT_ATTRS
             )
-            match_lines = [
-                f"$w{i} isa workflow, has workflow_id {literal_string(wid)};"
-                for i, wid in enumerate(workflow_ids)
-            ]
-            insert_links = [f"$p links (workflow: $w{i});" for i in range(len(workflow_ids))]
             query = (
-                "match\n  "
-                + "\n  ".join(match_lines)
-                + "\ninsert\n  $p isa project,\n    "
+                "insert\n  $p isa project,\n    "
                 + ",\n    ".join(has_parts)
-                + ";\n  "
-                + "\n  ".join(insert_links)
-                + "\n"
+                + ";\n"
             )
             run_write(driver, self.database, query)
+            if workflow_ids:
+                self._set_project_workflows(driver, pid, workflow_ids)
             return self.get_project(pid, _driver=driver)  # type: ignore[return-value]
         finally:
             driver.close()
@@ -682,7 +719,7 @@ class CrudStore:
                 f"""
                 match
                   $p isa project, has project_id {literal_string(project_id)};
-                  $p links (workflow: $w);
+                  $w isa workflow, links (project: $p);
                   $w has workflow_id $v;
                 """,
             )
@@ -692,25 +729,82 @@ class CrudStore:
             if own:
                 driver.close()
 
+    def _set_project_workflows(
+        self, driver: Driver, project_id: str, workflow_ids: Sequence[str]
+    ) -> None:
+        """Replace which workflows link this project (workflow → project direction)."""
+        current = _collect_strings(
+            driver,
+            self.database,
+            f"""
+            match
+              $p isa project, has project_id {literal_string(project_id)};
+              $w isa workflow, links (project: $p);
+              $w has workflow_id $v;
+            """,
+        )
+        desired = set(workflow_ids)
+        for wid in current:
+            if wid in desired:
+                continue
+            run_write(
+                driver,
+                self.database,
+                f"""
+                match
+                  $w isa workflow, has workflow_id {literal_string(wid)};
+                  $p isa project, has project_id {literal_string(project_id)};
+                  $w links (project: $p);
+                delete
+                  links (project: $p) of $w;
+                """,
+            )
+        for wid in workflow_ids:
+            if wid in current:
+                continue
+            exists = run_read_exists(
+                driver,
+                self.database,
+                f"match $w isa workflow, has workflow_id {literal_string(wid)};",
+            )
+            if not exists:
+                raise CrudError(f"workflow not found: {wid}")
+            run_write(
+                driver,
+                self.database,
+                f"""
+                match
+                  $w isa workflow, has workflow_id {literal_string(wid)};
+                  $p isa project, has project_id {literal_string(project_id)};
+                insert
+                  $w links (project: $p);
+                """,
+            )
+
     def update_project(self, project_id: str, data: Dict[str, Any]) -> Dict[str, Any]:
         current = self.get_project(project_id)
         if current is None:
             raise CrudError(f"project not found: {project_id}")
-        if "workflow_ids" in data:
-            merged = {**current, **data, "project_id": project_id}
-            self.delete_project(project_id)
-            return self.create_project(merged)
+        payload = dict(data)
+        if "project_created" not in payload and payload.get("created") is not None:
+            payload["project_created"] = payload["created"]
         driver = self._driver()
         try:
-            _set_attributes(
-                driver,
-                self.database,
-                "project",
-                "project_id",
-                project_id,
-                data,
-                PROJECT_ATTRS,
-            )
+            attr_patch = {k: v for k, v in payload.items() if k in PROJECT_ATTRS}
+            if attr_patch:
+                _set_attributes(
+                    driver,
+                    self.database,
+                    "project",
+                    "project_id",
+                    project_id,
+                    attr_patch,
+                    PROJECT_ATTRS,
+                )
+            if "workflow_ids" in payload:
+                self._set_project_workflows(
+                    driver, project_id, list(payload.get("workflow_ids") or [])
+                )
             return self.get_project(project_id, _driver=driver)  # type: ignore[return-value]
         finally:
             driver.close()
