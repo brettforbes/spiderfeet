@@ -100,7 +100,9 @@ def validate_workflow_dict(doc: Dict[str, Any], *, validate_gse: bool = True) ->
             if tool not in ADAPTER_TOOLS:
                 raise WorkflowLoadError(f"unknown adapter tool in uses: {uses}")
         if validate_gse:
-            vars_map = (step.get("output") or {}).get("vars") or {}
+            vars_map = (step.get("output") or {}).get("vars")
+            if not isinstance(vars_map, dict):
+                vars_map = {}
             for name, binding in vars_map.items():
                 try:
                     validate_gse_binding(binding)

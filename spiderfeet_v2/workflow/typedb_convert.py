@@ -8,7 +8,7 @@ relation attributes + role links hold the typed TypeDB form.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Sequence
+from typing import Any, Dict, List, Optional, Sequence
 from uuid import UUID, uuid5
 
 import yaml
@@ -40,7 +40,7 @@ class WorkflowConvertError(ValueError):
 class TypedbWorkflowForms:
     """CRUD payloads for target + scan_steps + workflow (plus yaml shadows)."""
 
-    target: Dict[str, Any]
+    target: Optional[Dict[str, Any]]
     steps: List[Dict[str, Any]]
     workflow: Dict[str, Any]
     step_id_by_scan_instance: Dict[str, str] = field(default_factory=dict)
@@ -144,27 +144,32 @@ def yaml_to_typedb_forms(doc: Dict[str, Any], *, validate: bool = True) -> Typed
     if not steps:
         raise WorkflowConvertError("workflow must have at least one step")
 
-    input_key, values, target_spec = _primary_target_values(doc)
-    target_value = values[0]
-    tid = target_id_for(workflow_id, f"{input_key}:{target_value}")
-    target_yaml = dump_canonical_yaml(
-        {
-            "key": input_key,
-            "type": target_spec.get("type", "string_list"),
-            "description": target_spec.get("description"),
-            "values": values,
+    # No-input workflows (e.g. 12A2 netdiscover) materialize steps without a target.
+    inputs = doc.get("inputs") or {}
+    target: Optional[Dict[str, Any]] = None
+    tid: Optional[str] = None
+    if inputs:
+        input_key, values, target_spec = _primary_target_values(doc)
+        target_value = values[0]
+        tid = target_id_for(workflow_id, f"{input_key}:{target_value}")
+        target_yaml = dump_canonical_yaml(
+            {
+                "key": input_key,
+                "type": target_spec.get("type", "string_list"),
+                "description": target_spec.get("description"),
+                "values": values,
+            }
+        )
+        target = {
+            "target_id": tid,
+            "target_value": target_value,
+            "target_description": target_spec.get("description")
+            or info.get("description")
+            or input_key,
+            "target_yaml": target_yaml,
         }
-    )
-    target = {
-        "target_id": tid,
-        "target_value": target_value,
-        "target_description": target_spec.get("description")
-        or info.get("description")
-        or input_key,
-        "target_yaml": target_yaml,
-    }
-    if info.get("created"):
-        target["target_created"] = info["created"]
+        if info.get("created"):
+            target["target_created"] = info["created"]
 
     first_dsl, prior_dsl, next_dsl = _dag_role_step_ids(steps)
     step_rows: List[Dict[str, Any]] = []
@@ -188,18 +193,19 @@ def yaml_to_typedb_forms(doc: Dict[str, Any], *, validate: bool = True) -> Typed
         return scan_instance_id_for(workflow_id, dsl_id)
 
     workflow_yaml = dump_canonical_yaml(doc)
-    workflow = {
+    workflow: Dict[str, Any] = {
         "workflow_id": workflow_id,
         "name": info.get("name"),
         "description": info.get("description"),
         "author": info.get("author"),
         "created": info.get("created"),
         "workflow_yaml": workflow_yaml,
-        "target_id": tid,
         "first_step_id": _scan(first_dsl),
         "prior_step_ids": [_scan(i) for i in prior_dsl],
         "next_step_ids": [_scan(i) for i in next_dsl],
     }
+    if tid:
+        workflow["target_id"] = tid
     return TypedbWorkflowForms(
         target=target,
         steps=step_rows,
@@ -374,10 +380,11 @@ def persist_workflow_yaml(
             )
         _delete_workflow_bundle(store, forms.workflow_id)
 
-    if store.get_target(forms.target["target_id"]) is None:
-        store.create_target(forms.target)
-    else:
-        store.update_target(forms.target["target_id"], forms.target)
+    if forms.target is not None:
+        if store.get_target(forms.target["target_id"]) is None:
+            store.create_target(forms.target)
+        else:
+            store.update_target(forms.target["target_id"], forms.target)
 
     for step in forms.steps:
         if store.get_scan_step(step["scan_instance_id"]) is None:
