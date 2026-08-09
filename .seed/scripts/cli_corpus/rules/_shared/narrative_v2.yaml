@@ -1,37 +1,187 @@
-version: 1
-meta_concepts:
-  scan:
-    nugget_ids: [SCAN_RECORD]
-    heading: Scan
-  host:
-    nugget_ids: [HOST, SYSTEM]
-    heading: Host
-  system:
-    nugget_ids: [HOST, SYSTEM, CDN]
-    heading: System
-  cdn:
-    nugget_ids: [CDN]
-    heading: CDN
-  trace:
-    nugget_ids: [TRACE]
-    heading: Trace
+# SPEC-014 shared meta-concept registry for narrative reports.
+# Align with rules/_shared/structure_v1.yaml patterns; no hard-coded concept lists in Python.
+version: 2
+
+mermaid:
+  mode: type_relation
+  sanitize: true
+  shape_cap: 12
+  example_cap_default: 3
+
+appendix:
+  mode: table
+  dedupe_edges: true
+
+footer:
+  brand: OS-Intel Scan
+
+intro:
+  hierarchy_blurb: >-
+    This report follows Scan → Host/System/Organisation/Domain (categories) → Trace → Appendix.
+    Overview diagrams show ontology types and relations; category diagrams show a few example
+    values with the rest in tables; the appendix inventories every node and edge.
+
+intro_facts:
+  default: >-
+    The scan used {tool_name}. Findings are organised under each meta-concept present in the
+    graph ({categories}). This report follows Scan → Host/System → Trace → Appendix.
+
+# Host-style category order used when a concept does not override category_nugget_ids.
 category_order:
   - ENVIRONMENT
   - NETWORKS
   - APPLICATIONS
   - VULNERABILITIES
-mermaid:
-  mode: type_relation
-  sanitize: true
-appendix:
-  mode: table
-footer:
-  brand: OS-Intel Scan
-intro:
-  hierarchy_blurb: >-
-    This report follows Scan → Host/System (categories) → Trace → Appendix.
-    Section diagrams show ontology types and relations only; values appear in prose, tables, and the appendix.
-intro_facts:
-  default: >-
-    The scan used {tool_name}. Findings are organised under each host or system's category
-    sections ({categories}). This report follows Scan → Host/System → Trace → Appendix.
+  - SECURITY
+
+meta_concepts:
+  scan:
+    heading: Scan
+    order: 10
+    root_nugget_ids: [SCAN_RECORD]
+    category_nugget_ids: []
+    descriptor_nugget_ids:
+      - SCAN_CLI
+      - SCAN_TARGET
+      - SCAN_TARGET_ORG
+      - SCAN_START
+      - SCAN_ELAPSED
+      - SCAN_EXIT_STATUS
+      - SCAN_TOOL
+      - SCAN_FINDING_COUNT
+    example_cap: 6
+    structure_pattern: scan_head
+    prose: >
+      Every examination has one SCAN_RECORD with scan descriptors linked via had.
+    table:
+      columns: [nugget_id, nugget_data]
+
+  host:
+    heading: Host
+    order: 20
+    root_nugget_ids: [HOST]
+    category_nugget_ids: [NETWORKS, APPLICATIONS, ENVIRONMENT, VULNERABILITIES, SECURITY]
+    example_cap: 3
+    structure_pattern: host_networks_port_service
+    prose: >
+      Qualified HOST endpoints own category trees for networks, applications, environment,
+      and security findings.
+    table:
+      columns: [nugget_id, nugget_data]
+
+  system:
+    heading: System
+    order: 25
+    root_nugget_ids: [SYSTEM]
+    category_nugget_ids: [NETWORKS]
+    example_cap: 3
+    structure_pattern: system_l2
+    prose: >
+      When only L2/L3 identity is known, emit SYSTEM (not HOST) with a NETWORKS category.
+    table:
+      columns: [nugget_id, nugget_data]
+
+  cdn:
+    heading: CDN
+    order: 30
+    root_nugget_ids: [CDN]
+    category_nugget_ids: [NETWORKS, APPLICATIONS]
+    example_cap: 3
+    structure_pattern: host_networks_port_service
+    prose: >
+      CDN edge endpoints replace HOST when fronting is detected; origin host count may be
+      indeterminate.
+    table:
+      columns: [nugget_id, nugget_data]
+
+  org:
+    heading: Organization
+    order: 35
+    root_nugget_ids: [COMPANY_NAME]
+    category_nugget_ids: [DOMAINS, NETBLOCKS, LEADS]
+    example_cap: 3
+    structure_pattern: org_company_tree
+    prose: >
+      Organisation scans root at COMPANY_NAME with category buckets for domains, netblocks,
+      and research leads.
+    table:
+      columns: [nugget_id, nugget_data]
+
+  domain:
+    heading: Domains
+    order: 40
+    root_nugget_ids: [DOMAIN_NAME]
+    category_nugget_ids: []
+    child_nugget_ids: [DOMAIN_NAME]
+    example_cap: 3
+    structure_pattern: domain_apex
+    prose: >
+      Apex DOMAIN_NAME entities contain subdomain DOMAIN_NAME children; descriptors capture
+      discovery mode, sources, and liveness.
+    table:
+      columns: [nugget_id, nugget_data]
+
+  url:
+    heading: URLs
+    order: 45
+    root_nugget_ids: [LINKED_URL_INTERNAL]
+    category_nugget_ids: []
+    example_cap: 3
+    structure_pattern: crawl_url_tree
+    prose: >
+      Internal URLs attach under SCAN_RECORD and/or DOMAIN_NAME hosts within crawl or probe scope.
+    table:
+      columns: [nugget_id, nugget_data]
+
+  service_port:
+    heading: Services and ports
+    order: 50
+    root_nugget_ids: [SERVICE]
+    category_nugget_ids: []
+    related_nugget_ids: [PORT, TRANSPORT, SERVICE_VERSION]
+    example_cap: 3
+    structure_pattern: host_networks_port_service
+    prose: >
+      APPLICATION services listen-to PORT entities under NETWORKS/TRANSPORT.
+    table:
+      columns: [nugget_id, nugget_data]
+
+  environment:
+    heading: Environment
+    order: 55
+    root_nugget_ids: [ENVIRONMENT]
+    category_nugget_ids: []
+    child_nugget_ids: [OPERATING_SYSTEM]
+    example_cap: 3
+    structure_pattern: os_environment
+    prose: >
+      ENVIRONMENT under HOST contains OPERATING_SYSTEM with optional match accuracy.
+    table:
+      columns: [nugget_id, nugget_data]
+
+  security:
+    heading: Security findings
+    order: 60
+    root_nugget_ids: [SECURITY]
+    category_nugget_ids: [FINDINGS, TEMPLATES_USED]
+    example_cap: 3
+    structure_pattern: vuln_findings
+    prose: >
+      SECURITY under HOST holds FINDINGS severity buckets, template inventory, and vulnerability
+      observations.
+    table:
+      columns: [nugget_id, nugget_data]
+
+  # TRACE is category-like: SCAN_RECORD contains TRACE; TRACE contains ordered TRACE_HOP.
+  trace:
+    heading: Trace
+    order: 90
+    root_nugget_ids: [TRACE]
+    category_nugget_ids: [TRACE_HOP]
+    category_like: true
+    example_cap: 5
+    structure_pattern: trace_hop_chain
+    prose: >
+      TRACE sits under the scan with ordered TRACE_HOP nodes; each hop may contain a HOST router.
+    table:
+      columns: [nugget_id, nugget_data]
