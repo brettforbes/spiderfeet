@@ -79,7 +79,10 @@ def schedule_waves(steps: Sequence[Dict[str, Any]]) -> List[List[str]]:
 def validate_workflow_dict(doc: Dict[str, Any], *, validate_gse: bool = True) -> None:
     if jsonschema is None:
         raise WorkflowLoadError("jsonschema package required for validation")
-    jsonschema.validate(instance=doc, schema=_load_schema(_WORKFLOW_SCHEMA))
+    try:
+        jsonschema.validate(instance=doc, schema=_load_schema(_WORKFLOW_SCHEMA))
+    except jsonschema.ValidationError as exc:
+        raise WorkflowLoadError(exc.message) from exc
 
     steps = doc.get("steps") or []
     ids = [s.get("id") for s in steps]

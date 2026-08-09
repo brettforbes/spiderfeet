@@ -221,6 +221,121 @@ def test_workflow_crud_round_trip(store) -> None:
     assert updated["next_step_ids"] == [SID]
 
 
+_MINI_WORKFLOW_YAML = """\
+apiVersion: spiderfeet.workflow/v1
+kind: Workflow
+id: workflow--will-be-overridden
+info:
+  name: Mini Recon
+  description: One-step mini workflow for re-parse tests
+  author: Tester
+  created: "2026-08-09T12:00:00Z"
+inputs:
+  targets:
+    type: string_list
+    description: Seed domains
+    values:
+      - https://example.com
+steps:
+  - id: sfp_cli_subfinder
+    uses: tool.subfinder
+    needs: []
+    input:
+      type: string_list
+      from: $workflow.inputs.targets
+      normalize: hostname_from_url
+      empty: error
+    config:
+      argv:
+        - "-dL"
+        - "$step.files.input"
+        - "-silent"
+      files:
+        input:
+          mode: auto
+          format: line_text
+        output:
+          mode: auto
+          format: jsonl
+      capture:
+        family: structured_native
+        adapter: subfinder
+    context:
+      export: scan_graph
+"""
+
+
+def test_put_workflow_yaml_reparse_replace(store) -> None:
+    """R13-05: persist_workflow_yaml(replace=True) materializes steps/target."""
+    from spiderfeet_v2.workflow.new_project import create_new_project
+    from spiderfeet_v2.workflow.typedb_convert import (
+        WorkflowConvertError,
+        parse_yaml_string,
+        persist_workflow_yaml,
+    )
+
+    pid = "project--reparse-b22"
+    if store.get_project(pid) is not None:
+        for wid0 in store.get_project(pid).get("workflow_ids") or []:
+            store.delete_workflow(wid0)
+        store.delete_project(pid)
+
+    created = create_new_project(
+        store,
+        project_name="Reparse",
+        project_description="R13-05",
+        project_id=pid,
+    )
+    wid = created["primary_workflow_id"]
+    before = store.get_workflow(wid)
+    assert before["first_step_id"] is None
+
+    doc = parse_yaml_string(_MINI_WORKFLOW_YAML)
+    doc["id"] = wid
+    persist_workflow_yaml(
+        store, doc, validate=True, replace=True, project_id=pid
+    )
+    after = store.get_workflow(wid)
+    assert after is not None
+    assert after["project_id"] == pid
+    assert after["target_id"]
+    assert after["first_step_id"]
+    assert after["workflow_yaml"]
+    assert "sfp_cli_subfinder" in after["workflow_yaml"]
+    step = store.get_scan_step(after["first_step_id"])
+    assert step is not None
+    assert step["step_module_id"] == "sfp_cli_subfinder"
+
+    # Invalid YAML must not mutate the stored bundle.
+    try:
+        persist_workflow_yaml(
+            store,
+            {"not": "a workflow"},
+            validate=True,
+            replace=True,
+            project_id=pid,
+        )
+        raise AssertionError("expected WorkflowConvertError")
+    except WorkflowConvertError:
+        pass
+    still = store.get_workflow(wid)
+    assert still["first_step_id"] == after["first_step_id"]
+    assert still["workflow_yaml"] == after["workflow_yaml"]
+
+    # cleanup
+    for sid in set(
+        [still.get("first_step_id")]
+        + list(still.get("prior_step_ids") or [])
+        + list(still.get("next_step_ids") or [])
+    ):
+        if sid:
+            store.delete_scan_step(sid)
+    if still.get("target_id"):
+        store.delete_target(still["target_id"])
+    store.delete_workflow(wid)
+    store.delete_project(pid)
+
+
 def test_create_new_project_info_only_workflow(store) -> None:
     """R13-04: project entity + info-only workflow (no target/steps)."""
     from spiderfeet_v2.workflow.new_project import create_new_project

@@ -107,6 +107,72 @@ def test_workflows_update_delete_list_and_crud_get(client):
     assert client.delete("/api/v1/workflows/missing").status_code == 404
 
 
+def test_put_workflow_yaml_triggers_reparse(client, monkeypatch):
+    """R13-05: PUT with workflow_yaml calls persist_workflow_yaml."""
+    calls: list = []
+
+    def _fake_persist(store, doc, *, validate=True, replace=True, project_id=None):
+        calls.append(
+            {
+                "id": doc.get("id"),
+                "validate": validate,
+                "replace": replace,
+                "project_id": project_id,
+            }
+        )
+        # Mimic replace: stamp yaml onto the fake row.
+        wid = doc["id"]
+        store.workflows[wid] = {
+            **store.workflows.get(wid, {"workflow_id": wid}),
+            "workflow_id": wid,
+            "project_id": project_id,
+            "workflow_yaml": "apiVersion: spiderfeet.workflow/v1\n",
+            "target_id": "target--mini",
+            "first_step_id": "scan_step--mini",
+            "prior_step_ids": ["scan_step--mini"],
+            "next_step_ids": ["scan_step--mini"],
+        }
+
+    monkeypatch.setattr(
+        "spiderfeet_v2.workflow.typedb_convert.persist_workflow_yaml",
+        _fake_persist,
+    )
+
+    # Seed via create-new-project path
+    r = client.post(
+        "/api/v1/projects",
+        json={"project_id": "project--reparse", "project_name": "R"},
+    )
+    assert r.status_code == 201, r.text
+    wid = r.json()["primary_workflow_id"]
+
+    r = client.put(
+        f"/api/v1/workflows/{wid}",
+        json={"workflow_yaml": "apiVersion: spiderfeet.workflow/v1\nkind: Workflow\nid: x\n"},
+    )
+    assert r.status_code == 200, r.text
+    assert calls and calls[0]["id"] == wid
+    assert calls[0]["replace"] is True
+    assert calls[0]["project_id"] == "project--reparse"
+    assert r.json()["first_step_id"] == "scan_step--mini"
+
+    # Invalid path: convert error → 400
+    def _boom(*_a, **_k):
+        from spiderfeet_v2.workflow.typedb_convert import WorkflowConvertError
+
+        raise WorkflowConvertError("bad yaml")
+
+    monkeypatch.setattr(
+        "spiderfeet_v2.workflow.typedb_convert.persist_workflow_yaml",
+        _boom,
+    )
+    r = client.put(
+        f"/api/v1/workflows/{wid}",
+        json={"workflow_yaml": "not: valid: [[["},
+    )
+    assert r.status_code == 400
+
+
 def test_projects_update_crud_get_and_errors(client):
     _seed_project(client, "pj")
 
