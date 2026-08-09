@@ -1,0 +1,33 @@
+database=spiderfeet-actual
+total_projects=5 seed_projects=5
+---
+key=simple-wireless
+project=project--93d3d13c-a084-50d8-8929-700e11fa1977 name=Simple Wireless Scan
+workflow=workflow--31361dfe-db93-55c6-ad95-ab2ad70eb703 target_id=None
+steps=1 modules=['sfp_cli_netdiscover']
+result_hits=[]
+---
+key=recon-sbs
+project=project--e6db9496-b3cf-5500-8cb1-933633160dd5 name=Attack Surface Recon ù www.sbs.com.au
+workflow=workflow--946b51d2-92ea-5927-8e64-803930936e20 target_id=target--f1cce784-684a-5da8-9240-e2fc5602edad
+steps=6 modules=['sfp_cli_nmap', 'sfp_cli_nerva', 'sfp_cli_subfinder', 'sfp_cli_nuclei', 'sfp_cli_katana', 'sfp_cli_httpx']
+result_hits=[]
+---
+key=recon-k2am
+project=project--31704201-5254-5ee0-8575-0b4e4b7f1d0b name=Attack Surface Recon ù www.k2am.com.au
+workflow=workflow--283a6c91-ce7e-5d08-b02b-f53da2cf9eeb target_id=target--2bdb97e7-c7dc-534b-a9c1-8134d08a56a0
+steps=6 modules=['sfp_cli_nuclei', 'sfp_cli_httpx', 'sfp_cli_katana', 'sfp_cli_nmap', 'sfp_cli_nerva', 'sfp_cli_subfinder']
+result_hits=[]
+---
+key=recon-vcopportunities
+project=project--0c2f0994-df8b-538d-a9f1-e78d0afaf042 name=Attack Surface Recon ù www.venturecapitalopportunitiesfund.com.au
+workflow=workflow--bffd4f87-b0e5-5e74-b5b9-11fefc6e3c7f target_id=target--b79c53c0-490a-5d59-a4cf-049db7844d9f
+steps=6 modules=['sfp_cli_nuclei', 'sfp_cli_nmap', 'sfp_cli_subfinder', 'sfp_cli_httpx', 'sfp_cli_nerva', 'sfp_cli_katana']
+result_hits=[]
+---
+key=recon-squarepeg
+project=project--cd6996fa-3404-53c5-88a3-84e773f664a3 name=Attack Surface Recon ù www.squarepeg.vc
+workflow=workflow--63fcb2e8-2221-59fc-a174-6675832e2063 target_id=target--6def47b7-c0ac-553a-ade6-60a04bbe6ecb
+steps=6 modules=['sfp_cli_httpx', 'sfp_cli_nuclei', 'sfp_cli_subfinder', 'sfp_cli_katana', 'sfp_cli_nerva', 'sfp_cli_nmap']
+result_hits=[]
+VERIFIED_OK

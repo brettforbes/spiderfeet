@@ -332,6 +332,7 @@ def test_openapi_includes_v2_paths_and_examples(client):
         "/api/v1/targets",
         "/api/v1/scan-steps/{scan_instance_id}",
         "/api/v1/projects/{project_id}/contexts/temporary",
+        "/api/v1/projects/{project_id}/complete",
         "/api/v1/workflows/{workflow_id}/execute",
     ):
         assert path in paths, path
@@ -339,6 +340,24 @@ def test_openapi_includes_v2_paths_and_examples(client):
     project_post = paths["/api/v1/projects"]["post"]
     content = project_post["requestBody"]["content"]["application/json"]
     assert "example" in content or "examples" in content
+
+    # R13-03: project create schema exposes name/description/created; workflow_ids optional
+    schema = content.get("schema") or {}
+    # Resolve $ref if present
+    if "$ref" in schema:
+        ref = schema["$ref"].rsplit("/", 1)[-1]
+        schema = r.json()["components"]["schemas"][ref]
+    props = schema.get("properties") or {}
+    for field in (
+        "project_name",
+        "project_description",
+        "project_created",
+        "stix_incident_id",
+        "workflow_ids",
+    ):
+        assert field in props, field
+    required = set(schema.get("required") or [])
+    assert "workflow_ids" not in required
 
     temp_put = paths["/api/v1/projects/{project_id}/contexts/temporary"]["put"]
     temp_content = temp_put["requestBody"]["content"]["application/json"]
