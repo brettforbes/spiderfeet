@@ -18,15 +18,9 @@ from .meta_narrative import (
     detect_meta_concepts,
 )
 from .narrative_profile import load_narrative_profile
-from .narrative_report import (  # noqa: F401 — re-export compat shim source
+from .narrative_report import (  # noqa: F401 — re-export coverage helpers
     Graph,
-    NarrativeConfig,
-    NarrativeReportBuilder,
-    NetdiscoverNarrativeReportBuilder,
     SemanticGraph,
-    build_narrative_report,
-    build_netdiscover_narrative_report,
-    build_nmap_narrative_report,
     node_value,
     validate_narrative_coverage,
 )
@@ -97,23 +91,6 @@ def build_factual_intro(
     return f"{body} {blurb}".strip()
 
 
-def _config_from_profile(tool: str, profile: dict[str, Any]) -> NarrativeConfig:
-    v2 = _load_narrative_v2()
-    footer = (v2.get("footer") or {}).get("brand", "OS-Intel Scan")
-    host_id = profile.get("host_nugget_id") or profile.get("host_entity") or "HOST"
-    return NarrativeConfig(
-        tool_name=profile.get("tool_name") or tool.title(),
-        scan_nugget_id=profile.get("scan_nugget_id", "SCAN_RECORD"),
-        host_nugget_id=host_id,
-        trace_nugget_id=profile.get("trace_nugget_id", "TRACE"),
-        environment_category=profile.get("environment_category", "ENVIRONMENT"),
-        networks_category=profile.get("networks_category", "NETWORKS"),
-        applications_category=profile.get("applications_category", "APPLICATIONS"),
-        vulnerabilities_category=profile.get("vulnerabilities_category", "VULNERABILITIES"),
-        footer_brand=profile.get("footer_brand", footer),
-    )
-
-
 def _profile_concept_allowlist(profile: dict[str, Any]) -> set[str] | None:
     """Optional tool narrative.yaml key ``meta_concepts`` limits which concepts render."""
     raw = profile.get("meta_concepts")
@@ -163,12 +140,6 @@ def render_narrative(
     """Render Markdown narrative using tool YAML profile + shared meta-concept engine."""
     tool_profile = profile or load_narrative_profile(_TOOL_RULES / tool / "narrative.yaml")
     merged = {**tool_profile, "tool_name": tool_profile.get("tool_name") or tool.title()}
-
-    # Temporary until BD2 retires bespoke builders.
-    if tool == "nmap":
-        return build_nmap_narrative_report(graph, scenario_key)
-    if tool == "netdiscover":
-        return build_netdiscover_narrative_report(graph, scenario_key)
 
     intro = (merged.get("phrasing") or {}).get("introduction") or build_factual_intro(
         tool=tool, profile=merged

@@ -1,8 +1,9 @@
 tool: netdiscover
+tool_name: Netdiscover
 host_nugget_id: SYSTEM
-primary_sections:
-  - scan
-  - systems
-  - networks
 include_trace: false
 include_appendix: true
+footer_brand: OS-Intel Scan
+intro_facts: >
+  This report narrates findings from a Netdiscover ARP discovery run. The story follows
+  the scan metadata and each discovered system with its networks inventory (IPv4, MAC, vendor).

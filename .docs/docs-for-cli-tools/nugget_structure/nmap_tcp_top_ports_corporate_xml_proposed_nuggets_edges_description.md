@@ -1,143 +1,309 @@
-# Nmap OSINT Scan Report — tcp_top_ports_corporate_xml
+# Nmap scan narrative — `tcp_top_ports_corporate_xml`
 
 ## Introduction
 
-This report narrates the findings of a **Nmap** scan against **bbc.co.uk**. The story follows the scan itself, each discovered host, and any traceroute path recorded during the run. Every observed nugget and value from the semantic graph appears in the narrative below or in the appendix.
+This report narrates findings from a Nmap scan. The story follows the scan record, each discovered host (networks, applications, environment), and any traceroute path. This report follows Scan → Host/System/Organisation/Domain (categories) → Trace → Appendix. Overview diagrams show ontology types and relations; category diagrams show a few example values with the rest in tables; the appendix inventories every node and edge.
 
 ## Scan
 
-The scan was executed with **nmap** version **7.80**, targeting **bbc.co.uk** from **Fri Jun 26 03:59:31 2026**. The operator invoked: `nmap -sT -T3 --top-ports 20 -oX - bbc.co.uk`.
- The run completed in **2.33** seconds.
+Every examination has one SCAN_RECORD with scan descriptors linked via had. This scan includes **1** Scan root node(s) (e.g. `nmap:bbc.co.uk:Fri Jun 26 03:59:31 2026`). Linked structures: `SCAN_CLI`, `SCAN_VERSION`, `SCAN_START`, `SCAN_TARGET`, `SCAN_SUMMARY`, `SCAN_ELAPSED`.
 
-Nmap done at Fri Jun 26 03:59:33 2026; 1 IP address (1 host up) scanned in 2.33 seconds
+### Structure overview
 
-During this scan, **1** host was placed under investigation.
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI"]
+  scan_record_1 -->|had| scan_cli_2
+  scan_version_3["SCAN_VERSION"]
+  scan_record_1 -->|had| scan_version_3
+  scan_start_4["SCAN_START"]
+  scan_record_1 -->|had| scan_start_4
+  scan_target_5["SCAN_TARGET"]
+  scan_record_1 -->|had| scan_target_5
+  scan_summary_6["SCAN_SUMMARY"]
+  scan_record_1 -->|had| scan_summary_6
+  scan_elapsed_7["SCAN_ELAPSED"]
+  scan_record_1 -->|had| scan_elapsed_7
+  scan_tool_8["SCAN_TOOL"]
+  scan_record_1 -->|had| scan_tool_8
+```
 
-## Host 151.101.128.81
+### Scan descriptors
 
-The host was observed as **up** (reason: **syn-ack**).
-It answers to the internet name **bbc.co.uk**.
+| Nugget | Value |
+| --- | --- |
+| `SCAN_RECORD` | `nmap:bbc.co.uk:Fri Jun 26 03:59:31 2026` |
 
-### Networks
+## Host
 
-Network address **151.101.128.81**:
-- Port **110** on **tcp** is **filtered** (no-response), associated with **pop3**.
-- Port **111** on **tcp** is **filtered** (no-response), associated with **rpcbind**.
-- Port **135** on **tcp** is **filtered** (no-response), associated with **msrpc**.
-- Port **139** on **tcp** is **filtered** (no-response), associated with **netbios-ssn**.
-- Port **143** on **tcp** is **filtered** (no-response), associated with **imap**.
-- Port **1723** on **tcp** is **filtered** (no-response), associated with **pptp**.
-- Port **21** on **tcp** is **filtered** (no-response), associated with **ftp**.
-- Port **22** on **tcp** is **filtered** (no-response), associated with **ssh**.
-- Port **23** on **tcp** is **filtered** (no-response), associated with **telnet**.
-- Port **25** on **tcp** is **filtered** (no-response), associated with **smtp**.
-- Port **3306** on **tcp** is **filtered** (no-response), associated with **mysql**.
-- Port **3389** on **tcp** is **filtered** (no-response), associated with **ms-wbt-server**.
-- Port **443** on **tcp** is **open** (syn-ack), associated with **https**.
-- Port **445** on **tcp** is **filtered** (no-response), associated with **microsoft-ds**.
-- Port **53** on **tcp** is **filtered** (no-response), associated with **domain**.
-- Port **5900** on **tcp** is **filtered** (no-response), associated with **vnc**.
-- Port **80** on **tcp** is **open** (syn-ack), associated with **http**.
-- Port **8080** on **tcp** is **filtered** (no-response), associated with **http-proxy**.
-- Port **993** on **tcp** is **filtered** (no-response), associated with **imaps**.
-- Port **995** on **tcp** is **filtered** (no-response), associated with **pop3s**.
+Qualified HOST endpoints own category trees for networks, applications, environment, and security findings. This scan includes **1** Host root node(s) (e.g. `151.101.128.81`). Linked structures: `NETWORKS`, `APPLICATIONS`.
 
-### Applications
+### Structure overview
 
-Application service **domain** listening on port **53**.
-Application service **ftp** listening on port **21**.
-Application service **http** listening on port **80**.
-Application service **http-proxy** listening on port **8080**.
-Application service **https** listening on port **443**.
-Application service **imap** listening on port **143**.
-Application service **imaps** listening on port **993**.
-Application service **microsoft-ds** listening on port **445**.
-Application service **ms-wbt-server** listening on port **3389**.
-Application service **msrpc** listening on port **135**.
-Application service **mysql** listening on port **3306**.
-Application service **netbios-ssn** listening on port **139**.
-Application service **pop3** listening on port **110**.
-Application service **pop3s** listening on port **995**.
-Application service **pptp** listening on port **1723**.
-Application service **rpcbind** listening on port **111**.
-Application service **smtp** listening on port **25**.
-Application service **ssh** listening on port **22**.
-Application service **telnet** listening on port **23**.
-Application service **vnc** listening on port **5900**.
+```mermaid
+flowchart TD
+  host_1["HOST"]
+  networks_2["NETWORKS"]
+  host_1 -->|contains| networks_2
+  applications_3["APPLICATIONS"]
+  host_1 -->|contains| applications_3
+```
+
+### `NETWORKS`
+
+```mermaid
+flowchart TD
+  networks_1["NETWORKS"]
+  ipv4_address_2["IPV4_ADDRESS: 151.101.128.81"]
+  networks_1 -->|contains| ipv4_address_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `IPV4_ADDRESS` | `151.101.128.81` |
+
+### `APPLICATIONS`
+
+```mermaid
+flowchart TD
+  applications_1["APPLICATIONS"]
+  service_2["SERVICE: domain"]
+  applications_1 -->|contains| service_2
+  service_3["SERVICE: ftp"]
+  applications_1 -->|contains| service_3
+  service_4["SERVICE: http"]
+  applications_1 -->|contains| service_4
+  more_5["+17 more"]
+  applications_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SERVICE` | `domain` |
+| `SERVICE` | `ftp` |
+| `SERVICE` | `http` |
+| `SERVICE` | `http-proxy` |
+| `SERVICE` | `https` |
+| `SERVICE` | `imap` |
+| `SERVICE` | `imaps` |
+| `SERVICE` | `microsoft-ds` |
+| `SERVICE` | `ms-wbt-server` |
+| `SERVICE` | `msrpc` |
+| `SERVICE` | `mysql` |
+| `SERVICE` | `netbios-ssn` |
+| `SERVICE` | `pop3` |
+| `SERVICE` | `pop3s` |
+| `SERVICE` | `pptp` |
+| `SERVICE` | `rpcbind` |
+| `SERVICE` | `smtp` |
+| `SERVICE` | `ssh` |
+| `SERVICE` | `telnet` |
+| `SERVICE` | `vnc` |
+
+### `ENVIRONMENT`
+
+```mermaid
+flowchart TD
+  environment_1["ENVIRONMENT"]
+  applications_2["APPLICATIONS: applications:151.101.128.81"]
+  environment_1 -->|contains| applications_2
+  host_status_3["HOST_STATUS: up"]
+  environment_1 -->|contains| host_status_3
+  host_status_reason_4["HOST_STATUS_REASON: syn-ack"]
+  environment_1 -->|contains| host_status_reason_4
+  more_5["+2 more"]
+  environment_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:151.101.128.81` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `syn-ack` |
+| `INTERNET_NAME` | `bbc.co.uk` |
+| `NETWORKS` | `networks:151.101.128.81` |
+
+### `VULNERABILITIES`
+
+```mermaid
+flowchart TD
+  vulnerabilities_1["VULNERABILITIES"]
+  applications_2["APPLICATIONS: applications:151.101.128.81"]
+  vulnerabilities_1 -->|contains| applications_2
+  host_status_3["HOST_STATUS: up"]
+  vulnerabilities_1 -->|contains| host_status_3
+  host_status_reason_4["HOST_STATUS_REASON: syn-ack"]
+  vulnerabilities_1 -->|contains| host_status_reason_4
+  more_5["+2 more"]
+  vulnerabilities_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:151.101.128.81` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `syn-ack` |
+| `INTERNET_NAME` | `bbc.co.uk` |
+| `NETWORKS` | `networks:151.101.128.81` |
+
+### `SECURITY`
+
+```mermaid
+flowchart TD
+  security_1["SECURITY"]
+  applications_2["APPLICATIONS: applications:151.101.128.81"]
+  security_1 -->|contains| applications_2
+  host_status_3["HOST_STATUS: up"]
+  security_1 -->|contains| host_status_3
+  host_status_reason_4["HOST_STATUS_REASON: syn-ack"]
+  security_1 -->|contains| host_status_reason_4
+  more_5["+2 more"]
+  security_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:151.101.128.81` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `syn-ack` |
+| `INTERNET_NAME` | `bbc.co.uk` |
+| `NETWORKS` | `networks:151.101.128.81` |
+
+## Services and ports
+
+APPLICATION services listen-to PORT entities under NETWORKS/TRANSPORT. This scan includes **20** Services and ports root node(s) (e.g. `ftp`, `ssh`, `telnet`). Linked structures: no child categories.
+
+### Structure overview
+
+```mermaid
+flowchart TD
+  service_1["SERVICE"]
+```
+
+### Values
+
+| Nugget | Value |
+| --- | --- |
+| `SERVICE` | `domain` |
+| `SERVICE` | `ftp` |
+| `SERVICE` | `http` |
+| `SERVICE` | `http-proxy` |
+| `SERVICE` | `https` |
+| `SERVICE` | `imap` |
+| `SERVICE` | `imaps` |
+| `SERVICE` | `microsoft-ds` |
+| `SERVICE` | `ms-wbt-server` |
+| `SERVICE` | `msrpc` |
+| `SERVICE` | `mysql` |
+| `SERVICE` | `netbios-ssn` |
+| `SERVICE` | `pop3` |
+| `SERVICE` | `pop3s` |
+| `SERVICE` | `pptp` |
+| `SERVICE` | `rpcbind` |
+| `SERVICE` | `smtp` |
+| `SERVICE` | `ssh` |
+| `SERVICE` | `telnet` |
+| `SERVICE` | `vnc` |
 
 ## Conclusion
 
-The scan captured **61** semantic nuggets across **1** host.
- Nmap done at Fri Jun 26 03:59:33 2026; 1 IP address (1 host up) scanned in 2.33 seconds
- The appendix lists every nugget instance and value for audit and downstream review.
+See the appendix for the full node and edge inventory.
 
 
-## Appendix — Complete Nugget Inventory
+## Appendix
 
-| Type | Nugget | Description | Value |
-|------|--------|-------------|-------|
-| CATEGORY | APPLICATIONS | Applications Category | `applications:151.101.128.81` |
-| CATEGORY | NETWORKS | Networks Category | `networks:151.101.128.81` |
-| DESCRIPTOR | HOST_STATUS | Host Status | `up` |
-| DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `syn-ack` |
-| DESCRIPTOR | INTERNET_NAME | Internet Name | `bbc.co.uk` |
-| DESCRIPTOR | PORT_PROTOCOL | Port Protocol | `tcp` |
-| DESCRIPTOR | PORT_STATE | Port State | `filtered` |
-| DESCRIPTOR | PORT_STATE | Port State | `open` |
-| DESCRIPTOR | PORT_STATE_REASON | Port State Reason | `no-response` |
-| DESCRIPTOR | PORT_STATE_REASON | Port State Reason | `syn-ack` |
-| DESCRIPTOR | SCAN_CLI | Scan CLI | `nmap -sT -T3 --top-ports 20 -oX - bbc.co.uk` |
-| DESCRIPTOR | SCAN_ELAPSED | Scan Elapsed Time | `2.33` |
-| DESCRIPTOR | SCAN_START | Scan Start | `Fri Jun 26 03:59:31 2026` |
-| DESCRIPTOR | SCAN_SUMMARY | Scan Summary | `Nmap done at Fri Jun 26 03:59:33 2026; 1 IP address (1 host up) scanned in 2.33 seconds` |
-| DESCRIPTOR | SCAN_TARGET | Scan Target | `bbc.co.uk` |
-| DESCRIPTOR | SCAN_TOOL | Scan Tool | `nmap` |
-| DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
-| ENTITY | HOST | Host | `151.101.128.81` |
-| ENTITY | IPV4_ADDRESS | IP Address | `151.101.128.81` |
-| ENTITY | SCAN_RECORD | Scan Record | `nmap:bbc.co.uk:Fri Jun 26 03:59:31 2026` |
-| ENTITY | SERVICE | Network Service | `domain` |
-| ENTITY | SERVICE | Network Service | `ftp` |
-| ENTITY | SERVICE | Network Service | `http` |
-| ENTITY | SERVICE | Network Service | `http-proxy` |
-| ENTITY | SERVICE | Network Service | `https` |
-| ENTITY | SERVICE | Network Service | `imap` |
-| ENTITY | SERVICE | Network Service | `imaps` |
-| ENTITY | SERVICE | Network Service | `microsoft-ds` |
-| ENTITY | SERVICE | Network Service | `ms-wbt-server` |
-| ENTITY | SERVICE | Network Service | `msrpc` |
-| ENTITY | SERVICE | Network Service | `mysql` |
-| ENTITY | SERVICE | Network Service | `netbios-ssn` |
-| ENTITY | SERVICE | Network Service | `pop3` |
-| ENTITY | SERVICE | Network Service | `pop3s` |
-| ENTITY | SERVICE | Network Service | `pptp` |
-| ENTITY | SERVICE | Network Service | `rpcbind` |
-| ENTITY | SERVICE | Network Service | `smtp` |
-| ENTITY | SERVICE | Network Service | `ssh` |
-| ENTITY | SERVICE | Network Service | `telnet` |
-| ENTITY | SERVICE | Network Service | `vnc` |
-| ENTITY | TRANSPORT | Transport Protocol | `tcp` |
-| SUBENTITY | PORT | Network Port | `110` |
-| SUBENTITY | PORT | Network Port | `111` |
-| SUBENTITY | PORT | Network Port | `135` |
-| SUBENTITY | PORT | Network Port | `139` |
-| SUBENTITY | PORT | Network Port | `143` |
-| SUBENTITY | PORT | Network Port | `1723` |
-| SUBENTITY | PORT | Network Port | `21` |
-| SUBENTITY | PORT | Network Port | `22` |
-| SUBENTITY | PORT | Network Port | `23` |
-| SUBENTITY | PORT | Network Port | `25` |
-| SUBENTITY | PORT | Network Port | `3306` |
-| SUBENTITY | PORT | Network Port | `3389` |
-| SUBENTITY | PORT | Network Port | `443` |
-| SUBENTITY | PORT | Network Port | `445` |
-| SUBENTITY | PORT | Network Port | `53` |
-| SUBENTITY | PORT | Network Port | `5900` |
-| SUBENTITY | PORT | Network Port | `80` |
-| SUBENTITY | PORT | Network Port | `8080` |
-| SUBENTITY | PORT | Network Port | `993` |
-| SUBENTITY | PORT | Network Port | `995` |
+### Nodes
 
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:151.101.128.81` |
+| `HOST` | `151.101.128.81` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `syn-ack` |
+| `INTERNET_NAME` | `bbc.co.uk` |
+| `IPV4_ADDRESS` | `151.101.128.81` |
+| `NETWORKS` | `networks:151.101.128.81` |
+| `PORT` | `110` |
+| `PORT` | `111` |
+| `PORT` | `135` |
+| `PORT` | `139` |
+| `PORT` | `143` |
+| `PORT` | `1723` |
+| `PORT` | `21` |
+| `PORT` | `22` |
+| `PORT` | `23` |
+| `PORT` | `25` |
+| `PORT` | `3306` |
+| `PORT` | `3389` |
+| `PORT` | `443` |
+| `PORT` | `445` |
+| `PORT` | `53` |
+| `PORT` | `5900` |
+| `PORT` | `80` |
+| `PORT` | `8080` |
+| `PORT` | `993` |
+| `PORT` | `995` |
+| `PORT_PROTOCOL` | `tcp` |
+| `PORT_STATE` | `filtered` |
+| `PORT_STATE` | `open` |
+| `PORT_STATE_REASON` | `no-response` |
+| `PORT_STATE_REASON` | `syn-ack` |
+| `SCAN_CLI` | `nmap -sT -T3 --top-ports 20 -oX - bbc.co.uk` |
+| `SCAN_ELAPSED` | `2.33` |
+| `SCAN_RECORD` | `nmap:bbc.co.uk:Fri Jun 26 03:59:31 2026` |
+| `SCAN_START` | `Fri Jun 26 03:59:31 2026` |
+| `SCAN_SUMMARY` | `Nmap done at Fri Jun 26 03:59:33 2026; 1 IP address (1 host up) scanned in 2.33 seconds` |
+| `SCAN_TARGET` | `bbc.co.uk` |
+| `SCAN_TOOL` | `nmap` |
+| `SCAN_VERSION` | `7.80` |
+| `SERVICE` | `domain` |
+| `SERVICE` | `ftp` |
+| `SERVICE` | `http` |
+| `SERVICE` | `http-proxy` |
+| `SERVICE` | `https` |
+| `SERVICE` | `imap` |
+| `SERVICE` | `imaps` |
+| `SERVICE` | `microsoft-ds` |
+| `SERVICE` | `ms-wbt-server` |
+| `SERVICE` | `msrpc` |
+| `SERVICE` | `mysql` |
+| `SERVICE` | `netbios-ssn` |
+| `SERVICE` | `pop3` |
+| `SERVICE` | `pop3s` |
+| `SERVICE` | `pptp` |
+| `SERVICE` | `rpcbind` |
+| `SERVICE` | `smtp` |
+| `SERVICE` | `ssh` |
+| `SERVICE` | `telnet` |
+| `SERVICE` | `vnc` |
+| `TRANSPORT` | `tcp` |
+
+### Edges
+
+| Source | Relation | Target |
+| --- | --- | --- |
+| `SCAN_RECORD` | `had` | `SCAN_CLI` |
+| `SCAN_RECORD` | `had` | `SCAN_VERSION` |
+| `SCAN_RECORD` | `had` | `SCAN_START` |
+| `SCAN_RECORD` | `had` | `SCAN_TARGET` |
+| `SCAN_RECORD` | `had` | `SCAN_SUMMARY` |
+| `SCAN_RECORD` | `had` | `SCAN_ELAPSED` |
+| `SCAN_RECORD` | `had` | `SCAN_TOOL` |
+| `SCAN_RECORD` | `contains` | `HOST` |
+| `HOST` | `had` | `HOST_STATUS` |
+| `HOST` | `had` | `HOST_STATUS_REASON` |
+| `HOST` | `had` | `INTERNET_NAME` |
+| `HOST` | `contains` | `NETWORKS` |
+| `NETWORKS` | `contains` | `IPV4_ADDRESS` |
+| `HOST` | `contains` | `APPLICATIONS` |
+| `IPV4_ADDRESS` | `contains` | `TRANSPORT` |
+| `TRANSPORT` | `contains` | `PORT` |
+| `PORT` | `had` | `PORT_STATE` |
+| `PORT` | `had` | `PORT_STATE_REASON` |
+| `PORT` | `had` | `PORT_PROTOCOL` |
+| `APPLICATIONS` | `contains` | `SERVICE` |
+| `SERVICE` | `listens-to` | `PORT` |
 ---
 
-*OS-Intel Scan · Fri Jun 26 03:59:31 2026 · Page 1*
+*OS-Intel Scan*

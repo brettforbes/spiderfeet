@@ -18,9 +18,9 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 def describe_graph(graph: dict[str, Any], scenario_key: str) -> str:
-    from narrative_report import build_netdiscover_narrative_report
+    from core.narrative_engine import render_narrative
 
-    return build_netdiscover_narrative_report(graph, scenario_key)
+    return render_narrative(graph, tool="netdiscover", scenario_key=scenario_key)
 
 
 def description_path_for(graph_path: Path) -> Path:

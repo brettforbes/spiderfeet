@@ -1,389 +1,184 @@
-# Netdiscover OSINT Scan Report — sparse_subnet_parsable
+# Netdiscover scan narrative — `sparse_subnet_parsable`
 
 ## Introduction
 
-This report narrates the findings of a **Netdiscover** ARP discovery run for **netdiscover — D — full /24 active rescan (parseable)**. The story follows the scan metadata, each discovered **system** on the segment, and the **networks** inventory (IPv4, MAC, and vendor) attached to every system. Every observed nugget and value from the semantic graph appears in the narrative below or in the appendix.
+This report narrates findings from a Netdiscover ARP discovery run. The story follows the scan metadata and each discovered system with its networks inventory (IPv4, MAC, vendor). This report follows Scan → Host/System/Organisation/Domain (categories) → Trace → Appendix. Overview diagrams show ontology types and relations; category diagrams show a few example values with the rest in tables; the appendix inventories every node and edge.
 
 ## Scan
 
-The scan started at **Fri Aug 07 10:50:40 2026** with arguments `netdiscover — D — full /24 active rescan (parseable)`.
- It finished at **Fri Aug 07 10:50:59 2026**.
- Exit status: **success**.
+Every examination has one SCAN_RECORD with scan descriptors linked via had. This scan includes **1** Scan root node(s) (e.g. `netdiscover — D — full /24 active rescan (parseable)`). Linked structures: `SCAN_CLI`, `SCAN_TIMESTAMP`, `SCAN_END_TIME`, `SCAN_SUMMARY`, `SCAN_EXIT_STATUS`, `SCAN_TRIES`.
 
-NetDiscover done at Fri Aug 07 10:50:59 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 19.08 seconds
-
-Netdiscover recorded **1** scan frame(s), **0** empty scan(s) before settling on the host table used for this graph.
-**12** system(s) appear in the structured host inventory.
-**12** system node(s) are linked from the scan record in this graph.
-
-Additional scan metadata:
-- **Scan CLI** (`netdiscover — D — full /24 active rescan (parseable)`)
-
-### Scan topology
+### Structure overview
 
 ```mermaid
 flowchart TD
-  scan["SCAN_RECORD"]
-  sys1["SYSTEM 192.168.1.1"]
-  scan -->|contains| sys1
-  sys2["SYSTEM 192.168.1.10"]
-  scan -->|contains| sys2
-  sys3["SYSTEM 192.168.1.14"]
-  scan -->|contains| sys3
-  sys4["SYSTEM 192.168.1.15"]
-  scan -->|contains| sys4
-  sys5["SYSTEM 192.168.1.16"]
-  scan -->|contains| sys5
-  sys6["SYSTEM 192.168.1.2"]
-  scan -->|contains| sys6
-  sys7["SYSTEM 192.168.1.250"]
-  scan -->|contains| sys7
-  sys8["SYSTEM 192.168.1.3"]
-  scan -->|contains| sys8
-  sys9["SYSTEM 192.168.1.4"]
-  scan -->|contains| sys9
-  sys10["SYSTEM 192.168.1.6"]
-  scan -->|contains| sys10
-  sys11["SYSTEM 192.168.1.7"]
-  scan -->|contains| sys11
-  sys12["SYSTEM 192.168.1.8"]
-  scan -->|contains| sys12
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI"]
+  scan_record_1 -->|had| scan_cli_2
+  scan_timestamp_3["SCAN_TIMESTAMP"]
+  scan_record_1 -->|had| scan_timestamp_3
+  scan_end_time_4["SCAN_END_TIME"]
+  scan_record_1 -->|had| scan_end_time_4
+  scan_summary_5["SCAN_SUMMARY"]
+  scan_record_1 -->|had| scan_summary_5
+  scan_exit_status_6["SCAN_EXIT_STATUS"]
+  scan_record_1 -->|had| scan_exit_status_6
+  scan_tries_7["SCAN_TRIES"]
+  scan_record_1 -->|had| scan_tries_7
+  scan_empty_scans_8["SCAN_EMPTY_SCANS"]
+  scan_record_1 -->|had| scan_empty_scans_8
+  scan_discovered_9["SCAN_DISCOVERED"]
+  scan_record_1 -->|had| scan_discovered_9
 ```
 
-## System 192.168.1.1
+### Scan descriptors
 
-System **192.168.1.1** was observed on the local segment during ARP discovery.
+| Nugget | Value |
+| --- | --- |
+| `SCAN_RECORD` | `netdiscover — D — full /24 active rescan (parseable)` |
 
-### Networks
+## System
+
+When only L2/L3 identity is known, emit SYSTEM (not HOST) with a NETWORKS category. This scan includes **12** System root node(s) (e.g. `192.168.1.1`, `192.168.1.10`, `192.168.1.14`). Linked structures: `NETWORKS`.
+
+### Structure overview
 
 ```mermaid
 flowchart TD
-  system["SYSTEM 192.168.1.1"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
+  system_1["SYSTEM"]
+  networks_2["NETWORKS"]
+  system_1 -->|contains| networks_2
 ```
 
-- IPv4 address **192.168.1.1**.
-- MAC address **14:5f:94:d8:7a:5f** — vendor **Unknown**.
-
-## System 192.168.1.10
-
-System **192.168.1.10** was observed on the local segment during ARP discovery.
-
-### Networks
+### `NETWORKS`
 
 ```mermaid
 flowchart TD
-  system["SYSTEM 192.168.1.10"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
+  networks_1["NETWORKS"]
+  ipv4_address_2["IPV4_ADDRESS: 192.168.1.1"]
+  networks_1 -->|contains| ipv4_address_2
+  ipv4_address_3["IPV4_ADDRESS: 192.168.1.10"]
+  networks_1 -->|contains| ipv4_address_3
+  ipv4_address_4["IPV4_ADDRESS: 192.168.1.14"]
+  networks_1 -->|contains| ipv4_address_4
+  more_5["+21 more"]
+  networks_1 -->|contains| more_5
 ```
 
-- IPv4 address **192.168.1.10**.
-- MAC address **02:0f:b5:2f:b0:73** — vendor **Unknown**.
-
-## System 192.168.1.14
-
-System **192.168.1.14** was observed on the local segment during ARP discovery.
-
-### Networks
-
-```mermaid
-flowchart TD
-  system["SYSTEM 192.168.1.14"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
-```
-
-- IPv4 address **192.168.1.14**.
-- MAC address **02:0f:b5:b7:bd:29** — vendor **Unknown**.
-
-## System 192.168.1.15
-
-System **192.168.1.15** was observed on the local segment during ARP discovery.
-
-### Networks
-
-```mermaid
-flowchart TD
-  system["SYSTEM 192.168.1.15"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
-```
-
-- IPv4 address **192.168.1.15**.
-- MAC address **5a:ba:45:91:e3:41** — vendor **Unknown**.
-
-## System 192.168.1.16
-
-System **192.168.1.16** was observed on the local segment during ARP discovery.
-
-### Networks
-
-```mermaid
-flowchart TD
-  system["SYSTEM 192.168.1.16"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
-```
-
-- IPv4 address **192.168.1.16**.
-- MAC address **3e:48:b2:24:45:34** — vendor **Unknown**.
-
-## System 192.168.1.2
-
-System **192.168.1.2** was observed on the local segment during ARP discovery.
-
-### Networks
-
-```mermaid
-flowchart TD
-  system["SYSTEM 192.168.1.2"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
-```
-
-- IPv4 address **192.168.1.2**.
-- MAC address **02:0f:b5:23:c6:49** — vendor **Unknown**.
-
-## System 192.168.1.250
-
-System **192.168.1.250** was observed on the local segment during ARP discovery.
-
-### Networks
-
-```mermaid
-flowchart TD
-  system["SYSTEM 192.168.1.250"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
-```
-
-- IPv4 address **192.168.1.250**.
-- MAC address **02:0f:b5:46:32:8f** — vendor **Unknown**.
-
-## System 192.168.1.3
-
-System **192.168.1.3** was observed on the local segment during ARP discovery.
-
-### Networks
-
-```mermaid
-flowchart TD
-  system["SYSTEM 192.168.1.3"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
-```
-
-- IPv4 address **192.168.1.3**.
-- MAC address **3c:a3:08:a4:d1:8d** — vendor **Unknown**.
-
-## System 192.168.1.4
-
-System **192.168.1.4** was observed on the local segment during ARP discovery.
-
-### Networks
-
-```mermaid
-flowchart TD
-  system["SYSTEM 192.168.1.4"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
-```
-
-- IPv4 address **192.168.1.4**.
-- MAC address **02:0f:b5:0a:e3:6c** — vendor **Unknown**.
-
-## System 192.168.1.6
-
-System **192.168.1.6** was observed on the local segment during ARP discovery.
-
-### Networks
-
-```mermaid
-flowchart TD
-  system["SYSTEM 192.168.1.6"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
-```
-
-- IPv4 address **192.168.1.6**.
-- MAC address **88:d8:2e:c2:2c:0c** — vendor **Unknown**.
-
-## System 192.168.1.7
-
-System **192.168.1.7** was observed on the local segment during ARP discovery.
-
-### Networks
-
-```mermaid
-flowchart TD
-  system["SYSTEM 192.168.1.7"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
-```
-
-- IPv4 address **192.168.1.7**.
-- MAC address **cc:c7:60:67:89:48** — vendor **Unknown**.
-
-## System 192.168.1.8
-
-System **192.168.1.8** was observed on the local segment during ARP discovery.
-
-### Networks
-
-```mermaid
-flowchart TD
-  system["SYSTEM 192.168.1.8"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
-```
-
-- IPv4 address **192.168.1.8**.
-- MAC address **02:0f:b5:b0:a8:79** — vendor **Unknown**.
+| Nugget | Value |
+| --- | --- |
+| `IPV4_ADDRESS` | `192.168.1.1` |
+| `IPV4_ADDRESS` | `192.168.1.10` |
+| `IPV4_ADDRESS` | `192.168.1.14` |
+| `IPV4_ADDRESS` | `192.168.1.15` |
+| `IPV4_ADDRESS` | `192.168.1.16` |
+| `IPV4_ADDRESS` | `192.168.1.2` |
+| `IPV4_ADDRESS` | `192.168.1.250` |
+| `IPV4_ADDRESS` | `192.168.1.3` |
+| `IPV4_ADDRESS` | `192.168.1.4` |
+| `IPV4_ADDRESS` | `192.168.1.6` |
+| `IPV4_ADDRESS` | `192.168.1.7` |
+| `IPV4_ADDRESS` | `192.168.1.8` |
+| `MAC_ADDRESS` | `02:0f:b5:0a:e3:6c` |
+| `MAC_ADDRESS` | `02:0f:b5:23:c6:49` |
+| `MAC_ADDRESS` | `02:0f:b5:2f:b0:73` |
+| `MAC_ADDRESS` | `02:0f:b5:46:32:8f` |
+| `MAC_ADDRESS` | `02:0f:b5:b0:a8:79` |
+| `MAC_ADDRESS` | `02:0f:b5:b7:bd:29` |
+| `MAC_ADDRESS` | `14:5f:94:d8:7a:5f` |
+| `MAC_ADDRESS` | `3c:a3:08:a4:d1:8d` |
+| `MAC_ADDRESS` | `3e:48:b2:24:45:34` |
+| `MAC_ADDRESS` | `5a:ba:45:91:e3:41` |
+| `MAC_ADDRESS` | `88:d8:2e:c2:2c:0c` |
+| `MAC_ADDRESS` | `cc:c7:60:67:89:48` |
 
 ## Conclusion
 
-The scan captured **58** semantic nuggets across **12** systems.
- NetDiscover done at Fri Aug 07 10:50:59 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 19.08 seconds
- The appendix lists every nugget instance and value for audit and downstream review.
+See the appendix for the full node and edge inventory.
 
 
-## Appendix — Complete Nugget Inventory
+## Appendix
 
-| Type | Nugget | Description | Value |
-|------|--------|-------------|-------|
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.1` |
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.10` |
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.14` |
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.15` |
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.16` |
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.2` |
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.250` |
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.3` |
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.4` |
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.6` |
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.7` |
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.8` |
-| DESCRIPTOR | MAC_VENDOR | MAC Vendor | `Unknown` |
-| DESCRIPTOR | SCAN_CLI | Scan CLI | `netdiscover — D — full /24 active rescan (parseable)` |
-| DESCRIPTOR | SCAN_DISCOVERED | Systems Discovered | `12` |
-| DESCRIPTOR | SCAN_EMPTY_SCANS | Empty Scans | `0` |
-| DESCRIPTOR | SCAN_END_TIME | Scan End Time | `Fri Aug 07 10:50:59 2026` |
-| DESCRIPTOR | SCAN_EXIT_STATUS | Scan Exit Status | `success` |
-| DESCRIPTOR | SCAN_SUMMARY | Scan Summary | `NetDiscover done at Fri Aug 07 10:50:59 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 19.08 seconds` |
-| DESCRIPTOR | SCAN_TIMESTAMP | Scan Start Time | `Fri Aug 07 10:50:40 2026` |
-| DESCRIPTOR | SCAN_TRIES | Scan Tries | `1` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.1` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.10` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.14` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.15` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.16` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.2` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.250` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.3` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.4` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.6` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.7` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.8` |
-| ENTITY | MAC_ADDRESS | MAC Address | `02:0f:b5:0a:e3:6c` |
-| ENTITY | MAC_ADDRESS | MAC Address | `02:0f:b5:23:c6:49` |
-| ENTITY | MAC_ADDRESS | MAC Address | `02:0f:b5:2f:b0:73` |
-| ENTITY | MAC_ADDRESS | MAC Address | `02:0f:b5:46:32:8f` |
-| ENTITY | MAC_ADDRESS | MAC Address | `02:0f:b5:b0:a8:79` |
-| ENTITY | MAC_ADDRESS | MAC Address | `02:0f:b5:b7:bd:29` |
-| ENTITY | MAC_ADDRESS | MAC Address | `14:5f:94:d8:7a:5f` |
-| ENTITY | MAC_ADDRESS | MAC Address | `3c:a3:08:a4:d1:8d` |
-| ENTITY | MAC_ADDRESS | MAC Address | `3e:48:b2:24:45:34` |
-| ENTITY | MAC_ADDRESS | MAC Address | `5a:ba:45:91:e3:41` |
-| ENTITY | MAC_ADDRESS | MAC Address | `88:d8:2e:c2:2c:0c` |
-| ENTITY | MAC_ADDRESS | MAC Address | `cc:c7:60:67:89:48` |
-| ENTITY | SCAN_RECORD | Scan Record | `netdiscover — D — full /24 active rescan (parseable)` |
-| ENTITY | SYSTEM | System | `192.168.1.1` |
-| ENTITY | SYSTEM | System | `192.168.1.10` |
-| ENTITY | SYSTEM | System | `192.168.1.14` |
-| ENTITY | SYSTEM | System | `192.168.1.15` |
-| ENTITY | SYSTEM | System | `192.168.1.16` |
-| ENTITY | SYSTEM | System | `192.168.1.2` |
-| ENTITY | SYSTEM | System | `192.168.1.250` |
-| ENTITY | SYSTEM | System | `192.168.1.3` |
-| ENTITY | SYSTEM | System | `192.168.1.4` |
-| ENTITY | SYSTEM | System | `192.168.1.6` |
-| ENTITY | SYSTEM | System | `192.168.1.7` |
-| ENTITY | SYSTEM | System | `192.168.1.8` |
+### Nodes
 
+| Nugget | Value |
+| --- | --- |
+| `IPV4_ADDRESS` | `192.168.1.1` |
+| `IPV4_ADDRESS` | `192.168.1.10` |
+| `IPV4_ADDRESS` | `192.168.1.14` |
+| `IPV4_ADDRESS` | `192.168.1.15` |
+| `IPV4_ADDRESS` | `192.168.1.16` |
+| `IPV4_ADDRESS` | `192.168.1.2` |
+| `IPV4_ADDRESS` | `192.168.1.250` |
+| `IPV4_ADDRESS` | `192.168.1.3` |
+| `IPV4_ADDRESS` | `192.168.1.4` |
+| `IPV4_ADDRESS` | `192.168.1.6` |
+| `IPV4_ADDRESS` | `192.168.1.7` |
+| `IPV4_ADDRESS` | `192.168.1.8` |
+| `MAC_ADDRESS` | `02:0f:b5:0a:e3:6c` |
+| `MAC_ADDRESS` | `02:0f:b5:23:c6:49` |
+| `MAC_ADDRESS` | `02:0f:b5:2f:b0:73` |
+| `MAC_ADDRESS` | `02:0f:b5:46:32:8f` |
+| `MAC_ADDRESS` | `02:0f:b5:b0:a8:79` |
+| `MAC_ADDRESS` | `02:0f:b5:b7:bd:29` |
+| `MAC_ADDRESS` | `14:5f:94:d8:7a:5f` |
+| `MAC_ADDRESS` | `3c:a3:08:a4:d1:8d` |
+| `MAC_ADDRESS` | `3e:48:b2:24:45:34` |
+| `MAC_ADDRESS` | `5a:ba:45:91:e3:41` |
+| `MAC_ADDRESS` | `88:d8:2e:c2:2c:0c` |
+| `MAC_ADDRESS` | `cc:c7:60:67:89:48` |
+| `MAC_VENDOR` | `Unknown` |
+| `NETWORKS` | `networks:192.168.1.1` |
+| `NETWORKS` | `networks:192.168.1.10` |
+| `NETWORKS` | `networks:192.168.1.14` |
+| `NETWORKS` | `networks:192.168.1.15` |
+| `NETWORKS` | `networks:192.168.1.16` |
+| `NETWORKS` | `networks:192.168.1.2` |
+| `NETWORKS` | `networks:192.168.1.250` |
+| `NETWORKS` | `networks:192.168.1.3` |
+| `NETWORKS` | `networks:192.168.1.4` |
+| `NETWORKS` | `networks:192.168.1.6` |
+| `NETWORKS` | `networks:192.168.1.7` |
+| `NETWORKS` | `networks:192.168.1.8` |
+| `SCAN_CLI` | `netdiscover — D — full /24 active rescan (parseable)` |
+| `SCAN_DISCOVERED` | `12` |
+| `SCAN_EMPTY_SCANS` | `0` |
+| `SCAN_END_TIME` | `Sun Aug 09 15:44:03 2026` |
+| `SCAN_EXIT_STATUS` | `success` |
+| `SCAN_RECORD` | `netdiscover — D — full /24 active rescan (parseable)` |
+| `SCAN_SUMMARY` | `NetDiscover done at Sun Aug 09 15:44:03 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 19.08 seconds` |
+| `SCAN_TIMESTAMP` | `Sun Aug 09 15:43:44 2026` |
+| `SCAN_TRIES` | `1` |
+| `SYSTEM` | `192.168.1.1` |
+| `SYSTEM` | `192.168.1.10` |
+| `SYSTEM` | `192.168.1.14` |
+| `SYSTEM` | `192.168.1.15` |
+| `SYSTEM` | `192.168.1.16` |
+| `SYSTEM` | `192.168.1.2` |
+| `SYSTEM` | `192.168.1.250` |
+| `SYSTEM` | `192.168.1.3` |
+| `SYSTEM` | `192.168.1.4` |
+| `SYSTEM` | `192.168.1.6` |
+| `SYSTEM` | `192.168.1.7` |
+| `SYSTEM` | `192.168.1.8` |
+
+### Edges
+
+| Source | Relation | Target |
+| --- | --- | --- |
+| `SCAN_RECORD` | `had` | `SCAN_CLI` |
+| `SCAN_RECORD` | `had` | `SCAN_TIMESTAMP` |
+| `SCAN_RECORD` | `had` | `SCAN_END_TIME` |
+| `SCAN_RECORD` | `had` | `SCAN_SUMMARY` |
+| `SCAN_RECORD` | `had` | `SCAN_EXIT_STATUS` |
+| `SCAN_RECORD` | `had` | `SCAN_TRIES` |
+| `SCAN_RECORD` | `had` | `SCAN_EMPTY_SCANS` |
+| `SCAN_RECORD` | `had` | `SCAN_DISCOVERED` |
+| `SCAN_RECORD` | `contains` | `SYSTEM` |
+| `SYSTEM` | `contains` | `NETWORKS` |
+| `NETWORKS` | `contains` | `IPV4_ADDRESS` |
+| `NETWORKS` | `contains` | `MAC_ADDRESS` |
+| `MAC_ADDRESS` | `had` | `MAC_VENDOR` |
 ---
 
-*OS-Intel Scan · Fri Aug 07 10:50:40 2026 · Page 1*
+*OS-Intel Scan*
