@@ -57,21 +57,28 @@ class FakeCrudStore:
         wid = data.get("workflow_id")
         if not wid:
             raise CrudError("workflow_id is required")
+        if wid in self.workflows:
+            raise CrudError(f"workflow already exists: {wid}")
         if not (
-            data.get("target_id")
+            data.get("project_id")
+            or data.get("target_id")
             or data.get("first_step_id")
             or data.get("prior_step_ids")
             or data.get("next_step_ids")
         ):
-            raise CrudError("workflow create requires at least one player")
-        if wid in self.workflows:
-            raise CrudError(f"workflow already exists: {wid}")
+            raise CrudError("workflow create requires at least one role player")
         row = {
             **data,
             "prior_step_ids": list(data.get("prior_step_ids") or []),
             "next_step_ids": list(data.get("next_step_ids") or []),
         }
         self.workflows[wid] = row
+        pid = data.get("project_id")
+        if pid and pid in self.projects:
+            linked = list(self.projects[pid].get("workflow_ids") or [])
+            if wid not in linked:
+                linked.append(wid)
+                self.projects[pid]["workflow_ids"] = linked
         return copy.deepcopy(row)
 
     def get_workflow(self, workflow_id: str, **_: Any) -> Optional[Dict[str, Any]]:

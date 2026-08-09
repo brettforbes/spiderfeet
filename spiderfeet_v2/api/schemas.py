@@ -166,9 +166,18 @@ WORKFLOW_CREATE_OPENAPI_EXAMPLES = {
 
 
 class ProjectCreate(BaseModel):
-    """Create a project entity (standalone OK — workflow_ids optional)."""
+    """Create a project.
 
-    project_id: str = Field(..., examples=["project--demo"])
+    When ``workflow_ids`` is empty/omitted, the server creates an info-only
+    workflow linked to the project (R13-04). When ``workflow_ids`` is provided,
+    those existing workflows are linked instead (no new YAML generated).
+    """
+
+    project_id: Optional[str] = Field(
+        None,
+        examples=["project--demo"],
+        description="Optional; server generates ``project--<uuid>`` when omitted.",
+    )
     project_name: Optional[str] = Field(None, examples=["Demo Project"])
     project_description: Optional[str] = Field(
         None, examples=["A project to scan the target domain"]
@@ -176,15 +185,15 @@ class ProjectCreate(BaseModel):
     project_created: Optional[str] = Field(
         None,
         examples=["2026-08-09T10:00:00Z"],
-        description="ISO-8601 datetime; server may supply when omitted.",
+        description="ISO-8601 datetime; server supplies when omitted.",
     )
     stix_incident_id: Optional[str] = None
     workflow_ids: List[str] = Field(
         default_factory=list,
         examples=[["workflow--recon-12a"]],
         description=(
-            "Optional. Derived links are written as workflow→project. "
-            "Empty list creates a standalone project entity (R13-03)."
+            "Optional. Empty/omitted → create info-only workflow (R13-04). "
+            "Non-empty → link existing workflows only."
         ),
     )
 
@@ -208,6 +217,14 @@ class ProjectOut(BaseModel):
     workflow_ids: List[str] = Field(
         default_factory=list,
         description="Workflow ids that link this project (derived).",
+    )
+    primary_workflow_id: Optional[str] = Field(
+        None,
+        description="Set on create-new-project (R13-04) to the info-only workflow id.",
+    )
+    workflow_yaml: Optional[str] = Field(
+        None,
+        description="Info-only YAML returned on create-new-project for Composer load.",
     )
 
 

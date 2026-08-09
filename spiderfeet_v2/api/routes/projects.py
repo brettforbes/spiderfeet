@@ -34,8 +34,30 @@ def create_project(
     ),
     store: CrudStore = Depends(get_crud_store),
 ) -> Dict[str, Any]:
+    """Create a project.
+
+    Empty ``workflow_ids`` → R13-04 create-new-project (info-only workflow).
+    Non-empty ``workflow_ids`` → link existing workflows to a new project entity.
+    """
+    from spiderfeet_v2.workflow.new_project import create_new_project
+
+    payload = body.model_dump(exclude_none=True)
+    workflow_ids = list(payload.get("workflow_ids") or [])
     try:
-        return store.create_project(body.model_dump(exclude_none=True))
+        if workflow_ids:
+            if not payload.get("project_id"):
+                raise CrudError(
+                    "project_id is required when linking existing workflow_ids"
+                )
+            return store.create_project(payload)
+        return create_new_project(
+            store,
+            project_name=payload.get("project_name") or "Untitled Project",
+            project_description=payload.get("project_description") or "",
+            project_id=payload.get("project_id"),
+            project_created=payload.get("project_created"),
+            stix_incident_id=payload.get("stix_incident_id"),
+        )
     except CrudError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
