@@ -61,7 +61,7 @@ python3 cmseek.py --batch --follow-redirect -l hosts.txt
 # Confirm only Drupal
 python3 cmseek.py --batch --follow-redirect --strict-cms drupal -u https://TARGET
 
-# Ignore Joomla noise
+# Ignore Joomla noise (--ignore-cms; help typo --ignore--cms)
 python3 cmseek.py --batch --follow-redirect --ignore-cms joomla -u https://TARGET
 ```
 

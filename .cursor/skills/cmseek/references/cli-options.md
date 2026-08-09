@@ -4,38 +4,129 @@ Invocation: `python3 cmseek.py [options]`
 
 SpiderFeet module (`sfp_tool_cmseek`) uses: `--follow-redirect --batch -u <URL>`.
 
-## Detection and scan flags
+## Captured help
+
+Captured **2026-08-10** from CMSeeK **1.1.3** at `C:\projects\spiderfeet\.tools\CMSeeK\cmseek.py` (identical output from WSL `/home/brett/.local/spiderfeet-cli/CMSeeK/cmseek.py`). ANSI colour codes stripped for readability.
+
+```text
+CMSeeK Version 1.1.3
+Github: https://github.com/Tuhinshubhra/CMSeeK
+Coded By: @r3dhax0r
+
+USAGE:
+       python3 cmseek.py (for guided scanning) OR
+       python3 cmseek.py [OPTIONS] <Target Specification>
+
+SPECIFING TARGET:
+      -u URL, --url URL            Target Url
+      -l LIST, --list LIST         Path of the file containing list of sites
+                                   for multi-site scan (comma separated or one-per-line)
+
+MANIPULATING SCAN:
+      -i cms, --ignore--cms cms    Specify which CMS IDs to skip in order to
+                                   avoid flase positive. separated by comma ","
+
+      --strict-cms cms             Checks target against a list of provided
+                                   CMS IDs. separated by comma ","
+
+      --skip-scanned               Skips target if it's CMS was previously detected.
+
+      --light-scan                 Skips Deep Scan. Does CMS and version detection only.
+
+      -o, --only-cms               Only detect CMS, ignore deep scan and version detection.
+
+RE-DIRECT:
+      --follow-redirect            Follows all/any redirect(s)
+      --no-redirect                Skips all redirects and tests the input target(s)
+
+USER AGENT:
+      -r, --random-agent           Use a random user agent
+      --googlebot                  Use Google bot user agent
+      --user-agent USER_AGENT      Specify a custom user agent
+
+OUTPUT:
+      -v, --verbose                Increase output verbosity
+
+VERSION & UPDATING:
+      --update                     Update CMSeeK (Requires git)
+      --version                    Show CMSeeK version and exit
+
+HELP & MISCELLANEOUS:
+      -h, --help                   Show this help message and exit
+      --clear-result               Delete all the scan result
+      --batch                      Never ask you to press enter after every site in a list is scanned
+
+EXAMPLE USAGE:
+      python3 cmseek.py -u example.com                           # Scan example.com
+      python3 cmseek.py -l /home/user/target.txt                 # Scan the sites specified in target.txt (comma separated)
+      python3 cmseek.py -u example.com --user-agent Mozilla 5.0  # Scan example.com using custom user-Agent Mozilla is 5.0 used here
+      python3 cmseek.py -u example.com --random-agent            # Scan example.com using a random user-Agent
+      python3 cmseek.py -v -u example.com                        # enabling verbose output while scanning example.com
+```
+
+### Capture command
+
+```bash
+# Windows (.tools install)
+python C:\projects\spiderfeet\.tools\CMSeeK\cmseek.py -h
+
+# WSL (spiderfeet-cli layout)
+wsl bash -lc "python3 /home/brett/.local/spiderfeet-cli/CMSeeK/cmseek.py -h"
+```
+
+## Implementation notes
+
+| Help text | Actual argparse (cmseek.py) |
+|-----------|----------------------------|
+| `--ignore--cms` (typo in help) | `--ignore-cms` / `-i` |
+| All other flags | Match help |
+
+When `--batch` is set, CMSeeK prints `True` to stdout once before scanning.
+
+## Flag reference (structured)
+
+### Target selection
 
 | Flag | Long form | Description |
 |------|-----------|-------------|
 | `-u` | `--url` | Single target URL or hostname. Processed by `process_url()` (adds scheme if missing). |
 | `-l` | `--list` | Path to file: one URL per line or comma-separated list. |
-| | `--follow-redirect` | Automatically accept redirect targets (sets `redirect_conf = '1'`). **SpiderFeet default.** |
-| | `--no-redirect` | Do not follow redirects; keep original target. |
-| | `--batch` | Non-interactive mode; no `[ENTER]` prompts. **Required for automation.** |
-| | `--light-scan` | Detection + version only; skip deep CMS modules. |
-| | `--only-cms` | CMS identification only; skip version and deep scan. |
-| | `--skip-scanned` | Skip URLs already present in result index with a `cms_id`. |
-| `-i` | `--ignore-cms` | Comma-separated CMS IDs to ignore during detection (e.g. `wordpress,drupal`). |
-| | `--strict-cms` | Comma-separated CMS IDs to test exclusively. |
 
-## User-Agent and evasion
+### Scan manipulation
 
 | Flag | Description |
 |------|-------------|
-| `-r` | `--random-agent` — pick a random browser user agent |
+| `-i` | `--ignore-cms` — comma-separated CMS IDs to skip (help typo: `--ignore--cms`) |
+| | `--strict-cms` — comma-separated CMS IDs to test exclusively |
+| | `--skip-scanned` — skip URLs already in result index with a detected CMS |
+| | `--light-scan` — detection + version only; skip deep CMS modules |
+| `-o` | `--only-cms` — CMS identification only; skip version and deep scan |
+
+### Redirect
+
+| Flag | Description |
+|------|-------------|
+| | `--follow-redirect` — follow redirects automatically (**SpiderFeet default**) |
+| | `--no-redirect` — do not follow redirects |
+
+### User-Agent
+
+| Flag | Description |
+|------|-------------|
+| `-r` | `--random-agent` — random browser user agent |
 | | `--user-agent <string>` — explicit User-Agent header |
-| | `--googlebot` — use Googlebot user agent string |
+| | `--googlebot` — Googlebot user agent string |
 
-## Maintenance
+### Output and maintenance
 
 | Flag | Description |
 |------|-------------|
-| | `--update` — update CMSeeK from upstream |
-| | `--clear-result` — delete entire `Result/` directory and exit |
-| | `--version` — print version and exit |
 | `-v` | `--verbose` — verbose logging |
-| `-h` | `--help` — help text |
+| | `--update` — update CMSeeK from upstream (requires git) |
+| | `--version` — print version and exit |
+| | `--clear-result` — delete entire `Result/` directory and exit |
+| | `--batch` — non-interactive; no `[ENTER]` prompts (**required for automation**) |
+| `-h` | `--help` — show help |
 
 ## Interactive menu (no CLI args)
 
@@ -72,7 +163,7 @@ On match, CMSeeK may run **version detection** (`VersionDetect`) and/or **deep s
 | stdout contains `CMS Detection failed` | No CMS signature matched |
 | `cms.json` with empty `cms_name` | Scan ran but no named CMS recorded |
 
-## Configuration (SpiderFeet)
+## SpiderFeet configuration
 
 | Option | Purpose |
 |--------|---------|

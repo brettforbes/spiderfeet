@@ -40,6 +40,14 @@
 
 ## Install notes (SpiderFeet)
 
-- **Linux / WSL:** clone repo, run with `python3 cmseek.py`
-- **Windows native:** unreliable; use WSL2 per `cli_tool_install_runbook.md`
+| Environment | Path (example) |
+|-------------|----------------|
+| Repo `.tools` (Windows) | `C:\projects\spiderfeet\.tools\CMSeeK\cmseek.py` |
+| WSL spiderfeet-cli | `/home/brett/.local/spiderfeet-cli/CMSeeK/cmseek.py` |
+| Generic Linux | clone from GitHub; `python3 cmseek.py` |
+
+- **Linux / WSL:** preferred; see `cli_tool_install_runbook.md` and `wsl_ruby_cli_runbook.md`
+- **Windows native:** unreliable; use WSL2 or repo `.tools` copy with Python 3
+- **Version (captured 2026-08-10):** 1.1.3
 - **SpiderFeet opts:** `cmseekpath` must point at install root containing `cmseek.py`
+- **Help capture:** `python3 cmseek.py -h` — synced in `cli-options.md` and `CMSeeK-CLI-Options.md`

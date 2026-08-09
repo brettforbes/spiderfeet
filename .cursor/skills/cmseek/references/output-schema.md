@@ -13,6 +13,7 @@
 
 - `<target>` is the hostname/path key CMSeeK uses when creating the result directory (after redirect normalization in logs).
 - SpiderFeet reads: `{cmseekpath}/Result/{eventData}/cms.json` where `eventData` is the incoming `INTERNET_NAME`.
+- After redirects, CMSeeK may write under the **final host** directory while SpiderFeet still looks up `{eventData}` — align seeds or scan canonical URLs.
 
 ## Primary file: `cms.json`
 
