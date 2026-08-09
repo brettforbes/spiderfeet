@@ -1,37 +1,76 @@
-# Trajan CLI Options
+# Trajan CLI Options (skill reference)
 
-## Core pattern
+Authoritative live help is pasted in `.docs/docs-for-cli-tools/Trajan-CLI-Options.md` (**Captured help**, dated **2026-08-10**). Do not invent flags.
 
-`trajan <platform> scan [scope flags] [runtime flags] [output flags]`
+## Binary / version
 
-Platforms in public docs: `github`, `gitlab`, `ado`, `jenkins`, `jfrog`.
+| Field | Value |
+|-------|-------|
+| Windows | `C:\projects\spiderfeet\.tools\trajan\trajan.exe` |
+| Version | **1.0.2** |
+| Git commit | `c9a58278f157401b363150d923795a0d172fd221` |
+| Build date | `2026-06-21T21:00:13Z` |
+| Help capture | `.tmp_trajan_help/` |
 
-## Common scan flags
+## Command tree (from root help)
 
-- `--repo <owner/repo>`: target a single repository/project.
-- `--org <name>` or `--group <name>`: scan wider organization scope.
-- `--path <file-or-dir>`: local workflow scan without API enumeration.
-- `--concurrency <n>`: tune parallel workers.
-- `--timeout <duration>`: bound scan runtime.
-- `-o json`: machine-readable output for downstream parsers.
+| Command | Role |
+|---------|------|
+| `github` | GitHub Actions: enumerate, scan, attack, retrieve, search |
+| `gitlab` | GitLab CI: enumerate, scan, attack |
+| `ado` | Azure DevOps: enumerate, scan, attack, retrieve |
+| `bitbucket` | Bitbucket: enumerate only (1.0.2) |
+| `jenkins` | Jenkins: enumerate, scan, attack |
+| `jfrog` | JFrog Artifactory: scan (secrets / token-info) |
+| `version` | Print version information |
+| `completion` | Shell completions (bash, zsh, fish, powershell) |
+| `help` | Help about any command |
 
-## Token and auth expectations
+Global flags: `-h/--help`, `-o/--output` (`console`, `json`, `sarif`, `html`; default `console`), `--proxy`, `--socks-proxy`, `--token`, `-v/--verbose`.
 
-- GitHub PAT: `repo` for private repositories, `public_repo` for public-only.
-- GitLab, Azure DevOps, Jenkins auth via provider-specific token env variables.
-- Prefer env vars over inline tokens in shell history.
-
-## High-value command examples
+## SpiderFeet preferred commands
 
 ```bash
+# Primary structured capture
 trajan github scan --repo owner/repo -o json
-trajan github scan --org myorg --concurrency 20 -o json
-trajan gitlab scan --group mygroup -o json
-trajan ado scan --org myorg --repo myproject/myrepo -o json
+trajan gitlab scan --project group/project -o json
+trajan ado scan --org myorg --repo project/repo -o json
+
+# Offline workflows / pipelines
 trajan github scan --path ./.github/workflows -o json
+
+# Inventory before scan
+trajan github enumerate token -o json
 ```
 
-## Notes
+| Prefer | Avoid for corpus |
+|--------|------------------|
+| `-o json` / `--output json` | Console tables as structured source |
+| `scan` / `enumerate` under ROE | Defaulting to `attack` / `retrieve` |
+| `--dry-run` before any live attack | `--confirm` / `--all` / chains without ROE |
+| Dedicated engagement output files | Mixing clients in one unlabelled dump |
 
-- Use `trajan <platform> --help` and `trajan <platform> scan --help` for exact installed flags.
-- Prefer JSON outputs for automation; table output is for human triage.
+## Flag classes (names only — see Captured help)
+
+- **Scope (scan):** `--repo`, `--org`, `--user`, `--project`, `--group`, `--path`, `--url` (platform-specific)
+- **Scan tuning:** `--concurrency`, `--severity`, `--capabilities`, `--detailed`, `--list`, `--timeout` (offline)
+- **Output:** `-o` / `--output` → `console` \| `json` \| `sarif` \| `html`
+- **Auth:** `--token`, platform flags (`--url`, `--azure-bearer-token`, `--email`, `--workspace`, `--username`, `--password`, JFrog `-u`/`-p`)
+- **Proxies:** `--proxy`, `--socks-proxy`
+- **Attack (offensive):** `--plugin`, `--dry-run`, `--confirm`, `--force`, `--chain*`, `--session`, cleanup subcommand — see Captured help
+- **Retrieve (offensive):** `--run-id`, `--repo`, `--wait` (GitHub); ADO retrieve exists per parent help
+
+## Examples
+
+```bash
+trajan version
+trajan github scan --repo owner/repo -o json
+trajan github scan --org myorg --severity critical,high -o json
+trajan github scan --path ./.github/workflows -o json
+trajan github scan --list
+trajan gitlab scan --group mygroup -o json
+trajan ado enumerate token --org myorg -o json
+trajan jenkins scan --url https://jenkins.example.com -o json
+trajan jfrog scan --url https://acme.jfrog.io --secrets -o json
+trajan github attack --repo owner/repo --plugin secrets-dump --dry-run -o json
+```
