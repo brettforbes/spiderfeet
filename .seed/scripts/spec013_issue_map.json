@@ -1,0 +1,309 @@
+{
+  "B1": {
+    "repo": "brettforbes/spiderfeet",
+    "kind": "epic",
+    "title": "[SPEC-013] B1 \u2014 Project schema, CRUD & API alignment",
+    "number": 1151,
+    "url": "https://github.com/brettforbes/spiderfeet/issues/1151"
+  },
+  "B2": {
+    "repo": "brettforbes/spiderfeet",
+    "kind": "epic",
+    "title": "[SPEC-013] B2 \u2014 YAML\u21c4TypeDB round-trip & project lifecycle API",
+    "number": 1152,
+    "url": "https://github.com/brettforbes/spiderfeet/issues/1152"
+  },
+  "B3": {
+    "repo": "brettforbes/spiderfeet",
+    "kind": "epic",
+    "title": "[SPEC-013] B3 \u2014 Seed 5 projects + verification",
+    "number": 1153,
+    "url": "https://github.com/brettforbes/spiderfeet/issues/1153"
+  },
+  "W1": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "epic",
+    "title": "[SPEC-013] W1 \u2014 UI density pass",
+    "number": 204,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/204"
+  },
+  "W2": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "epic",
+    "title": "[SPEC-013] W2 \u2014 Navbar auto-hide",
+    "number": 205,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/205"
+  },
+  "W3": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "epic",
+    "title": "[SPEC-013] W3 \u2014 Projects page refinement",
+    "number": 206,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/206"
+  },
+  "W4": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "epic",
+    "title": "[SPEC-013] W4 \u2014 Composer dropdown + Workflow Bar controls",
+    "number": 207,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/207"
+  },
+  "W5": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "epic",
+    "title": "[SPEC-013] W5 \u2014 Widget acceptance",
+    "number": 208,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/208"
+  },
+  "Y1": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "epic",
+    "title": "[SPEC-013] Y1 \u2014 Remove DAG title bar + host-driven controls",
+    "number": 230,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/230"
+  },
+  "Y2": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "epic",
+    "title": "[SPEC-013] Y2 \u2014 Embed layout fix",
+    "number": 231,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/231"
+  },
+  "Y3": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "epic",
+    "title": "[SPEC-013] Y3 \u2014 Dimensions + fit rules",
+    "number": 232,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/232"
+  },
+  "Y4": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "epic",
+    "title": "[SPEC-013] Y4 \u2014 Zoom/pan rework + legend toggle",
+    "number": 233,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/233"
+  },
+  "Y5": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "epic",
+    "title": "[SPEC-013] Y5 \u2014 YAML widget acceptance",
+    "number": 234,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/234"
+  },
+  "B1-1": {
+    "repo": "brettforbes/spiderfeet",
+    "kind": "story",
+    "epic": "B1",
+    "title": "[SPEC-013] B1-1 \u2014 Schema: project entity + workflow relates project + declare project attrs",
+    "number": 1154,
+    "url": "https://github.com/brettforbes/spiderfeet/issues/1154"
+  },
+  "B1-2": {
+    "repo": "brettforbes/spiderfeet",
+    "kind": "story",
+    "epic": "B1",
+    "title": "[SPEC-013] B1-2 \u2014 Flip Python layer to entity/relation direction + project attrs",
+    "number": 1155,
+    "url": "https://github.com/brettforbes/spiderfeet/issues/1155"
+  },
+  "B1-3": {
+    "repo": "brettforbes/spiderfeet",
+    "kind": "story",
+    "epic": "B1",
+    "title": "[SPEC-013] B1-3 \u2014 Align project API models (no required workflow_ids)",
+    "number": 1156,
+    "url": "https://github.com/brettforbes/spiderfeet/issues/1156"
+  },
+  "B2-1": {
+    "repo": "brettforbes/spiderfeet",
+    "kind": "story",
+    "epic": "B2",
+    "title": "[SPEC-013] B2-1 \u2014 Create-new-project service (project entity + info-only workflow)",
+    "number": 1157,
+    "url": "https://github.com/brettforbes/spiderfeet/issues/1157"
+  },
+  "B2-2": {
+    "repo": "brettforbes/spiderfeet",
+    "kind": "story",
+    "epic": "B2",
+    "title": "[SPEC-013] B2-2 \u2014 PUT /workflows/{id} re-parse (replace bundle)",
+    "number": 1158,
+    "url": "https://github.com/brettforbes/spiderfeet/issues/1158"
+  },
+  "B2-3": {
+    "repo": "brettforbes/spiderfeet",
+    "kind": "story",
+    "epic": "B2",
+    "title": "[SPEC-013] B2-3 \u2014 GET /projects/{id}/complete (workflow_yaml inline)",
+    "number": 1159,
+    "url": "https://github.com/brettforbes/spiderfeet/issues/1159"
+  },
+  "B3-1": {
+    "repo": "brettforbes/spiderfeet",
+    "kind": "story",
+    "epic": "B3",
+    "title": "[SPEC-013] B3-1 \u2014 Idempotent seed script for 5 projects (fully materialized, no results)",
+    "number": 1160,
+    "url": "https://github.com/brettforbes/spiderfeet/issues/1160"
+  },
+  "B3-2": {
+    "repo": "brettforbes/spiderfeet",
+    "kind": "story",
+    "epic": "B3",
+    "title": "[SPEC-013] B3-2 \u2014 Seed verification query (counts/edges/no-results) [OPERATOR GATE]",
+    "number": 1161,
+    "url": "https://github.com/brettforbes/spiderfeet/issues/1161"
+  },
+  "B3-3": {
+    "repo": "brettforbes/spiderfeet",
+    "kind": "story",
+    "epic": "B3",
+    "title": "[SPEC-013] B3-3 \u2014 pytest coverage for B1/B2 + seed smoke",
+    "number": 1162,
+    "url": "https://github.com/brettforbes/spiderfeet/issues/1162"
+  },
+  "W1-1": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "story",
+    "epic": "W1",
+    "title": "[SPEC-013] W1-1 \u2014 Reduce navbar logo height + toolbar/content padding across panes",
+    "number": 209,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/209"
+  },
+  "W2-1": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "story",
+    "epic": "W2",
+    "title": "[SPEC-013] W2-1 \u2014 Auto-hide navbar (~3s idle + on-navigate) with top-edge/keyboard reveal",
+    "number": 210,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/210"
+  },
+  "W3-1": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "story",
+    "epic": "W3",
+    "title": "[SPEC-013] W3-1 \u2014 Projects table columns \u2192 Name/Description/Created/Workflows/STIX",
+    "number": 211,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/211"
+  },
+  "W3-2": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "story",
+    "epic": "W3",
+    "title": "[SPEC-013] W3-2 \u2014 Resilient load: backend-unreachable state + retry",
+    "number": 212,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/212"
+  },
+  "W3-3": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "story",
+    "epic": "W3",
+    "title": "[SPEC-013] W3-3 \u2014 New Project modal: Name+Description editable; read-only id+created; create\u2192Composer",
+    "number": 213,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/213"
+  },
+  "W3-4": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "story",
+    "epic": "W3",
+    "title": "[SPEC-013] W3-4 \u2014 Double-click row \u2192 open in Composer via /complete",
+    "number": 214,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/214"
+  },
+  "W4-1": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "story",
+    "epic": "W4",
+    "title": "[SPEC-013] W4-1 \u2014 Composer project dropdown + 'Add new project' checkbox",
+    "number": 215,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/215"
+  },
+  "W4-2": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "story",
+    "epic": "W4",
+    "title": "[SPEC-013] W4-2 \u2014 Workflow Bar pencil\u2194spectacles (edit) + gear (settings) wired to iFrame",
+    "number": 216,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/216"
+  },
+  "W4-3": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "story",
+    "epic": "W4",
+    "title": "[SPEC-013] W4-3 \u2014 Persist editor YAML on edit-exit + Run Workflow (PUT /workflows/{id})",
+    "number": 217,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/217"
+  },
+  "W5-1": {
+    "repo": "brettforbes/spiderfeet-widget",
+    "kind": "story",
+    "epic": "W5",
+    "title": "[SPEC-013] W5-1 \u2014 GOV-08 exploratory review of Projects + Composer [OPERATOR GATE]",
+    "number": 218,
+    "url": "https://github.com/brettforbes/spiderfeet-widget/issues/218"
+  },
+  "Y1-1": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "story",
+    "epic": "Y1",
+    "title": "[SPEC-013] Y1-1 \u2014 Remove 'CLI Workflow DAG' title bar in all modes",
+    "number": 235,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/235"
+  },
+  "Y1-2": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "story",
+    "epic": "Y1",
+    "title": "[SPEC-013] Y1-2 \u2014 Add host messages setEditMode/openSettings/setLegendVisible + docs",
+    "number": 236,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/236"
+  },
+  "Y2-1": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "story",
+    "epic": "Y2",
+    "title": "[SPEC-013] Y2-1 \u2014 Remove 33% embed shrink + overlays; full-bleed centered diagram",
+    "number": 237,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/237"
+  },
+  "Y3-1": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "story",
+    "epic": "Y3",
+    "title": "[SPEC-013] Y3-1 \u2014 Track DAG bbox/centre-line at 100% zoom",
+    "number": 238,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/238"
+  },
+  "Y3-2": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "story",
+    "epic": "Y3",
+    "title": "[SPEC-013] Y3-2 \u2014 Default 50%/fit-to-width view + on-canvas reset",
+    "number": 239,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/239"
+  },
+  "Y4-1": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "story",
+    "epic": "Y4",
+    "title": "[SPEC-013] Y4-1 \u2014 CTRL+/-/CTRL-wheel zoom; wheel=vertical pan; drag=pan",
+    "number": 240,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/240"
+  },
+  "Y4-2": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "story",
+    "epic": "Y4",
+    "title": "[SPEC-013] Y4-2 \u2014 Settings 'Show legend' toggle + host setLegendVisible",
+    "number": 241,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/241"
+  },
+  "Y5-1": {
+    "repo": "brettforbes/yaml-workflow-widget",
+    "kind": "story",
+    "epic": "Y5",
+    "title": "[SPEC-013] Y5-1 \u2014 Smoke + visual verification on 12A/12A2 (embed + standalone) [OPERATOR GATE]",
+    "number": 242,
+    "url": "https://github.com/brettforbes/yaml-workflow-widget/issues/242"
+  }
+}
