@@ -97,6 +97,6 @@ Graph builders must:
 
 - Tool structure: `nugget_structure/<tool>_nugget_graph_structure.md` (mermaid + field mapping; Profiling **Structure** button)
 - Per scenario JSON: `nugget_structure/<tool>_<scenario>_proposed_nuggets_edges.json`
-- Per scenario narrative: `nugget_structure/<tool>_<scenario>_proposed_nuggets_edges_description.md` (§4.3 in `.seed/05_Onotology_for_Nuggets.md`)
+- Per scenario narrative: `nugget_structure/<tool>_<scenario>_proposed_nuggets_edges_description.md` (§4.3 + SPEC-014 progressive disclosure via `render_narrative`)
 
 Operator approves before ontology promotion.
