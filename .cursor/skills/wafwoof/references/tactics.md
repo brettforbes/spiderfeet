@@ -102,6 +102,19 @@ Verify DNS, TLS, and whether target requires specific SNI/Host header (custom `-
 | Multiple named WAFs | Common with CDN + origin WAF; emit all |
 | Subprocess timeout (300s) | Reduce parallelism; increase `-T`; split bulk |
 
+## Tactic 9: Output format variants
+
+**When:** Corpus needs CSV/text review or file artifacts instead of stdout.
+
+```bash
+wafw00f -a -o scan.json https://TARGET
+wafw00f -a -o scan.csv -f csv https://TARGET
+wafw00f -a -o scan.txt -f text https://TARGET
+wafw00f --no-colors -a -o- -f json https://TARGET
+```
+
+SpiderFeet module always uses `-a -o- -f json`; other formats are manual/corpus-only.
+
 ## SpiderFeet constraints
 
 Module hard-codes `-a -o- -f json`. Operator tactics with other flags require manual runs or future manifest options.

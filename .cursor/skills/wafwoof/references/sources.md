@@ -37,6 +37,7 @@
 | Skill prompt seed | `.seed/03H_Prompt_Making_for_WAFWOOF.md` |
 | Zero to Hero | `.docs/docs-for-cli-tools/WAFWOOF-Zero-to-Hero.md` |
 | CLI options doc | `.docs/docs-for-cli-tools/WAFWOOF-CLI-Options.md` |
+| Captured help (v2.4.2) | `.venv/Scripts/wafw00f.exe --help` (2026-08-10) |
 
 ## Related tools
 
