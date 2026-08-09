@@ -1,103 +1,217 @@
-# tldfinder Zero to Hero
+# tldfinder Zero to Hero — Private TLD Discovery, JSONL, and Nuggets
 
-Practical guide for using `tldfinder` to enumerate private and uncommon DNS namespaces.
+From install to orchestrated recon with **`tldfinder -oJ`**, nugget mapping, and pipelines to **dnsx → httpx → naabu**.
 
-## 1) What tldfinder is for
+Skill reference: `.cursor/skills/tldfinder/SKILL.md`  
+Evidence binary: `C:\projects\spiderfeet\.tools\tldfinder\tldfinder.exe` (**v0.0.2**, **2026-08-10**)
 
-`tldfinder` helps identify candidate private/non-standard top-level namespaces from real-world domain evidence.
+## What tldfinder does
 
-## 2) Install and verify
+tldfinder is ProjectDiscovery's tool for **discovering private TLDs** and related hostnames for security research. It queries curated OSINT sources and optionally **validates** with DNS (`-active`).
 
-```bash
-go install -v github.com/projectdiscovery/tldfinder/cmd/tldfinder@latest
-tldfinder -h
-```
+tldfinder does **not**:
 
-## 3) First run
+- Replace public-zone subdomain enumeration (use **subfinder**)
+- Port scan (use **naabu**)
+- Probe HTTP (use **httpx**)
+- Run vulnerability templates (use **nuclei**)
 
-```bash
-tldfinder -d example.com -json
-```
+---
 
-Start with known organization seed domains.
+## Level 0 — Install
 
-## 4) Major option classes with examples
-
-### A. Seed input
+### Binary
 
 ```bash
-tldfinder -d example.com -json
-tldfinder -l seeds.txt -json
+go install github.com/projectdiscovery/tldfinder/cmd/tldfinder@latest
+tldfinder -version
 ```
 
-### B. Confidence filtering
+Or download from https://github.com/projectdiscovery/tldfinder/releases
+
+This workspace:
+
+```powershell
+C:\projects\spiderfeet\.tools\tldfinder\tldfinder.exe -version
+```
+
+### Provider config (important)
+
+API keys file:
+
+- Linux/macOS: typically under the OS user config directory for `tldfinder`
+- Windows: `%APPDATA%\tldfinder\provider-config.yaml`
+
+List sources and which need keys:
 
 ```bash
-tldfinder -l seeds.txt -json -min-confidence 0.7
+tldfinder -ls
 ```
 
-### C. Resolver-aware validation
+Without keys, free sources (`crtsh`, `dnsx`, `waybackarchive`) still work; keyed sources stay thin.
+
+---
+
+## Level 1 — First discovery
+
+Private TLD **label** (not `example.com`):
 
 ```bash
-tldfinder -l seeds.txt -json -r resolvers.txt
+tldfinder -d google
 ```
 
-### D. Performance controls
+Pipe-friendly:
 
-Use concurrency/rate flags from your installed version for large input sets.
+```bash
+tldfinder -d google -silent
+```
 
-## 5) Practical workflows
+Save to file:
 
-### Workflow 1: Candidate private TLD discovery
+```bash
+tldfinder -d google -o hosts.txt
+```
 
-1. Run on broad seed corpus.
-2. Collect candidate suffixes and confidence scores.
-3. Keep only medium/high confidence candidates.
+README examples also accept names under a private TLD (e.g. `example.google`); the private TLD is auto-extracted.
 
-### Workflow 2: Validation and expansion
+---
 
-1. Generate host candidates under discovered suffixes.
-2. Resolve with `dnsx`.
-3. Promote only resolvable/high-evidence namespaces.
+## Level 2 — JSONL for automation (preferred)
 
-### Workflow 3: Split-horizon analysis
+```bash
+tldfinder -d google -oJ -o google.jsonl
+```
 
-1. Repeat discovery from alternate resolver/vantage sets.
-2. Compare candidate recurrence.
-3. Flag environment-specific private namespaces.
-
-## 6) Output to SpiderFeet nuggets (`nodes[]` and `edges[]`)
+Example line (v0.0.2):
 
 ```json
-{
-  "nodes": [
-    { "type": "INTERNET_NAME", "data": "corp.example.com" },
-    { "type": "INTERNET_NAME", "data": ".corp", "meta": { "namespace_candidate": true } },
-    { "type": "INTERNET_NAME", "data": "portal.auth.corp" }
-  ],
-  "edges": [
-    { "source": "corp.example.com", "target": ".corp", "relationship": "suggests_private_tld" },
-    { "source": ".corp", "target": "portal.auth.corp", "relationship": "expands_to_candidate_host" }
-  ]
-}
+{"host":"docs.sandbox.google","input":"google","source":"crtsh"}
 ```
 
-## 7) Tactics and strategy
+With multi-source collection:
 
-- Blend diverse seeds (domains, certs, passive datasets).
-- Score candidates by recurrence and evidence density.
-- Validate before active expansion to avoid noisy pivots.
-- Track namespace drift with recurring scans.
+```bash
+tldfinder -d google -oJ -cs -o google.jsonl
+```
 
-## 8) Common pitfalls
+```json
+{"host":"storage.google","input":"google","sources":["crtsh"]}
+```
 
-- Assuming every unusual suffix is private.
-- Ignoring public suffix/root list context.
-- Dropping low-confidence evidence without trace metadata.
-- Skipping resolver differential checks in split-horizon environments.
+For SpiderFeet formal examination: harvest JSONL into a **single-root JSON bundle** (`records[]`); derive text from structured.
 
-## 9) Next references
+---
+
+## Level 3 — Discovery modes
+
+```bash
+tldfinder -d google -dm dns -oJ -o dns.jsonl     # default: hosts under private TLD
+tldfinder -d google -dm tld -oJ -o tld.jsonl     # TLD-oriented variants
+tldfinder -d google -dm domain -oJ -o domain.jsonl
+```
+
+Start with **`-dm dns`** for private-namespace host harvesting. Treat `-dm tld` hits that look public (e.g. `google.wf`) with PSL/context checks.
+
+---
+
+## Level 4 — Active validation and IPs
+
+```bash
+tldfinder -d google -active -oJ -oI -o live.jsonl
+```
+
+```json
+{"host":"cache2.c.play.google","ip":"142.250.183.46","input":"google","source":"crtsh"}
+```
+
+**Passive names are not guaranteed live** — validate with `-active` or **dnsx** before invasive scans.
+
+```bash
+tldfinder -d google -silent | dnsx -silent -a -aaaa
+```
+
+---
+
+## Level 5 — Source control
+
+```bash
+tldfinder -ls
+tldfinder -d google -s crtsh,dnsx,waybackarchive
+tldfinder -d google -all
+tldfinder -d google -es censys,whoisxmlapi
+```
+
+---
+
+## Level 6 — Filters and rate limits
+
+```bash
+tldfinder -d google -m corp,sandbox
+tldfinder -d google -f test,qa
+tldfinder -d google -rl 10
+tldfinder -d google -timeout 60 -max-time 30
+```
+
+File or comma-separated seeds via `-d` (v0.0.2):
+
+```bash
+tldfinder -d google,internal -oJ -o batch.jsonl
+tldfinder -d seeds.txt -oJ -o from_file.jsonl
+```
+
+---
+
+## Level 7 — Pipelines
+
+```bash
+tldfinder -d google -silent | dnsx -silent -a -aaaa | httpx -silent
+tldfinder -d google -silent | dnsx -silent -a | naabu -top-ports 1000 -json -silent
+```
+
+Automation tip: add `-duc` to skip update-check noise on stderr.
+
+---
+
+## Level 8 — SpiderFeet nuggets (`nodes[]` / `edges[]`)
+
+| Signal | Nugget |
+|--------|--------|
+| `host` (unvalidated) | `INTERNET_NAME_UNRESOLVED` |
+| `host` (resolves) | `INTERNET_NAME` |
+| `ip` (`-active -oI`) | `IPV4_ADDRESS` / `IPV6_ADDRESS` via `classify_ip` |
+| `input` | Seed / private-TLD context |
+
+Details: `.cursor/skills/tldfinder/references/nugget-mapping.md`
+
+---
+
+## Level 9 — Tactics
+
+- **Seed diversity:** private TLD labels from certs, leaks, org intel — not public apexes.
+- **Source tiering:** free sources → keyed sources → `-all`.
+- **Mode contrast:** compare `-dm dns` vs `-dm tld` before claiming private namespaces.
+- **Split-horizon:** alternate `-r` / `-rL` and keep both views.
+- **Structured-first:** always `-oJ` for corpus; derive human text from structured.
+
+Full playbooks: `.cursor/skills/tldfinder/references/tactics-and-workflows.md`
+
+---
+
+## Common pitfalls
+
+- Feeding public domains (`example.com`) as if they were private TLD labels.
+- Inventing flags (`-l`, `-min-confidence`, etc.) not present in `tldfinder -h`.
+- Treating every unusual suffix as private without recurrence / PSL checks.
+- Parsing banners instead of JSONL.
+- Skipping dnsx/`-active` before port or HTTP scanning.
+- Storing raw `.jsonl` as the CLI Profiling Structured artifact (wrap into a JSON bundle).
+
+---
+
+## Next references
 
 - `.cursor/skills/tldfinder/SKILL.md`
 - `.cursor/skills/tldfinder/references/SKILLS.md`
+- `.docs/docs-for-cli-tools/tldfinder-CLI-Options.md`
 - [tldfinder repository](https://github.com/projectdiscovery/tldfinder)
+- [Enumerating private TLDs](https://cloud.google.com/blog/topics/threat-intelligence/enumerating-private-tlds)
