@@ -5,10 +5,11 @@ Adaptive wireless sequences when RF conditions, defenses, or hardware limit disc
 ## Principles
 
 1. **Passive before active** — Maximize airodump survey before any `aireplay-ng`.
-2. **Fix channel early** — Channel hopping misses short beacons; lock `-c` once BSSID known.
+2. **Fix channel early** — Channel hopping misses short beacons; lock `--channel` once BSSID known.
 3. **BSSID over ESSID** — Duplicate SSIDs are common; always key on BSSID.
 4. **Adapter matters more than wordlists** — Injection failures block WEP/WPA acceleration.
 5. **Authorized disruption only** — Deauth is a denial-of-service; scope explicitly.
+6. **Runtime honesty** — On Windows: no `airmon-ng`; `aircrack-ng` help may be unusable — plan Linux/WSL for monitor + crack.
 
 ---
 
@@ -19,7 +20,7 @@ Adaptive wireless sequences when RF conditions, defenses, or hardware limit disc
 | Step | Action |
 |------|--------|
 | 1 | Move closer to target airspace (authorized physical access) |
-| 2 | Reduce hop rate: airodump `-d 500` or fixed channel |
+| 2 | Reduce hop rate: airodump `-f 500` or fixed `--channel` |
 | 3 | External directional antenna if legal and in scope |
 | 4 | Longer passive window (10–30 min) |
 | 5 | Merge multiple CSV snapshots; dedupe BSSIDs |
@@ -47,7 +48,7 @@ Adaptive wireless sequences when RF conditions, defenses, or hardware limit disc
 |------|--------|
 | 1 | Confirm client associated (`Station MAC` → target BSSID) |
 | 2 | `wpaclean` on cap — handshake may exist but buried |
-| 3 | Authorized: single targeted `aireplay-ng -0 1` (minimal disruption) |
+| 3 | Authorized: single targeted `aireplay-ng --deauth 1` (minimal disruption) |
 | 4 | Retry at shift change / high client mobility windows |
 | 5 | Consider PMKID capture tools if engagement allows (outside classic aircrack) |
 
@@ -55,98 +56,55 @@ Adaptive wireless sequences when RF conditions, defenses, or hardware limit disc
 
 ## Tactic 4: WEP IV stagnation
 
-**Symptoms:** `# IV` not increasing during ARP replay.
+**Symptoms:** `# IV` / data count not increasing during ARP replay.
 
 | Step | Action |
 |------|--------|
-| 1 | Verify injection: `aireplay-ng -9` |
-| 2 | Re-fake-auth: `aireplay-ng -1 0` |
-| 3 | Try different client MAC `-h` |
-| 4 | Switch attack: chopchop `-4`, fragmentation `-5` |
-| 5 | Read [IVs don't increase](https://www.aircrack-ng.org/doku.php?id=i_am_injecting_but_the_ivs_don_t_increase) |
+| 1 | `aireplay-ng --test` / `-9` — confirm injection |
+| 2 | Fake auth (`--fakeauth`) then retry `--arpreplay` |
+| 3 | See [IVs don't increase](https://www.aircrack-ng.org/doku.php?id=i_am_injecting_but_the_ivs_don_t_increase) |
+| 4 | Try `--chopchop` / `--fragment` + `packetforge-ng` path |
+| 5 | Clientless: `--caffe-latte` / `--cfrag` in lab only |
 
 ---
 
-## Tactic 5: Clientless WEP AP
+## Tactic 5: Protected / filtered airspace
 
-**Reference:** [Crack WEP with no clients](https://www.aircrack-ng.org/doku.php?id=how_to_crack_wep_with_no_clients)
+**Symptoms:** Sparse CSV, few clients, short dwell.
 
 | Step | Action |
 |------|--------|
-| 1 | Fake authentication |
-| 2 | Fragmentation or chopchop to obtain PRGA |
-| 3 | `packetforge-ng` + ARP replay |
-| 4 | `aircrack-ng` when IV threshold met |
+| 1 | Longer passive survey; avoid deauth |
+| 2 | Record manufacturer/WPS columns (`--manufacturer`, `--wps`) for OSINT value |
+| 3 | Treat sparse export as valid **clean_miss / sparse** fixture — do not invent APs |
+| 4 | Escalate only with expanded authorization |
 
 ---
 
-## Tactic 6: WPA crack throughput
+## Tactic 6: Windows host / missing monitor stack
 
-**Symptoms:** Dictionary crack too slow.
+**Symptoms:** Suite binaries present; no `airmon-ng`; cracker won't run.
 
 | Step | Action |
 |------|--------|
-| 1 | `wpaclean` cap |
-| 2 | `airolib-ng --batch` for target ESSID + wordlist |
-| 3 | `aircrack-ng -r db` |
-| 4 | Rule-based wordlist mangling before import |
-| 5 | GPU tools (hashcat) if policy allows — export hccapx |
+| 1 | Use Captured help for offline flag documentation |
+| 2 | Move RF work to Linux/WSL with supported USB adapter |
+| 3 | Re-capture `aircrack-ng --help` on Linux before documenting cracker flags |
+| 4 | Keep SpiderFeet OSINT path as airodump CSV parse when captures exist |
 
 ---
 
-## Tactic 7: OSINT-only footprint
+## Tactic 7: Maximize returned data (orchestrated)
 
-**Goal:** Maximum AP/client intelligence without injection.
+```
+airmon-ng (Linux) → airodump survey (csv+pcap)
+    → focus BSSID+channel
+        → passive handshake wait
+            → minimal authorized deauth if needed
+                → wpaclean
+                    → airolib-ng batch (optional)
+                        → Linux aircrack-ng (help-gated flags)
+                            → airdecap-ng → Wireshark
+```
 
-| Step | Action |
-|------|--------|
-| 1 | Workflow 1 passive survey |
-| 2 | Parse CSV → `WIFI_ACCESS_POINT` |
-| 3 | `airgraph-ng` for association graph |
-| 4 | Correlate BSSIDs with OUI/manufacturer (`--manufacturer`) |
-| 5 | Stop — no aireplay/aircrack |
-
----
-
-## Tactic 8: Driver / monitor mode flakiness
-
-**Symptoms:** `wlan0mon` disappears, channel `-1`.
-
-| Step | Action |
-|------|--------|
-| 1 | `airmon-ng check kill` and restart monitor |
-| 2 | `--ignore-negative-one` |
-| 3 | USB power saving off |
-| 4 | Different chipset / `apt install` driver firmware |
-| 5 | Kali maintained kernel + known-good Alfa adapter |
-
----
-
-## Response matrix
-
-| Observation | Next action |
-|-------------|-------------|
-| No APs at all | Check region, antenna, monitor mode, `iw reg get` |
-| OPN (open) APs | Map as high-risk descriptor; no crack needed for presence |
-| WPA3 only | Classic WPA handshake crack may not apply |
-| Many clients, no handshake | Minimal deauth or wait for roaming |
-| Duplicate ESSIDs | Report each BSSID separately |
-| Injection test fails | Do not use replay tactics; passive only |
-
----
-
-## Anti-patterns
-
-- Deauth flooding entire channel
-- Cracking or capturing without written authorization
-- Assuming laptop built-in WiFi supports injection
-- Ignoring teardown (`airmon-ng stop`) leaving NIC in monitor mode
-- Emitting recovered passwords into OSINT graph by default
-
----
-
-## Related
-
-- [workflows.md](workflows.md)
-- [cli-options-by-module.md](cli-options-by-module.md)
-- [nugget-mapping.md](nugget-mapping.md)
+Branch by encryption (`Privacy` column): OPN (map only) / WEP (IV path) / WPA* (handshake path).
