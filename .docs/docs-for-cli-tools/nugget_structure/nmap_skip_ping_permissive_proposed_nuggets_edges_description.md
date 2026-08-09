@@ -1,65 +1,225 @@
-# Nmap OSINT Scan Report — skip_ping_permissive_xml
+# Nmap scan narrative — `skip_ping_permissive`
 
 ## Introduction
 
-This report narrates the findings of a **Nmap** scan against **scanme.nmap.org**. The story follows the scan itself, each discovered host, and any traceroute path recorded during the run. Every observed nugget and value from the semantic graph appears in the narrative below or in the appendix.
+This report narrates findings from a Nmap scan. The story follows the scan record, each discovered host (networks, applications, environment), and any traceroute path. This report follows Scan → Host/System/Organisation/Domain (categories) → Trace → Appendix. Overview diagrams show ontology types and relations; category diagrams show a few example values with the rest in tables; the appendix inventories every node and edge.
 
 ## Scan
 
-The scan was executed with **nmap** version **7.80**, targeting **scanme.nmap.org** from **Fri Jun 26 03:56:03 2026**. The operator invoked: `nmap -sT -Pn -T3 -p 80 -oX - scanme.nmap.org`.
- The run completed in **0.31** seconds.
+Every examination has one SCAN_RECORD with scan descriptors linked via had. This scan includes **1** Scan root node(s) (e.g. `nmap:scanme.nmap.org:Fri Jun 26 03:56:03 2026`). Linked structures: `SCAN_CLI`, `SCAN_VERSION`, `SCAN_START`, `SCAN_TARGET`, `SCAN_SUMMARY`, `SCAN_ELAPSED`.
 
-Nmap done at Fri Jun 26 03:56:03 2026; 1 IP address (1 host up) scanned in 0.31 seconds
+### Structure overview
 
-During this scan, **1** host was placed under investigation.
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI"]
+  scan_record_1 -->|had| scan_cli_2
+  scan_version_3["SCAN_VERSION"]
+  scan_record_1 -->|had| scan_version_3
+  scan_start_4["SCAN_START"]
+  scan_record_1 -->|had| scan_start_4
+  scan_target_5["SCAN_TARGET"]
+  scan_record_1 -->|had| scan_target_5
+  scan_summary_6["SCAN_SUMMARY"]
+  scan_record_1 -->|had| scan_summary_6
+  scan_elapsed_7["SCAN_ELAPSED"]
+  scan_record_1 -->|had| scan_elapsed_7
+  scan_tool_8["SCAN_TOOL"]
+  scan_record_1 -->|had| scan_tool_8
+```
 
-## Host 45.33.32.156
+### Scan descriptors
 
-The host was observed as **up** (reason: **user-set**).
-It answers to the internet name **scanme.nmap.org**.
+| Nugget | Value |
+| --- | --- |
+| `SCAN_RECORD` | `nmap:scanme.nmap.org:Fri Jun 26 03:56:03 2026` |
 
-### Networks
+## Host
 
-Network address **45.33.32.156**:
-- Port **80** on **tcp** is **open** (syn-ack), associated with **http**.
+Qualified HOST endpoints own category trees for networks, applications, environment, and security findings. This scan includes **1** Host root node(s) (e.g. `45.33.32.156`). Linked structures: `NETWORKS`, `APPLICATIONS`.
 
-### Applications
+### Structure overview
 
-Application service **http** listening on port **80**.
+```mermaid
+flowchart TD
+  host_1["HOST"]
+  networks_2["NETWORKS"]
+  host_1 -->|contains| networks_2
+  applications_3["APPLICATIONS"]
+  host_1 -->|contains| applications_3
+```
+
+### `NETWORKS`
+
+```mermaid
+flowchart TD
+  networks_1["NETWORKS"]
+  ipv4_address_2["IPV4_ADDRESS: 45.33.32.156"]
+  networks_1 -->|contains| ipv4_address_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `IPV4_ADDRESS` | `45.33.32.156` |
+
+### `APPLICATIONS`
+
+```mermaid
+flowchart TD
+  applications_1["APPLICATIONS"]
+  service_2["SERVICE: http"]
+  applications_1 -->|contains| service_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SERVICE` | `http` |
+
+### `ENVIRONMENT`
+
+```mermaid
+flowchart TD
+  environment_1["ENVIRONMENT"]
+  applications_2["APPLICATIONS: applications:45.33.32.156"]
+  environment_1 -->|contains| applications_2
+  host_status_3["HOST_STATUS: up"]
+  environment_1 -->|contains| host_status_3
+  host_status_reason_4["HOST_STATUS_REASON: user-set"]
+  environment_1 -->|contains| host_status_reason_4
+  more_5["+2 more"]
+  environment_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:45.33.32.156` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `user-set` |
+| `INTERNET_NAME` | `scanme.nmap.org` |
+| `NETWORKS` | `networks:45.33.32.156` |
+
+### `VULNERABILITIES`
+
+```mermaid
+flowchart TD
+  vulnerabilities_1["VULNERABILITIES"]
+  applications_2["APPLICATIONS: applications:45.33.32.156"]
+  vulnerabilities_1 -->|contains| applications_2
+  host_status_3["HOST_STATUS: up"]
+  vulnerabilities_1 -->|contains| host_status_3
+  host_status_reason_4["HOST_STATUS_REASON: user-set"]
+  vulnerabilities_1 -->|contains| host_status_reason_4
+  more_5["+2 more"]
+  vulnerabilities_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:45.33.32.156` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `user-set` |
+| `INTERNET_NAME` | `scanme.nmap.org` |
+| `NETWORKS` | `networks:45.33.32.156` |
+
+### `SECURITY`
+
+```mermaid
+flowchart TD
+  security_1["SECURITY"]
+  applications_2["APPLICATIONS: applications:45.33.32.156"]
+  security_1 -->|contains| applications_2
+  host_status_3["HOST_STATUS: up"]
+  security_1 -->|contains| host_status_3
+  host_status_reason_4["HOST_STATUS_REASON: user-set"]
+  security_1 -->|contains| host_status_reason_4
+  more_5["+2 more"]
+  security_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:45.33.32.156` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `user-set` |
+| `INTERNET_NAME` | `scanme.nmap.org` |
+| `NETWORKS` | `networks:45.33.32.156` |
+
+## Services and ports
+
+APPLICATION services listen-to PORT entities under NETWORKS/TRANSPORT. This scan includes **1** Services and ports root node(s) (e.g. `http`). Linked structures: no child categories.
+
+### Structure overview
+
+```mermaid
+flowchart TD
+  service_1["SERVICE"]
+```
+
+### Values
+
+| Nugget | Value |
+| --- | --- |
+| `SERVICE` | `http` |
 
 ## Conclusion
 
-The scan captured **21** semantic nuggets across **1** host.
- Nmap done at Fri Jun 26 03:56:03 2026; 1 IP address (1 host up) scanned in 0.31 seconds
- The appendix lists every nugget instance and value for audit and downstream review.
+See the appendix for the full node and edge inventory.
 
 
-## Appendix — Complete Nugget Inventory
+## Appendix
 
-| Type | Nugget | Description | Value |
-|------|--------|-------------|-------|
-| CATEGORY | APPLICATIONS | Applications Category | `applications:45.33.32.156` |
-| CATEGORY | NETWORKS | Networks Category | `networks:45.33.32.156` |
-| DESCRIPTOR | HOST_STATUS | Host Status | `up` |
-| DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `user-set` |
-| DESCRIPTOR | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
-| DESCRIPTOR | PORT_PROTOCOL | Port Protocol | `tcp` |
-| DESCRIPTOR | PORT_STATE | Port State | `open` |
-| DESCRIPTOR | PORT_STATE_REASON | Port State Reason | `syn-ack` |
-| DESCRIPTOR | SCAN_CLI | Scan CLI | `nmap -sT -Pn -T3 -p 80 -oX - scanme.nmap.org` |
-| DESCRIPTOR | SCAN_ELAPSED | Scan Elapsed Time | `0.31` |
-| DESCRIPTOR | SCAN_START | Scan Start | `Fri Jun 26 03:56:03 2026` |
-| DESCRIPTOR | SCAN_SUMMARY | Scan Summary | `Nmap done at Fri Jun 26 03:56:03 2026; 1 IP address (1 host up) scanned in 0.31 seconds` |
-| DESCRIPTOR | SCAN_TARGET | Scan Target | `scanme.nmap.org` |
-| DESCRIPTOR | SCAN_TOOL | Scan Tool | `nmap` |
-| DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
-| ENTITY | HOST | Host | `45.33.32.156` |
-| ENTITY | IPV4_ADDRESS | IP Address | `45.33.32.156` |
-| ENTITY | SCAN_RECORD | Scan Record | `nmap:scanme.nmap.org:Fri Jun 26 03:56:03 2026` |
-| ENTITY | SERVICE | Network Service | `http` |
-| ENTITY | TRANSPORT | Transport Protocol | `tcp` |
-| SUBENTITY | PORT | Network Port | `80` |
+### Nodes
 
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:45.33.32.156` |
+| `HOST` | `45.33.32.156` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `user-set` |
+| `INTERNET_NAME` | `scanme.nmap.org` |
+| `IPV4_ADDRESS` | `45.33.32.156` |
+| `NETWORKS` | `networks:45.33.32.156` |
+| `PORT` | `80` |
+| `PORT_PROTOCOL` | `tcp` |
+| `PORT_STATE` | `open` |
+| `PORT_STATE_REASON` | `syn-ack` |
+| `SCAN_CLI` | `nmap -sT -Pn -T3 -p 80 -oX - scanme.nmap.org` |
+| `SCAN_ELAPSED` | `0.31` |
+| `SCAN_RECORD` | `nmap:scanme.nmap.org:Fri Jun 26 03:56:03 2026` |
+| `SCAN_START` | `Fri Jun 26 03:56:03 2026` |
+| `SCAN_SUMMARY` | `Nmap done at Fri Jun 26 03:56:03 2026; 1 IP address (1 host up) scanned in 0.31 seconds` |
+| `SCAN_TARGET` | `scanme.nmap.org` |
+| `SCAN_TOOL` | `nmap` |
+| `SCAN_VERSION` | `7.80` |
+| `SERVICE` | `http` |
+| `TRANSPORT` | `tcp` |
+
+### Edges
+
+| Source | Relation | Target |
+| --- | --- | --- |
+| `SCAN_RECORD` | `had` | `SCAN_CLI` |
+| `SCAN_RECORD` | `had` | `SCAN_VERSION` |
+| `SCAN_RECORD` | `had` | `SCAN_START` |
+| `SCAN_RECORD` | `had` | `SCAN_TARGET` |
+| `SCAN_RECORD` | `had` | `SCAN_SUMMARY` |
+| `SCAN_RECORD` | `had` | `SCAN_ELAPSED` |
+| `SCAN_RECORD` | `had` | `SCAN_TOOL` |
+| `SCAN_RECORD` | `contains` | `HOST` |
+| `HOST` | `had` | `HOST_STATUS` |
+| `HOST` | `had` | `HOST_STATUS_REASON` |
+| `HOST` | `had` | `INTERNET_NAME` |
+| `HOST` | `contains` | `NETWORKS` |
+| `NETWORKS` | `contains` | `IPV4_ADDRESS` |
+| `HOST` | `contains` | `APPLICATIONS` |
+| `IPV4_ADDRESS` | `contains` | `TRANSPORT` |
+| `TRANSPORT` | `contains` | `PORT` |
+| `PORT` | `had` | `PORT_STATE` |
+| `PORT` | `had` | `PORT_STATE_REASON` |
+| `PORT` | `had` | `PORT_PROTOCOL` |
+| `APPLICATIONS` | `contains` | `SERVICE` |
+| `SERVICE` | `listens-to` | `PORT` |
 ---
 
-*OS-Intel Scan · Fri Jun 26 03:56:03 2026 · Page 1*
+*OS-Intel Scan*

@@ -14,6 +14,7 @@ _CORPUS = Path(__file__).resolve().parent
 if str(_CORPUS) not in sys.path:
     sys.path.insert(0, str(_CORPUS))
 
+from core.meta_narrative import count_mermaid_shapes  # noqa: E402
 from core.narrative_engine import render_narrative, validate_narrative_coverage  # noqa: E402
 
 REPO_ROOT = _CORPUS.parents[2]
@@ -23,7 +24,6 @@ DEFAULT_REF = _CORPUS / "fixtures" / "spec014_bd1_narrative_reference"
 _H2 = re.compile(r"^##\s+(.+?)\s*$", re.M)
 _MERMAID = re.compile(r"```mermaid\n(.*?)```", re.S)
 _IP = re.compile(r"\b\d{1,3}(?:\.\d{1,3}){3}\b")
-_SHAPE = re.compile(r"^\s+\w+", re.M)
 
 
 def extract_h2_headings(md: str) -> list[str]:
@@ -80,10 +80,13 @@ def _diagram_hygiene(md: str, *, max_shapes: int = 12) -> list[str]:
     problems: list[str] = []
     pre = md.split("## Appendix")[0] if "## Appendix" in md else md
     for block in _MERMAID.findall(pre):
-        shapes = len(_SHAPE.findall(block))
-        if shapes > max_shapes + 2:  # slight slack for flowchart header lines
-            problems.append(f"mermaid shape count {shapes} exceeds cap ~{max_shapes}")
-        if '["' not in block and _IP.search(block):
+        shapes = count_mermaid_shapes("```mermaid\n" + block + "\n```")
+        if shapes > max_shapes:
+            problems.append(f"mermaid shape count {shapes} exceeds cap {max_shapes}")
+        # Type-only overview: no quoted value labels with IP/URL literals
+        if '["' in block and ":" not in block and _IP.search(block):
+            problems.append("type-only overview Mermaid embeds IP literal")
+        elif '["' not in block and _IP.search(block):
             problems.append("type-only overview Mermaid embeds IP literal")
     return problems
 

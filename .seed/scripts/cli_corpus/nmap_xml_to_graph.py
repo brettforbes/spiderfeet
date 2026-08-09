@@ -17,7 +17,7 @@ if str(_CLI_CORPUS) not in sys.path:
     sys.path.insert(0, str(_CLI_CORPUS))
 
 from graph_builder import nugget_instance_id
-from narrative_report import build_nmap_narrative_report
+from core.narrative_engine import render_narrative
 from core.ip_classify import classify_ip
 EXAM_ROOT = REPO_ROOT / ".docs/docs-for-cli-tools/app_examination_docs/nmap"
 NUGGET_ROOT = REPO_ROOT / ".docs/docs-for-cli-tools/nugget_structure"
@@ -179,7 +179,7 @@ def _append_edge_examples(
 
 def describe_graph(graph: Dict[str, Any], scenario_key: str) -> str:
     """Generate a §4.3 narrative Markdown report from a proposed nugget graph."""
-    return build_nmap_narrative_report(graph, scenario_key)
+    return render_narrative(graph, tool="nmap", scenario_key=scenario_key)
 
 
 def _host_key(addresses: List[Tuple[str, str]]) -> str:

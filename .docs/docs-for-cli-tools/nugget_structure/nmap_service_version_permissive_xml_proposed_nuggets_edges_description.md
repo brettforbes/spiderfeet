@@ -1,93 +1,259 @@
-# Nmap OSINT Scan Report — service_version_permissive_xml
+# Nmap scan narrative — `service_version_permissive_xml`
 
 ## Introduction
 
-This report narrates the findings of a **Nmap** scan against **scanme.nmap.org**. The story follows the scan itself, each discovered host, and any traceroute path recorded during the run. Every observed nugget and value from the semantic graph appears in the narrative below or in the appendix.
+This report narrates findings from a Nmap scan. The story follows the scan record, each discovered host (networks, applications, environment), and any traceroute path. This report follows Scan → Host/System/Organisation/Domain (categories) → Trace → Appendix. Overview diagrams show ontology types and relations; category diagrams show a few example values with the rest in tables; the appendix inventories every node and edge.
 
 ## Scan
 
-The scan was executed with **nmap** version **7.80**, targeting **scanme.nmap.org** from **Tue Jun 23 19:00:44 2026**. The operator invoked: `nmap -sT -sV -T3 -p 22,80,443,9929,31337 -oX - scanme.nmap.org`.
- The run completed in **11.20** seconds.
+Every examination has one SCAN_RECORD with scan descriptors linked via had. This scan includes **1** Scan root node(s) (e.g. `nmap:scanme.nmap.org:Tue Jun 23 19:00:44 2026`). Linked structures: `SCAN_CLI`, `SCAN_VERSION`, `SCAN_START`, `SCAN_TARGET`, `SCAN_SUMMARY`, `SCAN_ELAPSED`.
 
-Nmap done at Tue Jun 23 19:00:55 2026; 1 IP address (1 host up) scanned in 11.20 seconds
+### Structure overview
 
-During this scan, **1** host was placed under investigation.
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI"]
+  scan_record_1 -->|had| scan_cli_2
+  scan_version_3["SCAN_VERSION"]
+  scan_record_1 -->|had| scan_version_3
+  scan_start_4["SCAN_START"]
+  scan_record_1 -->|had| scan_start_4
+  scan_target_5["SCAN_TARGET"]
+  scan_record_1 -->|had| scan_target_5
+  scan_summary_6["SCAN_SUMMARY"]
+  scan_record_1 -->|had| scan_summary_6
+  scan_elapsed_7["SCAN_ELAPSED"]
+  scan_record_1 -->|had| scan_elapsed_7
+  scan_tool_8["SCAN_TOOL"]
+  scan_record_1 -->|had| scan_tool_8
+```
 
-## Host 45.33.32.156
+### Scan descriptors
 
-The host was observed as **up** (reason: **echo-reply**).
-It answers to the internet name **scanme.nmap.org**.
+| Nugget | Value |
+| --- | --- |
+| `SCAN_RECORD` | `nmap:scanme.nmap.org:Tue Jun 23 19:00:44 2026` |
 
-### Networks
+## Host
 
-Network address **45.33.32.156**:
-- Port **22** on **tcp** is **open** (syn-ack), associated with **ssh**.
-- Port **31337** on **tcp** is **open** (syn-ack), associated with **tcpwrapped**.
-- Port **443** on **tcp** is **filtered** (no-response), associated with **https**.
-- Port **80** on **tcp** is **open** (syn-ack), associated with **http**.
-- Port **9929** on **tcp** is **filtered** (no-response), associated with **nping-echo**.
+Qualified HOST endpoints own category trees for networks, applications, environment, and security findings. This scan includes **1** Host root node(s) (e.g. `45.33.32.156`). Linked structures: `NETWORKS`, `APPLICATIONS`.
 
-### Applications
+### Structure overview
 
-Application service **http** listening on port **80**. It runs **Apache httpd 2.4.7**. Additional detail: **(Ubuntu)**.
-- Common Platform Enumeration: `cpe:/a:apache:http_server:2.4.7`.
-Application service **https** listening on port **443**.
-Application service **nping-echo** listening on port **9929**.
-Application service **ssh** listening on port **22**. It runs **OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13**. Additional detail: **Ubuntu Linux; protocol 2.0**.
-- Common Platform Enumeration: `cpe:/a:openbsd:openssh:6.6.1p1`.
-- Common Platform Enumeration: `cpe:/o:linux:linux_kernel`.
-Application service **tcpwrapped** listening on port **31337**.
+```mermaid
+flowchart TD
+  host_1["HOST"]
+  networks_2["NETWORKS"]
+  host_1 -->|contains| networks_2
+  applications_3["APPLICATIONS"]
+  host_1 -->|contains| applications_3
+```
+
+### `NETWORKS`
+
+```mermaid
+flowchart TD
+  networks_1["NETWORKS"]
+  ipv4_address_2["IPV4_ADDRESS: 45.33.32.156"]
+  networks_1 -->|contains| ipv4_address_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `IPV4_ADDRESS` | `45.33.32.156` |
+
+### `APPLICATIONS`
+
+```mermaid
+flowchart TD
+  applications_1["APPLICATIONS"]
+  service_2["SERVICE: http"]
+  applications_1 -->|contains| service_2
+  service_3["SERVICE: https"]
+  applications_1 -->|contains| service_3
+  service_4["SERVICE: nping-echo"]
+  applications_1 -->|contains| service_4
+  more_5["+2 more"]
+  applications_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SERVICE` | `http` |
+| `SERVICE` | `https` |
+| `SERVICE` | `nping-echo` |
+| `SERVICE` | `ssh` |
+| `SERVICE` | `tcpwrapped` |
+
+### `ENVIRONMENT`
+
+```mermaid
+flowchart TD
+  environment_1["ENVIRONMENT"]
+  applications_2["APPLICATIONS: applications:45.33.32.156"]
+  environment_1 -->|contains| applications_2
+  host_status_3["HOST_STATUS: up"]
+  environment_1 -->|contains| host_status_3
+  host_status_reason_4["HOST_STATUS_REASON: echo-reply"]
+  environment_1 -->|contains| host_status_reason_4
+  more_5["+2 more"]
+  environment_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:45.33.32.156` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `echo-reply` |
+| `INTERNET_NAME` | `scanme.nmap.org` |
+| `NETWORKS` | `networks:45.33.32.156` |
+
+### `VULNERABILITIES`
+
+```mermaid
+flowchart TD
+  vulnerabilities_1["VULNERABILITIES"]
+  applications_2["APPLICATIONS: applications:45.33.32.156"]
+  vulnerabilities_1 -->|contains| applications_2
+  host_status_3["HOST_STATUS: up"]
+  vulnerabilities_1 -->|contains| host_status_3
+  host_status_reason_4["HOST_STATUS_REASON: echo-reply"]
+  vulnerabilities_1 -->|contains| host_status_reason_4
+  more_5["+2 more"]
+  vulnerabilities_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:45.33.32.156` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `echo-reply` |
+| `INTERNET_NAME` | `scanme.nmap.org` |
+| `NETWORKS` | `networks:45.33.32.156` |
+
+### `SECURITY`
+
+```mermaid
+flowchart TD
+  security_1["SECURITY"]
+  applications_2["APPLICATIONS: applications:45.33.32.156"]
+  security_1 -->|contains| applications_2
+  host_status_3["HOST_STATUS: up"]
+  security_1 -->|contains| host_status_3
+  host_status_reason_4["HOST_STATUS_REASON: echo-reply"]
+  security_1 -->|contains| host_status_reason_4
+  more_5["+2 more"]
+  security_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:45.33.32.156` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `echo-reply` |
+| `INTERNET_NAME` | `scanme.nmap.org` |
+| `NETWORKS` | `networks:45.33.32.156` |
+
+## Services and ports
+
+APPLICATION services listen-to PORT entities under NETWORKS/TRANSPORT. This scan includes **5** Services and ports root node(s) (e.g. `ssh`, `http`, `https`). Linked structures: no child categories.
+
+### Structure overview
+
+```mermaid
+flowchart TD
+  service_1["SERVICE"]
+```
+
+### Values
+
+| Nugget | Value |
+| --- | --- |
+| `SERVICE` | `http` |
+| `SERVICE` | `https` |
+| `SERVICE` | `nping-echo` |
+| `SERVICE` | `ssh` |
+| `SERVICE` | `tcpwrapped` |
 
 ## Conclusion
 
-The scan captured **38** semantic nuggets across **1** host.
- Nmap done at Tue Jun 23 19:00:55 2026; 1 IP address (1 host up) scanned in 11.20 seconds
- The appendix lists every nugget instance and value for audit and downstream review.
+See the appendix for the full node and edge inventory.
 
 
-## Appendix — Complete Nugget Inventory
+## Appendix
 
-| Type | Nugget | Description | Value |
-|------|--------|-------------|-------|
-| CATEGORY | APPLICATIONS | Applications Category | `applications:45.33.32.156` |
-| CATEGORY | NETWORKS | Networks Category | `networks:45.33.32.156` |
-| DESCRIPTOR | HOST_STATUS | Host Status | `up` |
-| DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `echo-reply` |
-| DESCRIPTOR | INTERNET_NAME | Internet Name | `scanme.nmap.org` |
-| DESCRIPTOR | PORT_PROTOCOL | Port Protocol | `tcp` |
-| DESCRIPTOR | PORT_STATE | Port State | `filtered` |
-| DESCRIPTOR | PORT_STATE | Port State | `open` |
-| DESCRIPTOR | PORT_STATE_REASON | Port State Reason | `no-response` |
-| DESCRIPTOR | PORT_STATE_REASON | Port State Reason | `syn-ack` |
-| DESCRIPTOR | SCAN_CLI | Scan CLI | `nmap -sT -sV -T3 -p 22,80,443,9929,31337 -oX - scanme.nmap.org` |
-| DESCRIPTOR | SCAN_ELAPSED | Scan Elapsed Time | `11.20` |
-| DESCRIPTOR | SCAN_START | Scan Start | `Tue Jun 23 19:00:44 2026` |
-| DESCRIPTOR | SCAN_SUMMARY | Scan Summary | `Nmap done at Tue Jun 23 19:00:55 2026; 1 IP address (1 host up) scanned in 11.20 seconds` |
-| DESCRIPTOR | SCAN_TARGET | Scan Target | `scanme.nmap.org` |
-| DESCRIPTOR | SCAN_TOOL | Scan Tool | `nmap` |
-| DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
-| DESCRIPTOR | SERVICE_EXTRAINFO | Service Extra Information | `(Ubuntu)` |
-| DESCRIPTOR | SERVICE_EXTRAINFO | Service Extra Information | `Ubuntu Linux; protocol 2.0` |
-| DESCRIPTOR | SERVICE_VERSION | Service Version | `Apache httpd 2.4.7` |
-| DESCRIPTOR | SERVICE_VERSION | Service Version | `OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13` |
-| ENTITY | HOST | Host | `45.33.32.156` |
-| ENTITY | IPV4_ADDRESS | IP Address | `45.33.32.156` |
-| ENTITY | SCAN_RECORD | Scan Record | `nmap:scanme.nmap.org:Tue Jun 23 19:00:44 2026` |
-| ENTITY | SERVICE | Network Service | `http` |
-| ENTITY | SERVICE | Network Service | `https` |
-| ENTITY | SERVICE | Network Service | `nping-echo` |
-| ENTITY | SERVICE | Network Service | `ssh` |
-| ENTITY | SERVICE | Network Service | `tcpwrapped` |
-| ENTITY | TRANSPORT | Transport Protocol | `tcp` |
-| SUBENTITY | CPE_URL | CPE URL | `cpe:/a:apache:http_server:2.4.7` |
-| SUBENTITY | CPE_URL | CPE URL | `cpe:/a:openbsd:openssh:6.6.1p1` |
-| SUBENTITY | CPE_URL | CPE URL | `cpe:/o:linux:linux_kernel` |
-| SUBENTITY | PORT | Network Port | `22` |
-| SUBENTITY | PORT | Network Port | `31337` |
-| SUBENTITY | PORT | Network Port | `443` |
-| SUBENTITY | PORT | Network Port | `80` |
-| SUBENTITY | PORT | Network Port | `9929` |
+### Nodes
 
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:45.33.32.156` |
+| `CPE_URL` | `cpe:/a:apache:http_server:2.4.7` |
+| `CPE_URL` | `cpe:/a:openbsd:openssh:6.6.1p1` |
+| `CPE_URL` | `cpe:/o:linux:linux_kernel` |
+| `HOST` | `45.33.32.156` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `echo-reply` |
+| `INTERNET_NAME` | `scanme.nmap.org` |
+| `IPV4_ADDRESS` | `45.33.32.156` |
+| `NETWORKS` | `networks:45.33.32.156` |
+| `PORT` | `22` |
+| `PORT` | `31337` |
+| `PORT` | `443` |
+| `PORT` | `80` |
+| `PORT` | `9929` |
+| `PORT_PROTOCOL` | `tcp` |
+| `PORT_STATE` | `filtered` |
+| `PORT_STATE` | `open` |
+| `PORT_STATE_REASON` | `no-response` |
+| `PORT_STATE_REASON` | `syn-ack` |
+| `SCAN_CLI` | `nmap -sT -sV -T3 -p 22,80,443,9929,31337 -oX - scanme.nmap.org` |
+| `SCAN_ELAPSED` | `11.20` |
+| `SCAN_RECORD` | `nmap:scanme.nmap.org:Tue Jun 23 19:00:44 2026` |
+| `SCAN_START` | `Tue Jun 23 19:00:44 2026` |
+| `SCAN_SUMMARY` | `Nmap done at Tue Jun 23 19:00:55 2026; 1 IP address (1 host up) scanned in 11.20 seconds` |
+| `SCAN_TARGET` | `scanme.nmap.org` |
+| `SCAN_TOOL` | `nmap` |
+| `SCAN_VERSION` | `7.80` |
+| `SERVICE` | `http` |
+| `SERVICE` | `https` |
+| `SERVICE` | `nping-echo` |
+| `SERVICE` | `ssh` |
+| `SERVICE` | `tcpwrapped` |
+| `SERVICE_EXTRAINFO` | `(Ubuntu)` |
+| `SERVICE_EXTRAINFO` | `Ubuntu Linux; protocol 2.0` |
+| `SERVICE_VERSION` | `Apache httpd 2.4.7` |
+| `SERVICE_VERSION` | `OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13` |
+| `TRANSPORT` | `tcp` |
+
+### Edges
+
+| Source | Relation | Target |
+| --- | --- | --- |
+| `SCAN_RECORD` | `had` | `SCAN_CLI` |
+| `SCAN_RECORD` | `had` | `SCAN_VERSION` |
+| `SCAN_RECORD` | `had` | `SCAN_START` |
+| `SCAN_RECORD` | `had` | `SCAN_TARGET` |
+| `SCAN_RECORD` | `had` | `SCAN_SUMMARY` |
+| `SCAN_RECORD` | `had` | `SCAN_ELAPSED` |
+| `SCAN_RECORD` | `had` | `SCAN_TOOL` |
+| `SCAN_RECORD` | `contains` | `HOST` |
+| `HOST` | `had` | `HOST_STATUS` |
+| `HOST` | `had` | `HOST_STATUS_REASON` |
+| `HOST` | `had` | `INTERNET_NAME` |
+| `HOST` | `contains` | `NETWORKS` |
+| `NETWORKS` | `contains` | `IPV4_ADDRESS` |
+| `HOST` | `contains` | `APPLICATIONS` |
+| `IPV4_ADDRESS` | `contains` | `TRANSPORT` |
+| `TRANSPORT` | `contains` | `PORT` |
+| `PORT` | `had` | `PORT_STATE` |
+| `PORT` | `had` | `PORT_STATE_REASON` |
+| `PORT` | `had` | `PORT_PROTOCOL` |
+| `APPLICATIONS` | `contains` | `SERVICE` |
+| `SERVICE` | `listens-to` | `PORT` |
+| `SERVICE` | `had` | `SERVICE_VERSION` |
+| `SERVICE` | `had` | `SERVICE_EXTRAINFO` |
+| `SERVICE` | `contains` | `CPE_URL` |
 ---
 
-*OS-Intel Scan · Tue Jun 23 19:00:44 2026 · Page 1*
+*OS-Intel Scan*

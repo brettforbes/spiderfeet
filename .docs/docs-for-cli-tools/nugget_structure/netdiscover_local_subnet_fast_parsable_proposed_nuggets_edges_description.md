@@ -1,81 +1,114 @@
-# Netdiscover OSINT Scan Report — local_subnet_fast_parsable
+# Netdiscover scan narrative — `local_subnet_fast_parsable`
 
 ## Introduction
 
-This report narrates the findings of a **Netdiscover** ARP discovery run for **netdiscover — B — fast mode gateway probe 192.168.1.0/24 (parseable)**. The story follows the scan metadata, each discovered **system** on the segment, and the **networks** inventory (IPv4, MAC, and vendor) attached to every system. Every observed nugget and value from the semantic graph appears in the narrative below or in the appendix.
+This report narrates findings from a Netdiscover ARP discovery run. The story follows the scan metadata and each discovered system with its networks inventory (IPv4, MAC, vendor). This report follows Scan → Host/System/Organisation/Domain (categories) → Trace → Appendix. Overview diagrams show ontology types and relations; category diagrams show a few example values with the rest in tables; the appendix inventories every node and edge.
 
 ## Scan
 
-The scan started at **Fri Aug 07 10:50:40 2026** with arguments `netdiscover — B — fast mode gateway probe 192.168.1.0/24 (parseable)`.
- It finished at **Fri Aug 07 10:50:44 2026**.
- Exit status: **success**.
+Every examination has one SCAN_RECORD with scan descriptors linked via had. This scan includes **1** Scan root node(s) (e.g. `netdiscover — B — fast mode gateway probe 192.168.1.0/24 (parseable)`). Linked structures: `SCAN_CLI`, `SCAN_TIMESTAMP`, `SCAN_END_TIME`, `SCAN_SUMMARY`, `SCAN_EXIT_STATUS`, `SCAN_TRIES`.
 
-NetDiscover done at Fri Aug 07 10:50:44 2026; 1 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 3.84 seconds
-
-Netdiscover recorded **1** scan frame(s), **0** empty scan(s) before settling on the host table used for this graph.
-**1** system(s) appear in the structured host inventory.
-**1** system node(s) are linked from the scan record in this graph.
-
-Additional scan metadata:
-- **Scan CLI** (`netdiscover — B — fast mode gateway probe 192.168.1.0/24 (parseable)`)
-
-### Scan topology
+### Structure overview
 
 ```mermaid
 flowchart TD
-  scan["SCAN_RECORD"]
-  sys1["SYSTEM 192.168.1.1"]
-  scan -->|contains| sys1
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI"]
+  scan_record_1 -->|had| scan_cli_2
+  scan_timestamp_3["SCAN_TIMESTAMP"]
+  scan_record_1 -->|had| scan_timestamp_3
+  scan_end_time_4["SCAN_END_TIME"]
+  scan_record_1 -->|had| scan_end_time_4
+  scan_summary_5["SCAN_SUMMARY"]
+  scan_record_1 -->|had| scan_summary_5
+  scan_exit_status_6["SCAN_EXIT_STATUS"]
+  scan_record_1 -->|had| scan_exit_status_6
+  scan_tries_7["SCAN_TRIES"]
+  scan_record_1 -->|had| scan_tries_7
+  scan_empty_scans_8["SCAN_EMPTY_SCANS"]
+  scan_record_1 -->|had| scan_empty_scans_8
+  scan_discovered_9["SCAN_DISCOVERED"]
+  scan_record_1 -->|had| scan_discovered_9
 ```
 
-## System 192.168.1.1
+### Scan descriptors
 
-System **192.168.1.1** was observed on the local segment during ARP discovery.
+| Nugget | Value |
+| --- | --- |
+| `SCAN_RECORD` | `netdiscover — B — fast mode gateway probe 192.168.1.0/24 (parseable)` |
 
-### Networks
+## System
+
+When only L2/L3 identity is known, emit SYSTEM (not HOST) with a NETWORKS category. This scan includes **1** System root node(s) (e.g. `192.168.1.1`). Linked structures: `NETWORKS`.
+
+### Structure overview
 
 ```mermaid
 flowchart TD
-  system["SYSTEM 192.168.1.1"]
-  nets["NETWORKS"]
-  system -->|contains| nets
-  ip["IPV4_ADDRESS"]
-  nets -->|contains| ip
-  mac["MAC_ADDRESS"]
-  nets -->|contains| mac
-  vendor["MAC_VENDOR"]
-  mac -->|had| vendor
+  system_1["SYSTEM"]
+  networks_2["NETWORKS"]
+  system_1 -->|contains| networks_2
 ```
 
-- IPv4 address **192.168.1.1**.
-- MAC address **14:5f:94:d8:7a:5f** — vendor **Unknown**.
+### `NETWORKS`
+
+```mermaid
+flowchart TD
+  networks_1["NETWORKS"]
+  ipv4_address_2["IPV4_ADDRESS: 192.168.1.1"]
+  networks_1 -->|contains| ipv4_address_2
+  mac_address_3["MAC_ADDRESS: 14:5f:94:d8:7a:5f"]
+  networks_1 -->|contains| mac_address_3
+```
+
+| Nugget | Value |
+| --- | --- |
+| `IPV4_ADDRESS` | `192.168.1.1` |
+| `MAC_ADDRESS` | `14:5f:94:d8:7a:5f` |
 
 ## Conclusion
 
-The scan captured **14** semantic nuggets across **1** system.
- NetDiscover done at Fri Aug 07 10:50:44 2026; 1 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 3.84 seconds
- The appendix lists every nugget instance and value for audit and downstream review.
+See the appendix for the full node and edge inventory.
 
 
-## Appendix — Complete Nugget Inventory
+## Appendix
 
-| Type | Nugget | Description | Value |
-|------|--------|-------------|-------|
-| CATEGORY | NETWORKS | Networks Category | `networks:192.168.1.1` |
-| DESCRIPTOR | MAC_VENDOR | MAC Vendor | `Unknown` |
-| DESCRIPTOR | SCAN_CLI | Scan CLI | `netdiscover — B — fast mode gateway probe 192.168.1.0/24 (parseable)` |
-| DESCRIPTOR | SCAN_DISCOVERED | Systems Discovered | `1` |
-| DESCRIPTOR | SCAN_EMPTY_SCANS | Empty Scans | `0` |
-| DESCRIPTOR | SCAN_END_TIME | Scan End Time | `Fri Aug 07 10:50:44 2026` |
-| DESCRIPTOR | SCAN_EXIT_STATUS | Scan Exit Status | `success` |
-| DESCRIPTOR | SCAN_SUMMARY | Scan Summary | `NetDiscover done at Fri Aug 07 10:50:44 2026; 1 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 3.84 seconds` |
-| DESCRIPTOR | SCAN_TIMESTAMP | Scan Start Time | `Fri Aug 07 10:50:40 2026` |
-| DESCRIPTOR | SCAN_TRIES | Scan Tries | `1` |
-| ENTITY | IPV4_ADDRESS | IP Address | `192.168.1.1` |
-| ENTITY | MAC_ADDRESS | MAC Address | `14:5f:94:d8:7a:5f` |
-| ENTITY | SCAN_RECORD | Scan Record | `netdiscover — B — fast mode gateway probe 192.168.1.0/24 (parseable)` |
-| ENTITY | SYSTEM | System | `192.168.1.1` |
+### Nodes
 
+| Nugget | Value |
+| --- | --- |
+| `IPV4_ADDRESS` | `192.168.1.1` |
+| `MAC_ADDRESS` | `14:5f:94:d8:7a:5f` |
+| `MAC_VENDOR` | `Unknown` |
+| `NETWORKS` | `networks:192.168.1.1` |
+| `SCAN_CLI` | `netdiscover — B — fast mode gateway probe 192.168.1.0/24 (parseable)` |
+| `SCAN_DISCOVERED` | `1` |
+| `SCAN_EMPTY_SCANS` | `0` |
+| `SCAN_END_TIME` | `Sun Aug 09 15:43:47 2026` |
+| `SCAN_EXIT_STATUS` | `success` |
+| `SCAN_RECORD` | `netdiscover — B — fast mode gateway probe 192.168.1.0/24 (parseable)` |
+| `SCAN_SUMMARY` | `NetDiscover done at Sun Aug 09 15:43:47 2026; 1 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 3.84 seconds` |
+| `SCAN_TIMESTAMP` | `Sun Aug 09 15:43:43 2026` |
+| `SCAN_TRIES` | `1` |
+| `SYSTEM` | `192.168.1.1` |
+
+### Edges
+
+| Source | Relation | Target |
+| --- | --- | --- |
+| `SCAN_RECORD` | `had` | `SCAN_CLI` |
+| `SCAN_RECORD` | `had` | `SCAN_TIMESTAMP` |
+| `SCAN_RECORD` | `had` | `SCAN_END_TIME` |
+| `SCAN_RECORD` | `had` | `SCAN_SUMMARY` |
+| `SCAN_RECORD` | `had` | `SCAN_EXIT_STATUS` |
+| `SCAN_RECORD` | `had` | `SCAN_TRIES` |
+| `SCAN_RECORD` | `had` | `SCAN_EMPTY_SCANS` |
+| `SCAN_RECORD` | `had` | `SCAN_DISCOVERED` |
+| `SCAN_RECORD` | `contains` | `SYSTEM` |
+| `SYSTEM` | `contains` | `NETWORKS` |
+| `NETWORKS` | `contains` | `IPV4_ADDRESS` |
+| `NETWORKS` | `contains` | `MAC_ADDRESS` |
+| `MAC_ADDRESS` | `had` | `MAC_VENDOR` |
 ---
 
-*OS-Intel Scan · Fri Aug 07 10:50:40 2026 · Page 1*
+*OS-Intel Scan*

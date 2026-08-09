@@ -1,55 +1,191 @@
-# Nmap OSINT Scan Report — host_discovery_corporate_xml
+# Nmap scan narrative — `host_discovery_corporate`
 
 ## Introduction
 
-This report narrates the findings of a **Nmap** scan against **bbc.co.uk**. The story follows the scan itself, each discovered host, and any traceroute path recorded during the run. Every observed nugget and value from the semantic graph appears in the narrative below or in the appendix.
+This report narrates findings from a Nmap scan. The story follows the scan record, each discovered host (networks, applications, environment), and any traceroute path. This report follows Scan → Host/System/Organisation/Domain (categories) → Trace → Appendix. Overview diagrams show ontology types and relations; category diagrams show a few example values with the rest in tables; the appendix inventories every node and edge.
 
 ## Scan
 
-The scan was executed with **nmap** version **7.80**, targeting **bbc.co.uk** from **Fri Jun 26 03:59:30 2026**. The operator invoked: `nmap -sn -T3 -oX - bbc.co.uk`.
- The run completed in **0.34** seconds.
+Every examination has one SCAN_RECORD with scan descriptors linked via had. This scan includes **1** Scan root node(s) (e.g. `nmap:bbc.co.uk:Fri Jun 26 03:59:30 2026`). Linked structures: `SCAN_CLI`, `SCAN_VERSION`, `SCAN_START`, `SCAN_TARGET`, `SCAN_SUMMARY`, `SCAN_ELAPSED`.
 
-Nmap done at Fri Jun 26 03:59:30 2026; 1 IP address (1 host up) scanned in 0.34 seconds
+### Structure overview
 
-During this scan, **1** host was placed under investigation.
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI"]
+  scan_record_1 -->|had| scan_cli_2
+  scan_version_3["SCAN_VERSION"]
+  scan_record_1 -->|had| scan_version_3
+  scan_start_4["SCAN_START"]
+  scan_record_1 -->|had| scan_start_4
+  scan_target_5["SCAN_TARGET"]
+  scan_record_1 -->|had| scan_target_5
+  scan_summary_6["SCAN_SUMMARY"]
+  scan_record_1 -->|had| scan_summary_6
+  scan_elapsed_7["SCAN_ELAPSED"]
+  scan_record_1 -->|had| scan_elapsed_7
+  scan_tool_8["SCAN_TOOL"]
+  scan_record_1 -->|had| scan_tool_8
+```
 
-## Host 151.101.128.81
+### Scan descriptors
 
-The host was observed as **up** (reason: **syn-ack**).
-It answers to the internet name **bbc.co.uk**.
+| Nugget | Value |
+| --- | --- |
+| `SCAN_RECORD` | `nmap:bbc.co.uk:Fri Jun 26 03:59:30 2026` |
 
-### Networks
+## Host
 
-Network address **151.101.128.81**:
-- No transport endpoints were enumerated.
+Qualified HOST endpoints own category trees for networks, applications, environment, and security findings. This scan includes **1** Host root node(s) (e.g. `151.101.128.81`). Linked structures: `NETWORKS`, `APPLICATIONS`.
+
+### Structure overview
+
+```mermaid
+flowchart TD
+  host_1["HOST"]
+  networks_2["NETWORKS"]
+  host_1 -->|contains| networks_2
+  applications_3["APPLICATIONS"]
+  host_1 -->|contains| applications_3
+```
+
+### `NETWORKS`
+
+```mermaid
+flowchart TD
+  networks_1["NETWORKS"]
+  ipv4_address_2["IPV4_ADDRESS: 151.101.128.81"]
+  networks_1 -->|contains| ipv4_address_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `IPV4_ADDRESS` | `151.101.128.81` |
+
+### `APPLICATIONS`
+
+```mermaid
+flowchart TD
+  applications_1["APPLICATIONS"]
+```
+
+_No values._
+
+### `ENVIRONMENT`
+
+```mermaid
+flowchart TD
+  environment_1["ENVIRONMENT"]
+  applications_2["APPLICATIONS: applications:151.101.128.81"]
+  environment_1 -->|contains| applications_2
+  host_status_3["HOST_STATUS: up"]
+  environment_1 -->|contains| host_status_3
+  host_status_reason_4["HOST_STATUS_REASON: syn-ack"]
+  environment_1 -->|contains| host_status_reason_4
+  more_5["+2 more"]
+  environment_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:151.101.128.81` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `syn-ack` |
+| `INTERNET_NAME` | `bbc.co.uk` |
+| `NETWORKS` | `networks:151.101.128.81` |
+
+### `VULNERABILITIES`
+
+```mermaid
+flowchart TD
+  vulnerabilities_1["VULNERABILITIES"]
+  applications_2["APPLICATIONS: applications:151.101.128.81"]
+  vulnerabilities_1 -->|contains| applications_2
+  host_status_3["HOST_STATUS: up"]
+  vulnerabilities_1 -->|contains| host_status_3
+  host_status_reason_4["HOST_STATUS_REASON: syn-ack"]
+  vulnerabilities_1 -->|contains| host_status_reason_4
+  more_5["+2 more"]
+  vulnerabilities_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:151.101.128.81` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `syn-ack` |
+| `INTERNET_NAME` | `bbc.co.uk` |
+| `NETWORKS` | `networks:151.101.128.81` |
+
+### `SECURITY`
+
+```mermaid
+flowchart TD
+  security_1["SECURITY"]
+  applications_2["APPLICATIONS: applications:151.101.128.81"]
+  security_1 -->|contains| applications_2
+  host_status_3["HOST_STATUS: up"]
+  security_1 -->|contains| host_status_3
+  host_status_reason_4["HOST_STATUS_REASON: syn-ack"]
+  security_1 -->|contains| host_status_reason_4
+  more_5["+2 more"]
+  security_1 -->|contains| more_5
+```
+
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:151.101.128.81` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `syn-ack` |
+| `INTERNET_NAME` | `bbc.co.uk` |
+| `NETWORKS` | `networks:151.101.128.81` |
 
 ## Conclusion
 
-The scan captured **15** semantic nuggets across **1** host.
- Nmap done at Fri Jun 26 03:59:30 2026; 1 IP address (1 host up) scanned in 0.34 seconds
- The appendix lists every nugget instance and value for audit and downstream review.
+See the appendix for the full node and edge inventory.
 
 
-## Appendix — Complete Nugget Inventory
+## Appendix
 
-| Type | Nugget | Description | Value |
-|------|--------|-------------|-------|
-| CATEGORY | APPLICATIONS | Applications Category | `applications:151.101.128.81` |
-| CATEGORY | NETWORKS | Networks Category | `networks:151.101.128.81` |
-| DESCRIPTOR | HOST_STATUS | Host Status | `up` |
-| DESCRIPTOR | HOST_STATUS_REASON | Host Status Reason | `syn-ack` |
-| DESCRIPTOR | INTERNET_NAME | Internet Name | `bbc.co.uk` |
-| DESCRIPTOR | SCAN_CLI | Scan CLI | `nmap -sn -T3 -oX - bbc.co.uk` |
-| DESCRIPTOR | SCAN_ELAPSED | Scan Elapsed Time | `0.34` |
-| DESCRIPTOR | SCAN_START | Scan Start | `Fri Jun 26 03:59:30 2026` |
-| DESCRIPTOR | SCAN_SUMMARY | Scan Summary | `Nmap done at Fri Jun 26 03:59:30 2026; 1 IP address (1 host up) scanned in 0.34 seconds` |
-| DESCRIPTOR | SCAN_TARGET | Scan Target | `bbc.co.uk` |
-| DESCRIPTOR | SCAN_TOOL | Scan Tool | `nmap` |
-| DESCRIPTOR | SCAN_VERSION | Scan Version | `7.80` |
-| ENTITY | HOST | Host | `151.101.128.81` |
-| ENTITY | IPV4_ADDRESS | IP Address | `151.101.128.81` |
-| ENTITY | SCAN_RECORD | Scan Record | `nmap:bbc.co.uk:Fri Jun 26 03:59:30 2026` |
+### Nodes
 
+| Nugget | Value |
+| --- | --- |
+| `APPLICATIONS` | `applications:151.101.128.81` |
+| `HOST` | `151.101.128.81` |
+| `HOST_STATUS` | `up` |
+| `HOST_STATUS_REASON` | `syn-ack` |
+| `INTERNET_NAME` | `bbc.co.uk` |
+| `IPV4_ADDRESS` | `151.101.128.81` |
+| `NETWORKS` | `networks:151.101.128.81` |
+| `SCAN_CLI` | `nmap -sn -T3 -oX - bbc.co.uk` |
+| `SCAN_ELAPSED` | `0.34` |
+| `SCAN_RECORD` | `nmap:bbc.co.uk:Fri Jun 26 03:59:30 2026` |
+| `SCAN_START` | `Fri Jun 26 03:59:30 2026` |
+| `SCAN_SUMMARY` | `Nmap done at Fri Jun 26 03:59:30 2026; 1 IP address (1 host up) scanned in 0.34 seconds` |
+| `SCAN_TARGET` | `bbc.co.uk` |
+| `SCAN_TOOL` | `nmap` |
+| `SCAN_VERSION` | `7.80` |
+
+### Edges
+
+| Source | Relation | Target |
+| --- | --- | --- |
+| `SCAN_RECORD` | `had` | `SCAN_CLI` |
+| `SCAN_RECORD` | `had` | `SCAN_VERSION` |
+| `SCAN_RECORD` | `had` | `SCAN_START` |
+| `SCAN_RECORD` | `had` | `SCAN_TARGET` |
+| `SCAN_RECORD` | `had` | `SCAN_SUMMARY` |
+| `SCAN_RECORD` | `had` | `SCAN_ELAPSED` |
+| `SCAN_RECORD` | `had` | `SCAN_TOOL` |
+| `SCAN_RECORD` | `contains` | `HOST` |
+| `HOST` | `had` | `HOST_STATUS` |
+| `HOST` | `had` | `HOST_STATUS_REASON` |
+| `HOST` | `had` | `INTERNET_NAME` |
+| `HOST` | `contains` | `NETWORKS` |
+| `NETWORKS` | `contains` | `IPV4_ADDRESS` |
+| `HOST` | `contains` | `APPLICATIONS` |
 ---
 
-*OS-Intel Scan · Fri Jun 26 03:59:30 2026 · Page 1*
+*OS-Intel Scan*

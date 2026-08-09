@@ -1,6 +1,8 @@
 tool: nmap
-profile: nmap_default
-sections:
-  - scan_summary
-  - hosts
-  - appendix
+tool_name: Nmap
+include_trace: true
+include_appendix: true
+footer_brand: OS-Intel Scan
+intro_facts: >
+  This report narrates findings from a Nmap scan. The story follows the scan record,
+  each discovered host (networks, applications, environment), and any traceroute path.
