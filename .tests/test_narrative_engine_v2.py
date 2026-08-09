@@ -1,12 +1,10 @@
-"""Tests for SPEC-005 narrative engine v2."""
+"""Tests for SPEC-005/014 narrative engine v2."""
 
 from __future__ import annotations
 
 import re
 import sys
 from pathlib import Path
-
-import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 CLI_CORPUS = REPO_ROOT / ".seed" / "scripts" / "cli_corpus"
@@ -57,7 +55,33 @@ def test_render_narrative_nmap_preserves_quality_sections():
 
 
 def test_render_narrative_generic_tool_has_appendix():
+    """SPEC-014: progressive disclosure — meta sections + one deduped appendix."""
     md = render_narrative(SAMPLE_GRAPH, tool="httpx", scenario_key="from_subfinder_k2am_active")
     assert "## Introduction" in md
     assert "## Appendix" in md
-    assert not re.search(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", md.split("## Appendix")[0])
+    assert "## Conclusion" in md
+    assert "IP_ADDRESS--" in md or "IP_ADDRESS" in md
+    assert "```mermaid" in md
+    assert "### Nodes" in md
+    assert "### Edges" in md
+    # Appendix edge inventory appears once (dedupe), not after every category
+    assert md.count("### Edges") == 1
+    assert md.index("## Appendix") < md.index("### Nodes")
+    # Overview Mermaid (type-only) must not embed bare IP node ids; example diagrams may quote values.
+    pre_appendix = md.split("## Appendix")[0]
+    for block in re.findall(r"```mermaid\n(.*?)```", pre_appendix, flags=re.S):
+        if '["' in block:
+            # category example diagram — values allowed (R14-05)
+            continue
+        assert not re.search(r"\d{1,3}(?:\.\d{1,3}){3}", block), block
+    ok, missing = validate_narrative_coverage(SAMPLE_GRAPH, md)
+    assert ok, missing
+    assert missing == []
+
+
+def test_render_narrative_generic_has_meta_concept_sections():
+    md = render_narrative(SAMPLE_GRAPH, tool="httpx", scenario_key="from_subfinder_k2am_active")
+    assert "## Scan" in md
+    assert "### Structure overview" in md or "```mermaid" in md
+    # No single global "Graph structure (types)" when meta-concepts are present
+    assert "## Graph structure (types)" not in md
