@@ -25,11 +25,70 @@ flowchart TD
   scan_record_1 -->|had| scan_tool_6
 ```
 
-### Scan descriptors
+### `SCAN_CLI`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI: /mnt/c/projects/spiderfeet/.tools/pius …"]
+  scan_record_1 -->|contains| scan_cli_2
+```
 
 | Nugget | Value |
 | --- | --- |
-| `SCAN_RECORD` | `pius:K2 Asset Management Ltd:/mnt/c/projects/spiderfeet/.tools/pius run --org "K2 Asset Management Ltd" --domain www.k2am.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson` |
+| `SCAN_CLI` | `/mnt/c/projects/spiderfeet/.tools/pius run --org "K2 Asset Management Ltd" --domain www.k2am.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson` |
+
+### `SCAN_TARGET`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_2["SCAN_TARGET: k2am.com.au"]
+  scan_record_1 -->|contains| scan_target_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET` | `k2am.com.au` |
+
+### `SCAN_TARGET_ORG`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_org_2["SCAN_TARGET_ORG: K2 Asset Management Ltd"]
+  scan_record_1 -->|contains| scan_target_org_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET_ORG` | `K2 Asset Management Ltd` |
+
+### `SCAN_START`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_start_2["SCAN_START: 2026-07-05T13:12:00.000000+00:00"]
+  scan_record_1 -->|contains| scan_start_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_START` | `2026-07-05T13:12:00.000000+00:00` |
+
+### `SCAN_TOOL`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_tool_2["SCAN_TOOL: pius"]
+  scan_record_1 -->|contains| scan_tool_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TOOL` | `pius` |
 
 ## Organization
 
@@ -42,32 +101,11 @@ flowchart TD
   company_name_1["COMPANY_NAME"]
 ```
 
-### `DOMAINS`
+### Values
 
-```mermaid
-flowchart TD
-  domains_1["DOMAINS"]
-```
-
-_No values._
-
-### `NETBLOCKS`
-
-```mermaid
-flowchart TD
-  netblocks_1["NETBLOCKS"]
-```
-
-_No values._
-
-### `LEADS`
-
-```mermaid
-flowchart TD
-  leads_1["LEADS"]
-```
-
-_No values._
+| Nugget | Value |
+| --- | --- |
+| `COMPANY_NAME` | `K2 Asset Management Ltd` |
 
 ## Conclusion
 

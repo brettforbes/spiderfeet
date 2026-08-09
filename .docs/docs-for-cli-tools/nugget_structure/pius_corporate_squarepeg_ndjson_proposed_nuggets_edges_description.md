@@ -29,11 +29,96 @@ flowchart TD
   scan_record_1 -->|had| scan_tool_8
 ```
 
-### Scan descriptors
+### `SCAN_CLI`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI: /mnt/c/projects/spiderfeet/.tools/pius …"]
+  scan_record_1 -->|contains| scan_cli_2
+```
 
 | Nugget | Value |
 | --- | --- |
-| `SCAN_RECORD` | `pius:Square Peg Capital Pty Ltd:/mnt/c/projects/spiderfeet/.tools/pius run --org "Square Peg Capital Pty Ltd" --domain squarepeg.vc --plugins gleif,wikidata,whois,crt-sh --output ndjson` |
+| `SCAN_CLI` | `/mnt/c/projects/spiderfeet/.tools/pius run --org "Square Peg Capital Pty Ltd" --domain squarepeg.vc --plugins gleif,wikidata,whois,crt-sh --output ndjson` |
+
+### `SCAN_TARGET`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_2["SCAN_TARGET: squarepeg.vc"]
+  scan_record_1 -->|contains| scan_target_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET` | `squarepeg.vc` |
+
+### `SCAN_TARGET_ORG`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_org_2["SCAN_TARGET_ORG: Square Peg Capital Pty Ltd"]
+  scan_record_1 -->|contains| scan_target_org_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET_ORG` | `Square Peg Capital Pty Ltd` |
+
+### `SCAN_START`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_start_2["SCAN_START: 2026-07-05T13:10:18.904973+00:00"]
+  scan_record_1 -->|contains| scan_start_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_START` | `2026-07-05T13:10:18.904973+00:00` |
+
+### `SCAN_ELAPSED`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_elapsed_2["SCAN_ELAPSED: 35.046"]
+  scan_record_1 -->|contains| scan_elapsed_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_ELAPSED` | `35.046` |
+
+### `SCAN_EXIT_STATUS`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_exit_status_2["SCAN_EXIT_STATUS: 0"]
+  scan_record_1 -->|contains| scan_exit_status_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_EXIT_STATUS` | `0` |
+
+### `SCAN_TOOL`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_tool_2["SCAN_TOOL: pius"]
+  scan_record_1 -->|contains| scan_tool_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TOOL` | `pius` |
 
 ## Organization
 
@@ -72,56 +157,6 @@ flowchart TD
 | `DOMAIN_NAME` | `squarepeg.vc` |
 | `DOMAIN_NAME` | `www.squarepeg.vc` |
 
-### `NETBLOCKS`
-
-```mermaid
-flowchart TD
-  netblocks_1["NETBLOCKS"]
-  domains_2["DOMAINS: DOMAINS"]
-  netblocks_1 -->|contains| domains_2
-  domain_name_3["DOMAIN_NAME: data.squarepeg.vc"]
-  netblocks_1 -->|contains| domain_name_3
-  domain_name_4["DOMAIN_NAME: email.foundersummit2026.squarepeg.vc"]
-  netblocks_1 -->|contains| domain_name_4
-  more_5["+4 more"]
-  netblocks_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `DOMAINS` | `DOMAINS` |
-| `DOMAIN_NAME` | `data.squarepeg.vc` |
-| `DOMAIN_NAME` | `email.foundersummit2026.squarepeg.vc` |
-| `DOMAIN_NAME` | `foundersummit2026.squarepeg.vc` |
-| `DOMAIN_NAME` | `helix.squarepeg.vc` |
-| `DOMAIN_NAME` | `squarepeg.vc` |
-| `DOMAIN_NAME` | `www.squarepeg.vc` |
-
-### `LEADS`
-
-```mermaid
-flowchart TD
-  leads_1["LEADS"]
-  domains_2["DOMAINS: DOMAINS"]
-  leads_1 -->|contains| domains_2
-  domain_name_3["DOMAIN_NAME: data.squarepeg.vc"]
-  leads_1 -->|contains| domain_name_3
-  domain_name_4["DOMAIN_NAME: email.foundersummit2026.squarepeg.vc"]
-  leads_1 -->|contains| domain_name_4
-  more_5["+4 more"]
-  leads_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `DOMAINS` | `DOMAINS` |
-| `DOMAIN_NAME` | `data.squarepeg.vc` |
-| `DOMAIN_NAME` | `email.foundersummit2026.squarepeg.vc` |
-| `DOMAIN_NAME` | `foundersummit2026.squarepeg.vc` |
-| `DOMAIN_NAME` | `helix.squarepeg.vc` |
-| `DOMAIN_NAME` | `squarepeg.vc` |
-| `DOMAIN_NAME` | `www.squarepeg.vc` |
-
 ## Domains
 
 Apex DOMAIN_NAME entities contain subdomain DOMAIN_NAME children; descriptors capture discovery mode, sources, and liveness. This scan includes **6** Domains root node(s) (e.g. `www.squarepeg.vc`, `squarepeg.vc`, `foundersummit2026.squarepeg.vc`). Linked structures: no child categories.
@@ -133,20 +168,7 @@ flowchart TD
   domain_name_1["DOMAIN_NAME"]
 ```
 
-### `DOMAIN_NAME`
-
-```mermaid
-flowchart TD
-  domain_name_1["DOMAIN_NAME"]
-  domain_name_2["DOMAIN_NAME: data.squarepeg.vc"]
-  domain_name_1 -->|contains| domain_name_2
-  domain_name_3["DOMAIN_NAME: email.foundersummit2026.squarepeg.vc"]
-  domain_name_1 -->|contains| domain_name_3
-  domain_name_4["DOMAIN_NAME: foundersummit2026.squarepeg.vc"]
-  domain_name_1 -->|contains| domain_name_4
-  more_5["+3 more"]
-  domain_name_1 -->|contains| more_5
-```
+### Values
 
 | Nugget | Value |
 | --- | --- |

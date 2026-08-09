@@ -16,6 +16,7 @@ from .meta_narrative import (
     concept_overview_mermaid,
     concept_prose,
     detect_meta_concepts,
+    present_categories_under_roots,
 )
 from .narrative_profile import load_narrative_profile
 from .narrative_report import (  # noqa: F401 — re-export coverage helpers
@@ -34,10 +35,9 @@ _MERMAID_SAFE = re.compile(r"[^A-Za-z0-9_]")
 
 @lru_cache(maxsize=1)
 def _load_narrative_v2() -> dict[str, Any]:
-    """Compatibility wrapper — prefers the validated registry loader."""
     try:
         return _load_registry()
-    except Exception:  # noqa: BLE001 — fall back for incomplete checkouts
+    except Exception:  # noqa: BLE001
         path = _SHARED_RULES / "narrative_v2.yaml"
         if not path.is_file():
             return {}
@@ -50,7 +50,6 @@ def _mermaid_id(nugget_id: str) -> str:
 
 
 def type_relation_mermaid(graph: dict[str, Any], *, root_ids: list[str] | None = None) -> str:
-    """Project unique ontology edges as type→relation→type (no literal values)."""
     nodes = {n["id"]: n for n in graph.get("nodes", []) if n.get("id")}
     seen: set[tuple[str, str, str]] = set()
     lines = ["```mermaid", "flowchart LR"]
@@ -76,7 +75,6 @@ def build_factual_intro(
     tool: str,
     profile: dict[str, Any] | None = None,
 ) -> str:
-    """Build a factual introduction from shared v2 YAML and tool profile."""
     v2 = _load_narrative_v2()
     tool_name = (profile or {}).get("tool_name") or tool.replace("_", " ").title()
     categories = ", ".join(
@@ -92,7 +90,6 @@ def build_factual_intro(
 
 
 def _profile_concept_allowlist(profile: dict[str, Any]) -> set[str] | None:
-    """Optional tool narrative.yaml key ``meta_concepts`` limits which concepts render."""
     raw = profile.get("meta_concepts")
     if not raw:
         return None
@@ -107,13 +104,7 @@ def _render_concept_section(lines: list[str], graph: dict[str, Any], concept: di
     if overview:
         lines.extend(["### Structure overview", "", overview, ""])
 
-    categories = list(concept.get("category_nugget_ids") or [])
-    children = list(concept.get("child_nugget_ids") or [])
-    render_ids: list[str] = []
-    for item in categories + children:
-        if item not in render_ids:
-            render_ids.append(item)
-
+    render_ids = present_categories_under_roots(graph, concept)
     if concept.get("id") == "scan" and not render_ids:
         lines.extend(["### Scan descriptors", "", category_table(graph, concept, None), ""])
         return
@@ -123,11 +114,14 @@ def _render_concept_section(lines: list[str], graph: dict[str, Any], concept: di
         return
 
     for cat in render_ids:
+        table = category_table(graph, concept, cat)
+        if table.strip() == "_No values._":
+            continue
         lines.extend([f"### `{cat}`", ""])
         example = category_example_mermaid(graph, concept, cat)
         if example:
             lines.extend([example, ""])
-        lines.extend([category_table(graph, concept, cat), ""])
+        lines.extend([table, ""])
 
 
 def render_narrative(
@@ -137,7 +131,6 @@ def render_narrative(
     scenario_key: str,
     profile: dict[str, Any] | None = None,
 ) -> str:
-    """Render Markdown narrative using tool YAML profile + shared meta-concept engine."""
     tool_profile = profile or load_narrative_profile(_TOOL_RULES / tool / "narrative.yaml")
     merged = {**tool_profile, "tool_name": tool_profile.get("tool_name") or tool.title()}
 

@@ -31,11 +31,109 @@ flowchart TD
   scan_record_1 -->|had| scan_discovered_9
 ```
 
-### Scan descriptors
+### `SCAN_CLI`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI: netdiscover — D — full /24 active resca…"]
+  scan_record_1 -->|contains| scan_cli_2
+```
 
 | Nugget | Value |
 | --- | --- |
-| `SCAN_RECORD` | `netdiscover — D — full /24 active rescan (parseable)` |
+| `SCAN_CLI` | `netdiscover — D — full /24 active rescan (parseable)` |
+
+### `SCAN_TIMESTAMP`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_timestamp_2["SCAN_TIMESTAMP: Sun Aug 09 15:54:24 2026"]
+  scan_record_1 -->|contains| scan_timestamp_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TIMESTAMP` | `Sun Aug 09 15:54:24 2026` |
+
+### `SCAN_END_TIME`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_end_time_2["SCAN_END_TIME: Sun Aug 09 15:54:44 2026"]
+  scan_record_1 -->|contains| scan_end_time_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_END_TIME` | `Sun Aug 09 15:54:44 2026` |
+
+### `SCAN_SUMMARY`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_summary_2["SCAN_SUMMARY: NetDiscover done at Sun Aug 09 15:54:44…"]
+  scan_record_1 -->|contains| scan_summary_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_SUMMARY` | `NetDiscover done at Sun Aug 09 15:54:44 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 19.08 seconds` |
+
+### `SCAN_EXIT_STATUS`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_exit_status_2["SCAN_EXIT_STATUS: success"]
+  scan_record_1 -->|contains| scan_exit_status_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_EXIT_STATUS` | `success` |
+
+### `SCAN_TRIES`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_tries_2["SCAN_TRIES: 1"]
+  scan_record_1 -->|contains| scan_tries_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TRIES` | `1` |
+
+### `SCAN_EMPTY_SCANS`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_empty_scans_2["SCAN_EMPTY_SCANS: 0"]
+  scan_record_1 -->|contains| scan_empty_scans_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_EMPTY_SCANS` | `0` |
+
+### `SCAN_DISCOVERED`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_discovered_2["SCAN_DISCOVERED: 12"]
+  scan_record_1 -->|contains| scan_discovered_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_DISCOVERED` | `12` |
 
 ## System
 
@@ -143,11 +241,11 @@ See the appendix for the full node and edge inventory.
 | `SCAN_CLI` | `netdiscover — D — full /24 active rescan (parseable)` |
 | `SCAN_DISCOVERED` | `12` |
 | `SCAN_EMPTY_SCANS` | `0` |
-| `SCAN_END_TIME` | `Sun Aug 09 15:44:03 2026` |
+| `SCAN_END_TIME` | `Sun Aug 09 15:54:44 2026` |
 | `SCAN_EXIT_STATUS` | `success` |
 | `SCAN_RECORD` | `netdiscover — D — full /24 active rescan (parseable)` |
-| `SCAN_SUMMARY` | `NetDiscover done at Sun Aug 09 15:44:03 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 19.08 seconds` |
-| `SCAN_TIMESTAMP` | `Sun Aug 09 15:43:44 2026` |
+| `SCAN_SUMMARY` | `NetDiscover done at Sun Aug 09 15:54:44 2026; 12 Systems Discovered, 1 Scan Tries, 0 Empty Scans, scanned in 19.08 seconds` |
+| `SCAN_TIMESTAMP` | `Sun Aug 09 15:54:24 2026` |
 | `SCAN_TRIES` | `1` |
 | `SYSTEM` | `192.168.1.1` |
 | `SYSTEM` | `192.168.1.10` |

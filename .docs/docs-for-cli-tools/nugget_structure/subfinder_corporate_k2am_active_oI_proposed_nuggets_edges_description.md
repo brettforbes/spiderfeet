@@ -29,11 +29,96 @@ flowchart TD
   scan_record_1 -->|had| scan_tool_8
 ```
 
-### Scan descriptors
+### `SCAN_CLI`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI: subfinder -d k2am.com.au -active -oJ -o…"]
+  scan_record_1 -->|contains| scan_cli_2
+```
 
 | Nugget | Value |
 | --- | --- |
-| `SCAN_RECORD` | `subfinder:k2am.com.au:subfinder -d k2am.com.au -active -oJ -oI -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_k2am_active_oI.jsonl -silent` |
+| `SCAN_CLI` | `subfinder -d k2am.com.au -active -oJ -oI -cs -o .docs/docs-for-cli-tools/exploration_scratch/subfinder/exams/corporate_k2am_active_oI.jsonl -silent` |
+
+### `SCAN_TARGET`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_2["SCAN_TARGET: k2am.com.au"]
+  scan_record_1 -->|contains| scan_target_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET` | `k2am.com.au` |
+
+### `SCAN_MODE`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_mode_2["SCAN_MODE: active"]
+  scan_record_1 -->|contains| scan_mode_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_MODE` | `active` |
+
+### `SCAN_START`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_start_2["SCAN_START: 2026-07-05T14:25:16.558422+00:00"]
+  scan_record_1 -->|contains| scan_start_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_START` | `2026-07-05T14:25:16.558422+00:00` |
+
+### `SCAN_ELAPSED`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_elapsed_2["SCAN_ELAPSED: 23.187"]
+  scan_record_1 -->|contains| scan_elapsed_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_ELAPSED` | `23.187` |
+
+### `SCAN_EXIT_STATUS`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_exit_status_2["SCAN_EXIT_STATUS: 0"]
+  scan_record_1 -->|contains| scan_exit_status_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_EXIT_STATUS` | `0` |
+
+### `SCAN_TOOL`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_tool_2["SCAN_TOOL: subfinder"]
+  scan_record_1 -->|contains| scan_tool_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TOOL` | `subfinder` |
 
 ## Domains
 
@@ -46,20 +131,7 @@ flowchart TD
   domain_name_1["DOMAIN_NAME"]
 ```
 
-### `DOMAIN_NAME`
-
-```mermaid
-flowchart TD
-  domain_name_1["DOMAIN_NAME"]
-  domain_name_2["DOMAIN_NAME: k2am.com.au"]
-  domain_name_1 -->|contains| domain_name_2
-  domain_name_3["DOMAIN_NAME: kii.k2am.com.au"]
-  domain_name_1 -->|contains| domain_name_3
-  domain_name_4["DOMAIN_NAME: ksm.k2am.com.au"]
-  domain_name_1 -->|contains| domain_name_4
-  more_5["+6 more"]
-  domain_name_1 -->|contains| more_5
-```
+### Values
 
 | Nugget | Value |
 | --- | --- |

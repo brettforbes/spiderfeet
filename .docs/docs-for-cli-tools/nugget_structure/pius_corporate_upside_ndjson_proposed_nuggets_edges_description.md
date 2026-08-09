@@ -29,11 +29,96 @@ flowchart TD
   scan_record_1 -->|had| scan_tool_8
 ```
 
-### Scan descriptors
+### `SCAN_CLI`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_cli_2["SCAN_CLI: /mnt/c/projects/spiderfeet/.tools/pius …"]
+  scan_record_1 -->|contains| scan_cli_2
+```
 
 | Nugget | Value |
 | --- | --- |
-| `SCAN_RECORD` | `pius:The Upside Pty Ltd:/mnt/c/projects/spiderfeet/.tools/pius run --org "The Upside Pty Ltd" --domain theupside.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson` |
+| `SCAN_CLI` | `/mnt/c/projects/spiderfeet/.tools/pius run --org "The Upside Pty Ltd" --domain theupside.com.au --plugins gleif,wikidata,whois,crt-sh --output ndjson` |
+
+### `SCAN_TARGET`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_2["SCAN_TARGET: theupside.com.au"]
+  scan_record_1 -->|contains| scan_target_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET` | `theupside.com.au` |
+
+### `SCAN_TARGET_ORG`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_target_org_2["SCAN_TARGET_ORG: The Upside Pty Ltd"]
+  scan_record_1 -->|contains| scan_target_org_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TARGET_ORG` | `The Upside Pty Ltd` |
+
+### `SCAN_START`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_start_2["SCAN_START: 2026-07-05T13:10:54.341348+00:00"]
+  scan_record_1 -->|contains| scan_start_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_START` | `2026-07-05T13:10:54.341348+00:00` |
+
+### `SCAN_ELAPSED`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_elapsed_2["SCAN_ELAPSED: 16.125"]
+  scan_record_1 -->|contains| scan_elapsed_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_ELAPSED` | `16.125` |
+
+### `SCAN_EXIT_STATUS`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_exit_status_2["SCAN_EXIT_STATUS: 0"]
+  scan_record_1 -->|contains| scan_exit_status_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_EXIT_STATUS` | `0` |
+
+### `SCAN_TOOL`
+
+```mermaid
+flowchart TD
+  scan_record_1["SCAN_RECORD"]
+  scan_tool_2["SCAN_TOOL: pius"]
+  scan_record_1 -->|contains| scan_tool_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `SCAN_TOOL` | `pius` |
 
 ## Organization
 
@@ -49,6 +134,19 @@ flowchart TD
   domains_3["DOMAINS"]
   company_name_1 -->|contains| domains_3
 ```
+
+### `LEADS`
+
+```mermaid
+flowchart TD
+  leads_1["LEADS"]
+  candidate_entity_2["CANDIDATE_ENTITY: CEO"]
+  leads_1 -->|contains| candidate_entity_2
+```
+
+| Nugget | Value |
+| --- | --- |
+| `CANDIDATE_ENTITY` | `CEO` |
 
 ### `DOMAINS`
 
@@ -83,56 +181,6 @@ flowchart TD
 | `DOMAIN_NAME` | `track.theupside.com.au` |
 | `DOMAIN_NAME` | `www.theupside.com.au` |
 
-### `NETBLOCKS`
-
-```mermaid
-flowchart TD
-  netblocks_1["NETBLOCKS"]
-  candidate_entity_2["CANDIDATE_ENTITY: CEO"]
-  netblocks_1 -->|contains| candidate_entity_2
-  domains_3["DOMAINS: DOMAINS"]
-  netblocks_1 -->|contains| domains_3
-  domain_name_4["DOMAIN_NAME: aws.theupside.com.au"]
-  netblocks_1 -->|contains| domain_name_4
-  more_5["+16 more"]
-  netblocks_1 -->|contains| more_5
-```
-
-| Nugget | Value |
-| --- | --- |
-| `CANDIDATE_ENTITY` | `CEO` |
-| `DOMAINS` | `DOMAINS` |
-| `DOMAIN_NAME` | `aws.theupside.com.au` |
-| `DOMAIN_NAME` | `cfjump.theupside.com.au` |
-| `DOMAIN_NAME` | `dev.theupside.com.au` |
-| `DOMAIN_NAME` | `e.theupside.com.au` |
-| `DOMAIN_NAME` | `email.theupside.com.au` |
-| `DOMAIN_NAME` | `info.theupside.com.au` |
-| `DOMAIN_NAME` | `k8s.theupside.com.au` |
-| `DOMAIN_NAME` | `mail.theupside.com.au` |
-| `DOMAIN_NAME` | `news.theupside.com.au` |
-| `DOMAIN_NAME` | `newsletter.theupside.com.au` |
-| `DOMAIN_NAME` | `spf.theupside.com.au` |
-| `DOMAIN_NAME` | `test.theupside.com.au` |
-| `DOMAIN_NAME` | `theupside.com.au` |
-| `DOMAIN_NAME` | `track.theupside.com.au` |
-| `DOMAIN_NAME` | `www.theupside.com.au` |
-| `DOMAIN_REGISTRAR` | `.au Domain Administration Limited` |
-| `LEADS` | `LEADS` |
-
-### `LEADS`
-
-```mermaid
-flowchart TD
-  leads_1["LEADS"]
-  candidate_entity_2["CANDIDATE_ENTITY: CEO"]
-  leads_1 -->|contains| candidate_entity_2
-```
-
-| Nugget | Value |
-| --- | --- |
-| `CANDIDATE_ENTITY` | `CEO` |
-
 ## Domains
 
 Apex DOMAIN_NAME entities contain subdomain DOMAIN_NAME children; descriptors capture discovery mode, sources, and liveness. This scan includes **15** Domains root node(s) (e.g. `theupside.com.au`, `www.theupside.com.au`, `track.theupside.com.au`). Linked structures: no child categories.
@@ -144,20 +192,7 @@ flowchart TD
   domain_name_1["DOMAIN_NAME"]
 ```
 
-### `DOMAIN_NAME`
-
-```mermaid
-flowchart TD
-  domain_name_1["DOMAIN_NAME"]
-  domain_name_2["DOMAIN_NAME: aws.theupside.com.au"]
-  domain_name_1 -->|contains| domain_name_2
-  domain_name_3["DOMAIN_NAME: cfjump.theupside.com.au"]
-  domain_name_1 -->|contains| domain_name_3
-  domain_name_4["DOMAIN_NAME: dev.theupside.com.au"]
-  domain_name_1 -->|contains| domain_name_4
-  more_5["+12 more"]
-  domain_name_1 -->|contains| more_5
-```
+### Values
 
 | Nugget | Value |
 | --- | --- |
