@@ -1,4 +1,4 @@
-"""SPEC-005 narrative engine v2 — centralized §4.3 report generation."""
+"""SPEC-005/014 narrative engine — centralized §4.3 report generation."""
 
 from __future__ import annotations
 
@@ -9,7 +9,16 @@ from typing import Any
 
 import yaml
 
-from core.narrative_profile import append_standard_appendix, load_narrative_profile
+from core.meta_concept_registry import load_narrative_v2 as _load_registry
+from core.meta_narrative import (
+    append_appendix,
+    category_example_mermaid,
+    category_table,
+    concept_overview_mermaid,
+    concept_prose,
+    detect_meta_concepts,
+)
+from core.narrative_profile import load_narrative_profile
 from narrative_report import (  # noqa: F401 — re-export compat shim source
     Graph,
     NarrativeConfig,
@@ -32,11 +41,15 @@ _MERMAID_SAFE = re.compile(r"[^A-Za-z0-9_]")
 
 @lru_cache(maxsize=1)
 def _load_narrative_v2() -> dict[str, Any]:
-    path = _SHARED_RULES / "narrative_v2.yaml"
-    if not path.is_file():
-        return {}
-    data = yaml.safe_load(path.read_text(encoding="utf-8"))
-    return data if isinstance(data, dict) else {}
+    """Compatibility wrapper — prefers the validated registry loader."""
+    try:
+        return _load_registry()
+    except Exception:  # noqa: BLE001 — fall back for incomplete checkouts
+        path = _SHARED_RULES / "narrative_v2.yaml"
+        if not path.is_file():
+            return {}
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
 
 
 def _mermaid_id(nugget_id: str) -> str:
@@ -73,7 +86,10 @@ def build_factual_intro(
     """Build a factual introduction from shared v2 YAML and tool profile."""
     v2 = _load_narrative_v2()
     tool_name = (profile or {}).get("tool_name") or tool.replace("_", " ").title()
-    categories = ", ".join(v2.get("category_order") or ["ENVIRONMENT", "NETWORKS", "APPLICATIONS", "VULNERABILITIES"])
+    categories = ", ".join(
+        v2.get("category_order")
+        or ["ENVIRONMENT", "NETWORKS", "APPLICATIONS", "VULNERABILITIES"]
+    )
     template = (profile or {}).get("intro_facts") or (v2.get("intro_facts") or {}).get("default") or (
         "The scan used {tool_name}. Findings are organised under category sections ({categories})."
     )
@@ -99,87 +115,44 @@ def _config_from_profile(tool: str, profile: dict[str, Any]) -> NarrativeConfig:
     )
 
 
-def _section_heading(section: str) -> str:
-    return {
-        "hosts": "Hosts",
-        "systems": "Systems",
-        "findings": "Findings",
-        "organization": "Organization",
-        "domains": "Domains",
-        "urls": "URLs",
-        "cdn_fronting": "CDN / edge fronting",
-        "services": "Services",
-    }.get(section, section.replace("_", " ").title())
+def _profile_concept_allowlist(profile: dict[str, Any]) -> set[str] | None:
+    """Optional tool narrative.yaml key ``meta_concepts`` limits which concepts render."""
+    raw = profile.get("meta_concepts")
+    if not raw:
+        return None
+    return {str(item) for item in raw}
 
 
-def _render_profile_section(
-    lines: list[str],
-    section: str,
-    graph: dict[str, Any],
-    profile: dict[str, Any],
-) -> None:
-    nodes = graph.get("nodes") or []
-    phrasing = profile.get("phrasing") or {}
-    if section in {"introduction", "appendix"}:
+def _render_concept_section(lines: list[str], graph: dict[str, Any], concept: dict[str, Any]) -> None:
+    heading = str(concept.get("heading") or concept.get("id") or "Concept")
+    lines.extend([f"## {heading}", "", concept_prose(graph, concept), ""])
+
+    overview = concept_overview_mermaid(graph, concept)
+    if overview:
+        lines.extend(["### Structure overview", "", overview, ""])
+
+    categories = list(concept.get("category_nugget_ids") or [])
+    children = list(concept.get("child_nugget_ids") or [])
+    # Domain: also show subdomain child diagram when child_nugget_ids present.
+    render_ids: list[str] = []
+    for item in categories + children:
+        if item not in render_ids:
+            render_ids.append(item)
+    # Scan: descriptors as a table under the overview.
+    if concept.get("id") == "scan" and not render_ids:
+        lines.extend(["### Scan descriptors", "", category_table(graph, concept, None), ""])
         return
-    heading = _section_heading(section)
-    lines.extend([f"## {heading}", ""])
-    if section == "systems":
-        for node in sorted(
-            (n for n in nodes if n.get("nugget_id") in {"HOST", "CDN", "SYSTEM"}),
-            key=lambda n: (n.get("nugget_id", ""), n.get("nugget_data", "")),
-        ):
-            lines.append(f"- `{node.get('nugget_id')}` `{node.get('nugget_data')}`")
-        if not any(n.get("nugget_id") in {"HOST", "CDN", "SYSTEM"} for n in nodes):
-            lines.append("- (none)")
-    elif section == "cdn_fronting":
-        if any(n.get("nugget_id") == "CDN" for n in nodes):
-            lines.append((phrasing.get("fronted_unknown") or "").strip())
-            lines.append("")
-            lines.append(
-                f"Origin host count is **{phrasing.get('indeterminate_origin_count', 'indeterminate')}**."
-            )
-        else:
-            lines.append((phrasing.get("standard_host") or "No CDN fronting detected.").strip())
-    elif section == "services":
-        services = [n for n in nodes if n.get("nugget_id") == "SERVICE"]
-        for service in services:
-            lines.append(f"- `{service.get('nugget_data')}`")
-        if not services:
-            lines.append("- (none)")
-    elif section == "organization":
-        companies = [n for n in nodes if n.get("nugget_id") == "COMPANY_NAME"]
-        for company in companies:
-            lines.append(f"- `{company.get('nugget_data')}`")
-        if not companies:
-            lines.append("- (no head company node)")
-    elif section == "domains":
-        domains = [n for n in nodes if n.get("nugget_id") == "DOMAIN_NAME"]
-        for domain in sorted(domains, key=lambda n: str(n.get("nugget_data"))):
-            lines.append(f"- `{domain.get('nugget_data')}`")
-        if not domains:
-            lines.append("- (none)")
-    elif section == "hosts":
-        hosts = [n for n in nodes if n.get("nugget_id") == "HOST"]
-        for host in sorted(hosts, key=lambda n: str(n.get("nugget_data"))):
-            lines.append(f"- `{host.get('nugget_data')}`")
-        if not hosts:
-            lines.append("- (none)")
-    elif section == "findings":
-        findings = [n for n in nodes if n.get("nugget_id") in {"NUCLEI_FINDING", "VULNERABILITY_GENERAL"}]
-        for finding in sorted(findings, key=lambda n: str(n.get("nugget_data"))):
-            lines.append(f"- `{finding.get('nugget_data')}`")
-        if not findings:
-            lines.append("- (none)")
-    elif section == "urls":
-        urls = [n for n in nodes if n.get("nugget_id") == "LINKED_URL_INTERNAL"]
-        for url in sorted(urls, key=lambda n: str(n.get("nugget_data"))):
-            lines.append(f"- `{url.get('nugget_data')}`")
-        if not urls:
-            lines.append("- (none)")
-    else:
-        lines.append(f"_Section `{section}` — see appendix for values._")
-    lines.append("")
+
+    if not render_ids:
+        lines.extend(["### Values", "", category_table(graph, concept, None), ""])
+        return
+
+    for cat in render_ids:
+        lines.extend([f"### `{cat}`", ""])
+        example = category_example_mermaid(graph, concept, cat)
+        if example:
+            lines.extend([example, ""])
+        lines.extend([category_table(graph, concept, cat), ""])
 
 
 def render_narrative(
@@ -189,17 +162,19 @@ def render_narrative(
     scenario_key: str,
     profile: dict[str, Any] | None = None,
 ) -> str:
-    """Render Markdown narrative using tool YAML profile + shared v2 engine."""
+    """Render Markdown narrative using tool YAML profile + shared meta-concept engine."""
     tool_profile = profile or load_narrative_profile(_TOOL_RULES / tool / "narrative.yaml")
     merged = {**tool_profile, "tool_name": tool_profile.get("tool_name") or tool.title()}
 
+    # Temporary until BD2 retires bespoke builders.
     if tool == "nmap":
         return build_nmap_narrative_report(graph, scenario_key)
     if tool == "netdiscover":
         return build_netdiscover_narrative_report(graph, scenario_key)
 
-    # Generic v2 path: factual intro + YAML sections + type mermaid + appendix
-    intro = (merged.get("phrasing") or {}).get("introduction") or build_factual_intro(tool=tool, profile=merged)
+    intro = (merged.get("phrasing") or {}).get("introduction") or build_factual_intro(
+        tool=tool, profile=merged
+    )
     lines = [
         f"# {merged.get('tool_name', tool.title())} scan narrative — `{scenario_key}`",
         "",
@@ -208,13 +183,36 @@ def render_narrative(
         intro.strip(),
         "",
     ]
-    for section in merged.get("sections") or ["systems"]:
-        _render_profile_section(lines, str(section), graph, merged)
-    lines.extend(["## Graph structure (types)", "", type_relation_mermaid(graph)])
-    if merged.get("include_trace", True):
-        lines.extend(["## Trace", "", "_Trace section omitted when no TRACE nodes present._", ""])
+
+    allow = _profile_concept_allowlist(merged)
+    concepts = detect_meta_concepts(graph)
+    if allow is not None:
+        concepts = [c for c in concepts if c.get("id") in allow]
+
+    # Always prefer Scan first if present; Trace last is already handled by registry order.
+    for concept in concepts:
+        if concept.get("id") == "trace" and not merged.get("include_trace", True):
+            continue
+        _render_concept_section(lines, graph, concept)
+
+    if not concepts:
+        lines.extend(
+            [
+                "## Graph structure (types)",
+                "",
+                type_relation_mermaid(graph),
+                "",
+            ]
+        )
+
+    lines.extend(["## Conclusion", "", "See the appendix for the full node and edge inventory.", ""])
+
     if merged.get("include_appendix", True):
-        append_standard_appendix(lines, graph)
-    footer = (merged.get("footer_brand") or _load_narrative_v2().get("footer", {}).get("brand", "OS-Intel Scan"))
+        append_appendix(lines, graph)
+
+    footer = (
+        merged.get("footer_brand")
+        or _load_narrative_v2().get("footer", {}).get("brand", "OS-Intel Scan")
+    )
     lines.extend(["---", "", f"*{footer}*", ""])
     return "\n".join(lines).strip() + "\n"
