@@ -1,24 +1,61 @@
 # nosey_parker Nugget Mapping
 
-Convert validated findings into SpiderFeet-style `nodes` and `edges` arrays.
+Map **validated, redacted** findings to SpiderFeet ontology nodes. Never use raw secret values as `nugget_data`.
 
-## Suggested node types
+## Suggested nugget types
 
-- `RAW_RIR_DATA`
-- `INTERNET_NAME`
-- `EMAILADDR`
-- `USERNAME`
+| Source field | Nugget ID | Notes |
+|--------------|-----------|-------|
+| Rule name / finding label (redacted) | `RAW_RIR_DATA` | Or promote a tool-specific type in `nuggets_extension.json` when approved |
+| Validated compromised password | `PASSWORD_COMPROMISED` | Only after confirmation — never store the password string |
+| Public leak surface URL | `LEAKSITE_URL` | When provenance is a paste/leak site |
+| Leak body excerpt (redacted) | `LEAKSITE_CONTENT` | Descriptor only; no secret bytes |
+| Git repo hostname | `INTERNET_NAME` | From provenance URL host |
+| File path / commit id | `RAW_RIR_DATA` | Path or commit as descriptor on finding |
+| Email in non-secret context | `EMAILADDR` | Skip if part of secret material |
+| Username patterns | `USERNAME` | Validate not fixture |
 
-## Example payload
+Reuse catalogue entries from `.docs/analysis/nuggets.json` before inventing types. Add tool-specific types only to `nuggets_extension.json` when the operator approves.
+
+## Graph pattern
+
+```
+SCAN (scan head)
+  └─contains─> FINDING (one per validated finding, redacted label)
+        └─had─> RULE_DESCRIPTOR (rule name)
+        └─had─> PROVENANCE (repo/path/commit — RAW_RIR_DATA or INTERNET_NAME)
+```
+
+## Example payload (illustrative)
 
 ```json
 {
   "nodes": [
-    {"id": "finding:np:abc", "type": "RAW_RIR_DATA", "label": "possible secret finding"},
-    {"id": "domain:api.example.com", "type": "INTERNET_NAME", "label": "api.example.com"}
+    {
+      "nugget_id": "RAW_RIR_DATA",
+      "nugget_data": "rule:AWS Access Key ID | status:unlabeled | score:0.91",
+      "nugget_instance_id": "RAW_RIR_DATA--<uuid5>"
+    },
+    {
+      "nugget_id": "INTERNET_NAME",
+      "nugget_data": "github.com",
+      "nugget_instance_id": "INTERNET_NAME--<uuid5>"
+    }
   ],
   "edges": [
-    {"from": "finding:np:abc", "to": "domain:api.example.com", "type": "RELATED_TO"}
+    {"from": "<scan_instance>", "to": "<finding_instance>", "relation": "contains"},
+    {"from": "<finding_instance>", "to": "<provenance_instance>", "relation": "had"}
   ]
 }
 ```
+
+Use shared `graph_builder.nugget_instance_id` only — no alternate UUID schemes.
+
+## Validation gate
+
+Promote to graph only after:
+
+1. Finding is not marked `reject` without override rationale.
+2. Secret value is redacted in all exported artifacts.
+3. Provenance links to authorized scope.
+4. Fixture/test strings are classified as `clean_miss` or negative scenario, not live credentials.
