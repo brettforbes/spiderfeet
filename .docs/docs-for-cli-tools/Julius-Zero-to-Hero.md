@@ -1,20 +1,24 @@
-# Julius Zero to Hero — LLM Fingerprinting, JSONL, and Nuggets
+# Julius Zero to Hero — LLM Fingerprinting, JSON/JSONL, and Nuggets
 
-From install to shadow-AI discovery with **`julius probe -o jsonl`**, nugget mapping, and **Naabu → Julius** chaining.
+From install to shadow-AI discovery with **`julius probe -o json`** / **`-o jsonl`**, nugget mapping, and **Naabu → Julius** chaining.
 
-Skill reference: `.cursor/skills/julius/SKILL.md`
+Skill reference: `.cursor/skills/julius/SKILL.md`  
+CLI reference: `Julius-CLI-Options.md` (Captured help **2026-08-10**)
 
 ## What Julius does
 
-Julius answers: **what LLM / AI inference service is exposed on this HTTP(S) endpoint?**
+Julius answers: **what LLM / AI inference (or gateway / MCP / RAG / cloud AI) service is exposed on this HTTP(S) endpoint?**
 
-It sends HTTP probes (32+ embedded YAML signatures) to detect Ollama, vLLM, LiteLLM, Open WebUI, Dify, and related platforms. It extracts **model names** when probes support JQ-based model listing.
+It sends HTTP probes (63 embedded signatures on the SpiderFeet binary) to detect Ollama, vLLM, LiteLLM, Open WebUI, cloud AI gateways, MCP servers, and related platforms. It extracts **model names** when probes support model listing.
 
 Julius does **not**:
 
 - Discover open ports (use **Naabu** or **Nmap**)
 - Brute-force credentials or bypass authentication
-- Replace full web app testing (use Augustus for LLM security after fingerprinting)
+- Replace full LLM security testing (use **Augustus** after fingerprinting)
+
+**Binary (this host):** `C:\projects\spiderfeet\.tools\julius\julius.exe`  
+There is **no** `version` / `--version` command on this binary.
 
 ---
 
@@ -25,6 +29,12 @@ Download from https://github.com/praetorian-inc/julius/releases or build from so
 ```bash
 go install github.com/praetorian-inc/julius/cmd/julius@latest
 julius --help
+```
+
+SpiderFeet local path:
+
+```powershell
+C:\projects\spiderfeet\.tools\julius\julius.exe --help
 ```
 
 ---
@@ -50,6 +60,13 @@ Example JSONL line:
 {"target":"https://10.0.0.5:11434/api/tags","service":"ollama","matched_request":"/api/tags","category":"self-hosted","specificity":100,"models":["llama3.2"]}
 ```
 
+Clean miss (observed):
+
+```bash
+julius probe -o json https://example.com
+# stdout: []
+```
+
 ---
 
 ## Level 2 — Target lists
@@ -63,8 +80,10 @@ https://lab.internal:8000
 https://gateway.corp:443
 EOF
 
-julius probe -f ai_targets.txt -o jsonl -o julius_out.jsonl
+julius probe -f ai_targets.txt -o jsonl > julius_out.jsonl
 ```
+
+`-o` selects **format** (`table` | `json` | `jsonl`) only. Persist with shell redirect — never a second `-o filename`.
 
 ### Stdin
 
@@ -86,8 +105,8 @@ cat ai_targets.txt | julius probe - -o jsonl
 | `-o` value | Format | Use |
 |------------|--------|-----|
 | `table` | ASCII table | Manual review (default) |
-| `json` | JSON array | Small batches |
-| `jsonl` | JSON Lines | **Automation / SpiderFeet** |
+| `json` | JSON array | Small batches / clean-miss |
+| `jsonl` | JSON Lines | **Automation / SpiderFeet harvest streams** |
 
 ### Parse JSONL in Python
 
@@ -95,12 +114,12 @@ cat ai_targets.txt | julius probe - -o jsonl
 import json
 from urllib.parse import urlparse
 
-nodes, edges = [], []
+nodes = []
 
 with open("julius_out.jsonl", encoding="utf-8") as fh:
     for line in fh:
         line = line.strip()
-        if not line:
+        if not line or not line.startswith("{"):
             continue
         row = json.loads(line)
         host = urlparse(row["target"]).hostname
@@ -115,6 +134,8 @@ with open("julius_out.jsonl", encoding="utf-8") as fh:
 
 Full mapping: `.cursor/skills/julius/references/nugget-mapping.md`
 
+At harvest, wrap JSONL into a **single-root JSON bundle** (`records[]`) for the Structured pane — do not leave raw `.jsonl` as the examination structured artifact.
+
 ---
 
 ## Level 4 — Adaptive probing
@@ -124,12 +145,16 @@ Full mapping: `.cursor/skills/julius/references/nugget-mapping.md`
 | Empty results on known Ollama | `-v` for debug; check HTTPS vs HTTP |
 | `error` timeouts | `-t 15` or `-t 30` |
 | Slow on many hosts | `-c 50` (careful on corp nets) |
+| TLS / custom CA | `--ca-cert` or (lab) `--insecure` |
+| Path-prefixed API | `--base-paths /api,/proxy` |
+| Need headers | `-H "Name: value"` (repeatable) |
 | Only generic OpenAI match | Low specificity — corroborate manually |
-| Need custom signature | Copy probe YAML → `julius validate` → `-p ./probes` |
+| Need custom signature | Probe YAML → `julius validate` → `-p ./probes` |
 
 ```bash
-julius probe -t 20 -c 25 -f targets.txt -o jsonl
+julius probe -t 20 -c 25 -f targets.txt -o jsonl > out.jsonl
 julius probe -v https://host:8000
+julius probe --insecure --base-paths /api -o json https://lab:8080
 ```
 
 ---
@@ -144,7 +169,7 @@ naabu -host corp.example.com -p 11434,8000,8080,7860,4000,3000 -json -silent -o 
 jq -r '"https://" + (if .host then .host else .ip end) + ":" + (.port|tostring)' naabu.jsonl > urls.txt
 
 # 3. Fingerprint
-julius probe -f urls.txt -o jsonl -o julius.jsonl
+julius probe -f urls.txt -o jsonl > julius.jsonl
 ```
 
 ---
@@ -152,12 +177,12 @@ julius probe -f urls.txt -o jsonl -o julius.jsonl
 ## Level 6 — Probe catalog and custom probes
 
 ```bash
-julius list
-julius list -o json | jq '.[].name'
-
+julius list                    # 63 probes on this binary (table)
 julius validate ./my-probes
 julius probe -p ./my-probes -o jsonl https://custom:9000
 ```
+
+Note: on the 2026-08-10 binary, `julius list -o json` still printed a table — capture the table for catalog scenarios.
 
 Match rules: `.cursor/skills/julius/references/match-rules-and-probes.md`
 
@@ -181,28 +206,29 @@ Per `.cursor/skills/cli_app_profiling/SKILL.md`:
 |----------------|---------|
 | Positive | Lab Ollama on 11434, `-o jsonl` |
 | Rich | Row with `models[]` populated |
-| Multi-target | `-f targets.txt` |
-| Clean miss | `https://example.com` |
-| Catalog | `julius list -o json` |
+| Multi-target | `-f targets.txt -o jsonl` |
+| Clean miss | `julius probe -o json https://example.com` → `[]` |
+| Catalog | `julius list` |
+| TLS lab | `--insecure` / `--ca-cert` |
 
-Store under `.docs/docs-for-cli-tools/app_examination_docs/julius/scenarios/<key>/`.
+Every scenario needs Text + Structured + Graph + Markdown (structured-first; no `graph_deferred`).
 
 ---
 
 ## Supported services (summary)
 
-32 probes across self-hosted LLM servers, gateways, RAG platforms, and one generic OpenAI-compatible fallback. See `.cursor/skills/julius/references/probes-and-services.md` or the [Supported Services wiki](https://github.com/praetorian-inc/julius/wiki/Supported-Services).
+**63** probes on the local binary across self-hosted, gateway, MCP, RAG/orchestration, cloud-managed, and generic OpenAI-compatible. See `.cursor/skills/julius/references/probes-and-services.md` or run `julius list`.
 
 ---
 
 ## Quick reference
 
 ```bash
-julius probe -o jsonl -f targets.txt          # baseline automation
-julius probe -t 15 -c 50 -f big.txt -o jsonl  # scale tuning
-julius list -o json                             # probe inventory
-julius validate ./probes                        # custom YAML QA
-naabu ... -json | jq ... | julius probe - -o jsonl  # chain
+julius probe -f targets.txt -o jsonl > out.jsonl   # baseline automation
+julius probe -t 15 -c 50 -f big.txt -o jsonl         # scale tuning
+julius list                                          # probe inventory
+julius validate ./probes                             # custom YAML QA
+naabu ... -json | jq ... | julius probe - -o jsonl # chain
 ```
 
 CLI details: `Julius-CLI-Options.md`

@@ -1,19 +1,21 @@
 # Julius Match Rules and Custom Probes
 
-## Match rule types (6)
+Upstream detail: [Match Rules](https://github.com/praetorian-inc/julius/wiki/Match-Rules), [Probe YAML Reference](https://github.com/praetorian-inc/julius/wiki/Probe-YAML-Reference).
 
-Within a **single request**, all rules are **AND**. See wiki: Match Rules.
+## Match rule types
 
-| Type | Fields | Behavior |
-|------|--------|----------|
-| `status` | `value` (int) | HTTP status equals |
-| `body.contains` | `value` | Case-sensitive substring in body |
-| `body.prefix` | `value` | Case-sensitive body prefix |
-| `header.contains` | `header`, `value` | Header value contains substring |
-| `header.prefix` | `header`, `value` | Header value prefix |
-| `content-type` | `value` | Case-insensitive Content-Type contains |
+Within a **single request**, rules are combined (AND). Common types from README/wiki:
 
-All types support **`not: true`** negation.
+| Type | Behavior |
+|------|----------|
+| `status` | HTTP status equals |
+| `body.contains` | Case-sensitive substring in body |
+| `body.prefix` | Case-sensitive body prefix |
+| `header.contains` | Header value contains substring |
+| `header.prefix` | Header value prefix |
+| `content-type` | Content-Type match |
+
+Types may support **`not: true`** negation (wiki).
 
 ## Request-level strategies
 
@@ -41,30 +43,23 @@ requests:
         value: application/json
       - type: body.contains
         value: '"object":"list"'
-models:
-  jq: '.data[].id'   # see Probe YAML Reference for exact schema
 ```
 
-Validate:
+Validate and run (flags from Captured help):
 
 ```bash
 julius validate ./probes
 julius probe -p ./probes -v -o json https://target:9000
 ```
 
+Empty `path` may be allowed on newer probes (classifies the supplied URL as-is) — see bundled CHANGELOG / wiki before relying on it.
+
 ## Model extraction
 
-When probe defines `models` with JQ expression, Julius performs an extra HTTP request and evaluates with **gojq**. Extracted names appear in `models[]` JSON field.
+When a probe defines model extraction (JQ), Julius can populate `models[]` in JSON output. Prefer `-o json` / `-o jsonl` to capture them.
 
 ## Architecture notes
 
-- Probes embedded at compile time (`//go:embed probes/*.yaml`).
-- `--probes-dir` overrides for development.
-- Response cache: MD5 key + singleflight deduplication.
-- Results sorted by **specificity descending**.
-
-Full probe schema: https://github.com/praetorian-inc/julius/wiki/Probe-YAML-Reference
-
-## Adding new rule types (upstream)
-
-Contributors implement `Rule` interface in `pkg/rules/` and register via `init()`. Not required for SpiderFeet operators — use YAML probes only.
+- Probes are YAML; binary embeds defaults; `-p` overrides directory.
+- Specificity ranks competing matches (higher wins for triage).
+- `--augustus` surfaces generator configs when defined on the probe.

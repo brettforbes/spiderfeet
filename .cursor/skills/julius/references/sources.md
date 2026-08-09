@@ -22,17 +22,27 @@
 | v0.2.0 — Cloud AI, RAG | https://www.praetorian.com/blog/julius-v020-cloud-ai-rag-detection/ |
 | There's Always a Secret Hiding Somewhere | https://medium.com/@praetorianguard/theres-always-a-secret-hiding-somewhere-we-built-a-tool-to-find-it-d5398b155a4f |
 
+## Local binary / help
+
+| Item | Path |
+|------|------|
+| Windows binary | `C:\projects\spiderfeet\.tools\julius\julius.exe` |
+| Bundled README / CHANGELOG | `.tools/julius/` |
+| Captured help (2026-08-10) | `.tmp_julius_help/` |
+
 ## Install
 
 Releases: https://github.com/praetorian-inc/julius/releases
 
 ```bash
-# Go install (when building from source)
 go install github.com/praetorian-inc/julius/cmd/julius@latest
 ```
 
 ## SpiderFeet integration notes
 
-- Always capture **`julius probe -o jsonl`** (or `-o json`) for structured examination.
-- Chain upstream port discovery: **Naabu** / **Nmap** → build `host:port` URLs → Julius normalizes to `https://`.
-- Optional downstream: **`--augustus`** emits generator configs for Augustus safety scans.
+- Always capture **`julius probe -o json`** or **`-o jsonl`** for structured examination.
+- `-o` is format only — redirect with the shell (`> file.jsonl`).
+- No `version` / `--version` on the captured binary.
+- Chain upstream port discovery: **Naabu** / **Nmap** → HTTPS URLs → Julius.
+- Optional downstream: **`--augustus`** for Augustus safety scans.
+- Wiki CLI pages may lag the binary (extra globals: `--banner`, `--ca-cert`, `--insecure`, `--max-response-size`, `--no-color`; probe: `--base-paths`, `-H`). Prefer Captured help.
