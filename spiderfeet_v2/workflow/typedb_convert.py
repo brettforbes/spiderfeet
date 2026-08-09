@@ -308,7 +308,7 @@ def typedb_to_api_json(
     """
     if prefer_projection_keys and "target" in workflow and "first_step" in workflow:
         # Already projection-shaped.
-        return {
+        out = {
             "workflow_id": workflow.get("workflow_id"),
             "target": workflow.get("target"),
             "first_step": workflow.get("first_step"),
@@ -316,7 +316,10 @@ def typedb_to_api_json(
             "next_step": list(workflow.get("next_step") or []),
             "workflow_yaml": workflow.get("workflow_yaml"),
         }
-    return {
+        if workflow.get("project") is not None or workflow.get("project_id") is not None:
+            out["project"] = workflow.get("project") or workflow.get("project_id")
+        return out
+    out = {
         "workflow_id": workflow.get("workflow_id"),
         "target": workflow.get("target_id"),
         "first_step": workflow.get("first_step_id"),
@@ -324,6 +327,9 @@ def typedb_to_api_json(
         "next_step": list(workflow.get("next_step_ids") or []),
         "workflow_yaml": workflow.get("workflow_yaml"),
     }
+    if workflow.get("project_id") is not None:
+        out["project"] = workflow.get("project_id")
+    return out
 
 
 def _delete_workflow_bundle(store: Any, workflow_id: str) -> None:
@@ -349,11 +355,19 @@ def persist_workflow_yaml(
     *,
     validate: bool = True,
     replace: bool = True,
+    project_id: str | None = None,
 ) -> TypedbWorkflowForms:
-    """Persist YAML-DSL → TypeDB via AL1 CRUD. Returns the forms written."""
+    """Persist YAML-DSL → TypeDB via AL1 CRUD. Returns the forms written.
+
+    When replacing an existing workflow, preserves its ``project_id`` link unless
+    an explicit ``project_id`` argument is supplied.
+    """
     forms = yaml_to_typedb_forms(doc, validate=validate)
     existing = store.get_workflow(forms.workflow_id)
+    preserved_project_id = project_id
     if existing is not None:
+        if preserved_project_id is None:
+            preserved_project_id = existing.get("project_id")
         if not replace:
             raise WorkflowConvertError(
                 f"workflow already exists: {forms.workflow_id}"
@@ -371,7 +385,11 @@ def persist_workflow_yaml(
         else:
             store.update_scan_step(step["scan_instance_id"], step)
 
-    store.create_workflow(forms.workflow)
+    workflow_row = dict(forms.workflow)
+    if preserved_project_id:
+        workflow_row["project_id"] = preserved_project_id
+    store.create_workflow(workflow_row)
+    forms.workflow = workflow_row
     return forms
 
 
