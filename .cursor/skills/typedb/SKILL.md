@@ -1338,7 +1338,7 @@ Every `owns X` requires `attribute X, value …;`. Current groups:
 - **Route / sequence:** `route_name`, `route_state`, `sequence_name`
 - **Subgraph keys:** `scan_result_id`, `project_context_id`, `temporary_subgraph_id`
 - **Scan step / UI:** `scan_instance_id`, `step_module_id`, `scan_status`, `scan_nugget_count`, `scan_results_by_type`, `scan_results`, `scan_duration`, `scan_timestamp`, `scan_notes`, `scan_ui_cli_command`, `scan_ui_text_form`, `scan_ui_structured_form`, `scan_ui_structured_form_type`, `scan_ui_graph_form`, `scan_ui_markdown_narrative_form`, `scan_yaml`
-- **Workflow / project:** `workflow_id`, `workflow_yaml`, `author`, `created`, `project_id`, `stix_incident_id`
+- **Workflow / project:** `workflow_id`, `workflow_yaml`, `author`, `created`, `project_id`, `stix_incident_id`, `project_name`, `project_description`, `project_created` (`project` is an **entity**; `workflow` is a **relation** that `relates project`)
 - **Target / context:** `target_id`, `target_value`, `target_description`, `target_created`, `target_yaml`, `target_context_id`
 
 Do **not** introduce bare attribute `id` (ambiguous / easy to collide). Use `step_module_id` on `scan_step`.

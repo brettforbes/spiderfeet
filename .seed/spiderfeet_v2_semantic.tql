@@ -715,7 +715,7 @@ define
 		relates prior_step @card(0..), # steps depended-upon (appear in some step's needs)
 		relates next_step @card(0..), # leaf steps (nothing lists them in needs)
 		relates target @card(0..1),
-		plays project:workflow;
+		relates project @card(0..1);
 
 	entity target,
 		owns target_id @key, # e.g. "target--1c51e712-b5b5-4ef2-9967-e11debbcc607"
@@ -735,11 +735,13 @@ define
 	# Steps have a binary variable whether to output semantic scan subgraphs, as nodes and edges arrays, into
 	####################################
 
-	relation project,
+	entity project,
 		owns project_id @key, # e.g. "project--1c51e712-b5b5-4ef2-9967-e11debbcc607"
 		owns stix_incident_id @card(0..1), # e.g. "incident--1c51e712-b5b5-4ef2-9967-e11debbcc607"
-		owns created,
-		relates workflow @card(0..),
+		owns project_name, # name of the project, e.g. "Project 1"
+		owns project_description, # description of the project, e.g. "A project to scan the target domain"
+		owns project_created, # datetime project was created
+		plays workflow:project, # contains the workflow for the project
 		plays project_context:project, # contains actual nodes and edges arrays for the context for the project
 		plays temporary_subgraph:project; # contains actual nodes and edges arrays as the temporary subgraph for the project
 
@@ -821,6 +823,9 @@ define
 	attribute workflow_yaml, value string;
 	attribute project_id, value string;
 	attribute stix_incident_id, value string;
+	attribute project_name, value string;
+	attribute project_description, value string;
+	attribute project_created, value datetime;
 	attribute target_id, value string;
 	attribute target_value, value string;
 	attribute target_description, value string;
@@ -909,10 +914,11 @@ define
 	  $p isa project, has project_id $id;
 	return { $id };
 
+	# Direction: workflow (relation) relates project; project (entity) plays workflow:project.
 	fun project_workflow_ids($pid: string) -> { workflow_id }:
 	match
 	  $p isa project, has project_id == $pid;
-	  $p links (workflow: $w);
+	  $w isa workflow, links (project: $p);
 	  $w has workflow_id $wid;
 	return { $wid };
 
