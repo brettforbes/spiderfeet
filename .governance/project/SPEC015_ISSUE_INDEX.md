@@ -18,7 +18,7 @@ Status legend: `open` (created) → `in progress` → `in review` → `done`.
 
 | Code | Issue | Requirement | Depends on | Status |
 |------|-------|-------------|------------|--------|
-| Epic A | [#1227](https://github.com/brettforbes/spiderfeet/issues/1227) | R15-01..06 | — | open |
+| Epic A | [#1227](https://github.com/brettforbes/spiderfeet/issues/1227) | R15-01..06 | — | done |
 | A1 — Async full-workflow execute + run registry | [#1228](https://github.com/brettforbes/spiderfeet/issues/1228) | R15-01 | — | done |
 | A2 — GET /workflows/{id}/status | [#1229](https://github.com/brettforbes/spiderfeet/issues/1229) | R15-02 | A1 | done |
 | A3 — Async single-step execute (Scan Now) | [#1230](https://github.com/brettforbes/spiderfeet/issues/1230) | R15-03 | A1 | done |
@@ -30,9 +30,11 @@ Status legend: `open` (created) → `in progress` → `in review` → `done`.
 
 | Code | Issue | Requirement | Depends on | Status |
 |------|-------|-------------|------------|--------|
-| Epic D | [#1234](https://github.com/brettforbes/spiderfeet/issues/1234) | R15-18..19 | A,B,C | open |
-| D1 — Cross-repo E2E smoke (Run + Scan Now live) | [#1235](https://github.com/brettforbes/spiderfeet/issues/1235) | R15-18 | A6,B5,C6 | open |
+| Epic D | [#1234](https://github.com/brettforbes/spiderfeet/issues/1234) | R15-18..19 | A,B,C | in progress |
+| D1 — Cross-repo E2E smoke (Run + Scan Now live) | [#1235](https://github.com/brettforbes/spiderfeet/issues/1235) | R15-18 | A6,B5,C6 | in review |
 | D2 — GOV-08 exploratory review [OPERATOR GATE] | [#1236](https://github.com/brettforbes/spiderfeet/issues/1236) | R15-19 | D1 | open |
+
+**D1 evidence:** `.docs/docs-for-cli-tools/SPEC015_D1_E2E_SMOKE.md`
 
 ## Execution order
 
