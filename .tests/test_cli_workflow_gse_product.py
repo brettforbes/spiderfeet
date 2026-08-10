@@ -32,7 +32,7 @@ def test_nmap_ip_port_product():
                         "as": "ip",
                         "reachable_from": "endpoint",
                         "along": {"relation": "contains", "transitive": True},
-                        "nodes": {"nugget_id_in": ["IP_ADDRESS", "IPV6_ADDRESS"]},
+                        "nodes": {"nugget_id_in": ["IPV4_ADDRESS", "IPV6_ADDRESS"]},
                         "project": "nugget_data",
                     },
                     {
