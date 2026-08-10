@@ -1,9 +1,9 @@
-"""Project / temporary context read + temporary-context update (R10-24 / R10-25)."""
+"""Project / temporary context read + temporary-context update (R10-24 / R10-25 / R16-03)."""
 
 from __future__ import annotations
 
 import json
-import uuid
+import logging
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, Body, Depends, HTTPException
@@ -17,8 +17,13 @@ from spiderfeet_v2.api.schemas import (
 from spiderfeet_v2.api.temporary_ids import assert_no_temporary_ids, strip_temporary_ids
 from spiderfeet_v2.db.crud import CrudError, CrudStore
 from spiderfeet_v2.db.projections import ProjectionStore
+from spiderfeet_v2.engine.persist import (
+    project_context_id_for,
+    temporary_subgraph_id_for,
+)
 
 router = APIRouter(tags=["v2-contexts"])
+_LOG = logging.getLogger(__name__)
 
 
 def _parse_graph_payload(row: Optional[Dict[str, Any]]) -> Dict[str, List[Any]]:
@@ -61,6 +66,46 @@ def _first_subgraph_id(
     return ids[0] if ids else None
 
 
+def _resolve_context_id(
+    *,
+    project_id: str,
+    kind: str,
+    projection_key: str,
+    store: CrudStore,
+    projections: ProjectionStore,
+) -> str:
+    """Canonical per-project id, with projection fallback only when that row exists."""
+    if kind == "temporary_subgraph":
+        canonical = temporary_subgraph_id_for(project_id)
+    elif kind == "project_context":
+        canonical = project_context_id_for(project_id)
+    else:
+        raise ValueError(f"unsupported context kind: {kind}")
+
+    try:
+        if store.get_subgraph(kind, canonical) is not None:
+            return canonical
+    except CrudError:
+        pass
+
+    projected = _first_subgraph_id(projections, project_id, projection_key)
+    if projected and projected != canonical:
+        try:
+            if store.get_subgraph(kind, projected) is not None:
+                _LOG.warning(
+                    "project %s %s using legacy projection id %s "
+                    "(canonical would be %s)",
+                    project_id,
+                    kind,
+                    projected,
+                    canonical,
+                )
+                return projected
+        except CrudError:
+            pass
+    return canonical
+
+
 def _load_context(
     *,
     project_id: str,
@@ -72,20 +117,26 @@ def _load_context(
 ) -> Dict[str, Any]:
     if store.get_project(project_id) is None:
         raise HTTPException(status_code=404, detail="Project not found")
-    sg_id = _first_subgraph_id(projections, project_id, projection_key)
-    if not sg_id:
-        return ContextGraphOut(
-            project_id=project_id,
-            kind=kind,
-            subgraph_id=None,
-            nodes=[],
-            edges=[],
-        ).model_dump()
+    sg_id = _resolve_context_id(
+        project_id=project_id,
+        kind=kind,
+        projection_key=projection_key,
+        store=store,
+        projections=projections,
+    )
     try:
         dual = store.get_subgraph_dual(kind, sg_id)
     except CrudError:
         meta = store.get_subgraph(kind, sg_id)
         dual = meta or {}
+    if not dual:
+        return ContextGraphOut(
+            project_id=project_id,
+            kind=kind,
+            subgraph_id=sg_id,
+            nodes=[],
+            edges=[],
+        ).model_dump()
     graph = _parse_graph_payload(dual)
     return ContextGraphOut(
         project_id=project_id,
@@ -151,6 +202,7 @@ def update_temporary_context(
     """Persist temporary context after stripping widget ``temporary_id`` tags.
 
     Edges keyed by temporary ids are remapped to ``nugget_instance_id`` (R10-25).
+    Always writes to the project's canonical temporary_subgraph id (R16-03).
     """
     if store.get_project(project_id) is None:
         raise HTTPException(status_code=404, detail="Project not found")
@@ -161,11 +213,15 @@ def update_temporary_context(
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
-    sg_id = body.temporary_subgraph_id or _first_subgraph_id(
-        projections, project_id, "temporary_subgraph"
-    )
-    if not sg_id:
-        sg_id = f"temporary-subgraph--{uuid.uuid4()}"
+    sg_id = temporary_subgraph_id_for(project_id)
+    if body.temporary_subgraph_id and body.temporary_subgraph_id != sg_id:
+        _LOG.warning(
+            "ignoring foreign temporary_subgraph_id %s for project %s; "
+            "using canonical %s",
+            body.temporary_subgraph_id,
+            project_id,
+            sg_id,
+        )
 
     existing = store.get_subgraph("temporary_subgraph", sg_id)
     try:
