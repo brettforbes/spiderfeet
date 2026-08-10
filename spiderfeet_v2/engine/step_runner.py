@@ -3,10 +3,13 @@
 from __future__ import annotations
 
 import json
+import logging
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Mapping, Optional
 
 import yaml
+
+_LOG = logging.getLogger(__name__)
 
 from spiderfeet_v2.engine.modules import (
     ModuleResolveError,
@@ -358,6 +361,10 @@ def run_single_step(
             raise OrchestratorError(str(exc)) from exc
 
         # R15-05 — never leave a step stuck at RUNNING after an unexpected error.
+        # Do not clobber an already-persisted FINISHED four-form write if a later
+        # side effect (dual-form / export) fails — that left Composer showing
+        # ERROR-FAILED with rich Text/graph already on the step.
+        forms_persisted = False
         try:
             module_result = runner(spec)
             if not isinstance(module_result, Mapping):
@@ -385,23 +392,26 @@ def run_single_step(
                 module_result=module_result,
                 output_vars=output_vars,
             )
+            forms_persisted = True
         except OrchestratorError:
-            ensure_scan_step(
-                store,
-                scan_instance_id=scan_id,
-                module_id=module_id,
-                step=step,
-                scan_status=STATUS_ERROR_FAILED,
-            )
+            if not forms_persisted:
+                ensure_scan_step(
+                    store,
+                    scan_instance_id=scan_id,
+                    module_id=module_id,
+                    step=step,
+                    scan_status=STATUS_ERROR_FAILED,
+                )
             raise
         except Exception as exc:  # noqa: BLE001 — terminalise RUNNING on any failure
-            ensure_scan_step(
-                store,
-                scan_instance_id=scan_id,
-                module_id=module_id,
-                step=step,
-                scan_status=STATUS_ERROR_FAILED,
-            )
+            if not forms_persisted:
+                ensure_scan_step(
+                    store,
+                    scan_instance_id=scan_id,
+                    module_id=module_id,
+                    step=step,
+                    scan_status=STATUS_ERROR_FAILED,
+                )
             raise OrchestratorError(
                 f"{module_id} failed while RUNNING: {exc}"
             ) from exc
@@ -409,15 +419,22 @@ def run_single_step(
         exported = False
         temp_id = existing_temporary_subgraph_id
         if project_id and step_exports_scan_graph(step):
-            export_info = persist_temporary_export(
-                store,
-                project_id=project_id,
-                step=step,
-                scan_graph=graph,
-                existing_subgraph_id=existing_temporary_subgraph_id,
-            )
-            exported = bool(export_info.get("exported"))
-            temp_id = export_info.get("temporary_subgraph_id")
+            try:
+                export_info = persist_temporary_export(
+                    store,
+                    project_id=project_id,
+                    step=step,
+                    scan_graph=graph,
+                    existing_subgraph_id=existing_temporary_subgraph_id,
+                )
+                exported = bool(export_info.get("exported"))
+                temp_id = export_info.get("temporary_subgraph_id")
+            except Exception as exc:  # noqa: BLE001 — export must not fail a good scan
+                _LOG.warning(
+                    "temporary export failed for %s (%s); keeping step result",
+                    dsl_step_id,
+                    exc,
+                )
 
         terminal = persisted["scan_status"]
         outcome = outcome_for_scan_status(terminal)

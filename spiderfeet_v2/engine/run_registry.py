@@ -7,6 +7,7 @@ a factory that returns the FakeCrudStore.
 
 from __future__ import annotations
 
+import logging
 import threading
 import uuid
 from concurrent.futures import Future, ThreadPoolExecutor
@@ -19,6 +20,7 @@ from spiderfeet_v2.db.crud import CrudStore
 from spiderfeet_v2.engine import OrchestratorError, run_single_step, run_workflow
 
 StoreFactory = Callable[[], Any]
+_LOG = logging.getLogger(__name__)
 
 STATE_QUEUED = "queued"
 STATE_RUNNING = "running"
@@ -267,8 +269,10 @@ class RunRegistry:
             else:
                 self._finish(run_id, state=STATE_SUCCESS, result=api)
         except OrchestratorError as exc:
+            _LOG.error("workflow run %s failed: %s", run_id, exc)
             self._finish(run_id, state=STATE_ERROR, error=str(exc))
         except Exception as exc:  # noqa: BLE001 — background boundary
+            _LOG.exception("workflow run %s crashed", run_id)
             self._finish(run_id, state=STATE_ERROR, error=str(exc))
 
     def _run_step_job(self, run_id: str) -> None:

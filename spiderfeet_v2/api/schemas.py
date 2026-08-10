@@ -441,6 +441,10 @@ class WorkflowStatusOut(BaseModel):
     workflow_id: str
     run_id: Optional[str] = None
     run_state: Optional[str] = None
+    error: Optional[str] = Field(
+        default=None,
+        description="Registry error message when run_state is error/cancelled.",
+    )
     steps: List[WorkflowStepStatusOut] = Field(default_factory=list)
 
 
