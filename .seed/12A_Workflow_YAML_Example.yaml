@@ -146,7 +146,11 @@ steps:
                     relation: contains
                     transitive: true
                   nodes:
-                    nugget_id_in: [IP_ADDRESS, IPV6_ADDRESS]
+                    # IP classification (SPEC-005 Epic AH) emits IPV4_ADDRESS /
+                    # IPV6_ADDRESS — never the ambiguous IP_ADDRESS. The old
+                    # IP_ADDRESS id matched nothing, so ip×port collapsed to []
+                    # and nerva was skipped for empty input.
+                    nugget_id_in: [IPV4_ADDRESS, IPV6_ADDRESS]
                   project: nugget_data
                 - as: port
                   reachable_from: endpoint
@@ -236,34 +240,20 @@ steps:
         adapter: httpx
     output:
       vars:
-        # Live web hosts: DOMAIN_NAME under a HOST tree that has HTTP_STATUS_CODE.
+        # Live web hosts feeding katana. The httpx adapter attaches probed
+        # DOMAIN_NAME nodes to the SCAN_RECORD head (and CNAME targets under
+        # their parent DOMAIN_NAME) — they are NOT contained by HOST/CDN, which
+        # only carry CDN_NAME/CDN_TYPE descriptors. The previous
+        # HOST/CDN --contains--> DOMAIN_NAME walk matched nothing, so katana was
+        # skipped. A plain DOMAIN_NAME projection is the correct "just a list of
+        # hosts" selector for this graph shape.
         live_hosts:
           type: string_list
           select:
             source: $step.scan_graph
-            for_each:
-              as: endpoint
-              nodes:
-                nugget_id_in: [HOST, CDN]
-              collect:
-                - as: host
-                  reachable_from: endpoint
-                  along:
-                    relation: contains
-                    transitive: true
-                  nodes:
-                    nugget_id: DOMAIN_NAME
-                  project: nugget_data
-                - as: status
-                  reachable_from: endpoint
-                  along:
-                    relation: contains
-                    transitive: true
-                  nodes:
-                    nugget_id: HTTP_STATUS_CODE
-                  project: nugget_data
-              emit:
-                values: host
+            nodes:
+              nugget_id: DOMAIN_NAME
+            project: nugget_data
             distinct: true
     # Interim — do not export to context
     context:
