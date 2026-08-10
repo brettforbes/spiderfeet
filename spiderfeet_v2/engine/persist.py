@@ -440,6 +440,9 @@ def _write_temporary_context(
     payload_graph: Mapping[str, Any],
     existing: Any,
 ) -> Dict[str, Any]:
+    """Persist temporary subgraph graph payload; never raise (UI enrichment only)."""
+    node_count = len(payload_graph.get("nodes") or [])
+    edge_count = len(payload_graph.get("edges") or [])
     try:
         if existing is None:
             store.create_subgraph(
@@ -456,21 +459,24 @@ def _write_temporary_context(
                 sg_id,
                 {"graph": dict(payload_graph)},
             )
-    except Exception as exc:  # noqa: BLE001 — schema drift on dual-form attrs
-        if not _is_json_string_schema_gap(exc):
-            raise
+    except Exception as exc:  # noqa: BLE001 — schema drift / TypeDB stall must not fail scans
+        _LOG.warning(
+            "temporary_subgraph write failed for %s (%s); continuing without persist",
+            sg_id,
+            exc,
+        )
         return {
             "exported": True,
             "temporary_subgraph_id": sg_id,
-            "node_count": len(payload_graph.get("nodes") or []),
-            "edge_count": len(payload_graph.get("edges") or []),
+            "node_count": node_count,
+            "edge_count": edge_count,
             "persisted": False,
         }
     return {
         "exported": True,
         "temporary_subgraph_id": sg_id,
-        "node_count": len(payload_graph.get("nodes") or []),
-        "edge_count": len(payload_graph.get("edges") or []),
+        "node_count": node_count,
+        "edge_count": edge_count,
         "persisted": True,
     }
 

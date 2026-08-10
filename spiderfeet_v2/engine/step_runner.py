@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import threading
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Mapping, Optional
 
@@ -20,6 +21,7 @@ from spiderfeet_v2.engine.persist import (
     ensure_scan_step,
     persist_module_result,
     persist_temporary_export,
+    temporary_subgraph_id_for,
 )
 from spiderfeet_v2.engine.status import (
     MODULE_OK,
@@ -31,7 +33,6 @@ from spiderfeet_v2.engine.status import (
     STATUS_FINISHED,
     STATUS_RUNNING,
     STATUS_STARTING,
-    outcome_for_scan_status,
 )
 from spiderfeet_v2.workflow.argv import build_step_command
 from spiderfeet_v2.workflow.context_export import step_exports_scan_graph
@@ -416,28 +417,45 @@ def run_single_step(
                 f"{module_id} failed while RUNNING: {exc}"
             ) from exc
 
+        # Temporary-context export is UI enrichment only. Large nmap graphs can
+        # stall TypeDB writes for minutes and used to block the wave thread so
+        # nerva/katana never started. Schedule export off the critical path.
         exported = False
         temp_id = existing_temporary_subgraph_id
         if project_id and step_exports_scan_graph(step):
-            try:
-                export_info = persist_temporary_export(
-                    store,
-                    project_id=project_id,
-                    step=step,
-                    scan_graph=graph,
-                    existing_subgraph_id=existing_temporary_subgraph_id,
-                )
-                exported = bool(export_info.get("exported"))
-                temp_id = export_info.get("temporary_subgraph_id")
-            except Exception as exc:  # noqa: BLE001 — export must not fail a good scan
-                _LOG.warning(
-                    "temporary export failed for %s (%s); keeping step result",
-                    dsl_step_id,
-                    exc,
-                )
+            temp_id = existing_temporary_subgraph_id or temporary_subgraph_id_for(
+                project_id
+            )
+            graph_snapshot = {
+                "nodes": list((graph or {}).get("nodes") or []),
+                "edges": list((graph or {}).get("edges") or []),
+            }
+            step_snapshot = dict(step)
+            exported = True
+
+            def _export_async() -> None:
+                try:
+                    persist_temporary_export(
+                        store,
+                        project_id=project_id,
+                        step=step_snapshot,
+                        scan_graph=graph_snapshot,
+                        existing_subgraph_id=temp_id,
+                    )
+                except Exception as exc:  # noqa: BLE001
+                    _LOG.warning(
+                        "temporary export failed for %s (%s); keeping step result",
+                        dsl_step_id,
+                        exc,
+                    )
+
+            threading.Thread(
+                target=_export_async,
+                name=f"temp-export-{dsl_step_id}",
+                daemon=True,
+            ).start()
 
         terminal = persisted["scan_status"]
-        outcome = outcome_for_scan_status(terminal)
         ok = terminal == STATUS_FINISHED
         return StepRunResult(
             workflow_id=workflow_id,
