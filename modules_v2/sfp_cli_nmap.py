@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 from modules_v2._base import (
@@ -216,8 +217,6 @@ class sfp_cli_nmap(CliModuleBase):
                 scenario_key=scenario_key,
             )
         if spec.get("xml_path"):
-            from pathlib import Path
-
             xml_text = Path(spec["xml_path"]).read_text(encoding="utf-8")
             return self.run_from_xml(
                 xml_text,
@@ -255,7 +254,15 @@ class sfp_cli_nmap(CliModuleBase):
             )
 
         assert completed is not None
+        # Workflow argv uses `-oX $step.files.output` (file path). Nmap then
+        # writes XML to that file and leaves stdout empty/non-XML — same hydrate
+        # pattern as subfinder/httpx `-o` capture (step_runner comment).
         xml_text = completed.stdout or ""
+        out_path = _ox_output_file_from_argv(argv)
+        if out_path and Path(out_path).is_file():
+            file_body = Path(out_path).read_text(encoding="utf-8", errors="replace")
+            if file_body.strip():
+                xml_text = file_body
         if completed.returncode != 0 and not xml_text.strip():
             return error_result(
                 command=argv,
@@ -270,7 +277,10 @@ class sfp_cli_nmap(CliModuleBase):
             return error_result(
                 command=argv,
                 status=STATUS_ERROR,
-                error="nmap produced empty XML stdout",
+                error=(
+                    "nmap produced empty XML "
+                    f"({'file ' + out_path if out_path else 'stdout'})"
+                ),
                 duration=duration,
                 exit_code=completed.returncode,
                 stderr=completed.stderr or "",
@@ -311,6 +321,22 @@ def _has_ox_stdout(argv: Sequence[str]) -> bool:
             # e.g. unusual glued form; treat as present
             return True
     return False
+
+
+def _ox_output_file_from_argv(argv: Sequence[str]) -> str | None:
+    """Return the path after ``-oX`` when it is a real file (not ``-`` / stdout)."""
+    for i, part in enumerate(argv):
+        if part == "-oX" and i + 1 < len(argv):
+            candidate = str(argv[i + 1])
+            if candidate == "-" or candidate.startswith("-"):
+                return None
+            return candidate
+        if part.startswith("-oX") and part != "-oX":
+            # glued form `-oXfile.xml` (rare)
+            glued = part[3:]
+            if glued and glued != "-":
+                return glued
+    return None
 
 
 def run(scan_step_spec: Mapping[str, Any] | None = None) -> dict[str, Any]:
