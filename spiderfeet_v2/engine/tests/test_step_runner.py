@@ -206,3 +206,24 @@ def test_module_id_from_uses(store: FakeCrudStore) -> None:
     )
     assert result.module_id == "sfp_cli_subfinder"
     assert isinstance(result.command, list)
+
+
+def test_unexpected_module_exception_leaves_error_failed(store: FakeCrudStore) -> None:
+    """R15-05 — generic exception after RUNNING must terminalise ERROR-FAILED."""
+
+    def _boom(_spec: Any = None) -> Dict[str, Any]:
+        raise RuntimeError("simulated module crash")
+
+    register_module("sfp_cli_subfinder", _boom)
+    with pytest.raises(OrchestratorError, match="simulated module crash"):
+        run_single_step(
+            store,
+            workflow_id="workflow--ao1-unit",
+            step_id="sfp_cli_subfinder",
+            dry_run=False,
+        )
+    sid = scan_instance_id_for("workflow--ao1-unit", "sfp_cli_subfinder")
+    step = store.get_scan_step(sid)
+    assert step is not None
+    assert step.get("scan_status") == "ERROR-FAILED"
+    assert step.get("scan_status") != "RUNNING"

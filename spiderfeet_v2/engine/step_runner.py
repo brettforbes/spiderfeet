@@ -355,32 +355,54 @@ def run_single_step(
             )
             raise OrchestratorError(str(exc)) from exc
 
-        module_result = runner(spec)
-        if not isinstance(module_result, Mapping):
-            raise OrchestratorError(
-                f"{module_id}.run() returned non-mapping result"
-            )
-
-        graph = module_result.get("graph") or {"nodes": [], "edges": []}
+        # R15-05 — never leave a step stuck at RUNNING after an unexpected error.
         try:
-            output_vars = evaluate_output_vars(step, graph)
-        except GseError as exc:
-            output_vars = {}
-            module_result = dict(module_result)
-            module_result["error"] = (
-                f"{module_result.get('error') or ''}; GSE: {exc}".strip("; ")
-            )
-            if module_result.get("status") in MODULE_OK:
-                module_result["status"] = "ERROR"
+            module_result = runner(spec)
+            if not isinstance(module_result, Mapping):
+                raise OrchestratorError(
+                    f"{module_id}.run() returned non-mapping result"
+                )
 
-        persisted = persist_module_result(
-            store,
-            scan_instance_id=scan_id,
-            module_id=module_id,
-            step=step,
-            module_result=module_result,
-            output_vars=output_vars,
-        )
+            graph = module_result.get("graph") or {"nodes": [], "edges": []}
+            try:
+                output_vars = evaluate_output_vars(step, graph)
+            except GseError as exc:
+                output_vars = {}
+                module_result = dict(module_result)
+                module_result["error"] = (
+                    f"{module_result.get('error') or ''}; GSE: {exc}".strip("; ")
+                )
+                if module_result.get("status") in MODULE_OK:
+                    module_result["status"] = "ERROR"
+
+            persisted = persist_module_result(
+                store,
+                scan_instance_id=scan_id,
+                module_id=module_id,
+                step=step,
+                module_result=module_result,
+                output_vars=output_vars,
+            )
+        except OrchestratorError:
+            ensure_scan_step(
+                store,
+                scan_instance_id=scan_id,
+                module_id=module_id,
+                step=step,
+                scan_status=STATUS_ERROR_FAILED,
+            )
+            raise
+        except Exception as exc:  # noqa: BLE001 — terminalise RUNNING on any failure
+            ensure_scan_step(
+                store,
+                scan_instance_id=scan_id,
+                module_id=module_id,
+                step=step,
+                scan_status=STATUS_ERROR_FAILED,
+            )
+            raise OrchestratorError(
+                f"{module_id} failed while RUNNING: {exc}"
+            ) from exc
 
         exported = False
         temp_id = existing_temporary_subgraph_id
