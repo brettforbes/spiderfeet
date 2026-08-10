@@ -18,7 +18,7 @@ Status legend: `open` (created) → `in progress` → `in review` → `done`.
 
 | Code | Issue | Requirement | Depends on | Status |
 |------|-------|-------------|------------|--------|
-| Epic A | [#1253](https://github.com/brettforbes/spiderfeet/issues/1253) | R16-01..04 | — | open |
+| Epic A | [#1253](https://github.com/brettforbes/spiderfeet/issues/1253) | R16-01..04 | — | done |
 | A1 — Per-step nuclei timeout (seed + module default) | [#1254](https://github.com/brettforbes/spiderfeet/issues/1254) | R16-01 | — | done |
 | A2 — Non-blocking temporary-context export | [#1255](https://github.com/brettforbes/spiderfeet/issues/1255) | R16-02 | — | done |
 | A3 — Per-project canonical context resolution + PUT hardening | [#1256](https://github.com/brettforbes/spiderfeet/issues/1256) | R16-03 | — | done |
@@ -28,8 +28,8 @@ Status legend: `open` (created) → `in progress` → `in review` → `done`.
 
 | Code | Issue | Requirement | Depends on | Status |
 |------|-------|-------------|------------|--------|
-| Epic D | [#1258](https://github.com/brettforbes/spiderfeet/issues/1258) | R16-12..13 | A,B,C | open |
-| D1 — Cross-repo E2E smoke (k2am) | [#1259](https://github.com/brettforbes/spiderfeet/issues/1259) | R16-12 | A4,B*,C3 | open |
+| Epic D | [#1258](https://github.com/brettforbes/spiderfeet/issues/1258) | R16-12..13 | A,B,C | in progress |
+| D1 — Cross-repo E2E smoke (k2am) | [#1259](https://github.com/brettforbes/spiderfeet/issues/1259) | R16-12 | A4,B*,C3 | done |
 | D2 — GOV-08 exploratory review [OPERATOR GATE] | [#1260](https://github.com/brettforbes/spiderfeet/issues/1260) | R16-13 | D1 | open |
 
 ## Execution order
@@ -54,3 +54,5 @@ Branch from `develop`; PR into `develop`; close each issue with a completion not
 
 - Temporary context GET/PUT is per-project via `temporary_subgraph_id_for(project_id)`; PUT coerces foreign body ids.
 - Seed `12A` long steps set `config.timeout` (nmap 900, nerva 300, katana 600, nuclei 900).
+
+**D1 evidence:** .docs/docs-for-cli-tools/SPEC016_D1_E2E_SMOKE.md
