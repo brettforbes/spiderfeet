@@ -19,8 +19,8 @@ Status legend: `open` (created) → `in progress` → `in review` → `done`.
 | Code | Issue | Requirement | Depends on | Status |
 |------|-------|-------------|------------|--------|
 | Epic A | [#1253](https://github.com/brettforbes/spiderfeet/issues/1253) | R16-01..04 | — | open |
-| A1 — Per-step nuclei timeout (seed + module default) | [#1254](https://github.com/brettforbes/spiderfeet/issues/1254) | R16-01 | — | open |
-| A2 — Non-blocking temporary-context export | [#1255](https://github.com/brettforbes/spiderfeet/issues/1255) | R16-02 | — | open (branch `fix/workflow-defer-temp-export`) |
+| A1 — Per-step nuclei timeout (seed + module default) | [#1254](https://github.com/brettforbes/spiderfeet/issues/1254) | R16-01 | — | done |
+| A2 — Non-blocking temporary-context export | [#1255](https://github.com/brettforbes/spiderfeet/issues/1255) | R16-02 | — | done |
 | A3 — Per-project canonical context resolution + PUT hardening | [#1256](https://github.com/brettforbes/spiderfeet/issues/1256) | R16-03 | — | open |
 | A4 — Backend tests, OpenAPI, docs | [#1257](https://github.com/brettforbes/spiderfeet/issues/1257) | R16-04 | A1..A3 | open |
 
