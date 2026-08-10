@@ -128,6 +128,7 @@ def get_workflow_status(
         "workflow_id": workflow_id,
         "run_id": latest.run_id if latest else None,
         "run_state": latest.state if latest else None,
+        "error": (latest.error if latest else None),
         "steps": steps_out,
     }
 

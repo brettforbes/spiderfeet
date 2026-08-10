@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 from threading import Lock
 from typing import Any, Dict, List, Mapping, Optional
 from uuid import UUID, uuid5
@@ -17,6 +18,7 @@ from spiderfeet_v2.workflow.typedb_convert import dump_canonical_yaml
 
 _RESULT_NS = UUID("6ba7b810-9dad-11d1-80b4-00c04fd430c8")
 _TEMP_CONTEXT_LOCK = Lock()
+_LOG = logging.getLogger(__name__)
 
 
 def scan_result_id_for(scan_instance_id: str) -> str:
@@ -268,16 +270,20 @@ def _persist_scan_result_graph(
 ) -> bool:
     """Create/update scan_result_graph with dual-form when the schema supports it.
 
-    Returns True when dual-form graph payload was stored. On schema drift
-    (e.g. missing ``json_string`` in an older ``spiderfeet-actual`` load),
-    returns False without failing the step — four forms remain on ``scan_step``.
+    Returns True when dual-form graph payload was stored. Dual-form is best-effort:
+    any TypeDB/schema/codec failure returns False without failing the step — the
+    four UI forms on ``scan_step`` remain authoritative. Raising here previously
+    let ``ensure_scan_step(ERROR-FAILED)`` clobber an already-persisted SUCCESS.
     """
     try:
         existing_rg = store.get_subgraph("scan_result_graph", scan_result_id)
-    except Exception as exc:  # noqa: BLE001
-        if _is_json_string_schema_gap(exc):
-            return False
-        raise
+    except Exception as exc:  # noqa: BLE001 — dual-form optional
+        _LOG.warning(
+            "scan_result_graph get failed for %s (%s); keeping scan_step forms",
+            scan_result_id,
+            exc,
+        )
+        return False
 
     try:
         if existing_rg is None:
@@ -296,11 +302,13 @@ def _persist_scan_result_graph(
                 {"graph": graph},
             )
         return True
-    except Exception as exc:  # noqa: BLE001 — TypeDB schema / codec failures
-        if not _is_json_string_schema_gap(exc):
-            raise
-        # Partial shell insert may already exist; do not re-query (get_subgraph
-        # also touches json_string). Four forms on scan_step are authoritative.
+    except Exception as exc:  # noqa: BLE001 — dual-form optional
+        _LOG.warning(
+            "scan_result_graph write failed for %s (%s); keeping scan_step forms",
+            scan_result_id,
+            exc,
+        )
+        # Partial shell insert may already exist; do not re-query.
         return False
 
 
