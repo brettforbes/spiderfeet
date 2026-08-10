@@ -19,8 +19,8 @@ Status legend: `open` (created) → `in progress` → `in review` → `done`.
 | Code | Issue | Requirement | Depends on | Status |
 |------|-------|-------------|------------|--------|
 | Epic A | [#1227](https://github.com/brettforbes/spiderfeet/issues/1227) | R15-01..06 | — | open |
-| A1 — Async full-workflow execute + run registry | [#1228](https://github.com/brettforbes/spiderfeet/issues/1228) | R15-01 | — | open |
-| A2 — GET /workflows/{id}/status | [#1229](https://github.com/brettforbes/spiderfeet/issues/1229) | R15-02 | A1 | open |
+| A1 — Async full-workflow execute + run registry | [#1228](https://github.com/brettforbes/spiderfeet/issues/1228) | R15-01 | — | done |
+| A2 — GET /workflows/{id}/status | [#1229](https://github.com/brettforbes/spiderfeet/issues/1229) | R15-02 | A1 | done |
 | A3 — Async single-step execute (Scan Now) | [#1230](https://github.com/brettforbes/spiderfeet/issues/1230) | R15-03 | A1 | open |
 | A4 — Cancellation + reset integration | [#1231](https://github.com/brettforbes/spiderfeet/issues/1231) | R15-04 | A1 | open |
 | A5 — Stuck-RUNNING guard in step_runner | [#1232](https://github.com/brettforbes/spiderfeet/issues/1232) | R15-05 | — | open |
