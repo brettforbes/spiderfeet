@@ -25,6 +25,7 @@ from spiderfeet_v2.api.schemas import (
 from spiderfeet_v2.db.crud import CrudStore
 from spiderfeet_v2.db.projections import ProjectionStore
 from spiderfeet_v2.engine import OrchestratorError, run_single_step, run_workflow
+from spiderfeet_v2.engine.persist import reset_workflow_execution
 from spiderfeet_v2.engine.run_registry import get_run_registry
 from spiderfeet_v2.workflow.typedb_convert import scan_instance_id_for
 
@@ -42,6 +43,40 @@ def _first_temporary_id(
         return None
     ids = proj.get("temporary_subgraph") or []
     return ids[0] if ids else None
+
+
+@router.post(
+    "/workflows/{workflow_id}/reset",
+    status_code=200,
+)
+def reset_workflow(
+    workflow_id: str,
+    body: ExecuteWorkflowRequest = Body(
+        default=ExecuteWorkflowRequest(),
+        openapi_examples=EXECUTE_WORKFLOW_OPENAPI_EXAMPLES,
+    ),
+    store: CrudStore = Depends(get_crud_store),
+    projections: ProjectionStore = Depends(get_projection_store),
+) -> Dict[str, Any]:
+    """Clear all step scan results + temporary context; keep workflow YAML.
+
+    Cancels any in-flight async run for this workflow first (R15-04).
+    """
+    if store.get_workflow(workflow_id) is None:
+        raise HTTPException(status_code=404, detail="Workflow not found")
+    if body.project_id and store.get_project(body.project_id) is None:
+        raise HTTPException(status_code=404, detail="Project not found")
+    try:
+        return reset_workflow_execution(
+            store,
+            workflow_id=workflow_id,
+            project_id=body.project_id,
+            existing_temporary_subgraph_id=_first_temporary_id(
+                projections, body.project_id
+            ),
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @router.get(

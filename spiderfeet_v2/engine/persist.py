@@ -25,6 +25,146 @@ def temporary_subgraph_id_for(project_id: str) -> str:
     return f"temporary-subgraph--{uuid5(_RESULT_NS, project_id)}"
 
 
+def reset_temporary_context(
+    store: Any,
+    *,
+    project_id: str,
+    existing_subgraph_id: Optional[str] = None,
+) -> str:
+    """Wipe the project's temporary_subgraph to an empty graph.
+
+    Returns the subgraph id that subsequent ``context.export`` merges should use.
+    """
+    if not project_id:
+        raise ValueError("project_id is required to reset temporary context")
+    sg_id = existing_subgraph_id or temporary_subgraph_id_for(project_id)
+    empty_graph: Dict[str, Any] = {"nodes": [], "edges": []}
+    existing = None
+    try:
+        existing = store.get_subgraph("temporary_subgraph", sg_id)
+    except Exception as exc:  # noqa: BLE001 — schema drift on dual-form attrs
+        if not _is_json_string_schema_gap(exc):
+            raise
+        existing = None
+
+    if existing is None:
+        store.create_subgraph(
+            {
+                "kind": "temporary_subgraph",
+                "temporary_subgraph_id": sg_id,
+                "project_id": project_id,
+                "graph": empty_graph,
+            }
+        )
+    else:
+        store.update_subgraph(
+            "temporary_subgraph",
+            sg_id,
+            {"graph": empty_graph},
+        )
+    return sg_id
+
+
+def _workflow_scan_instance_ids(workflow_row: Mapping[str, Any]) -> List[str]:
+    ids: set[str] = set()
+    if workflow_row.get("first_step_id"):
+        ids.add(str(workflow_row["first_step_id"]))
+    for key in ("prior_step_ids", "next_step_ids"):
+        for sid in workflow_row.get(key) or []:
+            if sid:
+                ids.add(str(sid))
+    return sorted(ids)
+
+
+def reset_workflow_execution(
+    store: Any,
+    *,
+    workflow_id: str,
+    project_id: Optional[str] = None,
+    existing_temporary_subgraph_id: Optional[str] = None,
+    cancel_wait_s: float = 30.0,
+) -> Dict[str, Any]:
+    """Reset a workflow to unscanned shells while keeping the same YAML (R15-04).
+
+    Cancels any in-flight background run for the workflow first so it cannot
+    repaint RUNNING after shells are rematerialized.
+    """
+    from spiderfeet_v2.engine.run_registry import get_run_registry
+    from spiderfeet_v2.workflow.typedb_convert import (
+        persist_workflow_yaml,
+        scan_instance_id_for,
+    )
+
+    current = store.get_workflow(workflow_id)
+    if current is None:
+        raise ValueError(f"workflow not found: {workflow_id}")
+
+    yaml_text = current.get("workflow_yaml")
+    if not yaml_text or not str(yaml_text).strip():
+        raise ValueError(f"workflow has no workflow_yaml to reset: {workflow_id}")
+
+    import yaml
+
+    doc = yaml.safe_load(yaml_text)
+    if not isinstance(doc, dict) or not doc.get("steps"):
+        raise ValueError(f"workflow_yaml is not a valid workflow document: {workflow_id}")
+
+    cancelled_run_id: Optional[str] = None
+    registry = get_run_registry()
+    cancelled_run_id = registry.cancel_workflow(workflow_id)
+    if cancelled_run_id:
+        registry.wait(cancelled_run_id, timeout=cancel_wait_s)
+
+    pid = project_id or current.get("project_id")
+    scan_ids = set(_workflow_scan_instance_ids(current))
+    for step in doc.get("steps") or []:
+        if isinstance(step, Mapping) and step.get("id"):
+            scan_ids.add(scan_instance_id_for(workflow_id, str(step["id"])))
+
+    deleted_result_graphs = 0
+    deleted_steps = 0
+    for sid in sorted(scan_ids):
+        rg_id = scan_result_id_for(sid)
+        try:
+            if store.delete_subgraph("scan_result_graph", rg_id):
+                deleted_result_graphs += 1
+        except Exception:  # noqa: BLE001 — missing subgraph is fine
+            pass
+        try:
+            if store.delete_scan_step(sid):
+                deleted_steps += 1
+        except Exception:  # noqa: BLE001 — missing step is fine
+            pass
+
+    forms = persist_workflow_yaml(
+        store,
+        doc,
+        validate=False,
+        replace=True,
+        project_id=pid,
+    )
+
+    temp_id: Optional[str] = None
+    if pid:
+        temp_id = reset_temporary_context(
+            store,
+            project_id=str(pid),
+            existing_subgraph_id=existing_temporary_subgraph_id,
+        )
+
+    return {
+        "status": "RESET",
+        "message": "Workflow scan results and temporary context cleared.",
+        "workflow_id": workflow_id,
+        "project_id": pid,
+        "steps_reset": len(forms.steps),
+        "scan_steps_deleted": deleted_steps,
+        "scan_result_graphs_deleted": deleted_result_graphs,
+        "temporary_subgraph_id": temp_id,
+        "cancelled_run_id": cancelled_run_id,
+    }
+
+
 def _json_text(value: Any) -> str:
     if value is None:
         return ""

@@ -170,6 +170,9 @@ class FakeCrudStore:
     def delete_scan_step(self, scan_instance_id: str) -> bool:
         return self.scan_steps.pop(scan_instance_id, None) is not None
 
+    def delete_subgraph(self, kind: str, subgraph_id: str) -> bool:
+        return self.subgraphs.pop(self._sg_key(kind, subgraph_id), None) is not None
+
     def list_scan_steps(self) -> List[Dict[str, Any]]:
         return [copy.deepcopy(self.scan_steps[k]) for k in sorted(self.scan_steps)]
 
