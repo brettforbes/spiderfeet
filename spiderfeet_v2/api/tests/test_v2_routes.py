@@ -322,6 +322,81 @@ steps:
     )
 
 
+def test_execute_workflow_async_accepted(client):
+    """R15-01 — POST execute-async returns 202 + run_id; registry reaches terminal."""
+    from spiderfeet_v2.engine.run_registry import get_run_registry
+
+    yaml_doc = """apiVersion: spiderfeet.workflow/v1
+kind: Workflow
+id: workflow--async-ex
+info:
+  name: async-ex
+  description: R15-01 API test
+inputs:
+  targets:
+    type: string_list
+    values:
+      - example.com
+steps:
+  - id: sfp_cli_subfinder
+    uses: tool.subfinder
+    needs: []
+    input:
+      type: string_list
+      from: $workflow.inputs.targets
+    config:
+      argv:
+        - "-d"
+        - "$step.input.values[0]"
+        - "-silent"
+    context:
+      export: none
+"""
+    client.post(
+        "/api/v1/targets",
+        json={"target_id": "target--async-ex", "target_value": "ex.example"},
+    )
+    client.post(
+        "/api/v1/workflows",
+        json={
+            "workflow_id": "workflow--async-ex",
+            "target_id": "target--async-ex",
+            "workflow_yaml": yaml_doc,
+        },
+    )
+    client.post(
+        "/api/v1/projects",
+        json={
+            "project_id": "project--async-ex",
+            "workflow_ids": ["workflow--async-ex"],
+        },
+    )
+
+    r = client.post(
+        "/api/v1/workflows/workflow--async-ex/execute-async",
+        json={"project_id": "project--async-ex", "dry_run": True},
+    )
+    assert r.status_code == 202, r.text
+    body = r.json()
+    assert body["run_id"].startswith("run--")
+    assert body["workflow_id"] == "workflow--async-ex"
+    assert body["state"] == "queued"
+    assert body["kind"] == "workflow"
+
+    finished = get_run_registry().wait(body["run_id"], timeout=30)
+    assert finished is not None
+    assert finished.state == "success"
+    assert finished.result and finished.result.get("status") == "DRY_RUN"
+
+    assert (
+        client.post(
+            "/api/v1/workflows/missing/execute-async",
+            json={},
+        ).status_code
+        == 404
+    )
+
+
 def test_openapi_includes_v2_paths_and_examples(client):
     r = client.get("/openapi.json")
     assert r.status_code == 200
@@ -334,6 +409,7 @@ def test_openapi_includes_v2_paths_and_examples(client):
         "/api/v1/projects/{project_id}/contexts/temporary",
         "/api/v1/projects/{project_id}/complete",
         "/api/v1/workflows/{workflow_id}/execute",
+        "/api/v1/workflows/{workflow_id}/execute-async",
     ):
         assert path in paths, path
 

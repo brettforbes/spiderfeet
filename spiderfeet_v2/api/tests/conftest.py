@@ -296,11 +296,17 @@ class FakeProjectionStore:
 
 @pytest.fixture
 def fake_stores():
+    from spiderfeet_v2.engine.run_registry import RunRegistry, set_run_registry
+
     crud = FakeCrudStore()
     proj = FakeProjectionStore(crud)
     deps.set_crud_store(crud)  # type: ignore[arg-type]
     deps.set_projection_store(proj)  # type: ignore[arg-type]
+    # Background async runs must reuse the same FakeCrudStore (R15-01).
+    registry = RunRegistry(max_workers=1, store_factory=lambda: crud)
+    set_run_registry(registry)
     yield crud, proj
+    set_run_registry(None)
     deps.set_crud_store(None)
     deps.set_projection_store(None)
 
