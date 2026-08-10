@@ -337,6 +337,215 @@ def test_empty_skip_step_does_not_fail_workflow(store: FakeCrudStore) -> None:
     assert nerva.input_values == []
 
 
+def test_failed_sibling_does_not_block_other_branch(store: FakeCrudStore) -> None:
+    """nmap failure must not prevent httpx→katana (branch-aware orchestration)."""
+    branch_yaml = """apiVersion: spiderfeet.workflow/v1
+kind: Workflow
+id: workflow--ao2-branch
+info:
+  name: ao2-branch
+  author: test
+inputs:
+  targets:
+    type: string_list
+    values:
+      - https://example.com
+steps:
+  - id: sfp_cli_subfinder
+    uses: tool.subfinder
+    needs: []
+    input:
+      type: string_list
+      from: $workflow.inputs.targets
+      normalize: hostname_from_url
+      empty: error
+    config:
+      argv: ["-d", "$step.input.values[0]", "-silent"]
+    output:
+      vars:
+        all_domains:
+          type: string_list
+          select:
+            source: $step.scan_graph
+            nodes:
+              nugget_id: DOMAIN_NAME
+            project: nugget_data
+            distinct: true
+    context:
+      export: none
+  - id: sfp_cli_nmap
+    uses: tool.nmap
+    needs: [sfp_cli_subfinder]
+    input:
+      type: string_list
+      from: $steps.sfp_cli_subfinder.vars.all_domains
+      empty: error
+    config:
+      args: ["-Pn"]
+    context:
+      export: none
+  - id: sfp_cli_httpx
+    uses: tool.httpx
+    needs: [sfp_cli_subfinder]
+    input:
+      type: string_list
+      from: $steps.sfp_cli_subfinder.vars.all_domains
+      empty: error
+    config:
+      args: ["-json"]
+    output:
+      vars:
+        live_hosts:
+          type: string_list
+          select:
+            source: $step.scan_graph
+            nodes:
+              nugget_id: DOMAIN_NAME
+            project: nugget_data
+            distinct: true
+    context:
+      export: none
+  - id: sfp_cli_katana
+    uses: tool.katana
+    needs: [sfp_cli_httpx]
+    input:
+      type: string_list
+      from: $steps.sfp_cli_httpx.vars.live_hosts
+      empty: skip_step
+    config:
+      args: ["-j"]
+    context:
+      export: none
+  - id: sfp_cli_nerva
+    uses: tool.nerva
+    needs: [sfp_cli_nmap]
+    input:
+      type: string_list
+      from: $steps.sfp_cli_nmap.vars.missing
+      empty: skip_step
+    config:
+      args: ["--json"]
+    context:
+      export: none
+"""
+    store.create_workflow(
+        {
+            "workflow_id": "workflow--ao2-branch",
+            "name": "ao2-branch",
+            "target_id": "target--ao2",
+            "workflow_yaml": branch_yaml,
+        }
+    )
+    store.create_project(
+        {
+            "project_id": "project--ao2-branch",
+            "workflow_ids": ["workflow--ao2-branch"],
+        }
+    )
+
+    def _ok_sub(_spec: Any = None) -> Dict[str, Any]:
+        return {
+            "status": "SUCCESS",
+            "text": "example.com\n",
+            "structured": {"records": [{"host": "example.com"}]},
+            "structured_type": "json",
+            "graph": {
+                "nodes": [
+                    {
+                        "id": "DOMAIN_NAME--ex",
+                        "nugget_instance_id": "DOMAIN_NAME--ex",
+                        "nugget_id": "DOMAIN_NAME",
+                        "nugget_data": "example.com",
+                    }
+                ],
+                "edges": [],
+            },
+            "narrative": "# Ok\n",
+            "command": ["subfinder"],
+            "counts": {"nodes": 1, "edges": 0},
+            "duration": 0.0,
+        }
+
+    def _fail_nmap(_spec: Any = None) -> Dict[str, Any]:
+        return {
+            "status": "TIMEOUT",
+            "text": "",
+            "structured": {"error": "timeout after 120.0s"},
+            "structured_type": "xml",
+            "graph": {"nodes": [], "edges": []},
+            "narrative": "",
+            "command": ["nmap"],
+            "counts": {"nodes": 0, "edges": 0},
+            "duration": 120.0,
+            "error": "timeout after 120.0s",
+        }
+
+    def _ok_httpx(_spec: Any = None) -> Dict[str, Any]:
+        return {
+            "status": "SUCCESS",
+            "text": "https://example.com\n",
+            "structured": {"records": [{"url": "https://example.com"}]},
+            "structured_type": "json",
+            "graph": {
+                "nodes": [
+                    {
+                        "id": "DOMAIN_NAME--ex",
+                        "nugget_instance_id": "DOMAIN_NAME--ex",
+                        "nugget_id": "DOMAIN_NAME",
+                        "nugget_data": "example.com",
+                    }
+                ],
+                "edges": [],
+            },
+            "narrative": "# Ok\n",
+            "command": ["httpx"],
+            "counts": {"nodes": 1, "edges": 0},
+            "duration": 0.1,
+        }
+
+    def _ok_katana(spec: Any = None) -> Dict[str, Any]:
+        assert spec is not None
+        return {
+            "status": "SUCCESS",
+            "text": "https://example.com/\n",
+            "structured": {"records": []},
+            "structured_type": "json",
+            "graph": {"nodes": [], "edges": []},
+            "narrative": "# Ok\n",
+            "command": ["katana"],
+            "counts": {"nodes": 0, "edges": 0},
+            "duration": 0.1,
+        }
+
+    register_module("sfp_cli_subfinder", _ok_sub)
+    register_module("sfp_cli_nmap", _fail_nmap)
+    register_module("sfp_cli_httpx", _ok_httpx)
+    register_module("sfp_cli_katana", _ok_katana)
+    register_module("sfp_cli_nerva", _ok_katana)
+
+    result = run_workflow(
+        store,
+        workflow_id="workflow--ao2-branch",
+        project_id="project--ao2-branch",
+        dry_run=False,
+        stop_on_error=False,
+    )
+    by_id = {s.step_id: s for s in result.steps}
+    assert by_id["sfp_cli_subfinder"].status == "SUCCESS"
+    assert by_id["sfp_cli_nmap"].status == "ERROR"
+    assert by_id["sfp_cli_httpx"].status == "SUCCESS"
+    assert by_id["sfp_cli_katana"].status == "SUCCESS"
+    assert by_id["sfp_cli_nerva"].status == "SKIPPED"
+    assert result.stopped_early is False
+    # Seed target DOMAIN_NAME lands in temporary context at run start.
+    temp = store.get_subgraph("temporary_subgraph", result.temporary_subgraph_id)
+    nodes = (temp.get("graph") or {}).get("nodes") or temp.get("nodes") or []
+    assert any(
+        n.get("nugget_id") == "DOMAIN_NAME" and n.get("nugget_data") == "example.com"
+        for n in nodes
+    )
+
+
 def test_12a_dry_run_via_store(store: FakeCrudStore) -> None:
     """Load canonical 12A YAML and dry-run the full schedule (no live CLI)."""
     doc = yaml.safe_load(EXAMPLE_12A.read_text(encoding="utf-8"))

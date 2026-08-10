@@ -103,17 +103,16 @@ steps:
       # `-Pn`: our own evasion-and-tactics.md lists ICMP-blocked hosts as the
       # #1 real-world symptom (status state="down" for a known-live IP) —
       # expected often here since `all_domains` are internet-facing/CDN'd and
-      # this step has no adaptive retry. `--top-ports 1000` replaces `-p-`:
-      # nmap_exploration_report.md explicitly defers full-range `-p-` as
-      # "not in initial matrix" / never validated; every refined command in
-      # that report tiers ports instead (top-ports 1000 permissive / 20-100
-      # corporate/local). `-p-` across a whole subdomain list is unrealistic.
+      # this step has no adaptive retry. `--top-ports 100` + 900s timeout:
+      # multi-host subdomain lists from subfinder cannot finish top-ports 1000
+      # inside the old 120s wall clock (live SBS: timeout after 120s).
+      timeout: 900
       argv:
         - "-sT"
         - "-T3"
         - "-Pn"
         - "--top-ports"
-        - "1000"
+        - "100"
         - "--open"
         - "-iL"
         - "$step.files.input"
