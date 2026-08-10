@@ -145,6 +145,8 @@ def test_strip_temporary_ids_unit():
 
 
 def test_temporary_context_update_strips_ids(client):
+    from spiderfeet_v2.engine.persist import temporary_subgraph_id_for
+
     client.post(
         "/api/v1/targets",
         json={"target_id": "target--ctx", "target_value": "ctx.example"},
@@ -158,8 +160,10 @@ def test_temporary_context_update_strips_ids(client):
         json={"project_id": "project--ctx", "workflow_ids": ["workflow--ctx"]},
     )
 
+    canonical = temporary_subgraph_id_for("project--ctx")
     payload = {
-        "temporary_subgraph_id": "temporary-subgraph--ctx",
+        # Foreign id must be coerced to the project's canonical id (R16-03).
+        "temporary_subgraph_id": "temporary-subgraph--foreign",
         "nodes": [
             {
                 "id": "DOMAIN_NAME--ctx",
@@ -188,15 +192,67 @@ def test_temporary_context_update_strips_ids(client):
     assert r.status_code == 200, r.text
     body = r.json()
     assert body["kind"] == "temporary_subgraph"
-    assert body["subgraph_id"] == "temporary-subgraph--ctx"
+    assert body["subgraph_id"] == canonical
     assert all("temporary_id" not in n for n in body["nodes"])
     assert body["edges"][0]["source"] == "DOMAIN_NAME--ctx"
     assert body["edges"][0]["target"] == "IPV4_ADDRESS--1-2-3-4"
 
     r = client.get("/api/v1/projects/project--ctx/contexts/temporary")
     assert r.status_code == 200
-    assert r.json()["subgraph_id"] == "temporary-subgraph--ctx"
+    assert r.json()["subgraph_id"] == canonical
     assert len(r.json()["nodes"]) == 2
+
+
+def test_temporary_context_isolated_per_project(client):
+    from spiderfeet_v2.engine.persist import temporary_subgraph_id_for
+
+    for key in ("iso-a", "iso-b"):
+        client.post(
+            "/api/v1/targets",
+            json={"target_id": f"target--{key}", "target_value": f"{key}.example"},
+        )
+        client.post(
+            "/api/v1/workflows",
+            json={"workflow_id": f"workflow--{key}", "target_id": f"target--{key}"},
+        )
+        client.post(
+            "/api/v1/projects",
+            json={
+                "project_id": f"project--{key}",
+                "workflow_ids": [f"workflow--{key}"],
+            },
+        )
+
+    id_a = temporary_subgraph_id_for("project--iso-a")
+    id_b = temporary_subgraph_id_for("project--iso-b")
+    assert id_a != id_b
+
+    for pid, host in (
+        ("project--iso-a", "a.example"),
+        ("project--iso-b", "b.example"),
+    ):
+        r = client.put(
+            f"/api/v1/projects/{pid}/contexts/temporary",
+            json={
+                "nodes": [
+                    {
+                        "id": f"DOMAIN_NAME--{host}",
+                        "nugget_instance_id": f"DOMAIN_NAME--{host}",
+                        "nugget_id": "DOMAIN_NAME",
+                        "nugget_data": host,
+                    }
+                ],
+                "edges": [],
+            },
+        )
+        assert r.status_code == 200, r.text
+
+    ga = client.get("/api/v1/projects/project--iso-a/contexts/temporary").json()
+    gb = client.get("/api/v1/projects/project--iso-b/contexts/temporary").json()
+    assert ga["subgraph_id"] == id_a
+    assert gb["subgraph_id"] == id_b
+    assert [n["nugget_data"] for n in ga["nodes"]] == ["a.example"]
+    assert [n["nugget_data"] for n in gb["nodes"]] == ["b.example"]
 
 
 def test_project_context_empty(client):

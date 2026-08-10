@@ -29,6 +29,10 @@ def temporary_subgraph_id_for(project_id: str) -> str:
     return f"temporary-subgraph--{uuid5(_RESULT_NS, project_id)}"
 
 
+def project_context_id_for(project_id: str) -> str:
+    return f"project-context--{uuid5(_RESULT_NS, project_id)}"
+
+
 def reset_temporary_context(
     store: Any,
     *,

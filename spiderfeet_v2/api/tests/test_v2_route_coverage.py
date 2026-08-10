@@ -305,7 +305,10 @@ def test_contexts_404_and_temporary_update_existing(client):
         == 404
     )
 
+    from spiderfeet_v2.engine.persist import temporary_subgraph_id_for
+
     _seed_project(client, "ctx2")
+    canonical = temporary_subgraph_id_for("project--ctx2")
     payload = {
         "temporary_subgraph_id": "temporary-subgraph--ctx2",
         "nodes": [
@@ -321,6 +324,7 @@ def test_contexts_404_and_temporary_update_existing(client):
     }
     r = client.put("/api/v1/projects/project--ctx2/contexts/temporary", json=payload)
     assert r.status_code == 200, r.text
+    assert r.json()["subgraph_id"] == canonical
 
     # second put updates existing subgraph
     payload["nodes"].append(
@@ -342,6 +346,7 @@ def test_contexts_404_and_temporary_update_existing(client):
     r = client.put("/api/v1/projects/project--ctx2/contexts/temporary", json=payload)
     assert r.status_code == 200, r.text
     body = r.json()
+    assert body["subgraph_id"] == canonical
     assert len(body["nodes"]) == 2
     assert all("temporary_id" not in n for n in body["nodes"])
     assert body["edges"][0]["source"] == "DOMAIN_NAME--ctx2"
