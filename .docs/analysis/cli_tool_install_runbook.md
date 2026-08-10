@@ -19,12 +19,18 @@ Download nuclei + trufflehog into gitignored `.tools/`:
 powershell -ExecutionPolicy Bypass -File .seed\scripts\install_dev_cli_tools.ps1
 ```
 
-Modules and battery scripts resolve binaries via `spiderfeet.tools.cli_paths` (PATH → `.tools/bin` → Windows nmap defaults).
+Modules and battery scripts resolve binaries via `spiderfeet.tools.cli_paths.resolve_cli_binary`
+(env override → PATH → `.tools/bin` / `.tools/<tool>` layouts). v2 twin-fork modules
+(`modules_v2/sfp_cli_*`) call the same helper through `modules_v2._base.resolve_executable`
+(plus optional WSL `which`). Do **not** reintroduce PATH-only lookup in `_base` — regression
+covered by `modules_v2/tests/test_resolve_executable.py`.
 
 | Module | Binary | Local install |
 |--------|--------|---------------|
-| `sfp_tool_nuclei` | `nuclei` | Script above; templates in `.tools/nuclei-templates/` |
+| `sfp_tool_nuclei` / `sfp_cli_nuclei` | `nuclei` | Script above; templates in `.tools/nuclei-templates/` |
 | `sfp_tool_trufflehog` | `trufflehog` | Script above |
+| `sfp_cli_subfinder` / `httpx` / `katana` / `nerva` | `*.exe` | Place under `.tools/bin/` |
+| `sfp_cli_pius` | `pius` | Place as `.tools/pius` (file) or on PATH |
 
 Nuclei v3 uses `-jsonl` (not `-json`); battery needs `--timeout 600` for nuclei/trufflehog.
 

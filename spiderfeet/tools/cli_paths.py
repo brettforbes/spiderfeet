@@ -1,4 +1,10 @@
-"""Shared helpers for resolving local CLI tool binaries (Stage 5 — #733)."""
+"""Shared helpers for resolving local CLI tool binaries (Stage 5 — #733).
+
+Canonical lookup used by legacy ``sfp_tool_*`` wrappers and v2
+``modules_v2._base.resolve_executable`` (SPEC-010 twin-fork CLIs).
+
+Order: env override → PATH → repo ``.tools/`` layouts.
+"""
 
 from __future__ import annotations
 
@@ -10,17 +16,42 @@ from typing import Optional
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 TOOLS_BIN = REPO_ROOT / ".tools" / "bin"
+TOOLS_ROOT = REPO_ROOT / ".tools"
 NUCLEI_TEMPLATES = REPO_ROOT / ".tools" / "nuclei-templates"
 
 
-def _path_candidates(name: str) -> list[Path]:
-    names = [name]
+def _env_tool_path(name: str) -> Optional[str]:
+    """Optional operator overrides: ``SPIDERFEET_<NAME>`` or ``<NAME>_BIN``."""
+    key = name.upper().replace("-", "_")
+    for env_key in (f"SPIDERFEET_{key}", f"{key}_BIN"):
+        raw = (os.environ.get(env_key) or "").strip()
+        if raw and Path(raw).is_file():
+            return raw
+    return None
+
+
+def _repo_tool_candidates(name: str) -> list[Path]:
+    """Known SpiderFeet install layouts under ``.tools/`` (Windows + portable)."""
+    bare = name
+    exe = f"{name}.exe"
+    candidates = [
+        TOOLS_BIN / exe,
+        TOOLS_BIN / bare,
+        TOOLS_ROOT / bare,  # e.g. .tools/pius
+        TOOLS_ROOT / bare / exe,  # e.g. .tools/dnsx/dnsx.exe
+        TOOLS_ROOT / bare / bare,
+    ]
     if sys.platform == "win32":
-        names.extend([f"{name}.exe", f"{name}.cmd"])
-    return [TOOLS_BIN / n for n in names]
+        candidates.insert(1, TOOLS_BIN / f"{name}.cmd")
+    return candidates
 
 
 def resolve_cli_binary(name: str, *, extra_paths: Optional[list[Path]] = None) -> Optional[str]:
+    """Resolve a CLI binary path (native file path only — not a WSL wrapper)."""
+    env_path = _env_tool_path(name)
+    if env_path:
+        return env_path
+
     found = which(name) or (which(f"{name}.exe") if sys.platform == "win32" else None)
     if found and os.path.isfile(found):
         return found
@@ -31,7 +62,7 @@ def resolve_cli_binary(name: str, *, extra_paths: Optional[list[Path]] = None) -
             if os.path.isfile(candidate):
                 return candidate
 
-    for candidate in _path_candidates(name):
+    for candidate in _repo_tool_candidates(name):
         if candidate.is_file():
             return str(candidate)
 
