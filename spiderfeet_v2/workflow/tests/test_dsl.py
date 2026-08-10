@@ -120,11 +120,11 @@ def test_evaluate_output_vars_subfinder_gse(doc_12a):
 
 def test_evaluate_output_vars_nmap_product(doc_12a):
     step = next(s for s in doc_12a["steps"] if s["id"] == "sfp_cli_nmap")
-    # 12A GSE still lists IP_ADDRESS (legacy) alongside IPV6; synthetic graph matches authoring.
+    # 12A GSE matches SPEC-005 IP classification (IPV4_ADDRESS / IPV6_ADDRESS).
     graph = {
         "nodes": [
             {"id": "h1", "nugget_id": "HOST", "nugget_data": "www.example.com"},
-            {"id": "ip1", "nugget_id": "IP_ADDRESS", "nugget_data": "1.2.3.4"},
+            {"id": "ip1", "nugget_id": "IPV4_ADDRESS", "nugget_data": "1.2.3.4"},
             {"id": "p443", "nugget_id": "PORT", "nugget_data": "443"},
             {"id": "p80", "nugget_id": "PORT", "nugget_data": "80"},
         ],

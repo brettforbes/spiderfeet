@@ -175,6 +175,8 @@ steps:
       from: $steps.sfp_cli_nmap.vars.ip_port_list
       empty: skip_step
     config:
+      # Module default is 120s; multi-host ip:port lists from nmap need more.
+      timeout: 300
       # Nerva has no `-iL` flag (that is nmap's) — its list flag is `-l` /
       # `--list` (Nerva-CLI-Options.md, nerva skill cli-options.md). Every
       # real harvested nerva command in app_examination_docs/nerva/ uses
@@ -267,6 +269,9 @@ steps:
       from: $steps.sfp_cli_httpx.vars.live_hosts
       empty: skip_step
     config:
+      # Module default is 90s; argv also sets tool `-ct 8m`, so wall clock
+      # must cover the crawl duration (plus overhead).
+      timeout: 600
       argv:
         - "-list"
         - "$step.files.input"
@@ -322,6 +327,9 @@ steps:
       from: $steps.sfp_cli_katana.vars.crawl_urls
       empty: skip_step
     config:
+      # Wall-clock for the full-template pass over katana crawl URLs.
+      # Live k2am hit the 180s module default (`timeout after 180.0s`).
+      timeout: 900
       # Dropped `-tags cve`: our own strategic exploration matrix
       # (exploration_scratch/nuclei/strategic/exploration_report.json) ran
       # `-tags cve -severity medium,high,critical` against 4 real targets

@@ -302,7 +302,7 @@ class sfp_cli_nuclei(CliModuleBase):
         Special keys:
         - ``structured`` / ``json_text`` — skip CLI; build four forms from bundle/JSONL
         - ``structured_path`` / ``json_path`` — load fixture from disk
-        - ``timeout`` — seconds (default 180)
+        - ``timeout`` — seconds (default 300)
         - ``scenario_key`` — narrative scenario label
         - ``tags`` / ``severity`` — template filters (also inferred from argv)
         """
@@ -378,7 +378,7 @@ class sfp_cli_nuclei(CliModuleBase):
                 structured_type="json",
             )
 
-        timeout = float(spec.get("timeout") or 180.0)
+        timeout = float(spec.get("timeout") or 300.0)
         started_at = datetime.now(timezone.utc)
         completed, duration, err = self._timed_run_argv(argv, timeout=timeout)
         if err and completed is None:
@@ -455,7 +455,7 @@ class sfp_cli_nuclei(CliModuleBase):
         jobs = plan_batch_jobs(targets, batch_size=batch_size, option_passes=option_passes)
         progress = progress_totals(targets, batch_size=batch_size, option_passes=option_passes)
         callback = spec.get("progress_callback")
-        per_timeout = float(spec.get("timeout") or 180.0)
+        per_timeout = float(spec.get("timeout") or 300.0)
         overall_limit = float(spec.get("overall_timeout") or (per_timeout * max(1, len(jobs))))
         started_at = datetime.now(timezone.utc)
         records_jsonl: list[str] = []
