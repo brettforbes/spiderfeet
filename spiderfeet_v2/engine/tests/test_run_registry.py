@@ -144,3 +144,19 @@ def test_registry_dry_run_success(store: FakeCrudStore) -> None:
     assert finished is not None
     assert finished.state == STATE_SUCCESS
     assert finished.result and finished.result.get("status") == "DRY_RUN"
+
+
+def test_registry_submit_step_success(store: FakeCrudStore) -> None:
+    register_module("sfp_cli_subfinder", _ok_module)
+    registry = RunRegistry(max_workers=1, store_factory=lambda: store)
+    rec = registry.submit_step(
+        workflow_id="workflow--async-unit",
+        step_id="sfp_cli_subfinder",
+        project_id="project--async",
+        dry_run=False,
+    )
+    finished = registry.wait(rec.run_id, timeout=30)
+    assert finished is not None
+    assert finished.state == STATE_SUCCESS
+    assert finished.kind == "step"
+    assert finished.step_id == "sfp_cli_subfinder"

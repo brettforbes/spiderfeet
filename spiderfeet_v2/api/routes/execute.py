@@ -174,6 +174,49 @@ def execute_workflow(
 
 
 @router.post(
+    "/workflows/{workflow_id}/steps/{step_id}/execute-async",
+    response_model=ExecuteAsyncAccepted,
+    status_code=202,
+)
+def execute_workflow_step_async(
+    workflow_id: str,
+    step_id: str,
+    body: ExecuteStepRequest = Body(
+        default=ExecuteStepRequest(),
+        openapi_examples=EXECUTE_STEP_OPENAPI_EXAMPLES,
+    ),
+    store: CrudStore = Depends(get_crud_store),
+    projections: ProjectionStore = Depends(get_projection_store),
+) -> Dict[str, Any]:
+    """Accept a single-step run and execute it in the background (R15-03).
+
+    Poll ``GET /workflows/{id}/status`` for that step's ``scan_status``.
+    """
+    if store.get_workflow(workflow_id) is None:
+        raise HTTPException(status_code=404, detail="Workflow not found")
+    if body.project_id and store.get_project(body.project_id) is None:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    dsl_key = body.step_id or step_id
+    registry = get_run_registry()
+    rec = registry.submit_step(
+        workflow_id=workflow_id,
+        step_id=dsl_key,
+        project_id=body.project_id,
+        dry_run=body.dry_run,
+        temporary_subgraph_id=_first_temporary_id(projections, body.project_id),
+    )
+    return {
+        "run_id": rec.run_id,
+        "workflow_id": workflow_id,
+        "state": rec.state,
+        "kind": "step",
+        "step_id": dsl_key,
+        "message": "Step execute accepted; poll GET /workflows/{id}/status",
+    }
+
+
+@router.post(
     "/workflows/{workflow_id}/steps/{step_id}/execute",
     response_model=ExecuteResponse,
     status_code=200,

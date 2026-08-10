@@ -397,6 +397,78 @@ steps:
     )
 
 
+def test_execute_step_async_accepted(client):
+    """R15-03 — single-step execute-async returns 202; status remains UNKNOWN on dry-run."""
+    from spiderfeet_v2.engine.run_registry import get_run_registry
+
+    yaml_doc = """apiVersion: spiderfeet.workflow/v1
+kind: Workflow
+id: workflow--async-step
+info:
+  name: async-step
+  description: R15-03
+inputs:
+  targets:
+    type: string_list
+    values:
+      - example.com
+steps:
+  - id: sfp_cli_subfinder
+    uses: tool.subfinder
+    needs: []
+    input:
+      type: string_list
+      from: $workflow.inputs.targets
+    config:
+      argv:
+        - "-d"
+        - "$step.input.values[0]"
+        - "-silent"
+    context:
+      export: none
+  - id: sfp_cli_httpx
+    uses: tool.httpx
+    needs: [sfp_cli_subfinder]
+"""
+    client.post(
+        "/api/v1/targets",
+        json={"target_id": "target--async-step", "target_value": "as.example"},
+    )
+    client.post(
+        "/api/v1/workflows",
+        json={
+            "workflow_id": "workflow--async-step",
+            "target_id": "target--async-step",
+            "workflow_yaml": yaml_doc,
+        },
+    )
+    client.post(
+        "/api/v1/projects",
+        json={
+            "project_id": "project--async-step",
+            "workflow_ids": ["workflow--async-step"],
+        },
+    )
+
+    r = client.post(
+        "/api/v1/workflows/workflow--async-step/steps/sfp_cli_subfinder/execute-async",
+        json={"project_id": "project--async-step", "dry_run": True},
+    )
+    assert r.status_code == 202, r.text
+    body = r.json()
+    assert body["kind"] == "step"
+    assert body["step_id"] == "sfp_cli_subfinder"
+    finished = get_run_registry().wait(body["run_id"], timeout=30)
+    assert finished is not None
+    assert finished.state == "success"
+
+    status = client.get("/api/v1/workflows/workflow--async-step/status").json()
+    by_id = {s["step_id"]: s for s in status["steps"]}
+    # Dry-run does not persist scan_status.
+    assert by_id["sfp_cli_subfinder"]["scan_status"] == "UNKNOWN"
+    assert by_id["sfp_cli_httpx"]["scan_status"] == "UNKNOWN"
+
+
 def test_workflow_status_unknown_then_after_shell(client, fake_stores):
     """R15-02 — GET status lists YAML steps; missing shells → UNKNOWN."""
     from spiderfeet_v2.workflow.typedb_convert import scan_instance_id_for
@@ -470,6 +542,7 @@ def test_openapi_includes_v2_paths_and_examples(client):
         "/api/v1/projects/{project_id}/complete",
         "/api/v1/workflows/{workflow_id}/execute",
         "/api/v1/workflows/{workflow_id}/execute-async",
+        "/api/v1/workflows/{workflow_id}/steps/{step_id}/execute-async",
         "/api/v1/workflows/{workflow_id}/status",
     ):
         assert path in paths, path
