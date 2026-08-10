@@ -415,6 +415,17 @@ class ExecuteStepRequest(BaseModel):
     dry_run: bool = False
 
 
+class ExecuteAsyncAccepted(BaseModel):
+    """202 Accepted body for SPEC-015 async execute (R15-01 / R15-03)."""
+
+    run_id: str
+    workflow_id: str
+    state: str = Field(..., examples=["queued"])
+    kind: str = Field(default="workflow", examples=["workflow", "step"])
+    step_id: Optional[str] = None
+    message: str = "Workflow execute accepted; poll GET /workflows/{id}/status"
+
+
 class ExecuteResponse(BaseModel):
     model_config = ConfigDict(extra="allow")
 

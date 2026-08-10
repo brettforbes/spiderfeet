@@ -1,6 +1,7 @@
 """Workflow / step execute routes (R10-24 / R10-27 / R10-28).
 
 AO1 wires single-step orchestration. AO2 wires full-workflow chaining.
+SPEC-015 adds async execute (R15-01) via the in-memory run registry.
 """
 
 from __future__ import annotations
@@ -13,6 +14,7 @@ from spiderfeet_v2.api.deps import get_crud_store, get_projection_store
 from spiderfeet_v2.api.schemas import (
     EXECUTE_STEP_OPENAPI_EXAMPLES,
     EXECUTE_WORKFLOW_OPENAPI_EXAMPLES,
+    ExecuteAsyncAccepted,
     ExecuteResponse,
     ExecuteStepRequest,
     ExecuteWorkflowRequest,
@@ -20,6 +22,7 @@ from spiderfeet_v2.api.schemas import (
 from spiderfeet_v2.db.crud import CrudStore
 from spiderfeet_v2.db.projections import ProjectionStore
 from spiderfeet_v2.engine import OrchestratorError, run_single_step, run_workflow
+from spiderfeet_v2.engine.run_registry import get_run_registry
 
 router = APIRouter(tags=["v2-execute"])
 
@@ -35,6 +38,46 @@ def _first_temporary_id(
         return None
     ids = proj.get("temporary_subgraph") or []
     return ids[0] if ids else None
+
+
+@router.post(
+    "/workflows/{workflow_id}/execute-async",
+    response_model=ExecuteAsyncAccepted,
+    status_code=202,
+)
+def execute_workflow_async(
+    workflow_id: str,
+    body: ExecuteWorkflowRequest = Body(
+        default=ExecuteWorkflowRequest(),
+        openapi_examples=EXECUTE_WORKFLOW_OPENAPI_EXAMPLES,
+    ),
+    store: CrudStore = Depends(get_crud_store),
+    projections: ProjectionStore = Depends(get_projection_store),
+) -> Dict[str, Any]:
+    """Accept a full-workflow run and execute it in the background (R15-01).
+
+    Returns ``202`` with ``run_id``. Poll ``GET /workflows/{id}/status`` (R15-02)
+    for per-step ``scan_status`` while the run is active.
+    """
+    if store.get_workflow(workflow_id) is None:
+        raise HTTPException(status_code=404, detail="Workflow not found")
+    if body.project_id and store.get_project(body.project_id) is None:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    registry = get_run_registry()
+    rec = registry.submit_workflow(
+        workflow_id=workflow_id,
+        project_id=body.project_id,
+        dry_run=body.dry_run,
+        temporary_subgraph_id=_first_temporary_id(projections, body.project_id),
+    )
+    return {
+        "run_id": rec.run_id,
+        "workflow_id": workflow_id,
+        "state": rec.state,
+        "kind": "workflow",
+        "message": "Workflow execute accepted; poll GET /workflows/{id}/status",
+    }
 
 
 @router.post(
