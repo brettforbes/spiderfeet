@@ -426,6 +426,24 @@ class ExecuteAsyncAccepted(BaseModel):
     message: str = "Workflow execute accepted; poll GET /workflows/{id}/status"
 
 
+class WorkflowStepStatusOut(BaseModel):
+    step_id: str
+    scan_instance_id: str
+    scan_status: str = Field(
+        ...,
+        examples=["UNKNOWN", "STARTING", "RUNNING", "FINISHED", "ERROR-FAILED"],
+    )
+
+
+class WorkflowStatusOut(BaseModel):
+    """Live per-step scan_status for DAG progress (SPEC-015 R15-02)."""
+
+    workflow_id: str
+    run_id: Optional[str] = None
+    run_state: Optional[str] = None
+    steps: List[WorkflowStepStatusOut] = Field(default_factory=list)
+
+
 class ExecuteResponse(BaseModel):
     model_config = ConfigDict(extra="allow")
 

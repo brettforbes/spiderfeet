@@ -144,6 +144,13 @@ class FakeCrudStore:
         row = self.scan_steps.get(scan_instance_id)
         return copy.deepcopy(row) if row else None
 
+    def get_scan_status(self, scan_instance_id: str, **_: Any) -> Optional[str]:
+        row = self.scan_steps.get(scan_instance_id)
+        if row is None:
+            return None
+        status = row.get("scan_status")
+        return str(status) if status is not None else None
+
     def update_scan_step(
         self, scan_instance_id: str, data: Dict[str, Any]
     ) -> Dict[str, Any]:

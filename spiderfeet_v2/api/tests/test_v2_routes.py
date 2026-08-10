@@ -397,6 +397,66 @@ steps:
     )
 
 
+def test_workflow_status_unknown_then_after_shell(client, fake_stores):
+    """R15-02 — GET status lists YAML steps; missing shells → UNKNOWN."""
+    from spiderfeet_v2.workflow.typedb_convert import scan_instance_id_for
+
+    crud, _proj = fake_stores
+    yaml_doc = """apiVersion: spiderfeet.workflow/v1
+kind: Workflow
+id: workflow--status-ex
+info:
+  name: status-ex
+  description: R15-02
+steps:
+  - id: sfp_cli_subfinder
+    uses: tool.subfinder
+    needs: []
+  - id: sfp_cli_httpx
+    uses: tool.httpx
+    needs: [sfp_cli_subfinder]
+"""
+    client.post(
+        "/api/v1/targets",
+        json={"target_id": "target--status-ex", "target_value": "st.example"},
+    )
+    client.post(
+        "/api/v1/workflows",
+        json={
+            "workflow_id": "workflow--status-ex",
+            "target_id": "target--status-ex",
+            "workflow_yaml": yaml_doc,
+        },
+    )
+
+    r = client.get("/api/v1/workflows/workflow--status-ex/status")
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert body["workflow_id"] == "workflow--status-ex"
+    assert len(body["steps"]) == 2
+    assert {s["step_id"] for s in body["steps"]} == {
+        "sfp_cli_subfinder",
+        "sfp_cli_httpx",
+    }
+    assert all(s["scan_status"] == "UNKNOWN" for s in body["steps"])
+
+    sid = scan_instance_id_for("workflow--status-ex", "sfp_cli_subfinder")
+    crud.create_scan_step(
+        {
+            "scan_instance_id": sid,
+            "step_module_id": "sfp_cli_subfinder",
+            "scan_status": "FINISHED",
+        }
+    )
+    r2 = client.get("/api/v1/workflows/workflow--status-ex/status")
+    assert r2.status_code == 200
+    by_id = {s["step_id"]: s for s in r2.json()["steps"]}
+    assert by_id["sfp_cli_subfinder"]["scan_status"] == "FINISHED"
+    assert by_id["sfp_cli_httpx"]["scan_status"] == "UNKNOWN"
+
+    assert client.get("/api/v1/workflows/missing/status").status_code == 404
+
+
 def test_openapi_includes_v2_paths_and_examples(client):
     r = client.get("/openapi.json")
     assert r.status_code == 200
@@ -410,6 +470,7 @@ def test_openapi_includes_v2_paths_and_examples(client):
         "/api/v1/projects/{project_id}/complete",
         "/api/v1/workflows/{workflow_id}/execute",
         "/api/v1/workflows/{workflow_id}/execute-async",
+        "/api/v1/workflows/{workflow_id}/status",
     ):
         assert path in paths, path
 

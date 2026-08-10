@@ -11,6 +11,8 @@ from typing import Any, Dict, Optional
 from fastapi import APIRouter, Body, Depends, HTTPException
 
 from spiderfeet_v2.api.deps import get_crud_store, get_projection_store
+import yaml
+
 from spiderfeet_v2.api.schemas import (
     EXECUTE_STEP_OPENAPI_EXAMPLES,
     EXECUTE_WORKFLOW_OPENAPI_EXAMPLES,
@@ -18,11 +20,13 @@ from spiderfeet_v2.api.schemas import (
     ExecuteResponse,
     ExecuteStepRequest,
     ExecuteWorkflowRequest,
+    WorkflowStatusOut,
 )
 from spiderfeet_v2.db.crud import CrudStore
 from spiderfeet_v2.db.projections import ProjectionStore
 from spiderfeet_v2.engine import OrchestratorError, run_single_step, run_workflow
 from spiderfeet_v2.engine.run_registry import get_run_registry
+from spiderfeet_v2.workflow.typedb_convert import scan_instance_id_for
 
 router = APIRouter(tags=["v2-execute"])
 
@@ -38,6 +42,59 @@ def _first_temporary_id(
         return None
     ids = proj.get("temporary_subgraph") or []
     return ids[0] if ids else None
+
+
+@router.get(
+    "/workflows/{workflow_id}/status",
+    response_model=WorkflowStatusOut,
+    status_code=200,
+)
+def get_workflow_status(
+    workflow_id: str,
+    store: CrudStore = Depends(get_crud_store),
+) -> Dict[str, Any]:
+    """Return per-step ``scan_status`` for live DAG progress (R15-02).
+
+    Enumerates DSL step ids from stored ``workflow_yaml`` and reads only
+    ``scan_status`` (no four-form blobs). Missing shells → ``UNKNOWN``.
+    """
+    workflow = store.get_workflow(workflow_id)
+    if workflow is None:
+        raise HTTPException(status_code=404, detail="Workflow not found")
+
+    yaml_text = workflow.get("workflow_yaml") or ""
+    step_ids: list[str] = []
+    if str(yaml_text).strip():
+        try:
+            doc = yaml.safe_load(yaml_text)
+        except yaml.YAMLError:
+            doc = None
+        if isinstance(doc, dict):
+            for step in doc.get("steps") or []:
+                if isinstance(step, dict) and step.get("id"):
+                    step_ids.append(str(step["id"]))
+
+    steps_out: list[Dict[str, Any]] = []
+    for step_id in step_ids:
+        sid = scan_instance_id_for(workflow_id, step_id)
+        status = store.get_scan_status(sid)
+        steps_out.append(
+            {
+                "step_id": step_id,
+                "scan_instance_id": sid,
+                "scan_status": status or "UNKNOWN",
+            }
+        )
+
+    registry = get_run_registry()
+    active = registry.active_for_workflow(workflow_id)
+    latest = active or registry.latest_for_workflow(workflow_id)
+    return {
+        "workflow_id": workflow_id,
+        "run_id": latest.run_id if latest else None,
+        "run_state": latest.state if latest else None,
+        "steps": steps_out,
+    }
 
 
 @router.post(

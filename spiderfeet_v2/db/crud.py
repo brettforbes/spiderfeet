@@ -1005,6 +1005,34 @@ class CrudStore:
             if own:
                 driver.close()
 
+    def get_scan_status(
+        self, scan_instance_id: str, *, _driver: Optional[Driver] = None
+    ) -> Optional[str]:
+        """Thin read of ``scan_status`` only (SPEC-015 R15-02 — no four-form attrs)."""
+        own = _driver is None
+        driver = _driver or self._driver()
+        try:
+            exists = run_read_exists(
+                driver,
+                self.database,
+                f"match $s isa scan_step, has scan_instance_id {literal_string(scan_instance_id)};",
+            )
+            if not exists:
+                return None
+            row = _read_attrs(
+                driver,
+                self.database,
+                "scan_step",
+                "scan_instance_id",
+                scan_instance_id,
+                ("scan_status",),
+            )
+            status = row.get("scan_status")
+            return str(status) if status is not None else None
+        finally:
+            if own:
+                driver.close()
+
     def update_scan_step(
         self, scan_instance_id: str, data: Dict[str, Any]
     ) -> Dict[str, Any]:
