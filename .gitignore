@@ -8,6 +8,13 @@ passwd
 spiderfeet.crt
 spiderfeet.key
 
+# Agent / CLI help-capture scratch (never commit)
+.tmp_*/
+.tmp_*.md
+/bin/
+/share/
+/CHANGELOG.md
+
 spiderfeet/static/node_modules/*
 
 spiderfeet/static/node_modules/alertifyjs/*

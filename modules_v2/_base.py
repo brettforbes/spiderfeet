@@ -9,18 +9,14 @@ string or ``shell=True``.
 
 from __future__ import annotations
 
-import os
 import shutil
 import subprocess
 import time
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
-from pathlib import Path
 from typing import Any, Mapping, MutableMapping, Sequence
 
-_REPO_ROOT = Path(__file__).resolve().parents[1]
-_TOOLS_BIN = _REPO_ROOT / ".tools" / "bin"
-_TOOLS_ROOT = _REPO_ROOT / ".tools"
+from spiderfeet.tools.cli_paths import resolve_cli_binary
 
 
 STATUS_SUCCESS = "SUCCESS"
@@ -87,29 +83,6 @@ def graph_counts(graph: Mapping[str, Any] | None) -> dict[str, int]:
     return {"nodes": len(nodes), "edges": len(edges), "hosts": hosts}
 
 
-def _repo_tool_candidates(name: str) -> list[Path]:
-    """Known SpiderFeet install layouts under ``.tools/`` (Windows + portable)."""
-    bare = name
-    exe = f"{name}.exe"
-    return [
-        _TOOLS_BIN / exe,
-        _TOOLS_BIN / bare,
-        _TOOLS_ROOT / bare,  # e.g. .tools/pius
-        _TOOLS_ROOT / bare / exe,  # e.g. .tools/dnsx/dnsx.exe
-        _TOOLS_ROOT / bare / bare,
-    ]
-
-
-def _env_tool_path(name: str) -> str | None:
-    """Optional operator overrides: SPIDERFEET_<NAME> or <NAME>_BIN."""
-    key = name.upper().replace("-", "_")
-    for env_key in (f"SPIDERFEET_{key}", f"{key}_BIN"):
-        raw = (os.environ.get(env_key) or "").strip()
-        if raw and Path(raw).is_file():
-            return raw
-    return None
-
-
 def resolve_executable(
     name: str,
     *,
@@ -117,22 +90,16 @@ def resolve_executable(
 ) -> tuple[list[str], str | None]:
     """Resolve a CLI tool to an argv prefix.
 
-    Order: env override → native PATH → repo ``.tools/`` layouts → WSL ``which``.
+    Native/.tools lookup is delegated to
+    ``spiderfeet.tools.cli_paths.resolve_cli_binary`` (single source of truth):
+    env override → PATH → repo ``.tools/`` layouts. Then optional WSL ``which``.
 
     Returns ``(prefix_argv, error)``. On success ``error`` is ``None`` and
     ``prefix_argv`` is either ``[path]`` (native) or ``["wsl", name]``.
     """
-    env_path = _env_tool_path(name)
-    if env_path:
-        return [env_path], None
-
-    native = shutil.which(name)
-    if native:
-        return [native], None
-
-    for candidate in _repo_tool_candidates(name):
-        if candidate.is_file():
-            return [str(candidate)], None
+    found = resolve_cli_binary(name)
+    if found:
+        return [found], None
 
     if prefer_wsl and shutil.which("wsl"):
         try:
