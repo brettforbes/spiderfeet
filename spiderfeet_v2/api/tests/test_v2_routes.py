@@ -544,6 +544,7 @@ def test_openapi_includes_v2_paths_and_examples(client):
         "/api/v1/workflows/{workflow_id}/execute-async",
         "/api/v1/workflows/{workflow_id}/steps/{step_id}/execute-async",
         "/api/v1/workflows/{workflow_id}/status",
+        "/api/v1/workflows/{workflow_id}/reset",
     ):
         assert path in paths, path
 

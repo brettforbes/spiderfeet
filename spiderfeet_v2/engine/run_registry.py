@@ -245,9 +245,10 @@ class RunRegistry:
                 project_id=rec.project_id,
                 dry_run=rec.dry_run,
                 existing_temporary_subgraph_id=rec.temporary_subgraph_id,
+                should_cancel=lambda: self.is_cancelled(run_id),
             )
             api = result.to_api_dict()
-            if self.is_cancelled(run_id):
+            if result.status == "CANCELLED" or self.is_cancelled(run_id):
                 self._finish(
                     run_id,
                     state=STATE_CANCELLED,

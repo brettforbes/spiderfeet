@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Any, Callable, Dict, List, Mapping, Optional
 
+from spiderfeet_v2.engine.persist import reset_temporary_context
 from spiderfeet_v2.engine.status import (
     OUTCOME_DRY_RUN,
     OUTCOME_ERROR,
@@ -18,6 +19,8 @@ from spiderfeet_v2.engine.step_runner import (
     run_single_step,
 )
 from spiderfeet_v2.workflow.loader import WorkflowLoadError, schedule_waves
+
+OUTCOME_CANCELLED = "CANCELLED"
 
 
 @dataclass
@@ -67,6 +70,7 @@ def run_workflow(
     timeout: Optional[float] = None,
     existing_temporary_subgraph_id: Optional[str] = None,
     stop_on_error: bool = True,
+    should_cancel: Optional[Callable[[], bool]] = None,
 ) -> WorkflowRunResult:
     """Chain workflow steps by ``needs``, thread vars, accumulate temp context.
 
@@ -75,6 +79,9 @@ def run_workflow(
     are threaded into later ``input.from`` resolution. When a step marks
     ``context.export: scan_graph``, its graph merges into the project temporary
     subgraph (same id accumulated across the run).
+
+    ``should_cancel`` (SPEC-015 R15-04): checked between steps; when true the
+    run stops with status ``CANCELLED``.
     """
     doc = _load_workflow_doc(store, workflow_id)
     steps = list(doc.get("steps") or [])
@@ -88,13 +95,24 @@ def run_workflow(
 
     prior_vars: Dict[str, Dict[str, List[str]]] = {}
     temp_id = existing_temporary_subgraph_id
+    if project_id and not dry_run:
+        temp_id = reset_temporary_context(
+            store,
+            project_id=project_id,
+            existing_subgraph_id=existing_temporary_subgraph_id,
+        )
     results: List[StepRunResult] = []
     exported_any = False
     stopped_early = False
     hard_error: Optional[str] = None
+    cancelled = False
 
     for wave in waves:
         for step_id in wave:
+            if should_cancel and should_cancel():
+                cancelled = True
+                stopped_early = True
+                break
             try:
                 result = run_single_step(
                     store,
@@ -153,7 +171,13 @@ def run_workflow(
         if stopped_early:
             break
 
-    if dry_run and all(s.status == OUTCOME_DRY_RUN for s in results) and not hard_error:
+    if cancelled:
+        status = OUTCOME_CANCELLED
+        message = (
+            f"Workflow {workflow_id} cancelled after {len(results)} step(s)"
+        )
+        hard_error = hard_error or "cancelled"
+    elif dry_run and all(s.status == OUTCOME_DRY_RUN for s in results) and not hard_error:
         status = OUTCOME_DRY_RUN
         message = (
             f"Dry-run: scheduled {len(results)} step(s) across "
