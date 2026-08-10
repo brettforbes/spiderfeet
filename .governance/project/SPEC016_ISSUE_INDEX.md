@@ -22,7 +22,7 @@ Status legend: `open` (created) → `in progress` → `in review` → `done`.
 | A1 — Per-step nuclei timeout (seed + module default) | [#1254](https://github.com/brettforbes/spiderfeet/issues/1254) | R16-01 | — | done |
 | A2 — Non-blocking temporary-context export | [#1255](https://github.com/brettforbes/spiderfeet/issues/1255) | R16-02 | — | done |
 | A3 — Per-project canonical context resolution + PUT hardening | [#1256](https://github.com/brettforbes/spiderfeet/issues/1256) | R16-03 | — | done |
-| A4 — Backend tests, OpenAPI, docs | [#1257](https://github.com/brettforbes/spiderfeet/issues/1257) | R16-04 | A1..A3 | open |
+| A4 — Backend tests, OpenAPI, docs | [#1257](https://github.com/brettforbes/spiderfeet/issues/1257) | R16-04 | A1..A3 | done |
 
 ## Epic D — Integration + acceptance (cross-repo)
 
@@ -49,3 +49,8 @@ D1 (needs A4 + B* + C3) → D2 (OPERATOR GATE)
 
 ## Governance
 Branch from `develop`; PR into `develop`; close each issue with a completion note + evidence; merge before the next. One issue at a time. Commit/merge per operator-approved policy.
+
+## Contract notes (A4)
+
+- Temporary context GET/PUT is per-project via `temporary_subgraph_id_for(project_id)`; PUT coerces foreign body ids.
+- Seed `12A` long steps set `config.timeout` (nmap 900, nerva 300, katana 600, nuclei 900).
