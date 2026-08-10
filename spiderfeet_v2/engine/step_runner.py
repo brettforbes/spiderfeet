@@ -176,6 +176,8 @@ def _build_scan_step_spec(
             "domain": primary,
             "target": primary,
         }
+        if config.get("timeout") is not None:
+            spec["timeout"] = config["timeout"]
         return spec, list(cmd.argv)
 
     # Domain/target style (modules build their own structured flags).

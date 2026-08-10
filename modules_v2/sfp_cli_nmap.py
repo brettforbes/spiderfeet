@@ -203,7 +203,7 @@ class sfp_cli_nmap(CliModuleBase):
 
         Special keys:
         - ``xml_text`` / ``xml_path`` — skip CLI; build four forms from fixture XML
-        - ``timeout`` — seconds (default 120)
+        - ``timeout`` — seconds (default 900)
         - ``scenario_key`` — narrative scenario label
         """
         spec = self._merge_spec(scan_step_spec)
@@ -242,7 +242,7 @@ class sfp_cli_nmap(CliModuleBase):
                 structured_type="xml",
             )
 
-        timeout = float(spec.get("timeout") or 120.0)
+        timeout = float(spec.get("timeout") or 900.0)
         completed, duration, err = self._timed_run_argv(argv, timeout=timeout)
         if err and completed is None:
             status = STATUS_TIMEOUT if err.startswith("timeout") else STATUS_ERROR

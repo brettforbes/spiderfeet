@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from threading import Lock
 from typing import Any, Dict, List, Mapping, Optional
 from uuid import UUID, uuid5
 
@@ -15,6 +16,7 @@ from spiderfeet_v2.workflow.context_export import (
 from spiderfeet_v2.workflow.typedb_convert import dump_canonical_yaml
 
 _RESULT_NS = UUID("6ba7b810-9dad-11d1-80b4-00c04fd430c8")
+_TEMP_CONTEXT_LOCK = Lock()
 
 
 def scan_result_id_for(scan_instance_id: str) -> str:
@@ -388,19 +390,12 @@ def persist_module_result(
     }
 
 
-def persist_temporary_export(
+def _load_temporary_context(
     store: Any,
     *,
-    project_id: str,
-    step: Mapping[str, Any],
-    scan_graph: Mapping[str, Any],
-    existing_subgraph_id: Optional[str] = None,
-) -> Dict[str, Any]:
-    """Merge exported scan_graph into the project's temporary_subgraph when marked."""
-    if not step_exports_scan_graph(step):
-        return {"exported": False, "temporary_subgraph_id": existing_subgraph_id}
-
-    sg_id = existing_subgraph_id or temporary_subgraph_id_for(project_id)
+    sg_id: str,
+) -> tuple[Dict[str, Any], Any]:
+    """Return (context_graph, existing_row_or_None) for a temporary subgraph."""
     context = empty_context()
     existing = None
     try:
@@ -408,28 +403,35 @@ def persist_temporary_export(
     except Exception as exc:  # noqa: BLE001
         if not _is_json_string_schema_gap(exc):
             raise
-        existing = None
+        return context, None
 
-    if existing is not None:
-        dual = existing
-        if hasattr(store, "get_subgraph_dual"):
-            try:
-                dual = store.get_subgraph_dual("temporary_subgraph", sg_id)
-            except Exception:  # noqa: BLE001
-                dual = existing
-        graph = (dual or {}).get("graph")
-        if isinstance(graph, dict):
-            context["nodes"] = list(graph.get("nodes") or [])
-            context["edges"] = list(graph.get("edges") or [])
-        elif (dual or {}).get("nodes") is not None:
-            context["nodes"] = list(dual.get("nodes") or [])
-            context["edges"] = list(dual.get("edges") or [])
+    if existing is None:
+        return context, None
 
-    result = apply_context_export(context, step, scan_graph)
-    if not result["exported"]:
-        return {"exported": False, "temporary_subgraph_id": sg_id}
+    dual = existing
+    if hasattr(store, "get_subgraph_dual"):
+        try:
+            dual = store.get_subgraph_dual("temporary_subgraph", sg_id)
+        except Exception:  # noqa: BLE001
+            dual = existing
+    graph = (dual or {}).get("graph")
+    if isinstance(graph, dict):
+        context["nodes"] = list(graph.get("nodes") or [])
+        context["edges"] = list(graph.get("edges") or [])
+    elif (dual or {}).get("nodes") is not None:
+        context["nodes"] = list(dual.get("nodes") or [])
+        context["edges"] = list(dual.get("edges") or [])
+    return context, existing
 
-    payload_graph = result["context"]
+
+def _write_temporary_context(
+    store: Any,
+    *,
+    project_id: str,
+    sg_id: str,
+    payload_graph: Mapping[str, Any],
+    existing: Any,
+) -> Dict[str, Any]:
     try:
         if existing is None:
             store.create_subgraph(
@@ -437,14 +439,14 @@ def persist_temporary_export(
                     "kind": "temporary_subgraph",
                     "temporary_subgraph_id": sg_id,
                     "project_id": project_id,
-                    "graph": payload_graph,
+                    "graph": dict(payload_graph),
                 }
             )
         else:
             store.update_subgraph(
                 "temporary_subgraph",
                 sg_id,
-                {"graph": payload_graph},
+                {"graph": dict(payload_graph)},
             )
     except Exception as exc:  # noqa: BLE001 — schema drift on dual-form attrs
         if not _is_json_string_schema_gap(exc):
@@ -463,3 +465,72 @@ def persist_temporary_export(
         "edge_count": len(payload_graph.get("edges") or []),
         "persisted": True,
     }
+
+
+def seed_targets_into_temporary_context(
+    store: Any,
+    *,
+    project_id: str,
+    hostnames: List[str],
+    existing_subgraph_id: Optional[str] = None,
+) -> Dict[str, Any]:
+    """Append seed DOMAIN_NAME nuggets into the project temporary subgraph."""
+    if not project_id or not hostnames:
+        return {
+            "exported": False,
+            "temporary_subgraph_id": existing_subgraph_id,
+            "node_count": 0,
+        }
+
+    from modules_v2._core.graph_builder import nugget_node
+    from spiderfeet_v2.workflow.context_export import merge_graph
+
+    sg_id = existing_subgraph_id or temporary_subgraph_id_for(project_id)
+    with _TEMP_CONTEXT_LOCK:
+        context, existing = _load_temporary_context(store, sg_id=sg_id)
+        seed_graph: Dict[str, Any] = {"nodes": [], "edges": []}
+        for host in hostnames:
+            h = str(host or "").strip()
+            if not h:
+                continue
+            seed_graph["nodes"].append(nugget_node("DOMAIN_NAME", h))
+        if not seed_graph["nodes"]:
+            return {"exported": False, "temporary_subgraph_id": sg_id, "node_count": 0}
+
+        merge_graph(context, seed_graph)
+        return _write_temporary_context(
+            store,
+            project_id=project_id,
+            sg_id=sg_id,
+            payload_graph=context,
+            existing=existing,
+        )
+
+
+def persist_temporary_export(
+    store: Any,
+    *,
+    project_id: str,
+    step: Mapping[str, Any],
+    scan_graph: Mapping[str, Any],
+    existing_subgraph_id: Optional[str] = None,
+) -> Dict[str, Any]:
+    """Merge exported scan_graph into the project's temporary_subgraph when marked."""
+    if not step_exports_scan_graph(step):
+        return {"exported": False, "temporary_subgraph_id": existing_subgraph_id}
+
+    sg_id = existing_subgraph_id or temporary_subgraph_id_for(project_id)
+    with _TEMP_CONTEXT_LOCK:
+        context, existing = _load_temporary_context(store, sg_id=sg_id)
+
+        result = apply_context_export(context, step, scan_graph)
+        if not result["exported"]:
+            return {"exported": False, "temporary_subgraph_id": sg_id}
+
+        return _write_temporary_context(
+            store,
+            project_id=project_id,
+            sg_id=sg_id,
+            payload_graph=result["context"],
+            existing=existing,
+        )
