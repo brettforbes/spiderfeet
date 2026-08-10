@@ -48,35 +48,40 @@ SEED_SPECS: List[SeedSpec] = [
         ),
         template="12A2",
     ),
+    # Apex hosts only — subfinder enumerates *under* the seed; ``www.`` yields
+    # empty passive results (e.g. www.sbs.com.au → 0 vs sbs.com.au → rich).
     SeedSpec(
         key="recon-sbs",
-        project_name="Attack Surface Recon — www.sbs.com.au",
-        project_description="Twin-fork attack-surface recon of www.sbs.com.au",
+        project_name="Attack Surface Recon — sbs.com.au",
+        project_description="Twin-fork attack-surface recon of sbs.com.au",
         template="12A",
-        input_host="www.sbs.com.au",
+        input_host="sbs.com.au",
     ),
     SeedSpec(
         key="recon-k2am",
-        project_name="Attack Surface Recon — www.k2am.com.au",
-        project_description="Twin-fork attack-surface recon of www.k2am.com.au",
+        project_name="Attack Surface Recon — k2am.com.au",
+        project_description="Twin-fork attack-surface recon of k2am.com.au",
         template="12A",
-        input_host="www.k2am.com.au",
+        input_host="k2am.com.au",
     ),
     SeedSpec(
         key="recon-vcopportunities",
         project_name=(
-            "Attack Surface Recon — www.venturecapitalopportunitiesfund.com.au"
+            "Attack Surface Recon — venturecapitalopportunitiesfund.com.au"
         ),
-        project_description=("Twin-fork attack-surface recon of that domain"),
+        project_description=(
+            "Twin-fork attack-surface recon of "
+            "venturecapitalopportunitiesfund.com.au"
+        ),
         template="12A",
-        input_host="www.venturecapitalopportunitiesfund.com.au",
+        input_host="venturecapitalopportunitiesfund.com.au",
     ),
     SeedSpec(
         key="recon-squarepeg",
-        project_name="Attack Surface Recon — www.squarepeg.vc",
-        project_description="Twin-fork attack-surface recon of www.squarepeg.vc",
+        project_name="Attack Surface Recon — squarepeg.vc",
+        project_description="Twin-fork attack-surface recon of squarepeg.vc",
         template="12A",
-        input_host="www.squarepeg.vc",
+        input_host="squarepeg.vc",
     ),
 ]
 

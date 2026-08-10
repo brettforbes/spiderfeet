@@ -34,12 +34,12 @@ These were confirmed with the operator before drafting and are binding for all e
    | # | Input | Template | Project name | Description |
    |---|-------|----------|--------------|-------------|
    | 1 | none | `12A2_Workflow_YAML_Example.yaml` | Simple Wireless Scan | Simple local-network wireless/ARP discovery scan |
-   | 2 | www.sbs.com.au | `12A_Workflow_YAML_Example.yaml` | Attack Surface Recon — www.sbs.com.au | Twin-fork attack-surface recon of www.sbs.com.au |
-   | 3 | www.k2am.com.au | `12A_Workflow_YAML_Example.yaml` | Attack Surface Recon — www.k2am.com.au | Twin-fork attack-surface recon of www.k2am.com.au |
-   | 4 | www.venturecapitalopportunitiesfund.com.au | `12A_Workflow_YAML_Example.yaml` | Attack Surface Recon — www.venturecapitalopportunitiesfund.com.au | Twin-fork attack-surface recon of that domain |
-   | 5 | www.squarepeg.vc | `12A_Workflow_YAML_Example.yaml` | Attack Surface Recon — www.squarepeg.vc | Twin-fork attack-surface recon of www.squarepeg.vc |
+   | 2 | sbs.com.au | `12A_Workflow_YAML_Example.yaml` | Attack Surface Recon — sbs.com.au | Twin-fork attack-surface recon of sbs.com.au |
+   | 3 | k2am.com.au | `12A_Workflow_YAML_Example.yaml` | Attack Surface Recon — k2am.com.au | Twin-fork attack-surface recon of k2am.com.au |
+   | 4 | venturecapitalopportunitiesfund.com.au | `12A_Workflow_YAML_Example.yaml` | Attack Surface Recon — venturecapitalopportunitiesfund.com.au | Twin-fork attack-surface recon of that domain |
+   | 5 | squarepeg.vc | `12A_Workflow_YAML_Example.yaml` | Attack Surface Recon — squarepeg.vc | Twin-fork attack-surface recon of squarepeg.vc |
 
-   Clones 2–5 each get a **fresh** `project_id` and `workflow_id` (uuidv4) and a rewritten `inputs.targets.values` = `[https://<input>]`. Names/descriptions are distinct (target appended).
+   Clones 2–5 each get a **fresh** `project_id` and `workflow_id` (uuidv4) and a rewritten `inputs.targets.values` = `[https://<apex-host>]`. Use **apex** hosts (not `www.`) so subdomain tools like subfinder enumerate under the registrable domain. Names/descriptions are distinct (target appended).
 5. **"NetworkError" fix = resilience.** The widget dev server is on `:4001` (already CORS-allowed), so the cause is the API being unreachable. Make the Projects page show a friendly "backend unreachable" state with retry, verify base URL + CORS, and document how to start the API. No fake data.
 6. **Navbar auto-hide** on every tab: slide up after ~3s idle (and after navigating); reveal when the cursor is within ~48px of the top edge or on keyboard focus.
 7. **Composer Workflow Bar controls** = only a **pencil** icon (toggles to **spectacles** when editing) and a **gear** icon. Gear opens the iFrame settings and additionally can **hide the legend**. The old title-bar functions (YAML dump, layout dump) are dropped.

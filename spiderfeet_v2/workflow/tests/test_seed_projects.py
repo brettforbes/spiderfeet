@@ -57,12 +57,12 @@ def test_seed_all_materializes_on_fake_store():
     assert not step.get("scan_ui_text_form")
     assert not step.get("scan_ui_graph_form")
 
-    clone = next(r for r in results if r["input_host"] == "www.sbs.com.au")
+    clone = next(r for r in results if r["input_host"] == "sbs.com.au")
     assert clone["step_count"] == 6
     assert clone["has_target"] is True
     cwf = store.get_workflow(clone["workflow_id"])
     target = store.get_target(cwf["target_id"])
-    assert target["target_value"] == "https://www.sbs.com.au"
+    assert target["target_value"] == "https://sbs.com.au"
 
     again = seed_all(store, replace=True)
     assert len(store.list_projects()) == 5
