@@ -103,6 +103,11 @@
           "required": ["argv", "files", "capture"],
           "additionalProperties": false,
           "properties": {
+            "timeout": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Wall-clock seconds for module execution (overrides module default)."
+            },
             "argv": {
               "type": "array",
               "items": { "type": "string" },
