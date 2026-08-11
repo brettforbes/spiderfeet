@@ -21,7 +21,6 @@ from spiderfeet_v2.engine.persist import (
     ensure_scan_step,
     persist_module_result,
     persist_temporary_export,
-    temporary_subgraph_id_for,
 )
 from spiderfeet_v2.engine.status import (
     MODULE_OK,
