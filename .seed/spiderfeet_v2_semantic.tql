@@ -23,12 +23,17 @@ define
 		owns project_context_id @key, # e.g. "project-context--0b778a9a-ae9c-4253-883d-32208b75d441"
 		relates project as owner;
 
-	relation temporary_subgraph, sub subgraph,
+	relation temporary_subgraph, sub subgraph, # this holds the subgraph produced by a scan and sent to context
 		owns temporary_subgraph_id @key, # e.g. "temporary-subgraph--0b778a9a-ae9c-4253-883d-32208b75d441"
+		owns scan_name, # scan name that created the temporary subgraph
+		owns scan_description, # scan description that created the temporary subgraph
+		relates scan_step,
 		relates project as owner;
 
 	relation target_context, sub subgraph,
 		owns target_context_id @key, # e.g. "target-context--0b778a9a-ae9c-4253-883d-32208b75d441"
+		owns nugget_type, # nugget_type that is used for the target data
+		owns target_description, # description of the target, e.g. "The target domain to scan"
 		relates target as owner;
 	
 	####################################
@@ -700,6 +705,7 @@ define
 		relates consumed @card(0..), # nugget inputs consumed by this scan step
 		relates produced @card(0..), # nugget outputs produced by this scan step (R10-07 / AI1)
 		plays scan_result_graph:scan_step,  # contains actual nodes and edges arrays for the scan result
+		plays temporary_subgraph:scan_step, # optional link when this step exported to temporary context
 		relates service, # native osint-service: module_id, name (e.g. sfp_cli_nmap)
 		relates route @card(0..1); # route under test when this step ran
 
@@ -721,6 +727,7 @@ define
 		owns target_id @key, # e.g. "target--1c51e712-b5b5-4ef2-9967-e11debbcc607"
 		owns target_value, # value of the target, e.g. "example.com"
 		owns target_description, # description of the target, e.g. "The target domain to scan"
+		owns target_nugget_type, # nugget_type that is used for the target data
 		owns target_created, # time target was created
 		owns target_yaml, # string description in yaml target DSL, to feed to the target iFrame widget
 		plays workflow:target,
@@ -803,6 +810,9 @@ define
 	attribute scan_result_id, value string;
 	attribute project_context_id, value string;
 	attribute temporary_subgraph_id, value string;
+	attribute scan_name, value string;
+	attribute scan_description, value string;
+	attribute target_nugget_type, value string;
 	attribute scan_instance_id, value string;
 	attribute step_module_id, value string;
 	attribute scan_status, value string @values("STARTING", "RUNNING", "FINISHED", "ERROR-FAILED", "ABORTED", "ABORT-REQUESTED", "UNKNOWN");
