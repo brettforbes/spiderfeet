@@ -229,8 +229,8 @@ def run_workflow(
     exported_any = False
 
     if project_id and not dry_run:
-        # SPEC-017: do not wipe on Run — Reset owns wipe+reseed. Ensure target
-        # temp exists (e.g. first run before Composer called /complete).
+        # SPEC-017 R17-03: first Run creates target temp (with DAG Target colour
+        # change). Reset wipes only — do not wipe here.
         ensure = ensure_project_target_temps(store, project_id=project_id)
         seed = ensure.get("temporary") or {}
         temp_id = seed.get("temporary_subgraph_id") or temp_id

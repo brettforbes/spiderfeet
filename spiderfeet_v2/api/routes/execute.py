@@ -25,7 +25,10 @@ from spiderfeet_v2.api.schemas import (
 from spiderfeet_v2.db.crud import CrudStore
 from spiderfeet_v2.db.projections import ProjectionStore
 from spiderfeet_v2.engine import OrchestratorError, run_single_step, run_workflow
-from spiderfeet_v2.engine.persist import reset_workflow_execution
+from spiderfeet_v2.engine.persist import (
+    ensure_project_target_temps,
+    reset_workflow_execution,
+)
 from spiderfeet_v2.engine.run_registry import get_run_registry
 from spiderfeet_v2.workflow.typedb_convert import scan_instance_id_for
 
@@ -159,6 +162,14 @@ def execute_workflow_async(
     if body.project_id and store.get_project(body.project_id) is None:
         raise HTTPException(status_code=404, detail="Project not found")
 
+    # SPEC-017 R17-03: seed target temp before 202 so the viewer can reload
+    # as the DAG Target colour changes (async worker may start later).
+    if body.project_id and not body.dry_run:
+        try:
+            ensure_project_target_temps(store, project_id=body.project_id)
+        except Exception:  # noqa: BLE001 — run must still proceed
+            pass
+
     registry = get_run_registry()
     rec = registry.submit_workflow(
         workflow_id=workflow_id,
@@ -234,6 +245,13 @@ def execute_workflow_step_async(
         raise HTTPException(status_code=404, detail="Workflow not found")
     if body.project_id and store.get_project(body.project_id) is None:
         raise HTTPException(status_code=404, detail="Project not found")
+
+    # SPEC-017 R17-03: Scan Now seeds target temp before 202 (see workflow async).
+    if body.project_id and not body.dry_run:
+        try:
+            ensure_project_target_temps(store, project_id=body.project_id)
+        except Exception:  # noqa: BLE001 — step must still proceed
+            pass
 
     dsl_key = body.step_id or step_id
     registry = get_run_registry()

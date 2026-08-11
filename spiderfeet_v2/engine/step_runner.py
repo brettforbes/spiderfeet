@@ -212,6 +212,15 @@ def run_single_step(
     existing_temporary_subgraph_id: Optional[str] = None,
 ) -> StepRunResult:
     """Run one workflow step end-to-end (or dry-run resolve without invoking CLI)."""
+    # SPEC-017 R17-03: Scan Now (and per-step runs) seed target temp at start.
+    if project_id and not dry_run:
+        from spiderfeet_v2.engine.persist import ensure_project_target_temps
+
+        ensure = ensure_project_target_temps(store, project_id=project_id)
+        seed = ensure.get("temporary") or {}
+        if seed.get("temporary_subgraph_id") and not existing_temporary_subgraph_id:
+            existing_temporary_subgraph_id = seed.get("temporary_subgraph_id")
+
     doc = _load_workflow_doc(store, workflow_id)
     step = _find_step(doc, step_id)
     dsl_step_id = str(step["id"])
