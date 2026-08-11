@@ -44,7 +44,7 @@ Do **not** start host B1 until backend A4 is on `develop`.
 |----|---------|--------|
 | 1 | Spec + indexes + this plan | **done** (2026-08-12) |
 | 2 | GitHub issues open + linked | **done** — A [#1266](https://github.com/brettforbes/spiderfeet/issues/1266)–[#1275](https://github.com/brettforbes/spiderfeet/issues/1275); B [#256](https://github.com/brettforbes/spiderfeet-widget/issues/256)–[#260](https://github.com/brettforbes/spiderfeet-widget/issues/260); C [#274](https://github.com/brettforbes/yaml-workflow-widget/issues/274)–[#277](https://github.com/brettforbes/yaml-workflow-widget/issues/277) |
-| 3 | Implementation complete for review | lesser agents + D2 operator gate |
+| 3 | Implementation complete for review | **done for A/B/C + D1** (2026-08-12) — D2 remains operator gate [#1275](https://github.com/brettforbes/spiderfeet/issues/1275) |
 
 ## First issues to assign
 
