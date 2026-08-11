@@ -9,8 +9,13 @@ from typing import Any, Dict, List, Mapping, Optional
 from uuid import UUID, uuid5
 
 from spiderfeet_v2.engine.status import scan_status_for_module
+from spiderfeet_v2.engine.temporary_viewer_graph import (
+    new_temporary_subgraph_id,
+    stamp_viewer_graph,
+    step_scan_description,
+    step_scan_name,
+)
 from spiderfeet_v2.workflow.context_export import (
-    apply_context_export,
     empty_context,
     step_exports_scan_graph,
 )
@@ -26,6 +31,7 @@ def scan_result_id_for(scan_instance_id: str) -> str:
 
 
 def temporary_subgraph_id_for(project_id: str) -> str:
+    """Legacy singleton id (SPEC-016). Prefer ``new_temporary_subgraph_id`` (SPEC-017)."""
     return f"temporary-subgraph--{uuid5(_RESULT_NS, project_id)}"
 
 
@@ -33,44 +39,55 @@ def project_context_id_for(project_id: str) -> str:
     return f"project-context--{uuid5(_RESULT_NS, project_id)}"
 
 
+def list_project_temporary_subgraphs(store: Any, project_id: str) -> List[Dict[str, Any]]:
+    """Return all temporary_subgraph rows for a project (best-effort)."""
+    rows: List[Dict[str, Any]] = []
+    if hasattr(store, "list_subgraphs"):
+        try:
+            for row in store.list_subgraphs("temporary_subgraph") or []:
+                if row and row.get("project_id") == project_id:
+                    rows.append(row)
+            return rows
+        except Exception as exc:  # noqa: BLE001
+            _LOG.warning("list_subgraphs temporary failed: %s", exc)
+    # FakeCrudStore / dict fallback
+    subgraphs = getattr(store, "subgraphs", None)
+    if isinstance(subgraphs, dict):
+        for key, row in subgraphs.items():
+            if not str(key).startswith("temporary_subgraph:"):
+                continue
+            if row and row.get("project_id") == project_id:
+                rows.append(dict(row))
+    return rows
+
+
 def reset_temporary_context(
     store: Any,
     *,
     project_id: str,
     existing_subgraph_id: Optional[str] = None,
-) -> str:
-    """Wipe the project's temporary_subgraph to an empty graph.
+) -> Optional[str]:
+    """Delete all temporary_subgraph rows for the project (SPEC-017 R17-04).
 
-    Returns the subgraph id that subsequent ``context.export`` merges should use.
+    Returns None (no singleton id). ``existing_subgraph_id`` deleted if still present.
     """
     if not project_id:
         raise ValueError("project_id is required to reset temporary context")
-    sg_id = existing_subgraph_id or temporary_subgraph_id_for(project_id)
-    empty_graph: Dict[str, Any] = {"nodes": [], "edges": []}
-    existing = None
-    try:
-        existing = store.get_subgraph("temporary_subgraph", sg_id)
-    except Exception as exc:  # noqa: BLE001 — schema drift on dual-form attrs
-        if not _is_json_string_schema_gap(exc):
-            raise
-        existing = None
-
-    if existing is None:
-        store.create_subgraph(
-            {
-                "kind": "temporary_subgraph",
-                "temporary_subgraph_id": sg_id,
-                "project_id": project_id,
-                "graph": empty_graph,
-            }
-        )
-    else:
-        store.update_subgraph(
-            "temporary_subgraph",
-            sg_id,
-            {"graph": empty_graph},
-        )
-    return sg_id
+    ids = {
+        str(r.get("temporary_subgraph_id"))
+        for r in list_project_temporary_subgraphs(store, project_id)
+        if r.get("temporary_subgraph_id")
+    }
+    if existing_subgraph_id:
+        ids.add(str(existing_subgraph_id))
+    # Also drop legacy singleton if present.
+    ids.add(temporary_subgraph_id_for(project_id))
+    for sg_id in sorted(ids):
+        try:
+            store.delete_subgraph("temporary_subgraph", sg_id)
+        except Exception:  # noqa: BLE001 — missing row is fine
+            pass
+    return None
 
 
 def _workflow_scan_instance_ids(workflow_row: Mapping[str, Any]) -> List[str]:
@@ -436,33 +453,32 @@ def _load_temporary_context(
     return context, existing
 
 
-def _write_temporary_context(
+def _create_temporary_subgraph_row(
     store: Any,
     *,
     project_id: str,
     sg_id: str,
+    scan_name: str,
     payload_graph: Mapping[str, Any],
-    existing: Any,
+    scan_description: Optional[str] = None,
+    scan_instance_id: Optional[str] = None,
 ) -> Dict[str, Any]:
-    """Persist temporary subgraph graph payload; never raise (UI enrichment only)."""
+    """Create one temporary_subgraph row; never raise (UI enrichment only)."""
     node_count = len(payload_graph.get("nodes") or [])
     edge_count = len(payload_graph.get("edges") or [])
+    payload: Dict[str, Any] = {
+        "kind": "temporary_subgraph",
+        "temporary_subgraph_id": sg_id,
+        "project_id": project_id,
+        "scan_name": scan_name,
+        "graph": dict(payload_graph),
+    }
+    if scan_description:
+        payload["scan_description"] = scan_description
+    if scan_instance_id:
+        payload["scan_instance_id"] = scan_instance_id
     try:
-        if existing is None:
-            store.create_subgraph(
-                {
-                    "kind": "temporary_subgraph",
-                    "temporary_subgraph_id": sg_id,
-                    "project_id": project_id,
-                    "graph": dict(payload_graph),
-                }
-            )
-        else:
-            store.update_subgraph(
-                "temporary_subgraph",
-                sg_id,
-                {"graph": dict(payload_graph)},
-            )
+        store.create_subgraph(payload)
     except Exception as exc:  # noqa: BLE001 — schema drift / TypeDB stall must not fail scans
         _LOG.warning(
             "temporary_subgraph write failed for %s (%s); continuing without persist",
@@ -472,6 +488,7 @@ def _write_temporary_context(
         return {
             "exported": True,
             "temporary_subgraph_id": sg_id,
+            "scan_name": scan_name,
             "node_count": node_count,
             "edge_count": edge_count,
             "persisted": False,
@@ -479,6 +496,7 @@ def _write_temporary_context(
     return {
         "exported": True,
         "temporary_subgraph_id": sg_id,
+        "scan_name": scan_name,
         "node_count": node_count,
         "edge_count": edge_count,
         "persisted": True,
@@ -492,36 +510,46 @@ def seed_targets_into_temporary_context(
     hostnames: List[str],
     existing_subgraph_id: Optional[str] = None,
 ) -> Dict[str, Any]:
-    """Append seed DOMAIN_NAME nuggets into the project temporary subgraph."""
+    """Create a dedicated ``scan_name=target`` temporary_subgraph (SPEC-017 R17-03).
+
+    ``existing_subgraph_id`` is ignored for writes (legacy singleton arg retained
+    for call-site compatibility).
+    """
+    del existing_subgraph_id  # unused — each seed is its own uuid4 row
     if not project_id or not hostnames:
         return {
             "exported": False,
-            "temporary_subgraph_id": existing_subgraph_id,
+            "temporary_subgraph_id": None,
+            "scan_name": "target",
             "node_count": 0,
         }
 
     from modules_v2._core.graph_builder import nugget_node
-    from spiderfeet_v2.workflow.context_export import merge_graph
 
-    sg_id = existing_subgraph_id or temporary_subgraph_id_for(project_id)
+    seed_graph: Dict[str, Any] = {"nodes": [], "edges": []}
+    for host in hostnames:
+        h = str(host or "").strip()
+        if not h:
+            continue
+        seed_graph["nodes"].append(nugget_node("DOMAIN_NAME", h))
+    if not seed_graph["nodes"]:
+        return {
+            "exported": False,
+            "temporary_subgraph_id": None,
+            "scan_name": "target",
+            "node_count": 0,
+        }
+
+    stamped = stamp_viewer_graph(seed_graph, scan_name="target")
+    sg_id = new_temporary_subgraph_id()
     with _TEMP_CONTEXT_LOCK:
-        context, existing = _load_temporary_context(store, sg_id=sg_id)
-        seed_graph: Dict[str, Any] = {"nodes": [], "edges": []}
-        for host in hostnames:
-            h = str(host or "").strip()
-            if not h:
-                continue
-            seed_graph["nodes"].append(nugget_node("DOMAIN_NAME", h))
-        if not seed_graph["nodes"]:
-            return {"exported": False, "temporary_subgraph_id": sg_id, "node_count": 0}
-
-        merge_graph(context, seed_graph)
-        return _write_temporary_context(
+        return _create_temporary_subgraph_row(
             store,
             project_id=project_id,
             sg_id=sg_id,
-            payload_graph=context,
-            existing=existing,
+            scan_name="target",
+            scan_description="Workflow target",
+            payload_graph=stamped,
         )
 
 
@@ -532,23 +560,34 @@ def persist_temporary_export(
     step: Mapping[str, Any],
     scan_graph: Mapping[str, Any],
     existing_subgraph_id: Optional[str] = None,
+    scan_instance_id: Optional[str] = None,
 ) -> Dict[str, Any]:
-    """Merge exported scan_graph into the project's temporary_subgraph when marked."""
+    """Create a new stamped temporary_subgraph row for an exporting step (R17-02).
+
+    Does not merge into a singleton blob. ``existing_subgraph_id`` ignored.
+    """
+    del existing_subgraph_id  # unused — SPEC-017 is one row per export
     if not step_exports_scan_graph(step):
-        return {"exported": False, "temporary_subgraph_id": existing_subgraph_id}
+        return {"exported": False, "temporary_subgraph_id": None}
 
-    sg_id = existing_subgraph_id or temporary_subgraph_id_for(project_id)
+    nodes = list((scan_graph or {}).get("nodes") or [])
+    edges = list((scan_graph or {}).get("edges") or [])
+    if not nodes and not edges:
+        return {"exported": False, "temporary_subgraph_id": None}
+
+    scan_name = step_scan_name(step)
+    stamped = stamp_viewer_graph(
+        {"nodes": nodes, "edges": edges},
+        scan_name=scan_name,
+    )
+    sg_id = new_temporary_subgraph_id()
     with _TEMP_CONTEXT_LOCK:
-        context, existing = _load_temporary_context(store, sg_id=sg_id)
-
-        result = apply_context_export(context, step, scan_graph)
-        if not result["exported"]:
-            return {"exported": False, "temporary_subgraph_id": sg_id}
-
-        return _write_temporary_context(
+        return _create_temporary_subgraph_row(
             store,
             project_id=project_id,
             sg_id=sg_id,
-            payload_graph=result["context"],
-            existing=existing,
+            scan_name=scan_name,
+            scan_description=step_scan_description(step),
+            scan_instance_id=scan_instance_id,
+            payload_graph=stamped,
         )

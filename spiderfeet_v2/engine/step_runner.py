@@ -21,7 +21,6 @@ from spiderfeet_v2.engine.persist import (
     ensure_scan_step,
     persist_module_result,
     persist_temporary_export,
-    temporary_subgraph_id_for,
 )
 from spiderfeet_v2.engine.status import (
     MODULE_OK,
@@ -423,9 +422,6 @@ def run_single_step(
         exported = False
         temp_id = existing_temporary_subgraph_id
         if project_id and step_exports_scan_graph(step):
-            temp_id = existing_temporary_subgraph_id or temporary_subgraph_id_for(
-                project_id
-            )
             graph_snapshot = {
                 "nodes": list((graph or {}).get("nodes") or []),
                 "edges": list((graph or {}).get("edges") or []),
@@ -434,14 +430,17 @@ def run_single_step(
             exported = True
 
             def _export_async() -> None:
+                nonlocal temp_id
                 try:
-                    persist_temporary_export(
+                    result = persist_temporary_export(
                         store,
                         project_id=project_id,
                         step=step_snapshot,
                         scan_graph=graph_snapshot,
-                        existing_subgraph_id=temp_id,
+                        scan_instance_id=scan_id,
                     )
+                    if result.get("temporary_subgraph_id"):
+                        temp_id = result["temporary_subgraph_id"]
                 except Exception as exc:  # noqa: BLE001
                     _LOG.warning(
                         "temporary export failed for %s (%s); keeping step result",

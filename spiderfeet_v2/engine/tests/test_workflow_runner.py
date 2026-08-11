@@ -295,11 +295,16 @@ def test_chain_threads_vars_and_accumulates_temp(store: FakeCrudStore) -> None:
     httpx_step = next(s for s in result.steps if s.step_id == "sfp_cli_httpx")
     assert httpx_step.input_values == sub_vars["all_domains"]
 
-    temp = store.get_subgraph("temporary_subgraph", result.temporary_subgraph_id)
-    assert temp is not None
-    nodes: List[Any] = (temp.get("graph") or {}).get("nodes") or temp.get("nodes") or []
-    # Both exporting steps merge into one temporary context.
-    assert len(nodes) >= 1
+    from spiderfeet_v2.engine.persist import list_project_temporary_subgraphs
+
+    temps = list_project_temporary_subgraphs(store, "project--ao2")
+    # SPEC-017: one temporary_subgraph row per export (+ optional target seed).
+    assert len(temps) >= 2
+    total_nodes = 0
+    for temp in temps:
+        nodes: List[Any] = (temp.get("graph") or {}).get("nodes") or temp.get("nodes") or []
+        total_nodes += len(nodes)
+    assert total_nodes >= 1
 
     api = result.to_api_dict()
     assert api["orchestrator"] == "ao2"

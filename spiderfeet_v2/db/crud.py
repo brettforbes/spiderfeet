@@ -1108,6 +1108,17 @@ class CrudStore:
         try:
             if self.get_subgraph(kind, sg_id, _driver=driver) is not None:
                 raise CrudError(f"{kind} already exists: {sg_id}")
+            has_extras = ""
+            if kind == "temporary_subgraph":
+                scan_name = data.get("scan_name")
+                scan_description = data.get("scan_description")
+                if scan_name:
+                    has_extras += f", has scan_name {literal_string(str(scan_name))}"
+                if scan_description:
+                    has_extras += (
+                        f", has scan_description "
+                        f"{literal_string(str(scan_description))}"
+                    )
             run_write(
                 driver,
                 self.database,
@@ -1116,10 +1127,28 @@ class CrudStore:
                   $owner isa {meta["owner_type"]},
                     has {meta["owner_id_attr"]} {literal_string(owner_id)};
                 insert
-                  $g isa {kind}, has {id_attr} {literal_string(sg_id)};
+                  $g isa {kind}, has {id_attr} {literal_string(sg_id)}{has_extras};
                   $g links ({meta["owner_role"]}: $owner);
                 """,
             )
+            scan_step_id = data.get("scan_instance_id") or data.get("scan_step_id")
+            if kind == "temporary_subgraph" and scan_step_id:
+                try:
+                    run_write(
+                        driver,
+                        self.database,
+                        f"""
+                        match
+                          $g isa temporary_subgraph,
+                            has temporary_subgraph_id {literal_string(sg_id)};
+                          $s isa scan_step,
+                            has scan_instance_id {literal_string(str(scan_step_id))};
+                        insert
+                          $g links (scan_step: $s);
+                        """,
+                    )
+                except Exception:  # noqa: BLE001 — step may not exist yet; graph still valid
+                    pass
             graph = data.get("graph")
             if graph is None and ("nodes" in data or "edges" in data):
                 graph = {
@@ -1174,6 +1203,20 @@ class CrudStore:
             }
             js = read_json_string(driver, self.database, kind, subgraph_id)
             row["json_string"] = js
+            if kind == "temporary_subgraph":
+                for attr in ("scan_name", "scan_description"):
+                    vals = _collect_strings(
+                        driver,
+                        self.database,
+                        f"""
+                        match
+                          $g isa temporary_subgraph,
+                            has temporary_subgraph_id {literal_string(subgraph_id)},
+                            has {attr} $v;
+                        """,
+                    )
+                    if vals:
+                        row[attr] = vals[0]
             return row
         finally:
             if own:

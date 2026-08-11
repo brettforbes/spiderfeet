@@ -211,6 +211,8 @@ class FakeCrudStore:
             id_attr: sg_id,
             "project_id": data.get("project_id"),
             "scan_instance_id": data.get("scan_instance_id"),
+            "scan_name": data.get("scan_name"),
+            "scan_description": data.get("scan_description"),
             "graph": copy.deepcopy(graph),
             "json_string": json.dumps(graph),
             "nodes": copy.deepcopy(graph.get("nodes") or []),
@@ -234,6 +236,14 @@ class FakeCrudStore:
             self.subgraphs[key]["edges"] = copy.deepcopy(graph.get("edges") or [])
             self.subgraphs[key]["json_string"] = json.dumps(graph)
         return copy.deepcopy(self.subgraphs[key])
+
+    def list_subgraphs(self, kind: str) -> List[Dict[str, Any]]:
+        prefix = f"{kind}:"
+        out: List[Dict[str, Any]] = []
+        for key, row in self.subgraphs.items():
+            if str(key).startswith(prefix):
+                out.append(copy.deepcopy(row))
+        return out
 
 
 class FakeProjectionStore:
