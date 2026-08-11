@@ -31,8 +31,8 @@ Status legend: `open` → `in progress` → `in review` → `done`.
 
 | Code | Issue | Requirement | Depends on | Status |
 |------|-------|-------------|------------|--------|
-| Epic D | [#1273](https://github.com/brettforbes/spiderfeet/issues/1273) | R17-14..15 | A,B,C | in progress |
-| D1 — Cross-repo E2E smoke | [#1274](https://github.com/brettforbes/spiderfeet/issues/1274) | R17-14 | A6, B*, C3 | in review |
+| Epic D | [#1273](https://github.com/brettforbes/spiderfeet/issues/1273) | R17-14..15 | A,B,C | in progress (D2 gate) |
+| D1 — Cross-repo E2E smoke | [#1274](https://github.com/brettforbes/spiderfeet/issues/1274) | R17-14 | A6, B*, C3 | done |
 | D2 — GOV-08 exploratory [OPERATOR GATE] | [#1275](https://github.com/brettforbes/spiderfeet/issues/1275) | R17-15 | D1 | open |
 
 ## Execution order
