@@ -1,4 +1,4 @@
-"""Project / temporary context read + temporary-context update (R10-24 / R10-25 / R16-03)."""
+"""Project / temporary context read (SPEC-010 / SPEC-016 / SPEC-017)."""
 
 from __future__ import annotations
 
@@ -12,12 +12,14 @@ from spiderfeet_v2.api.deps import get_crud_store, get_projection_store
 from spiderfeet_v2.api.schemas import (
     TEMPORARY_CONTEXT_UPDATE_OPENAPI_EXAMPLES,
     ContextGraphOut,
+    TemporaryContextListOut,
     TemporaryContextUpdate,
+    TemporarySubgraphOut,
 )
-from spiderfeet_v2.api.temporary_ids import assert_no_temporary_ids, strip_temporary_ids
 from spiderfeet_v2.db.crud import CrudError, CrudStore
 from spiderfeet_v2.db.projections import ProjectionStore
 from spiderfeet_v2.engine.persist import (
+    list_project_temporary_subgraphs,
     project_context_id_for,
     temporary_subgraph_id_for,
 )
@@ -117,6 +119,7 @@ def _load_context(
 ) -> Dict[str, Any]:
     if store.get_project(project_id) is None:
         raise HTTPException(status_code=404, detail="Project not found")
+
     sg_id = _resolve_context_id(
         project_id=project_id,
         kind=kind,
@@ -127,16 +130,21 @@ def _load_context(
     try:
         dual = store.get_subgraph_dual(kind, sg_id)
     except CrudError:
-        meta = store.get_subgraph(kind, sg_id)
-        dual = meta or {}
-    if not dual:
-        return ContextGraphOut(
-            project_id=project_id,
-            kind=kind,
-            subgraph_id=sg_id,
-            nodes=[],
-            edges=[],
-        ).model_dump()
+        dual = {
+            "kind": kind,
+            id_attr: sg_id,
+            "project_id": project_id,
+            "graph": {"nodes": [], "edges": []},
+            "json_string": None,
+        }
+    if dual is None:
+        dual = {
+            "kind": kind,
+            id_attr: sg_id,
+            "project_id": project_id,
+            "graph": {"nodes": [], "edges": []},
+            "json_string": None,
+        }
     graph = _parse_graph_payload(dual)
     return ContextGraphOut(
         project_id=project_id,
@@ -150,21 +158,43 @@ def _load_context(
 
 @router.get(
     "/projects/{project_id}/contexts/temporary",
-    response_model=ContextGraphOut,
+    response_model=TemporaryContextListOut,
+    summary="List all temporary_subgraph rows for a project (SPEC-017 R17-04)",
 )
 def get_temporary_context(
     project_id: str,
     store: CrudStore = Depends(get_crud_store),
-    projections: ProjectionStore = Depends(get_projection_store),
 ) -> Dict[str, Any]:
-    return _load_context(
-        project_id=project_id,
-        kind="temporary_subgraph",
-        id_attr="temporary_subgraph_id",
-        projection_key="temporary_subgraph",
-        store=store,
-        projections=projections,
+    if store.get_project(project_id) is None:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    subgraphs: List[Dict[str, Any]] = []
+    for row in list_project_temporary_subgraphs(store, project_id):
+        graph = _parse_graph_payload(row)
+        sg_id = row.get("temporary_subgraph_id")
+        if not sg_id:
+            continue
+        subgraphs.append(
+            TemporarySubgraphOut(
+                temporary_subgraph_id=str(sg_id),
+                scan_name=row.get("scan_name"),
+                scan_description=row.get("scan_description"),
+                nodes=graph["nodes"],
+                edges=graph["edges"],
+            ).model_dump()
+        )
+    # Stable order: target first, then scan_name, then id.
+    subgraphs.sort(
+        key=lambda s: (
+            0 if s.get("scan_name") == "target" else 1,
+            str(s.get("scan_name") or ""),
+            str(s.get("temporary_subgraph_id") or ""),
+        )
     )
+    return TemporaryContextListOut(
+        project_id=project_id,
+        subgraphs=subgraphs,
+    ).model_dump()
 
 
 @router.get(
@@ -188,7 +218,8 @@ def get_project_context(
 
 @router.put(
     "/projects/{project_id}/contexts/temporary",
-    response_model=ContextGraphOut,
+    response_model=TemporaryContextListOut,
+    deprecated=True,
 )
 def update_temporary_context(
     project_id: str,
@@ -197,65 +228,13 @@ def update_temporary_context(
         openapi_examples=TEMPORARY_CONTEXT_UPDATE_OPENAPI_EXAMPLES,
     ),
     store: CrudStore = Depends(get_crud_store),
-    projections: ProjectionStore = Depends(get_projection_store),
 ) -> Dict[str, Any]:
-    """Persist temporary context after stripping widget ``temporary_id`` tags.
-
-    Edges keyed by temporary ids are remapped to ``nugget_instance_id`` (R10-25).
-    Always writes to the project's canonical temporary_subgraph id (R16-03).
-    """
+    """Deprecated — engine owns temporary writes (SPEC-017). Returns current list."""
+    del body  # unused — client PUT is not a source of truth
+    _LOG.info(
+        "PUT temporary context ignored for project %s (SPEC-017 engine-owned writes)",
+        project_id,
+    )
     if store.get_project(project_id) is None:
         raise HTTPException(status_code=404, detail="Project not found")
-
-    cleaned = strip_temporary_ids({"nodes": body.nodes, "edges": body.edges})
-    try:
-        assert_no_temporary_ids(cleaned)
-    except ValueError as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
-
-    sg_id = temporary_subgraph_id_for(project_id)
-    if body.temporary_subgraph_id and body.temporary_subgraph_id != sg_id:
-        _LOG.warning(
-            "ignoring foreign temporary_subgraph_id %s for project %s; "
-            "using canonical %s",
-            body.temporary_subgraph_id,
-            project_id,
-            sg_id,
-        )
-
-    existing = store.get_subgraph("temporary_subgraph", sg_id)
-    try:
-        if existing is None:
-            dual = store.create_subgraph(
-                {
-                    "kind": "temporary_subgraph",
-                    "temporary_subgraph_id": sg_id,
-                    "project_id": project_id,
-                    "graph": cleaned,
-                }
-            )
-        else:
-            dual = store.update_subgraph(
-                "temporary_subgraph",
-                sg_id,
-                {"graph": cleaned},
-            )
-    except CrudError as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
-
-    graph = _parse_graph_payload(dual)
-    # Prefer the cleaned payload we just wrote (dual may echo json_string).
-    nodes = graph["nodes"] or cleaned["nodes"]
-    edges = graph["edges"] or cleaned["edges"]
-    for n in nodes:
-        if isinstance(n, dict) and "temporary_id" in n:
-            n.pop("temporary_id", None)
-
-    return ContextGraphOut(
-        project_id=project_id,
-        kind="temporary_subgraph",
-        subgraph_id=sg_id,
-        nodes=nodes,
-        edges=edges,
-        json_string=dual.get("json_string"),
-    ).model_dump()
+    return get_temporary_context(project_id, store=store)

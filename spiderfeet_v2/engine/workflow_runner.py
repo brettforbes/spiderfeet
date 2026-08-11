@@ -8,10 +8,9 @@ from threading import Lock
 from typing import Any, Callable, Dict, List, Mapping, Optional, Set
 
 from spiderfeet_v2.engine.persist import (
+    ensure_project_target_temps,
     ensure_scan_step,
     persist_module_result,
-    reset_temporary_context,
-    seed_targets_into_temporary_context,
 )
 from spiderfeet_v2.engine.status import (
     OUTCOME_DRY_RUN,
@@ -230,17 +229,10 @@ def run_workflow(
     exported_any = False
 
     if project_id and not dry_run:
-        temp_id = reset_temporary_context(
-            store,
-            project_id=project_id,
-            existing_subgraph_id=existing_temporary_subgraph_id,
-        )
-        seed = seed_targets_into_temporary_context(
-            store,
-            project_id=project_id,
-            hostnames=_seed_hostnames(doc),
-            existing_subgraph_id=temp_id,
-        )
+        # SPEC-017: do not wipe on Run — Reset owns wipe+reseed. Ensure target
+        # temp exists (e.g. first run before Composer called /complete).
+        ensure = ensure_project_target_temps(store, project_id=project_id)
+        seed = ensure.get("temporary") or {}
         temp_id = seed.get("temporary_subgraph_id") or temp_id
         if seed.get("exported"):
             exported_any = True

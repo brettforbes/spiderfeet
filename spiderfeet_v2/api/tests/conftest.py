@@ -200,6 +200,7 @@ class FakeCrudStore:
             "temporary_subgraph": "temporary_subgraph_id",
             "project_context": "project_context_id",
             "scan_result_graph": "scan_result_id",
+            "target_context": "target_context_id",
         }[kind]
         sg_id = data[id_attr]
         graph = data.get("graph") or {
@@ -210,6 +211,7 @@ class FakeCrudStore:
             "kind": kind,
             id_attr: sg_id,
             "project_id": data.get("project_id"),
+            "target_id": data.get("target_id"),
             "scan_instance_id": data.get("scan_instance_id"),
             "scan_name": data.get("scan_name"),
             "scan_description": data.get("scan_description"),
