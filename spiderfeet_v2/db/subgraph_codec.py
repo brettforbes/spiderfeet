@@ -263,6 +263,64 @@ def _clear_subgraph_payload(
         )
 
 
+def store_viewer_json_string(
+    driver: Driver,
+    database: str,
+    kind: str,
+    subgraph_id: str,
+    graph: Mapping[str, Any],
+) -> Dict[str, Any]:
+    """SPEC-017: persist temporary_subgraph as json_string only (viewer stamps kept).
+
+    Remapped ``temporary--`` canvas ids must not be materialised as nugget entities.
+    """
+    if kind not in _SUBGRAPH_META:
+        raise SubgraphCodecError(f"unknown subgraph kind: {kind}")
+    id_attr = _SUBGRAPH_META[kind]["id_attr"]
+    exists = run_read_exists(
+        driver,
+        database,
+        f"match $g isa {kind}, has {id_attr} {literal_string(subgraph_id)};",
+    )
+    if not exists:
+        raise SubgraphCodecError(f"{kind} not found: {subgraph_id}")
+
+    nodes = [dict(n) for n in (graph.get("nodes") or []) if isinstance(n, Mapping)]
+    edges = [dict(e) for e in (graph.get("edges") or []) if isinstance(e, Mapping)]
+    payload = {"nodes": nodes, "edges": edges}
+    json_text = json.dumps(payload, separators=(",", ":"))
+
+    # Clear prior json_string only (no dual-form unlink of remapped ids).
+    if run_read_exists(
+        driver,
+        database,
+        f"match $g isa {kind}, has {id_attr} {literal_string(subgraph_id)}, "
+        f"has json_string $v;",
+    ):
+        run_write(
+            driver,
+            database,
+            f"""
+            match
+              $g isa {kind}, has {id_attr} {literal_string(subgraph_id)},
+                has json_string $old;
+            delete
+              has $old of $g;
+            """,
+        )
+    run_write(
+        driver,
+        database,
+        f"""
+        match
+          $g isa {kind}, has {id_attr} {literal_string(subgraph_id)};
+        insert
+          $g has json_string {literal_string(json_text)};
+        """,
+    )
+    return payload
+
+
 def store_dual_form(
     driver: Driver,
     database: str,
@@ -273,6 +331,10 @@ def store_dual_form(
     """Persist both json_string and in-graph nugget/edge form on an existing subgraph."""
     if kind not in _SUBGRAPH_META:
         raise SubgraphCodecError(f"unknown subgraph kind: {kind}")
+    # SPEC-017 R17-02/R17-08: temporary rows are viewer json_string only.
+    if kind == "temporary_subgraph":
+        return store_viewer_json_string(driver, database, kind, subgraph_id, graph)
+
     id_attr = _SUBGRAPH_META[kind]["id_attr"]
     exists = run_read_exists(
         driver,
