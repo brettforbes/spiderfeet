@@ -350,14 +350,31 @@ class ContextGraphOut(BaseModel):
     json_string: Optional[str] = None
 
 
+class TemporarySubgraphOut(BaseModel):
+    """One TypeDB temporary_subgraph row for the Temporary Subgraph Viewer."""
+
+    temporary_subgraph_id: str
+    scan_name: Optional[str] = None
+    scan_description: Optional[str] = None
+    nodes: List[Dict[str, Any]] = Field(default_factory=list)
+    edges: List[Dict[str, Any]] = Field(default_factory=list)
+
+
+class TemporaryContextListOut(BaseModel):
+    """SPEC-017 list of all temporary subgraphs for a project."""
+
+    project_id: str
+    subgraphs: List[TemporarySubgraphOut] = Field(default_factory=list)
+
+
 class TemporaryContextUpdate(BaseModel):
-    """Widget temporary-context push; temporary_id stripped server-side."""
+    """Deprecated: engine owns temporary writes (SPEC-017 R17-04)."""
 
     nodes: List[Dict[str, Any]] = Field(default_factory=list)
     edges: List[Dict[str, Any]] = Field(default_factory=list)
     temporary_subgraph_id: Optional[str] = Field(
         default=None,
-        description="Existing temporary_subgraph id; created if omitted.",
+        description="Ignored — PUT temporary context is deprecated.",
     )
 
 

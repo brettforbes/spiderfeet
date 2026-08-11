@@ -39,6 +39,7 @@ _SUBGRAPH_META = {
     "scan_result_graph": {"id_attr": "scan_result_id"},
     "project_context": {"id_attr": "project_context_id"},
     "temporary_subgraph": {"id_attr": "temporary_subgraph_id"},
+    "target_context": {"id_attr": "target_context_id"},
 }
 
 

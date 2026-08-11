@@ -170,12 +170,15 @@ def reset_workflow_execution(
     )
 
     temp_id: Optional[str] = None
+    target_seed: Optional[Dict[str, Any]] = None
     if pid:
-        temp_id = reset_temporary_context(
+        reset_temporary_context(
             store,
             project_id=str(pid),
             existing_subgraph_id=existing_temporary_subgraph_id,
         )
+        target_seed = ensure_project_target_temps(store, project_id=str(pid))
+        temp_id = (target_seed.get("temporary") or {}).get("temporary_subgraph_id")
 
     return {
         "status": "RESET",
@@ -186,7 +189,9 @@ def reset_workflow_execution(
         "scan_steps_deleted": deleted_steps,
         "scan_result_graphs_deleted": deleted_result_graphs,
         "temporary_subgraph_id": temp_id,
+        "target_seed": target_seed,
         "cancelled_run_id": cancelled_run_id,
+        "run_ready": True,
     }
 
 
@@ -500,6 +505,133 @@ def _create_temporary_subgraph_row(
         "node_count": node_count,
         "edge_count": edge_count,
         "persisted": True,
+    }
+
+
+def target_context_id_for(target_id: str) -> str:
+    return f"target-context--{uuid5(_RESULT_NS, target_id)}"
+
+
+def _hostnames_for_project(store: Any, project_id: str) -> List[str]:
+    """Collect target hostnames from linked workflows (YAML inputs + target row)."""
+    import yaml
+    from spiderfeet_v2.workflow.loader import workflow_input_values
+    from spiderfeet_v2.workflow.normalize import hostname_from_url
+
+    hosts: List[str] = []
+    seen: set[str] = set()
+    project = store.get_project(project_id) or {}
+    for wid in project.get("workflow_ids") or []:
+        wf = store.get_workflow(wid) or {}
+        tid = wf.get("target_id")
+        if tid:
+            tgt = store.get_target(tid) or {}
+            for raw in (tgt.get("target_value"),):
+                if not raw:
+                    continue
+                host = hostname_from_url(str(raw))
+                if host and host not in seen:
+                    seen.add(host)
+                    hosts.append(host)
+        yaml_text = wf.get("workflow_yaml")
+        if not yaml_text:
+            continue
+        try:
+            doc = yaml.safe_load(yaml_text)
+        except Exception:  # noqa: BLE001
+            continue
+        if not isinstance(doc, dict):
+            continue
+        for raw in workflow_input_values(doc).get("targets") or []:
+            host = hostname_from_url(str(raw))
+            if host and host not in seen:
+                seen.add(host)
+                hosts.append(host)
+    return hosts
+
+
+def ensure_project_target_temps(
+    store: Any,
+    *,
+    project_id: str,
+) -> Dict[str, Any]:
+    """Materialize target_context + ``scan_name=target`` temp (SPEC-017 R17-03).
+
+    Idempotent: if a project temporary_subgraph with ``scan_name=target`` already
+    exists, leave it. Always upserts ``target_context`` when a target entity exists.
+    """
+    if not project_id:
+        return {"ensured": False, "reason": "missing project_id"}
+
+    hostnames = _hostnames_for_project(store, project_id)
+    existing_target_temps = [
+        r
+        for r in list_project_temporary_subgraphs(store, project_id)
+        if r.get("scan_name") == "target"
+    ]
+
+    # Upsert target_context for the first linked target entity (stable id).
+    project = store.get_project(project_id) or {}
+    target_id = None
+    target_row = None
+    for wid in project.get("workflow_ids") or []:
+        wf = store.get_workflow(wid) or {}
+        tid = wf.get("target_id")
+        if tid:
+            target_id = tid
+            target_row = store.get_target(tid)
+            break
+
+    target_context_id = None
+    if target_id and hostnames:
+        from modules_v2._core.graph_builder import nugget_node
+
+        seed_graph: Dict[str, Any] = {"nodes": [], "edges": []}
+        for host in hostnames:
+            seed_graph["nodes"].append(nugget_node("DOMAIN_NAME", host))
+        tc_id = target_context_id_for(str(target_id))
+        target_context_id = tc_id
+        payload = {
+            "kind": "target_context",
+            "target_context_id": tc_id,
+            "target_id": str(target_id),
+            "graph": seed_graph,
+        }
+        try:
+            existing_tc = store.get_subgraph("target_context", tc_id)
+            if existing_tc is None:
+                store.create_subgraph(payload)
+            else:
+                store.update_subgraph("target_context", tc_id, {"graph": seed_graph})
+            # Best-effort attrs via update if store supports extra keys later.
+            _ = target_row
+        except Exception as exc:  # noqa: BLE001
+            _LOG.warning("target_context upsert failed for %s: %s", target_id, exc)
+
+    temp_result: Dict[str, Any] = {"exported": False}
+    if hostnames and not existing_target_temps:
+        temp_result = seed_targets_into_temporary_context(
+            store,
+            project_id=project_id,
+            hostnames=hostnames,
+        )
+    elif existing_target_temps:
+        temp_result = {
+            "exported": True,
+            "temporary_subgraph_id": existing_target_temps[0].get(
+                "temporary_subgraph_id"
+            ),
+            "scan_name": "target",
+            "persisted": True,
+            "already_present": True,
+        }
+
+    return {
+        "ensured": True,
+        "hostnames": hostnames,
+        "target_id": target_id,
+        "target_context_id": target_context_id,
+        "temporary": temp_result,
     }
 
 

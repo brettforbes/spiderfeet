@@ -144,8 +144,9 @@ def test_strip_temporary_ids_unit():
     assert cleaned["edges"][0]["target"] == "IPV4_ADDRESS--1"
 
 
-def test_temporary_context_update_strips_ids(client):
-    from spiderfeet_v2.engine.persist import temporary_subgraph_id_for
+def test_temporary_context_list_and_put_noop(client, fake_stores):
+    """SPEC-017: GET returns subgraphs[]; PUT is a no-op that returns the list."""
+    from spiderfeet_v2.engine.persist import persist_temporary_export
 
     client.post(
         "/api/v1/targets",
@@ -160,51 +161,42 @@ def test_temporary_context_update_strips_ids(client):
         json={"project_id": "project--ctx", "workflow_ids": ["workflow--ctx"]},
     )
 
-    canonical = temporary_subgraph_id_for("project--ctx")
-    payload = {
-        # Foreign id must be coerced to the project's canonical id (R16-03).
-        "temporary_subgraph_id": "temporary-subgraph--foreign",
-        "nodes": [
-            {
-                "id": "DOMAIN_NAME--ctx",
-                "nugget_instance_id": "DOMAIN_NAME--ctx",
-                "nugget_id": "DOMAIN_NAME",
-                "nugget_data": "ctx.example",
-                "temporary_id": "temporary--11111111-1111-4111-8111-111111111111",
-            },
-            {
-                "id": "IPV4_ADDRESS--1-2-3-4",
-                "nugget_instance_id": "IPV4_ADDRESS--1-2-3-4",
-                "nugget_id": "IPV4_ADDRESS",
-                "nugget_data": "1.2.3.4",
-                "temporary_id": "temporary--22222222-2222-4222-8222-222222222222",
-            },
-        ],
-        "edges": [
-            {
-                "source": "temporary--11111111-1111-4111-8111-111111111111",
-                "target": "temporary--22222222-2222-4222-8222-222222222222",
-                "relation": "resolves-to",
-            }
-        ],
-    }
-    r = client.put("/api/v1/projects/project--ctx/contexts/temporary", json=payload)
-    assert r.status_code == 200, r.text
-    body = r.json()
-    assert body["kind"] == "temporary_subgraph"
-    assert body["subgraph_id"] == canonical
-    assert all("temporary_id" not in n for n in body["nodes"])
-    assert body["edges"][0]["source"] == "DOMAIN_NAME--ctx"
-    assert body["edges"][0]["target"] == "IPV4_ADDRESS--1-2-3-4"
+    store, _proj = fake_stores
+    persist_temporary_export(
+        store,
+        project_id="project--ctx",
+        step={"id": "step_a", "context": {"export": "scan_graph"}},
+        scan_graph={
+            "nodes": [
+                {
+                    "id": "DOMAIN_NAME--ctx",
+                    "nugget_instance_id": "DOMAIN_NAME--ctx",
+                    "nugget_id": "DOMAIN_NAME",
+                    "nugget_data": "ctx.example",
+                }
+            ],
+            "edges": [],
+        },
+    )
 
     r = client.get("/api/v1/projects/project--ctx/contexts/temporary")
-    assert r.status_code == 200
-    assert r.json()["subgraph_id"] == canonical
-    assert len(r.json()["nodes"]) == 2
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert body["project_id"] == "project--ctx"
+    assert len(body["subgraphs"]) == 1
+    assert body["subgraphs"][0]["scan_name"] == "step_a"
+    assert body["subgraphs"][0]["nodes"][0]["temporary_id"].startswith("temporary--")
+
+    put = client.put(
+        "/api/v1/projects/project--ctx/contexts/temporary",
+        json={"nodes": [], "edges": [], "temporary_subgraph_id": "temporary-subgraph--x"},
+    )
+    assert put.status_code == 200
+    assert len(put.json()["subgraphs"]) == 1
 
 
-def test_temporary_context_isolated_per_project(client):
-    from spiderfeet_v2.engine.persist import temporary_subgraph_id_for
+def test_temporary_context_isolated_per_project(client, fake_stores):
+    from spiderfeet_v2.engine.persist import persist_temporary_export
 
     for key in ("iso-a", "iso-b"):
         client.post(
@@ -223,17 +215,16 @@ def test_temporary_context_isolated_per_project(client):
             },
         )
 
-    id_a = temporary_subgraph_id_for("project--iso-a")
-    id_b = temporary_subgraph_id_for("project--iso-b")
-    assert id_a != id_b
-
-    for pid, host in (
-        ("project--iso-a", "a.example"),
-        ("project--iso-b", "b.example"),
+    store, _proj = fake_stores
+    for pid, host, step in (
+        ("project--iso-a", "a.example", "a"),
+        ("project--iso-b", "b.example", "b"),
     ):
-        r = client.put(
-            f"/api/v1/projects/{pid}/contexts/temporary",
-            json={
+        persist_temporary_export(
+            store,
+            project_id=pid,
+            step={"id": step, "context": {"export": "scan_graph"}},
+            scan_graph={
                 "nodes": [
                     {
                         "id": f"DOMAIN_NAME--{host}",
@@ -245,14 +236,15 @@ def test_temporary_context_isolated_per_project(client):
                 "edges": [],
             },
         )
-        assert r.status_code == 200, r.text
 
     ga = client.get("/api/v1/projects/project--iso-a/contexts/temporary").json()
     gb = client.get("/api/v1/projects/project--iso-b/contexts/temporary").json()
-    assert ga["subgraph_id"] == id_a
-    assert gb["subgraph_id"] == id_b
-    assert [n["nugget_data"] for n in ga["nodes"]] == ["a.example"]
-    assert [n["nugget_data"] for n in gb["nodes"]] == ["b.example"]
+    assert len(ga["subgraphs"]) == 1 and len(gb["subgraphs"]) == 1
+    assert ga["subgraphs"][0]["temporary_subgraph_id"] != gb["subgraphs"][0][
+        "temporary_subgraph_id"
+    ]
+    assert ga["subgraphs"][0]["nodes"][0]["nugget_data"] == "a.example"
+    assert gb["subgraphs"][0]["nodes"][0]["nugget_data"] == "b.example"
 
 
 def test_project_context_empty(client):

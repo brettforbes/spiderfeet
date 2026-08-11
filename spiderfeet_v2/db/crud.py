@@ -73,6 +73,7 @@ SUBGRAPH_KINDS = (
     "scan_result_graph",
     "project_context",
     "temporary_subgraph",
+    "target_context",
 )
 
 _SUBGRAPH_META = {
@@ -96,6 +97,13 @@ _SUBGRAPH_META = {
         "owner_id_attr": "project_id",
         "owner_role": "project",
         "json_owner_key": "project_id",
+    },
+    "target_context": {
+        "id_attr": "target_context_id",
+        "owner_type": "target",
+        "owner_id_attr": "target_id",
+        "owner_role": "target",
+        "json_owner_key": "target_id",
     },
 }
 
