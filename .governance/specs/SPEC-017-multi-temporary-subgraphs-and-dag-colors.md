@@ -30,9 +30,9 @@
 
 1. **Many TypeDB `temporary_subgraph` relations per project** — one per semantic export (and one for target). Retire the single uuid5-per-project merged blob as source of truth.
 2. **Per-node canvas identity ≠ subgraph identity.** Each node gets `temporary_id = temporary--<uuidv4>`; edges remap to those ids so uuid5 `nugget_instance_id` overlaps can coexist on one canvas. TypeDB key remains `temporary_subgraph_id = temporary-subgraph--<uuidv4>` (one id per subgraph relation holding many nodes/edges). Stamp `source` = `scan_name` on nodes and edges.
-3. **Reset Workflow** deletes **all** project temporary subgraphs and all current scan-step results; then re-seeds target into `target_context` + a project `temporary_subgraph`.
+3. **Reset Workflow** deletes **all** project temporary subgraphs and all current scan-step results. It does **not** re-create a target temporary subgraph — viewer is empty until the next Run / Scan Now.
 4. **Run Workflow stays disabled** after a run completes/aborts until **Reset Workflow** is pressed.
-5. **Target on project open / workflow load** (before scans): materialize target nugget(s) into `target_context`, copy into `temporary_subgraph` with `scan_name = target` so the viewer shows it immediately.
+5. **Target temporary subgraph on first Run / Scan Now only** (not on project open): when **Run Workflow** or the first **Scan Now** is pressed — the same moment the DAG Target node colour state changes — upsert `target_context` and create a project `temporary_subgraph` with `scan_name = target`. Project open / Composer load must not create that temp row.
 6. **On exporting step FINISHED:** wave control and DAG colour updates must not wait on temp persist; engine copies `scan_result_graph` → new `temporary_subgraph`; viewer re-GETs the project temp list.
 7. **Engine/API owns writes;** Temporary Subgraph Viewer is **read-only** (no client PUT of temp graphs as source of truth).
 8. **This phase persists `json_string`** (viewer-ready `{nodes,edges}` with stamps). Native nugget/edge duplication into temp is out of scope.
@@ -82,8 +82,8 @@ Make temporary context TypeDB-first and multi-subgraph: every exporting scan (an
 |----|-------------|
 | R17-01 | **Schema load-safe.** Repair `.seed/spiderfeet_v2_semantic.tql`: define `scan_name`, `scan_description`, `target_nugget_type` (and any other missing attribute decls); add `scan_step plays temporary_subgraph:scan_step`; keep/extend `project_temporary_subgraph_ids` for multi-row; load cleanly on a scratch DB per typedb skill checklist; document reload notes for `spiderfeet-actual`. |
 | R17-02 | **Per-export temporary_subgraph write.** When a step with semantic export to context finishes and four forms exist, copy `scan_result_graph` into a **new** `temporary_subgraph` (uuid4 id), stamp every node with `temporary_id=temporary--<uuidv4>` and `source=<scan_name>`, remap edges to those ids and stamp `source`, persist as `json_string`, link `project` + `scan_step`, set `scan_name` / `scan_description`. Non-blocking / best-effort (must not stall waves). Retire merge-into-singleton uuid5 as the write path. |
-| R17-03 | **Target materialize on open.** API/path used when a project (with workflow target) is opened: write/update `target_context` from target nugget(s); copy into a project `temporary_subgraph` with `scan_name=target` so GET list returns it before any scan runs. |
-| R17-04 | **List temporary contexts API.** `GET` for a project returns `{ subgraphs: [{ temporary_subgraph_id, scan_name, scan_description, nodes, edges }] }` for **all** project temps. Deprecate or no-op the old merged PUT as source of truth. **Reset** deletes every project `temporary_subgraph`, clears scan steps/results (existing reset), then re-seeds target temp (R17-03). |
+| R17-03 | **Target materialize on Run / Scan Now.** When `run_workflow` or `run_single_step` starts for a project (live, not dry-run), upsert `target_context` from target nugget(s) and create a project `temporary_subgraph` with `scan_name=target` if one is not already present. Must **not** run on project-open / `GET …/complete`. Host reloads the temp list when the run/scan starts so the viewer shows the target as the DAG Target colour changes. |
+| R17-04 | **List temporary contexts API.** `GET` for a project returns `{ subgraphs: [{ temporary_subgraph_id, scan_name, scan_description, nodes, edges }] }` for **all** project temps. Deprecate or no-op the old merged PUT as source of truth. **Reset** deletes every project `temporary_subgraph` and clears scan steps/results; it does **not** re-seed a target temp (R17-03). |
 | R17-05 | **Run-until-reset contract.** After a workflow run reaches a terminal state, the host must not treat Run as available until Reset succeeds. Backend reset remains the wipe+reseed authority; document/status fields the host needs if any beyond existing reset/status endpoints. |
 | R17-06 | **Tests + OpenAPI.** Cover multi-row create, list shape, reset wipe+target reseed, no client-id cross-project write; OpenAPI updated; targeted pytest green. |
 
@@ -108,7 +108,7 @@ Make temporary context TypeDB-first and multi-subgraph: every exporting scan (an
 
 | ID | Requirement |
 |----|-------------|
-| R17-14 | **E2E smoke evidence.** Open project → target in viewer → Run → each exporting FINISHED grows list via GET → labels centre → cluster icon → Reset wipes + Run re-enabled. Doc under `.docs/docs-for-cli-tools/`. |
+| R17-14 | **E2E smoke evidence.** Open project → viewer empty of temps → Run or Scan Now → target temp appears with DAG Target colour change → each exporting FINISHED grows list via GET → labels centre → cluster icon → Reset wipes (empty viewer) + Run re-enabled. Doc under `.docs/docs-for-cli-tools/`. |
 | R17-15 | **GOV-08 exploratory review** with scenario matrix. **[OPERATOR GATE]** |
 
 ---
@@ -134,4 +134,4 @@ Hard edge: host **B1/B2** require backend **A4** list API. YAML **C*** is indepe
 
 ## 6. Traceability
 
-Requirement IDs `R17-01`…`R17-15`. Issues tagged `[SPEC-017]`. Milestone “done” (except D2) = operator can open a project, see target in Temporary Subgraph Viewer, run a workflow, watch per-step temps appear via API reload, cluster/centre subgraphs, reset to clear, and use new YAML color settings.
+Requirement IDs `R17-01`…`R17-15`. Issues tagged `[SPEC-017]`. Milestone “done” (except D2) = operator can open a project (empty temp viewer), press Run/Scan Now and see the target temp appear with the Target colour change, watch per-step temps appear via API reload, cluster/centre subgraphs, reset to clear (no auto re-seed), and use new YAML color settings.

@@ -75,19 +75,13 @@ def get_project_complete(
     """Return project attrs + linked workflows with ``workflow_yaml`` inline.
 
     Includes a parsed step/target summary so Composer can load in one call.
-    SPEC-017: also ensures target_context + ``scan_name=target`` temporary row.
+
+    SPEC-017: does **not** create a ``scan_name=target`` temporary_subgraph —
+    that happens on Run Workflow / Scan Now (R17-03).
     """
     payload = assemble_project_complete(store, project_id)
     if payload is None:
         raise HTTPException(status_code=404, detail="Project not found")
-    try:
-        from spiderfeet_v2.engine.persist import ensure_project_target_temps
-
-        payload["target_context"] = ensure_project_target_temps(
-            store, project_id=project_id
-        )
-    except Exception as exc:  # noqa: BLE001 — Composer load must still return YAML
-        payload["target_context"] = {"ensured": False, "error": str(exc)}
     return payload
 
 

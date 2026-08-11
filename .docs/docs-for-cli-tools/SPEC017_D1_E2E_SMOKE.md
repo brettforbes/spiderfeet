@@ -49,13 +49,14 @@ Code-path smoke (merged on develop; interactive UI = D2):
 
 Restart API + widget + yaml-workflow-widget from **`develop`** (schema reload per `SPEC017_A1_SCHEMA_RELOAD.md` if TypeDB still has the old schema), then on a seeded project (e.g. k2am):
 
-1. **Project open** → Temporary Subgraph Viewer shows target (`scan_name=target`) before any scan.
-2. **Run Workflow** → each exporting step FINISHED grows `GET …/contexts/temporary` `subgraphs[]` (viewer reloads; no client PUT as source of truth).
-3. **Chip click** centres that subgraph; **no delete** control on chips.
-4. **Cluster icon** packs subgraphs with small separation.
-5. After terminal run → **Run stays disabled** until **Reset Workflow**.
-6. **Reset** wipes temps, reseeds target, returns `run_ready: true`, Run re-enabled.
-7. YAML Settings → status + edge colors show picker **and** hex; defaults match SPEC-017 table (both themes).
+1. **Project open** → Temporary Subgraph Viewer has **no** target temp yet (empty of temps).
+2. **Run Workflow** or first **Scan Now** → DAG Target colour changes **and** `scan_name=target` temp appears (viewer reloads list).
+3. Each exporting step FINISHED grows `GET …/contexts/temporary` `subgraphs[]` (no client PUT as source of truth).
+4. **Chip click** centres that subgraph; **no delete** control on chips.
+5. **Cluster icon** packs subgraphs with small separation.
+6. After terminal run → **Run stays disabled** until **Reset Workflow**.
+7. **Reset** wipes all temps (viewer empty — no target re-seed), returns `run_ready: true`, Run re-enabled.
+8. YAML Settings → status + edge colors show picker **and** hex; defaults match SPEC-017 table (both themes).
 
 ## Residual
 

@@ -169,16 +169,12 @@ def reset_workflow_execution(
         project_id=pid,
     )
 
-    temp_id: Optional[str] = None
-    target_seed: Optional[Dict[str, Any]] = None
     if pid:
         reset_temporary_context(
             store,
             project_id=str(pid),
             existing_subgraph_id=existing_temporary_subgraph_id,
         )
-        target_seed = ensure_project_target_temps(store, project_id=str(pid))
-        temp_id = (target_seed.get("temporary") or {}).get("temporary_subgraph_id")
 
     return {
         "status": "RESET",
@@ -188,8 +184,10 @@ def reset_workflow_execution(
         "steps_reset": len(forms.steps),
         "scan_steps_deleted": deleted_steps,
         "scan_result_graphs_deleted": deleted_result_graphs,
-        "temporary_subgraph_id": temp_id,
-        "target_seed": target_seed,
+        # SPEC-017: Reset wipes temps only — target temp is recreated on next
+        # Run Workflow / Scan Now (R17-03 / R17-04).
+        "temporary_subgraph_id": None,
+        "target_seed": None,
         "cancelled_run_id": cancelled_run_id,
         "run_ready": True,
     }
@@ -557,8 +555,10 @@ def ensure_project_target_temps(
 ) -> Dict[str, Any]:
     """Materialize target_context + ``scan_name=target`` temp (SPEC-017 R17-03).
 
-    Idempotent: if a project temporary_subgraph with ``scan_name=target`` already
-    exists, leave it. Always upserts ``target_context`` when a target entity exists.
+    Call from live ``run_workflow`` / ``run_single_step`` start only — not from
+    project open or Reset. Idempotent: if a project temporary_subgraph with
+    ``scan_name=target`` already exists, leave it. Always upserts
+    ``target_context`` when a target entity exists.
     """
     if not project_id:
         return {"ensured": False, "reason": "missing project_id"}

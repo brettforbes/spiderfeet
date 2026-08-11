@@ -1,4 +1,4 @@
-"""SPEC-017 A3/A6 — ensure_project_target_temps on open/reset path."""
+"""SPEC-017 A3/A6 — ensure_project_target_temps on Run/Scan Now; Reset wipes only."""
 
 from __future__ import annotations
 
@@ -64,7 +64,7 @@ def test_ensure_creates_target_temp_once() -> None:
     assert len(list_project_temporary_subgraphs(store, "project--ensure")) == 1
 
 
-def test_reset_returns_run_ready_and_reseeds_target() -> None:
+def test_reset_returns_run_ready_and_wipes_without_reseed() -> None:
     store = FakeCrudStore()
     store.create_target(
         {
@@ -91,12 +91,15 @@ def test_reset_returns_run_ready_and_reseeds_target() -> None:
             "scan_status": "FINISHED",
         }
     )
+    ensure_project_target_temps(store, project_id="project--rst")
+    assert len(list_project_temporary_subgraphs(store, "project--rst")) == 1
 
     report = reset_workflow_execution(
         store, workflow_id="workflow--rst", project_id="project--rst"
     )
     assert report["status"] == "RESET"
     assert report["run_ready"] is True
+    assert report["temporary_subgraph_id"] is None
+    assert report["target_seed"] is None
     temps = list_project_temporary_subgraphs(store, "project--rst")
-    assert len(temps) == 1
-    assert temps[0]["scan_name"] == "target"
+    assert temps == []
