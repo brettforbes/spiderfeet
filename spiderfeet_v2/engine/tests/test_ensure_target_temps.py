@@ -15,7 +15,8 @@ id: wf-ensure
 name: ensure
 author: test
 inputs:
-  targets: [https://ensure.example]
+  targets:
+    values: [https://ensure.example]
 steps:
   - id: sfp_cli_subfinder
     uses: tool.subfinder
