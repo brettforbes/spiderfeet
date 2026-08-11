@@ -14,6 +14,7 @@ Governed SpiderFeet fork. Read this before doing substantive work.
 | Active spec (narrative v2 + IP classify) | `.governance/specs/SPEC-005-narrative-v2-ip-classify.md` |
 | Active spec (Structure docs + ontology) | `.governance/specs/SPEC-006-tool-structure-docs-ontology.md` |
 | Active spec (CLI workflow DSL) | `.governance/specs/SPEC-007-cli-workflow-dsl.md` |
+| Active spec (multi temp subgraphs + DAG colors) | `.governance/specs/SPEC-017-multi-temporary-subgraphs-and-dag-colors.md` · agent plan `.governance/project/SPEC017_AGENT_PLAN.md` · issue index `.governance/project/SPEC017_ISSUE_INDEX.md` |
 | Project rules | `.cursor/rules/proj-*.mdc` (subset also under `.governance/project/rules/`) |
 | Stage plan | `.seed/02_stage_by_stage_reengineer.md` |
 | Backlog | `.governance/project/BACKLOG.md` |
