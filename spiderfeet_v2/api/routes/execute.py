@@ -58,9 +58,11 @@ def reset_workflow(
     store: CrudStore = Depends(get_crud_store),
     projections: ProjectionStore = Depends(get_projection_store),
 ) -> Dict[str, Any]:
-    """Clear all step scan results + temporary context; keep workflow YAML.
+    """Clear all step scan results + temporary subgraphs; keep workflow YAML.
 
     Cancels any in-flight async run for this workflow first (R15-04).
+    SPEC-017: response includes ``run_ready: true`` so the host may re-enable
+    Run Workflow after Reset (Run stays disabled after a terminal run until then).
     """
     if store.get_workflow(workflow_id) is None:
         raise HTTPException(status_code=404, detail="Workflow not found")
