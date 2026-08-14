@@ -66,6 +66,18 @@ all_domains:
     - $step.vars.subdomains
   distinct: true
 
+# Shape B2 — union including workflow seed targets (SPEC-018 / 12A subfinder)
+# When graph apex detection is empty, normalized `$workflow.inputs.targets` must
+# still appear in downstream lists (nmap, httpx). Uses the step's `input.normalize`
+# (e.g. `hostname_from_url`) when resolving workflow refs.
+all_domains_with_seeds:
+  type: string_list
+  union:
+    - $step.vars.apex_domains
+    - $step.vars.subdomains
+    - $workflow.inputs.targets
+  distinct: true
+
 # Shape C — from prior step
 hosts_in:
   type: string_list

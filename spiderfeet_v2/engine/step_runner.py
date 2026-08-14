@@ -383,7 +383,11 @@ def run_single_step(
 
             graph = module_result.get("graph") or {"nodes": [], "edges": []}
             try:
-                output_vars = evaluate_output_vars(step, graph)
+                output_vars = evaluate_output_vars(
+                    step,
+                    graph,
+                    workflow_inputs=workflow_inputs,
+                )
             except GseError as exc:
                 output_vars = {}
                 module_result = dict(module_result)
