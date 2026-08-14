@@ -19,6 +19,7 @@ EXAMPLE_12A = ROOT / ".seed" / "12A_Workflow_YAML_Example.yaml"
 NS = ROOT / ".docs" / "docs-for-cli-tools" / "nugget_structure"
 
 NMAP_FIXTURE = NS / "nmap_tcp_top_ports_permissive_proposed_nuggets_edges.json"
+KATANA_FIXTURE = NS / "katana_from_httpx_upside_com_proposed_nuggets_edges.json"
 
 
 @pytest.fixture(scope="module")
@@ -75,3 +76,47 @@ def test_nerva_empty_ip_port_list_is_empty_input(doc_12a):
     resolved = resolve_step_inputs(nerva_step, env)
     assert resolved == []
     assert (nerva_step.get("input") or {}).get("empty") == "skip_step"
+
+
+def test_katana_crawl_urls_non_empty_on_corpus(doc_12a):
+    step = next(s for s in doc_12a["steps"] if s["id"] == "sfp_cli_katana")
+    graph = _graph_from_fixture(KATANA_FIXTURE)
+    urls = evaluate_output_vars(step, graph)["crawl_urls"]
+    assert len(urls) >= 100
+
+
+def test_nuclei_input_from_katana_vars(doc_12a):
+    katana_step = next(s for s in doc_12a["steps"] if s["id"] == "sfp_cli_katana")
+    nuclei_step = next(s for s in doc_12a["steps"] if s["id"] == "sfp_cli_nuclei")
+    graph = _graph_from_fixture(KATANA_FIXTURE)
+    crawl_urls = evaluate_output_vars(katana_step, graph)["crawl_urls"]
+    assert crawl_urls
+
+    env = build_env(
+        workflow_inputs={"targets": ["example.com"]},
+        steps={"sfp_cli_katana": {"vars": {"crawl_urls": crawl_urls[:3]}}},
+    )
+    resolved = resolve_step_inputs(nuclei_step, env)
+    assert resolved == crawl_urls[:3]
+
+    temps = TempFileManager()
+    try:
+        cmd = build_step_command(nuclei_step, resolved, temps)
+        assert "-l" in cmd.argv
+        list_idx = cmd.argv.index("-l")
+        assert cmd.argv[list_idx + 1] == str(cmd.input_path)
+        lines = cmd.input_path.read_text(encoding="utf-8").strip().splitlines()
+        assert lines == crawl_urls[:3]
+    finally:
+        temps.cleanup()
+
+
+def test_nuclei_empty_crawl_urls_is_skip_step(doc_12a):
+    nuclei_step = next(s for s in doc_12a["steps"] if s["id"] == "sfp_cli_nuclei")
+    env = build_env(
+        workflow_inputs={"targets": ["example.com"]},
+        steps={"sfp_cli_katana": {"vars": {"crawl_urls": []}}},
+    )
+    resolved = resolve_step_inputs(nuclei_step, env)
+    assert resolved == []
+    assert (nuclei_step.get("input") or {}).get("empty") == "skip_step"
