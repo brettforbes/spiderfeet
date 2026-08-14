@@ -181,19 +181,8 @@ def test_run_persists_four_forms_vars_and_export(store: FakeCrudStore) -> None:
     assert rg is not None
     assert rg["scan_instance_id"] == result.scan_instance_id
 
-    # Temp export runs on a daemon thread so large graphs do not block waves.
-    import threading
-    import time
-
-    for t in threading.enumerate():
-        if t.name.startswith("temp-export-"):
-            t.join(timeout=2.0)
-    temp = None
-    for _ in range(50):
-        temp = store.get_subgraph("temporary_subgraph", result.temporary_subgraph_id)
-        if temp is not None:
-            break
-        time.sleep(0.02)
+    # SPEC-018 R18-06: temp export is synchronous before FINISHED.
+    temp = store.get_subgraph("temporary_subgraph", result.temporary_subgraph_id)
     assert temp is not None
     assert (temp.get("graph") or {}).get("nodes") or temp.get("nodes")
 
