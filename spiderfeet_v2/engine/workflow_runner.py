@@ -104,6 +104,7 @@ def _skip_failed_dependency(
     dry_run: bool,
     reason: str,
     existing_temporary_subgraph_id: Optional[str],
+    run_id: Optional[str] = None,
 ) -> StepRunResult:
     """Persist a SKIPPED shell when an upstream need failed/was skipped."""
     dsl_step_id = str(step.get("id") or "")
@@ -156,7 +157,12 @@ def _skip_failed_dependency(
         step=step,
         module_result=empty_result,
         output_vars={},
+        input_total=0,
+        input_done=0,
     )
+    from spiderfeet_v2.engine.step_runner import _report_input_progress
+
+    _report_input_progress(run_id, dsl_step_id, input_total=0, input_done=0)
     return StepRunResult(
         workflow_id=workflow_id,
         step_id=dsl_step_id,
@@ -198,6 +204,7 @@ def run_workflow(
     existing_temporary_subgraph_id: Optional[str] = None,
     stop_on_error: bool = False,
     should_cancel: Optional[Callable[[], bool]] = None,
+    run_id: Optional[str] = None,
 ) -> WorkflowRunResult:
     """Chain workflow steps by ``needs``, thread vars, accumulate temp context.
 
@@ -256,6 +263,7 @@ def run_workflow(
                 prior_vars=prior_snapshot,
                 timeout=timeout,
                 existing_temporary_subgraph_id=current_temp,
+                run_id=run_id,
             )
         except OrchestratorError as exc:
             return StepRunResult(
@@ -290,6 +298,7 @@ def run_workflow(
                     dry_run=dry_run,
                     reason=reason,
                     existing_temporary_subgraph_id=temp_id,
+                    run_id=run_id,
                 )
                 results.append(skip)
                 _record_prior_vars(prior_vars, skip, step, dry_run=dry_run)

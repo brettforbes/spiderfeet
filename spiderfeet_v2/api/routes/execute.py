@@ -6,7 +6,8 @@ SPEC-015 adds async execute (R15-01) via the in-memory run registry.
 
 from __future__ import annotations
 
-from typing import Any, Dict, Optional
+import json
+from typing import Any, Dict, Optional, Tuple
 
 from fastapi import APIRouter, Body, Depends, HTTPException
 
@@ -29,10 +30,59 @@ from spiderfeet_v2.engine.persist import (
     ensure_project_target_temps,
     reset_workflow_execution,
 )
-from spiderfeet_v2.engine.run_registry import get_run_registry
+from spiderfeet_v2.engine.run_registry import STATE_RUNNING, get_run_registry
 from spiderfeet_v2.workflow.typedb_convert import scan_instance_id_for
 
 router = APIRouter(tags=["v2-execute"])
+
+
+def _input_progress_from_scan_results(
+    row: Optional[Dict[str, Any]],
+) -> Tuple[Optional[int], Optional[int]]:
+    if not row:
+        return None, None
+    raw = row.get("scan_results")
+    if not raw:
+        return None, None
+    try:
+        payload = json.loads(raw) if isinstance(raw, str) else dict(raw)
+    except (json.JSONDecodeError, TypeError, ValueError):
+        return None, None
+    total = payload.get("input_total")
+    done = payload.get("input_done")
+    if total is None and done is None:
+        return None, None
+    return (
+        int(total) if total is not None else None,
+        int(done) if done is not None else None,
+    )
+
+
+def _attach_input_progress(
+    step_out: Dict[str, Any],
+    *,
+    scan_status: str,
+    store: CrudStore,
+    scan_instance_id: str,
+    registry_run_id: Optional[str],
+    step_id: str,
+) -> None:
+    """Merge live registry or persisted scan_results input progress (R18-07)."""
+    if registry_run_id:
+        prog = get_run_registry().get_step_input_progress(registry_run_id, step_id)
+        if prog is not None:
+            step_out["input_total"] = prog.input_total
+            step_out["input_done"] = prog.input_done
+            return
+
+    if scan_status == "UNKNOWN":
+        return
+
+    row = store.get_scan_step(scan_instance_id)
+    total, done = _input_progress_from_scan_results(row)
+    if total is not None or done is not None:
+        step_out["input_total"] = total if total is not None else 0
+        step_out["input_done"] = done if done is not None else 0
 
 
 def _first_temporary_id(
@@ -87,6 +137,7 @@ def reset_workflow(
 @router.get(
     "/workflows/{workflow_id}/status",
     response_model=WorkflowStatusOut,
+    response_model_exclude_none=True,
     status_code=200,
 )
 def get_workflow_status(
@@ -115,19 +166,30 @@ def get_workflow_status(
                     step_ids.append(str(step["id"]))
 
     steps_out: list[Dict[str, Any]] = []
+    registry = get_run_registry()
+    active = registry.active_for_workflow(workflow_id)
+    progress_run_id = (
+        active.run_id if active and active.state == STATE_RUNNING else None
+    )
     for step_id in step_ids:
         sid = scan_instance_id_for(workflow_id, step_id)
         status = store.get_scan_status(sid)
-        steps_out.append(
-            {
-                "step_id": step_id,
-                "scan_instance_id": sid,
-                "scan_status": status or "UNKNOWN",
-            }
+        scan_status = status or "UNKNOWN"
+        step_out: Dict[str, Any] = {
+            "step_id": step_id,
+            "scan_instance_id": sid,
+            "scan_status": scan_status,
+        }
+        _attach_input_progress(
+            step_out,
+            scan_status=scan_status,
+            store=store,
+            scan_instance_id=sid,
+            registry_run_id=progress_run_id,
+            step_id=step_id,
         )
+        steps_out.append(step_out)
 
-    registry = get_run_registry()
-    active = registry.active_for_workflow(workflow_id)
     latest = active or registry.latest_for_workflow(workflow_id)
     return {
         "workflow_id": workflow_id,

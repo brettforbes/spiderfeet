@@ -126,6 +126,25 @@ def _find_step(doc: Mapping[str, Any], step_key: str) -> Dict[str, Any]:
     raise OrchestratorError(f"step not found in workflow: {step_key}")
 
 
+def _report_input_progress(
+    run_id: Optional[str],
+    step_id: str,
+    *,
+    input_total: int,
+    input_done: int,
+) -> None:
+    if not run_id:
+        return
+    from spiderfeet_v2.engine.run_registry import get_run_registry
+
+    get_run_registry().set_step_input_progress(
+        run_id,
+        step_id,
+        input_total=input_total,
+        input_done=input_done,
+    )
+
+
 def _prior_vars_from_store(
     store: Any,
     workflow_id: str,
@@ -209,6 +228,7 @@ def run_single_step(
     prior_vars: Optional[Mapping[str, Mapping[str, List[str]]]] = None,
     timeout: Optional[float] = None,
     existing_temporary_subgraph_id: Optional[str] = None,
+    run_id: Optional[str] = None,
 ) -> StepRunResult:
     """Run one workflow step end-to-end (or dry-run resolve without invoking CLI)."""
     # SPEC-017 R17-03: Scan Now (and per-step runs) seed target temp at start.
@@ -303,6 +323,11 @@ def run_single_step(
             step=step,
             module_result=empty_result,
             output_vars={},
+            input_total=0,
+            input_done=0,
+        )
+        _report_input_progress(
+            run_id, dsl_step_id, input_total=0, input_done=0
         )
         return StepRunResult(
             workflow_id=workflow_id,
@@ -353,6 +378,10 @@ def run_single_step(
             module_id=module_id,
             step=step,
             scan_status=STATUS_STARTING,
+        )
+        n_inputs = len(input_values)
+        _report_input_progress(
+            run_id, dsl_step_id, input_total=n_inputs, input_done=0
         )
         store.update_scan_step(scan_id, {"scan_status": STATUS_RUNNING})
 
@@ -427,6 +456,11 @@ def run_single_step(
                 step=step,
                 module_result=module_result,
                 output_vars=output_vars,
+                input_total=n_inputs,
+                input_done=n_inputs,
+            )
+            _report_input_progress(
+                run_id, dsl_step_id, input_total=n_inputs, input_done=n_inputs
             )
             forms_persisted = True
         except OrchestratorError:
