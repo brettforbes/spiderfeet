@@ -28,6 +28,58 @@ steps:
 """
 
 
+def test_ensure_dedupes_duplicate_target_temps() -> None:
+    """Race leftovers: two scan_name=target rows → keep one on ensure."""
+    store = FakeCrudStore()
+    store.create_target(
+        {
+            "target_id": "target--dup",
+            "target_value": "dup.example",
+            "target_nugget_type": "DOMAIN_NAME",
+        }
+    )
+    store.create_workflow(
+        {
+            "workflow_id": "workflow--dup",
+            "target_id": "target--dup",
+            "project_id": "project--dup",
+            "workflow_yaml": YAML,
+        }
+    )
+    store.create_project(
+        {
+            "project_id": "project--dup",
+            "workflow_ids": ["workflow--dup"],
+        }
+    )
+    from spiderfeet_v2.engine.persist import seed_targets_into_temporary_context
+
+    # Bypass ensure re-check by writing two rows with different ids directly.
+    seed_targets_into_temporary_context(
+        store, project_id="project--dup", hostnames=["dup.example"]
+    )
+    # Force a second row as if a race won twice.
+    store.create_subgraph(
+        {
+            "kind": "temporary_subgraph",
+            "temporary_subgraph_id": "temporary-subgraph--dup-extra",
+            "project_id": "project--dup",
+            "scan_name": "target",
+            "scan_description": "Workflow target",
+            "graph": {
+                "produced_at": "2099-01-01T00:00:00Z",
+                "nodes": [],
+                "edges": [],
+            },
+        }
+    )
+    assert len(list_project_temporary_subgraphs(store, "project--dup")) == 2
+    ensure_project_target_temps(store, project_id="project--dup")
+    rows = list_project_temporary_subgraphs(store, "project--dup")
+    assert len(rows) == 1
+    assert rows[0]["scan_name"] == "target"
+
+
 def test_ensure_creates_target_temp_once() -> None:
     store = FakeCrudStore()
     store.create_target(

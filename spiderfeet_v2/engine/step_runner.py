@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import logging
-import threading
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Mapping, Optional
 
@@ -397,6 +396,30 @@ def run_single_step(
                 if module_result.get("status") in MODULE_OK:
                     module_result["status"] = "ERROR"
 
+            temp_id = existing_temporary_subgraph_id
+            exported = False
+            # SPEC-018 R18-06: persist temp subgraph before FINISHED (overrides SPEC-017 async).
+            if project_id and step_exports_scan_graph(step):
+                try:
+                    export_result = persist_temporary_export(
+                        store,
+                        project_id=project_id,
+                        step=dict(step),
+                        scan_graph={
+                            "nodes": list((graph or {}).get("nodes") or []),
+                            "edges": list((graph or {}).get("edges") or []),
+                        },
+                        scan_instance_id=scan_id,
+                    )
+                    temp_id = export_result.get("temporary_subgraph_id") or temp_id
+                    exported = bool(temp_id)
+                except Exception as exc:  # noqa: BLE001
+                    module_result = dict(module_result)
+                    module_result["error"] = (
+                        f"{module_result.get('error') or ''}; temp export: {exc}".strip("; ")
+                    )
+                    module_result["status"] = "ERROR"
+
             persisted = persist_module_result(
                 store,
                 scan_instance_id=scan_id,
@@ -428,44 +451,6 @@ def run_single_step(
             raise OrchestratorError(
                 f"{module_id} failed while RUNNING: {exc}"
             ) from exc
-
-        # Temporary-context export is UI enrichment only. Large nmap graphs can
-        # stall TypeDB writes for minutes and used to block the wave thread so
-        # nerva/katana never started. Schedule export off the critical path.
-        exported = False
-        temp_id = existing_temporary_subgraph_id
-        if project_id and step_exports_scan_graph(step):
-            graph_snapshot = {
-                "nodes": list((graph or {}).get("nodes") or []),
-                "edges": list((graph or {}).get("edges") or []),
-            }
-            step_snapshot = dict(step)
-            exported = True
-
-            def _export_async() -> None:
-                nonlocal temp_id
-                try:
-                    result = persist_temporary_export(
-                        store,
-                        project_id=project_id,
-                        step=step_snapshot,
-                        scan_graph=graph_snapshot,
-                        scan_instance_id=scan_id,
-                    )
-                    if result.get("temporary_subgraph_id"):
-                        temp_id = result["temporary_subgraph_id"]
-                except Exception as exc:  # noqa: BLE001
-                    _LOG.warning(
-                        "temporary export failed for %s (%s); keeping step result",
-                        dsl_step_id,
-                        exc,
-                    )
-
-            threading.Thread(
-                target=_export_async,
-                name=f"temp-export-{dsl_step_id}",
-                daemon=True,
-            ).start()
 
         terminal = persisted["scan_status"]
         ok = terminal == STATUS_FINISHED
