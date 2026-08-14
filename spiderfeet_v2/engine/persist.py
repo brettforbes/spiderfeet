@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import json
 import logging
-from threading import Lock
+from datetime import datetime, timezone
+from threading import RLock
 from typing import Any, Dict, List, Mapping, Optional
 from uuid import UUID, uuid5
 
@@ -22,8 +23,21 @@ from spiderfeet_v2.workflow.context_export import (
 from spiderfeet_v2.workflow.typedb_convert import dump_canonical_yaml
 
 _RESULT_NS = UUID("6ba7b810-9dad-11d1-80b4-00c04fd430c8")
-_TEMP_CONTEXT_LOCK = Lock()
+# RLock: ensure_project_target_temps holds the lock across seed_targets_*.
+_TEMP_CONTEXT_LOCK = RLock()
 _LOG = logging.getLogger(__name__)
+
+
+def _utc_now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def with_produced_at(graph: Mapping[str, Any]) -> Dict[str, Any]:
+    """Attach production timestamp for Temporary Subgraph Viewer chip order."""
+    out = dict(graph)
+    if not out.get("produced_at"):
+        out["produced_at"] = _utc_now_iso()
+    return out
 
 
 def scan_result_id_for(scan_instance_id: str) -> str:
@@ -467,14 +481,15 @@ def _create_temporary_subgraph_row(
     scan_instance_id: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Create one temporary_subgraph row; never raise (UI enrichment only)."""
-    node_count = len(payload_graph.get("nodes") or [])
-    edge_count = len(payload_graph.get("edges") or [])
+    graph = with_produced_at(payload_graph)
+    node_count = len(graph.get("nodes") or [])
+    edge_count = len(graph.get("edges") or [])
     payload: Dict[str, Any] = {
         "kind": "temporary_subgraph",
         "temporary_subgraph_id": sg_id,
         "project_id": project_id,
         "scan_name": scan_name,
-        "graph": dict(payload_graph),
+        "graph": graph,
     }
     if scan_description:
         payload["scan_description"] = scan_description
@@ -548,6 +563,56 @@ def _hostnames_for_project(store: Any, project_id: str) -> List[str]:
     return hosts
 
 
+def _target_temp_rows(store: Any, project_id: str) -> List[Dict[str, Any]]:
+    return [
+        r
+        for r in list_project_temporary_subgraphs(store, project_id)
+        if r.get("scan_name") == "target"
+    ]
+
+
+def _dedupe_target_temps(store: Any, rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Keep the earliest target temp; delete duplicate rows (race leftovers)."""
+    if len(rows) <= 1:
+        return rows
+
+    def _produced_key(row: Dict[str, Any]) -> str:
+        graph = row.get("graph") if isinstance(row.get("graph"), dict) else {}
+        produced = graph.get("produced_at") if isinstance(graph, dict) else None
+        if not produced and row.get("json_string"):
+            try:
+                parsed = json.loads(str(row["json_string"]))
+                if isinstance(parsed, dict):
+                    produced = parsed.get("produced_at")
+            except json.JSONDecodeError:
+                produced = None
+        return str(produced or "")
+
+    ordered = sorted(
+        rows,
+        key=lambda r: (
+            _produced_key(r),
+            str(r.get("temporary_subgraph_id") or ""),
+        ),
+    )
+    keep = ordered[0]
+    for extra in ordered[1:]:
+        sg_id = extra.get("temporary_subgraph_id")
+        if not sg_id:
+            continue
+        try:
+            store.delete_subgraph("temporary_subgraph", str(sg_id))
+            _LOG.warning(
+                "Deleted duplicate scan_name=target temporary_subgraph %s "
+                "(kept %s)",
+                sg_id,
+                keep.get("temporary_subgraph_id"),
+            )
+        except Exception as exc:  # noqa: BLE001
+            _LOG.warning("Failed deleting duplicate target temp %s: %s", sg_id, exc)
+    return [keep]
+
+
 def ensure_project_target_temps(
     store: Any,
     *,
@@ -556,19 +621,13 @@ def ensure_project_target_temps(
     """Materialize target_context + ``scan_name=target`` temp (SPEC-017 R17-03).
 
     Call from live ``run_workflow`` / ``run_single_step`` start only — not from
-    project open or Reset. Idempotent: if a project temporary_subgraph with
-    ``scan_name=target`` already exists, leave it. Always upserts
-    ``target_context`` when a target entity exists.
+    project open or Reset. Idempotent under ``_TEMP_CONTEXT_LOCK`` so async
+    execute + worker + Scan Now cannot create duplicate target rows.
     """
     if not project_id:
         return {"ensured": False, "reason": "missing project_id"}
 
     hostnames = _hostnames_for_project(store, project_id)
-    existing_target_temps = [
-        r
-        for r in list_project_temporary_subgraphs(store, project_id)
-        if r.get("scan_name") == "target"
-    ]
 
     # Upsert target_context for the first linked target entity (stable id).
     project = store.get_project(project_id) or {}
@@ -603,28 +662,31 @@ def ensure_project_target_temps(
                 store.create_subgraph(payload)
             else:
                 store.update_subgraph("target_context", tc_id, {"graph": seed_graph})
-            # Best-effort attrs via update if store supports extra keys later.
             _ = target_row
         except Exception as exc:  # noqa: BLE001
             _LOG.warning("target_context upsert failed for %s: %s", target_id, exc)
 
     temp_result: Dict[str, Any] = {"exported": False}
-    if hostnames and not existing_target_temps:
-        temp_result = seed_targets_into_temporary_context(
-            store,
-            project_id=project_id,
-            hostnames=hostnames,
+    with _TEMP_CONTEXT_LOCK:
+        existing_target_temps = _dedupe_target_temps(
+            store, _target_temp_rows(store, project_id)
         )
-    elif existing_target_temps:
-        temp_result = {
-            "exported": True,
-            "temporary_subgraph_id": existing_target_temps[0].get(
-                "temporary_subgraph_id"
-            ),
-            "scan_name": "target",
-            "persisted": True,
-            "already_present": True,
-        }
+        if existing_target_temps:
+            temp_result = {
+                "exported": True,
+                "temporary_subgraph_id": existing_target_temps[0].get(
+                    "temporary_subgraph_id"
+                ),
+                "scan_name": "target",
+                "persisted": True,
+                "already_present": True,
+            }
+        elif hostnames:
+            temp_result = seed_targets_into_temporary_context(
+                store,
+                project_id=project_id,
+                hostnames=hostnames,
+            )
 
     return {
         "ensured": True,
@@ -674,7 +736,20 @@ def seed_targets_into_temporary_context(
 
     stamped = stamp_viewer_graph(seed_graph, scan_name="target")
     sg_id = new_temporary_subgraph_id()
+    # Caller (ensure) usually holds the lock; re-check under RLock for direct calls.
     with _TEMP_CONTEXT_LOCK:
+        existing = _dedupe_target_temps(store, _target_temp_rows(store, project_id))
+        if existing:
+            return {
+                "exported": True,
+                "temporary_subgraph_id": existing[0].get("temporary_subgraph_id"),
+                "scan_name": "target",
+                "persisted": True,
+                "already_present": True,
+                "node_count": len(
+                    ((existing[0].get("graph") or {}).get("nodes")) or []
+                ),
+            }
         return _create_temporary_subgraph_row(
             store,
             project_id=project_id,
