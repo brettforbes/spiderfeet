@@ -242,12 +242,14 @@ def four_form_attrs(
     scan_status: str,
     step: Mapping[str, Any] | None = None,
     output_vars: Mapping[str, List[str]] | None = None,
+    input_total: Optional[int] = None,
+    input_done: Optional[int] = None,
 ) -> Dict[str, Any]:
     """Build scan_step attribute payload (four UI forms + metadata)."""
     graph = module_result.get("graph") or {"nodes": [], "edges": []}
     counts = module_result.get("counts") or {}
     nugget_count = int(counts.get("nodes") or len(graph.get("nodes") or []))
-    results_payload = {
+    results_payload: Dict[str, Any] = {
         "status": scan_status,
         "module_status": module_result.get("status"),
         "counts": counts,
@@ -255,6 +257,10 @@ def four_form_attrs(
         "error": module_result.get("error"),
         "exit_code": module_result.get("exit_code"),
     }
+    if input_total is not None:
+        results_payload["input_total"] = int(input_total)
+    if input_done is not None:
+        results_payload["input_done"] = int(input_done)
     by_type: Dict[str, int] = {}
     for node in graph.get("nodes") or []:
         if isinstance(node, Mapping) and node.get("nugget_id"):
@@ -380,6 +386,8 @@ def persist_module_result(
     step: Mapping[str, Any],
     module_result: Mapping[str, Any],
     output_vars: Mapping[str, List[str]] | None = None,
+    input_total: Optional[int] = None,
+    input_done: Optional[int] = None,
 ) -> Dict[str, Any]:
     """Write four forms onto the scan_step and dual-form scan_result_graph."""
     module_status = str(module_result.get("status") or "ERROR")
@@ -389,6 +397,8 @@ def persist_module_result(
         scan_status=scan_status,
         step=step,
         output_vars=output_vars,
+        input_total=input_total,
+        input_done=input_done,
     )
     attrs["step_module_id"] = module_id
 

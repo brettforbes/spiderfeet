@@ -356,6 +356,10 @@ class TemporarySubgraphOut(BaseModel):
     temporary_subgraph_id: str
     scan_name: Optional[str] = None
     scan_description: Optional[str] = None
+    produced_at: Optional[str] = Field(
+        default=None,
+        description="UTC ISO timestamp when the temp row was produced (chip order).",
+    )
     nodes: List[Dict[str, Any]] = Field(default_factory=list)
     edges: List[Dict[str, Any]] = Field(default_factory=list)
 
@@ -449,6 +453,14 @@ class WorkflowStepStatusOut(BaseModel):
     scan_status: str = Field(
         ...,
         examples=["UNKNOWN", "STARTING", "RUNNING", "FINISHED", "ERROR-FAILED"],
+    )
+    input_total: Optional[int] = Field(
+        default=None,
+        description="Resolved input count for batched CLI (n); omit when UNKNOWN.",
+    )
+    input_done: Optional[int] = Field(
+        default=None,
+        description="Inputs completed (0 while RUNNING; n when FINISHED/skipped).",
     )
 
 

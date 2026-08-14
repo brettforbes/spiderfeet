@@ -40,6 +40,14 @@ def _default_store_factory() -> CrudStore:
 
 
 @dataclass
+class StepInputProgress:
+    """Live input progress for one DSL step (SPEC-018 R18-07)."""
+
+    input_total: int = 0
+    input_done: int = 0
+
+
+@dataclass
 class RunRecord:
     run_id: str
     workflow_id: str
@@ -54,6 +62,7 @@ class RunRecord:
     result: Optional[Dict[str, Any]] = None
     dry_run: bool = False
     temporary_subgraph_id: Optional[str] = None
+    step_progress: Dict[str, StepInputProgress] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -144,6 +153,33 @@ class RunRegistry:
         with self._lock:
             rec = self._runs.get(run_id)
             return bool(rec and rec.cancel_flag)
+
+    def set_step_input_progress(
+        self,
+        run_id: str,
+        step_id: str,
+        *,
+        input_total: int,
+        input_done: int,
+    ) -> None:
+        """Record batched input progress for live status polls (SPEC-018 R18-07)."""
+        with self._lock:
+            rec = self._runs.get(run_id)
+            if rec is None:
+                return
+            rec.step_progress[str(step_id)] = StepInputProgress(
+                input_total=int(input_total),
+                input_done=int(input_done),
+            )
+
+    def get_step_input_progress(
+        self, run_id: str, step_id: str
+    ) -> Optional[StepInputProgress]:
+        with self._lock:
+            rec = self._runs.get(run_id)
+            if rec is None:
+                return None
+            return rec.step_progress.get(str(step_id))
 
     def submit_workflow(
         self,
@@ -249,6 +285,7 @@ class RunRegistry:
                 existing_temporary_subgraph_id=rec.temporary_subgraph_id,
                 stop_on_error=False,
                 should_cancel=lambda: self.is_cancelled(run_id),
+                run_id=run_id,
             )
             api = result.to_api_dict()
             if result.status == "CANCELLED" or self.is_cancelled(run_id):
@@ -291,6 +328,7 @@ class RunRegistry:
                 project_id=rec.project_id,
                 dry_run=rec.dry_run,
                 existing_temporary_subgraph_id=rec.temporary_subgraph_id,
+                run_id=run_id,
             )
             api = result.to_api_dict()
             if self.is_cancelled(run_id):
