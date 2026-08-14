@@ -178,3 +178,36 @@ def test_workflow_status_finished_input_progress(client, fake_stores):
     assert "input_done" not in unknown
 
     clear_module_registry()
+
+
+def test_openapi_workflow_step_status_includes_input_progress(client):
+    """R18-07 / R18-08: OpenAPI WorkflowStepStatusOut exposes input_total/input_done."""
+    r = client.get("/openapi.json")
+    assert r.status_code == 200
+    schemas = r.json()["components"]["schemas"]
+    step_schema = schemas["WorkflowStepStatusOut"]
+    props = step_schema.get("properties") or {}
+    assert "input_total" in props
+    assert "input_done" in props
+    for field in ("input_total", "input_done"):
+        field_schema = props[field]
+        if "anyOf" in field_schema:
+            types = {part.get("type") for part in field_schema["anyOf"]}
+            assert "integer" in types
+        else:
+            assert field_schema.get("type") == "integer"
+
+    status_path = r.json()["paths"]["/api/v1/workflows/{workflow_id}/status"]["get"]
+    ok200 = status_path["responses"]["200"]["content"]["application/json"]["schema"]
+    if "$ref" in ok200:
+        ref_name = ok200["$ref"].rsplit("/", 1)[-1]
+        workflow_schema = schemas[ref_name]
+    else:
+        workflow_schema = ok200
+    steps_prop = workflow_schema["properties"]["steps"]
+    items = steps_prop.get("items") or {}
+    if "$ref" in items:
+        assert items["$ref"].endswith("/WorkflowStepStatusOut")
+    else:
+        assert "input_total" in items.get("properties", {})
+        assert "input_done" in items.get("properties", {})
