@@ -7,6 +7,8 @@ import re
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Set
 
 from spiderfeet_v2.workflow.graph_index import GraphIndex
+from spiderfeet_v2.workflow.normalize import normalize_list
+from spiderfeet_v2.workflow.variables import resolve_string_list
 
 
 class GseError(ValueError):
@@ -227,8 +229,28 @@ def eval_binding(
 def evaluate_output_vars(
     step: Mapping[str, Any],
     scan_graph: Mapping[str, Any],
+    *,
+    workflow_inputs: Mapping[str, List[str]] | None = None,
 ) -> Dict[str, List[str]]:
     """Evaluate a step's ``output.vars`` GSE bindings against its scan graph."""
+    workflow_inputs = workflow_inputs or {}
+    inp = step.get("input") or {}
+    input_normalize = inp.get("normalize")
+    env = {
+        "workflow": {"inputs": dict(workflow_inputs)},
+        "steps": {},
+        "step": {"vars": {}},
+    }
+
+    def _resolve_union_ref(ref: str, out: Dict[str, List[str]]) -> List[str]:
+        if ref.startswith("$workflow.inputs."):
+            values = resolve_string_list(ref, env)
+            return normalize_list(values, input_normalize)
+        key = ref.split(".")[-1]
+        if key not in out:
+            raise GseError(f"union ref {ref} not ready for step {step.get('id')}")
+        return out[key]
+
     out: Dict[str, List[str]] = {}
     vars_map = (step.get("output") or {}).get("vars") or {}
     for name, binding in vars_map.items():
@@ -239,9 +261,6 @@ def evaluate_output_vars(
             continue
         env_lists: Dict[str, List[str]] = {}
         for ref in binding["union"]:
-            key = ref.split(".")[-1]
-            if key not in out:
-                raise GseError(f"union ref {ref} not ready for step {step.get('id')}")
-            env_lists[ref] = out[key]
+            env_lists[ref] = _resolve_union_ref(ref, out)
         out[name] = eval_binding(binding, env_lists=env_lists)
     return out

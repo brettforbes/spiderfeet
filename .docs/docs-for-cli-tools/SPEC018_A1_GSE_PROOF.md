@@ -8,7 +8,7 @@ Workflow: `.seed/12A_Workflow_YAML_Example.yaml`
 | --- | --- | --- | --- | --- | --- | --- |
 | sfp_cli_subfinder | apex_domains | subfinder_corporate_upside_au_passive_cs_proposed_nuggets_edges.json | 0 | yes | Non-empty apex DOMAIN_NAME nodes (no outbound `had` → DOMAIN_NAME_PARENT) | — |
 | sfp_cli_subfinder | subdomains | subfinder_corporate_upside_au_passive_cs_proposed_nuggets_edges.json | 27 | no | Child DOMAIN_NAME nodes with outbound `had` → DOMAIN_NAME_PARENT | 'aws.theupside.com.au', 'cfjump.theupside.com.au', 'dev.theupside.com.au' |
-| sfp_cli_subfinder | all_domains | subfinder_corporate_upside_au_passive_cs_proposed_nuggets_edges.json | 27 | no | Union of apex + subdomains (distinct) | 'aws.theupside.com.au', 'cfjump.theupside.com.au', 'dev.theupside.com.au' |
+| sfp_cli_subfinder | all_domains | subfinder_corporate_upside_au_passive_cs_proposed_nuggets_edges.json | 27 | no | Union of apex + subdomains + normalized workflow targets (distinct) | 'aws.theupside.com.au', 'cfjump.theupside.com.au', 'dev.theupside.com.au' |
 | sfp_cli_nmap | ip_port_list | nmap_tcp_top_ports_permissive_proposed_nuggets_edges.json | 4 | no | Non-empty `host:port` from HOST×IP×PORT contains walk | '45.33.32.156:22', '45.33.32.156:31337', '45.33.32.156:80' |
 | sfp_cli_httpx | live_hosts | httpx_from_subfinder_upside_au_proposed_nuggets_edges.json | 4 | no | Non-empty DOMAIN_NAME list from httpx scan graph | 'cfjump.theupside.com.au', 't.cfjump.com', 'theupside.com.au' |
 | sfp_cli_katana | crawl_urls | katana_from_httpx_upside_com_proposed_nuggets_edges.json | 3411 | no | Non-empty URL/domain list from katana scan graph | 'a.klaviyo.com', 'a.shgcdn2.com', 'apco.org.au' |

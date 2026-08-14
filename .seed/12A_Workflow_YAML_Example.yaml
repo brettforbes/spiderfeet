@@ -88,6 +88,7 @@ steps:
           union:
             - $step.vars.apex_domains
             - $step.vars.subdomains
+            - $workflow.inputs.targets
           distinct: true
     context:
       export: scan_graph
@@ -158,7 +159,7 @@ steps:
                     relation: contains
                     transitive: true
                   nodes:
-                    nugget_id: PORT
+                    nugget_id_in: [PORT, TCP_PORT_OPEN]
                   project: nugget_data
               emit:
                 product: [ip, port]

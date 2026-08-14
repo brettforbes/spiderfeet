@@ -112,7 +112,11 @@ def test_evaluate_output_vars_subfinder_gse(doc_12a):
             {"source": "d2", "target": "p1", "relation": "had"},
         ],
     }
-    vars_out = evaluate_output_vars(step, graph)
+    vars_out = evaluate_output_vars(
+        step,
+        graph,
+        workflow_inputs={"targets": ["example.com"]},
+    )
     assert vars_out["apex_domains"] == ["example.com"]
     assert vars_out["subdomains"] == ["www.example.com"]
     assert vars_out["all_domains"] == ["example.com", "www.example.com"]

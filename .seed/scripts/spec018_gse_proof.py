@@ -16,6 +16,11 @@ EXAMPLE = ROOT / ".seed/12A_Workflow_YAML_Example.yaml"
 NS = ROOT / ".docs/docs-for-cli-tools/nugget_structure"
 OUT = ROOT / ".docs/docs-for-cli-tools/SPEC018_A1_GSE_PROOF.md"
 
+# Seed targets used when re-evaluating subfinder (A2 union with workflow inputs)
+FIXTURE_INPUTS: Dict[str, List[str]] = {
+    "sfp_cli_subfinder": ["theupside.com.au"],
+}
+
 # Canonical corpus fixtures per structure docs / 12A chain targets
 FIXTURES: Dict[str, Path] = {
     "sfp_cli_subfinder": NS / "subfinder_corporate_upside_au_passive_cs_proposed_nuggets_edges.json",
@@ -38,9 +43,19 @@ def _nugget_counts(graph: Mapping[str, Any]) -> Dict[str, int]:
     return dict(sorted(counts.items()))
 
 
-def _evaluate_step(step: Mapping[str, Any], fixture: Path) -> Tuple[Dict[str, List[str]], Dict[str, int]]:
+def _evaluate_step(
+    step: Mapping[str, Any],
+    fixture: Path,
+    *,
+    step_id: str,
+) -> Tuple[Dict[str, List[str]], Dict[str, int]]:
     graph = _load_graph(fixture)
-    vars_out = evaluate_output_vars(step, graph)
+    workflow_inputs = {"targets": FIXTURE_INPUTS.get(step_id, [])}
+    vars_out = evaluate_output_vars(
+        step,
+        graph,
+        workflow_inputs=workflow_inputs if workflow_inputs["targets"] else None,
+    )
     return vars_out, _nugget_counts(graph)
 
 
@@ -74,7 +89,7 @@ def main() -> int:
     EXPECTED: Dict[str, str] = {
         "apex_domains": "Non-empty apex DOMAIN_NAME nodes (no outbound `had` → DOMAIN_NAME_PARENT)",
         "subdomains": "Child DOMAIN_NAME nodes with outbound `had` → DOMAIN_NAME_PARENT",
-        "all_domains": "Union of apex + subdomains (distinct)",
+        "all_domains": "Union of apex + subdomains + normalized workflow targets (distinct)",
         "ip_port_list": "Non-empty `host:port` from HOST×IP×PORT contains walk",
         "live_hosts": "Non-empty DOMAIN_NAME list from httpx scan graph",
         "crawl_urls": "Non-empty URL/domain list from katana scan graph",
@@ -86,7 +101,7 @@ def main() -> int:
 
     for step_id, fixture in FIXTURES.items():
         step = steps_by_id[step_id]
-        vars_out, nugget_counts = _evaluate_step(step, fixture)
+        vars_out, nugget_counts = _evaluate_step(step, fixture, step_id=step_id)
         sections.append(f"## {step_id}")
         sections.append("")
         sections.append(f"Fixture: `{fixture.relative_to(ROOT).as_posix()}`")
