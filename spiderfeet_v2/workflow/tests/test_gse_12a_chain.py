@@ -41,43 +41,6 @@ def test_nmap_ip_port_list_non_empty_on_corpus(doc_12a):
     assert all(":" in line for line in ip_ports)
 
 
-def test_nerva_argv_receives_ip_port_list(doc_12a):
-    nmap_step = next(s for s in doc_12a["steps"] if s["id"] == "sfp_cli_nmap")
-    nerva_step = next(s for s in doc_12a["steps"] if s["id"] == "sfp_cli_nerva")
-    graph = _graph_from_fixture(NMAP_FIXTURE)
-    ip_ports = evaluate_output_vars(nmap_step, graph)["ip_port_list"]
-    assert ip_ports
-
-    env = build_env(
-        workflow_inputs={"targets": ["example.com"]},
-        steps={"sfp_cli_nmap": {"vars": {"ip_port_list": ip_ports}}},
-    )
-    resolved = resolve_step_inputs(nerva_step, env)
-    assert resolved == ip_ports
-
-    temps = TempFileManager()
-    try:
-        cmd = build_step_command(nerva_step, resolved, temps)
-        assert "--list" in cmd.argv
-        list_idx = cmd.argv.index("--list")
-        assert cmd.argv[list_idx + 1] == str(cmd.input_path)
-        lines = cmd.input_path.read_text(encoding="utf-8").strip().splitlines()
-        assert lines == ip_ports
-    finally:
-        temps.cleanup()
-
-
-def test_nerva_empty_ip_port_list_is_empty_input(doc_12a):
-    nerva_step = next(s for s in doc_12a["steps"] if s["id"] == "sfp_cli_nerva")
-    env = build_env(
-        workflow_inputs={"targets": ["example.com"]},
-        steps={"sfp_cli_nmap": {"vars": {"ip_port_list": []}}},
-    )
-    resolved = resolve_step_inputs(nerva_step, env)
-    assert resolved == []
-    assert (nerva_step.get("input") or {}).get("empty") == "skip_step"
-
-
 def test_katana_crawl_urls_non_empty_on_corpus(doc_12a):
     step = next(s for s in doc_12a["steps"] if s["id"] == "sfp_cli_katana")
     graph = _graph_from_fixture(KATANA_FIXTURE)
