@@ -6,6 +6,7 @@ from __future__ import annotations
 from typing import Any
 
 from modules_v2._core.graph_builder import GraphBuilder, nugget_node
+from modules_v2._core.topology import add_company_domain_tree, host_matches_apex, resolve_website_root
 from modules_v2.adapters.katana.structured import host_from_record
 
 
@@ -21,11 +22,9 @@ def _url_from_record(record: dict[str, Any]) -> str:
 
 
 def apply_katana_records(builder: GraphBuilder, scan_id: str, doc: dict[str, Any]) -> None:
-    """Apply Katana crawl hierarchy (doc 14 / legacy katana_json_to_graph migration)."""
+    """Apply SPEC-019 hostname URL ownership for Katana crawl records."""
     target = str(doc.get("target") or "").lower().rstrip(".")
-    if target:
-        root = builder.add_node(nugget_node("DOMAIN_NAME", target))
-        builder.add_edge(scan_id, root["id"], "contains")
+    tree = add_company_domain_tree(builder, scan_id, target) if target else None
 
     if doc.get("crawl_profile"):
         _add_descriptor(builder, scan_id, "SCAN_CRAWL_PROFILE", doc.get("crawl_profile"))
@@ -40,16 +39,21 @@ def apply_katana_records(builder: GraphBuilder, scan_id: str, doc: dict[str, Any
         url = _url_from_record(record)
         if not url:
             continue
-        url_node = builder.add_node(nugget_node("LINKED_URL_INTERNAL", url))
-        builder.add_edge(scan_id, url_node["id"], "contains")
 
         host = host_from_record(record)
-        if host:
-            host_node = builder.add_node(nugget_node("DOMAIN_NAME", host))
-            if target:
-                root = builder.add_node(nugget_node("DOMAIN_NAME", target))
-                builder.add_edge(root["id"], host_node["id"], "contains")
-            builder.add_edge(host_node["id"], url_node["id"], "contains")
+        url_kind = "LINKED_URL_EXTERNAL"
+        owner_id: str | None = None
+        if host and tree is not None:
+            if host_matches_apex(host, target) in {"apex", "subdomain"}:
+                root = resolve_website_root(builder, tree, host)
+                owner_id = root["id"]
+                url_kind = "LINKED_URL_INTERNAL"
+
+        url_node = builder.add_node(nugget_node(url_kind, url))
+        if owner_id is not None:
+            builder.add_edge(owner_id, url_node["id"], "contains")
+        else:
+            builder.add_edge(scan_id, url_node["id"], "contains")
 
         request = record.get("request") or {}
         response = record.get("response") or {}
@@ -61,3 +65,4 @@ def apply_katana_records(builder: GraphBuilder, scan_id: str, doc: dict[str, Any
         )
         status = response.get("status_code") or record.get("status_code")
         _add_descriptor(builder, url_node["id"], "HTTP_STATUS_CODE", status)
+

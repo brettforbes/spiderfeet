@@ -69,7 +69,7 @@ def test_katana_adapter_preserves_url_domain_status_hierarchy():
     nodes = graph["nodes"]
 
     assert any(n["nugget_id"] == "DOMAIN_NAME" and n["nugget_data"] == "k2am.com.au" for n in nodes)
-    assert any(n["nugget_id"] == "DOMAIN_NAME" and n["nugget_data"] == "www.k2am.com.au" for n in nodes)
+    assert any(n["nugget_id"] == "SUBDOMAIN" and n["nugget_data"] == "www.k2am.com.au" for n in nodes)
     assert any(n["nugget_id"] == "LINKED_URL_INTERNAL" and n["nugget_data"].endswith("/about") for n in nodes)
     assert any(n["nugget_id"] == "HTTP_STATUS_CODE" and n["nugget_data"] == "200" for n in nodes)
     assert any(n["nugget_id"] == "SCAN_CRAWL_PROFILE" for n in nodes)
@@ -84,3 +84,4 @@ def test_katana_converter_delegates_to_adapter():
 
     assert any(n["nugget_id"] == "LINKED_URL_INTERNAL" for n in graph["nodes"])
     validate_graph(graph)
+
