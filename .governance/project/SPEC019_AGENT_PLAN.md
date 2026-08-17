@@ -60,7 +60,7 @@ Do **not** start E1 until A3, B2, C3, D3, F8 are on `develop`.
 |----|---------|--------|
 | 1 | Spec + indexes + this plan | **done** (2026-08-17) |
 | 2 | GitHub issues open + linked | **done** — A/B/C/F/E [#1308](https://github.com/brettforbes/spiderfeet/issues/1308)–[#1331](https://github.com/brettforbes/spiderfeet/issues/1331); D [#296](https://github.com/brettforbes/yaml-workflow-widget/issues/296)–[#299](https://github.com/brettforbes/yaml-workflow-widget/issues/299) |
-| 3 | Implementation complete for review | pending — E2 remains operator gate |
+| 3 | Implementation complete for review | **done** (2026-08-17) — PRs spiderfeet #1334–#1351; yaml-workflow #301–#305; **E2 #1331 remains operator gate** |
 
 ## First issues to assign
 
