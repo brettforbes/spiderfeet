@@ -310,8 +310,7 @@ steps:
         adapter: katana
     output:
       vars:
-        # Prefer URL-bearing nuggets when present; fall back to DOMAIN_NAME values.
-        # Exact ids must match katana structure doc / corpus graphs when wiring E2E tests.
+        # URL/LINK nuggets only — do not union DOMAIN_NAME into Nuclei -l (R19-09).
         crawl_urls:
           type: string_list
           select:
@@ -320,7 +319,6 @@ steps:
               nugget_id_in:
                 - LINKED_URL_INTERNAL
                 - LINKED_URL_EXTERNAL
-                - DOMAIN_NAME
             project: nugget_data
             distinct: true
     context:
@@ -334,9 +332,9 @@ steps:
       from: $steps.sfp_cli_katana.vars.crawl_urls
       empty: skip_step
     config:
-      # Wall-clock for the full-template pass over katana crawl URLs.
-      # Live k2am hit the 180s module default (`timeout after 180.0s`).
-      timeout: 900
+      # Per-batch wall clock (R19-08); step cap via overall_timeout below.
+      timeout: 300
+      overall_timeout: 3600
       # Dropped `-tags cve`: our own strategic exploration matrix
       # (exploration_scratch/nuclei/strategic/exploration_report.json) ran
       # `-tags cve -severity medium,high,critical` against 4 real targets

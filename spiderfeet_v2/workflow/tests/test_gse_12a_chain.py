@@ -83,3 +83,24 @@ def test_nuclei_empty_crawl_urls_is_skip_step(doc_12a):
     resolved = resolve_step_inputs(nuclei_step, env)
     assert resolved == []
     assert (nuclei_step.get("input") or {}).get("empty") == "skip_step"
+
+def test_katana_crawl_urls_excludes_domain_name_r19_09(doc_12a):
+    step = next(s for s in doc_12a["steps"] if s["id"] == "sfp_cli_katana")
+    graph = _graph_from_fixture(KATANA_FIXTURE)
+    urls = evaluate_output_vars(step, graph)["crawl_urls"]
+    domain_values = {
+        str(n.get("nugget_data", ""))
+        for n in graph["nodes"]
+        if n.get("nugget_id") == "DOMAIN_NAME"
+    }
+    assert domain_values
+    overlap = [u for u in urls if u in domain_values]
+    assert not overlap
+    assert all("://" in u for u in urls[:100])
+
+
+def test_nuclei_45_urls_three_batches_r19_09():
+    from modules_v2.sfp_cli_nuclei import progress_totals
+
+    urls = [f"https://host{i}.example" for i in range(45)]
+    assert progress_totals(urls)["batches_total"] == 3

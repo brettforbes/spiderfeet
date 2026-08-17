@@ -1,4 +1,4 @@
-"""SPEC-016 A4 — seed workflow step timeouts."""
+"""SPEC-016 A4 - seed workflow step timeouts."""
 
 from pathlib import Path
 
@@ -14,4 +14,5 @@ def test_12a_long_steps_have_config_timeout():
     assert by_id["sfp_cli_nmap"]["config"]["timeout"] == 900
     assert by_id["sfp_cli_nerva"]["config"]["timeout"] == 300
     assert by_id["sfp_cli_katana"]["config"]["timeout"] == 600
-    assert by_id["sfp_cli_nuclei"]["config"]["timeout"] == 900
+    assert by_id["sfp_cli_nuclei"]["config"]["timeout"] == 300
+    assert by_id["sfp_cli_nuclei"]["config"]["overall_timeout"] == 3600

@@ -8,6 +8,8 @@ from typing import Any, Dict, List
 
 import pytest
 
+import yaml
+
 from spiderfeet_v2.api.tests.conftest import FakeCrudStore
 from spiderfeet_v2.engine.modules import clear_module_registry, register_module
 from spiderfeet_v2.engine.step_runner import OrchestratorError, run_single_step
@@ -256,3 +258,119 @@ def test_build_scan_step_spec_argv_includes_all_urls_r19_07() -> None:
     assert spec["target"] == urls[0]
     assert spec["urls"] == urls
     assert len(spec["urls"]) == 45
+
+def test_build_scan_step_spec_passes_overall_timeout_r19_08() -> None:
+    from spiderfeet_v2.engine.step_runner import _build_scan_step_spec
+    from spiderfeet_v2.workflow.tempfile_mgr import TempFileManager
+
+    step = {
+        "config": {
+            "timeout": 300,
+            "overall_timeout": 3600,
+            "args": ["-tags", "tech"],
+        }
+    }
+    spec, _argv = _build_scan_step_spec(
+        step,
+        ["https://a.example"],
+        TempFileManager(),
+        workflow_inputs={"targets": ["https://a.example"]},
+    )
+    assert spec["timeout"] == 300
+    assert spec["overall_timeout"] == 3600
+
+
+NUCLEI_WORKFLOW_YAML = """apiVersion: spiderfeet.workflow/v1
+kind: Workflow
+id: workflow--ao1-nuclei-batch
+info:
+  name: ao1-nuclei-batch
+  author: test
+inputs:
+  targets:
+    type: string_list
+    values:
+      - https://example.com
+steps:
+  - id: sfp_cli_nuclei
+    uses: tool.nuclei
+    needs: []
+    input:
+      type: string_list
+      from: $workflow.inputs.targets
+      empty: error
+    config:
+      timeout: 300
+      overall_timeout: 3600
+      args:
+        - "-tags"
+        - "tech"
+    output:
+      vars: {}
+    context:
+      export: none
+"""
+
+
+@pytest.fixture
+def nuclei_store() -> FakeCrudStore:
+    clear_module_registry()
+    s = FakeCrudStore()
+    s.create_target({"target_id": "target--nuclei", "target_value": "example.com"})
+    s.create_workflow(
+        {
+            "workflow_id": "workflow--ao1-nuclei-batch",
+            "name": "ao1-nuclei-batch",
+            "target_id": "target--nuclei",
+            "workflow_yaml": NUCLEI_WORKFLOW_YAML,
+        }
+    )
+    yield s
+    clear_module_registry()
+
+
+def test_nuclei_step_reports_batch_progress_r19_08(nuclei_store: FakeCrudStore) -> None:
+    from spiderfeet_v2.engine.run_registry import RunRegistry, RunRecord, set_run_registry
+
+    def _mock_nuclei(spec: Any = None) -> Dict[str, Any]:
+        cb = (spec or {}).get("progress_callback")
+        if callable(cb):
+            cb({"batches_total": 1, "batches_done": 0})
+            cb({"batches_total": 1, "batches_done": 1})
+        return {
+            "status": "SUCCESS",
+            "text": "ok\n",
+            "structured": {"schema": "nuclei_finding_v1", "records": []},
+            "structured_type": "json",
+            "graph": {"nodes": [], "edges": []},
+            "narrative": "# ok\n",
+            "command": ["nuclei"],
+            "counts": {"nodes": 0, "edges": 0},
+            "duration": 0.0,
+            "progress": {"batches_total": 1, "batches_done": 1},
+        }
+
+    register_module("sfp_cli_nuclei", _mock_nuclei)
+    registry = RunRegistry(max_workers=1)
+    run_id = "run--nuclei-batch-progress"
+    with registry._lock:
+        registry._runs[run_id] = RunRecord(
+            run_id=run_id,
+            workflow_id="workflow--ao1-nuclei-batch",
+            kind="step",
+            step_id="sfp_cli_nuclei",
+        )
+    set_run_registry(registry)
+
+    run_single_step(
+        nuclei_store,
+        workflow_id="workflow--ao1-nuclei-batch",
+        step_id="sfp_cli_nuclei",
+        dry_run=False,
+        run_id=run_id,
+    )
+    prog = registry.get_step_input_progress(run_id, "sfp_cli_nuclei")
+    assert prog is not None
+    assert prog.input_total == 1
+    assert prog.input_done == 1
+    set_run_registry(None)
