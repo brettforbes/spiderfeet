@@ -17,6 +17,7 @@ from core.topology import (
     add_scan_head,
     add_system_l2,
     add_trace_hop_chain,
+    add_company_domain_tree,
 )
 
 ALLOWED_RELATIONS = {"contains", "had", "listens-to"}
@@ -106,4 +107,43 @@ def test_trace_hop_chain_template_edges():
     assert ("TRACE_HOP", "had", "HOP_ORDER") in pairs
     assert ("TRACE_HOP", "had", "HOP_TTL") in pairs
     assert ("TRACE_HOP", "had", "HOP_RTT") in pairs
+    assert {edge["relation"] for edge in graph["edges"]} <= ALLOWED_RELATIONS
+
+
+def _nugget_data_by_id(graph, nugget_id):
+    return [node["nugget_data"] for node in graph["nodes"] if node["nugget_id"] == nugget_id]
+
+
+def test_company_domain_tree_unknown_name():
+    builder = GraphBuilder()
+    scan = add_scan_head(builder, "subfinder test", command="subfinder -d example.com")
+    result = add_company_domain_tree(builder, scan["id"], "example.com")
+
+    graph = builder.build()
+    pairs = _edge_pairs(graph)
+
+    assert result["company"]["nugget_data"] == "company:example.com"
+    assert result["domain"]["nugget_data"] == "example.com"
+    assert ("SCAN_RECORD", "contains", "COMPANY") in pairs
+    assert ("COMPANY", "contains", "DOMAIN_NAME") in pairs
+    assert "COMPANY_NAME" not in {node["nugget_id"] for node in graph["nodes"]}
+
+
+def test_company_domain_tree_known_name():
+    builder = GraphBuilder()
+    scan = add_scan_head(builder, "pius test", command="pius run")
+    result = add_company_domain_tree(
+        builder,
+        scan["id"],
+        "example.com",
+        company_name="Example Corp",
+    )
+
+    graph = builder.build()
+    pairs = _edge_pairs(graph)
+
+    assert result["company"]["nugget_data"] == "company:example.com"
+    assert ("COMPANY", "had", "COMPANY_NAME") in pairs
+    assert ("COMPANY", "contains", "DOMAIN_NAME") in pairs
+    assert "Example Corp" in _nugget_data_by_id(graph, "COMPANY_NAME")
     assert {edge["relation"] for edge in graph["edges"]} <= ALLOWED_RELATIONS

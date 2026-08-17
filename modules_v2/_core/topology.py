@@ -176,3 +176,37 @@ def add_trace_hop_chain(
             builder.add_edge(hop_node["id"], descriptor["id"], "had")
 
     return {"trace": trace_node, "hops": hop_nodes}
+def add_company_domain_tree(
+    builder: GraphBuilder,
+    scan_id: str,
+    apex: str,
+    company_name: str | None = None,
+) -> dict[str, Any]:
+    """Create SCAN -> COMPANY -> DOMAIN_NAME(apex) with optional COMPANY_NAME."""
+    company_data = f"company:{apex}"
+    company_node = builder.add_node(
+        nugget_node("COMPANY", company_data, description="Company"),
+        parent_id=scan_id,
+    )
+    builder.add_edge(scan_id, company_node["id"], "contains")
+
+    domain_node = builder.add_node(
+        nugget_node("DOMAIN_NAME", apex, description="Domain Name"),
+        parent_id=company_node["id"],
+    )
+    builder.add_edge(company_node["id"], domain_node["id"], "contains")
+
+    result: dict[str, Any] = {"company": company_node, "domain": domain_node}
+    if company_name:
+        name_node = builder.add_node(
+            nugget_node(
+                "COMPANY_NAME",
+                company_name,
+                nugget_type="DESCRIPTOR",
+                description="Company Name",
+            ),
+            parent_id=company_node["id"],
+        )
+        builder.add_edge(company_node["id"], name_node["id"], "had")
+        result["company_name"] = name_node
+    return result
