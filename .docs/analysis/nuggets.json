@@ -142,9 +142,9 @@
   {
     "nugget_id": "COMPANY_NAME",
     "nugget_description": "Company Name",
-    "nugget_type": "ENTITY",
+    "nugget_type": "DESCRIPTOR",
     "nugget_icon": "icon_company_name.svg",
-    "nugget_colour": "#3B82F6"
+    "nugget_colour": "#F59E0B"
   },
   {
     "nugget_id": "CREDIT_CARD_NUMBER",
