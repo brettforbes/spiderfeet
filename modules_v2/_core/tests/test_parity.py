@@ -393,10 +393,21 @@ def test_rule_engine_matches_original_core(case: dict[str, Any]) -> None:
 
     assert _normalize_nugget_ids(ported) == _normalize_nugget_ids(original)
     assert len(ported["nodes"]) == len(original["nodes"])
-    # Instance ids must match (same ontology seed + catalogues).
-    assert {n["id"] for n in ported["nodes"]} == {n["id"] for n in original["nodes"]}, (
-        f"{tool}: instance id drift between ported and original RuleEngine"
-    )
+    # SPEC-019 R19-01: ENTITY/SUBENTITY use uuid4 — ids are non-deterministic per build.
+    from modules_v2._core.graph_builder import uses_uuid4_identity
+
+    for ported_node, original_node in zip(
+        sorted(ported["nodes"], key=lambda n: (n.get("nugget_id"), n.get("nugget_data", ""))),
+        sorted(original["nodes"], key=lambda n: (n.get("nugget_id"), n.get("nugget_data", ""))),
+    ):
+        ntype = str(ported_node.get("nugget_type") or "ENTITY")
+        if uses_uuid4_identity(ntype):
+            assert ported_node["nugget_id"] == original_node["nugget_id"]
+            assert ported_node.get("nugget_data") == original_node.get("nugget_data")
+        else:
+            assert ported_node["id"] == original_node["id"], (
+                f"{tool}: descriptor/data instance id drift for {ported_node.get('nugget_id')}"
+            )
 
 
 def test_all_eight_tools_covered() -> None:
