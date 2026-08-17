@@ -314,6 +314,9 @@ def _persist_scan_result_graph(
 ) -> bool:
     """Create/update scan_result_graph with dual-form when the schema supports it.
 
+    SPEC-019 R19-01: stores the graph payload as emitted — no value-collapse or
+    uuid5 re-dedupe of ENTITY/SUBENTITY nodes on ingest.
+
     Returns True when dual-form graph payload was stored. Dual-form is best-effort:
     any TypeDB/schema/codec failure returns False without failing the step — the
     four UI forms on ``scan_step`` remain authoritative. Raising here previously
