@@ -79,11 +79,11 @@ def test_pius_adapter_emits_company_and_domains_for_linode():
     graph = pius.to_graph(_linode_bundle())
     nugget_ids = {n["nugget_id"] for n in graph["nodes"]}
 
-    assert "COMPANY_NAME" in nugget_ids
+    assert "COMPANY" in nugget_ids
     assert "DOMAIN_NAME" in nugget_ids
     assert "DOMAINS" in nugget_ids
     assert "CANDIDATE_ENTITY" in nugget_ids
-    assert any(n["nugget_data"] == "Linode" for n in graph["nodes"] if n["nugget_id"] == "COMPANY_NAME")
+    assert any(n["nugget_data"] == "Linode" and n["nugget_id"] == "COMPANY_NAME" for n in graph["nodes"])
     assert any(
         n["nugget_data"] == "status.linode.com" for n in graph["nodes"] if n["nugget_id"] == "DOMAIN_NAME"
     )
@@ -118,3 +118,5 @@ def test_cli_tool_to_graph_delegates_to_pius_adapter():
     graph = pius_to_graph(raw, "Linode", "pius run --org Linode --domain linode.com --output ndjson")
     assert any(n["nugget_id"] == "DOMAIN_NAME" for n in graph["nodes"])
     validate_graph(graph)
+
+
