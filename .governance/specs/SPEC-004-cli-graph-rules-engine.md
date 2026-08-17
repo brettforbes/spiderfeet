@@ -13,7 +13,7 @@ Centralize conversion of CLI examination structured output into a **common seman
 
 | ID | Requirement |
 |----|-------------|
-| R4-01-01 | Four-output contract (Text, Structured JSON/XML, Graph nodes/edges, Markdown narrative with full appendix) + single shared instance-id function `nugget_id--{uuid5(ONTOLOGY_NAMESPACE, nugget_data)}` |
+| R4-01-01 | Four-output contract (Text, Structured JSON/XML, Graph nodes/edges, Markdown narrative with full appendix) + shared `nugget_instance_id` via `core.graph_builder` (**SPEC-019 supersedes uuid5-only rule:** ENTITY/SUBENTITY/CATEGORY/INTERNAL use uuid4 occurrence + parent cache; DESCRIPTOR/DATA remain uuid5 unique-by-value) |
 | R4-01-02 | Hybrid rule engine: declarative packs under `rules/` (~80%) + cited Python hooks (~20%); shared `core/` package |
 | R4-01-03 | Dual capture families: `structured_native` (must derive/pair Text) and `text_native` (must produce Structured via TextFSM or equivalent) |
 | R4-01-04 | Executable host/CDN correlation from `.seed/07_Nerva_Scan_Record_Host_Correlation_Rulesets.md` (A→C→B) and Nerva ontology mapping from `.seed/07B_Nerva_Ontology_Rules.md` (N0–N5) |
