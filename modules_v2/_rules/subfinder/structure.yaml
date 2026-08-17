@@ -16,15 +16,15 @@ patterns:
     title: Scan head
     prose: >
       SCAN_RECORD carries SCAN_CLI, SCAN_TARGET, SCAN_MODE, timing, and exit descriptors.
-      The seed apex DOMAIN_NAME always links from scan via contains.
+      SCAN contains COMPANY; COMPANY contains apex DOMAIN_NAME; child hosts are SUBDOMAIN.
   - id: domain_apex
     title: Subdomain enumeration tree
     prose: >
-      Each JSONL host becomes a DOMAIN_NAME under the scan. Passive mode leaves liveness
+      Each JSONL host becomes SUBDOMAIN under the apex (or reuses apex DOMAIN_NAME). Passive mode leaves liveness
       unconfirmed; active mode with IP attaches IPV4_ADDRESS via had on the domain node.
     bullets:
       - DISCOVERY_SOURCE and DISCOVERY_MODE descriptors capture passive/active provenance.
-      - DOMAIN_NAME_PARENT derives registrable parent labels per 09 S6.
+      - Flat SUBDOMAIN nodes; DOMAIN_NAME_PARENT is not used for GSE child selection.
       - CDN_REVIEW_NEEDED may attach when multiple hosts share one IP.
 specialty_sections:
   - title: Active resolution with IP
@@ -64,7 +64,7 @@ field_mapping:
     nugget_id: SCAN_EXIT_STATUS
   - path: records[].host
     nugget_id: DOMAIN_NAME
-    notes: scan contains; parent DOMAIN_NAME_PARENT had
+    notes: SUBDOMAIN under apex DOMAIN_NAME
   - path: records[].sources[]
     nugget_id: DISCOVERY_SOURCE
     notes: had on domain

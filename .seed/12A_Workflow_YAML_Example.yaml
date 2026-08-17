@@ -54,20 +54,13 @@ steps:
         adapter: subfinder
     output:
       vars:
-        # Ontology reality: subfinder emits DOMAIN_NAME (+ DOMAIN_NAME_PARENT for children).
-        # There is no SUBDOMAIN nugget_id in nuggets.json.
+        # SPEC-019: scan apex DOMAIN_NAME under COMPANY; enumerated hosts are SUBDOMAIN.
         apex_domains:
           type: string_list
           select:
             source: $step.scan_graph
             nodes:
               nugget_id: DOMAIN_NAME
-              where:
-                - not:
-                    related:
-                      direction: out
-                      relation: had
-                      nugget_id: DOMAIN_NAME_PARENT
             project: nugget_data
             distinct: true
         subdomains:
@@ -75,12 +68,7 @@ steps:
           select:
             source: $step.scan_graph
             nodes:
-              nugget_id: DOMAIN_NAME
-              where:
-                - related:
-                    direction: out
-                    relation: had
-                    nugget_id: DOMAIN_NAME_PARENT
+              nugget_id: SUBDOMAIN
             project: nugget_data
             distinct: true
         all_domains:

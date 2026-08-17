@@ -8,6 +8,7 @@ from typing import Any
 
 from modules_v2._core.graph_builder import GraphBuilder, nugget_node
 from modules_v2._core.ip_classify import ip_nugget_node
+from modules_v2._core.topology import add_company_domain_tree, ensure_subdomain, host_matches_apex
 from modules_v2.adapters.pius.classify import normalize_value
 
 
@@ -34,21 +35,6 @@ def _domain_value(raw: str) -> tuple[str, str | None]:
     return candidate, raw_value
 
 
-def _ensure_domain(builder: GraphBuilder, scan_id: str, value: str) -> dict[str, Any]:
-    node = builder.add_node(nugget_node("DOMAIN_NAME", value.lower().rstrip(".")))
-    builder.add_edge(scan_id, node["id"], "contains")
-    return node
-
-
-def _add_parent_descriptor(builder: GraphBuilder, domain_id: str, value: str) -> None:
-    """09 S6 — reuse pius R3 parent-domain descriptor derivation."""
-    labels = value.split(".")
-    if len(labels) <= 2:
-        return
-    parent = ".".join(labels[1:])
-    _add_descriptor(builder, domain_id, "DOMAIN_NAME_PARENT", parent)
-
-
 def _record_mode(record: dict[str, Any], doc: dict[str, Any]) -> str:
     return str(
         record.get("mode")
@@ -57,12 +43,27 @@ def _record_mode(record: dict[str, Any], doc: dict[str, Any]) -> str:
     )
 
 
+def _ensure_host_node(
+    builder: GraphBuilder,
+    tree: dict[str, Any] | None,
+    host: str,
+) -> dict[str, Any]:
+    if tree is None:
+        return builder.add_node(nugget_node("DOMAIN_NAME", host))
+    kind = host_matches_apex(host, str(tree["domain"]["nugget_data"]))
+    if kind == "apex":
+        return tree["domain"]
+    if kind == "subdomain":
+        return ensure_subdomain(builder, tree["domain"], host)
+    return builder.add_node(nugget_node("DOMAIN_NAME", host))
+
+
 def apply_subfinder_records(builder: GraphBuilder, scan_id: str, doc: dict[str, Any]) -> None:
-    """Apply 09 S0-S6; S4 uses allowed `had` until `dns-resolves-to` is SPEC-approved."""
+    """Apply SPEC-019 company/domain/subdomain tree plus 09 discovery descriptors."""
     target = str(doc.get("target") or "").strip().lower().rstrip(".")
+    tree: dict[str, Any] | None = None
     if target:
-        root = _ensure_domain(builder, scan_id, target)
-        _add_parent_descriptor(builder, root["id"], target)
+        tree = add_company_domain_tree(builder, scan_id, target)
 
     enumeration_mode = doc.get("enumeration_mode")
     if enumeration_mode:
@@ -85,32 +86,28 @@ def apply_subfinder_records(builder: GraphBuilder, scan_id: str, doc: dict[str, 
         host, raw_value = _domain_value(host_raw)
         if not host:
             continue
-        domain = _ensure_domain(builder, scan_id, host)
+        host_node = _ensure_host_node(builder, tree, host)
         if raw_value:
-            _add_descriptor(builder, domain["id"], "RAW_VALUE", raw_value)
-        _add_parent_descriptor(builder, domain["id"], host)
+            _add_descriptor(builder, host_node["id"], "RAW_VALUE", raw_value)
 
         mode = _record_mode(record, doc)
-        _add_descriptor(builder, domain["id"], "DISCOVERY_MODE", mode)
+        _add_descriptor(builder, host_node["id"], "DISCOVERY_MODE", mode)
 
         sources = record.get("sources") or []
         if isinstance(sources, list):
             for source in sorted({str(item).strip() for item in sources if str(item).strip()}):
-                _add_descriptor(builder, domain["id"], "DISCOVERY_SOURCE", source)
+                _add_descriptor(builder, host_node["id"], "DISCOVERY_SOURCE", source)
 
         ip = str(record.get("ip") or "").strip()
         if ip:
             ip_node = builder.add_node(ip_nugget_node(ip))
-            builder.add_edge(domain["id"], ip_node["id"], "had")
-            _add_descriptor(builder, domain["id"], "LIVENESS_STATUS", "confirmed")
+            builder.add_edge(host_node["id"], ip_node["id"], "had")
+            _add_descriptor(builder, host_node["id"], "LIVENESS_STATUS", "confirmed")
             if ip_fan_in[ip] >= 2:
                 _add_descriptor(builder, ip_node["id"], "CDN_REVIEW_NEEDED", "true")
         else:
-            _add_descriptor(builder, domain["id"], "LIVENESS_STATUS", "unconfirmed")
+            _add_descriptor(builder, host_node["id"], "LIVENESS_STATUS", "unconfirmed")
         seen_hosts.add(host)
 
-    # 09 S1 requires the root even when no records are emitted; if records include
-    # the target, GraphBuilder deduplicates the node and edges.
-    if target and target not in seen_hosts:
-        root = _ensure_domain(builder, scan_id, target)
-        _add_descriptor(builder, root["id"], "LIVENESS_STATUS", "unconfirmed")
+    if target and target not in seen_hosts and tree is not None:
+        _add_descriptor(builder, tree["domain"]["id"], "LIVENESS_STATUS", "unconfirmed")
