@@ -228,3 +228,31 @@ def test_unexpected_module_exception_leaves_error_failed(store: FakeCrudStore) -
     assert step is not None
     assert step.get("scan_status") == "ERROR-FAILED"
     assert step.get("scan_status") != "RUNNING"
+
+def test_build_scan_step_spec_argv_includes_all_urls_r19_07() -> None:
+    """R19-07: argv steps must pass full input_values as urls for Nuclei batching."""
+    from spiderfeet_v2.engine.step_runner import _build_scan_step_spec
+    from spiderfeet_v2.workflow.tempfile_mgr import TempFileManager
+
+    urls = [f"https://host{i}.example" for i in range(45)]
+    step = {
+        "config": {
+            "argv": [
+                "nuclei",
+                "-u",
+                "$step.input.values[0]",
+                "-jsonl-export",
+                "$step.temp.out",
+            ],
+        }
+    }
+    spec, _argv = _build_scan_step_spec(
+        step,
+        urls,
+        TempFileManager(),
+        workflow_inputs={"targets": urls},
+    )
+    assert spec["domain"] == urls[0]
+    assert spec["target"] == urls[0]
+    assert spec["urls"] == urls
+    assert len(spec["urls"]) == 45

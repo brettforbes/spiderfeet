@@ -197,6 +197,8 @@ def _build_scan_step_spec(
             "domain": primary,
             "target": primary,
         }
+        if input_values:
+            spec["urls"] = list(input_values)
         if config.get("timeout") is not None:
             spec["timeout"] = config["timeout"]
         return spec, list(cmd.argv)

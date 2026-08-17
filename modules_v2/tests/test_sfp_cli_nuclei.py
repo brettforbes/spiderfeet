@@ -122,3 +122,23 @@ def test_no_cli_corpus_imports() -> None:
         src = Path(module.__file__).read_text(encoding="utf-8")
         assert "cli_corpus" not in src
         assert "seed.scripts" not in src
+
+
+def test_collect_urls_and_batch_planning_forty_five_r19_07() -> None:
+    """R19-07: 45 URLs in spec yields 3 target chunks (batch size 20)."""
+    from modules_v2.sfp_cli_nuclei import (
+        DEFAULT_BATCH_SIZE,
+        _collect_urls,
+        chunk_targets,
+        plan_batch_jobs,
+    )
+
+    urls = [f"https://host{i}.example" for i in range(45)]
+    spec = {"urls": urls, "target": urls[0], "domain": urls[0]}
+    collected = _collect_urls(spec)
+    assert collected == urls
+    chunks = chunk_targets(collected, batch_size=DEFAULT_BATCH_SIZE)
+    assert len(chunks) == 3
+    assert sum(len(c) for c in chunks) == 45
+    jobs = plan_batch_jobs(collected, batch_size=DEFAULT_BATCH_SIZE)
+    assert len(jobs) == 3
