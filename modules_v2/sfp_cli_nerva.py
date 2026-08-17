@@ -266,6 +266,25 @@ class sfp_cli_nerva(CliModuleBase):
 
         assert completed is not None
         raw_out = completed.stdout or ""
+        # When --output/-o writes to a file, hydrate stdout from that path.
+        out_path = _output_file_from_argv(argv)
+        file_body = ""
+        if out_path and Path(out_path).is_file():
+            file_body = Path(out_path).read_text(encoding="utf-8", errors="replace")
+            if file_body.strip():
+                raw_out = file_body
+
+        if not raw_out.strip() and not file_body.strip():
+            return error_result(
+                command=argv,
+                status=STATUS_ERROR,
+                error="nerva produced no output on stdout or --output file",
+                duration=duration,
+                exit_code=completed.returncode,
+                stderr=completed.stderr or "",
+                structured_type="json",
+            )
+
         if completed.returncode != 0 and not raw_out.strip():
             return error_result(
                 command=argv,
@@ -321,6 +340,20 @@ def _first_target(spec: Mapping[str, Any]) -> str | None:
         return targets
     target = spec.get("target")
     return str(target) if target else None
+
+
+
+
+def _output_file_from_argv(argv: Sequence[str]) -> str | None:
+    for flag in ("-o", "--output", "-output"):
+        if flag in argv:
+            idx = list(argv).index(flag)
+            if idx + 1 < len(argv):
+                candidate = str(argv[idx + 1])
+                if candidate.startswith("-"):
+                    return None
+                return candidate
+    return None
 
 
 def _target_from_argv(argv: Sequence[str]) -> str | None:

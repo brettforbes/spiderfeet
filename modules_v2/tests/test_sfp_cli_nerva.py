@@ -82,6 +82,74 @@ def test_run_argv_rejects_shell_string() -> None:
         run_argv("nerva -t scanme.nmap.org:80 --json")  # type: ignore[arg-type]
 
 
+
+def test_output_file_from_argv() -> None:
+    from modules_v2.sfp_cli_nerva import _output_file_from_argv
+
+    assert _output_file_from_argv(["nerva", "--json", "-o", "out.jsonl", "-t", "h:80"]) == "out.jsonl"
+    assert _output_file_from_argv(["nerva", "--json", "--output", "out.jsonl"]) == "out.jsonl"
+    assert _output_file_from_argv(["nerva", "--json", "-t", "h:80"]) is None
+
+def test_run_hydrates_jsonl_from_output_file(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """Workflow ``--output`` must not treat empty stdout as a clean-miss SUCCESS."""
+    from types import SimpleNamespace
+
+    import json
+
+    from modules_v2._base import STATUS_SUCCESS
+
+    record = {
+        "host": "scanme.nmap.org",
+        "ip": "45.33.32.156",
+        "port": 80,
+        "protocol": "http",
+        "tls": False,
+        "transport": "tcp",
+    }
+    out_path = tmp_path / "nerva_out.jsonl"
+    out_path.write_text(json.dumps(record) + "\n", encoding="utf-8")
+    argv = ["nerva", "--json", "-t", "scanme.nmap.org:80", "-o", str(out_path)]
+
+    completed = SimpleNamespace(stdout="", stderr="", returncode=0)
+
+    mod = sfp_cli_nerva()
+    monkeypatch.setattr(
+        mod,
+        "_timed_run_argv",
+        lambda _argv, timeout=120.0: (completed, 0.5, None),
+    )
+    monkeypatch.setattr(mod, "build_argv", lambda _spec: list(argv))
+
+    result = mod.run({"argv": argv, "timeout": 30})
+    assert result["status"] == STATUS_SUCCESS
+    assert result["graph"]["nodes"]
+    assert result["structured"].get("records")
+
+def test_run_errors_when_stdout_and_output_file_empty(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from types import SimpleNamespace
+
+    from modules_v2._base import STATUS_ERROR
+
+    out_path = tmp_path / "empty.jsonl"
+    out_path.write_text("", encoding="utf-8")
+    argv = ["nerva", "--json", "-t", "scanme.nmap.org:80", "-o", str(out_path)]
+
+    completed = SimpleNamespace(stdout="", stderr="", returncode=0)
+
+    mod = sfp_cli_nerva()
+    monkeypatch.setattr(
+        mod,
+        "_timed_run_argv",
+        lambda _argv, timeout=120.0: (completed, 0.5, None),
+    )
+    monkeypatch.setattr(mod, "build_argv", lambda _spec: list(argv))
+
+    result = mod.run({"argv": argv, "timeout": 30})
+    assert result["status"] == STATUS_ERROR
+    assert "no output" in (result.get("error") or "").lower()
+
 def test_no_cli_corpus_imports() -> None:
     import modules_v2.adapters.nerva as adapter
     import modules_v2.adapters.nerva.hooks as hooks
