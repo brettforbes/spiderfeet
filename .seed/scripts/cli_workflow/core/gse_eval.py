@@ -6,7 +6,9 @@ import itertools
 import re
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Set
 
-from .graph_index import GraphIndex
+from spiderfeet_v2.workflow.graph_index import GraphIndex
+from spiderfeet_v2.workflow.normalize import normalize_list
+from spiderfeet_v2.workflow.variables import resolve_string_list
 
 
 class GseError(ValueError):
@@ -143,7 +145,10 @@ def _eval_for_each(
     fe: Mapping[str, Any],
     index: GraphIndex,
     scope_ids: Optional[Set[str]] = None,
+    *,
+    ancestor_ids: Optional[Mapping[str, str]] = None,
 ) -> List[str]:
+    ancestor_ids = dict(ancestor_ids or {})
     roots = match_nodes(index, fe.get("nodes") or {}, scope_ids)
     out: List[str] = []
     for root in roots:
@@ -151,21 +156,49 @@ def _eval_for_each(
         if not root_id:
             continue
         if "for_each" in fe:
-            # nested: restrict candidates to reachable from root if along provided on nested — v1 nested uses full match under root via collect only
-            out.extend(_eval_for_each(fe["for_each"], index, scope_ids=None))
+            nested = fe["for_each"]
+            nested_scope: Optional[Set[str]] = None
+            if nested.get("reachable_from"):
+                ref = nested["reachable_from"]
+                anchor_id = ancestor_ids.get(ref) or (root_id if ref == fe["as"] else None)
+                if not anchor_id:
+                    raise GseError(
+                        f"nested for_each.reachable_from '{ref}' "
+                        f"has no anchor in scope (known: {sorted(ancestor_ids)})"
+                    )
+                along = nested.get("along") or {"relation": "contains", "transitive": True}
+                nested_scope = index.reachable(
+                    anchor_id,
+                    along["relation"],
+                    transitive=bool(along.get("transitive", False)),
+                    direction=along.get("direction", "out"),
+                )
+            else:
+                nested_scope = index.reachable(root_id, "contains", transitive=True, direction="out")
+                nested_scope.add(root_id)
+            out.extend(
+                _eval_for_each(
+                    nested,
+                    index,
+                    nested_scope,
+                    ancestor_ids={**ancestor_ids, fe["as"]: root_id},
+                )
+            )
             continue
         binds: Dict[str, List[str]] = {}
-        # expose root projected value under its bind name for format use
         binds[fe["as"]] = [_project(root, "nugget_data")]
+        active_anchors = {**ancestor_ids, fe["as"]: root_id}
         for collect in fe.get("collect") or []:
-            if collect.get("reachable_from") != fe["as"]:
+            ref = collect.get("reachable_from")
+            anchor_id = active_anchors.get(ref)
+            if not anchor_id:
                 raise GseError(
-                    f"collect.reachable_from '{collect.get('reachable_from')}' "
-                    f"must match for_each.as '{fe['as']}' in v1"
+                    f"collect.reachable_from '{ref}' has no anchor "
+                    f"(for_each.as='{fe['as']}', known: {sorted(active_anchors)})"
                 )
             along = collect["along"]
             reachable = index.reachable(
-                root_id,
+                anchor_id,
                 along["relation"],
                 transitive=bool(along.get("transitive", False)),
                 direction=along.get("direction", "out"),
@@ -195,11 +228,7 @@ def eval_binding(
     graph: Optional[Mapping[str, Any]] = None,
     env_lists: Optional[Mapping[str, List[str]]] = None,
 ) -> List[str]:
-    """Evaluate a GSE variable binding.
-
-    ``env_lists`` maps absolute var refs or short names already resolved to lists
-    (used for ``union`` / ``from_var``).
-    """
+    """Evaluate a GSE variable binding."""
     env_lists = env_lists or {}
     btype = binding.get("type")
     if btype != "string_list":
@@ -228,3 +257,43 @@ def eval_binding(
         return _finalize(binding.get("literal") or [], distinct=True)
 
     raise GseError(f"binding must be select|union|from_var|literal: {binding.keys()}")
+
+
+def evaluate_output_vars(
+    step: Mapping[str, Any],
+    scan_graph: Mapping[str, Any],
+    *,
+    workflow_inputs: Mapping[str, List[str]] | None = None,
+) -> Dict[str, List[str]]:
+    """Evaluate a step's ``output.vars`` GSE bindings against its scan graph."""
+    workflow_inputs = workflow_inputs or {}
+    inp = step.get("input") or {}
+    input_normalize = inp.get("normalize")
+    env = {
+        "workflow": {"inputs": dict(workflow_inputs)},
+        "steps": {},
+        "step": {"vars": {}},
+    }
+
+    def _resolve_union_ref(ref: str, out: Dict[str, List[str]]) -> List[str]:
+        if ref.startswith("$workflow.inputs."):
+            values = resolve_string_list(ref, env)
+            return normalize_list(values, input_normalize)
+        key = ref.split(".")[-1]
+        if key not in out:
+            raise GseError(f"union ref {ref} not ready for step {step.get('id')}")
+        return out[key]
+
+    out: Dict[str, List[str]] = {}
+    vars_map = (step.get("output") or {}).get("vars") or {}
+    for name, binding in vars_map.items():
+        if "select" in binding or "from_var" in binding or "literal" in binding:
+            out[name] = eval_binding(binding, graph=scan_graph)
+    for name, binding in vars_map.items():
+        if "union" not in binding:
+            continue
+        env_lists: Dict[str, List[str]] = {}
+        for ref in binding["union"]:
+            env_lists[ref] = _resolve_union_ref(ref, out)
+        out[name] = eval_binding(binding, env_lists=env_lists)
+    return out

@@ -160,6 +160,12 @@ steps:
                     transitive: true
                   nodes:
                     nugget_id_in: [PORT, TCP_PORT_OPEN]
+                    where:
+                      - related:
+                          direction: in
+                          relation: contains
+                          transitive: true
+                          nugget_id: TRANSPORT
                   project: nugget_data
               emit:
                 product: [ip, port]
