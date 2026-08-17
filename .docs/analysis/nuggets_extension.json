@@ -1307,5 +1307,19 @@
     "nugget_type": "ENTITY",
     "nugget_icon": "icon_ip_address.svg",
     "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "COMPANY",
+    "nugget_description": "Company",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_company_name.svg",
+    "nugget_colour": "#3B82F6"
+  },
+  {
+    "nugget_id": "SUBDOMAIN",
+    "nugget_description": "Subdomain",
+    "nugget_type": "ENTITY",
+    "nugget_icon": "icon_domain_name.svg",
+    "nugget_colour": "#3B82F6"
   }
 ]

@@ -136,12 +136,13 @@ define
 	entity cloud-storage-bucket, sub nugget;  # Cloud Storage Bucket
 	entity co-hosted-site, sub nugget;  # Co-Hosted Site
 	entity co-hosted-site-domain, sub nugget;  # Co-Hosted Site - Domain Name
-	entity company-name, sub nugget;  # Company Name
+	entity company-name, sub descriptor_nugget;  # Company Name
 	entity country-name, sub nugget;  # Country Name
 	entity credit-card-number, sub nugget;  # Credit Card Number
 	entity date-human-dob, sub nugget;  # Date of Birth
 	entity domain-name, sub nugget;  # Domain Name
 	entity domain-name-parent, sub nugget;  # Domain Name (Parent)
+	entity subdomain, sub nugget;  # Subdomain
 	entity domain-registrar, sub nugget;  # Domain Registrar
 	entity emailaddr, sub nugget;  # Email Address
 	entity emailaddr-generic, sub nugget;  # Email Address - Generic
