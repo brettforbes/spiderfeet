@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 
 from core.correlation_engine import RecordCorrelationResult, correlate_nerva_records
 from core.graph_builder import GraphBuilder, nugget_node
+from core.topology import add_company_domain_tree
 from core.ip_classify import ip_nugget_node
 
 _CDN_LAYER_MARKERS = frozenset(
@@ -135,6 +136,11 @@ def apply_nerva_records(builder: GraphBuilder, scan_id: str, doc: dict[str, Any]
     if not records:
         return
 
+    target = str(doc.get("target") or "").strip().lower().rstrip(".")
+    apex_domain = None
+    if target:
+        apex_domain = add_company_domain_tree(builder, scan_id, target)["domain"]
+
     correlation = _correlation_by_record(records)
     systems: dict[tuple[str, str], dict[str, Any]] = {}
 
@@ -144,7 +150,7 @@ def apply_nerva_records(builder: GraphBuilder, scan_id: str, doc: dict[str, Any]
         key = _system_key(corr)
         if key not in systems:
             systems[key] = _ensure_system(builder, scan_id, key, corr)
-        _attach_record(builder, systems[key], record, corr)
+        _attach_record(builder, systems[key], record, corr, apex_domain=apex_domain)
 
 
 def _ensure_system(
@@ -190,6 +196,8 @@ def _attach_record(
     system_ctx: dict[str, Any],
     record: dict[str, Any],
     corr: RecordCorrelationResult,
+    *,
+    apex_domain: dict[str, Any] | None = None,
 ) -> None:
     ip = str(record.get("ip") or "")
     if ip and ip not in system_ctx["ips"]:
@@ -310,7 +318,11 @@ def _attach_record(
         _add_descriptor(builder, service["id"], "HTTP_REDIRECT_LOCATION", location)
         parsed = urlparse(location)
         if parsed.hostname:
-            domain = builder.add_node(nugget_node("DOMAIN_NAME", parsed.hostname.lower()))
+            host = parsed.hostname.lower().rstrip(".")
+            if apex_domain is not None and host == str(apex_domain.get("nugget_data", "")).lower().rstrip("."):
+                domain = apex_domain
+            else:
+                domain = builder.add_node(nugget_node("DOMAIN_NAME", host))
             builder.add_edge(service["id"], domain["id"], "contains")
 
 

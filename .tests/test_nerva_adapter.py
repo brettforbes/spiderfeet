@@ -100,8 +100,9 @@ def test_nerva_narrative_covers_cdn_indeterminate_phrasing_and_node_values():
     graph = nerva.to_graph(doc)
     markdown = nerva.to_narrative(graph, scenario_key="seed07_appendix")
 
-    assert "CDN / edge fronting" in markdown
+    assert "## CDN" in markdown
     assert "indeterminate" in markdown.lower()
     assert "Cloudflare" in markdown
     ok, missing = validate_narrative_coverage(graph, markdown, require_appendix=True)
     assert ok, missing[:10]
+
