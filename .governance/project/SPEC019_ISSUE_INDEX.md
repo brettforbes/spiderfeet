@@ -6,6 +6,8 @@
 
 Status legend: `open` → `in progress` → `in review` → `done`.
 
+**Program status (2026-08-17):** All lesser-agent issues **done** on `develop` except **E2 #1331** (operator GOV-08 gate). PRs #1334–#1350.
+
 ## Cross-repo map
 
 | Repo | Epic | Issue index |
@@ -18,50 +20,50 @@ Status legend: `open` → `in progress` → `in review` → `done`.
 
 | Code | Issue | Requirement | Depends on | Status |
 |------|-------|-------------|------------|--------|
-| Epic A | [#1308](https://github.com/brettforbes/spiderfeet/issues/1308) | R19-01..04 | — | open |
-| A1 — uuid4 + parent cache + validate_graph | [#1309](https://github.com/brettforbes/spiderfeet/issues/1309) | R19-01 | — | open |
-| A2 — topology parent_id | [#1310](https://github.com/brettforbes/spiderfeet/issues/1310) | R19-02 | A1 | open |
-| A3 — host-scoped GSE ip_port_list | [#1311](https://github.com/brettforbes/spiderfeet/issues/1311) | R19-03 | A2 | open |
-| A4 — identity/GSE docs | [#1312](https://github.com/brettforbes/spiderfeet/issues/1312) | R19-04 | A3 | open |
+| Epic A | [#1308](https://github.com/brettforbes/spiderfeet/issues/1308) | R19-01..04 | — | done |
+| A1 — uuid4 + parent cache + validate_graph | [#1309](https://github.com/brettforbes/spiderfeet/issues/1309) | R19-01 | — | done (#1334) |
+| A2 — topology parent_id | [#1310](https://github.com/brettforbes/spiderfeet/issues/1310) | R19-02 | A1 | done (#1336) |
+| A3 — host-scoped GSE ip_port_list | [#1311](https://github.com/brettforbes/spiderfeet/issues/1311) | R19-03 | A2 | done (#1337) |
+| A4 — identity/GSE docs | [#1312](https://github.com/brettforbes/spiderfeet/issues/1312) | R19-04 | A3 | done (#1338) |
 
 ## Epic B — Nerva hydrate
 
 | Code | Issue | Requirement | Depends on | Status |
 |------|-------|-------------|------------|--------|
-| Epic B | [#1313](https://github.com/brettforbes/spiderfeet/issues/1313) | R19-05..06 | — | open |
-| B1 — Hydrate --output / -o | [#1314](https://github.com/brettforbes/spiderfeet/issues/1314) | R19-05 | A1 | open |
-| B2 — ip:port list fixture | [#1315](https://github.com/brettforbes/spiderfeet/issues/1315) | R19-06 | A3, B1 | open |
+| Epic B | [#1313](https://github.com/brettforbes/spiderfeet/issues/1313) | R19-05..06 | — | done |
+| B1 — Hydrate --output / -o | [#1314](https://github.com/brettforbes/spiderfeet/issues/1314) | R19-05 | A1 | done (#1340) |
+| B2 — ip:port list fixture | [#1315](https://github.com/brettforbes/spiderfeet/issues/1315) | R19-06 | A3, B1 | done (#1342) |
 
 ## Epic C — Nuclei batching
 
 | Code | Issue | Requirement | Depends on | Status |
 |------|-------|-------------|------------|--------|
-| Epic C | [#1316](https://github.com/brettforbes/spiderfeet/issues/1316) | R19-07..09 | — | open |
-| C1 — Wire urls into existing batching | [#1317](https://github.com/brettforbes/spiderfeet/issues/1317) | R19-07 | — | open |
-| C2 — Batch i/n + timeouts | [#1318](https://github.com/brettforbes/spiderfeet/issues/1318) | R19-08 | C1 | done |
-| C3 — Tests + crawl_urls URL-only | [#1319](https://github.com/brettforbes/spiderfeet/issues/1319) | R19-09 | C2 | done |
+| Epic C | [#1316](https://github.com/brettforbes/spiderfeet/issues/1316) | R19-07..09 | — | done |
+| C1 — Wire urls into existing batching | [#1317](https://github.com/brettforbes/spiderfeet/issues/1317) | R19-07 | — | done (#1339) |
+| C2 — Batch i/n + timeouts | [#1318](https://github.com/brettforbes/spiderfeet/issues/1318) | R19-08 | C1 | done (#1343) |
+| C3 — Tests + crawl_urls URL-only | [#1319](https://github.com/brettforbes/spiderfeet/issues/1319) | R19-09 | C2 | done (#1343) |
 
 ## Epic F — Company / subdomain / URL hierarchy
 
 | Code | Issue | Requirement | Depends on | Status |
 |------|-------|-------------|------------|--------|
-| Epic F | [#1320](https://github.com/brettforbes/spiderfeet/issues/1320) | R19-15..22 | — | open |
-| F1 — Catalogue COMPANY/SUBDOMAIN + COMPANY_NAME retype | [#1321](https://github.com/brettforbes/spiderfeet/issues/1321) | R19-15 | — | open |
-| F2 — add_company_domain_tree helper | [#1322](https://github.com/brettforbes/spiderfeet/issues/1322) | R19-16 | A1, F1 | open |
-| F3 — Subfinder adapter + 12A GSE | [#1323](https://github.com/brettforbes/spiderfeet/issues/1323) | R19-17 | F2 | open |
-| F4 — HTTPX website root + HTTP_STATUS_CODE | [#1324](https://github.com/brettforbes/spiderfeet/issues/1324) | R19-18 | F2 | open |
-| F5 — Katana hostname URL ownership | [#1325](https://github.com/brettforbes/spiderfeet/issues/1325) | R19-19 | F2 | open |
-| F6 — Pius COMPANY wrap | [#1326](https://github.com/brettforbes/spiderfeet/issues/1326) | R19-20 | F2 | open |
-| F7 — Nerva apex COMPANY wrap | [#1327](https://github.com/brettforbes/spiderfeet/issues/1327) | R19-21 | F2 | open |
-| F8 — Validator + synthetic tests | [#1328](https://github.com/brettforbes/spiderfeet/issues/1328) | R19-22 | F3–F7 | done |
+| Epic F | [#1320](https://github.com/brettforbes/spiderfeet/issues/1320) | R19-15..22 | — | done |
+| F1 — Catalogue COMPANY/SUBDOMAIN + COMPANY_NAME retype | [#1321](https://github.com/brettforbes/spiderfeet/issues/1321) | R19-15 | — | done (#1335) |
+| F2 — add_company_domain_tree helper | [#1322](https://github.com/brettforbes/spiderfeet/issues/1322) | R19-16 | A1, F1 | done (#1341) |
+| F3 — Subfinder adapter + 12A GSE | [#1323](https://github.com/brettforbes/spiderfeet/issues/1323) | R19-17 | F2 | done (#1344) |
+| F4 — HTTPX website root + HTTP_STATUS_CODE | [#1324](https://github.com/brettforbes/spiderfeet/issues/1324) | R19-18 | F2 | done (#1345) |
+| F5 — Katana hostname URL ownership | [#1325](https://github.com/brettforbes/spiderfeet/issues/1325) | R19-19 | F2 | done (#1346) |
+| F6 — Pius COMPANY wrap | [#1326](https://github.com/brettforbes/spiderfeet/issues/1326) | R19-20 | F2 | done (#1347) |
+| F7 — Nerva apex COMPANY wrap | [#1327](https://github.com/brettforbes/spiderfeet/issues/1327) | R19-21 | F2 | done (#1348) |
+| F8 — Validator + synthetic tests | [#1328](https://github.com/brettforbes/spiderfeet/issues/1328) | R19-22 | F3–F7 | done (#1349) |
 
 ## Epic E — Integration + acceptance
 
 | Code | Issue | Requirement | Depends on | Status |
 |------|-------|-------------|------------|--------|
-| Epic E | [#1329](https://github.com/brettforbes/spiderfeet/issues/1329) | R19-13..14 | A,B,C,D,F | open |
-| E1 — Cross-repo E2E smoke | [#1330](https://github.com/brettforbes/spiderfeet/issues/1330) | R19-13 | A3, B2, C3, D3, F8 | done |
-| E2 — GOV-08 exploratory [OPERATOR GATE] | [#1331](https://github.com/brettforbes/spiderfeet/issues/1331) | R19-14 | E1 | open |
+| Epic E | [#1329](https://github.com/brettforbes/spiderfeet/issues/1329) | R19-13..14 | A,B,C,D,F | done (E1) |
+| E1 — Cross-repo E2E smoke | [#1330](https://github.com/brettforbes/spiderfeet/issues/1330) | R19-13 | A3, B2, C3, D3, F8 | done (#1350) |
+| E2 — GOV-08 exploratory [OPERATOR GATE] | [#1331](https://github.com/brettforbes/spiderfeet/issues/1331) | R19-14 | E1 | **open** |
 
 ## Execution order
 
@@ -90,4 +92,3 @@ E1 after A3+B2+C3+YAML D3+F8 → E2 (OPERATOR GATE)
 ## Governance
 
 Branch from `develop`; PR into `develop`; one issue at a time; close with evidence; return to `develop` before next.
-
