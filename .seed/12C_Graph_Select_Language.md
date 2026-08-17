@@ -217,7 +217,7 @@ Empty collect under an endpoint → no emissions for that endpoint (not an error
 
 | Field | Required | Meaning |
 |-------|----------|---------|
-| `reachable_from` | yes | Bind name from enclosing `for_each.as` |
+| `reachable_from` | yes | Bind name from enclosing `for_each.as` or an ancestor bind in nested cascades |
 | `along.relation` | yes | Edge relation to walk |
 | `along.transitive` | no (default false) | Follow multi-hop paths |
 | `along.direction` | no (default `out`) | `out` = source→target, `in` = reverse |
@@ -266,7 +266,7 @@ select:
         join: ":"
 ```
 
-Prefer the flatter single-`for_each` + dual `collect` form when all leaves share one ancestor.
+Nested `for_each` restricts inner root matching to nodes reachable from the parent iteration (transitive `contains` from the parent root, or an explicit inner `reachable_from` + `along`). Inner `collect.reachable_from` may reference the current `for_each.as` or any ancestor bind name mapped to that iteration's anchor node id.
 
 ---
 

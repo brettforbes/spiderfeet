@@ -145,7 +145,10 @@ def _eval_for_each(
     fe: Mapping[str, Any],
     index: GraphIndex,
     scope_ids: Optional[Set[str]] = None,
+    *,
+    ancestor_ids: Optional[Mapping[str, str]] = None,
 ) -> List[str]:
+    ancestor_ids = dict(ancestor_ids or {})
     roots = match_nodes(index, fe.get("nodes") or {}, scope_ids)
     out: List[str] = []
     for root in roots:
@@ -153,19 +156,49 @@ def _eval_for_each(
         if not root_id:
             continue
         if "for_each" in fe:
-            out.extend(_eval_for_each(fe["for_each"], index, scope_ids=None))
+            nested = fe["for_each"]
+            nested_scope: Optional[Set[str]] = None
+            if nested.get("reachable_from"):
+                ref = nested["reachable_from"]
+                anchor_id = ancestor_ids.get(ref) or (root_id if ref == fe["as"] else None)
+                if not anchor_id:
+                    raise GseError(
+                        f"nested for_each.reachable_from '{ref}' "
+                        f"has no anchor in scope (known: {sorted(ancestor_ids)})"
+                    )
+                along = nested.get("along") or {"relation": "contains", "transitive": True}
+                nested_scope = index.reachable(
+                    anchor_id,
+                    along["relation"],
+                    transitive=bool(along.get("transitive", False)),
+                    direction=along.get("direction", "out"),
+                )
+            else:
+                nested_scope = index.reachable(root_id, "contains", transitive=True, direction="out")
+                nested_scope.add(root_id)
+            out.extend(
+                _eval_for_each(
+                    nested,
+                    index,
+                    nested_scope,
+                    ancestor_ids={**ancestor_ids, fe["as"]: root_id},
+                )
+            )
             continue
         binds: Dict[str, List[str]] = {}
         binds[fe["as"]] = [_project(root, "nugget_data")]
+        active_anchors = {**ancestor_ids, fe["as"]: root_id}
         for collect in fe.get("collect") or []:
-            if collect.get("reachable_from") != fe["as"]:
+            ref = collect.get("reachable_from")
+            anchor_id = active_anchors.get(ref)
+            if not anchor_id:
                 raise GseError(
-                    f"collect.reachable_from '{collect.get('reachable_from')}' "
-                    f"must match for_each.as '{fe['as']}' in v1"
+                    f"collect.reachable_from '{ref}' has no anchor "
+                    f"(for_each.as='{fe['as']}', known: {sorted(active_anchors)})"
                 )
             along = collect["along"]
             reachable = index.reachable(
-                root_id,
+                anchor_id,
                 along["relation"],
                 transitive=bool(along.get("transitive", False)),
                 direction=along.get("direction", "out"),
