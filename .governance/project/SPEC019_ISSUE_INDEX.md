@@ -53,7 +53,7 @@ Status legend: `open` → `in progress` → `in review` → `done`.
 | F5 — Katana hostname URL ownership | [#1325](https://github.com/brettforbes/spiderfeet/issues/1325) | R19-19 | F2 | open |
 | F6 — Pius COMPANY wrap | [#1326](https://github.com/brettforbes/spiderfeet/issues/1326) | R19-20 | F2 | open |
 | F7 — Nerva apex COMPANY wrap | [#1327](https://github.com/brettforbes/spiderfeet/issues/1327) | R19-21 | F2 | open |
-| F8 — Validator + synthetic tests | [#1328](https://github.com/brettforbes/spiderfeet/issues/1328) | R19-22 | F3–F7 | open |
+| F8 — Validator + synthetic tests | [#1328](https://github.com/brettforbes/spiderfeet/issues/1328) | R19-22 | F3–F7 | done |
 
 ## Epic E — Integration + acceptance
 
