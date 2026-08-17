@@ -100,8 +100,9 @@ def test_subfinder_s0_s2_s3_s6_passive_domain_shape():
     nodes = graph["nodes"]
     edges = graph["edges"]
 
+    assert any(n["nugget_id"] == "COMPANY" for n in nodes)
     assert any(n["nugget_id"] == "DOMAIN_NAME" and n["nugget_data"] == "k2am.com.au" for n in nodes)
-    www = next(n for n in nodes if n["nugget_id"] == "DOMAIN_NAME" and n["nugget_data"] == "www.k2am.com.au")
+    www = next(n for n in nodes if n["nugget_id"] == "SUBDOMAIN" and n["nugget_data"] == "www.k2am.com.au")
     linked = {
         (n["nugget_id"], n["nugget_data"])
         for n in nodes
@@ -111,7 +112,6 @@ def test_subfinder_s0_s2_s3_s6_passive_domain_shape():
     assert ("DISCOVERY_SOURCE", "crtsh") in linked
     assert ("DISCOVERY_SOURCE", "hackertarget") in linked
     assert ("DISCOVERY_MODE", "passive") in linked
-    assert ("DOMAIN_NAME_PARENT", "k2am.com.au") in linked
     assert ("LIVENESS_STATUS", "unconfirmed") in linked
 
 
@@ -120,7 +120,11 @@ def test_subfinder_s4_active_ip_bridge_uses_allowed_relation():
     nodes = graph["nodes"]
     edges = graph["edges"]
 
-    ip = next(n for n in nodes if n["nugget_id"] == "IP_ADDRESS" and n["nugget_data"] == "59.100.198.94")
+    ip = next(
+        n
+        for n in nodes
+        if n["nugget_id"] in {"IP_ADDRESS", "IPV4_ADDRESS"} and n["nugget_data"] == "59.100.198.94"
+    )
     linked_domains = [
         edge["source"]
         for edge in edges
@@ -137,6 +141,6 @@ def test_subfinder_converter_delegates_to_adapter():
     raw = json.dumps(_active_bundle())
     graph = subfinder_to_graph(raw, "k2am.com.au", "subfinder -d k2am.com.au -active -oJ -oI")
 
-    assert any(n["nugget_id"] == "DOMAIN_NAME" for n in graph["nodes"])
-    assert any(n["nugget_id"] == "IP_ADDRESS" for n in graph["nodes"])
+    assert any(n["nugget_id"] == "SUBDOMAIN" for n in graph["nodes"])
+    assert any(n["nugget_id"] in {"IP_ADDRESS", "IPV4_ADDRESS"} for n in graph["nodes"])
     validate_graph(graph)

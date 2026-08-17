@@ -210,3 +210,44 @@ def add_company_domain_tree(
         builder.add_edge(company_node["id"], name_node["id"], "had")
         result["company_name"] = name_node
     return result
+
+def host_matches_apex(hostname: str, apex: str) -> str:
+    host = hostname.lower().rstrip(".")
+    apex = apex.lower().rstrip(".")
+    if not host or not apex:
+        return "off_apex"
+    if host == apex:
+        return "apex"
+    if host.endswith("." + apex):
+        return "subdomain"
+    return "off_apex"
+
+
+def ensure_subdomain(
+    builder: GraphBuilder,
+    apex_domain_node: dict[str, Any],
+    fqdn: str,
+) -> dict[str, Any]:
+    value = fqdn.lower().rstrip(".")
+    node = builder.add_node(
+        nugget_node("SUBDOMAIN", value, description="Subdomain"),
+        parent_id=apex_domain_node["id"],
+    )
+    builder.add_edge(apex_domain_node["id"], node["id"], "contains")
+    return node
+
+
+def resolve_website_root(
+    builder: GraphBuilder,
+    tree: dict[str, Any],
+    hostname: str,
+) -> dict[str, Any]:
+    apex = str(tree["domain"]["nugget_data"]).lower().rstrip(".")
+    kind = host_matches_apex(hostname, apex)
+    if kind == "apex":
+        return tree["domain"]
+    if kind == "subdomain":
+        return ensure_subdomain(builder, tree["domain"], hostname)
+    value = hostname.lower().rstrip(".")
+    return builder.add_node(nugget_node("DOMAIN_NAME", value, description="Domain Name"))
+

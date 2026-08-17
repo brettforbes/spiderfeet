@@ -25,14 +25,7 @@ legal identity. It plugs into the same graph rather than forking one.
 Two things fall directly out of matching this to the unified model rather
 than treating subfinder as its own island:
 
-1. **No `COMPANY_NAME` without composition.** Exactly like Netdiscover
-   can't invent `MAC_VENDOR` without L2 evidence, subfinder's document
-   never contains an `org` field at all — there is no legitimate way to
-   attach a `COMPANY_NAME` from this data alone. The root of a
-   standalone subfinder sub-graph is `DOMAIN_NAME(target)` itself. When
-   composed with a `pius` scan of the same target, the two graphs merge
-   automatically at that shared `DOMAIN_NAME` node — no reclassification
-   step required, unlike `SYSTEM → HOST`.
+1. **COMPANY wraps the scan apex (SPEC-019).** Subfinder mints `COMPANY` with `nugget_data = company:{apex}` and places the seed `DOMAIN_NAME` under it. Enumerated hosts become flat `SUBDOMAIN` nodes contained by the apex.
 
 2. **Active-mode `ip` resolution is the single most valuable field in
    this schema** — it's the literal cross-ontology bridge. `IP_ADDRESS`
