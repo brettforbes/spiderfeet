@@ -60,14 +60,26 @@ class _PiusContext:
         return node
 
     def ensure_company(self) -> dict[str, Any] | None:
-        """08 head — one COMPANY_NAME root per scan when org is known."""
+        """SPEC-019 COMPANY head with had COMPANY_NAME (bounded wrap)."""
         if not self.org:
             return None
+        apex = str(self.doc.get("target") or "").strip().lower().rstrip(".")
+        if not apex:
+            return None
+        company_data = f"company:{apex}"
         if self.company_id is not None:
-            return self._entity_nodes[("COMPANY_NAME", self.org)]
-        company = self.entity_node("COMPANY_NAME", self.org)
+            return self._entity_nodes[("COMPANY", company_data)]
+        from core.topology import add_company_domain_tree
+
+        tree = add_company_domain_tree(
+            self.builder,
+            self.scan_id,
+            apex,
+            company_name=self.org,
+        )
+        company = tree["company"]
+        self._entity_nodes[("COMPANY", company_data)] = company
         self.company_id = company["id"]
-        self.builder.add_edge(self.scan_id, company["id"], "contains")
         return company
 
     def category_node(self, nugget_id: str) -> dict[str, Any]:
