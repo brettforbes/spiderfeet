@@ -145,6 +145,49 @@ def _report_input_progress(
     )
 
 
+
+def _nuclei_batch_progress_total(
+    module_id: str,
+    input_values: List[str],
+    spec: Mapping[str, Any],
+) -> Optional[int]:
+    """SPEC-019 R19-08: Composer i/n counts nuclei batches, not raw URLs."""
+    if module_id != "sfp_cli_nuclei" or not input_values:
+        return None
+    from modules_v2.sfp_cli_nuclei import (
+        DEFAULT_BATCH_SIZE,
+        option_passes_from_spec,
+        progress_totals,
+    )
+
+    batch_size = int(spec.get("batch_size") or DEFAULT_BATCH_SIZE)
+    passes = option_passes_from_spec(spec)
+    totals = progress_totals(
+        input_values, batch_size=batch_size, option_passes=passes
+    )
+    return int(totals["batches_total"])
+
+
+def _attach_nuclei_progress_callback(
+    spec: Dict[str, Any],
+    *,
+    run_id: Optional[str],
+    step_id: str,
+    batches_total: int,
+) -> None:
+    if not run_id:
+        return
+
+    def _callback(progress: Mapping[str, Any]) -> None:
+        done = int(progress.get("batches_done") or 0)
+        total = int(progress.get("batches_total") or batches_total)
+        _report_input_progress(
+            run_id, step_id, input_total=total, input_done=done
+        )
+
+    spec["progress_callback"] = _callback
+
+
 def _prior_vars_from_store(
     store: Any,
     workflow_id: str,
@@ -201,6 +244,8 @@ def _build_scan_step_spec(
             spec["urls"] = list(input_values)
         if config.get("timeout") is not None:
             spec["timeout"] = config["timeout"]
+        if config.get("overall_timeout") is not None:
+            spec["overall_timeout"] = config["overall_timeout"]
         return spec, list(cmd.argv)
 
     # Domain/target style (modules build their own structured flags).
@@ -214,6 +259,8 @@ def _build_scan_step_spec(
         spec["active"] = config["active"]
     if config.get("timeout") is not None:
         spec["timeout"] = config["timeout"]
+    if config.get("overall_timeout") is not None:
+        spec["overall_timeout"] = config["overall_timeout"]
     preview = list(config.get("args") or [])
     if primary:
         preview = preview + ["-d", str(primary)]
@@ -382,9 +429,23 @@ def run_single_step(
             scan_status=STATUS_STARTING,
         )
         n_inputs = len(input_values)
-        _report_input_progress(
-            run_id, dsl_step_id, input_total=n_inputs, input_done=0
+        batches_total = _nuclei_batch_progress_total(
+            module_id, input_values, spec
         )
+        progress_total = batches_total if batches_total is not None else n_inputs
+        _report_input_progress(
+            run_id,
+            dsl_step_id,
+            input_total=progress_total,
+            input_done=0,
+        )
+        if batches_total is not None:
+            _attach_nuclei_progress_callback(
+                spec,
+                run_id=run_id,
+                step_id=dsl_step_id,
+                batches_total=batches_total,
+            )
         store.update_scan_step(scan_id, {"scan_status": STATUS_RUNNING})
 
         try:
@@ -451,6 +512,15 @@ def run_single_step(
                     )
                     module_result["status"] = "ERROR"
 
+            progress_done = progress_total
+            if batches_total is not None:
+                prog = module_result.get("progress") or {}
+                if isinstance(prog, Mapping):
+                    progress_done = int(
+                        prog.get("batches_done") or batches_total
+                    )
+                else:
+                    progress_done = batches_total
             persisted = persist_module_result(
                 store,
                 scan_instance_id=scan_id,
@@ -458,11 +528,14 @@ def run_single_step(
                 step=step,
                 module_result=module_result,
                 output_vars=output_vars,
-                input_total=n_inputs,
-                input_done=n_inputs,
+                input_total=progress_total,
+                input_done=progress_done,
             )
             _report_input_progress(
-                run_id, dsl_step_id, input_total=n_inputs, input_done=n_inputs
+                run_id,
+                dsl_step_id,
+                input_total=progress_total,
+                input_done=progress_done,
             )
             forms_persisted = True
         except OrchestratorError:

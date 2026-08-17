@@ -142,3 +142,11 @@ def test_collect_urls_and_batch_planning_forty_five_r19_07() -> None:
     assert sum(len(c) for c in chunks) == 45
     jobs = plan_batch_jobs(collected, batch_size=DEFAULT_BATCH_SIZE)
     assert len(jobs) == 3
+
+def test_progress_totals_one_to_twenty_urls_one_batch_r19_08() -> None:
+    """R19-08: 1-20 URLs report a single nuclei batch."""
+    from modules_v2.sfp_cli_nuclei import progress_totals
+
+    for count in (1, 5, 20):
+        urls = [f"https://h{i}.example" for i in range(count)]
+        assert progress_totals(urls)["batches_total"] == 1

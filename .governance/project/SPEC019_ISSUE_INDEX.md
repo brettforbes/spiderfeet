@@ -38,8 +38,8 @@ Status legend: `open` → `in progress` → `in review` → `done`.
 |------|-------|-------------|------------|--------|
 | Epic C | [#1316](https://github.com/brettforbes/spiderfeet/issues/1316) | R19-07..09 | — | open |
 | C1 — Wire urls into existing batching | [#1317](https://github.com/brettforbes/spiderfeet/issues/1317) | R19-07 | — | open |
-| C2 — Batch i/n + timeouts | [#1318](https://github.com/brettforbes/spiderfeet/issues/1318) | R19-08 | C1 | open |
-| C3 — Tests + crawl_urls URL-only | [#1319](https://github.com/brettforbes/spiderfeet/issues/1319) | R19-09 | C2 | open |
+| C2 — Batch i/n + timeouts | [#1318](https://github.com/brettforbes/spiderfeet/issues/1318) | R19-08 | C1 | done |
+| C3 — Tests + crawl_urls URL-only | [#1319](https://github.com/brettforbes/spiderfeet/issues/1319) | R19-09 | C2 | done |
 
 ## Epic F — Company / subdomain / URL hierarchy
 
@@ -90,3 +90,4 @@ E1 after A3+B2+C3+YAML D3+F8 → E2 (OPERATOR GATE)
 ## Governance
 
 Branch from `develop`; PR into `develop`; one issue at a time; close with evidence; return to `develop` before next.
+
