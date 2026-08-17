@@ -33,15 +33,16 @@ Three deployment shapes:
 | Category | empty | `spiderfeet-actual` only; under `HOST` / `DEVICE` / `MOBILE` |
 | Instance | required | Both DBs; carries entity/descriptor values |
 
-**Instance id** (dedup key) — **canonical form for CLI corpus / SPEC-004**:
+**Instance id** (SPEC-019 R19-01; supersedes uuid5-only dedup for structural types):
 
 ```python
-# Use shared helper: .seed/scripts/cli_corpus/graph_builder.py (later core/graph_builder.py)
+# Use shared helper: modules_v2/_core/graph_builder.py (and cli_corpus copy)
 # ONTOLOGY_NAMESPACE = uuid5(NAMESPACE_DNS, "OS Threat, OS Intel Ontology")
-nugget_instance_id = f"{nugget_id}--{uuid5(ONTOLOGY_NAMESPACE, nugget_data)}"
+# ENTITY / SUBENTITY / CATEGORY / INTERNAL → uuid4 occurrence + parent_id cache
+# DESCRIPTOR / DATA → f"{nugget_id}--{uuid5(ONTOLOGY_NAMESPACE, nugget_data)}"
 ```
 
-Use a **double dash** (`--`) between `nugget_id` and the uuid5 hex. Do not invent alternate UUID helpers. Flat nugget lists are insufficient — graphs must reflect intrinsic hierarchies (IPS, host/network/application, scan metadata).
+Use a **double dash** (`--`) between `nugget_id` and the uuid suffix. Do not invent alternate UUID helpers. Flat nugget lists are insufficient — graphs must reflect intrinsic hierarchies (IPS, host/network/application, scan metadata).
 
 CLI structured→graph→narrative work must also follow `.cursor/rules/proj-07-cli-graph-rules-engine.mdc` (SPEC-004).
 

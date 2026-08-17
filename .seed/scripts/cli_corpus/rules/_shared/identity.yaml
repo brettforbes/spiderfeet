@@ -1,3 +1,8 @@
 function: core.graph_builder.nugget_instance_id
-format: "{nugget_id}--{uuid5(ONTOLOGY_NAMESPACE, nugget_data)}"
+# SPEC-019 R19-01 (supersedes uuid5-only identity for structural types):
+#   ENTITY / SUBENTITY / CATEGORY / INTERNAL → uuid4 occurrence ids with
+#   GraphBuilder parent-scoped cache on (parent_id, nugget_id, nugget_data).
+#   DESCRIPTOR / DATA → uuid5 unique-by-value:
+format_descriptor_data: "{nugget_id}--{uuid5(ONTOLOGY_NAMESPACE, nugget_data)}"
+format_occurrence: "{nugget_id}--{uuid4()}"
 namespace_seed: OS Threat, OS Intel Ontology

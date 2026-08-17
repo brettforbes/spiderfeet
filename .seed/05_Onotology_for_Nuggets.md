@@ -528,7 +528,7 @@ flowchart TD
 - If a new nugget is required, state whether it is entity or attribute, its parent, and why existing nuggets are insufficient.
 - Keep scanner-specific result containers out of the ontology unless they represent a durable concept. Tool names are scan attributes, not entity classes.
 - `clean_miss` is scan-level evidence that the run completed but produced no qualifying target intelligence; it is not a replacement for error modelling.
-- Nugget identity must be deterministic from `nugget_id` plus canonical `nugget_data`; do not create duplicate nodes for the same fact.
+- **Instance identity (SPEC-019 R19-01):** `ENTITY`, `SUBENTITY`, `CATEGORY`, and `INTERNAL` nodes use **uuid4 occurrence** ids scoped by `GraphBuilder.add_node(..., parent_id=)` — same `(parent_id, nugget_id, nugget_data)` reuses one node; different parents may share the same value as separate nodes. `DESCRIPTOR` and `DATA` stay **uuid5** unique-by-value: `f"{nugget_id}--{uuid5(ONTOLOGY_NAMESPACE, nugget_data)}"`. Duplicate `(nugget_id, nugget_data)` pairs are allowed for uuid4 types; `validate_graph` still forbids duplicate ids and duplicate descriptor/data pairs.
 
 ### 3.3 Review Gate
 
