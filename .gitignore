@@ -186,6 +186,9 @@ docs/_build/
 # TypeDB connection (operator-local; see .config/typedb.connection.example.json) #
 .config/typedb.connection.json
 
+# Local GoRules BRMS secrets (see deploy/gorules/.env.example) #
+deploy/gorules/.env
+
 # CodeGraph local index (per-machine; see .cursor/rules/codegraph.mdc) #
 .codegraph/
 
