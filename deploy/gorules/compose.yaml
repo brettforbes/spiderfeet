@@ -1,0 +1,56 @@
+name: spiderfeet-gorules
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: spiderfeet-gorules-postgres
+    environment:
+      POSTGRES_USER: ${DB_USER:?DB_USER is required}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+      POSTGRES_DB: ${DB_NAME:?DB_NAME is required}
+    volumes:
+      - gorules-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    restart: unless-stopped
+
+  brms:
+    image: gorules/brms:latest
+    container_name: spiderfeet-gorules-brms
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:?DB_USER is required}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+      DB_NAME: ${DB_NAME:?DB_NAME is required}
+      DB_SSL_DISABLED: "true"
+      LICENSE_KEY: ${LICENSE_KEY:-}
+      LICENSE_MODE: online
+      APP_NAME: SpiderFeet GoRules
+      APP_URL: http://localhost:${BRMS_HOST_PORT:-8088}
+      HTTP_HOST: 0.0.0.0
+      HTTP_PORT: 80
+      COOKIE_SECRET: ${COOKIE_SECRET:?COOKIE_SECRET is required}
+      HASH_SECRET: ${HASH_SECRET:?HASH_SECRET is required}
+      RELEASE_ZIP_PASSWORD: ${RELEASE_ZIP_PASSWORD:?RELEASE_ZIP_PASSWORD is required}
+      EMAIL_ENABLED: "false"
+      LOG_LEVEL: info
+    ports:
+      - "${BRMS_HOST_PORT:-8088}:80"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://127.0.0.1/api/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 18
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  gorules-postgres-data:

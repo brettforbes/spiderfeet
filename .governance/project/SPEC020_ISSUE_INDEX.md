@@ -79,7 +79,7 @@ Status legend: `planned` → `open` → `in progress` → `in review` → `done`
 | Code | Issue | Requirement | Depends on | Status |
 |---|---|---|---|---|
 | Epic W | [#1](https://github.com/brettforbes/widget-context-gorules/issues/1) | R20-12 | — | open |
-| W0 — Governance + integration branch bootstrap | [#2](https://github.com/brettforbes/widget-context-gorules/issues/2) | Governance prerequisite | — | open |
+| W0 — Governance + integration branch bootstrap | [#2](https://github.com/brettforbes/widget-context-gorules/issues/2) | Governance prerequisite | — | done |
 | W1 — React shell + JDM editor compatibility spike | [#3](https://github.com/brettforbes/widget-context-gorules/issues/3) | R20-12.1, R20-12.7 | W0 | open |
 | W2 — Versioned embed protocol + standalone API shell | [#4](https://github.com/brettforbes/widget-context-gorules/issues/4) | R20-12.5..6, R20-13.4 | W1 | open |
 | W3 — Rules branch/simulate/release pane | [#5](https://github.com/brettforbes/widget-context-gorules/issues/5) | R20-07, R20-12.2..4 | W2, A3 | open |
