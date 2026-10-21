@@ -47,7 +47,7 @@ Status legend: `planned` → `open` → `in progress` → `in review` → `done`
 | Code | Issue | Requirement | Depends on | Status |
 |---|---|---|---|---|
 | Epic C | [#1363](https://github.com/brettforbes/spiderfeet/issues/1363) | R20-08..11 | — | open |
-| C1 — Revision/job/hold schema | [#1364](https://github.com/brettforbes/spiderfeet/issues/1364) | R20-09, R20-10 | — | open |
+| C1 — Revision/job/hold schema | [#1364](https://github.com/brettforbes/spiderfeet/issues/1364) | R20-09, R20-10 | — | done |
 | C2 — Content-addressed snapshots and traces | [#1365](https://github.com/brettforbes/spiderfeet/issues/1365) | R20-01.3, R20-10, R20-11 | C1 | open |
 | C3 — Provenance ledger + inferred/remap events | [#1366](https://github.com/brettforbes/spiderfeet/issues/1366) | R20-04.3..6, R20-05.5..7, R20-11.1..3 | B1, C1, C2 | open |
 | C4 — Canonical materialization, activation, rollback | [#1367](https://github.com/brettforbes/spiderfeet/issues/1367) | R20-06, R20-09.4..6, R20-10 | C3 | open |
