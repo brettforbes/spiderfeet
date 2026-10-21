@@ -27,7 +27,7 @@ Status legend: `planned` → `open` → `in progress` → `in review` → `done`
 | Code | Issue | Requirement | Depends on | Status |
 |---|---|---|---|---|
 | Epic A | [#1353](https://github.com/brettforbes/spiderfeet/issues/1353) | R20-07, R20-08 | — | open |
-| A1 — Docker Desktop + BRMS/PostgreSQL stack | [#1354](https://github.com/brettforbes/spiderfeet/issues/1354) | R20-08.1..4 | — | open |
+| A1 — Docker Desktop + BRMS/PostgreSQL stack | [#1354](https://github.com/brettforbes/spiderfeet/issues/1354) | R20-08.1..4 | — | done |
 | A2 — Typed BRMS client + health/auth | [#1355](https://github.com/brettforbes/spiderfeet/issues/1355) | R20-08.5, R20-09.3 | A1 | open |
 | A3 — Branch/simulate/release/evaluate lifecycle | [#1356](https://github.com/brettforbes/spiderfeet/issues/1356) | R20-07.4..7, R20-08.5 | A2 | open |
 
@@ -36,7 +36,7 @@ Status legend: `planned` → `open` → `in progress` → `in review` → `done`
 | Code | Issue | Requirement | Depends on | Status |
 |---|---|---|---|---|
 | Epic B | [#1357](https://github.com/brettforbes/spiderfeet/issues/1357) | R20-02..07 | — | open |
-| B1 — Semantic record and normalization contract | [#1358](https://github.com/brettforbes/spiderfeet/issues/1358) | R20-02, R20-03, R20-05 | — | open |
+| B1 — Semantic record and normalization contract | [#1358](https://github.com/brettforbes/spiderfeet/issues/1358) | R20-02, R20-03, R20-05 | — | done |
 | B2 — Candidate index + MECE mapping | [#1359](https://github.com/brettforbes/spiderfeet/issues/1359) | R20-02, R20-03, R20-06 | B1 | open |
 | B3 — Core identity/hierarchy/classification JDM | [#1360](https://github.com/brettforbes/spiderfeet/issues/1360) | R20-03..07 | B1 | open |
 | B4 — Five-tool evidence mappings + simulator cases | [#1361](https://github.com/brettforbes/spiderfeet/issues/1361) | R20-07.1..3, R20-07.7 | B3 | open |
