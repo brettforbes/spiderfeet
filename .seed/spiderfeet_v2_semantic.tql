@@ -753,6 +753,38 @@ define
 		plays project_context:project, # contains actual nodes and edges arrays for the context for the project
 		plays temporary_subgraph:project; # contains actual nodes and edges arrays as the temporary subgraph for the project
 
+	# SPEC-020 context history. project_id stays on project only because it is a key.
+	entity context_merge_job,
+		owns context_job_id @key,
+		owns context_project_ref,
+		owns context_job_status,
+		owns context_parent_revision_id @card(0..1),
+		owns context_rule_release_id,
+		owns context_source_hash,
+		owns context_normalizer_version,
+		owns context_discard_reason @card(0..1),
+		owns context_revision_id @card(0..1);
+
+	entity context_revision,
+		owns context_revision_id @key,
+		owns context_project_ref,
+		owns context_revision_status,
+		owns context_parent_revision_id @card(0..1),
+		owns context_source_hash,
+		owns context_rule_release_id,
+		owns context_corrective_of @card(0..1),
+		owns context_created;
+
+	entity context_hold,
+		owns context_hold_id @key,
+		owns context_revision_id,
+		owns context_hold_code,
+		owns description;
+
+	entity context_active_pointer,
+		owns context_pointer_id @key,
+		owns context_active_project_ref @unique,
+		owns context_revision_id;
 
 	#####################################
 	# SpiderFeet Attribute Definitions
@@ -844,6 +876,22 @@ define
 	attribute target_yaml, value string;
 	attribute target_context_id, value string;
 	attribute created, value datetime;
+	attribute context_job_id, value string;
+	attribute context_project_ref, value string;
+	attribute context_job_status, value string @values("queued", "running", "cancelling", "cancelled", "failed", "discarded");
+	attribute context_parent_revision_id, value string;
+	attribute context_rule_release_id, value string;
+	attribute context_source_hash, value string;
+	attribute context_normalizer_version, value string;
+	attribute context_discard_reason, value string;
+	attribute context_revision_id, value string;
+	attribute context_revision_status, value string @values("draft", "active", "superseded");
+	attribute context_corrective_of, value string;
+	attribute context_created, value datetime;
+	attribute context_hold_id, value string;
+	attribute context_hold_code, value string;
+	attribute context_pointer_id, value string;
+	attribute context_active_project_ref, value string;
 
 	#####################################
 	# Schema functions (R10-08 / AI2)
