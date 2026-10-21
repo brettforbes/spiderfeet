@@ -20,7 +20,7 @@ Status legend: `planned` → `open` → `in progress` → `in review` → `done`
 
 | Code | Issue | Requirement | Depends on | Status |
 |---|---|---|---|---|
-| G0 — Land canonical planning and issue package | [#1384](https://github.com/brettforbes/spiderfeet/issues/1384) | Governance prerequisite | — | in progress |
+| G0 — Land canonical planning and issue package | [#1384](https://github.com/brettforbes/spiderfeet/issues/1384) | Governance prerequisite | — | done |
 
 ## Epic A — Local GoRules platform (`spiderfeet`)
 
